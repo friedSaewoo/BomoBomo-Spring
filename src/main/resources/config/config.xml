@@ -41,5 +41,13 @@
         <typeAlias type="com.example.bomobomo.domain.dto.EventPayDto" alias="eventPayDto"/>
         <typeAlias type="com.example.bomobomo.domain.dto.EventBoardDto" alias="eventBoardDto"/>
         <typeAlias type="com.example.bomobomo.domain.dto.EventCommentDto" alias="eventCommentDto"/>
+
+
+
+            <!--======================== Vo ========================-->
+            <typeAlias type="com.example.bomobomo.domain.vo.NoticeVo" alias="noticeVo"/>
+            <typeAlias type="com.example.bomobomo.domain.vo.Criteria" alias="criteria"/>
+            <typeAlias type="com.example.bomobomo.domain.vo.PageVo" alias="pageVo"/>
+            <typeAlias type="com.example.bomobomo.domain.vo.SearchVo" alias="searchVo"/>
     </typeAliases>
 </configuration>
