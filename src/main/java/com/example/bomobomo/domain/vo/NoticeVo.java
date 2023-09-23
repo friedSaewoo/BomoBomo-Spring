@@ -13,7 +13,7 @@ public class NoticeVo {
     String noticeTitle;
     String noticeContent;
     String noticeRegisterDate;
-    String noticeUpdateDate;
+    String noticeModifyDate;
     Integer noticeCount;
 
 }
