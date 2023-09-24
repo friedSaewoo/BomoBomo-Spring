@@ -28,14 +28,18 @@ public class BoardNoticeRestController {
 
     @GetMapping("/list/{page}")
     public Map<String, Object> findAll(@PathVariable("page")int page, SearchVo searchVo) {
+
+        //@Pathvariable로 받아온 page를 criteria 즉 현재 페이지 정보로 가져온다.
         Criteria criteria = new Criteria();
         criteria.setPage(page);
-        PageVo pageVo = new PageVo(noticeService.getTotal2(searchVo), criteria);
-        List<NoticeDto> boardDtoList = noticeService.searchResult(criteria, searchVo);
+        PageVo pageVo = new PageVo(noticeService.getTotal(searchVo), criteria);
+        List<NoticeDto> boardDtoList = noticeService.selectAll(criteria, searchVo);
 
+
+        //Object 타입으로 감싸서 리턴값으로 내보낸다.
         Map<String, Object> boardMap = new HashMap<>();
         boardMap.put("pageVo", pageVo);
-        boardMap.put("boardList", boardDtoList);
+        boardMap.put("boardNoticeList", boardDtoList);
 
 
         return boardMap;
