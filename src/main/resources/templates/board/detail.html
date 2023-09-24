@@ -15,7 +15,7 @@
 <body>
 <div class="header" th:replace="fragments/header :: header"></div>
 
-<main style="height: 1200px;">
+<main style="min-height: 1200px;">
   <div class="board-content-container" th:replace="fragments/board ::board">
 
   </div>
@@ -29,13 +29,13 @@
     </div>
     <div class="notice-detail-section">
       <div class="notice-detail-title">
-        <p th:text="${noticeDetail.noticeTitle}"><strong>보모보모 재밌엉!</strong></p>
-        <p th:text="${noticeDetail.noticeRegisterDate}">2023/09/16</p>
+        <p th:text="${noticeDetail.noticeTitle}"></p>
+        <p th:text="${noticeDetail.noticeRegisterDate}"></p>
       </div>
       <!-- 공지사항 내용 -->
       <div class="notice-detail-content">
 
-        <p th:text="${noticeDetail.noticeContent}">안녕하세요, 맘시터 고객경험팀입니다.</p>
+        <p th:text="${noticeDetail.noticeContent}"></p>
 
 
       </div>
@@ -53,5 +53,6 @@
 <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
   <script src="/fragments/js/header.js"></script>
   <script src="/board/js/board.js"></script>
+
 </body>
 </html>
