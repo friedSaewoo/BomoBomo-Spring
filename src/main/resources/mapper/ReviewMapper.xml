@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.bomobomo.mapper.ReviewMapper">
+
+<select id="selectServiceReviewAll" resultType="sitterBoardVo">
+
+    select rnum, SITTER_BOARD_NUMBER, user_number, user_name, EMP_NUMBER,SITTER_BOARD_CONTENT,
+    SITTER_BOARD_REGISTER_DATE,
+    SITTER_BOARD_MODIFY_DATE, RATING, SITTER_BOARD_COUNT, EMP_NAME
+    from(
+        select rnum, SITTER_BOARD_NUMBER, user_number, user_name, EMP_NUMBER,SITTER_BOARD_CONTENT,
+        SITTER_BOARD_REGISTER_DATE,
+        SITTER_BOARD_MODIFY_DATE, RATING, SITTER_BOARD_COUNT, EMP_NAME
+    from (
+        select rownum as rnum, s.SITTER_BOARD_NUMBER, s.user_number, u.user_name,s.EMP_NUMBER,SITTER_BOARD_CONTENT,
+        SITTER_BOARD_REGISTER_DATE,
+        SITTER_BOARD_MODIFY_DATE, RATING, SITTER_BOARD_COUNT, e.EMP_NAME
+        from SITTER_BOARD s join users u
+        on s.user_number = u.user_number
+        join emp e
+        on s.EMP_NUMBER = e.EMP_NUMBER
+        <![CDATA[
+        where rownum<=#{criteria.page} * #{criteria.amount}
+                  ]]>
+        order by SITTER_BOARD_NUMBER desc
+    )
+    where rnum> (#{criteria.page}-1) * #{criteria.amount}
+
+    )
+    <if test="'sitterName'.equals(searchReviewVo.cate)">
+    where emp_name Like '%'|| #{searchReviewVo.keyword} ||'%'
+    </if>
+
+
+</select>
+
+
+    <select id="getTotal" resultType="_int">
+
+        select count(sitter_board_number)
+        from (
+                select SITTER_BOARD_NUMBER, EMP_NAME
+                from SITTER_BOARD s join emp e
+                on s.emp_number = e.EMP_NUMBER
+             )
+        <if test="'sitterName'.equals(cate)">
+        where emp_name Like '%' || #{keyword} ||'%'
+        </if>
+
+    </select>
+
+
+
+
+    <select id="getAvgRating" resultType="double">
+
+
+
+    </select>
+
+
+
+    <select id="selectServiceReviewReply" resultType="sitterCommentDto">
+
+        select rnum, SITTER_COMMENT_NUMBER, SITTER_BOARD_NUMBER, user_number, SITTER_COMMENT_CONTENT, SITTER_COMMENT_REGISTER_DATE,
+        SITTER_COMMENT_MODIFY_DATE
+        from(
+        select rownum as rnum, r.SITTER_COMMENT_NUMBER, r.SITTER_BOARD_NUMBER, r.user_number, r.SITTER_COMMENT_CONTENT,
+        r.SITTER_COMMENT_REGISTER_DATE, r.SITTER_COMMENT_MODIFY_DATE
+        from SITTER_COMMENT r join SITTER_BOARD b
+        on r.SITTER_BOARD_NUMBER = b.SITTER_BOARD_NUMBER
+        join users u
+        on r.USER_NUMBER = u.USER_NUMBER
+        <![CDATA[
+        where rownum <=#{page} * #{amount}
+            ]]>
+        )
+        where rnum >(#{page}-1) * #{amount}
+
+    </select>
+
+
+</mapper>
