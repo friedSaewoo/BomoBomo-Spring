@@ -12,6 +12,10 @@ $(document).on('click', '.page-num a', function (e) {
     e.preventDefault();
     const page = $(this).data('num');
     loadPage(page, getSearchVo());
+
+
+
+
 });
 
 //검색 버튼 클릭 시 검색결과 화면에 표시를하며 동시에 페이징처리
@@ -40,7 +44,7 @@ function loadPage(page, searchVo) {
         dataType: 'json',
         success: function (result) {
             console.log(result.pageVo);
-            console.log(result.boardList);
+            console.log(result.boardNoticeList);
 
             //받아온 데이터를 noticeList함수에 넣어주어 화면에 뿌려준다.
             noticeList(result);
@@ -61,7 +65,7 @@ function loadPage(page, searchVo) {
 function noticeList(result) {
     let text = '';
 
-    result.boardList.forEach(r => {
+    result.boardNoticeList.forEach(r => {
 
         text += `
                 <tr>
@@ -82,7 +86,7 @@ function noticeList(result) {
 
 //페이징처리
 function updatePagination(pageVo) {
-    let $pagenation = $('.board-pagenation-container ul');
+    let $pagenation = $('.notice-pagenation-container ul');
     $pagenation.empty();
 
     if (pageVo.prev) {

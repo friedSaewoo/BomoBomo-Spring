@@ -1,3 +1,4 @@
+/*배너 글자 위치 조정*/
 .board-banner-title {
     left: 5%;
 }
@@ -7,6 +8,7 @@
     padding-top: 30px;
     width: 1024px;
     margin: 0 auto;
+    min-height: 800px;
 }
 
 /* 공지사항 영역 타이틀 */
@@ -30,16 +32,21 @@
 
 .notice-detail-title p:first-child{
     /* border: 2px solid red; */
-    width: 924px;
+    font-weight: bold;
+    width: 724px;
 }
 .notice-detail-title p:last-child{
-    /* border: 2px solid red; */
+    text-align: end;
+    width:300px;
 }
 
 .notice-detail-content {
     /* border: 2px solid blue; */
     padding: 20px;
     line-height: 2.7;
+    height: 100%;
+    min-height: 450px;
+    border-bottom: 1px solid gray;
 }
 
 .listBtn {
@@ -50,7 +57,7 @@
 
 .listBtn button {
     cursor: pointer;
-    width: 90px;
-    height: 45px;
-    font-size: 18px;
+    width: 80px;
+    height: 35px;
+    font-size: 16px;
 }
