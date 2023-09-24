@@ -98,4 +98,10 @@ public class BoardController {
     public String showServiceReviewPage(){
         return "board/boardServiceReview";
     }
+
+    @GetMapping("/ReviewDetail")
+    public String showServiceReviewDetailPage(Long sitterBoardNumber){
+        return null;
+    }
+
 }

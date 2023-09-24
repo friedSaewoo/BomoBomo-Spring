@@ -30,6 +30,7 @@ public class BoardReviewController {
 
         Criteria criteria = new Criteria();
         criteria.setPage(page);
+        //한 페이지당 게시물 수 설정
         criteria.setAmount(8);
         PageVo pageReviewVo = new PageVo(reviewService.getTotal(searchReviewVo), criteria);
         List<SitterBoardVo> serviceReviewList = reviewService.selectAll(criteria, searchReviewVo);
@@ -38,8 +39,8 @@ public class BoardReviewController {
         reviewMap.put("pageReviewVo", pageReviewVo);
         reviewMap.put("serviceReviewList", serviceReviewList);
 
-        log.info(pageReviewVo.toString()+"===============================");
-        log.info(serviceReviewList.toString()+"=====================");
+        log.info(pageReviewVo+"===============================");
+        log.info(serviceReviewList+"=====================");
 
         return reviewMap;
 

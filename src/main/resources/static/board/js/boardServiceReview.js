@@ -15,7 +15,12 @@ $(document).on('click', '.page-num a', function (e) {
 
 //검색 버튼 클릭 시 검색결과 화면에 표시를하며 동시에 페이징처리
 $('.sitter-search-btn>button' ).on('click', function (){
+
+
+
     showServiceReviewList(1, getSearchReviewVo());
+
+
 })
 
 
@@ -61,9 +66,10 @@ function showServiceReviewList(page, searchReviewVo){
 function serviceReviewList(result) {
     let text = '';
 
-    result.serviceReviewList.forEach(r => {
+    if(result.serviceReviewList.length !=0){
+        result.serviceReviewList.forEach(r => {
 
-        text += `
+            text += `
                 
                 <li>
                     <a href="/board/faq">
@@ -88,10 +94,23 @@ function serviceReviewList(result) {
                         </div>
                     </a>
                 </li>
-                
-                
             `;
-    });
+        });
+        }else{
+            text=`
+
+                    <h3 class="non-review-search-result">검색 결과가 없습니다. 시터님 정보를 다시 확인해주세요.<br>
+                            <a href="/board/serviceReview">목록으로 돌아가기</a></h3>
+
+
+
+            `;
+        }
+    
+       
+
+
+
 
     $('.review-ul').html(text);
     //동시에 페이징처리
