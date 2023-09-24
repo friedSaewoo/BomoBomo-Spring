@@ -16,7 +16,6 @@ import java.net.http.HttpResponse;
 import java.util.Date;
 
 
-//임시 컨트롤러
 @Controller
 @Slf4j
 @RequiredArgsConstructor
