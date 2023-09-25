@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.bomobomo.mapper.UserMapper">
+
+    <insert id="insert" parameterType="userDto">
+        insert into USERS (
+            USER_NUMBER,
+            USER_ID,
+            USER_PASSWORD,
+            USER_NAME,
+            USER_EMAIL,
+            REGISTER_DATE,
+            USER_PHONE,
+            USER_POSTAL,
+            USER_ADDR1,
+            USER_ADDR2
+                           )
+        values (
+            SEQ_USER.NEXTVAL,
+            #{userId},
+            #{userPassword},
+            #{userName},
+            #{userEmail},
+            SYSDATE,
+                #{userPhone},
+                #{userPostal},
+                #{userAddr1},
+                #{userAddr2}
+            )
+        </insert>
+
+    <select id="select" resultType="userDto">
+        SELECT *
+        FROM USERS
+        WHERE USER_ID = #{userId} AND USER_PASSWORD = #{userPassword}
+    </select>
+</mapper>
