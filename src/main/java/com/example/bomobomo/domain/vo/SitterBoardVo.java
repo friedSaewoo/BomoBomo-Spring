@@ -20,6 +20,8 @@ public class SitterBoardVo {
    private Integer rating;
    private Integer sitterBoardCount;
    private String empName;
-
+//   private String fileName;
+//   private String fileUuid;
+//   private String fileUploadPath;
 
 }

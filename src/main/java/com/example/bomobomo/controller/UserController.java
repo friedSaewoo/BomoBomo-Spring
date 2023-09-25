@@ -1,7 +1,6 @@
 package com.example.bomobomo.controller;
 
 import com.example.bomobomo.domain.dto.UserDto;
-import com.example.bomobomo.service.EmailService;
 import com.example.bomobomo.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -21,7 +20,6 @@ import java.util.Date;
 public class UserController {
 
     private final UserService userService;
-    private final EmailService emailService;
 
     @GetMapping("/login")
     public String login(){
@@ -67,9 +65,9 @@ public class UserController {
     public RedirectView login(String userId, String userPassword, HttpServletRequest req){
 
         UserDto userDto = userService.find(userId, userPassword);
-        req.getSession().setAttribute("userNumber", userDto.getUserNumber());
-        req.getSession().setAttribute("userName", userDto.getUserName());
-        req.getSession().setAttribute("userId", userDto.getUserId());
+        req.getSession().setAttribute("userNumber", 1L);
+        req.getSession().setAttribute("userName", "User One");
+        req.getSession().setAttribute("userId", "user1");
 
         System.out.println("로그인 컨트롤러 : " + userDto.getUserId());
         System.out.println("로그인 컨트롤러 : " + userDto.getUserName());

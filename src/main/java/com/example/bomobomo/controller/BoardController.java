@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -109,11 +110,18 @@ public class BoardController {
 
 
     @GetMapping("/reviewDetail")
-    public String showServiceReviewDetailPage(@RequestParam("sitterBoardNumber") Long sitterBoardNumber
-            , Model model, HttpServletRequest req, HttpServletResponse resp){
+    public String showServiceReviewDetailPage(@RequestParam("sitterBoardNumber") Long sitterBoardNumber,
+           Model model, HttpServletRequest req, HttpServletResponse resp){
 
         SitterBoardVo sitterBoardVo = reviewService.selectOne(sitterBoardNumber);
+        double getAvg = reviewService.getAvgRating(sitterBoardVo.getEmpNumber());
+
+
+
         model.addAttribute("serviceReviewDetail", sitterBoardVo);
+        model.addAttribute("getAvg", (Math.round(getAvg*100) / 100.0));
+
+        log.info(String.valueOf(getAvg));
 
 
         Cookie[] cookies = req.getCookies();
@@ -157,10 +165,21 @@ public class BoardController {
         }
 
 
-
-
         log.info(sitterBoardVo.toString());
         return "board/serviceReviewDetail";
+    }
+
+    
+    //돌봄후기 수정
+    
+
+
+    //돌봄후기 삭제
+    @GetMapping("/removeSReview")
+    public RedirectView removeServiceReview(Long sitterBoardNumber){
+        reviewService.delete(sitterBoardNumber);
+
+        return new RedirectView("serviceReview");
     }
 
     

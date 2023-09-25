@@ -118,6 +118,8 @@
 }
 
 .review-user-content {
+    min-height: 400px;
+
     font-size: 13.5px;
     padding: 20px;
     line-height: 2.5;

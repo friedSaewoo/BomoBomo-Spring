@@ -6,9 +6,24 @@ function showReviewListBtn(){
 
 
     reviewListBtn.addEventListener('click', function(){
-        location.href="/board/html/boardServiceReview.html"
+        location.href="/board/serviceReview"
     });
 };
+// /removeSReview
+
+
+//해당 돌봄 서비스 리뷰 삭제
+$('.deleteBtn').on('click', function (){
+    let sitterBoardNumber = $(this).data('number');
+
+    confirm("정말로 삭제하시겠습니까?")
+    {
+        console.log(sitterBoardNumber);
+        window.location.href = '/board/removeSReview?sitterBoardNumber=' + sitterBoardNumber;
+
+    }
+})
+
 
 
 $('.reply-list-wrap').on('click', '.reply-modify-btn', function () {

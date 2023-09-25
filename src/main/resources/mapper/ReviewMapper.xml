@@ -83,6 +83,15 @@
 
 
 
+    <delete id="delete">
+
+        delete from sitter_board
+        where SITTER_BOARD_NUMBER = #{sitterBoardNumber}
+
+    </delete>
+
+
+
 
     <select id="selectServiceReviewReply" resultType="sitterCommentDto">
 
@@ -103,5 +112,46 @@
 
     </select>
 
+
+    <select id="ddddd">
+
+        select rnum, SITTER_BOARD_NUMBER, user_number, user_name, EMP_NUMBER,SITTER_BOARD_CONTENT,
+        SITTER_BOARD_REGISTER_DATE,
+        SITTER_BOARD_MODIFY_DATE, RATING, SITTER_BOARD_COUNT, EMP_NAME, emp_img_UPLOAD_PATH,
+        emp_img_UUID,
+        emp_img_NAME
+        from (
+                select rownum as rnum, SITTER_BOARD_NUMBER, user_number, user_name, EMP_NUMBER,
+                SITTER_BOARD_CONTENT, SITTER_BOARD_REGISTER_DATE, SITTER_BOARD_MODIFY_DATE,
+                RATING, SITTER_BOARD_COUNT, EMP_NAME, emp_img_UPLOAD_PATH, emp_img_UUID, emp_img_NAME
+                        from (
+                            select s.SITTER_BOARD_NUMBER, s.user_number, u.user_name, s.EMP_NUMBER,
+                            SITTER_BOARD_CONTENT, SITTER_BOARD_REGISTER_DATE, SITTER_BOARD_MODIFY_DATE,
+                            RATING, SITTER_BOARD_COUNT, e.EMP_NAME,
+                            emp_img_UPLOAD_PATH, emp_img_UUID, emp_img_NAME
+                            from SITTER_BOARD s
+                            join users u on s.user_number = u.user_number
+                            join emp e on s.EMP_NUMBER = e.EMP_NUMBER
+                            left outer join (
+                                     select emp_img_UPLOAD_PATH,
+                                            emp_img_UUID,
+                                            emp_img_NAME,
+                                            EMP_NUMBER,
+                                            rank() over (partition by EMP_NUMBER order by EMP_IMG_NUMBER) RK
+                                                                    from emp_img
+                                )J1
+                                on s.emp_number = J1.emp_number
+                                where RK = 1
+                                order by SITTER_BOARD_NUMBER desc
+                                )Y
+                                <![CDATA[
+                                where rownum<=#{page} #{amount}
+                                            ]]>
+                                ) X
+                                where rnum> (#{page}-1)*#{amount}
+                <if test="'sitterName'.equals(searchReviewVo.cate)">
+                    where emp_name Like '%'|| #{searchReviewVo.keyword} ||'%'
+                </if>
+    </select>
 
 </mapper>
