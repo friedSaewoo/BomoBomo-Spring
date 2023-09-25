@@ -61,40 +61,4 @@
 
 
 
-
-
-
-
-    <!--    <select id="getTotal" resultType="_int">-->
-
-    <!--        select count(notice_number)-->
-    <!--        from notice-->
-
-    <!--    </select>-->
-
-
-
-
-
-    <!--    <select id="selectAll" resultType="noticeDto">-->
-
-
-
-
-    <!--        select rnum, notice_number, notice_title, notice_content, notice_REGISTER_DATE, notice_modify_DATE, notice_count-->
-    <!--        from(-->
-    <!--                select ROWNUM as rnum, notice_number, notice_title, notice_content, notice_REGISTER_DATE, notice_modify_DATE, notice_count-->
-    <!--                from notice-->
-    <!--        <![CDATA[-->
-    <!--                where rownum<=#{page} * #{amount}-->
-    <!--                    ]]>-->
-    <!--            order by notice_NUMBER desc-->
-    <!--            )-->
-    <!--        where rnum>(#{page}-1)*#{amount}-->
-
-
-    <!--    </select>-->
-
-
-
 </mapper>

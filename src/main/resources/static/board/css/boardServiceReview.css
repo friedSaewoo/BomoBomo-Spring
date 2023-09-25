@@ -190,21 +190,38 @@
     font-size: 16px;
 }
 
-.board-pagenation-container {
+
+.non-review-search-result {
+    line-height: 2;
+    width: 1024px;
+    text-align: center;
+
+}
+
+.non-review-search-result a {
+    color: #FF7000;
+}
+
+
+
+
+
+
+.review-pagenation-container {
     padding-top: 30px;
 }
-.board-pagenation-container ul {
+.review-pagenation-container ul {
     display: flex;
     justify-content: center;
 }
 
-.board-pagenation-container ul li {
+.review-pagenation-container ul li {
     text-align: center;
     width: 30px;
 
 }
 
-.board-pagenation-container ul li a {
+.review-pagenation-container ul li a {
     color: black;
     display: block;
     font-size: 17px;
