@@ -65,9 +65,9 @@ public class UserController {
     public RedirectView login(String userId, String userPassword, HttpServletRequest req){
 
         UserDto userDto = userService.find(userId, userPassword);
-        req.getSession().setAttribute("userNumber", 1L);
-        req.getSession().setAttribute("userName", "User One");
-        req.getSession().setAttribute("userId", "user1");
+        req.getSession().setAttribute("userNumber",userDto.getUserNumber());
+        req.getSession().setAttribute("userName", userDto.getUserName());
+        req.getSession().setAttribute("userId", userDto.getUserId());
 
         System.out.println("로그인 컨트롤러 : " + userDto.getUserId());
         System.out.println("로그인 컨트롤러 : " + userDto.getUserName());

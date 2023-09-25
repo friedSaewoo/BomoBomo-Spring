@@ -62,7 +62,7 @@
       </div>
       <!-- 리뷰 작성자 -->
       <div class="review-userid" >
-        <p th:text="${reviewDetail.userName}"><span><strong>보노보노</strong></span>님이 남기신 리뷰입니다.</p>
+        <p th:text="${reviewDetail.userId}"><span><strong>보노보노</strong></span>님이 남기신 리뷰입니다.</p>
       </div>
 
       <!-- 리뷰내용 -->
@@ -85,11 +85,11 @@
         <h3>댓글 작성</h3>
         <div class="reply-wrap__box">
           <div class="reply-content__box">
-            <div class="reply-writer" >홍길동</div>
+            <div class="reply-writer" th:text="${session.userId}">홍길동</div>
             <textarea name="replyContent" id="reply-content" cols="30" rows="10"></textarea>
           </div>
           <div class="reply-btn-wrap">
-            <button type="button" class="btn-reply">작성 완료</button>
+            <button type="button" class="btn-reply"  >작성 완료</button>
           </div>
         </div>
       </div>
@@ -106,55 +106,7 @@
             <div class="reply-list-wrap">
               <div class="reply">
                 <div class="reply-box">
-                  <div class="reply-box__content">안녕하세요!ssdfsdfsdfsdfsdfsdjiofjsdlfsdfjlksdfnlsdkfnsdklfnsdflksdnflksndklfnsdlkfㄴㅇ라ㅣㄴㅇ러ㅜㄴ이ㅑ런야ㅐ런ㅇ래ㅑㄴ어리낭룬아ㅣ룬이라눙리ㅏㄴ우리ㅏ눙라ㅣㄴㅇ루ㅏㅣㄴㅇ룬이ㅏㄹ</div>
-                </div>
-                <div class="reply-btn-box">
-                  <span class="reply-btns"></span>
-                  <div class="reply-btns__box none">
-                    <div class="reply-remove-btn">삭제</div>
-                    <div class="reply-modify-btn">수정</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </dd>
-        </dl>
-        <dl>
-          <dt>
-            <div class="reply-box__writer">
-              <strong>김철수</strong>
-            </div>
-          </dt>
-
-          <dd>
-            <div class="reply-list-wrap">
-              <div class="reply">
-                <div class="reply-box">
-                  <div class="reply-box__content">안녕하세요!</div>
-                </div>
-                <div class="reply-btn-box">
-                  <span class="reply-btns"></span>
-                  <div class="reply-btns__box none">
-                    <div class="reply-remove-btn">삭제</div>
-                    <div class="reply-modify-btn">수정</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </dd>
-        </dl>
-        <dl>
-          <dt>
-            <div class="reply-box__writer">
-              <strong>김철수</strong>
-            </div>
-          </dt>
-
-          <dd>
-            <div class="reply-list-wrap">
-              <div class="reply">
-                <div class="reply-box">
-                  <div class="reply-box__content">안녕하세요!</div>
+                  <div class="reply-box__content">런ㅇ래ㅑㄴ어리낭룬아ㅣ</div>
                 </div>
                 <div class="reply-btn-box">
                   <span class="reply-btns"></span>
@@ -168,14 +120,19 @@
           </dd>
         </dl>
       </div>
-
     </div>
   </div>
+  <input type="hidden" th:value="${reviewDetail.sitterBoardNumber}" class="reviewDetail-num">
+
 </main>
 <div class="footer" th:replace="fragments/footer :: footer"></div>
 
 <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+<script th:inline="javascript">//타임리프 문법을 자바스크립트에서 사용하기 위한 설정
+let loginNumber = [[${session.userNumber}]]; //타임리프 문법은 [] 2개로 감싸야한다.
+</script>
 <script src="/board/js/boardServiceReviewDetail.js"></script>
+<script src="/board/js/serviceReviewReply.js"></script>
 <script src="/fragments/js/header.js"></script>
 
 

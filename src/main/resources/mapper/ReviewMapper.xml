@@ -4,15 +4,15 @@
 
 <select id="selectServiceReviewAll" resultType="sitterBoardVo">
 
-    select rnum, SITTER_BOARD_NUMBER, user_number, user_name, EMP_NUMBER,SITTER_BOARD_CONTENT,
+    select rnum, SITTER_BOARD_NUMBER, user_number, user_id, EMP_NUMBER,SITTER_BOARD_CONTENT,
     SITTER_BOARD_REGISTER_DATE,
     SITTER_BOARD_MODIFY_DATE, RATING, SITTER_BOARD_COUNT, EMP_NAME
     from(
-        select rnum, SITTER_BOARD_NUMBER, user_number, user_name, EMP_NUMBER,SITTER_BOARD_CONTENT,
+        select rnum, SITTER_BOARD_NUMBER, user_number, user_id, EMP_NUMBER,SITTER_BOARD_CONTENT,
         SITTER_BOARD_REGISTER_DATE,
         SITTER_BOARD_MODIFY_DATE, RATING, SITTER_BOARD_COUNT, EMP_NAME
     from (
-        select rownum as rnum, s.SITTER_BOARD_NUMBER, s.user_number, u.user_name,s.EMP_NUMBER,SITTER_BOARD_CONTENT,
+        select rownum as rnum, s.SITTER_BOARD_NUMBER, s.user_number, u.user_id,s.EMP_NUMBER,SITTER_BOARD_CONTENT,
         SITTER_BOARD_REGISTER_DATE,
         SITTER_BOARD_MODIFY_DATE, RATING, SITTER_BOARD_COUNT, e.EMP_NAME
         from SITTER_BOARD s join users u
@@ -63,7 +63,7 @@
 
     <select id="selectOne" resultType="sitterBoardVo">
 
-        select SITTER_BOARD_NUMBER, s.USER_NUMBER, s.EMP_NUMBER, u.USER_NAME, SITTER_BOARD_CONTENT,
+        select SITTER_BOARD_NUMBER, s.USER_NUMBER, s.EMP_NUMBER, u.USER_id, SITTER_BOARD_CONTENT,
                SITTER_BOARD_REGISTER_DATE, SITTER_BOARD_MODIFY_DATE, rating, SITTER_BOARD_COUNT, e.EMP_NAME
         from SITTER_BOARD s join users u on s.USER_NUMBER = u.USER_number
                             join emp e on s.EMP_NUMBER = e.EMP_NUMBER
@@ -115,20 +115,20 @@
 
     <select id="ddddd">
 
-        select rnum, SITTER_BOARD_NUMBER, user_number, user_name, EMP_NUMBER,SITTER_BOARD_CONTENT,
-        SITTER_BOARD_REGISTER_DATE,
-        SITTER_BOARD_MODIFY_DATE, RATING, SITTER_BOARD_COUNT, EMP_NAME, emp_img_UPLOAD_PATH,
-        emp_img_UUID,
-        emp_img_NAME
-        from (
-                select rownum as rnum, SITTER_BOARD_NUMBER, user_number, user_name, EMP_NUMBER,
-                SITTER_BOARD_CONTENT, SITTER_BOARD_REGISTER_DATE, SITTER_BOARD_MODIFY_DATE,
-                RATING, SITTER_BOARD_COUNT, EMP_NAME, emp_img_UPLOAD_PATH, emp_img_UUID, emp_img_NAME
+        select rnum, SITTER_BOARD_NUMBER, user_number, user_id, EMP_NUMBER,SITTER_BOARD_CONTENT,
+                SITTER_BOARD_REGISTER_DATE,
+                SITTER_BOARD_MODIFY_DATE, RATING, SITTER_BOARD_COUNT, EMP_NAME, emp_img_UPLOAD_PATH,
+                emp_img_UUID,
+                emp_img_NAME
+            from (
+                select rownum as rnum, SITTER_BOARD_NUMBER, user_number, user_id, EMP_NUMBER,
+                        SITTER_BOARD_CONTENT, SITTER_BOARD_REGISTER_DATE, SITTER_BOARD_MODIFY_DATE,
+                        RATING, SITTER_BOARD_COUNT, EMP_NAME, emp_img_UPLOAD_PATH, emp_img_UUID, emp_img_NAME
                         from (
-                            select s.SITTER_BOARD_NUMBER, s.user_number, u.user_name, s.EMP_NUMBER,
-                            SITTER_BOARD_CONTENT, SITTER_BOARD_REGISTER_DATE, SITTER_BOARD_MODIFY_DATE,
-                            RATING, SITTER_BOARD_COUNT, e.EMP_NAME,
-                            emp_img_UPLOAD_PATH, emp_img_UUID, emp_img_NAME
+                            select s.SITTER_BOARD_NUMBER, s.user_number, u.user_id, s.EMP_NUMBER,
+                                    SITTER_BOARD_CONTENT, SITTER_BOARD_REGISTER_DATE, SITTER_BOARD_MODIFY_DATE,
+                                    RATING, SITTER_BOARD_COUNT, e.EMP_NAME,
+                                    emp_img_UPLOAD_PATH, emp_img_UUID, emp_img_NAME
                             from SITTER_BOARD s
                             join users u on s.user_number = u.user_number
                             join emp e on s.EMP_NUMBER = e.EMP_NUMBER
