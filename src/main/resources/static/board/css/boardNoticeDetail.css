@@ -1,0 +1,63 @@
+/*배너 글자 위치 조정*/
+.board-banner-title {
+    left: 5%;
+}
+
+.Notice-container {
+    font-family: 'IBM Plex Sans KR', sans-serif;
+    padding-top: 30px;
+    width: 1024px;
+    margin: 0 auto;
+    min-height: 800px;
+}
+
+/* 공지사항 영역 타이틀 */
+.Notice-container h3{
+    border-bottom: 1px solid gray;
+    padding: 15px 15px 15px 0;
+}
+
+.notice-detail-section {
+    /* border: 2px solid red; */
+}
+
+.notice-detail-title {
+    display: flex;
+    box-sizing: border-box;
+    width: 1024px;
+    /* border:2px solid blue; */
+    padding: 10px;
+    background-color: rgba(219, 219, 219, 0.495);
+}
+
+.notice-detail-title p:first-child{
+    /* border: 2px solid red; */
+    font-weight: bold;
+    width: 724px;
+}
+.notice-detail-title p:last-child{
+    text-align: end;
+    width:300px;
+}
+
+.notice-detail-content {
+    /* border: 2px solid blue; */
+    padding: 20px;
+    line-height: 2.7;
+    height: 100%;
+    min-height: 450px;
+    border-bottom: 1px solid gray;
+}
+
+.listBtn {
+    padding: 20px;
+    display: flex;
+    justify-content: end;
+}
+
+.listBtn button {
+    cursor: pointer;
+    width: 80px;
+    height: 35px;
+    font-size: 16px;
+}
