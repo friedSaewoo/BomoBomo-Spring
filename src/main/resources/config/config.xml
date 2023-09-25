@@ -3,7 +3,6 @@
 
 <configuration>
     <typeAliases>
-
 <!--======================== 관리자 ========================-->
         <typeAlias type="com.example.bomobomo.domain.dto.AdminDto" alias="adminDto"/>
         <typeAlias type="com.example.bomobomo.domain.dto.NoticeDto" alias="noticeDto"/>
