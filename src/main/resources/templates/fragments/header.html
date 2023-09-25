@@ -40,9 +40,14 @@
                 </nav>
             </div>
             <div class="right-menu-container">
-                <ul>
-                    <li><a href="/user/html/login.html">로그인</a></li>
-                    <li><a href="/user/html/join.html">회원가입</a></li>
+                <ul th:if="${session.userNumber == null}">
+                    <li><a href="/user/login">로그인</a></li>
+                    <li><a href="/user/join">회원가입</a></li>
+                </ul>
+                <ul th:unless="${session.userNumber == null}">
+                    <li><h3 th:text="${session.userName} + 님"></h3></li>
+<!--                    <li><label th:text="${session.userName} + 님"></label></li>-->
+                    <li><a href="/user/logout" class="nav-item login">로그아웃</a></li>
                 </ul>
             </div>
         </div>
