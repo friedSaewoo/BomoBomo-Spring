@@ -65,9 +65,11 @@ function loadPage(page, searchVo) {
 function noticeList(result) {
     let text = '';
 
-    result.boardNoticeList.forEach(r => {
 
-        text += `
+    if(result.boardNoticeList.length != 0){
+        result.boardNoticeList.forEach(r => {
+
+            text += `
                 <tr>
                     <td>${r.noticeNumber}</td>
                     <td><a href="/board/detail?noticeNumber=${r.noticeNumber}"><strong>${r.noticeTitle}</strong></a></td>
@@ -76,7 +78,24 @@ function noticeList(result) {
                     <td>${r.noticeCount}</td>
                 </tr>
             `;
-    });
+        });
+
+    }else {
+        text = `
+        
+            <tr class="non-notice-search-result">
+                <td > 검색결과가 없습니다.</td>
+               
+            </tr>
+            <tr class="non-notice-search-result backBtn">
+                <td colspan="3" ><a href="/board/notice">목록으로 돌아가기</a></td >
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+        `;
+    }
 
     $('.content').html(text);
     //동시에 페이징처리

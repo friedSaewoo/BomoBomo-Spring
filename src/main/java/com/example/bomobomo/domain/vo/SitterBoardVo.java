@@ -1,0 +1,25 @@
+package com.example.bomobomo.domain.vo;
+
+
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.stereotype.Component;
+
+@Component
+@Data
+@NoArgsConstructor
+public class SitterBoardVo {
+
+   private Long sitterBoardNumber;
+   private Long userNumber;
+   private Long empNumber;
+   private String userName;
+   private String sitterBoardContent;
+   private String sitterBoardRegisterDate;
+   private String sitterBoardModifyDate;
+   private Integer rating;
+   private Integer sitterBoardCount;
+   private String empName;
+
+
+}

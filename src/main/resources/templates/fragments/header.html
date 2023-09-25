@@ -12,7 +12,7 @@
     <div class="header-wrap">
         <div class="header-contaier">
             <div class="logo-container">
-                <a href="/common/html/index.html"><h1>BomoBomo</h1></a>
+                <a href="/common/index"><h1>BomoBomo</h1></a>
             </div>
             <div class="nav-container">
                 <nav class="nav">
@@ -28,21 +28,26 @@
                         </li>
                         <li><a href="/sitter/html/sitterFind.html">씨터찾기</a></li>
                         <li><a href="#">이벤트</a></li>
-                        <li id="downMenu2"><a href="/board/html/boardFAQ.html">커뮤니티</a>
+                        <li id="downMenu2"><a href="/board/faq">커뮤니티</a>
                             <dl style="display: none" class="sub-menu" id="subMenu2">
                                 <dt>회사 소개</dt>
-                                <dd><a href="/board/html/boardFAQ.html">자주 묻는 질문</a></dd>
-                                <dd><a href="/board/html/boardNotice.html">공지사항</a></dd>
-                                <dd><a href="/board/html/boardServiceReview.html">서비스 이용후기</a></dd>
+                                <dd><a href="/board/faq">자주 묻는 질문</a></dd>
+                                <dd><a href="/board/notice">공지사항</a></dd>
+                                <dd><a href="/board/serviceReview">서비스 이용후기</a></dd>
                             </dl>
                         </li>
                     </ul>
                 </nav>
             </div>
             <div class="right-menu-container">
-                <ul>
-                    <li><a href="/user/html/login.html">로그인</a></li>
-                    <li><a href="/user/html/join.html">회원가입</a></li>
+                <ul th:if="${session.userNumber == null}">
+                    <li><a href="/user/login">로그인</a></li>
+                    <li><a href="/user/join">회원가입</a></li>
+                </ul>
+                <ul th:unless="${session.userNumber == null}">
+                    <li><h3 th:text="${session.userName} + 님"></h3></li>
+<!--                    <li><label th:text="${session.userName} + 님"></label></li>-->
+                    <li><a href="/user/logout" class="nav-item login">로그아웃</a></li>
                 </ul>
             </div>
         </div>
