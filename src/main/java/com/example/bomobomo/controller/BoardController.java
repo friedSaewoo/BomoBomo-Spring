@@ -58,6 +58,7 @@ public class BoardController {
             for (Cookie cookie : cookies) {
                 if ("notice_count_cookie".equals(cookie.getName())) {
                     // 해당 쿠키가 이미 존재하는 경우
+
                     String cookieValue = cookie.getValue();
 
                     //쿠키밸루를 가져와서 _마다 쪼개어 배열로 저장한다.
@@ -144,8 +145,8 @@ public class BoardController {
             }
         }
 
-        //쿠키가 없다면(또는 이미 발급 받았던 notice_count_cookie의 지속시간이 지났을 경우)
-        // notice_count_cookie를 생성해주고 해당 게시물 들어갔을 때 조회수 증가
+        //쿠키가 없다면(또는 이미 발급 받았던 reviewDetai_count_cookie의 지속시간이 지났을 경우)
+        // reviewDetai_count_cookie를 생성해주고 해당 게시물 들어갔을 때 조회수 증가
         if (updateCount) {
             Cookie newCookie = new Cookie("reviewDetail_count_cookie", req.getParameter("sitterBoardNumber") + "_" + new Date().getTime());
             newCookie.setMaxAge(24 * 60 * 60); // 쿠키 생성 시 24시간 유지
