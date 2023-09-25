@@ -108,6 +108,22 @@
     text-align: center;
 }
 
+
+
+
+.backBtn td:last-child {
+    text-align: center;
+
+}
+
+.backBtn td:last-child a{
+    border: 2px solid red;
+    display: inline;
+}
+
+
+
+/*페이징처리*/
 .notice-pagenation-container {
     padding-top: 30px;
 }
