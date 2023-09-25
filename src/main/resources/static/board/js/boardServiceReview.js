@@ -8,15 +8,13 @@ $(document).ready(function () {
 //페이징처리된 숫자 클릭 시 해당 데이터를 가져와서 비동기 페이징처리
 $(document).on('click', '.page-num a', function (e) {
     e.preventDefault();
-    const page = $(this).data('reviewNum');
+    const page = $(this).data('reviewnum');
     showServiceReviewList(page,getSearchReviewVo());
 
 });
 
 //검색 버튼 클릭 시 검색결과 화면에 표시를하며 동시에 페이징처리
 $('.sitter-search-btn>button' ).on('click', function (){
-
-
 
     showServiceReviewList(1, getSearchReviewVo());
 
@@ -84,7 +82,7 @@ function serviceReviewList(result) {
                         </div>
                         <div class="reivew-text-content">
                             <dl>
-                                <dt><strong>${r.userName}</strong></dt>
+                                <dt><strong>${r.userId}</strong></dt>
                                 <dd>
                                     <p>
                                         ${r.sitterBoardContent}
@@ -102,15 +100,8 @@ function serviceReviewList(result) {
                     <h3 class="non-review-search-result">검색 결과가 없습니다. 시터님 정보를 다시 확인해주세요.<br>
                             <a href="/board/serviceReview">목록으로 돌아가기</a></h3>
 
-
-
             `;
         }
-    
-       
-
-
-
 
     $('.review-ul').html(text);
     //동시에 페이징처리
@@ -125,19 +116,19 @@ function updatePagination(pageReviewVo) {
 
     if (pageReviewVo.prev) {
         $pagenation.append(`
-                <li class="page-num"><a href="#" data-reviewNum="${pageReviewVo.startPage-1}">&lt;</a></li>
+                <li class="page-num"><a href="#" data-reviewnum="${pageReviewVo.startPage-1}">&lt;</a></li>
             `);
     }
 
     for (let page = pageReviewVo.startPage; page <= pageReviewVo.endPage; page++) {
         $pagenation.append(`
-                    <li class="page-num "><a href="#" class="on" data-reviewNum="${page}">${page}</a></li>
+                    <li class="page-num "><a href="#" class="on" data-reviewnum="${page}">${page}</a></li>
                 `);
 
     }
     if (pageReviewVo.next) {
         $pagenation.append(`
-            <li class="page-num"> <a href="#" data-reviewNum="${pageReviewVo.endPage+1}">&gt;</a></li>
+            <li class="page-num"> <a href="#" data-reviewnum="${pageReviewVo.endPage+1}">&gt;</a></li>
             `);
     }
 }

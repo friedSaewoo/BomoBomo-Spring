@@ -36,4 +36,31 @@
     </delete>
 
 
+    <update id="update" >
+
+
+
+    </update>
+
+
+
+    <select id="selectServiceReviewReply" resultType="sitterCommentDto">
+
+        select rnum, SITTER_COMMENT_NUMBER, SITTER_BOARD_NUMBER, user_number, SITTER_COMMENT_CONTENT, SITTER_COMMENT_REGISTER_DATE,
+               SITTER_COMMENT_MODIFY_DATE
+        from(
+                select rownum as rnum, r.SITTER_COMMENT_NUMBER, r.SITTER_BOARD_NUMBER, r.user_number, r.SITTER_COMMENT_CONTENT,
+                       r.SITTER_COMMENT_REGISTER_DATE, r.SITTER_COMMENT_MODIFY_DATE
+                from SITTER_COMMENT r join SITTER_BOARD b
+                                           on r.SITTER_BOARD_NUMBER = b.SITTER_BOARD_NUMBER
+                                      join users u
+                                           on r.USER_NUMBER = u.USER_NUMBER
+        <![CDATA[
+                where rownum <=#{page} * #{amount}
+            ]]>
+        )
+        where rnum >(#{page}-1) * #{amount}
+
+    </select>
+
 </mapper>

@@ -27,7 +27,7 @@ $('.deleteBtn').on('click', function (){
 })
 
 
-
+//댓글 수정
 $('.reply-list-wrap').on('click', '.reply-modify-btn', function () {
     let $content = $(this).closest('.reply').find('.reply-box__content');
     $content.replaceWith(`
@@ -38,6 +38,7 @@ $('.reply-list-wrap').on('click', '.reply-modify-btn', function () {
   `);
     $('.reply-btns__box').addClass('none');
 });
+
 
 $('.reply-list-wrap').on('click', '.reply-btns', function () {
     let $replyBtnBox = $(this).closest('.reply-btn-box').find('.reply-btns__box');

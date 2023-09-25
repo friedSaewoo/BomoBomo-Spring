@@ -259,13 +259,13 @@
 }
 
 .reply-btns__box {
-    z-index: 999;
+    z-index: 99999999;
 
     border: 1px solid #888;
     border-radius: 5px;
     width: 80px;
     position: absolute;
-    top: 30px;
+    top: 60px;
     right: 0;
     background-color: #f7f7f7;
 }
