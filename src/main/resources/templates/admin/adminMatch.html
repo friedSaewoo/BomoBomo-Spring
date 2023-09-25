@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>관리자 페이지</title>
-    <link rel="stylesheet" href="../css/admin_match.css">
+    <link rel="stylesheet" href="/admin/css/adminMatch.css">
 </head>
 <body>
     <!-- 전체 컨테이너 -->
@@ -12,26 +12,22 @@
         <!-- 사이드 컨테이너 -->
         <div class="side-container">
             <div class="side-logo-box">
-                   <img class="logo" src="../img/logo.png" alt="logo">
+                   <img class="logo" src="/admin/img/logo.png" alt="logo">
             </div>
             <ul class="side-item-container">
-                <li class="side-item" ><a href="adminMain.html">대시보드</a></li>
-                <li class="side-item"><a href ="adminUser.html">회원정보</a></li>
-                <li class="side-item"><a href="adminEmp.html">직원관리</a></li>
-                <li class="side-item on"><a href="adminMatch.html">매칭관리</a></li>
-                <li class="side-item"><a href="adminEvent.html">이벤트관리</a></li>
-                <li class="side-item"><a href="adminNotice.html">공지사항</a></li>
+                <li class="side-item" ><a href="/admin/Main">대시보드</a></li>
+                <li class="side-item"><a href ="/admin/User">회원정보</a></li>
+                <li class="side-item"><a href="/admin/Emp">직원관리</a></li>
+                <li class="side-item on"><a href="/admin/Match">매칭관리</a></li>
+                <li class="side-item"><a href="/admin/Event">이벤트관리</a></li>
+                <li class="side-item"><a href="/admin/Notice">공지사항</a></li>
             </ul>
         </div>
 
         <!-- 메인 컨테이너 -->
         <div class="main-container">
             <!-- 메인 헤더 -->
-            <div class="main-header">
-                <span class="main-header-title">BomoBomo</span>
-                <span class="admin-name">admin</span>
-                <button class="main-header-exit">나가기</button>
-            </div>
+            <div th:replace="fragments/adminHeader :: main-header"></div>
             <!-- 메인 컨텐츠 -->
             <div class="main-contents">
                 <div class="contents-title">

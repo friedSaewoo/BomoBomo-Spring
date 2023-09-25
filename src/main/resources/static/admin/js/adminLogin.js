@@ -1,7 +1,7 @@
 $(".buttonLogin").click(function() {
 
-    let id = $("#id").val();
-    let pw = $("#pw").val();
+    let id = $("#adminId").val();
+    let pw = $("#adminPassword").val();
     if(id == "" || id == undefined) {
         $('.labelId').css("display","block");
         $('.labelId').css("color","red");
