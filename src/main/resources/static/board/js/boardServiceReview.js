@@ -72,14 +72,14 @@ function serviceReviewList(result) {
             text += `
                 
                 <li>
-                    <a href="/board/faq">
+                    <a href="/board/reviewDetail?sitterBoardNumber=${r.sitterBoardNumber}">
                         <div class="review-sitter-img">
                             <img src="/common/img/보모사진1.jpg" alt="리뷰 보모사진"/>
                         </div>
                         <div class="review-sitter-content">
                             <p><strong>${r.empName}</strong></p>
                             <div class="review-score">
-                                <img src="/common/img/star.png"><span>4.5/5</span>
+                                <img src="/common/img/star.png"><span> ${r.rating} / 5</span>
                             </div>
                         </div>
                         <div class="reivew-text-content">

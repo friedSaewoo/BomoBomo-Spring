@@ -20,6 +20,15 @@ public interface ReviewMapper {
     public int getTotal(SearchReviewVo searchReviewVo);
 
 
+    //돌봄 서비스 리뷰 상세보기
+    public SitterBoardVo selectOne(Long sitterBoardNumber);
+
+
     //돌봄서비스 리뷰 게시판 댓글
     public List<SitterCommentDto> selectServiceReviewReply();
+
+
+    //조회수
+    public void updateCount(Long sitterBoardNumber);
+
 }

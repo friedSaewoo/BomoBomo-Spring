@@ -36,5 +36,27 @@ public class ReviewService {
 
           return reviewMapper.getTotal(searchReviewVo);
 
+
+    }
+    //리뷰 상세보기
+    public SitterBoardVo selectOne(Long sitterBoardNumber){
+        if (sitterBoardNumber == null) {
+            throw new IllegalArgumentException("리뷰게시번호 누락");
+        }
+
+        return Optional.ofNullable(reviewMapper.selectOne(sitterBoardNumber))
+                .orElseThrow(()->{throw new IllegalArgumentException("존재하지 않는 게시 번호");});
+    }
+
+
+    //조회수
+    public void updateCount(Long sitterBoardNumber){
+        if (sitterBoardNumber == null) {
+            throw new IllegalArgumentException("리뷰 게시 번호 누락");
+
+        }
+
+        reviewMapper.updateCount(sitterBoardNumber);
+
     }
 }

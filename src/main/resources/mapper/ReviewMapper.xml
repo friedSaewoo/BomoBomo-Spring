@@ -52,11 +52,35 @@
 
 
 
-    <select id="getAvgRating" resultType="double">
+    <select id="getAvgRating" parameterType="Long" resultType="double">
 
-
+        select avg(rating)
+        from SITTER_BOARD
+        where EMP_NUMBER = #{empNumber}
 
     </select>
+
+
+    <select id="selectOne" resultType="sitterBoardVo">
+
+        select SITTER_BOARD_NUMBER, s.USER_NUMBER, s.EMP_NUMBER, u.USER_NAME, SITTER_BOARD_CONTENT,
+               SITTER_BOARD_REGISTER_DATE, SITTER_BOARD_MODIFY_DATE, rating, SITTER_BOARD_COUNT, e.EMP_NAME
+        from SITTER_BOARD s join users u on s.USER_NUMBER = u.USER_number
+                            join emp e on s.EMP_NUMBER = e.EMP_NUMBER
+        where SITTER_BOARD_NUMBER= #{sitterBoardNumber}
+
+    </select>
+
+
+
+    <select id="updateCount" parameterType="Long">
+
+        update sitter_board
+        set sitter_board_count = sitter_board_count +1
+        where sitter_board_number = #{sitterBoardNumber}
+
+    </select>
+
 
 
 
