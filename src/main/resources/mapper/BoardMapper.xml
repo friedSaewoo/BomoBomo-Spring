@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.bomobomo.mapper.NoticeMapper">
+
+
+
+    <select id="selectAll" resultType="noticeDto">
+
+        select rnum, notice_number, notice_title, notice_content, notice_REGISTER_DATE, notice_modify_DATE, notice_count
+        from (select rnum, notice_number, notice_title, notice_content, notice_REGISTER_DATE, notice_modify_DATE, notice_count
+        from(
+        select ROWNUM as rnum, notice_number, notice_title, notice_content, notice_REGISTER_DATE, notice_modify_DATE, notice_count
+        from notice
+        <![CDATA[
+        where rownum<=#{criteria.page} * #{criteria.amount} ]]>
+        order by notice_NUMBER desc
+        )
+        where rnum> (#{criteria.page}-1)*#{criteria.amount}
+        )
+        <if test="'noticeTitle'.equals(searchVo.cate)">
+            where notice_title like '%' || #{searchVo.keyword} || '%'
+        </if>
+        <if test="'noticeContent'.equals(searchVo.cate)">
+            where notice_content like '%' || #{searchVo.keyword} || '%'
+        </if>
+
+    </select>
+
+
+    <select id="selectOne" resultType="noticeDto">
+
+
+        select notice_title, notice_content, notice_register_date, notice_modify_date, notice_count
+        from notice
+        where notice_number = #{noticeNumber}
+
+    </select>
+
+
+
+
+    <select id="getTotal" resultType="_int">
+
+        select count(notice_number)
+        from notice
+        <if test="'noticeTitle'.equals(cate)">
+            where notice_title like '%' || #{keyword} || '%'
+        </if>
+        <if test="'noticeContent'.equals(cate)">
+            where notice_content like '%' || #{keyword} || '%'
+        </if>
+    </select>
+
+
+
+    <update id="updateCount" parameterType="Long">
+
+        update notice set notice_count=notice_count+1 where notice_number = #{noticeNumber}
+
+    </update>
+
+
+
+</mapper>
