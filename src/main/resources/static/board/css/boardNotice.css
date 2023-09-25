@@ -8,6 +8,7 @@
     font-family: 'IBM Plex Sans KR', sans-serif;
     padding-top: 30px;
     width: 1024px;
+
     margin: 0 auto;
 }
 
@@ -60,62 +61,84 @@
 
 
 /* 공지사항 테이블 */
-.board-table tr {
+
+
+.notice-section {
+    height: 470px;
+}
+
+.notice-table tr {
     height: 45px;
 }
 
-.board-table tr td:first-child,
-.board-table tr td:nth-child(5){
+.notice-table tr td:first-child,
+.notice-table tr td:nth-child(5){
     width: 50px;
     font-size: 13px;
 }
 
-.board-table tr td:nth-child(2){
+.notice-table tr td:nth-child(2){
     padding-left: 20px;
     width: 600px;
     font-size: 14px;
 }
-.board-table tr td:nth-child(3){
+.notice-table tr td:nth-child(3){
     width: 130px;
     font-size: 14px;
 }
-.board-table tr td:nth-child(4){
+.notice-table tr td:nth-child(4){
     font-size: 14px;
     width: 194px;
 }
 
-.board-table tr td{
+.notice-table tr td{
 
     height: 35px;
     border-bottom: 1px solid rgba(128, 128, 128, 0.336);
 }
-.board-table tr td a {
+.notice-table tr td a {
     display: block;
     color: black;
 }
 
-.board-table tr td:nth-child(1),
-.board-table tr td:nth-child(3),
-.board-table tr td:nth-child(4),
-.board-table tr td:nth-child(5){
+.notice-table tr td:nth-child(1),
+.notice-table tr td:nth-child(3),
+.notice-table tr td:nth-child(4),
+.notice-table tr td:nth-child(5){
     text-align: center;
 }
 
-.board-pagenation-container {
+
+
+
+.backBtn td:last-child {
+    text-align: center;
+
+}
+
+.backBtn td:last-child a{
+    border: 2px solid red;
+    display: inline;
+}
+
+
+
+/*페이징처리*/
+.notice-pagenation-container {
     padding-top: 30px;
 }
-.board-pagenation-container ul {
+.notice-pagenation-container ul {
     display: flex;
     justify-content: center;
 }
 
-.board-pagenation-container ul li {
+.notice-pagenation-container ul li {
     text-align: center;
     width: 30px;
 
 }
 
-.board-pagenation-container ul li a {
+.notice-pagenation-container ul li a {
     color: black;
     display: block;
     font-size: 17px;
