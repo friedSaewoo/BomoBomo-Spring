@@ -114,12 +114,32 @@ function updatePagination(pageVo) {
             `);
     }
 
-    for (let page = pageVo.startPage; page <= pageVo.endPage; page++) {
-        $pagenation.append(`
-                    <li class="page-num "><a href="#" class="on" data-num="${page}">${page}</a></li>
-                `);
 
+    //게시물이 1개도 존재하지 않는다면 페이징 표시 x
+    //한 개라도 존재할 때 페이징 번호가 나타난다.
+    if(pageVo.realEnd!=0){
+        for (let page = pageVo.startPage; page <= pageVo.endPage; page++) {
+            if(page == pageVo.criteria.page){
+                $pagenation.append(`
+                    <li class="page-num active-page"><a href="#" class="on" data-num="${page}">${page}</a></li>
+                `
+                );
+
+            }else {
+                $pagenation.append(`
+                    <li class="page-num "><a href="#" class="on" data-num="${page}">${page}</a></li>
+                `
+                );
+            }
+
+        }
+    }else{
+        `<li></li>`
     }
+
+
+
+
     if (pageVo.next) {
         $pagenation.append(`
             <li class="page-num"> <a href="#" data-num="${pageVo.endPage+1}">&gt;</a></li>

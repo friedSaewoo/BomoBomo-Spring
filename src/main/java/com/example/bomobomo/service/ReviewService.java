@@ -49,6 +49,18 @@ public class ReviewService {
     }
 
 
+    //평점
+    public double getAvgRating(Long empNumber){
+
+        if (empNumber == null) {
+            throw new IllegalArgumentException("직원 번호 누락");
+        }
+
+
+         return reviewMapper.getAvgRating(empNumber);
+    }
+
+
     //조회수
     public void updateCount(Long sitterBoardNumber){
         if (sitterBoardNumber == null) {
@@ -57,6 +69,16 @@ public class ReviewService {
         }
 
         reviewMapper.updateCount(sitterBoardNumber);
+
+    }
+
+    //돌봄 후기 삭제
+    public void delete(Long sitterBoardNumber){
+        if (sitterBoardNumber == null) {
+            throw new IllegalArgumentException("리뷰 게시 번호 누락");
+        }
+
+        reviewMapper.delete(sitterBoardNumber);
 
     }
 }
