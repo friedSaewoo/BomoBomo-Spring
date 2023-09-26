@@ -24,7 +24,7 @@ import java.util.Map;
 public class BoardReviewController {
     private final ReviewService reviewService;
 
-
+    //돌봄 서비스 후기 리스트
     @GetMapping("/service/{page}")
     public Map<String, Object> findListAll(@PathVariable("page") int page, SearchReviewVo searchReviewVo){
 
@@ -46,4 +46,5 @@ public class BoardReviewController {
 
     }
 
+    //이벤트 서비스 후기 리스트
 }

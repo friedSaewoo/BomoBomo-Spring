@@ -30,6 +30,23 @@ public class ReplyRestController {
 
     }
 
+
+
+
+
+
+    //댓글 리스트 조회
+    @GetMapping("/list/{sitterBoardNumber}")
+    public List<SitterCommentVo> showReply(@PathVariable("sitterBoardNumber") Long sitterBoardNumber){
+        return replyService.find(sitterBoardNumber);
+    }
+
+
+
+
+
+
+    //댓글리스트 조회(페이징 포함)
     @GetMapping("/list/{sitterBoardNumber}/{page}")
     public Map<String, Object> showReplyList(@PathVariable("sitterBoardNumber") Long sitterBoardNumber,
                                            @PathVariable("page") int page){
