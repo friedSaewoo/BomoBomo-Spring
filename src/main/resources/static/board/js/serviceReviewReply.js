@@ -1,6 +1,19 @@
-
+//input hidden에 넣어놓은 값 가져오기
 let sitterBoardNumber = $('.reviewDetail-num').val();
 console.log(sitterBoardNumber);
+
+
+//페이징처리된 숫자 클릭 시 해당 데이터를 가져와서 비동기 페이징처리
+$(document).on('click', '.page-num a', function (e) {
+    e.preventDefault();
+    const page = $(this).data('pagenum');
+    getListPage({sitterBoardNumber, page},showReply);
+
+
+    $('.page-num a').removeClass('active-page');
+    $(this).addClass('active-page');
+});
+
 
 $('.btn-reply').on('click', function () {
     let content = $('#reply-content').val();
@@ -17,62 +30,52 @@ $('.btn-reply').on('click', function () {
     };
 
     addReply(replyObj, function(){
-        showServiceReviewReply(sitterBoardNumber, showReply);
+        getListPage({sitterBoardNumber,page:1}, showReply);
     });
 
     $('#reply-content').val('');
 });
 
 
+let page = 1;
+getListPage({sitterBoardNumber,page:1}, showReply);
 
-showServiceReviewReply(sitterBoardNumber, showReply);
 
-// 댓글리스트
-function showServiceReviewReply(sitterBoardNumber, callback){
 
+
+let listInfo = {
+
+    sitterBoardNumber : sitterBoardNumber,
+    page : 1
+
+}
+
+function getListPage(listInfo, callback){
     $.ajax({
-        url:`/replies/list/${sitterBoardNumber}`,
-        type:'get',
-        dataType:'JSON',
-        success : function (result){
+
+        url : `/replies/list/${listInfo.sitterBoardNumber}/${listInfo.page}`,
+        type : 'get',
+        dataType : 'Json',
+        success:function (result){
+            console.log(result.replyList);
+            console.log(result.pageReplyVo);
+
+
             if(callback){
-                callback(result)
+                callback(result);
             }
 
-        }, error : function (a,b,c,){
+        }, error : function (a,b,c){
             console.error(c);
         }
 
-
-
-    })
+    });
 }
-// function getListPage(sitterBoardNumber, page, callback){
-//     $.ajax({
-//
-//         url : `/replies/list/${sitterBoardNumber}/${page}`,
-//         type : 'get',
-//         dataType : 'Json',
-//         success:function (result){
-//             console.log(result.replyReviewVo);
-//             console.log(result.pageReplyVo);
-//
-//
-//             if(callback){
-//                 callback(result);
-//             }
-//
-//         }, error : function (a,b,c){
-//             console.error(c);
-//         }
-//
-//     });
-// }
 
 function showReply(result){
     let text='';
 
-        result.forEach(r =>{
+        result.replyList.forEach(r =>{
             text += `
             
      <dl>
@@ -112,6 +115,7 @@ function showReply(result){
         })
 
     $('.review-reply').html(text);
+    updatePagination(result.pageReplyVo);
 
 
 }
@@ -155,7 +159,7 @@ $('.review-reply').on('click', '.reply-remove-btn', function () {
     let sitterCommentNumber = $(this).closest('.reply').find('.reply-remove-btn').data('deletenum');
 
     remove(sitterCommentNumber, function (){
-        showServiceReviewReply(sitterBoardNumber, showReply);
+        getListPage({sitterBoardNumber,page:1}, showReply);
     });
 });
 
@@ -188,7 +192,7 @@ $('.review-reply').on('click', '.modify-content-btn', function () {
     };
 
     modify(sitterCommentNumber, replyObj, function (){
-        showServiceReviewReply(sitterBoardNumber, showReply);
+        getListPage({sitterBoardNumber,page:1}, showReply);
     });
 });
 
@@ -231,26 +235,49 @@ function addReply(reply, callback){
     })
 }
 
-//페이징처리
-// function updatePagination(pageReplyVo) {
-//     let $pagenation = $('.reply-pagenation-container ul');
-//     $pagenation.empty();
-//
-//     if (pageReplyVo.prev) {
-//         $pagenation.append(`
-//                 <li class="page-num"><a href="#" data-pagenum="${pageReplyVo.startPage-1}">&lt;</a></li>
-//             `);
-//     }
-//
-//     for (let page = pageReplyVo.startPage; page <= pageReplyVo.endPage; page++) {
-//         $pagenation.append(`
-//                     <li class="page-num "><a href="#" class="on" data-pagenum="${page}">${page}</a></li>
-//                 `);
-//
-//     }
-//     if (pageReplyVo.next) {
-//         $pagenation.append(`
-//             <li class="page-num"> <a href="#" data-pagenum="${pageReplyVo.endPage+1}">&gt;</a></li>
-//             `);
-//     }
-// }
+// 페이징처리
+function updatePagination(pageReplyVo) {
+    let $pagenation = $('.reply-pagenation-container ul');
+    $pagenation.empty();
+
+    if (pageReplyVo.prev) {
+        $pagenation.append(`
+                <li class="page-num"><a href="#" data-pagenum="${pageReplyVo.startPage-1}">&lt;</a></li>
+            `);
+    }
+
+
+    //게시물이 1개도 존재하지 않는다면 페이징 표시 x
+    //한 개라도 존재할 때 페이징 번호가 나타난다.
+    if(pageReplyVo.realEnd!=0){
+        //한 개라도 있으면 높이값 고정
+        $('.review-reply').css('height','500px');
+        for (let page = pageReplyVo.startPage; page <= pageReplyVo.endPage; page++) {
+            if(page == pageReplyVo.criteria.page){
+                $pagenation.append(`
+                    <li class="page-num active-page"><a href="#" data-pagenum="${page}">${page}</a></li>
+                `);
+            }else {
+                $pagenation.append(`
+                    <li class="page-num "><a href="#" data-pagenum="${page}">${page}</a></li>
+                `);
+
+            }
+
+        }
+    }else{
+        `<li></li>`
+    }
+
+
+    if (pageReplyVo.next) {
+        $pagenation.append(`
+            <li class="page-num"> <a href="#" data-pagenum="${pageReplyVo.endPage+1}">&gt;</a></li>
+            `);
+    }
+}
+
+
+
+
+

@@ -20,11 +20,17 @@
 
     <select id="selectList" resultType="sitterCommentVo">
 
-        select sitter_comment_number, sitter_comment_content, sitter_comment_register_date, sitter_comment_modify_date, sitter_board_number, s.user_number, user_id
+
+        select rnum, sitter_comment_number, sitter_comment_content, sitter_comment_register_date, sitter_comment_modify_date, sitter_board_number, user_number, user_id
+        from (select rownum as rnum, sitter_comment_number, sitter_comment_content, sitter_comment_register_date, sitter_comment_modify_date, sitter_board_number, user_number, user_id
+        from(select sitter_comment_number, sitter_comment_content, sitter_comment_register_date, sitter_comment_modify_date, sitter_board_number, s.user_number, u.user_id
         from sitter_comment s join users u on sitter_board_number = #{sitterBoardNumber} and s.user_number = u.user_number
-        order by sitter_comment_number desc
+        order by sitter_comment_number desc)
 
-
+        <![CDATA[
+        where rownum<=#{criteria.page} * #{criteria.amount}
+        ) ]]>
+        where rnum > (#{criteria.page}-1) * #{criteria.amount}
 
 
     </select>
@@ -47,13 +53,24 @@
 
     </update>
 
-<!--    <select id="getTotal" resultType="_int">-->
+    <select id="getTotal" resultType="_int">
 
-<!--        select count(sitter_comment_number)-->
-<!--        from sitter_comment-->
-<!--        where sitter_board_number = #{sitterBoardNumber}-->
+        select count(sitter_comment_number)
+        from sitter_comment
+        where sitter_board_number = #{sitterBoardNumber}
 
-<!--    </select>-->
+    </select>
+
+
+    <select id="sell">
+
+
+        --
+--         select sitter_comment_number, sitter_comment_content, sitter_comment_register_date, sitter_comment_modify_date, sitter_board_number, s.user_number, user_id
+--         from sitter_comment s join users u on sitter_board_number = #{sitterBoardNumber} and s.user_number = u.user_number
+--         order by sitter_comment_number desc
+--
+    </select>
 
     <select id="selectServiceReviewReply" resultType="sitterCommentDto">
 

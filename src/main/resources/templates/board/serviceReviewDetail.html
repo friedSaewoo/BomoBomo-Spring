@@ -49,7 +49,7 @@
           </li>
           <li th:text="${reviewDetail.rating}"><span>4.5/5</span></li>
 
-          <li th:unless="${reviewDetail.sitterBoardModifyDate==reviewDetail.sitterBoardRegisterDate}">
+          <li th:if="${reviewDetail.sitterBoardModifyDate==reviewDetail.sitterBoardRegisterDate}">
             <p>수정일자 <span th:text="${reviewDetail.sitterBoardModifyDate}"> 2023/09/16</span></p>
           </li>
           <li>
@@ -95,6 +95,13 @@
       </div>
 
 
+      <!-- 페이징처리 -->
+      <div class="reply-pagenation-container">
+        <ul>
+
+        </ul>
+      </div>
+
       <!-- 리뷰 댓글 + 댓글 수정삭제 버튼 -->
       <div class="review-reply">
 
@@ -102,12 +109,7 @@
 
 
     </div>
-    <!-- 페이징처리 -->
-    <div class="reply-pagenation-container">
-      <ul>
 
-      </ul>
-    </div>
   </div>
   <input type="hidden" th:value="${reviewDetail.sitterBoardNumber}" class="reviewDetail-num">
 

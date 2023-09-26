@@ -30,11 +30,24 @@ public class ReplyRestController {
 
     }
 
-    @GetMapping("/list/{sitterBoardNumber}")
-    public List<SitterCommentVo> showReplyList(@PathVariable("sitterBoardNumber") Long sitterBoardNumber
-                                           ){
+    @GetMapping("/list/{sitterBoardNumber}/{page}")
+    public Map<String, Object> showReplyList(@PathVariable("sitterBoardNumber") Long sitterBoardNumber,
+                                           @PathVariable("page") int page){
 
-        return replyService.findAll(sitterBoardNumber);
+        Criteria criteria = new Criteria();
+        criteria.setAmount(6);
+        criteria.setPage(page);
+
+        PageVo pageReplyVo = new PageVo(replyService.getTotal(sitterBoardNumber), criteria);
+        List<SitterCommentVo> replyList = replyService.findAll(sitterBoardNumber, criteria);
+
+        Map<String, Object> replyMap = new HashMap<>();
+        replyMap.put("pageReplyVo", pageReplyVo);
+        replyMap.put("replyList", replyList);
+
+
+
+        return replyMap;
 
 //        Criteria criteria = new Criteria();
 //        criteria.setPage(page);

@@ -26,13 +26,13 @@ public class ReplyService {
 
 
     //댓글 리스트 조회
-    public List<SitterCommentVo> findAll(Long sitterBoardNumber) {
+    public List<SitterCommentVo> findAll(Long sitterBoardNumber, Criteria criteria) {
 
         if (sitterBoardNumber == null) {
             throw new IllegalArgumentException("리뷰 게시 번호 누락");
         }
 
-        return replyMapper.selectList(sitterBoardNumber);
+        return replyMapper.selectList(sitterBoardNumber, criteria);
     }
 
     //댓글 수정

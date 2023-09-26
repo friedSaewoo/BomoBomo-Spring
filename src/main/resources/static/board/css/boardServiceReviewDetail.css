@@ -145,8 +145,7 @@
 
 /* 리뷰 댓글 */
 .review-reply  {
-    padding-top: 90px;
-    border-top: 1px solid gray;
+    padding-top: 30px
 }
 .review-reply dl {
     display: flex;
@@ -166,7 +165,9 @@
 
 
 
-
+.active-page{
+    background-color: #FF7000;
+}
 
 .reply-wrap {
     margin: 20px 0;
@@ -316,4 +317,27 @@
     font-size: 10px;
     color: #777777;
     min-width: 80px;
+}
+
+/*페이징처리*/
+
+.reply-pagenation-container {
+    padding-top: 30px;
+}
+.reply-pagenation-container ul {
+    display: flex;
+    justify-content: center;
+}
+
+.reply-pagenation-container ul li {
+    text-align: center;
+    width: 30px;
+
+}
+
+.reply-pagenation-container ul li a {
+    color: black;
+    display: block;
+    font-size: 17px;
+    border: 1px solid gray;
 }
