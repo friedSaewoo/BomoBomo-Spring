@@ -3,9 +3,12 @@
 
 <configuration>
     <typeAliases>
-<!--======================== 관리자 ========================-->
+<!--======================== 관리자Dto ========================-->
         <typeAlias type="com.example.bomobomo.domain.dto.AdminDto" alias="adminDto"/>
         <typeAlias type="com.example.bomobomo.domain.dto.NoticeDto" alias="noticeDto"/>
+
+<!--======================== 관리자Vo ========================-->
+        <typeAlias type="com.example.bomobomo.domain.vo.WeeklyRegisterVo" alias="weeklyRegisterVo"/>
 
 <!--======================== 직원 ========================-->
         <typeAlias type="com.example.bomobomo.domain.dto.EmpDto" alias="empDto"/>
