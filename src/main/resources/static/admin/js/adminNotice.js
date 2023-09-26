@@ -1,4 +1,3 @@
-
 var elements = document.querySelectorAll('.post>div');
 
 elements.forEach(function(element) {
@@ -7,3 +6,4 @@ elements.forEach(function(element) {
         window.location.href = url;
     });
 });
+

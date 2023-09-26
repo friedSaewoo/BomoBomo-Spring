@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,12 +15,12 @@
             <img class="logo" src="/admin/img/logo.png" alt="logo">
         </div>
         <ul class="side-item-container">
-            <li class="side-item" ><a href="/admin/Main">대시보드</a></li>
-            <li class="side-item on"><a href ="/admin/User">회원정보</a></li>
-            <li class="side-item"><a href="/admin/Emp">직원관리</a></li>
-            <li class="side-item"><a href="/admin/Match">매칭관리</a></li>
-            <li class="side-item"><a href="/admin/Event">이벤트관리</a></li>
-            <li class="side-item"><a href="/admin/Notice">공지사항</a></li>
+            <li class="side-item" ><a href="/admin/main">대시보드</a></li>
+            <li class="side-item on"><a href ="/admin/user">회원정보</a></li>
+            <li class="side-item"><a href="/admin/emp">직원관리</a></li>
+            <li class="side-item"><a href="/admin/match">매칭관리</a></li>
+            <li class="side-item"><a href="/admin/event">이벤트관리</a></li>
+            <li class="side-item"><a href="/admin/notice">공지사항</a></li>
         </ul>
     </div>
 
@@ -35,8 +35,8 @@
                 <div class="user-search-container">
                     <form action="">
                         <select>
-                            <option>이름</option>
-                            <option>아이디</option>
+                            <option value="userName">이름</option>
+                            <option value="userId">아이디</option>
                         </select>
                         <input type="text" id="search" />
                         <button type="submit">
@@ -47,106 +47,14 @@
             </div>
             <div class="user-main-container">
                 <div class="top">
-                    <div class="uesr-num">회원번호</div>
+                    <div class="user-num">회원번호</div>
                     <div class="user-name">이름</div>
                     <div class="user-id">아이디</div>
                     <div class="date">가입일</div>
                     <div class="review">작성후기</div>
                     <div class="status">현재상태</div>
                 </div>
-                <div class="user-list">
-
-                    <div class="post">
-                        <div class="user-num">001</div>
-                        <div class="user-name">김성찬</div>
-                        <div class="user-id">spwer12sdasd</div>
-                        <div class="date">2023-09-13</div>
-                        <div class="review">10</div>
-                        <div class="status">면접대기</div>
-                    </div>
-
-                    <div class="post">
-                        <div class="user-num">002</div>
-                        <div class="user-name">김자바</div>
-                        <div class="user-id">fdsf234</div>
-                        <div class="date">1996-04-12</div>
-                        <div class="review">9</div>
-                        <div class="status">default</div>
-                    </div>
-
-                    <div class="post">
-                        <div class="user-num">003</div>
-                        <div class="user-name">엄홍식</div>
-                        <div class="user-id">spwer12sdasd</div>
-                        <div class="date">2023-09-13</div>
-                        <div class="review">10</div>
-                        <div class="status">면접대기</div>
-                    </div>
-
-                    <div class="post">
-                        <div class="user-num">004</div>
-                        <div class="user-name">김효수</div>
-                        <div class="user-id">spwer12sdasd</div>
-                        <div class="date">2023-09-13</div>
-                        <div class="review">10</div>
-                        <div class="status">면접대기</div>
-                    </div>
-
-                    <div class="post">
-                        <div class="user-num">005</div>
-                        <div class="user-name">황기태</div>
-                        <div class="user-id">spwer12sdasd</div>
-                        <div class="date">2023-09-13</div>
-                        <div class="review">10</div>
-                        <div class="status">면접대기</div>
-                    </div>
-
-                    <div class="post">
-                        <div class="user-num">006</div>
-                        <div class="user-name">최인국</div>
-                        <div class="user-id">spwer12sdasd</div>
-                        <div class="date">2023-09-13</div>
-                        <div class="review">10</div>
-                        <div class="status">결제대기</div>
-                    </div>
-
-                    <div class="post">
-                        <div class="user-num">007</div>
-                        <div class="user-name">김성찬</div>
-                        <div class="user-id">spwer12sdasd</div>
-                        <div class="date">2023-09-13</div>
-                        <div class="review">10</div>
-                        <div class="status">면접대기</div>
-                    </div>
-
-                    <div class="post">
-                        <div class="user-num">008</div>
-                        <div class="user-name">김성찬</div>
-                        <div class="user-id">spwer12sdasd</div>
-                        <div class="date">2023-09-13</div>
-                        <div class="review">10</div>
-                        <div class="status">면접대기</div>
-                    </div>
-
-                    <div class="post">
-                        <div class="user-num">009</div>
-                        <div class="user-name">김성찬</div>
-                        <div class="user-id">spwer12sdasd</div>
-                        <div class="date">2023-09-13</div>
-                        <div class="review">10</div>
-                        <div class="status">면접대기</div>
-                    </div>
-
-                    <div class="post">
-                        <div class="user-num">010</div>
-                        <div class="user-name">김성찬</div>
-                        <div class="user-id">spwer12sdasd</div>
-                        <div class="date">2023-09-13</div>
-                        <div class="review">10</div>
-                        <div class="status">면접대기</div>
-                    </div>
-
-                </div>
+                <div class="user-list"></div>
                 <div class="user-list-bottom">
                     <div class="pagination-container">
                         <a href="#" class="bt prev">&lt;</a>
@@ -163,6 +71,8 @@
     </div>
 </div>
 </body>
+<script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+<script th:src="@{/admin/js/adminUser.js}"></script>
 <script src="/admin/js/adminHeader.js"></script>
-<script src="/admin/js/admin_user.js"></script>
+
 </html>

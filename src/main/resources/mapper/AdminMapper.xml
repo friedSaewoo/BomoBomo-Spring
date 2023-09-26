@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.bomobomo.mapper.AdminMapper">
+<!--로그인-->
     <select id="login" resultType="adminDto">
         SELECT *
         FROM ADMIN
         WHERE ADMIN_ID = #{adminId} AND ADMIN_PASSWORD = #{adminPassword}
     </select>
-
+<!--주간 가입수-->
     <select id="weeklyRegister" resultType="weeklyRegisterVo">
         WITH DateRange AS (
         SELECT TRUNC(SYSDATE) - LEVEL + 1 AS registration_date
@@ -29,5 +30,44 @@
         ) user_counts
         ON TO_CHAR(DateRange.registration_date, 'MM-DD') = user_counts.registration_date
         ORDER BY DateRange.registration_date;
+    </select>
+<!-- 회원조회 -->
+    <select id="selectAllUsers" resultType="userDto">
+        SELECT
+        rnum, USER_NUMBER, USER_ID, USER_PASSWORD, USER_NAME, USER_EMAIL, REGISTER_DATE
+        FROM (
+        SELECT
+        ROWNUM AS rnum, USER_NUMBER, USER_ID, USER_PASSWORD, USER_NAME, USER_EMAIL, REGISTER_DATE
+        FROM (
+        SELECT
+        USER_NUMBER, USER_ID, USER_PASSWORD, USER_NAME, USER_EMAIL, REGISTER_DATE
+        FROM USERS
+        <where>
+            <choose>
+                <when test="searchVo.cate == 'userName'">
+                    AND USER_NAME LIKE '%' || #{searchVo.keyword} || '%'
+                </when>
+                <when test="searchVo.cate == 'userId'">
+                    AND USER_ID LIKE '%' || #{searchVo.keyword} || '%'
+                </when>
+            </choose>
+        </where>
+        ORDER BY USER_NUMBER DESC
+        ) <![CDATA[
+        where rownum<=#{criteria.page} * #{criteria.amount}
+            ]]>
+
+        )where rnum> (#{criteria.page}-1)*#{criteria.amount}
+    </select>
+<!-- 검색별 회원 수 -->
+    <select id="getTotalUsers" resultType="_int">
+        select count(user_number)
+        from users
+        <if test="'userName'.equals(cate)">
+            where user_name like '%' || #{keyword} || '%'
+        </if>
+        <if test="'userId'.equals(cate)">
+            where user_id like '%' || #{keyword} || '%'
+        </if>
     </select>
 </mapper>

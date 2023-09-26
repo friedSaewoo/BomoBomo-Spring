@@ -1,6 +1,9 @@
 package com.example.bomobomo.service;
 
 import com.example.bomobomo.domain.dto.AdminDto;
+import com.example.bomobomo.domain.dto.UserDto;
+import com.example.bomobomo.domain.vo.Criteria;
+import com.example.bomobomo.domain.vo.SearchVo;
 import com.example.bomobomo.domain.vo.WeeklyRegisterVo;
 import com.example.bomobomo.mapper.AdminMapper;
 import lombok.RequiredArgsConstructor;
@@ -23,5 +26,14 @@ public class AdminService {
 
     public List<WeeklyRegisterVo> weeklyRegister(){
         return adminMapper.weeklyRegisterSelect();
+    }
+
+    public List<UserDto> selectAllUsers(Criteria criteria, SearchVo searchVo){
+        return adminMapper.selectAllUsers(criteria,searchVo);
+    }
+
+
+    public int getTotalUsers(SearchVo searchVo){
+        return adminMapper.getTotalUsers(searchVo);
     }
 }

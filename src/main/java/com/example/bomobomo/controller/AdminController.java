@@ -40,7 +40,7 @@ public class AdminController {
 
         req.getSession().setAttribute("adminId", adminDto.getAdminId());
         req.getSession().setAttribute("adminNumber",adminDto.getAdminNumber());
-        return new RedirectView("/admin/Main");
+        return new RedirectView("/admin/main");
     }
 //    관리자 로그아웃
     @GetMapping("/logout")
@@ -50,29 +50,29 @@ public class AdminController {
     }
 
 
-    @GetMapping("/Main")
+    @GetMapping("/main")
     public String Main(){
         return "admin/adminMain";
     }
 
-    @GetMapping("User")
+    @GetMapping("/user")
     public String User(){
         return "admin/adminUser";
     }
 
-    @GetMapping("/Emp")
+    @GetMapping("/emp")
     public String Emp(){
         return "admin/adminEmp";
     }
-    @GetMapping("/Match")
+    @GetMapping("/match")
     public String Match(){
         return "admin/adminMatch";
     }
-    @GetMapping("/Event")
+    @GetMapping("/event")
     public String Event(){
         return "admin/adminEvent";
     }
-    @GetMapping("/Notice")
+    @GetMapping("/notice")
     public String Notice(){
         return "admin/adminNotice";
     }
