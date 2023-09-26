@@ -2,6 +2,7 @@ package com.example.bomobomo.service;
 
 
 import com.example.bomobomo.domain.dto.SitterCommentDto;
+import com.example.bomobomo.domain.vo.Criteria;
 import com.example.bomobomo.domain.vo.SitterCommentVo;
 import com.example.bomobomo.mapper.ReplyMapper;
 import lombok.RequiredArgsConstructor;
@@ -34,6 +35,12 @@ public class ReplyService {
         return replyMapper.selectList(sitterBoardNumber);
     }
 
+    //댓글 수정
+    public void modify(SitterCommentDto sitterCommentDto){
+        replyMapper.update(sitterCommentDto);
+
+    }
+
 
     //댓글 삭제
     public void remove(Long sitterCommentNumber){
@@ -43,6 +50,16 @@ public class ReplyService {
         }
 
         replyMapper.delete(sitterCommentNumber);
+    }
+
+
+
+    //댓글 개수 가져오기
+    public int getTotal(Long sitterBoardNumber){
+        if (sitterBoardNumber == null) {
+            throw new IllegalArgumentException("리뷰게시판 번호 누락");
+        }
+       return replyMapper.getTotal(sitterBoardNumber);
     }
 
 }

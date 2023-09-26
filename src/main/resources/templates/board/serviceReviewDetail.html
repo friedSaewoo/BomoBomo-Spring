@@ -102,6 +102,12 @@
 
 
     </div>
+    <!-- 페이징처리 -->
+    <div class="reply-pagenation-container">
+      <ul>
+
+      </ul>
+    </div>
   </div>
   <input type="hidden" th:value="${reviewDetail.sitterBoardNumber}" class="reviewDetail-num">
 
@@ -109,8 +115,8 @@
 <div class="footer" th:replace="fragments/footer :: footer"></div>
 
 <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
-<script th:inline="javascript">//타임리프 문법을 자바스크립트에서 사용하기 위한 설정
-  let loginNumber = [[${session.userNumber}]]; //타임리프 문법은 [] 2개로 감싸야한다.
+<script th:inline="javascript">
+  let loginNumber = [[${session.userNumber}]];
 </script>
 <script src="/board/js/boardServiceReviewDetail.js"></script>
 <script src="/board/js/serviceReviewReply.js"></script>
