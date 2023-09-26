@@ -32,6 +32,7 @@
                                             <img src="/admin/img/userPw.png">
                                             <input class="userInfo" type="password" id="adminPassword" name="adminPassword"placeholder="비밀번호">
                                             <label class="labelPw">비밀번호를 입력해주세요</label>
+                                            <label class="labelFailed" th:if="${isLogin == '0'}">아이디 또는 비밀번호를 잘못 입력했습니다.</label>
                                         </div>
 
                                 </div>

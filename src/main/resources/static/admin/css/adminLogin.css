@@ -59,6 +59,9 @@ li {
     display: table;
     border-collapse: collapse;  
 }
+.inputText{
+    width:360px;
+}
 
 .inputText input{
     width : 330px;
@@ -115,12 +118,14 @@ li {
     font-size: medium;
     color: orange;
 }
-
-
 .labelId, .labelPw {
     display: none;
 }
-
+.labelFailed{
+    width: 320px;
+    color:red;
+    display: block;
+}
 
 
 

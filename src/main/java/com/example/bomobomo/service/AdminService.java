@@ -1,11 +1,13 @@
 package com.example.bomobomo.service;
 
 import com.example.bomobomo.domain.dto.AdminDto;
+import com.example.bomobomo.domain.vo.WeeklyRegisterVo;
 import com.example.bomobomo.mapper.AdminMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -16,6 +18,10 @@ public class AdminService {
     @Transactional
     public AdminDto adminLogin(String adminId, String adminPassword){
         return Optional.ofNullable(adminMapper.login(adminId, adminPassword))
-                .orElseThrow( () -> {throw new IllegalArgumentException("조회 결과 없음"); });
+                .orElseThrow( () -> {throw new IllegalArgumentException("로그인 실패!!"); });
+    }
+
+    public List<WeeklyRegisterVo> weeklyRegister(){
+        return adminMapper.weeklyRegisterSelect();
     }
 }
