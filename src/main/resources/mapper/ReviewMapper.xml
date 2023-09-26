@@ -4,32 +4,35 @@
 
 <select id="selectServiceReviewAll" resultType="sitterBoardVo">
 
-    select rnum, SITTER_BOARD_NUMBER, user_number, user_name, EMP_NUMBER,SITTER_BOARD_CONTENT,
+    select rnum, SITTER_BOARD_NUMBER, user_number, user_id, EMP_NUMBER,SITTER_BOARD_CONTENT,
     SITTER_BOARD_REGISTER_DATE,
     SITTER_BOARD_MODIFY_DATE, RATING, SITTER_BOARD_COUNT, EMP_NAME
     from(
-        select rnum, SITTER_BOARD_NUMBER, user_number, user_name, EMP_NUMBER,SITTER_BOARD_CONTENT,
+        select rownum as rnum, SITTER_BOARD_NUMBER, user_number, user_id, EMP_NUMBER,SITTER_BOARD_CONTENT,
         SITTER_BOARD_REGISTER_DATE,
         SITTER_BOARD_MODIFY_DATE, RATING, SITTER_BOARD_COUNT, EMP_NAME
     from (
-        select rownum as rnum, s.SITTER_BOARD_NUMBER, s.user_number, u.user_name,s.EMP_NUMBER,SITTER_BOARD_CONTENT,
+        select  s.SITTER_BOARD_NUMBER, s.user_number, u.user_id,s.EMP_NUMBER,SITTER_BOARD_CONTENT,
         SITTER_BOARD_REGISTER_DATE,
         SITTER_BOARD_MODIFY_DATE, RATING, SITTER_BOARD_COUNT, e.EMP_NAME
         from SITTER_BOARD s join users u
         on s.user_number = u.user_number
         join emp e
         on s.EMP_NUMBER = e.EMP_NUMBER
-        <![CDATA[
+        <if test="'sitterName'.equals(searchReviewVo.cate)">
+            where emp_name Like '%'|| #{searchReviewVo.keyword} ||'%'
+        </if>
+
+
+        order by SITTER_BOARD_NUMBER desc
+    )  <![CDATA[
         where rownum<=#{criteria.page} * #{criteria.amount}
                   ]]>
-        order by SITTER_BOARD_NUMBER desc
-    )
-    where rnum> (#{criteria.page}-1) * #{criteria.amount}
 
-    )
-    <if test="'sitterName'.equals(searchReviewVo.cate)">
-    where emp_name Like '%'|| #{searchReviewVo.keyword} ||'%'
-    </if>
+
+    )where rnum> (#{criteria.page}-1) * #{criteria.amount}
+
+
 
 
 </select>
@@ -63,11 +66,13 @@
 
     <select id="selectOne" resultType="sitterBoardVo">
 
-        select SITTER_BOARD_NUMBER, s.USER_NUMBER, s.EMP_NUMBER, u.USER_NAME, SITTER_BOARD_CONTENT,
+        select SITTER_BOARD_NUMBER, s.USER_NUMBER, s.EMP_NUMBER, u.USER_id, SITTER_BOARD_CONTENT,
                SITTER_BOARD_REGISTER_DATE, SITTER_BOARD_MODIFY_DATE, rating, SITTER_BOARD_COUNT, e.EMP_NAME
         from SITTER_BOARD s join users u on s.USER_NUMBER = u.USER_number
                             join emp e on s.EMP_NUMBER = e.EMP_NUMBER
         where SITTER_BOARD_NUMBER= #{sitterBoardNumber}
+
+
 
     </select>
 
@@ -83,25 +88,55 @@
 
 
 
+    <delete id="delete">
 
-    <select id="selectServiceReviewReply" resultType="sitterCommentDto">
+        delete from sitter_board
+        where SITTER_BOARD_NUMBER = #{sitterBoardNumber}
 
-        select rnum, SITTER_COMMENT_NUMBER, SITTER_BOARD_NUMBER, user_number, SITTER_COMMENT_CONTENT, SITTER_COMMENT_REGISTER_DATE,
-        SITTER_COMMENT_MODIFY_DATE
-        from(
-        select rownum as rnum, r.SITTER_COMMENT_NUMBER, r.SITTER_BOARD_NUMBER, r.user_number, r.SITTER_COMMENT_CONTENT,
-        r.SITTER_COMMENT_REGISTER_DATE, r.SITTER_COMMENT_MODIFY_DATE
-        from SITTER_COMMENT r join SITTER_BOARD b
-        on r.SITTER_BOARD_NUMBER = b.SITTER_BOARD_NUMBER
-        join users u
-        on r.USER_NUMBER = u.USER_NUMBER
-        <![CDATA[
-        where rownum <=#{page} * #{amount}
-            ]]>
-        )
-        where rnum >(#{page}-1) * #{amount}
+    </delete>
+
+    <select id="sample">
+
+        --이미지 들어오면 사용할 쿼리
+--         select SITTER_BOARD_NUMBER, s.USER_NUMBER, s.EMP_NUMBER, u.USER_id, SITTER_BOARD_CONTENT,
+--                SITTER_BOARD_REGISTER_DATE, SITTER_BOARD_MODIFY_DATE, rating, SITTER_BOARD_COUNT, e.EMP_NAME, emp_img_UPLOAD_PATH,
+--                emp_img_UUID, emp_img_NAME
+--         from SITTER_BOARD s join users u on s.USER_NUMBER = u.USER_number
+--                             join emp e on s.EMP_NUMBER = e.EMP_NUMBER
+--                             left outer join emp_img k on e.EMP_NUMBER = k.emp_number
+--         where SITTER_BOARD_NUMBER= #{sitterBoardNumber};
 
     </select>
 
+    <select id="dd">
+    --이미지 들어오면 사용할 쿼리
+
+--     select rnum, SITTER_BOARD_NUMBER, user_number, user_id, EMP_NUMBER,SITTER_BOARD_CONTENT, SITTER_BOARD_REGISTER_DATE,
+--             SITTER_BOARD_MODIFY_DATE, RATING, SITTER_BOARD_COUNT, EMP_NAME, emp_img_UPLOAD_PATH, emp_img_UUID, emp_img_NAME
+--     from(
+--             select rownum as rnum, SITTER_BOARD_NUMBER, user_number, user_id, EMP_NUMBER,SITTER_BOARD_CONTENT,
+--                     SITTER_BOARD_REGISTER_DATE, SITTER_BOARD_MODIFY_DATE, RATING, SITTER_BOARD_COUNT, EMP_NAME,
+--                     emp_img_UPLOAD_PATH, emp_img_UUID, emp_img_NAME
+--
+--             from (
+--                     select  s.SITTER_BOARD_NUMBER, s.user_number, u.user_id,s.EMP_NUMBER,SITTER_BOARD_CONTENT,
+--                             SITTER_BOARD_REGISTER_DATE, SITTER_BOARD_MODIFY_DATE, RATING, SITTER_BOARD_COUNT, e.EMP_NAME,
+--                             i.emp_img_UPLOAD_PATH, i.emp_img_UUID, i.emp_img_NAME
+--                         from SITTER_BOARD s join users u
+--                         on s.user_number = u.user_number
+--                         join emp e
+--                         on s.EMP_NUMBER = e.EMP_NUMBER
+--                         left outer join EMP_IMG i on e.EMP_NUMBER = i.emp_number
+--                         where emp_name Like '%'|| #{keyword}||'%'
+--                         order by SITTER_BOARD_NUMBER desc
+--                         )
+--                             <![CDATA[
+--                             where rownum<= #{page} * #{amount}
+--                             ]]>
+--                             )where rnum> (#{page}-1) * #{amount}
+
+
+
+    </select>
 
 </mapper>
