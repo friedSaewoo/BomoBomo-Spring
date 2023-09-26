@@ -207,6 +207,7 @@ a{
 }
 
 form > select{
+    width: 70px;
     margin-top: 10px;
     margin-right: 3px;
     height: 30px;
