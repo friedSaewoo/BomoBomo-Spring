@@ -8,28 +8,29 @@
     SITTER_BOARD_REGISTER_DATE,
     SITTER_BOARD_MODIFY_DATE, RATING, SITTER_BOARD_COUNT, EMP_NAME
     from(
-        select rnum, SITTER_BOARD_NUMBER, user_number, user_id, EMP_NUMBER,SITTER_BOARD_CONTENT,
+        select rownum as rnum, SITTER_BOARD_NUMBER, user_number, user_id, EMP_NUMBER,SITTER_BOARD_CONTENT,
         SITTER_BOARD_REGISTER_DATE,
         SITTER_BOARD_MODIFY_DATE, RATING, SITTER_BOARD_COUNT, EMP_NAME
     from (
-        select rownum as rnum, s.SITTER_BOARD_NUMBER, s.user_number, u.user_id,s.EMP_NUMBER,SITTER_BOARD_CONTENT,
+        select  s.SITTER_BOARD_NUMBER, s.user_number, u.user_id,s.EMP_NUMBER,SITTER_BOARD_CONTENT,
         SITTER_BOARD_REGISTER_DATE,
         SITTER_BOARD_MODIFY_DATE, RATING, SITTER_BOARD_COUNT, e.EMP_NAME
         from SITTER_BOARD s join users u
         on s.user_number = u.user_number
         join emp e
         on s.EMP_NUMBER = e.EMP_NUMBER
-        <![CDATA[
+        <if test="'sitterName'.equals(searchReviewVo.cate)">
+            where emp_name Like '%'|| #{searchReviewVo.keyword} ||'%'
+        </if>
+
+
+        order by SITTER_BOARD_NUMBER desc
+    )  <![CDATA[
         where rownum<=#{criteria.page} * #{criteria.amount}
                   ]]>
-        order by SITTER_BOARD_NUMBER desc
-    )
-    where rnum> (#{criteria.page}-1) * #{criteria.amount}
 
-    )
-    <if test="'sitterName'.equals(searchReviewVo.cate)">
-    where emp_name Like '%'|| #{searchReviewVo.keyword} ||'%'
-    </if>
+
+    )where rnum> (#{criteria.page}-1) * #{criteria.amount}
 
 --이미지 들어오면 사용할 쿼리
 <!--    select rnum, SITTER_BOARD_NUMBER, user_number, user_id, EMP_NUMBER,SITTER_BOARD_CONTENT,-->
