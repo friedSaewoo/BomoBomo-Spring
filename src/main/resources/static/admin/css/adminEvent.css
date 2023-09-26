@@ -123,7 +123,7 @@ a{
     flex-direction: column;
     width: 95%;
     height: 80%;
-    margin: 30px auto 0px;
+    margin: 30px auto 0px!important;
     background-color: white;
     box-shadow: 5px 5px 5px 5px gray;
     border-radius: 3%;
@@ -132,7 +132,7 @@ a{
 .event-list{
     display: grid;
     margin: 15px 15px 15px 25px;
-    grid-template-columns: repeat(3, 1fr); 
+    grid-template-columns: repeat(3, 1fr);
     grid-gap: 10px;
     cursor: pointer;
 }
@@ -165,16 +165,18 @@ form > select{
     margin-top: 10px;
     margin-right: 3px;
     height: 30px;
+    border: 1px solid #ddd;
 }
 
 form > input{
     margin-top: 10px;
     height: 28px;
+    border: 1px solid #ddd;
 }
 
 form > button{
     cursor: pointer;
-    border: 1px solid black;
+    border: 1px solid #ddd;
     width: 45px;
     height: 30px;
     background-color: white;
@@ -224,11 +226,11 @@ form > button{
 }
 
 .event-search-container{
-    margin: auto 33px auto 30px;
+    margin: auto 33px auto 0px;
     width: 35%;
 }
 .event-search-container > form>button{
-    border: 1px solid rgb(118,118, 118);
+    border: 1px solid #ddd;
     border-radius: 5%;
 }
 

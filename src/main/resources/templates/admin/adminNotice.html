@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>관리자 페이지</title>
-    <link rel="stylesheet" href="/admin/css/adminAnnounce.css">
+    <link rel="stylesheet" href="/admin/css/adminNotice.css">
 </head>
 <body>
     <!-- 전체 컨테이너 -->
@@ -32,6 +32,19 @@
             <div class="main-contents">
                 <div class="contents-title">
                     <span class="main-contents-title-text">공지사항</span>
+
+                    <div class="notice-search-container">
+                        <form action="">
+                            <select>
+                                <option>제목</option>
+                            </select>
+                            <input type="text" id="search" />
+                            <button type="submit">
+                                <span class="material-symbols-outlined">search</span>
+                            </button>
+                        </form>
+                    </div>
+
                 </div>
                 <div class="announce-list-container">
                     <div class="top">           
@@ -140,5 +153,5 @@
         </div>
     </div>
 </body>
-<script src="/admin/js/adminAnnounce.js"></script>
+<script src="/admin/js/adminNotice.js"></script>
 </html>

@@ -225,7 +225,7 @@ input:focus{
 }
 
 form > select{
-    width: 58.5px;
+    width: 55px;
     margin-top: 10px;
     margin-right: 3px;
     height: 30px;
@@ -234,7 +234,7 @@ form > select{
 
 form > input{
     border: 1px solid #ddd;
-    width: 163.5px;
+    width: 162.5px;
     margin-top: 10px;
     height: 28px;
 }

@@ -7,11 +7,8 @@ a{
     color: inherit;
 }
 input{
-    padding: 5px;
     border-radius: 5%;
     font-size: 16px;
-    font-weight: bold;
-    border: 2px solid rgb(189, 189, 189);
 }
 input:focus{
     outline: none;
@@ -92,6 +89,7 @@ input:focus{
     margin: 0px 20px;
     width: 96%;
     border-bottom: 1px solid #353535;
+    display: flex;
     padding-bottom: 10px;
 }
 
@@ -294,16 +292,56 @@ a > button{
 }
 
 .announce-write{
-
     margin: 35px auto 0;
     display: flex;
     justify-content: center;
     align-items: center;
     width: 44px;
     height: 25px;
-
     background-color:#01b9ff;
     color: white;
     border-radius: 10%;
     padding: 5px;
+}
+
+.notice-search-container{
+    margin: auto 33px auto 30px;
+    width: 35%;
+}
+.notice-search-container > form{
+    height: 30px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    padding-right: 15px;
+    margin-left: 520px;
+}
+.notice-search-container > form>button{
+    border: 1px solid #ddd;
+    border-radius: 5%;
+}
+form > select{
+    width: 55px;
+    margin-top: 10px;
+    margin-right: 3px;
+    height: 30px;
+    border: 1px solid #ddd;
+}
+
+form > input{
+    border: 1px solid #ddd;
+    width: 162.5px;
+    margin-top: 10px;
+    height: 28px;
+}
+
+form > button{
+    cursor: pointer;
+    border: 1px solid #ddd;
+    width: 45px;
+    height: 30px;
+    background-color: white;
+    margin-top: 10px;
+    margin-left: 3px;
+
 }

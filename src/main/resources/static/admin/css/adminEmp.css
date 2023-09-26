@@ -82,6 +82,7 @@ a{
     margin: 0px 20px;
     width: 96%;
     border-bottom: 1px solid #353535;
+    display: flex;
     padding-bottom: 10px;
 }
 
@@ -197,27 +198,29 @@ a{
 }
 
 .emp-search-container > form{
-    height: 90px;
+    height: 30px;
     box-sizing: border-box;
     display: flex;
     align-items: center;
     padding-right: 15px;
+    margin-left: 520px;
 }
 
 form > select{
     margin-top: 10px;
     margin-right: 3px;
     height: 30px;
+    border: 1px solid #ddd;
 }
 
 form > input{
     margin-top: 10px;
     height: 28px;
+    border: 1px solid #ddd;
 }
 
 form > button{
     cursor: pointer;
-    border: 1px solid black;
     width: 45px;
     height: 30px;
     background-color: white;
@@ -232,6 +235,7 @@ form > button{
     font-size: 18px;
     margin-top: 35px;
     margin-right: 5px;
+    margin-left: 335px;
     width: 40%;
 }
 
@@ -270,7 +274,7 @@ form > button{
     width: 35%;
 }
 .emp-search-container > form>button{
-    border: 1px solid rgb(118,118, 118);
+    border: 1px solid #ddd;
     border-radius: 5%;
 }
 
