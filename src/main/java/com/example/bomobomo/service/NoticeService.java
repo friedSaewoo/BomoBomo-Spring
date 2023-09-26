@@ -58,15 +58,4 @@ public class NoticeService {
 
 
 
-    //전체조회
-//    public List<NoticeDto> selectAll(Criteria criteria){
-//        return noticeMapper.selectAll(criteria);
-//    }
-
-
-//    public int getTotal(){
-//        return noticeMapper.getTotal();
-//}
-
-
 }
