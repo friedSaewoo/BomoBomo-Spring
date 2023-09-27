@@ -51,25 +51,25 @@ function getSearchReviewVo(){
 }
 
 
-function loadPage(page, callback) {
-    $.ajax({
-        url: `/reviews/service/${page}`,
-        type: 'get',
-        dataType: 'json',
-        success: function (result) {
-            console.log(result.pageReviewVo);
-            console.log(result.serviceReviewList);
-
-            //받아온 데이터를 noticeList함수에 넣어주어 화면에 뿌려준다.
-            noticeList(result);
-
-
-        },
-        error: function (a, b, c) {
-            console.error(c);
-        }
-    });
-}
+// function loadPage(page, callback) {
+//     $.ajax({
+//         url: `/reviews/service/${page}`,
+//         type: 'get',
+//         dataType: 'json',
+//         success: function (result) {
+//             console.log(result.pageReviewVo);
+//             console.log(result.serviceReviewList);
+//
+//             //받아온 데이터를 noticeList함수에 넣어주어 화면에 뿌려준다.
+//             noticeList(result);
+//
+//
+//         },
+//         error: function (a, b, c) {
+//             console.error(c);
+//         }
+//     });
+// }
 
 function showServiceReviewList(page, searchReviewVo){
 
