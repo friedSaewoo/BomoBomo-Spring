@@ -115,7 +115,6 @@ function updatePagination(pageVo) {
             `);
     }
 
-
     //게시물이 1개도 존재하지 않는다면 페이징 표시 x
     //한 개라도 존재할 때 페이징 번호가 나타난다.
     if(pageVo.realEnd!=0){

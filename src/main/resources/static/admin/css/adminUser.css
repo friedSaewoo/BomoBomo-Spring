@@ -224,7 +224,7 @@ input:focus{
     margin-left: 520px;
 }
 
-form > select{
+user-search-container > select{
     width: 70px;
     margin-top: 10px;
     margin-right: 3px;
@@ -232,14 +232,14 @@ form > select{
     border: 1px solid #ddd;
 }
 
-form > input{
+user-search-container > input{
     border: 1px solid #ddd;
     width: 162.5px;
     margin-top: 10px;
     height: 28px;
 }
 
-form > button{
+user-search-container > button{
     cursor: pointer;
     border: 1px solid #ddd;
     width: 45px;
@@ -295,7 +295,7 @@ form > button{
     margin: auto 33px auto 30px;
     width: 35%;
 }
-.user-search-container > form>button{
+.user-search-container > button{
     border: 1px solid #ddd;
     border-radius: 5%;
 }
