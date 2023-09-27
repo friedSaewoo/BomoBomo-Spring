@@ -4,6 +4,7 @@ $('.service-review-btn').on('click', function (){
 })
 
 
+
 function loadPage(page, callback){
 
 
@@ -14,15 +15,58 @@ function loadPage(page, callback){
         dataType:'json',
         success : function (result){
 
+            if(callback){
+                callback(result)
+            }
+            console.log(result)
 
-
-
-
+        }, error : function (a,b,c){
+            console.error(c);
         }
+    })
+}
 
+
+function eventReviewList(result){
+
+    let text = '';
+
+
+    result.forEach(r => {
+
+        text += `
+        
+        
+        <li>
+                    <a href="/board/reviewDetail?sitterBoardNumber=${r.eventBoardNumber}">
+                        <div class="review-sitter-img">
+                            <img src="/common/img/보모사진1.jpg" alt="리뷰 보모사진"/>
+                        </div>
+                        <div class="review-sitter-content">
+                            <p><strong>${e.eventName}</strong></p>
+                            <div class="review-score">
+                                <img src="/common/img/star.png"><span> ${r.rating} / 5</span>
+                            </div>
+                        </div>
+                        <div class="reivew-text-content">
+                            <dl>
+                                <dt><strong>${r.userId}</strong></dt>
+                                <dd>
+                                    <p>
+                                        ${r.eventBoardContent}
+                                    </p>
+                                </dd>
+                            </dl>
+                        </div>
+                    </a>
+                </li>
+        
+        
+        
+        
+        
+        `;
 
 
     })
-
-
 }
