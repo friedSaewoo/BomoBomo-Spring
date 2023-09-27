@@ -15,7 +15,7 @@ import javax.sql.DataSource;
 @Configuration
 @RequiredArgsConstructor
 public class MyBatisConfig {
-//    ApplicationContext객체는 스프링 부트의 핵심 인터페이스이다.
+    //    ApplicationContext객체는 스프링 부트의 핵심 인터페이스이다.
 //    우리가 스프링 컨테이너라고 부르는 논리적 구조를 실체화한 것이 ApplicationContext이다.
 //    즉, Bean관리, DI, AOP지원 등을 담당한다.
     private final ApplicationContext applicationContext;

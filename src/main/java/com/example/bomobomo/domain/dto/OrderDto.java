@@ -8,9 +8,9 @@ import org.springframework.stereotype.Component;
 @Component
 @NoArgsConstructor
 public class OrderDto {
-    Long orderNumber;
-    Long userNumber;
-    String genderFirst;
-    String genderSecond;
-    String kidsContent;
+    private Long orderNumber;
+    private Long userNumber;
+    private String genderFirst;
+    private String genderSecond;
+    private String kidsContent;
 }
