@@ -105,6 +105,11 @@ public class BoardController {
         return "board/boardServiceReview";
     }
 
+    @GetMapping("/eventReview")
+    public String showEventReviewPage(){
+        return "board/boardEventReview";
+    }
+
 
 
 

@@ -9,7 +9,8 @@ function showReviewListBtn(){
         location.href="/board/serviceReview"
     });
 };
-// /removeSReview
+
+
 
 
 //해당 돌봄 서비스 리뷰 삭제
