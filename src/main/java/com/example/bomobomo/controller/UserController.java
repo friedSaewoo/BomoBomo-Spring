@@ -52,11 +52,7 @@ public class UserController {
 
         userService.register(userDto);
 
-        String detail = req.getParameter("addressDetail");
-        String addres = userDto.getUserAddr2() + detail;
-        userDto.setUserAddr2(addres);
         System.out.println("날짜는 : " + userDto.getRegisterDate());
-        System.out.println("set설정 후 Dto주소 : " + userDto.getUserAddr2());
 
         return "user/login";
     }
