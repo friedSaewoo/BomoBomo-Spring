@@ -66,17 +66,6 @@ public class ReplyRestController {
 
         return replyMap;
 
-//        Criteria criteria = new Criteria();
-//        criteria.setPage(page);
-//        criteria.setAmount(6);
-//
-//
-//        Map<String, Object> replyMap = new HashMap<>();
-//        List<SitterCommentVo> replyReviewVo = replyService.findAll(sitterBoardNumber, criteria);
-//        PageVo pageReplyVo = new PageVo(replyService.getTotal(sitterBoardNumber), criteria);
-//        log.info(replyReviewVo.toString()+"=======================");
-//        replyMap.put("replyReviewVo", replyReviewVo);
-//        replyMap.put("pageReplyVo", pageReplyVo);
 
     }
 
