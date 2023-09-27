@@ -14,10 +14,8 @@ function loadPage(page, callback){
         type:'get',
         dataType:'json',
         success : function (result){
+            eventReviewList(result)
 
-            if(callback){
-                callback(result)
-            }
             console.log(result)
         }, error : function (a,b,c){
             console.error(c);
@@ -62,4 +60,7 @@ function eventReviewList(result){
         
         `;
     })
+
+    $('.review-ul').html(text);
+
 }
