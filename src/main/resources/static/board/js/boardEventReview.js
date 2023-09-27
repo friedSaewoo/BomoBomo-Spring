@@ -3,10 +3,10 @@ $('.service-review-btn').on('click', function (){
     window.location.href="/board/serviceReview";
 })
 
+loadPage(1, eventReviewList)
 
 
 function loadPage(page, callback){
-
 
     $.ajax({
 
@@ -19,13 +19,11 @@ function loadPage(page, callback){
                 callback(result)
             }
             console.log(result)
-
         }, error : function (a,b,c){
             console.error(c);
         }
     })
 }
-
 
 function eventReviewList(result){
 
@@ -38,7 +36,7 @@ function eventReviewList(result){
         
         
         <li>
-                    <a href="/board/reviewDetail?sitterBoardNumber=${r.eventBoardNumber}">
+                    <a href="/board/reviewEventDetail?eventBoardNumber=${r.eventBoardNumber}">
                         <div class="review-sitter-img">
                             <img src="/common/img/보모사진1.jpg" alt="리뷰 보모사진"/>
                         </div>
@@ -62,11 +60,6 @@ function eventReviewList(result){
                 </li>
         
         
-        
-        
-        
         `;
-
-
     })
 }
