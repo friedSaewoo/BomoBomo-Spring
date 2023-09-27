@@ -53,17 +53,8 @@
             <typeAlias type="com.example.bomobomo.domain.vo.SearchReviewVo" alias="searchReviewVo"/>
             <typeAlias type="com.example.bomobomo.domain.vo.SitterBoardVo" alias="sitterBoardVo"/>
             <typeAlias type="com.example.bomobomo.domain.vo.SitterCommentVo" alias="sitterCommentVo"/>
-<<<<<<< HEAD
             <typeAlias type="com.example.bomobomo.domain.vo.EventBoardVo" alias="eventBoardVo"/>
 <!--            <typeAlias type="com.example.bomobomo.domain.vo.UserVo" alias="userVo"/>-->
         <typeAlias type="com.example.bomobomo.domain.vo.MyPageSitterVo" alias="myPageSitterVo"/>
-=======
-
-            <typeAlias type="com.example.bomobomo.domain.vo.EventBoardVo" alias="eventBoardVo"/>
-
-<!--            <typeAlias type="com.example.bomobomo.domain.vo.UserVo" alias="userVo"/>-->
-        <typeAlias type="com.example.bomobomo.domain.vo.MyPageSitterVo" alias="myPageSitterVo"/>
-
->>>>>>> 007ad0682f5da429d52ef999d19bc72146860ff0
     </typeAliases>
 </configuration>
