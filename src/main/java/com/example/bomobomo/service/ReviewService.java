@@ -2,6 +2,7 @@ package com.example.bomobomo.service;
 
 
 import com.example.bomobomo.domain.vo.Criteria;
+import com.example.bomobomo.domain.vo.EventBoardVo;
 import com.example.bomobomo.domain.vo.SearchReviewVo;
 import com.example.bomobomo.domain.vo.SitterBoardVo;
 import com.example.bomobomo.mapper.ReviewMapper;
@@ -81,4 +82,19 @@ public class ReviewService {
         reviewMapper.delete(sitterBoardNumber);
 
     }
+
+    //=================================================================
+
+    //이벤트 서비스 리뷰 게시글 리스트
+    public List<EventBoardVo> findEventReview(Criteria criteria){
+          return reviewMapper.selectER(criteria);
+    }
+
+    //이벤트 서비스 리뷰 게시글 개수
+    public int getTotalER(){
+          return reviewMapper.getTotalER();
+    }
+
+
+
 }

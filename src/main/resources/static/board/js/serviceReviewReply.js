@@ -2,6 +2,12 @@
 let sitterBoardNumber = $('.reviewDetail-num').val();
 console.log(sitterBoardNumber);
 
+//댓글 불러오기
+let page = 1;
+getListPage({sitterBoardNumber,page:1}, showReply);
+
+
+
 
 //페이징처리된 숫자 클릭 시 해당 데이터를 가져와서 비동기 페이징처리
 $(document).on('click', '.page-num a', function (e) {
@@ -12,6 +18,7 @@ $(document).on('click', '.page-num a', function (e) {
 
     $('.page-num a').removeClass('active-page');
     $(this).addClass('active-page');
+
 });
 
 
@@ -35,10 +42,6 @@ $('.btn-reply').on('click', function () {
 
     $('#reply-content').val('');
 });
-
-
-let page = 1;
-getListPage({sitterBoardNumber,page:1}, showReply);
 
 
 
@@ -71,6 +74,27 @@ function getListPage(listInfo, callback){
 
     });
 }
+
+
+// function showServiceReviewReply(sitterBoardNumber, callback){
+//
+//     $.ajax({
+//         url:`/replies/list/${sitterBoardNumber}`,
+//         type:'get',
+//         dataType:'JSON',
+//         success : function (result){
+//             if(callback){
+//                 callback(result)
+//             }
+//
+//         }, error : function (a,b,c,){
+//             console.error(c);
+//         }
+//
+//
+//
+//     })
+// }
 
 function showReply(result){
     let text='';
@@ -157,8 +181,9 @@ $('.review-reply').on('click', '.reply-remove-btn', function () {
     $('.reply-btns__box').addClass('none');
 
     let sitterCommentNumber = $(this).closest('.reply').find('.reply-remove-btn').data('deletenum');
-
     remove(sitterCommentNumber, function (){
+        
+        //댓글 삭제 시 페이징 1번으로 이동
         getListPage({sitterBoardNumber,page:1}, showReply);
     });
 });
@@ -180,21 +205,25 @@ function remove(sitterCommentNumber, callback){
 
     })
 }
-
 // 리플 수정 완료 처리
-$('.review-reply').on('click', '.modify-content-btn', function () {
-    console.log('modify!!!');
-    let sitterCommentNumber = $(this).closest('.reply').find('.reply-modify-btn').data('modifynum');
-    let replyContent = $(this).closest('.modify-box').find('.modify-content').val();
-    // console.log(replyContent);
-    let replyObj = {
-        sitterCommentContent : replyContent
-    };
+    $('.review-reply').on('click', '.modify-content-btn', function () {
 
-    modify(sitterCommentNumber, replyObj, function (){
-        getListPage({sitterBoardNumber,page:1}, showReply);
+        console.log('modify!!!');
+        let sitterCommentNumber = $(this).closest('.reply').find('.reply-modify-btn').data('modifynum');
+        
+        //해당 페이징에서 머무를 수 있도록 페이징값 가져오기
+        let page = $('.active-page a').data('pagenum');
+        let replyContent = $(this).closest('.modify-box').find('.modify-content').val();
+
+        let replyObj = {
+            sitterCommentContent : replyContent
+        };
+
+        modify(sitterCommentNumber, replyObj, function (){
+            getListPage({sitterBoardNumber,page:page}, showReply);
+        });
     });
-});
+
 
 function modify(sitterCommentNumber, replyInfo, callback){
     $.ajax({
