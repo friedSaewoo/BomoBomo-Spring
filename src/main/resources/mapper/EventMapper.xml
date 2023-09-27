@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.bomobomo.mapper.EventMapper">
+    <select id="selectAll" resultType="EventDto">
+        SELECT EVENT_NUMBER, EVENT_NAME, EVENT_PRICE
+        FROM EVENT
+    </select>
+
+    <select id="selectEmpAll" resultType="EmpDto">
+        SELECT RNUM, EMP_NAME, EMP_AGE, EMP_GENDER, EMP_PHONE, EMP_EMAIL, EMP_DATE, EMP_CONTENT, EMP_NUMBER,
+               EMP_IMG_UPLOAD_PATH
+        FROM(
+                SELECT ROWNUM AS RNUM, EMP_NAME, EMP_AGE, EMP_GENDER, EMP_PHONE, EMP_EMAIL, EMP_DATE, EMP_CONTENT, EMP_NUMBER,
+                       EMP_IMG_UPLOAD_PATH
+                FROM(
+                        SELECT EMP_NAME, EMP_AGE, EMP_GENDER, EMP_PHONE, EMP_EMAIL, EMP_DATE, EMP_CONTENT, E.EMP_NUMBER,
+                               I.EMP_IMG_UPLOAD_PATH
+                        FROM EMP E JOIN EMP_IMG I
+                                        ON E.EMP_NUMBER = I.EMP_NUMBER
+                    ) X
+                <![CDATA[
+                WHERE ROWNUM <= #{page} * #{amount}
+                ]]>
+            )Y
+        WHERE RNUM > (#{page} - 1) * #{amount}
+    </select>
+
+    <select id="selectTotal" resultType="_int">
+        select COUNT(EMP_NUMBER)
+        from EMP
+    </select>
+
+
+</mapper>
