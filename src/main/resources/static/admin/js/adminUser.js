@@ -7,9 +7,23 @@
 //     });
 // });
 
+// 첫 화면
 $(document).ready(function () {
     loadPage(1,getSearchVo());
 });
+
+$(document).on('click', '.bt', function (e) {
+    e.preventDefault();
+    const page = $(this).data('num');
+    $('.keyword').val('');
+    loadPage(page, getSearchVo());
+});
+
+$('.submit').on('click', function (){
+    loadPage(1,getSearchVo());
+})
+
+
 
 function getSearchVo(){
     let cate = $('.cate').val();
@@ -41,6 +55,7 @@ function loadPage(page, searchVo) {
 }
 
 function loadUserList(result){
+
     if(result.adminUserList!=0){
         var userList = $('.user-list');
         userList.empty(); // 기존 데이터 지우기
@@ -56,11 +71,65 @@ function loadUserList(result){
             userList.append(userDiv);
         });
     }else{
-
+        var userList = $('.user-list');
+        userList.empty(); // 기존 데이터 지우기
     }
+    pagination(result.pageVo);
 }
 
+function pagination(pageVo) {
+    let $pagenation = $('.pagination-container');
+    $pagenation.empty();
 
+    // <a href="#" class="bt prev">&lt;</a>
+    // <a href="#" class="bt num on">1</a>
+    // <a href="#" class="bt num">2</a>
+    // <a href="#" class="bt num">3</a>
+    // <a href="#" class="bt num">4</a>
+    // <a href="#" class="bt num">5</a>
+    // <a href="#" class="bt next">&gt;</a>
+
+    if (pageVo.prev) {
+        $pagenation.append(`
+                    <a href="#" data-num="${pageVo.start()-1}" class="bt prev">&lt;</a>
+<!--                <li class="page-num"><a href="#" data-num="${pageVo.startPage-1}">&lt;</a></li>-->
+            `);
+    }
+
+    // 게시물이 1개도 존재하지 않는다면 페이징 표시 x
+    // 한 개라도 존재할 때 페이징 번호가 나타난다.
+    if(pageVo.realEnd!=0){
+        for (let page = pageVo.startPage; page <= pageVo.endPage; page++) {
+            if(page == pageVo.criteria.page){
+                $pagenation.append(`
+                    <a href="#" class="bt num on" data-num="${page}">${page}</a>
+<!--                    <a href="#" class="on" data-num="${page}">${page}</a>-->
+                `
+                );
+
+            }else {
+                $pagenation.append(`
+                    <a href="#" class="bt num" data-num="${page}">${page}</a>
+<!--                    <a href="#" class="on" data-num="${page}">${page}</a>-->
+                `
+                );
+            }
+
+        }
+    }else{
+
+    }
+
+
+
+
+    if (pageVo.next) {
+        $pagenation.append(`
+                <a href="#" data-num="${pageVo.endPage+1}"  class="bt next">&gt;</a>
+<!--            <li class="page-num"> <a href="#" data-num="${pageVo.endPage+1}">&gt;</a></li>-->
+            `);
+    }
+}
 
 
 
