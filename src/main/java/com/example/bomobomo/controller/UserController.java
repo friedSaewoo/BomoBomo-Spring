@@ -54,11 +54,15 @@ public class UserController {
 
         userService.register(userDto);
 
+<<<<<<< HEAD
         String detail = req.getParameter("addressDetail");
 //        String addres = userDto.getUserAddr2() + detail;
 //        userDto.setUserAddr2(addres);
         System.out.println("날짜는 : " + userDto.getRegisterDate());
 //        System.out.println("set설정 후 Dto주소 : " + userDto.getUserAddr2());
+=======
+        System.out.println("날짜는 : " + userDto.getRegisterDate());
+>>>>>>> c5492630acb285b89e01f1101e46399c646b576e
 
         return "user/login";
     }
