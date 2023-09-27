@@ -2,18 +2,15 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.bomobomo.mapper.UserMapper">
 
-    <insert id="insert" parameterType="userDto">
+    <insert id="insertUser" parameterType="userDto">
         insert into USERS (
             USER_NUMBER,
             USER_ID,
             USER_PASSWORD,
             USER_NAME,
             USER_EMAIL,
-            REGISTER_DATE,
             USER_PHONE,
-            USER_POSTAL,
-            USER_ADDR1,
-            USER_ADDR2
+            REGISTER_DATE
                            )
         values (
             SEQ_USER.NEXTVAL,
@@ -21,17 +18,43 @@
             #{userPassword},
             #{userName},
             #{userEmail},
-            SYSDATE,
-                #{userPhone},
-                #{userPostal},
-                #{userAddr1},
-                #{userAddr2}
+            #{userPhone},
+            SYSDATE
             )
-        </insert>
+
+</insert>
+    <insert id="insertAddr" parameterType="addressDto">
+        insert into address (
+            address_number,
+            user_number,
+            address_post,
+            address,
+            address_detail
+        )
+        values (
+            SEQ_ADDRESS.NEXTVAL,
+            SEQ_USER.CURRVAL ,
+            #{addressPost},
+            #{address},
+            #{addressDetail}
+        )
+
+    </insert>
 
     <select id="select" resultType="userDto">
         SELECT *
         FROM USERS
         WHERE USER_ID = #{userId} AND USER_PASSWORD = #{userPassword}
     </select>
+
+    <select id="idCheck" resultType="_int">
+        SELECT COUNT (USER_ID) FROM USERS
+        WHERE USER_ID = #{userId}
+    </select>
+
+    <select id="nameCheck" resultType="_int">
+        SELECT COUNT (USER_NAME) FROM USERS
+        WHERE USER_NAME = #{userName}
+    </select>
+
 </mapper>
