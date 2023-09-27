@@ -58,6 +58,6 @@
 
 <!--            <typeAlias type="com.example.bomobomo.domain.vo.UserVo" alias="userVo"/>-->
         <typeAlias type="com.example.bomobomo.domain.vo.MyPageSitterVo" alias="myPageSitterVo"/>
->>>>>>> springProject/bomobomo/v_1
+
     </typeAliases>
 </configuration>
