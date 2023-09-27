@@ -73,9 +73,28 @@ $(document).ready(function(){
         $(this).css("color","#FF7000");
         console.log("asd")
     })
-
+/*성별 미선택시 선택을 하도록 처리하는 코드*/
     $('.btn').on('click',function(){
-        alert("저장이 완료되었습니다.");
-        window.location.href="../html/mypage_main.html"
+        console.log($(".one-check").is(":checked"));
+        let $gender=$('input[name=genderFirst]')
+        let $genderSecond =$('input[name=genderSecond]')
+        console.log($gender);
+        console.log($genderSecond);
+
+        if(!$gender.eq(0).is(':checked')&&!$gender.eq(1).is(':checked')){
+            alert("성별을 선택하세요!");
+            return;
+
+        }
+
+        if($(".two-check").is(':checked')){
+            if(!$genderSecond.eq(0).is(':checked') && !$genderSecond.eq(1).is(':checked')){
+                console.log('hi');
+                alert("성별을 선택하세요!");
+                return;
+            }
+        }
+          alert("저장이 완료되었습니다.");
+         $('.check-area').submit();
     })
 });

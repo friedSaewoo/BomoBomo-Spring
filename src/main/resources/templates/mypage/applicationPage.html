@@ -12,8 +12,6 @@
   <link rel="stylesheet" href="/myPage/css/applicationPage.css"/>
   <script src="/common/js/index.js" defer></script>
   <script src="/common/js/common.js" defer></script>
-  <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-  <script src="/myPage/js/aplicationPage.js"></script>
 </head>
 <body>
 <div class="header" th:replace="fragments/header.html :: header" >
@@ -45,7 +43,6 @@
       <div class="page-view">
         <div class="page-title">
 
-
           <p>
             <a href="/mypage/main">신청관리</a>
           </p>
@@ -61,7 +58,7 @@
             <h4>님께 알려주세요.</h4>
           </div>
 
-          <form class="check-area" action="#" method="post">
+          <form class="check-area" action="/mypage/application" method="post">
             <div class="childern-check">
               <p>돌봄이 필요한 아이</p>
               <input class="one-check" type="radio" name="one" /> 1명
@@ -79,14 +76,14 @@
                 <!-- <input class="input-m" type="checkbox" value="남자"> -->
                 <label for="gender-m" class="gender-box">
                   <span>남자</span>
-                  <input id="gender-m" type="radio" name="gender" value="M"/>
+                  <input id="gender-m" type="radio" name="genderFirst" value="M"/>
                 </label>
 
 
                 <!-- <input class="input-w" type="checkbox" value="여자" > -->
                 <label for="gender-w" class="gender-box">
                   <span>여자</span>
-                  <input id="gender-w" type="radio" name="gender" value="F"/>
+                  <input id="gender-w" type="radio" name="genderFirst" value="F"/>
                 </label>
 
               </div>
@@ -102,14 +99,14 @@
                 <!-- <input class="input-m" type="checkbox" value="남자"> -->
                 <label for="gender-men" class="gender-box-second">
                   <span>남자</span>
-                  <input id="gender-men" type="radio" name="gender-second" value="M"/>
+                  <input id="gender-men" type="radio" name="genderSecond" value="M"/>
                 </label>
 
 
                 <!-- <input class="input-w" type="checkbox" value="여자" > -->
-                <label for="gender-women" class="gender-box-second">
+                <label for="gender-women" class="gender-box-second" required>
                   <span>여자</span>
-                  <input id="gender-women" type="radio" name="gender-second" value="F"/>
+                  <input id="gender-women" type="radio" name="genderSecond" value="F"/>
                 </label>
 
               </div>
@@ -117,17 +114,22 @@
             <!--아이상세 정보 작성-->
             <div class="chilren-detil">
               <p>아이 성격</p>
-              <textarea class="children-text"  name="text" placeholder="예시) 보노보노보다 뽀로로를 더 좋아해요.">
-                                </textarea>
+              <textarea class="children-text"  name="kidsContent" placeholder="예시) 보노보노보다 뽀로로를 더 좋아해요.">
+              </textarea>
             </div>
             <div class="inputbtn">
-              <button type="submit" class="btn">저장하기</button>
+              <button type="button" class="btn">저장하기</button>
             </div>
           </form>
         </div>
+      </div>
+    </div>
+  </div>
 </main>
 <div class="footer" th:replace="fragments/footer.html :: footer">
 </div>
 <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="/myPage/js/applicationPage.js"></script>
 </body>
 </html>
