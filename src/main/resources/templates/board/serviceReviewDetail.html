@@ -14,8 +14,8 @@
 <body>
 <div class="header" th:replace="fragments/header :: header"></div>
 
-<main style="height: 100%; padding-bottom: 50px;">
-  <div class="review-detail-container"  th:each="reviewDetail : ${serviceReviewDetail}">
+<main style="height: 100%; padding-bottom: 50px;"th:each="reviewDetail : ${serviceReviewDetail}">
+  <div class="review-detail-container"  >
 
     <!-- 리뷰 대상자(시터 정보) -->
     <div class="review-detail-sitter">
@@ -25,7 +25,7 @@
       <div class="review-detail-sitter-info">
         <dl class="review-detail-sitter-name">
           <dt>
-            <p th:text="${reviewDetail.empName}"><span><strong>이정미</strong></span></p>
+            <p th:text="${reviewDetail.empName}"><span><strong></strong></span></p>
             <p>시터님에 대한 리뷰입니다.</p>
           </dt>
           <dd>
@@ -34,13 +34,13 @@
               <dd>
                 <img src="/common/img/star.png" alt="">
               </dd>
-              <dd><span><strong>4.5/5</strong></span> </dd>
+              <dd  ><span th:text="${getAvg} + '/ 5'"><strong></strong></span> </dd>
             </dl>
           </dd>
         </dl>
       </div>
     </div>
-    <div class="review-detail-content" th:each="reviewDetail : ${serviceReviewDetail}">
+    <div class="review-detail-content" >
       <!-- 리뷰 평점 / 리뷰작성일자 -->
       <div class="review-score-date">
         <ul>
@@ -48,129 +48,80 @@
             <img src="/common/img/star.png" alt="">
           </li>
           <li th:text="${reviewDetail.rating}"><span>4.5/5</span></li>
-          <li>
-            <p>작성일자 <span> 2023/09/16</span></p>
+
+          <li th:if="${reviewDetail.sitterBoardModifyDate==reviewDetail.sitterBoardRegisterDate}">
+            <p>수정일자 <span th:text="${reviewDetail.sitterBoardModifyDate}"> 2023/09/16</span></p>
           </li>
           <li>
-            <p>수정일자 <span> 2023/09/16</span></p>
+            <p>작성일자 <span th:text="${reviewDetail.sitterBoardRegisterDate}"> 2023/09/16</span></p>
           </li>
           <li>
-            <p>조회수 <span> 1</span></p>
+            <p>조회수 <span th:text="${reviewDetail.sitterBoardCount}"> </span></p>
           </li>
         </ul>
       </div>
       <!-- 리뷰 작성자 -->
       <div class="review-userid" >
-        <p th:text="${reviewDetail.userName}"><span><strong>보노보노</strong></span>님이 남기신 리뷰입니다.</p>
+        <p th:text="${reviewDetail.userId}"><span><strong>보노보노</strong></span>님이 남기신 리뷰입니다.</p>
       </div>
 
       <!-- 리뷰내용 -->
-      <div class="review-user-content" >
+      <div class="review-user-content" th:text="${reviewDetail.sitterBoardContent}">
 
       </div>
       <!-- 리뷰 수정 삭제 목록 버튼-->
-      <div class="update-delete-btn">
+      <div class="update-delete-btn" >
+        <th:block th:if="${session.userNumber==reviewDetail.userNumber}">
         <button class="updateBtn">수정</button>
-        <button class="deleteBtn">삭제</button>
+        <button class="deleteBtn" type="button" th:data-number="${reviewDetail.sitterBoardNumber}">삭제</button>
+        </th:block>
         <button class="reviewListBtn" onclick="showReviewListBtn()">목록</button>
       </div>
     </div>
 
     <!-- 댓글 작성란 -->
     <div class="reply-wrap">
-      <h3>댓글 작성</h3>
-      <div class="reply-wrap__box">
-        <div class="reply-content__box">
-          <div class="reply-writer" >홍길동</div>
-          <textarea name="replyContent" id="reply-content" cols="30" rows="10"></textarea>
-        </div>
-        <div class="reply-btn-wrap">
-          <button type="button" class="btn-reply">작성 완료</button>
+      <div th:if="${session.userNumber!=null}">
+        <h3>댓글 작성</h3>
+        <div class="reply-wrap__box">
+          <div class="reply-content__box">
+            <div class="reply-writer" th:text="${session.userId}">홍길동</div>
+            <textarea name="replyContent" id="reply-content" cols="30" rows="10"></textarea>
+          </div>
+          <div class="reply-btn-wrap">
+            <button type="button" class="btn-reply"  >작성 완료</button>
+          </div>
         </div>
       </div>
+
+
+      <!-- 페이징처리 -->
+      <div class="reply-pagenation-container">
+        <ul>
+
+        </ul>
+      </div>
+
       <!-- 리뷰 댓글 + 댓글 수정삭제 버튼 -->
       <div class="review-reply">
-        <dl>
-          <dt>
-            <div class="reply-box__writer">
-              <strong>김철수</strong>
-            </div>
-          </dt>
 
-          <dd>
-            <div class="reply-list-wrap">
-              <div class="reply">
-                <div class="reply-box">
-                  <div class="reply-box__content">안녕하세요!ssdfsdfsdfsdfsdfsdjiofjsdlfsdfjlksdfnlsdkfnsdklfnsdflksdnflksndklfnsdlkfㄴㅇ라ㅣㄴㅇ러ㅜㄴ이ㅑ런야ㅐ런ㅇ래ㅑㄴ어리낭룬아ㅣ룬이라눙리ㅏㄴ우리ㅏ눙라ㅣㄴㅇ루ㅏㅣㄴㅇ룬이ㅏㄹ</div>
-                </div>
-                <div class="reply-btn-box">
-                  <span class="reply-btns"></span>
-                  <div class="reply-btns__box none">
-                    <div class="reply-remove-btn">삭제</div>
-                    <div class="reply-modify-btn">수정</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </dd>
-        </dl>
-        <dl>
-          <dt>
-            <div class="reply-box__writer">
-              <strong>김철수</strong>
-            </div>
-          </dt>
-
-          <dd>
-            <div class="reply-list-wrap">
-              <div class="reply">
-                <div class="reply-box">
-                  <div class="reply-box__content">안녕하세요!</div>
-                </div>
-                <div class="reply-btn-box">
-                  <span class="reply-btns"></span>
-                  <div class="reply-btns__box none">
-                    <div class="reply-remove-btn">삭제</div>
-                    <div class="reply-modify-btn">수정</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </dd>
-        </dl>
-        <dl>
-          <dt>
-            <div class="reply-box__writer">
-              <strong>김철수</strong>
-            </div>
-          </dt>
-
-          <dd>
-            <div class="reply-list-wrap">
-              <div class="reply">
-                <div class="reply-box">
-                  <div class="reply-box__content">안녕하세요!</div>
-                </div>
-                <div class="reply-btn-box">
-                  <span class="reply-btns"></span>
-                  <div class="reply-btns__box none">
-                    <div class="reply-remove-btn">삭제</div>
-                    <div class="reply-modify-btn">수정</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </dd>
-        </dl>
       </div>
 
+
     </div>
+
   </div>
+  <input type="hidden" th:value="${reviewDetail.sitterBoardNumber}" class="reviewDetail-num">
+
 </main>
 <div class="footer" th:replace="fragments/footer :: footer"></div>
 
 <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+<script th:inline="javascript">
+  let loginNumber = [[${session.userNumber}]];
+</script>
 <script src="/board/js/boardServiceReviewDetail.js"></script>
+<script src="/board/js/serviceReviewReply.js"></script>
 <script src="/fragments/js/header.js"></script>
 
 

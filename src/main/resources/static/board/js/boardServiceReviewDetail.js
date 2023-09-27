@@ -6,35 +6,26 @@ function showReviewListBtn(){
 
 
     reviewListBtn.addEventListener('click', function(){
-        location.href="/board/html/boardServiceReview.html"
+        location.href="/board/serviceReview"
     });
 };
+// /removeSReview
 
 
-$('.reply-list-wrap').on('click', '.reply-modify-btn', function () {
-    let $content = $(this).closest('.reply').find('.reply-box__content');
-    $content.replaceWith(`
-  <div class='modify-box'>
-    <textarea class='modify-content'>${$content.text()}</textarea>
-    <button type='button' class='modify-content-btn'>수정 완료</button>
-  </div>
-  `);
-    $('.reply-btns__box').addClass('none');
-});
+//해당 돌봄 서비스 리뷰 삭제
+$('.deleteBtn').on('click', function (){
+    let sitterBoardNumber = $(this).data('number');
 
-$('.reply-list-wrap').on('click', '.reply-btns', function () {
-    let $replyBtnBox = $(this).closest('.reply-btn-box').find('.reply-btns__box');
+    if(confirm("정말로 삭제하시겠습니까?"))
+    {
+        console.log(sitterBoardNumber);
+        window.location.href = '/board/removeSReview?sitterBoardNumber=' + sitterBoardNumber;
 
-    $('.reply-btns__box').addClass('none');
-    $replyBtnBox.toggleClass('none');
-});
+    }else{
 
-$('body').click(function (e) {
-    if ($(e.target).hasClass('reply-btns')) {
-        //console.log('aa');
-        return;
     }
-    if (!$('.reply-btns__box').has(e.target).length) {
-        $('.reply-btns__box').addClass('none');
-    }
-});
+})
+
+
+
+

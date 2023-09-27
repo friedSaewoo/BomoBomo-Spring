@@ -6,23 +6,28 @@
 
     <select id="selectAll" resultType="noticeDto">
 
+
+
         select rnum, notice_number, notice_title, notice_content, notice_REGISTER_DATE, notice_modify_DATE, notice_count
-        from (select rnum, notice_number, notice_title, notice_content, notice_REGISTER_DATE, notice_modify_DATE, notice_count
+        from (select ROWNUM as rnum, notice_number, notice_title, notice_content, notice_REGISTER_DATE, notice_modify_DATE, notice_count
         from(
-        select ROWNUM as rnum, notice_number, notice_title, notice_content, notice_REGISTER_DATE, notice_modify_DATE, notice_count
+        select  notice_number, notice_title, notice_content, notice_REGISTER_DATE, notice_modify_DATE, notice_count
         from notice
-        <![CDATA[
-        where rownum<=#{criteria.page} * #{criteria.amount} ]]>
-        order by notice_NUMBER desc
-        )
-        where rnum> (#{criteria.page}-1)*#{criteria.amount}
-        )
+
         <if test="'noticeTitle'.equals(searchVo.cate)">
             where notice_title like '%' || #{searchVo.keyword} || '%'
         </if>
         <if test="'noticeContent'.equals(searchVo.cate)">
             where notice_content like '%' || #{searchVo.keyword} || '%'
         </if>
+
+        order by notice_NUMBER desc
+        ) <![CDATA[
+        where rownum<=#{criteria.page} * #{criteria.amount}
+            ]]>
+
+        )where rnum> (#{criteria.page}-1)*#{criteria.amount}
+
 
     </select>
 
