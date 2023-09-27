@@ -1,10 +1,7 @@
 package com.example.bomobomo.controller;
 
 
-import com.example.bomobomo.domain.vo.Criteria;
-import com.example.bomobomo.domain.vo.PageVo;
-import com.example.bomobomo.domain.vo.SearchReviewVo;
-import com.example.bomobomo.domain.vo.SitterBoardVo;
+import com.example.bomobomo.domain.vo.*;
 import com.example.bomobomo.service.ReviewService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -24,7 +21,8 @@ import java.util.Map;
 public class BoardReviewController {
     private final ReviewService reviewService;
 
-    //돌봄 서비스 후기 리스트
+
+    //돌봄 서비스 후기 리스트검색포함
     @GetMapping("/service/{page}")
     public Map<String, Object> findListAll(@PathVariable("page") int page, SearchReviewVo searchReviewVo){
 
@@ -47,4 +45,23 @@ public class BoardReviewController {
     }
 
     //이벤트 서비스 후기 리스트
+    @GetMapping("/eventReview/{page}")
+    public Map<String, Object> findEventReviewList(@PathVariable("page") int page){
+
+        Criteria criteria = new Criteria();
+        criteria.setPage(page);
+        criteria.setAmount(8);
+
+        PageVo pageEventReviewVo = new PageVo(reviewService.getTotalER(), criteria);
+        List<EventBoardVo> eventReviewList = reviewService.findEventReview(criteria);
+
+        Map<String, Object> eventReviewMap = new HashMap<>();
+        eventReviewMap.put("pageEventReviewVo", pageEventReviewVo);
+        eventReviewMap.put("eventReviewList", eventReviewList);
+
+        log.info(pageEventReviewVo+"===============");
+        log.info(eventReviewList+"==============================");
+
+        return eventReviewMap;
+    }
 }
