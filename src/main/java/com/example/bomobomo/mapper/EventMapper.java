@@ -9,6 +9,9 @@ import java.util.List;
 
 @Mapper
 public interface EventMapper {
+    //이벤트 상세페이지 이동
+    public EventDto select(Long eventNumber);
+
     //이벤트 페이지 전체 조회
     public List<EventDto> selectAll();
 

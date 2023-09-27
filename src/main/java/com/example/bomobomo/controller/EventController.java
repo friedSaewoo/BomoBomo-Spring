@@ -1,6 +1,7 @@
 package com.example.bomobomo.controller;
 
 import com.example.bomobomo.domain.dto.EmpDto;
+import com.example.bomobomo.domain.dto.EventDetailDto;
 import com.example.bomobomo.domain.dto.EventDto;
 import com.example.bomobomo.domain.vo.Criteria;
 import com.example.bomobomo.domain.vo.PageVo;
@@ -31,9 +32,17 @@ public class EventController {
        model.addAttribute("list", eventDtoList);
         return "event/event";
     }
+//   상세페이지 이동
+    @GetMapping("/detail")
+    public String showEventDetailPage(Long eventNumber, Model model) {
+
+        model.addAttribute("detail", eventService.find(eventNumber));
+
+        return "event/detail";
+    }
 
 
-
+//   직원 목록 전체 조회
     @GetMapping("/empIntro")
     public String showEmpList(Criteria criteria, Model model){
         log.info("> request : {}", criteria);
