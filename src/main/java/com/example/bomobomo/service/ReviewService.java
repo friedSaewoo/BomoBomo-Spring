@@ -2,6 +2,7 @@ package com.example.bomobomo.service;
 
 
 import com.example.bomobomo.domain.vo.Criteria;
+import com.example.bomobomo.domain.vo.EventBoardVo;
 import com.example.bomobomo.domain.vo.SearchReviewVo;
 import com.example.bomobomo.domain.vo.SitterBoardVo;
 import com.example.bomobomo.mapper.ReviewMapper;
@@ -49,6 +50,18 @@ public class ReviewService {
     }
 
 
+    //평점
+    public double getAvgRating(Long empNumber){
+
+        if (empNumber == null) {
+            throw new IllegalArgumentException("직원 번호 누락");
+        }
+
+
+         return reviewMapper.getAvgRating(empNumber);
+    }
+
+
     //조회수
     public void updateCount(Long sitterBoardNumber){
         if (sitterBoardNumber == null) {
@@ -59,4 +72,29 @@ public class ReviewService {
         reviewMapper.updateCount(sitterBoardNumber);
 
     }
+
+    //돌봄 후기 삭제
+    public void delete(Long sitterBoardNumber){
+        if (sitterBoardNumber == null) {
+            throw new IllegalArgumentException("리뷰 게시 번호 누락");
+        }
+
+        reviewMapper.delete(sitterBoardNumber);
+
+    }
+
+    //=================================================================
+
+    //이벤트 서비스 리뷰 게시글 리스트
+    public List<EventBoardVo> findEventReview(Criteria criteria){
+          return reviewMapper.selectER(criteria);
+    }
+
+    //이벤트 서비스 리뷰 게시글 개수
+    public int getTotalER(){
+          return reviewMapper.getTotalER();
+    }
+
+
+
 }

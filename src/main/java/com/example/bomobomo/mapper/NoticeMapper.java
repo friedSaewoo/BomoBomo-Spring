@@ -11,10 +11,6 @@ import java.util.List;
 
 @Mapper
 public interface NoticeMapper {
-
-    
-    
-    
     //게시물 조회 / 검색
     public List<NoticeDto> selectAll(@Param("criteria") Criteria criteria, @Param("searchVo")SearchVo searchVo);
 
@@ -29,15 +25,6 @@ public interface NoticeMapper {
 
     //조회수
     public void updateCount(Long noticeNumber);
-
-
-
-
-
-
-
-
-
 
 
     //공지사항 전체조회

@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 @NoArgsConstructor
 public class SubmitOrderDto {
     private Long submitOrderNumber;
-    private Integer genderFirst;
-    private Integer genderSecond;
+    private String genderFirst;
+    private String genderSecond;
     private String kidsContent;
 }

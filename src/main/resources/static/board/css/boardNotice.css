@@ -57,7 +57,9 @@
 
 
 
-
+.active-page {
+    background-color: #FF7000;
+}
 
 
 /* 공지사항 테이블 */

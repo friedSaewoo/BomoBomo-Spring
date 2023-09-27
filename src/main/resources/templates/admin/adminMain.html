@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>관리자 페이지</title>
+    <link rel="stylesheet" href="/admin/css/adminMain.css">
+</head>
+<body>
+    <!-- 전체 컨테이너 -->
+    <div class="admin-container">
+        <!-- 사이드 컨테이너 -->
+        <div class="side-container">
+            <div class="side-logo-box">
+                   <img class="logo" src="/admin/img/logo.png" alt="logo">
+            </div>
+            <ul class="side-item-container">
+                <li class="side-item on" ><a href="/admin/main">대시보드</a></li>
+                <li class="side-item"><a href ="/admin/user">회원정보</a></li>
+                <li class="side-item"><a href="/admin/emp">직원관리</a></li>
+                <li class="side-item"><a href="/admin/match">매칭관리</a></li>
+                <li class="side-item"><a href="/admin/event">이벤트관리</a></li>
+                <li class="side-item"><a href="/admin/notice">공지사항</a></li>
+            </ul>
+        </div>
+        <!-- /사이드컨테이너 -->
+
+        <!-- 메인 컨테이너 -->
+        <div class="main-container">
+            <!-- 메인 헤더 -->
+            <div th:replace="fragments/adminHeader :: main-header"></div>
+
+            <div class="main-contents">
+                <div class="contents-title">
+                    <span class="main-contents-title-text">대시보드</span>
+                </div>
+                <div class="grid-container">
+                    <div class="grid-item signup-chart">
+                        <div><span>주간 회원가입</span></div>
+                        <canvas id="join-chart" class="jc"></canvas>
+                    </div>
+                    <div class="grid-item sales-chart">
+                        <div><span>주간 매출현황</span></div>
+                        <canvas id="sales"></canvas>
+                    </div>
+                </div>
+                <div class="bottom-container">
+                    <div class="bottom-contents">
+                        <div class="bottom-title"><span>미정</span></div>
+                        <div class="bottom-main"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- /메인 컨텐츠 -->
+        </div>
+        <!-- /메인 컨테이너 -->
+    </div>
+    <!-- /전체 컨테이너 -->
+</body>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="/admin/js/adminMain.js"></script>
+<script src="/admin/js/adminHeader.js"></script>
+</html>

@@ -1,7 +1,7 @@
 package com.example.bomobomo.controller;
 
 import com.example.bomobomo.domain.dto.UserDto;
-import com.example.bomobomo.service.EmailService;
+
 import com.example.bomobomo.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -21,7 +21,7 @@ import java.util.Date;
 public class UserController {
 
     private final UserService userService;
-    private final EmailService emailService;
+//    private final EmailService emailService;
 
     @GetMapping("/login")
     public String login(){
@@ -54,11 +54,9 @@ public class UserController {
 
         userService.register(userDto);
 
-        String detail = req.getParameter("addressDetail");
-        String addres = userDto.getUserAddr2() + detail;
-        userDto.setUserAddr2(addres);
+
         System.out.println("날짜는 : " + userDto.getRegisterDate());
-        System.out.println("set설정 후 Dto주소 : " + userDto.getUserAddr2());
+
 
         return "user/login";
     }
@@ -68,11 +66,12 @@ public class UserController {
 
         UserDto userDto = userService.find(userId, userPassword);
         req.getSession().setAttribute("userNumber", userDto.getUserNumber());
-        req.getSession().setAttribute("userName", userDto.getUserName());
+        req.getSession().setAttribute("userName",userDto.getUserName());
         req.getSession().setAttribute("userId", userDto.getUserId());
 
         System.out.println("로그인 컨트롤러 : " + userDto.getUserId());
         System.out.println("로그인 컨트롤러 : " + userDto.getUserName());
+        System.out.println("로그인 컨트롤러 : " + userDto.getUserNumber());
 
         return new RedirectView("/common/index");
     }
