@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BOMOBOMO</title>
+
+  <link rel="stylesheet" href="/common/css/common.css"/>
+  <link rel="stylesheet" href="/fragments/css/footer.css"/>
+  <link rel="stylesheet" href="/fragments/css/header.css"/>
+
+  <link rel="stylesheet" href="/myPage/css/applicationPage.css"/>
+  <script src="/common/js/index.js" defer></script>
+  <script src="/common/js/common.js" defer></script>
+</head>
+<body>
+<div class="header" th:replace="fragments/header.html :: header" >
+</div>
+
+<main>
+  <div class="user-container">
+    <div class="section">
+      <aside class="menu-bar">
+
+        <!-- <a href="/Mypage/html/mypage_main.html" class="logo-img">
+            <img src="/Mypage/img/logo.png">
+        </a> -->
+
+        <div class="announcement">
+          <!--클릭시  페이지 이동-->
+          <a href="">공지사항</a>
+        </div>
+        <div class="faq">
+          <a href="#">FAQ</a>
+        </div>
+        <div class="pay">
+          <a href="/mypage/buy">결제내역</a>
+        </div>
+        <div class="account-mg">
+          <a href="/mypage/userManage">계정관리</a>
+        </div>
+      </aside>
+      <div class="page-view">
+        <div class="page-title">
+
+          <p>
+            <a href="/mypage/main">신청관리</a>
+          </p>
+
+        </div>
+
+        <div class="application-page">
+
+          <div class="logo-container-text">
+            <a href="#">
+              <h1>Bomo</h1><h1>Bomo</h1>
+            </a>
+            <h4>님께 알려주세요.</h4>
+          </div>
+
+          <form class="check-area" action="/mypage/application" method="post">
+            <div class="childern-check">
+              <p>돌봄이 필요한 아이</p>
+              <input class="one-check" type="radio" name="one" /> 1명
+              <input class="two-check" type="radio" name="one" /> 2명
+            </div>
+            <!--버튼 클릿 js 필요-->
+            <div class="text-area">
+              <div class="gender-text">
+                <p>첫째 아이 성별</p>
+                <!-- <input type="checkbox" class="firstbtn" value="남자">남자</button>
+                <input type="checkbox" class="firstbtn-ck" value="여자">여자</button> -->
+              </div>
+              <div class="gender-wrap">
+
+                <!-- <input class="input-m" type="checkbox" value="남자"> -->
+                <label for="gender-m" class="gender-box">
+                  <span>남자</span>
+                  <input id="gender-m" type="radio" name="genderFirst" value="M"/>
+                </label>
+
+
+                <!-- <input class="input-w" type="checkbox" value="여자" > -->
+                <label for="gender-w" class="gender-box">
+                  <span>여자</span>
+                  <input id="gender-w" type="radio" name="genderFirst" value="F"/>
+                </label>
+
+              </div>
+            </div>
+            <div class="text-area-1">
+              <div class="gender-text-2">
+                <p>두번째 아이 성별</p>
+                <!-- <input type="checkbox" class="firstbtn" value="남자">남자</button>
+                <input type="checkbox" class="firstbtn-ck" value="여자">여자</button> -->
+              </div>
+              <div class="gender-wrap-second">
+
+                <!-- <input class="input-m" type="checkbox" value="남자"> -->
+                <label for="gender-men" class="gender-box-second">
+                  <span>남자</span>
+                  <input id="gender-men" type="radio" name="genderSecond" value="M"/>
+                </label>
+
+
+                <!-- <input class="input-w" type="checkbox" value="여자" > -->
+                <label for="gender-women" class="gender-box-second" required>
+                  <span>여자</span>
+                  <input id="gender-women" type="radio" name="genderSecond" value="F"/>
+                </label>
+
+              </div>
+            </div>
+            <!--아이상세 정보 작성-->
+            <div class="chilren-detil">
+              <p>아이 성격</p>
+              <textarea class="children-text"  name="kidsContent" placeholder="예시) 보노보노보다 뽀로로를 더 좋아해요.">
+              </textarea>
+            </div>
+            <div class="inputbtn">
+              <button type="button" class="btn">저장하기</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+<div class="footer" th:replace="fragments/footer.html :: footer">
+</div>
+<script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="/myPage/js/applicationPage.js"></script>
+</body>
+</html>

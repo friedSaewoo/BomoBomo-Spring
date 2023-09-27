@@ -25,8 +25,6 @@ import java.util.Date;
 @RequiredArgsConstructor
 @RequestMapping("/board/*")
 public class BoardController {
-
-
     private final NoticeService noticeService;
     private final ReviewService reviewService;
 
@@ -44,8 +42,8 @@ public class BoardController {
 
     @GetMapping("/detail")
     public String showNoticeDetailPage(@RequestParam(name = "noticeNumber") Long noticeNumber, Model model, HttpServletRequest req, HttpServletResponse resp){
-        
-        
+
+
         //모델 객체를 통해 detail페이지로 해당 공지사항 세부내역 전달
         model.addAttribute("noticeDetail",  noticeService.selectOne(noticeNumber));
 
@@ -90,7 +88,7 @@ public class BoardController {
             Cookie newCookie = new Cookie("notice_count_cookie", req.getParameter("noticeNumber") + "_" + new Date().getTime());
             newCookie.setMaxAge(24 * 60 * 60); // 쿠키 생성 시 24시간 유지
             resp.addCookie(newCookie);
-            
+
             //조회수 증가
             noticeService.updateCount(noticeNumber);
         }
@@ -169,9 +167,9 @@ public class BoardController {
         return "board/serviceReviewDetail";
     }
 
-    
+
     //돌봄후기 수정
-    
+
 
 
     //돌봄후기 삭제

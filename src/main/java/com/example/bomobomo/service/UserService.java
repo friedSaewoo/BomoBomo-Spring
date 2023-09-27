@@ -24,6 +24,13 @@ public class UserService {
         return Optional.ofNullable(userMapper.select(userId, userPassword))
                 .orElseThrow( () -> {throw new IllegalArgumentException("조회 결과 없음"); });
     }
+
+    public void modify(UserDto userDto){
+        if (userDto == null) {
+             throw new IllegalArgumentException("회원정보 변경사항 누락!");
+        }
+           userMapper.update(userDto);
+    }
 }
 
 
