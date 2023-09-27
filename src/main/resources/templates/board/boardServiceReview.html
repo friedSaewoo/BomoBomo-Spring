@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <link rel="stylesheet" href="/board/css/board.css"/>
     <link rel="stylesheet" href="/board/css/boardServiceReview.css"/>
@@ -20,16 +20,18 @@
 
             <p>이곳은, <br>소중한 후기들이 모여있는 곳입니다</p>
         </div>
+        <div class="event-review-move-btn">
+            <button class="event-review-btn">이벤트 후기 게시판 바로가기</button>
+        </div>
     </div>
     <div class="review-container service-review">
         <div class="review-main-title">
             <h3>후기 게시판</h3>
         </div>
         <div class="review-title-container">
-            <div class="reivew-section-title">
+            <div class="review-section-title">
                 <ul>
                     <li><a href="/board/serviceReview" style="color: black;">돌봄 후기</a></li>
-                    <li><a href="#">이벤트 후기</a></li>
                 </ul>
             </div>
             <div class="review-search">
@@ -68,7 +70,6 @@
 <div class="footer" th:replace="fragments/footer :: footer">
 </div>
 
-`
 <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
 <!-- <script src="/board/js/boardFAQ.js" defer></script> -->
 <script src="/fragments/js/header.js"></script>

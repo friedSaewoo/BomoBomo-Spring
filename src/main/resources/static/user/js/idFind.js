@@ -35,7 +35,7 @@ function checkId(){
     $('#userName').change(function() {
 
 
-    var userId = $('#userName').val(); //id값이 "id"인 입력란의 값을 저장
+    var userName = $('#userName').val(); //id값이 "id"인 입력란의 값을 저장
 
     $.ajax({
         url:'/user/nameCheck', //Controller에서 요청 받을 주소
@@ -43,12 +43,12 @@ function checkId(){
         data:{userName:userName},
         success:function(idCk){ //컨트롤러에서 넘어온 cnt값을 받는다
 
-            if(idCk == 0){ //cnt가 1이 아니면(=0일 경우) -> 사용 가능한 아이디
-                $('.idOk').css("display","block");
-                $('.id_already').css("display", "none");
-            } else { // cnt가 1일 경우 -> 이미 존재하는 아이디
+            if(idCk == 0){ //cnt가 1이 아니면(=0일 경우) -> 등록이 안 된 이름
                 $('.id_already').css("display","block");
                 $('.idOk').css("display", "none");
+            } else { // cnt가 1일 경우 -> 등록되어 있는 이름
+                $('.idOk').css("display","block");
+                $('.id_already').css("display", "none");
                 // $('#userId').val('');
             }
         },

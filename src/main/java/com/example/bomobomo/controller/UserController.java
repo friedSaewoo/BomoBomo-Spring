@@ -23,7 +23,6 @@ import java.util.HashMap;
 public class UserController {
 
     private final UserService userService;
-//    private final EmailService emailService;
 
     @GetMapping("/login")
     public String login(){
@@ -76,9 +75,9 @@ public class UserController {
 //        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
 //        userDto.setRegisterDate(formatter.format(date));
 
-//        userService.register(map);
         userService.register(userDto, addressDto);
 
+        System.out.println("날짜는 : " + userDto.getRegisterDate());
         return "user/login";
     }
 
@@ -93,6 +92,7 @@ public class UserController {
             return new RedirectView("/user/login");
         }
         req.getSession().setAttribute("userNumber", userDto.getUserNumber());
+        req.getSession().setAttribute("userNumber",userDto.getUserNumber());
         req.getSession().setAttribute("userName", userDto.getUserName());
         req.getSession().setAttribute("userId", userDto.getUserId());
         return new RedirectView("/common/index");
