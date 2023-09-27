@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.bomobomo.mapper.MyPageMapper">
+    <!--결제 페이지 시터이용후기 내역 보기-->
+    <select id="selectSitterList">
+        SELECT S1.MATCH_NUMBER, USER_NUMBER, SUBMIT_ORDER_NUMBER, EST_NUMBER, EMP_NUMBER, STATUS,
+               TOTAL_PRICE,
+               EMP_NAME,
+               EMP_IMG_NUMBER, EMP_IMG_NAME, EMP_IMG_UPLOAD_PATH, EMP_IMG_UUID, CNT AS REVIEW_CHECK
+        FROM (
+                 SELECT MATCH_NUMBER, USER_NUMBER, SUBMIT_ORDER_NUMBER, M.EST_NUMBER, M.EMP_NUMBER, STATUS,
+                        TOTAL_PRICE,
+                        EP.EMP_NAME,
+                        EI.EMP_IMG_NUMBER, EMP_IMG_NAME, EMP_IMG_UPLOAD_PATH, EMP_IMG_UUID
+                 FROM MATCHS M JOIN EST E
+                                    ON STATUS = 1 AND USER_NUMBER = #{userNumber} AND M.EST_NUMBER = E.EST_NUMBER
+                               JOIN EMP EP
+                                    ON M.EMP_NUMBER = EP.EMP_NUMBER
+                               LEFT JOIN EMP_IMG EI
+                                         ON EP.EMP_NUMBER = EI.EMP_NUMBER
+             ) S1
+                 JOIN (
+            SELECT MATCH_NUMBER, COUNT(SITTER_BOARD_NUMBER) CNT
+            FROM SITTER_BOARD
+            GROUP BY MATCH_NUMBER
+        ) S2
+                      ON S1.MATCH_NUMBER = S2.MATCH_NUMBER
+    </select>
+</mapper>

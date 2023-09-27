@@ -1,9 +1,13 @@
 package com.example.bomobomo.controller;
 
 
+import com.example.bomobomo.domain.dto.AddressDto;
 import com.example.bomobomo.domain.dto.OrderDto;
 import com.example.bomobomo.domain.dto.SubmitOrderDto;
+import com.example.bomobomo.domain.dto.UserDto;
+import com.example.bomobomo.service.AdressService;
 import com.example.bomobomo.service.OrderService;
+import com.example.bomobomo.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -20,6 +24,9 @@ import javax.servlet.http.HttpServletRequest;
 @RequiredArgsConstructor
 public class myPageController {
     private final OrderService orderService;
+    private final AdressService adressService;
+    private final UserService userService;
+
 
     //mypage 메인 으로 이동
     @GetMapping("/main")
@@ -56,10 +63,44 @@ public class myPageController {
         return "myPage/buyPage";
     }
 
+    //회원정보 수정 창으로 이동
     @GetMapping("/userManage")
-    public String showuserManagePage(){
+    public String showuserManagePage(HttpServletRequest req){
+        Long userNumber=(Long)req.getSession().getAttribute("userNumber");
+        String userId= (String)req.getSession().getAttribute("userId");
+        String userName=(String)req.getSession().getAttribute("userName");
+
+        System.out.println(userNumber);
+        System.out.println(userId);
+        System.out.println(userName);
+
         return "myPage/userManageMentPage";
     }
+    //회원정보 수정후 이동
+    @PostMapping("/userManage")
+    public RedirectView userManageModify(UserDto userDto, AddressDto addressDto,HttpServletRequest req){
+        Long userNumber=(Long)req.getSession().getAttribute("userNumber");
+        String userId= (String)req.getSession().getAttribute("userId");
+        String userName=(String)req.getSession().getAttribute("userName");
+        userDto.setUserNumber(userNumber);
+        addressDto.setUserNumber(userNumber);
+
+        System.out.println(userNumber);
+        System.out.println(userId);
+        System.out.println(userName);
+
+        userService.modify(userDto);
+        adressService.modify(addressDto);
+
+        log.info(userDto.toString());
+        log.info(addressDto.toString());
+
+
+        return new RedirectView("/mypage/main");
+    }
+
+
+
 
     @GetMapping("/reviewwrite")
     public String showreviewwritePage(){
