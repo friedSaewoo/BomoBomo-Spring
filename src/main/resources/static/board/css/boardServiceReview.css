@@ -52,12 +52,12 @@
     border-bottom: 2px solid black;
 }
 
-.reivew-section-title ul {
+.review-section-title ul {
     width: 600px;
     display: flex;
 }
 
-.reivew-section-title ul li {
+.review-section-title ul li {
     font-family: 'Black Han Sans', sans-serif;
     font-family: 'Dongle', sans-serif !important;
     font-family: 'Gamja Flower', cursive;
@@ -107,6 +107,9 @@
 
 }
 
+.review-content-container {
+    height: 700px;
+}
 
 .review-ul {
     font-family: 'IBM Plex Sans KR', sans-serif;
@@ -204,7 +207,9 @@
 
 
 
-
+.active-page {
+    background-color: #FF7000;
+}
 
 
 .review-pagenation-container {

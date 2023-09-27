@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.bomobomo.mapper.ReplyMapper">
+
+
+
+    <insert id="insert">
+
+        <selectKey keyProperty="sitterCommentNumber" order="BEFORE" resultType="Long">
+
+                select seq_sitter_comment.nextval from dual
+
+        </selectKey>
+
+            insert into sitter_comment(sitter_comment_number, sitter_comment_content, user_number,  sitter_board_number)
+            values (#{sitterCommentNumber}, #{sitterCommentContent}, #{userNumber},   #{sitterBoardNumber})
+
+    </insert>
+
+
+    <select id="selectList" resultType="sitterCommentVo">
+
+
+        select rnum, sitter_comment_number, sitter_comment_content, sitter_comment_register_date, sitter_comment_modify_date, sitter_board_number, user_number, user_id
+        from (select rownum as rnum, sitter_comment_number, sitter_comment_content, sitter_comment_register_date, sitter_comment_modify_date, sitter_board_number, user_number, user_id
+        from(select sitter_comment_number, sitter_comment_content, sitter_comment_register_date, sitter_comment_modify_date, sitter_board_number, s.user_number, u.user_id
+        from sitter_comment s join users u on sitter_board_number = #{sitterBoardNumber} and s.user_number = u.user_number
+        order by sitter_comment_number desc)
+
+        <![CDATA[
+        where rownum<=#{criteria.page} * #{criteria.amount}
+        ) ]]>
+        where rnum > (#{criteria.page}-1) * #{criteria.amount}
+
+
+    </select>
+
+
+
+    <delete id="delete">
+
+        delete from sitter_comment
+        where sitter_comment_number = #{sitterCommentNumber}
+
+    </delete>
+
+
+    <update id="update">
+
+        update sitter_comment
+        set sitter_comment_content = #{sitterCommentContent}, sitter_comment_modify_date = sysdate
+        where sitter_comment_number = #{sitterCommentNumber}
+
+    </update>
+
+    <select id="getTotal" resultType="_int">
+
+        select count(sitter_comment_number)
+        from sitter_comment
+        where sitter_board_number = #{sitterBoardNumber}
+
+    </select>
+
+
+    <select id="sell">
+
+
+        --
+--         select sitter_comment_number, sitter_comment_content, sitter_comment_register_date, sitter_comment_modify_date, sitter_board_number, s.user_number, user_id
+--         from sitter_comment s join users u on sitter_board_number = #{sitterBoardNumber} and s.user_number = u.user_number
+--         order by sitter_comment_number desc
+--
+    </select>
+
+    <select id="selectServiceReviewReply" resultType="sitterCommentDto">
+
+        select rnum, SITTER_COMMENT_NUMBER, SITTER_BOARD_NUMBER, user_number, SITTER_COMMENT_CONTENT, SITTER_COMMENT_REGISTER_DATE,
+               SITTER_COMMENT_MODIFY_DATE
+        from(
+                select rownum as rnum, r.SITTER_COMMENT_NUMBER, r.SITTER_BOARD_NUMBER, r.user_number, r.SITTER_COMMENT_CONTENT,
+                       r.SITTER_COMMENT_REGISTER_DATE, r.SITTER_COMMENT_MODIFY_DATE
+                from SITTER_COMMENT r join SITTER_BOARD b
+                                           on r.SITTER_BOARD_NUMBER = b.SITTER_BOARD_NUMBER
+                                      join users u
+                                           on r.USER_NUMBER = u.USER_NUMBER
+        <![CDATA[
+                where rownum <=#{page} * #{amount}
+            ]]>
+        )
+        where rnum >(#{page}-1) * #{amount}
+
+    </select>
+
+</mapper>

@@ -24,11 +24,18 @@ public interface ReviewMapper {
     public SitterBoardVo selectOne(Long sitterBoardNumber);
 
 
-    //돌봄서비스 리뷰 게시판 댓글
-    public List<SitterCommentDto> selectServiceReviewReply();
-
+    //리뷰 평점
+    public double getAvgRating(Long empNumber);
 
     //조회수
     public void updateCount(Long sitterBoardNumber);
 
+    //돌봄 서비스 리뷰 삭제
+    public void delete(Long sitterBoardNumber);
+
+
+
+
+    //돌봄서비스 리뷰 게시판 댓글
+    public List<SitterCommentDto> selectServiceReviewReply();
 }

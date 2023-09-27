@@ -13,13 +13,15 @@ public class SitterBoardVo {
    private Long sitterBoardNumber;
    private Long userNumber;
    private Long empNumber;
-   private String userName;
+   private String userId;
    private String sitterBoardContent;
    private String sitterBoardRegisterDate;
    private String sitterBoardModifyDate;
    private Integer rating;
    private Integer sitterBoardCount;
    private String empName;
-
+//   private String empImgName;
+//   private String empImgUuid;
+//   private String empImgUploadPath;
 
 }
