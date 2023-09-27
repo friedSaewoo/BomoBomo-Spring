@@ -10,6 +10,7 @@ $(document).ready(function () {
 //페이징처리된 숫자 클릭 시 해당 데이터를 가져와서 비동기 페이징처리
 $(document).on('click', '.page-num a', function (e) {
     e.preventDefault();
+    $('.keyword').val('');
     const page = $(this).data('num');
     loadPage(page, getSearchVo());
 

@@ -1,13 +1,26 @@
-
+let keywordTest = '';
+//첫화면 로드
 $(document).ready(function () {
     showServiceReviewList(1,getSearchReviewVo());
 
 });
 
+//이벤트 후기 게시판 이동
+$('.event-review-btn').on('click', function (){
+    window.location.href="/board/eventReview";
+})
+
+//검색결과 없을 시 해당 리뷰게시판 페이지로 이동
+$(document).on('click', '.non-review-search-result-btn' ,function (){
+    window.location.href="/board/serviceReview";
+})
+
 
 //페이징처리된 숫자 클릭 시 해당 데이터를 가져와서 비동기 페이징처리
 $(document).on('click', '.page-num a', function (e) {
     e.preventDefault();
+    $('.keyword').val('');
+
     const page = $(this).data('reviewnum');
     showServiceReviewList(page,getSearchReviewVo());
 
@@ -16,6 +29,7 @@ $(document).on('click', '.page-num a', function (e) {
 //검색 버튼 클릭 시 검색결과 화면에 표시를하며 동시에 페이징처리
 $('.sitter-search-btn>button' ).on('click', function (){
 
+    keywordTest = $('.keyword').val();
     showServiceReviewList(1, getSearchReviewVo());
 
 
@@ -32,10 +46,30 @@ function getSearchReviewVo(){
 
     return{
         cate : cate,
-        keyword : keyword
+        keyword : keywordTest
     };
 }
 
+
+function loadPage(page, callback) {
+    $.ajax({
+        url: `/reviews/service/${page}`,
+        type: 'get',
+        dataType: 'json',
+        success: function (result) {
+            console.log(result.pageReviewVo);
+            console.log(result.serviceReviewList);
+
+            //받아온 데이터를 noticeList함수에 넣어주어 화면에 뿌려준다.
+            noticeList(result);
+
+
+        },
+        error: function (a, b, c) {
+            console.error(c);
+        }
+    });
+}
 
 function showServiceReviewList(page, searchReviewVo){
 
@@ -98,7 +132,7 @@ function serviceReviewList(result) {
             text=`
 
                     <h3 class="non-review-search-result">검색 결과가 없습니다. 시터님 정보를 다시 확인해주세요.<br>
-                            <a href="/board/serviceReview">목록으로 돌아가기</a></h3>
+                            <button class="non-review-search-result-btn" type="button">목록으로 돌아가기</button></h3>
 
             `;
         }

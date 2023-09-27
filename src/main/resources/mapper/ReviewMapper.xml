@@ -139,4 +139,46 @@
 
     </select>
 
+
+    <select id="selectER" resultType="eventBoardVo">
+        select rnum, event_BOARD_NUMBER, user_number, user_id, event_NUMBER, event_BOARD_CONTENT,
+        event_BOARD_REGISTER_DATE,
+        event_BOARD_MODIFY_DATE, RATING, event_BOARD_COUNT, event_NAME
+        from (
+        select rownum as rnum, event_BOARD_NUMBER, user_number, user_id, event_NUMBER, event_BOARD_CONTENT,
+        event_BOARD_REGISTER_DATE,
+        event_BOARD_MODIFY_DATE, RATING, event_BOARD_COUNT, event_NAME
+        from (
+        select  event_BOARD_NUMBER, s.user_number, u.user_id, s.event_NUMBER, event_BOARD_CONTENT,
+        event_BOARD_REGISTER_DATE,
+        event_BOARD_MODIFY_DATE, RATING, event_BOARD_COUNT, e.event_NAME
+        from EVENT_Board s join users u
+        on s.user_number = u.user_number
+        join event e
+        on s.event_NUMBER = e.event_NUMBER
+<!--        <if>-->
+<!--        where event_name Like '%%'-->
+<!--        </if>-->
+        )
+        <![CDATA[
+        where rownum <=#{criteria.page} * #{criteria.amount}
+            ]]>
+        )
+        where rnum> (#{criteria.page}-1) * #{criteria.amount}
+
+    </select>
+
+    <select id="getTotalER" resultType="_int">
+
+
+        select count(event_board_number)
+        from (
+                 select event_BOARD_NUMBER
+                 from event_BOARD s join event e
+                on s.event_number = e.event_NUMBER
+             )
+
+    </select>
+
+
 </mapper>

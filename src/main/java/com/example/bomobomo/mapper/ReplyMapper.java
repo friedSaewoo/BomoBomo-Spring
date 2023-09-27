@@ -16,6 +16,10 @@ public interface ReplyMapper {
 
 
     //댓글리스트 조회
+    public List<SitterCommentVo> select(Long sitterBoardNumber);
+
+
+    //댓글리스트 조회(페이징포함)
     public List<SitterCommentVo> selectList(@Param("sitterBoardNumber") Long sitterBoardNumber,
                                             @Param("criteria") Criteria criteria);
 
