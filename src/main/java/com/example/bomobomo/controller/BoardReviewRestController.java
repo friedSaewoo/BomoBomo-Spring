@@ -18,7 +18,7 @@ import java.util.Map;
 @RequiredArgsConstructor
 @Slf4j
 @RequestMapping("/reviews")
-public class BoardReviewController {
+public class BoardReviewRestController {
     private final ReviewService reviewService;
 
 
@@ -43,6 +43,7 @@ public class BoardReviewController {
         return reviewMap;
 
     }
+
 
     //이벤트 서비스 후기 리스트
     @GetMapping("/eventReview/{page}")

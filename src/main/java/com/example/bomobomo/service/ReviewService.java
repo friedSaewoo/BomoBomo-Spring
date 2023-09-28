@@ -95,6 +95,13 @@ public class ReviewService {
           return reviewMapper.getTotalER();
     }
 
+    //이벤트 서비스 리뷰 상세보기
+    public EventBoardVo showEReviewDetail(Long eventBoardNumber){
+
+          return Optional.ofNullable(reviewMapper.selectOne2(eventBoardNumber))
+                  .orElseThrow(()->{throw new IllegalArgumentException("존재하지 않는 정보");});
+    }
+
 
 
 }

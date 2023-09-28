@@ -28,26 +28,26 @@ public class BoardController {
     private final NoticeService noticeService;
     private final ReviewService reviewService;
 
+    //FAQ 게시판
     @GetMapping("/faq")
     public String showFaqPage(){
         return "board/boardFaq";
     }
 
-
+    //공지사항 게시판
     @GetMapping("/notice")
     public String showNoticePage(){
         return "board/boardNotice";
     }
 
 
+    //공지사항 상세보기
     @GetMapping("/detail")
     public String showNoticeDetailPage(@RequestParam(name = "noticeNumber") Long noticeNumber, Model model, HttpServletRequest req, HttpServletResponse resp){
 
 
         //모델 객체를 통해 detail페이지로 해당 공지사항 세부내역 전달
         model.addAttribute("noticeDetail",  noticeService.selectOne(noticeNumber));
-
-
 
         //쿠키를 활용
         Cookie[] cookies = req.getCookies();
@@ -98,20 +98,14 @@ public class BoardController {
     }
 
 
+    //돌봄후기 게시판 
     @GetMapping("/serviceReview")
     public String showServiceReviewPage(){
         return "board/boardServiceReview";
     }
 
-    @GetMapping("/eventReview")
-    public String showEventReviewPage(){
-        return "board/boardEventReview";
-    }
 
-
-
-
-
+    //돌봄후기 상세보기
     @GetMapping("/reviewDetail")
     public String showServiceReviewDetailPage(@RequestParam("sitterBoardNumber") Long sitterBoardNumber,
            Model model, HttpServletRequest req, HttpServletResponse resp){
@@ -168,7 +162,10 @@ public class BoardController {
     }
 
 
+
     //돌봄후기 수정
+
+
 
 
 
@@ -180,7 +177,23 @@ public class BoardController {
         return new RedirectView("serviceReview");
     }
 
+    
 
+    //이벤트 게시판 이동
+    @GetMapping("/eventReview")
+    public String showEventReviewPage(){
+        return "board/boardEventReview";
+    }
+
+
+    //이벤트 후기 상세보기
+    @GetMapping("/reviewEventDetail")
+    public String showEventReviewDetailPage(@RequestParam("eventBoardNumber")Long eventBoardNumber){
+
+        reviewService.showEReviewDetail(eventBoardNumber);
+        return "board/eventReviewDetail";
+
+    }
 
 
 }

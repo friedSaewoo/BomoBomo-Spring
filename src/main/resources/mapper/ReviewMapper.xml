@@ -156,9 +156,11 @@
         on s.user_number = u.user_number
         join event e
         on s.event_NUMBER = e.event_NUMBER
-<!--        <if>-->
-<!--        where event_name Like '%%'-->
+<!--        <if test="'eventName'.equals(cate)">-->
+<!--        where event_name Like '%'|| #{keyword} ||'%'-->
 <!--        </if>-->
+        order by event_BOARD_NUMBER desc
+
         )
         <![CDATA[
         where rownum <=#{criteria.page} * #{criteria.amount}
@@ -180,5 +182,15 @@
 
     </select>
 
+
+    <select id="selectOne2" resultType="eventBoardVo">
+
+        select event_board_number, e.user_number, user_id, e.event_number, EVENT_BOARD_CONTENT,
+               EVENT_BOARD_REGISTER_DATE, EVENT_BOARD_MODIFY_DATE, RATING, EVENT_BOARD_COUNT, EVENT_NAME
+        from EVENT_BOARD e join users u on e.USER_NUMBER = u.USER_NUMBER
+                           join event n on e.EVENT_NUMBER = n.EVENT_NUMBER
+        where EVENT_BOARD_NUMBER= #{eventBoardNumber}
+
+    </select>
 
 </mapper>

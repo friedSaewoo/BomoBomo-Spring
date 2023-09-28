@@ -18,22 +18,18 @@ import java.util.Map;
 @RequiredArgsConstructor
 @Slf4j
 @RequestMapping("/replies")
-public class ReplyRestController {
+public class BoardReplyRestController {
 
 
     private final ReplyService replyService;
 
-
+    //댓글 등록
     @PostMapping("")
     public void serviceReviewReply(@RequestBody SitterCommentDto sitterCommentDto){
         replyService.register(sitterCommentDto);
 
     }
-
-
-
-
-
+    
 
     //댓글 리스트 조회
     @GetMapping("/list/{sitterBoardNumber}")
@@ -41,11 +37,7 @@ public class ReplyRestController {
         return replyService.find(sitterBoardNumber);
     }
 
-
-
-
-
-
+    
     //댓글리스트 조회(페이징 포함)
     @GetMapping("/list/{sitterBoardNumber}/{page}")
     public Map<String, Object> showReplyList(@PathVariable("sitterBoardNumber") Long sitterBoardNumber,
@@ -62,28 +54,26 @@ public class ReplyRestController {
         replyMap.put("pageReplyVo", pageReplyVo);
         replyMap.put("replyList", replyList);
 
-
-
         return replyMap;
 
-
     }
+
 
     //댓글수정
     @PatchMapping("{sitterCommentNumber}")
     public void modifyReply(@PathVariable("sitterCommentNumber") Long sitterCommentNumber,
                             @RequestBody SitterCommentDto sitterCommentDto){
         sitterCommentDto.setSitterCommentNumber(sitterCommentNumber);
-
         replyService.modify(sitterCommentDto);
     }
+
 
     @DeleteMapping("/{sitterCommentNumber}")
     public void removeReply(@PathVariable("sitterCommentNumber") Long sitterCommentNumber){
         if (sitterCommentNumber == null) {
-
             throw new IllegalArgumentException("댓글 번호 누락");
         }
+
         replyService.remove(sitterCommentNumber);
     }
 

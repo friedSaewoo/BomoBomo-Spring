@@ -43,6 +43,16 @@ public interface ReviewMapper {
 
     //이벤트 서비스 리뷰 게시판 글 수
     public int getTotalER();
+    
+    //이벤트 서비스 리뷰 상세보기
+    public EventBoardVo selectOne2(Long eventBoardNumber);
 
+    //이벤트 서비스 리뷰 조회수
+
+    //이벤트 서비스 이벤트 리뷰 평점
+
+    //돌봄 서비스 리뷰 삭제
+
+    //돌봄서비스 리뷰 게시판 댓글
 
 }
