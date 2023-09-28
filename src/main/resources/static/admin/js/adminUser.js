@@ -10,7 +10,6 @@
 $(document).ready(function () {
     loadPage(1,getSearchVo());
 });
-
 function getSearchVo(){
     let cate = $('.cate').val();
     let keyword = $('.keyword').val();
@@ -19,7 +18,11 @@ function getSearchVo(){
         keyword : keyword
     };
 }
-
+$(document).on('click', '.page-num a', function (e) {
+    e.preventDefault();
+    const page = $(this).data('num');
+    loadPage(page, getSearchVo());
+});
 function loadPage(page, searchVo) {
     $.ajax({
         url: `/admin/user/list/${page}`,
