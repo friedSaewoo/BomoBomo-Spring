@@ -10,6 +10,7 @@ $(document).ready(function () {
 //페이징처리된 숫자 클릭 시 해당 데이터를 가져와서 비동기 페이징처리
 $(document).on('click', '.page-num a', function (e) {
     e.preventDefault();
+    $('.keyword').val('');
     const page = $(this).data('num');
     loadPage(page, getSearchVo());
 
@@ -113,7 +114,6 @@ function updatePagination(pageVo) {
                 <li class="page-num"><a href="#" data-num="${pageVo.startPage-1}">&lt;</a></li>
             `);
     }
-
 
     //게시물이 1개도 존재하지 않는다면 페이징 표시 x
     //한 개라도 존재할 때 페이징 번호가 나타난다.

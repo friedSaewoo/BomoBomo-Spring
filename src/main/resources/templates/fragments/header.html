@@ -45,8 +45,10 @@
                     <li><a href="/user/join">회원가입</a></li>
                 </ul>
                 <ul th:unless="${session.userNumber == null}">
-                    <li><h3 th:text="${session.userName} + 님"></h3></li>
-<!--                    <li><label th:text="${session.userName} + 님"></label></li>-->
+                    <li>
+                        <a href="/mypage/main">
+                            <h3 class="page_move" th:text="${session.userName} + 님"></h3></li>
+                        </a>
                     <li><a href="/user/logout" class="nav-item login">로그아웃</a></li>
                 </ul>
             </div>
@@ -55,6 +57,7 @@
 </header>
 
 </div>
+
 </body>
 </html>
 

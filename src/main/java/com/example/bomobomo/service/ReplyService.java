@@ -24,8 +24,19 @@ public class ReplyService {
     }
 
 
-
     //댓글 리스트 조회
+    public List<SitterCommentVo> find(Long sitterBoardNumber){
+        if (sitterBoardNumber == null) {
+
+            throw new IllegalArgumentException("리뷰 게시번호 누락");
+        }
+
+        return replyMapper.select(sitterBoardNumber);
+    }
+
+
+
+    //댓글 리스트 조회(페이징 포함)
     public List<SitterCommentVo> findAll(Long sitterBoardNumber, Criteria criteria) {
 
         if (sitterBoardNumber == null) {
