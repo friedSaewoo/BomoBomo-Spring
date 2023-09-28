@@ -1,6 +1,7 @@
 package com.example.bomobomo.service;
 
 import com.example.bomobomo.domain.dto.AdminDto;
+import com.example.bomobomo.domain.dto.EmpDto;
 import com.example.bomobomo.domain.dto.UserDto;
 import com.example.bomobomo.domain.vo.Criteria;
 import com.example.bomobomo.domain.vo.SearchVo;
@@ -18,22 +19,33 @@ import java.util.Optional;
 public class AdminService {
     private final AdminMapper adminMapper;
 
+// 관리자 로그인
     @Transactional
     public AdminDto adminLogin(String adminId, String adminPassword){
         return Optional.ofNullable(adminMapper.login(adminId, adminPassword))
                 .orElseThrow( () -> {throw new IllegalArgumentException("로그인 실패!!"); });
     }
-
+    
+// 주간 회원가입수
     public List<WeeklyRegisterVo> weeklyRegister(){
         return adminMapper.weeklyRegisterSelect();
     }
 
+// 회원조회
     public List<UserDto> selectAllUsers(Criteria criteria, SearchVo searchVo){
         return adminMapper.selectAllUsers(criteria,searchVo);
     }
-
-
+// 회원 수
     public int getTotalUsers(SearchVo searchVo){
         return adminMapper.getTotalUsers(searchVo);
+    }
+
+// 직원조회
+    public List<EmpDto> selectAllEmp(Criteria criteria, SearchVo searchVo){
+        return adminMapper.selectAllEmp(criteria,searchVo);
+    }
+// 직원 수
+    public int getTotalEmp(SearchVo searchVo){
+        return adminMapper.getTotalEmp(searchVo);
     }
 }

@@ -1,6 +1,5 @@
 package com.example.bomobomo.controller;
 
-import com.example.bomobomo.domain.dto.NoticeDto;
 import com.example.bomobomo.domain.dto.UserDto;
 import com.example.bomobomo.domain.vo.Criteria;
 import com.example.bomobomo.domain.vo.PageVo;

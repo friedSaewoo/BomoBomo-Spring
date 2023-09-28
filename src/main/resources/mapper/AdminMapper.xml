@@ -34,7 +34,7 @@
 <!-- 회원조회 -->
     <select id="selectAllUsers" resultType="userDto">
         SELECT
-        rnum, USER_NUMBER, USER_ID, USER_PASSWORD, USER_NAME, USER_EMAIL, REGISTER_DATE
+        rnum, USER_NUMBER, USER_ID, USER_PASSWORD, USER_NAME, USER_EMAIL, TO_CHAR(REGISTER_DATE, 'YYYY-MM-DD') AS REGISTER_DATE
         FROM (
         SELECT
         ROWNUM AS rnum, USER_NUMBER, USER_ID, USER_PASSWORD, USER_NAME, USER_EMAIL, REGISTER_DATE
@@ -69,5 +69,71 @@
         <if test="'userId'.equals(cate)">
             where user_id like '%' || #{keyword} || '%'
         </if>
+    </select>
+
+<!-- 직원 조회 -->
+    <select id="selectAllEmp" resultType="empDto">
+<!--        SELECT-->
+<!--        rnum, EMP_NUMBER, EMP_NAME, EMP_AGE, EMP_GENDER,EMP_PHONE,EMP_EMAIL,EMP_DATE,EMP_CONTENT-->
+<!--        FROM (-->
+<!--            SELECT-->
+<!--            ROWNUM AS rnum, EMP_NUMBER, EMP_NAME, EMP_AGE, EMP_GENDER,EMP_PHONE,EMP_EMAIL,EMP_DATE,EMP_CONTENT-->
+<!--            FROM (-->
+<!--                SELECT-->
+<!--                EMP_NUMBER, EMP_NAME, EMP_AGE, EMP_GENDER,EMP_PHONE,EMP_EMAIL,EMP_DATE,EMP_CONTENT-->
+<!--                FROM EMP-->
+<!--                <where>-->
+<!--                    <choose>-->
+<!--                        <when test="searchVo.cate == 'empName'">-->
+<!--                            AND EMP_NAME LIKE '%' || #{searchVo.keyword} || '%'-->
+<!--                        </when>-->
+<!--                        <when test="searchVo.cate == 'empEmail'">-->
+<!--                            AND EMP_EMAIL LIKE '%' || #{searchVo.keyword} || '%'-->
+<!--                        </when>-->
+<!--                    </choose>-->
+<!--                </where>-->
+<!--                ORDER BY EMP_NUMBER DESC-->
+<!--                ) <![CDATA[-->
+<!--                where rownum<=#{criteria.page} * #{criteria.amount}-->
+<!--                    ]]>-->
+<!--            )where rnum> (#{criteria.page}-1)*#{criteria.amount}-->
+
+        SELECT
+        rnum, EMP_NUMBER, EMP_NAME, EMP_AGE, EMP_GENDER, EMP_PHONE, EMP_EMAIL, TO_CHAR(EMP_DATE, 'YYYY-MM-DD') AS EMP_DATE, EMP_CONTENT
+        FROM (
+        SELECT
+        ROWNUM AS rnum, EMP_NUMBER, EMP_NAME, EMP_AGE, EMP_GENDER, EMP_PHONE, EMP_EMAIL, EMP_DATE, EMP_CONTENT
+        FROM (
+        SELECT
+        EMP_NUMBER, EMP_NAME, EMP_AGE, EMP_GENDER, EMP_PHONE, EMP_EMAIL, EMP_DATE, EMP_CONTENT
+        FROM EMP
+        <where>
+            <choose>
+                <when test="searchVo.cate == 'empName'">
+                    AND EMP_NAME LIKE '%' || #{searchVo.keyword} || '%'
+                </when>
+                <when test="searchVo.cate == 'empEmail'">
+                    AND EMP_EMAIL LIKE '%' || #{searchVo.keyword} || '%'
+                </when>
+            </choose>
+        </where>
+        ORDER BY EMP_NUMBER DESC
+        ) <![CDATA[
+    WHERE rownum <= #{criteria.page} * #{criteria.amount}
+    ]]>
+        ) WHERE rnum > (#{criteria.page} - 1) * #{criteria.amount}
+
+    </select>
+
+<!-- 검색 별 직원 수 -->
+    <select id="getTotalEmp" resultType="_int">
+            select count(emp_number)
+            from emp
+            <if test="'empName'.equals(cate)">
+                where emp_name like '%' || #{keyword} || '%'
+            </if>
+            <if test="'empEmail'.equals(cate)">
+                where emp_email like '%' || #{keyword} || '%'
+            </if>
     </select>
 </mapper>
