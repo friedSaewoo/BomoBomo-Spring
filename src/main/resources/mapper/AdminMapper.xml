@@ -73,31 +73,6 @@
 
 <!-- 직원 조회 -->
     <select id="selectAllEmp" resultType="empDto">
-<!--        SELECT-->
-<!--        rnum, EMP_NUMBER, EMP_NAME, EMP_AGE, EMP_GENDER,EMP_PHONE,EMP_EMAIL,EMP_DATE,EMP_CONTENT-->
-<!--        FROM (-->
-<!--            SELECT-->
-<!--            ROWNUM AS rnum, EMP_NUMBER, EMP_NAME, EMP_AGE, EMP_GENDER,EMP_PHONE,EMP_EMAIL,EMP_DATE,EMP_CONTENT-->
-<!--            FROM (-->
-<!--                SELECT-->
-<!--                EMP_NUMBER, EMP_NAME, EMP_AGE, EMP_GENDER,EMP_PHONE,EMP_EMAIL,EMP_DATE,EMP_CONTENT-->
-<!--                FROM EMP-->
-<!--                <where>-->
-<!--                    <choose>-->
-<!--                        <when test="searchVo.cate == 'empName'">-->
-<!--                            AND EMP_NAME LIKE '%' || #{searchVo.keyword} || '%'-->
-<!--                        </when>-->
-<!--                        <when test="searchVo.cate == 'empEmail'">-->
-<!--                            AND EMP_EMAIL LIKE '%' || #{searchVo.keyword} || '%'-->
-<!--                        </when>-->
-<!--                    </choose>-->
-<!--                </where>-->
-<!--                ORDER BY EMP_NUMBER DESC-->
-<!--                ) <![CDATA[-->
-<!--                where rownum<=#{criteria.page} * #{criteria.amount}-->
-<!--                    ]]>-->
-<!--            )where rnum> (#{criteria.page}-1)*#{criteria.amount}-->
-
         SELECT
         rnum, EMP_NUMBER, EMP_NAME, EMP_AGE, EMP_GENDER, EMP_PHONE, EMP_EMAIL, TO_CHAR(EMP_DATE, 'YYYY-MM-DD') AS EMP_DATE, EMP_CONTENT
         FROM (
@@ -136,4 +111,8 @@
                 where emp_email like '%' || #{keyword} || '%'
             </if>
     </select>
+
+<!--    -->
+
+<!--    -->
 </mapper>
