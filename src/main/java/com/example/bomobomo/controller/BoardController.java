@@ -1,6 +1,7 @@
 package com.example.bomobomo.controller;
 
 import com.example.bomobomo.domain.dto.SitterBoardDto;
+import com.example.bomobomo.domain.vo.EventBoardVo;
 import com.example.bomobomo.domain.vo.SitterBoardVo;
 import com.example.bomobomo.service.NoticeService;
 import com.example.bomobomo.service.ReviewService;
@@ -25,8 +26,12 @@ import java.util.Date;
 @RequiredArgsConstructor
 @RequestMapping("/board/*")
 public class BoardController {
+
+
     private final NoticeService noticeService;
     private final ReviewService reviewService;
+
+
 
     //FAQ 게시판
     @GetMapping("/faq")
@@ -98,6 +103,7 @@ public class BoardController {
     }
 
 
+    //=========================================================
     //돌봄후기 게시판 
     @GetMapping("/serviceReview")
     public String showServiceReviewPage(){
@@ -178,7 +184,7 @@ public class BoardController {
     }
 
     
-
+    //=========================================================================
     //이벤트 게시판 이동
     @GetMapping("/eventReview")
     public String showEventReviewPage(){
@@ -188,11 +194,66 @@ public class BoardController {
 
     //이벤트 후기 상세보기
     @GetMapping("/reviewEventDetail")
-    public String showEventReviewDetailPage(@RequestParam("eventBoardNumber")Long eventBoardNumber){
+    public String showEventReviewDetailPage(@RequestParam("eventBoardNumber")Long eventBoardNumber
+            , Model model, HttpServletRequest req, HttpServletResponse resp){
 
-        reviewService.showEReviewDetail(eventBoardNumber);
+        EventBoardVo eventBoardVo = reviewService.showEReviewDetail(eventBoardNumber);
+        double getAvgEventReview = reviewService.getAvgEventReviewRating(eventBoardVo.getEventNumber());
+
+        log.info(String.valueOf(getAvgEventReview) +"===============================================");
+        log.info(eventBoardVo.toString()+"====================******************");
+
+        model.addAttribute("eventReviewDetail", eventBoardVo);
+        model.addAttribute("avgEventReview", (Math.round(getAvgEventReview*100) / 100.0));
+
+
+
+        Cookie[] cookies = req.getCookies();
+        boolean updateCount = true;
+
+        if(cookies!=null){
+            for(Cookie cookie : cookies){
+                if("eventReviewDetail_count_cookie".equals(cookie.getName())){
+                    String cookieValue = cookie.getValue();
+
+
+                    String[] values = cookieValue.split("_");
+                    String eventBoardNumbers = values[0];
+
+                    Long storedTimestamp = Long.parseLong(values[1]);
+                    Long currentTimestamp = new Date().getTime();
+
+                    if(eventBoardNumbers.equals(req.getParameter("eventBoardNumber")) && (currentTimestamp - storedTimestamp) < (24 * 60 * 60 * 1000)){
+
+                            updateCount = false;
+                            break;
+                    }
+
+
+                }
+            }
+
+        }
+        if(updateCount){
+            Cookie newCookie = new Cookie("eventReviewDetail_count_cookie", req.getParameter("eventBoardNumber")+ "_" + new Date().getTime());
+            newCookie.setMaxAge(24*60*60);
+            resp.addCookie(newCookie);
+
+            reviewService.updateEventReviewCount(eventBoardNumber);
+
+        }
+
         return "board/eventReviewDetail";
 
+    }
+    //이벤트 후기 수정
+
+
+    //이벤트 후기 삭제
+    @GetMapping("/removeEReview")
+    public RedirectView removeEventReview(Long eventBoardNumber){
+        reviewService.removeEventReview(eventBoardNumber);
+        return new RedirectView("eventReview");
     }
 
 

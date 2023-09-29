@@ -47,14 +47,15 @@ public class BoardReviewRestController {
 
     //이벤트 서비스 후기 리스트
     @GetMapping("/eventReview/{page}")
-    public Map<String, Object> findEventReviewList(@PathVariable("page") int page){
+    public Map<String, Object> findEventReviewList(@PathVariable("page") int page,
+                                                   SearchReviewVo searchReviewVo){
 
         Criteria criteria = new Criteria();
         criteria.setPage(page);
         criteria.setAmount(8);
 
-        PageVo pageEventReviewVo = new PageVo(reviewService.getTotalER(), criteria);
-        List<EventBoardVo> eventReviewList = reviewService.findEventReview(criteria);
+        PageVo pageEventReviewVo = new PageVo(reviewService.getTotalER(searchReviewVo), criteria);
+        List<EventBoardVo> eventReviewList = reviewService.findEventReview(criteria, searchReviewVo);
 
         Map<String, Object> eventReviewMap = new HashMap<>();
         eventReviewMap.put("pageEventReviewVo", pageEventReviewVo);

@@ -10,9 +10,17 @@ $('.event-review-btn').on('click', function (){
     window.location.href="/board/eventReview";
 })
 
-//검색결과 없을 시 해당 리뷰게시판 페이지로 이동
-$(document).on('click', '.non-review-search-result-btn' ,function (){
-    window.location.href="/board/serviceReview";
+// //검색결과 없을 시 해당 리뷰게시판 페이지로 이동
+// $(document).on('click', '.non-review-search-result-btn' ,function (){
+//     window.location.href="/board/serviceReview";
+// })
+//
+
+$(document).on('click', '.non-review-search-result-btn', function (){
+    $('.keyword').val('');
+    keywordTest='';
+    showServiceReviewList(1,getSearchReviewVo);
+
 })
 
 
@@ -132,7 +140,7 @@ function serviceReviewList(result) {
             text=`
 
                     <h3 class="non-review-search-result">검색 결과가 없습니다. 시터님 정보를 다시 확인해주세요.<br>
-                            <button class="non-review-search-result-btn" type="button">목록으로 돌아가기</button></h3>
+                            <button class="non-review-search-result-btn" type="button" data-reviewnum="1">목록으로 돌아가기</button></h3>
 
             `;
         }

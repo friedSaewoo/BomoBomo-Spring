@@ -23,6 +23,7 @@ public class BoardReplyRestController {
 
     private final ReplyService replyService;
 
+    //돌봄 서비스 리뷰
     //댓글 등록
     @PostMapping("")
     public void serviceReviewReply(@RequestBody SitterCommentDto sitterCommentDto){
@@ -76,5 +77,11 @@ public class BoardReplyRestController {
 
         replyService.remove(sitterCommentNumber);
     }
+    
+    
+    
+    //=======================================================================
+    
+    //이벤트 서비스 리뷰
 
 }

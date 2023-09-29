@@ -2,6 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.bomobomo.mapper.ReviewMapper">
 
+
+
+<!--돌봄 서비스 리뷰-->
+
 <select id="selectServiceReviewAll" resultType="sitterBoardVo">
 
     select rnum, SITTER_BOARD_NUMBER, user_number, user_id, EMP_NUMBER,SITTER_BOARD_CONTENT,
@@ -140,6 +144,11 @@
     </select>
 
 
+<!--이벤트 리뷰-->
+
+
+
+
     <select id="selectER" resultType="eventBoardVo">
         select rnum, event_BOARD_NUMBER, user_number, user_id, event_NUMBER, event_BOARD_CONTENT,
         event_BOARD_REGISTER_DATE,
@@ -156,9 +165,9 @@
         on s.user_number = u.user_number
         join event e
         on s.event_NUMBER = e.event_NUMBER
-<!--        <if test="'eventName'.equals(cate)">-->
-<!--        where event_name Like '%'|| #{keyword} ||'%'-->
-<!--        </if>-->
+        <if test="'eventName'.equals(searchReviewVo.cate)">
+        where event_name Like '%'|| #{searchReviewVo.keyword} ||'%'
+        </if>
         order by event_BOARD_NUMBER desc
 
         )
@@ -178,7 +187,11 @@
                  select event_BOARD_NUMBER
                  from event_BOARD s join event e
                 on s.event_number = e.event_NUMBER
+        <if test="'eventName'.equals(cate)">
+            where event_name Like '%'|| #{keyword} ||'%'
+        </if>
              )
+
 
     </select>
 
@@ -192,5 +205,31 @@
         where EVENT_BOARD_NUMBER= #{eventBoardNumber}
 
     </select>
+
+
+
+    <select id="selectAvgEventReviewRating" parameterType="Long" resultType="double">
+
+        select Avg(rating)
+        from event_Board
+        where event_number = #{eventNumber}
+
+    </select>
+
+
+    <delete id="deleteEventReview" >
+
+        delete from event_Board
+        where event_board_number = #{eventBoardNumber}
+
+    </delete>
+
+    <update id="updateEventReviewCount">
+
+        update event_board
+        set event_board_count = event_board_count +1
+        where event_board_number = #{eventBoardNumber}
+
+    </update>
 
 </mapper>
