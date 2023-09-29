@@ -112,7 +112,39 @@
             </if>
     </select>
 
-<!--    -->
+<!-- 공지사항 조회 -->
+    <select id="selectAllNotice" resultType="noticeDto">
+        SELECT
+        rnum, NOTICE_NUMBER, NOTICE_TITLE, NOTICE_CONTENT,NOTICE_COUNT, TO_CHAR(NOTICE_REGISTER_DATE, 'YYYY-MM-DD') AS NOTICE_REGISTER_DATE
+                                                                      , TO_CHAR(NOTICE_MODIFY_DATE,'YYYY-MM-DD') AS NOTICE_MODIFY_DATE
+        FROM (
+        SELECT
+        ROWNUM AS rnum, NOTICE_NUMBER, NOTICE_TITLE, NOTICE_CONTENT, NOTICE_REGISTER_DATE, NOTICE_MODIFY_DATE, NOTICE_COUNT
+        FROM (
+        SELECT
+        NOTICE_NUMBER, NOTICE_TITLE, NOTICE_CONTENT, NOTICE_REGISTER_DATE, NOTICE_MODIFY_DATE, NOTICE_COUNT
+        FROM NOTICE
+        <where>
+            <choose>
+                <when test="searchVo.cate == 'noticeTitle'">
+                    AND notice_title LIKE '%' || #{searchVo.keyword} || '%'
+                </when>
+            </choose>
+        </where>
+        ORDER BY NOTICEC_NUMBER DESC
+        ) <![CDATA[
+    WHERE rownum <= #{criteria.page} * #{criteria.amount}
+    ]]>
+        ) WHERE rnum > (#{criteria.page} - 1) * #{criteria.amount}
 
-<!--    -->
+    </select>
+
+<!-- 검색별 공지수 -->
+    <select id="getTotalNotice" resultType="_int">
+        select count(notice_number)
+        from notice
+        <if test="'noticeTitle'.equals(cate)">
+            where notice_title like '%' || #{keyword} || '%'
+        </if>
+    </select>
 </mapper>

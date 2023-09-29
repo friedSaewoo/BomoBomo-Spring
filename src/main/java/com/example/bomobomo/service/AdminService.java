@@ -2,6 +2,7 @@ package com.example.bomobomo.service;
 
 import com.example.bomobomo.domain.dto.AdminDto;
 import com.example.bomobomo.domain.dto.EmpDto;
+import com.example.bomobomo.domain.dto.NoticeDto;
 import com.example.bomobomo.domain.dto.UserDto;
 import com.example.bomobomo.domain.vo.Criteria;
 import com.example.bomobomo.domain.vo.SearchVo;
@@ -47,5 +48,13 @@ public class AdminService {
 // 직원 수
     public int getTotalEmp(SearchVo searchVo){
         return adminMapper.getTotalEmp(searchVo);
+    }
+
+//    공지사항 조회
+    public List<NoticeDto> selectAllNotice(Criteria criteria, SearchVo searchVo){
+        return adminMapper.selectAllNotice(criteria,searchVo);
+    }
+    public int getTotalNotice(SearchVo searchVo){
+        return adminMapper.getTotalNotice(searchVo);
     }
 }
