@@ -24,7 +24,7 @@
         <typeAlias type="com.example.bomobomo.domain.dto.SubmitOrderDto" alias="submitOrderDto"/>
         <typeAlias type="com.example.bomobomo.domain.dto.EstDto" alias="estDto"/>
         <typeAlias type="com.example.bomobomo.domain.dto.SitterPayDto" alias="sitterPayDto"/>
-
+        <typeAlias type="com.example.bomobomo.domain.vo.MatchListVo" alias="matchListVo"/>
 <!--======================== 활동 ========================-->
         <typeAlias type="com.example.bomobomo.domain.dto.ActDto" alias="actDto"/>
         <typeAlias type="com.example.bomobomo.domain.dto.ActItemDto" alias="actItemDto"/>
@@ -44,20 +44,23 @@
         <typeAlias type="com.example.bomobomo.domain.dto.EventBoardDto" alias="eventBoardDto"/>
         <typeAlias type="com.example.bomobomo.domain.dto.EventCommentDto" alias="eventCommentDto"/>
 
-
-
-            <!--======================== Vo ========================-->
+<!--======================== Vo ========================-->
             <typeAlias type="com.example.bomobomo.domain.vo.Criteria" alias="criteria"/>
             <typeAlias type="com.example.bomobomo.domain.vo.PageVo" alias="pageVo"/>
             <typeAlias type="com.example.bomobomo.domain.vo.SearchVo" alias="searchVo"/>
             <typeAlias type="com.example.bomobomo.domain.vo.SearchReviewVo" alias="searchReviewVo"/>
             <typeAlias type="com.example.bomobomo.domain.vo.SitterBoardVo" alias="sitterBoardVo"/>
             <typeAlias type="com.example.bomobomo.domain.vo.SitterCommentVo" alias="sitterCommentVo"/>
+<<<<<<< HEAD
 
             <typeAlias type="com.example.bomobomo.domain.vo.EventBoardVo" alias="eventBoardVo"/>
 
 <!--            <typeAlias type="com.example.bomobomo.domain.vo.UserVo" alias="userVo"/>-->
         <typeAlias type="com.example.bomobomo.domain.vo.MyPageSitterVo" alias="myPageSitterVo"/>
 
+=======
+            <typeAlias type="com.example.bomobomo.domain.vo.EventBoardVo" alias="eventBoardVo"/>
+            <typeAlias type="com.example.bomobomo.domain.vo.MyPageSitterVo" alias="myPageSitterVo"/>
+>>>>>>> 44bfad15124b7f589727f767951ee902a403d0c2
     </typeAliases>
 </configuration>

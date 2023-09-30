@@ -13,6 +13,9 @@ input{
 input:focus{
     outline: none;
 }
+select:focus{
+    outline :none;
+}
 .admin-container{
     display: flex;
     margin :auto ;
@@ -101,7 +104,6 @@ input:focus{
 }
 
 .admin-name{
-    margin-left: auto;
     width: 50px;
     margin: 3px 20px 5px 600px;
     font-size: 30px;
@@ -164,7 +166,7 @@ input:focus{
     margin-left: 100px;
 }
 .user-list{
-    height: 100%;
+    height: 690px;
 }
 .user-list > div {
     display: flex;
@@ -211,20 +213,20 @@ input:focus{
 }
 
 .user-list-bottom{
-    margin-top: 10px;
+    margin: 50px auto 0;
     display: flex;
+    width: 900px;
 }
 
-.user-search-container > form{
+.user-search-container{
     height: 30px;
     box-sizing: border-box;
     display: flex;
     align-items: center;
-    padding-right: 15px;
-    margin-left: 520px;
+    margin: auto 33px auto auto;
 }
 
-user-search-container > select{
+.user-search-container > select{
     width: 70px;
     margin-top: 10px;
     margin-right: 3px;
@@ -232,14 +234,14 @@ user-search-container > select{
     border: 1px solid #ddd;
 }
 
-user-search-container > input{
+.user-search-container > input{
+    width: 165px;
     border: 1px solid #ddd;
-    width: 162.5px;
     margin-top: 10px;
     height: 28px;
 }
 
-user-search-container > button{
+.user-search-container > button{
     cursor: pointer;
     border: 1px solid #ddd;
     width: 45px;
@@ -253,12 +255,11 @@ user-search-container > button{
 .pagination-container {
     display: flex;
     text-align: center;
-    align-content: center;
     justify-content: center;
+    align-content: center;
     font-size: 18px;
-    margin-top: 35px;
-    margin-right: 5px;
-    width: 500%;
+    width: 300px;
+    margin-left: 300px;
 }
 
 .pagination-container a {
@@ -291,10 +292,6 @@ user-search-container > button{
     border-left: 1px solid #ddd;
 }
 
-.user-search-container{
-    margin: auto 33px auto 30px;
-    width: 35%;
-}
 .user-search-container > button{
     border: 1px solid #ddd;
     border-radius: 5%;

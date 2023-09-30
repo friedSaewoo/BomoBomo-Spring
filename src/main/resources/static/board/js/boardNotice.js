@@ -1,5 +1,8 @@
 // import * as boardNotice from './module/board.js';
 
+
+let keywordTest = '';
+
 //page 변수를 처음부터 1로 초기화
 //첫화면이 1페이지
 $(document).ready(function () {
@@ -21,6 +24,7 @@ $(document).on('click', '.page-num a', function (e) {
 
 //검색 버튼 클릭 시 검색결과 화면에 표시를하며 동시에 페이징처리
 $('.notice-search-btn').on('click', function (){
+    keywordTest = $('.keyword').val();
     loadPage(1,getSearchVo());
 })
 
@@ -29,9 +33,11 @@ function getSearchVo(){
     let cate = $('.cate').val();
     let keyword = $('.keyword').val();
 
+    console.log(keyword);
+
     return {
         cate : cate,
-        keyword : keyword
+        keyword : keywordTest
     };
 }
 
