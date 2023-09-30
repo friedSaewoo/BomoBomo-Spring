@@ -110,6 +110,10 @@ public class BoardController {
         return "board/boardServiceReview";
     }
 
+    
+    
+    //돌봄후기 등록 
+    
 
     //돌봄후기 상세보기
     @GetMapping("/reviewDetail")
@@ -172,6 +176,7 @@ public class BoardController {
     //돌봄후기 수정
 
 
+    
 
 
 
@@ -192,6 +197,10 @@ public class BoardController {
     }
 
 
+    //이벤트 후기 등록
+    
+    
+    
     //이벤트 후기 상세보기
     @GetMapping("/reviewEventDetail")
     public String showEventReviewDetailPage(@RequestParam("eventBoardNumber")Long eventBoardNumber
