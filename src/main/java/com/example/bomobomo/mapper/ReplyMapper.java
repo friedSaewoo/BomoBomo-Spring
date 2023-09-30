@@ -11,6 +11,7 @@ import java.util.List;
 @Mapper
 public interface ReplyMapper {
 
+    //돌봄 서비스 리뷰
     //댓글달기 삽입
     public void insert(SitterCommentDto sitterCommentDto);
 
@@ -29,10 +30,16 @@ public interface ReplyMapper {
 
 
     //댓글삭제
-
     public void delete(Long sitterCommentNumber);
 
 
     //후기 게시물 당 댓글 총 개수
     public int getTotal(Long sitterBoardNumber);
+    
+    
+    
+    //======================================================
+    
+    //이벤트 서비스 리뷰
+    //댓글달기 삽입
 }

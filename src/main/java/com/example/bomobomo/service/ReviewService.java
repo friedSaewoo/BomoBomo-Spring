@@ -86,15 +86,48 @@ public class ReviewService {
     //=================================================================
 
     //이벤트 서비스 리뷰 게시글 리스트
-    public List<EventBoardVo> findEventReview(Criteria criteria){
-          return reviewMapper.selectER(criteria);
+    public List<EventBoardVo> findEventReview(Criteria criteria, SearchReviewVo searchReviewVo){
+          return reviewMapper.selectER(criteria, searchReviewVo);
     }
 
     //이벤트 서비스 리뷰 게시글 개수
-    public int getTotalER(){
-          return reviewMapper.getTotalER();
+    public int getTotalER(SearchReviewVo searchReviewVo){
+          return reviewMapper.getTotalER(searchReviewVo);
+    }
+
+    //이벤트 서비스 리뷰 상세보기
+    public EventBoardVo showEReviewDetail(Long eventBoardNumber){
+
+          return Optional.ofNullable(reviewMapper.selectOne2(eventBoardNumber))
+                  .orElseThrow(()->{throw new IllegalArgumentException("존재하지 않는 정보");});
     }
 
 
+    //이벤트 리뷰 평점
+    public double getAvgEventReviewRating(Long eventNumber){
+
+        if (eventNumber == null) {
+            throw new IllegalArgumentException("이벤트 번호 누락");
+        }
+
+        return reviewMapper.selectAvgEventReviewRating(eventNumber);
+    }
+
+    //이벤트 리뷰 삭제
+    public void removeEventReview(Long eventBoardNumber){
+        if (eventBoardNumber == null) {
+            throw new IllegalArgumentException("이벤트 리뷰 게시판 번호 누락");
+        }
+
+        reviewMapper.deleteEventReview(eventBoardNumber);
+    }
+
+    //이벤트 리뷰 조회수 증가
+    public void updateEventReviewCount(Long eventBoardNumber){
+        if (eventBoardNumber == null) {
+            throw new IllegalArgumentException("이벤트 리뷰 번호 누락");
+        }
+        reviewMapper.updateEventReviewCount(eventBoardNumber);
+    }
 
 }
