@@ -6,6 +6,16 @@ a{
     text-decoration: none;
     color: inherit;
 }
+input{
+    border-radius: 5%;
+    font-size: 16px;
+}
+input:focus{
+    outline: none;
+}
+select:focus{
+    outline :none;
+}
 .admin-container{
     display: flex;
     margin :auto ;
@@ -155,7 +165,7 @@ a{
 }
 
 .emp-list{
-    height: 100%;
+    height: 690px;
 }
 .emp-list > div {
     display: flex;
@@ -193,20 +203,20 @@ a{
 }
 
 .emp-list-bottom{
-    margin-top: 10px;
+    margin: 50px auto 0;
     display: flex;
+    width: 900px;
 }
 
-.emp-search-container > form{
+.emp-search-container{
     height: 30px;
     box-sizing: border-box;
     display: flex;
     align-items: center;
-    padding-right: 15px;
-    margin-left: 520px;
+    margin: auto 33px auto auto;
 }
 
-form > select{
+.emp-search-container > select{
     width: 70px;
     margin-top: 10px;
     margin-right: 3px;
@@ -214,13 +224,14 @@ form > select{
     border: 1px solid #ddd;
 }
 
-form > input{
+.emp-search-container > input{
+    width: 165px;
     margin-top: 10px;
     height: 28px;
     border: 1px solid #ddd;
 }
 
-form > button{
+.emp-search-container > button{
     cursor: pointer;
     width: 45px;
     height: 30px;
@@ -232,12 +243,11 @@ form > button{
 .pagination-container {
     display: flex;
     text-align: center;
+    justify-content: center;
     align-content: center;
     font-size: 18px;
-    margin-top: 35px;
-    margin-right: 5px;
-    margin-left: 335px;
-    width: 40%;
+    width: 300px;
+    margin-left: 300px;
 }
 
 .pagination-container a {
@@ -270,11 +280,8 @@ form > button{
     border-left: 1px solid #ddd;
 }
 
-.emp-search-container{
-    margin: auto 33px auto 30px;
-    width: 35%;
-}
-.emp-search-container > form>button{
+
+.emp-search-container > button{
     border: 1px solid #ddd;
     border-radius: 5%;
 }
@@ -284,7 +291,15 @@ form > button{
     color: white;
 }
 
-a > button{
+.button-container{
+    display: flex;
+    margin-left: auto;
+    align-items: center;
+    width: 70px;
+    height: 40px;
+}
+
+.regist-btn{
     width: 70px;
     height: 40px;
     color:white;
@@ -294,6 +309,4 @@ a > button{
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     cursor: pointer;
     font-size: 15px;
-    margin-top: 30px;
-    margin-left: 80px;
 }

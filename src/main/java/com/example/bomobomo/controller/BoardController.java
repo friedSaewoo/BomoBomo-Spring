@@ -1,6 +1,7 @@
 package com.example.bomobomo.controller;
 
 import com.example.bomobomo.domain.dto.SitterBoardDto;
+import com.example.bomobomo.domain.vo.EventBoardVo;
 import com.example.bomobomo.domain.vo.SitterBoardVo;
 import com.example.bomobomo.service.NoticeService;
 import com.example.bomobomo.service.ReviewService;
@@ -30,28 +31,28 @@ public class BoardController {
     private final NoticeService noticeService;
     private final ReviewService reviewService;
 
+
+
+    //FAQ 게시판
     @GetMapping("/faq")
     public String showFaqPage(){
         return "board/boardFaq";
     }
 
-
+    //공지사항 게시판
     @GetMapping("/notice")
     public String showNoticePage(){
         return "board/boardNotice";
     }
 
 
+    //공지사항 상세보기
     @GetMapping("/detail")
     public String showNoticeDetailPage(@RequestParam(name = "noticeNumber") Long noticeNumber, Model model, HttpServletRequest req, HttpServletResponse resp){
-        
-        
 
 
         //모델 객체를 통해 detail페이지로 해당 공지사항 세부내역 전달
         model.addAttribute("noticeDetail",  noticeService.selectOne(noticeNumber));
-
-
 
         //쿠키를 활용
         Cookie[] cookies = req.getCookies();
@@ -92,7 +93,6 @@ public class BoardController {
             Cookie newCookie = new Cookie("notice_count_cookie", req.getParameter("noticeNumber") + "_" + new Date().getTime());
             newCookie.setMaxAge(24 * 60 * 60); // 쿠키 생성 시 24시간 유지
             resp.addCookie(newCookie);
-            
 
             //조회수 증가
             noticeService.updateCount(noticeNumber);
@@ -103,20 +103,19 @@ public class BoardController {
     }
 
 
+    //=========================================================
+    //돌봄후기 게시판 
     @GetMapping("/serviceReview")
     public String showServiceReviewPage(){
         return "board/boardServiceReview";
     }
 
-    @GetMapping("/eventReview")
-    public String showEventReviewPage(){
-        return "board/boardEventReview";
-    }
+    
+    
+    //돌봄후기 등록 
+    
 
-
-
-
-
+    //돌봄후기 상세보기
     @GetMapping("/reviewDetail")
     public String showServiceReviewDetailPage(@RequestParam("sitterBoardNumber") Long sitterBoardNumber,
            Model model, HttpServletRequest req, HttpServletResponse resp){
@@ -172,11 +171,6 @@ public class BoardController {
         return "board/serviceReviewDetail";
     }
 
-
-    //돌봄후기 수정
-
-
-
     //돌봄후기 삭제
     @GetMapping("/removeSReview")
     public RedirectView removeServiceReview(Long sitterBoardNumber){
@@ -185,7 +179,82 @@ public class BoardController {
         return new RedirectView("serviceReview");
     }
 
+    
+    //=========================================================================
+    //이벤트 게시판 이동
+    @GetMapping("/eventReview")
+    public String showEventReviewPage(){
+        return "board/boardEventReview";
+    }
 
+
+    //이벤트 후기 등록
+    
+    
+    
+    //이벤트 후기 상세보기
+    @GetMapping("/reviewEventDetail")
+    public String showEventReviewDetailPage(@RequestParam("eventBoardNumber")Long eventBoardNumber
+            , Model model, HttpServletRequest req, HttpServletResponse resp){
+
+        EventBoardVo eventBoardVo = reviewService.showEReviewDetail(eventBoardNumber);
+        double getAvgEventReview = reviewService.getAvgEventReviewRating(eventBoardVo.getEventNumber());
+
+        log.info(String.valueOf(getAvgEventReview) +"===============================================");
+        log.info(eventBoardVo.toString()+"====================******************");
+
+        model.addAttribute("eventReviewDetail", eventBoardVo);
+        model.addAttribute("avgEventReview", (Math.round(getAvgEventReview*100) / 100.0));
+
+
+
+        Cookie[] cookies = req.getCookies();
+        boolean updateCount = true;
+
+        if(cookies!=null){
+            for(Cookie cookie : cookies){
+                if("eventReviewDetail_count_cookie".equals(cookie.getName())){
+                    String cookieValue = cookie.getValue();
+
+
+                    String[] values = cookieValue.split("_");
+                    String eventBoardNumbers = values[0];
+
+                    Long storedTimestamp = Long.parseLong(values[1]);
+                    Long currentTimestamp = new Date().getTime();
+
+                    if(eventBoardNumbers.equals(req.getParameter("eventBoardNumber")) && (currentTimestamp - storedTimestamp) < (24 * 60 * 60 * 1000)){
+
+                            updateCount = false;
+                            break;
+                    }
+
+
+                }
+            }
+
+        }
+        if(updateCount){
+            Cookie newCookie = new Cookie("eventReviewDetail_count_cookie", req.getParameter("eventBoardNumber")+ "_" + new Date().getTime());
+            newCookie.setMaxAge(24*60*60);
+            resp.addCookie(newCookie);
+
+            reviewService.updateEventReviewCount(eventBoardNumber);
+
+        }
+
+        return "board/eventReviewDetail";
+
+    }
+    //이벤트 후기 수정
+
+
+    //이벤트 후기 삭제
+    @GetMapping("/removeEReview")
+    public RedirectView removeEventReview(Long eventBoardNumber){
+        reviewService.removeEventReview(eventBoardNumber);
+        return new RedirectView("eventReview");
+    }
 
 
 }

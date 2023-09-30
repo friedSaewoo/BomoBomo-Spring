@@ -39,6 +39,14 @@ public class UserService {
         return userMapper.nameCheck(userName);
     }
 
+
+
+    public void modify(UserDto userDto){
+        if (userDto == null) {
+             throw new IllegalArgumentException("회원정보 변경사항 누락!");
+        }
+           userMapper.update(userDto);
+    }
 }
 
 

@@ -2,6 +2,7 @@ package com.example.bomobomo.controller;
 
 import com.example.bomobomo.domain.dto.AddressDto;
 import com.example.bomobomo.domain.dto.UserDto;
+
 import com.example.bomobomo.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -23,6 +24,7 @@ import java.util.HashMap;
 public class UserController {
 
     private final UserService userService;
+
 
     @GetMapping("/login")
     public String login(){
@@ -56,28 +58,11 @@ public class UserController {
         addressDto.setAddressDetail(addressDetail);
 
         System.out.println("set설정 후 Dto주소 : " + addressDto.getAddressDetail());
-
-
-//        map.put("userId", userDto.getUserId());
-//        map.put("userPassword", userDto.getUserPassword());
-//        map.put("userName", userDto.getUserName());
-//        map.put("userEmail", userDto.getUserEmail());
-//        map.put("userPhone", userDto.getUserPhone());
-//
-//        map.put("addressPost", addressDto.getAddressPost());
-//        map.put("address", addressDto.getAddress());
-//        map.put("addressDetail", addressDto.getAddressDetail());
-
         System.out.println("유저정보 : " + userDto);
         System.out.println("주소정보 : " + addressDto);
 
-//        Date date = new Date();
-//        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
-//        userDto.setRegisterDate(formatter.format(date));
-
         userService.register(userDto, addressDto);
 
-        System.out.println("날짜는 : " + userDto.getRegisterDate());
         return "user/login";
     }
 
@@ -85,16 +70,22 @@ public class UserController {
     public RedirectView login(String userId, String userPassword, HttpServletRequest req, RedirectAttributes redirectAttributes){
         UserDto userDto = null;
 
+//        UserDto userDto = userService.find(userId, userPassword);
+        req.getSession().setAttribute("userNumber", userDto.getUserNumber());
+        req.getSession().setAttribute("userName",userDto.getUserName());
+        req.getSession().setAttribute("userId", userDto.getUserId());
+
+        System.out.println("로그인 컨트롤러 : " + userDto.getUserId());
+        System.out.println("로그인 컨트롤러 : " + userDto.getUserName());
+        System.out.println("로그인 컨트롤러 : " + userDto.getUserNumber());
+
         try {
             userDto = userService.find(userId, userPassword);
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("isLogin", "0");
             return new RedirectView("/user/login");
         }
-        req.getSession().setAttribute("userNumber", userDto.getUserNumber());
-        req.getSession().setAttribute("userNumber",userDto.getUserNumber());
-        req.getSession().setAttribute("userName", userDto.getUserName());
-        req.getSession().setAttribute("userId", userDto.getUserId());
+
         return new RedirectView("/common/index");
     }
 

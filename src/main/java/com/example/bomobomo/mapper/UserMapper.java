@@ -11,12 +11,14 @@ import java.util.HashMap;
 public interface UserMapper {
     public UserDto select(@Param("userId")String userId, @Param("userPassword")String userPassword);
 
-//    public void insert(HashMap map);
 
     public void insertUser(UserDto userDto);
     public void insertAddr(AddressDto addressDto);
+
     public int idCheck(String userId);
     public int nameCheck(String userName);
+    public void insert(UserDto userDto);
 
-
+    // 마이 페이지에서 회원정보 수정
+    public void update(UserDto userDto);
 }
