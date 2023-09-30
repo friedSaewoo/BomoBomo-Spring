@@ -3,39 +3,39 @@
 
 <configuration>
     <typeAliases>
-<!--======================== 관리자Dto ========================-->
+        <!--======================== 관리자Dto ========================-->
         <typeAlias type="com.example.bomobomo.domain.dto.AdminDto" alias="adminDto"/>
         <typeAlias type="com.example.bomobomo.domain.dto.NoticeDto" alias="noticeDto"/>
 
-<!--======================== 관리자Vo ========================-->
+        <!--======================== 관리자Vo ========================-->
         <typeAlias type="com.example.bomobomo.domain.vo.WeeklyRegisterVo" alias="weeklyRegisterVo"/>
 
-<!--======================== 직원 ========================-->
+        <!--======================== 직원 ========================-->
         <typeAlias type="com.example.bomobomo.domain.dto.EmpDto" alias="empDto"/>
         <typeAlias type="com.example.bomobomo.domain.dto.EmpImgDto" alias="empImgDto"/>
 
-<!--======================== 회원 ========================-->
+        <!--======================== 회원 ========================-->
         <typeAlias type="com.example.bomobomo.domain.dto.UserDto" alias="userDto"/>
         <typeAlias type="com.example.bomobomo.domain.dto.AddressDto" alias="addressDto"/>
         <typeAlias type="com.example.bomobomo.domain.dto.OrderDto" alias="orderDto"/>
 
-<!--======================== 매칭 ========================-->
+        <!--======================== 매칭 ========================-->
         <typeAlias type="com.example.bomobomo.domain.dto.MatchDto" alias="matchDto"/>
         <typeAlias type="com.example.bomobomo.domain.dto.SubmitOrderDto" alias="submitOrderDto"/>
         <typeAlias type="com.example.bomobomo.domain.dto.EstDto" alias="estDto"/>
         <typeAlias type="com.example.bomobomo.domain.dto.SitterPayDto" alias="sitterPayDto"/>
         <typeAlias type="com.example.bomobomo.domain.vo.MatchListVo" alias="matchListVo"/>
-<!--======================== 활동 ========================-->
+        <!--======================== 활동 ========================-->
         <typeAlias type="com.example.bomobomo.domain.dto.ActDto" alias="actDto"/>
         <typeAlias type="com.example.bomobomo.domain.dto.ActItemDto" alias="actItemDto"/>
         <typeAlias type="com.example.bomobomo.domain.dto.ActImgDto" alias="actImgDto"/>
         <typeAlias type="com.example.bomobomo.domain.dto.EmpActItemDto" alias="empActItemDto"/>
 
-<!--======================== 게시판 ========================-->
+        <!--======================== 게시판 ========================-->
         <typeAlias type="com.example.bomobomo.domain.dto.SitterBoardDto" alias="sitterBoardDto"/>
         <typeAlias type="com.example.bomobomo.domain.dto.SitterCommentDto" alias="sitterCommentDto"/>
 
-<!--======================== 이벤트 ========================-->
+        <!--======================== 이벤트 ========================-->
         <typeAlias type="com.example.bomobomo.domain.dto.EventDto" alias="eventDto"/>
         <typeAlias type="com.example.bomobomo.domain.dto.EventImgDto" alias="eventImgDto"/>
         <typeAlias type="com.example.bomobomo.domain.dto.EventDetailDto" alias="eventDetailDto"/>
@@ -44,21 +44,14 @@
         <typeAlias type="com.example.bomobomo.domain.dto.EventBoardDto" alias="eventBoardDto"/>
         <typeAlias type="com.example.bomobomo.domain.dto.EventCommentDto" alias="eventCommentDto"/>
 
-<!--======================== Vo ========================-->
-            <typeAlias type="com.example.bomobomo.domain.vo.Criteria" alias="criteria"/>
-            <typeAlias type="com.example.bomobomo.domain.vo.PageVo" alias="pageVo"/>
-            <typeAlias type="com.example.bomobomo.domain.vo.SearchVo" alias="searchVo"/>
-            <typeAlias type="com.example.bomobomo.domain.vo.SearchReviewVo" alias="searchReviewVo"/>
-            <typeAlias type="com.example.bomobomo.domain.vo.SitterBoardVo" alias="sitterBoardVo"/>
-            <typeAlias type="com.example.bomobomo.domain.vo.SitterCommentVo" alias="sitterCommentVo"/>
-
-            <typeAlias type="com.example.bomobomo.domain.vo.EventBoardVo" alias="eventBoardVo"/>
-<<<<<<< HEAD
-<!--            <typeAlias type="com.example.bomobomo.domain.vo.UserVo" alias="userVo"/>-->
+        <!--======================== Vo ========================-->
+        <typeAlias type="com.example.bomobomo.domain.vo.Criteria" alias="criteria"/>
+        <typeAlias type="com.example.bomobomo.domain.vo.PageVo" alias="pageVo"/>
+        <typeAlias type="com.example.bomobomo.domain.vo.SearchVo" alias="searchVo"/>
+        <typeAlias type="com.example.bomobomo.domain.vo.SearchReviewVo" alias="searchReviewVo"/>
+        <typeAlias type="com.example.bomobomo.domain.vo.SitterBoardVo" alias="sitterBoardVo"/>
+        <typeAlias type="com.example.bomobomo.domain.vo.SitterCommentVo" alias="sitterCommentVo"/>
+        <typeAlias type="com.example.bomobomo.domain.vo.EventBoardVo" alias="eventBoardVo"/>
         <typeAlias type="com.example.bomobomo.domain.vo.MyPageSitterVo" alias="myPageSitterVo"/>
-
-=======
-            <typeAlias type="com.example.bomobomo.domain.vo.MyPageSitterVo" alias="myPageSitterVo"/>
->>>>>>> 44bfad15124b7f589727f767951ee902a403d0c2
     </typeAliases>
 </configuration>
