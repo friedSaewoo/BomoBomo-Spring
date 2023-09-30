@@ -6,6 +6,16 @@ a{
     text-decoration: none;
     color: inherit;
 }
+input{
+    border-radius: 5%;
+    font-size: 16px;
+}
+input:focus{
+    outline: none;
+}
+select:focus{
+    outline :none;
+}
 .admin-container{
     display: flex;
     margin :auto ;
@@ -215,6 +225,7 @@ a{
 }
 
 .emp-search-container > input{
+    width: 165px;
     margin-top: 10px;
     height: 28px;
     border: 1px solid #ddd;

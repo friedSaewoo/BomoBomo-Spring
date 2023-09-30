@@ -5,8 +5,10 @@ import com.example.bomobomo.domain.dto.EmpDto;
 import com.example.bomobomo.domain.dto.NoticeDto;
 import com.example.bomobomo.domain.dto.UserDto;
 import com.example.bomobomo.domain.vo.Criteria;
+import com.example.bomobomo.domain.vo.MatchListVo;
 import com.example.bomobomo.domain.vo.SearchVo;
 import com.example.bomobomo.domain.vo.WeeklyRegisterVo;
+import com.fasterxml.jackson.databind.deser.DataFormatReaders;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -34,4 +36,8 @@ public interface AdminMapper {
 //    검색별 공지 수
     public int getTotalNotice(SearchVo searchVo);
 
+//    매칭 리스트
+    public List<MatchListVo> selectAllMatchs(@Param("criteria")Criteria criteria, @Param("searchVo")SearchVo searchVo);
+//    검색별 매칭수
+    public int getTotalMatchs(SearchVo searchVo);
 }

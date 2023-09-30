@@ -24,7 +24,7 @@
         <typeAlias type="com.example.bomobomo.domain.dto.SubmitOrderDto" alias="submitOrderDto"/>
         <typeAlias type="com.example.bomobomo.domain.dto.EstDto" alias="estDto"/>
         <typeAlias type="com.example.bomobomo.domain.dto.SitterPayDto" alias="sitterPayDto"/>
-
+        <typeAlias type="com.example.bomobomo.domain.vo.MatchListVo" alias="matchListVo"/>
 <!--======================== 활동 ========================-->
         <typeAlias type="com.example.bomobomo.domain.dto.ActDto" alias="actDto"/>
         <typeAlias type="com.example.bomobomo.domain.dto.ActItemDto" alias="actItemDto"/>

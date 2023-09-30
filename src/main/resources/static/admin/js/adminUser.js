@@ -43,7 +43,7 @@ function getSearchVo(){
 // ajax
 function loadPage(page, searchVo) {
     $.ajax({
-        url: `/admin/user/list/${page}`,
+        url: `/admin/rest/user/list/${page}`,
         type: 'get',
         data : searchVo,
         dataType: 'json',

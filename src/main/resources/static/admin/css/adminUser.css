@@ -235,8 +235,8 @@ select:focus{
 }
 
 .user-search-container > input{
+    width: 165px;
     border: 1px solid #ddd;
-    width: 162.5px;
     margin-top: 10px;
     height: 28px;
 }
