@@ -120,9 +120,9 @@ public class UserController {
     @ResponseBody
     public int nameCheck(String userName) {
 
-        int idCk = userService.nameCheck(userName);
+        int nameCk = userService.nameCheck(userName);
 
-        return idCk;
+        return nameCk;
     }
 
 }

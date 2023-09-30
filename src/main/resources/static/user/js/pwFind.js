@@ -23,6 +23,9 @@ $(".pwFindBtn").click(function() {
 });
 
 
+
+
+
 $(".verifiedCh").click(function() {
     let email = $("#email").val();
 

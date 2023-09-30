@@ -132,16 +132,16 @@ li {
 
 }
 
-.id_already{
+.nameAlready{
     color:red;
     display: none;
     font-size: 12px;
 }
-.id_already, .idOk {
+.nameAlready, .nameOk {
     margin-left: 55px;
 }
 
-.idOk, .PwChOk{
+.nameOk, .PwChOk{
     color:greenyellow;
     display: none;
     font-size: 13px;
