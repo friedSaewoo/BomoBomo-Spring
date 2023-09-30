@@ -171,15 +171,6 @@ public class BoardController {
         return "board/serviceReviewDetail";
     }
 
-
-
-    //돌봄후기 수정
-
-
-    
-
-
-
     //돌봄후기 삭제
     @GetMapping("/removeSReview")
     public RedirectView removeServiceReview(Long sitterBoardNumber){

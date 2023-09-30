@@ -61,9 +61,17 @@ li {
 .infoLabel {
     display: none;
     color: red;
+    font-size: 13px;
+
 }
 
-.postalCode {
+.idOk, .PwChOk{
+    color:greenyellow;
+    display: none;
+    font-size: 13px;
+}
+
+.postalCode, .userId {
     margin-bottom: 10px;
     width: 200px;
     height: 30px;
@@ -74,7 +82,7 @@ li {
     font-size: 14px;
 }
 
-.addrBtn {
+.addrBtn, .userCheckBtn {
     margin-left: 20px;
     width: 100px;
     height: 50px;
@@ -131,7 +139,11 @@ li {
     font-size: 20px;
 }
 
-
+.id_already{
+    color:red;
+    display: none;
+    font-size: 12px;
+}
 
 
 

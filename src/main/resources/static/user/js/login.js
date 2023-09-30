@@ -5,13 +5,13 @@ $(".buttonLogin").click(function() {
 
     if(userId == "" || userId == undefined) {
         $('.labelId').css("display","block");
-        $('.labelId').css("color","red");
         $('.labelPw').css("display","none");
+        $('.idCheck').css("display","none");
         return false;
     } else if(userPassword == "" || userPassword == undefined) {
         $('.labelPw').css("display","block");
-        $('.labelPw').css("color","red");
         $('.labelId').css("display","none");
+        $('.idCheck').css("display","none");
         return false;
     }
     return true;

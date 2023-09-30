@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 @Component
 @NoArgsConstructor
 public class AddressDto {
+
     Long addressNumber;
     Long userNumber;
     String addressPost;

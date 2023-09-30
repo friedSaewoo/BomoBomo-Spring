@@ -18,6 +18,4 @@ public class UserDto {
     private String registerDate;
     private String userPhone;
 
-
-//    private String userPhone;
 }
