@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -34,15 +34,14 @@
                     <span class="main-contents-title-text">직원관리</span>
 
                     <div class="emp-search-container">
-                        <form action="">
-                            <select>
-                                <option>이름</option>
+                            <select class="cate">
+                                <option value="empName">이름</option>
+                                <option value="empEmail">이메일</option>
                             </select>
-                            <input type="text" id="search" />
-                            <button type="submit">
+                            <input type="text" class="keyword" id="search" name="keyword"/>
+                            <button type="submit" class="submit" id="submit">
                                 <span class="material-symbols-outlined">search</span>
                             </button>
-                        </form>
                     </div>
 
                 </div>
@@ -54,111 +53,19 @@
                         <div class="emp-phone">연락처</div>
                         <div class="emp-email">이메일</div>
                     </div>
-                    <div class="emp-list">
-
-                        <div class="post">
-                            <div class="emp-num">001</div>
-                            <div class="emp-name">김성찬</div>
-                            <div class="date">2023-09-13</div>
-                            <div class="emp-phone">01071921375</div>
-                            <div class="emp-email">zriag@naver.com</div>
-                        </div>
-
-                        <div class="post">
-                            <div class="emp-num">002</div>
-                            <div class="emp-name">홍길동</div>
-                            <div class="date">2023-09-14</div>
-                            <div class="emp-phone">01012345678</div>
-                            <div class="emp-email">hong@gmail.com</div>
-                        </div>
-
-                    
-                        <div class="post">
-                            <div class="emp-num">003</div>
-                            <div class="emp-name">이영희</div>
-                            <div class="date">2023-09-15</div>
-                            <div class="emp-phone">01098765432</div>
-                            <div class="emp-email">yeonghee@yahoo.com</div>
-                        </div>
-
-                        <div class="post">
-                            <div class="emp-num">004</div>
-                            <div class="emp-name">박철수</div>
-                            <div class="date">2023-09-16</div>
-                            <div class="emp-phone">01055555555</div>
-                            <div class="emp-email">park@hotmail.com</div>
-                        </div>
-
-
-                        <div class="post">
-                            <div class="emp-num">005</div>
-                            <div class="emp-name">김지영</div>
-                            <div class="date">2023-09-17</div>
-                            <div class="emp-phone">01033333333</div>
-                            <div class="emp-email">jiyoung@outlook.com</div>
-                        </div>
-
-                        <div class="post">
-                            <div class="emp-num">006</div>
-                            <div class="emp-name">이철우</div>
-                            <div class="date">2023-09-18</div>
-                            <div class="emp-phone">01099999999</div>
-                            <div class="emp-email">chulwoo@gmail.com</div>
-                        </div>
-
-                        <div class="post">
-                            <div class="emp-num">007</div>
-                            <div class="emp-name">박지현</div>
-                            <div class="date">2023-09-19</div>
-                            <div class="emp-phone">01077777777</div>
-                            <div class="emp-email">jihyun@yahoo.com</div>
-                        </div>
-
-                        <div class="post">
-                            <div class="emp-num">008</div>
-                            <div class="emp-name">송민수</div>
-                            <div class="date">2023-09-20</div>
-                            <div class="emp-phone">01088888888</div>
-                            <div class="emp-email">minsu@hotmail.com</div>
-                        </div>
-
-                        <div class="post">
-                            <div class="emp-num">009</div>
-                            <div class="emp-name">김영민</div>
-                            <div class="date">2023-09-21</div>
-                            <div class="emp-phone">01066666666</div>
-                            <div class="emp-email">youngmin@outlook.com</div>
-                        </div>
-
-                        <div class="post">
-                            <div class="emp-num">010</div>
-                            <div class="emp-name">정미영</div>
-                            <div class="date">2023-09-22</div>
-                            <div class="emp-phone">01044444444</div>
-                            <div class="emp-email">miyoung@gmail.com</div>
-                        </div>
-
+                    <div class="emp-list"></div>
+                </div>
+                <div class="emp-list-bottom">
+                    <div class="pagination-container"></div>
+                    <div class="button-container">
+                        <button class="regist-btn">직원등록</button>
                     </div>
-                    <div class="emp-list-bottom">
-
-                         <div class="pagination-container">
-                           <a href="#" class="bt prev">&lt;</a>
-                           <a href="#" class="bt num on">1</a>
-                           <a href="#" class="bt num">2</a>
-                           <a href="#" class="bt num">3</a>
-                           <a href="#" class="bt num">4</a>
-                           <a href="#" class="bt num">5</a>
-                           <a href="#" class="bt next">&gt;</a>
-                         </div>
-                         <a href="adminEmpRegist.html">
-                            <button>직원등록</button>
-                         </a>
-                   </div>
                 </div>
             </div>
         </div>
     </div>
 </body>
-<script src="/admin/js/adminEmp.js"></script>
+<script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+<script th:src="@{/admin/js/adminEmp.js}"></script>
 <script src="/admin/js/adminHeader.js"></script>
 </html>
