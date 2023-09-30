@@ -13,6 +13,9 @@ input{
 input:focus{
     outline: none;
 }
+select:focus{
+    outline :none;
+}
 .admin-container{
     display: flex;
     margin :auto ;
@@ -94,6 +97,7 @@ input:focus{
 }
 
 .contents-title > span{
+    width: 140px;
     color: #646464;
     font-size: 30px;
 }
@@ -128,40 +132,18 @@ input:focus{
 }
 
 .announce-list-bottom{
-    margin-top: 10px;
+    margin: 50px auto 0;
     display: flex;
+    width: 900px;
 }
-
-form > select{
-    margin-top: 10px;
-    margin-right: 3px;
-    height: 30px;
-}
-
-form > input{
-    margin-top: 10px;
-    height: 28px;
-}
-
-form > button{
-    cursor: pointer;
-    border: 1px solid black;
-    width: 45px;
-    height: 30px;
-    background-color: white;
-    margin-top: 10px;
-    margin-left: 3px;
-}
-
 .pagination-container {
     display: flex;
     text-align: center;
+    justify-content: center;
     align-content: center;
     font-size: 18px;
-    margin-top: 35px;
-    margin-right: 5px;
-    margin-left: 390px;
-    width: 40%;
+    width: 300px;
+    margin-left: 300px;
 }
 
 .pagination-container a {
@@ -193,33 +175,9 @@ form > button{
 .pagination-container a:first-child {
     border-left: 1px solid #ddd;
 }
-
-.announce-search-container{
-    margin: auto 33px auto 30px;
-    width: 35%;
-}
-.announce-search-container > form>button{
-    border: 1px solid rgb(118,118, 118);
-    border-radius: 5%;
-}
-
 .on{
     background-color:#01b9ff !important;
     color: white;
-}
-
-a > button{
-    width: 70px;
-    height: 40px;
-    color:white;
-    background-color: #01b9ff;
-    border-radius: 10%;
-    border: 1px solid #e7e7e7;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
-    font-size: 15px;
-    margin-top: 30px;
-    margin-left: 80px;
 }
 
 .top{
@@ -291,51 +249,30 @@ a > button{
     width: 17%;
 }
 
-.announce-write{
-    margin: 35px auto 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 44px;
-    height: 25px;
-    background-color:#01b9ff;
-    color: white;
-    border-radius: 10%;
-    padding: 5px;
-}
-
 .notice-search-container{
-    margin: auto 33px auto 30px;
-    width: 35%;
-}
-.notice-search-container > form{
     height: 30px;
     box-sizing: border-box;
     display: flex;
     align-items: center;
-    padding-right: 15px;
-    margin-left: 520px;
+    margin: auto 33px auto auto;
 }
-.notice-search-container > form>button{
-    border: 1px solid #ddd;
-    border-radius: 5%;
-}
-form > select{
-    width: 55px;
+
+.notice-search-container> select{
+    width: 70px;
     margin-top: 10px;
     margin-right: 3px;
     height: 30px;
     border: 1px solid #ddd;
 }
 
-form > input{
+.notice-search-container > input{
     border: 1px solid #ddd;
-    width: 162.5px;
+    width: 165px;
     margin-top: 10px;
     height: 28px;
 }
 
-form > button{
+.notice-search-container > button{
     cursor: pointer;
     border: 1px solid #ddd;
     width: 45px;
@@ -343,5 +280,25 @@ form > button{
     background-color: white;
     margin-top: 10px;
     margin-left: 3px;
+    border: 1px solid #ddd;
+    border-radius: 5%;
+}
+.button-container{
+    display: flex;
+    margin-left: auto;
+    align-items: center;
+    width: 70px;
+    height: 40px;
+}
 
+.regist-btn{
+    width: 70px;
+    height: 40px;
+    color:white;
+    background-color: #01b9ff;
+    border-radius: 10%;
+    border: 1px solid #e7e7e7;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    font-size: 15px;
 }

@@ -1,13 +1,3 @@
-// var elements = document.querySelectorAll('.post>div');
-//
-// elements.forEach(function(element) {
-//     element.addEventListener('click', function() {
-//         var url = 'admin_announce_detail.html';
-//         window.location.href = url;
-//     });
-// });
-
-
 // 페이징 처리
 
 // 검색어 저장
@@ -44,15 +34,15 @@ function getSearchVo(){
 // ajax
 function loadPage(page, searchVo) {
     $.ajax({
-        url: `/admin/rest/notice/list/${page}`,
+        url: `/admin/rest/match/list/${page}`,
         type: 'get',
         data : searchVo,
         dataType: 'json',
         success: function (result) {
             console.log(result.pageVo);
-            console.log(result.adminNoticeList);
+            console.log(result.matchList);
 
-            loadNoticeList(result);
+            loadEmpList(result);
 
         },
         error: function (a, b, c) {
@@ -61,42 +51,37 @@ function loadPage(page, searchVo) {
         }
     });
 }
+
+// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 여기서부터 작업
 // ajax로 가져온 데이터를 사용해 페이징처리
-function loadNoticeList(result){
+function loadEmpList(result){
 
-    if(result.adminNoticecList!=0){
-        let noticeList = $('.announce-list');
-        noticeList.empty();
+    if(result.adminEmpList!=0){
+        let empList = $('.emp-list');
+        empList.empty();
 
-        $.each(result.adminNoticeList, function (index, notice) {
+        $.each(result.adminEmpList, function (index, emp) {
             //
-            // let empDiv = $('<div class="post">');
-            // empDiv.append('<div class="emp-num">' + emp.empNumber + '</div>');
-            // empDiv.append('<div class="emp-name">' + emp.empName + '</div>');
-            // empDiv.append('<div class="date">' + emp.empDate + '</div>');
-            // empDiv.append('<div class="emp-phone">' + emp.empPhone + '</div>');
-            // empDiv.append('<div class="emp-email">'+ emp.empEmail + '</div>');
-            // empList.append(empDiv);
-
             // <div class="post">
-            //     <div class="announce-num">001</div>
-            //     <div class="announce-title">안녕하세요, 보모보모입니다.</div>
+            //     <div class="emp-num">001</div>
+            //     <div class="emp-name">김성찬</div>
             //     <div class="date">2023-09-13</div>
-            //     <div class="count">23</div>
+            //     <div class="emp-phone">01071921375</div>
+            //     <div class="emp-email">zriag@naver.com</div>
             // </div>
-            //
-            let noticeDiv = $('<div class="post">');
-            noticeDiv.append('<div class="announce-num">' + notice.noticeNumber + '</div>');
-            noticeDiv.append('<div class="announce-title">' + notice.noticeTitle + '</div>');
-            noticeDiv.append('<div class="date">' + notice.noticeRegisterDate + '</div>');
-            noticeDiv.append('<div class="count">' + notice.noticeCount + '</div>');
-            noticeList.append(noticeDiv);
-            console.log("실행이됬어요");
+
+            let empDiv = $('<div class="post">');
+            empDiv.append('<div class="emp-num">' + emp.empNumber + '</div>');
+            empDiv.append('<div class="emp-name">' + emp.empName + '</div>');
+            empDiv.append('<div class="date">' + emp.empDate + '</div>');
+            empDiv.append('<div class="emp-phone">' + emp.empPhone + '</div>');
+            empDiv.append('<div class="emp-email">'+ emp.empEmail + '</div>');
+            empList.append(empDiv);
+
         });
     }else{
-        let noticeList = $('.announce-list');
-        console.log("데이터 없음!!");
-        noticeList.empty(); // 기존 데이터 지우기
+        let empList = $('.emp-list');
+        empList.empty(); // 기존 데이터 지우기
     }
     pagination(result.pageVo);
 }
@@ -136,12 +121,12 @@ function pagination(pageVo) {
     }
 }
 
-// 인풋박스에 엔터키를 누르면 search버튼 클릭 처리
-function inputEnter(event) {
-    if (event.key === "Enter") {
-        document.getElementById("submit").click();
-    }
-}
-document.getElementById("search").addEventListener("keyup", inputEnter);
 
+// // 인풋박스에 엔터키를 누르면 search버튼 클릭 처리
+// function inputEnter(event) {
+//     if (event.key === "Enter") {
+//         document.getElementById("submit").click();
+//     }
+// }
+// document.getElementById("search").addEventListener("keyup", inputEnter);
 

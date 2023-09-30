@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -34,15 +34,13 @@
                     <span class="main-contents-title-text">공지사항</span>
 
                     <div class="notice-search-container">
-                        <form action="">
-                            <select>
-                                <option>제목</option>
+                            <select class="cate">
+                                <option value="noticeTitle">제목</option>
                             </select>
-                            <input type="text" id="search" />
-                            <button type="submit">
+                            <input type="text" class="keyword" name="keyword" id="search" />
+                            <button type="submit" class="submit" id="submit">
                                 <span class="material-symbols-outlined">search</span>
                             </button>
-                        </form>
                     </div>
 
                 </div>
@@ -53,106 +51,20 @@
                         <div class="date">등록일</div>
                         <div class="count">조회수</div>
                     </div>
-                    <div class="announce-list">
-
-                        <div class="post">
-                            <div class="announce-num">001</div>
-                            <div class="announce-title">안녕하세요, 보모보모입니다.</div>
-                            <div class="date">2023-09-13</div>
-                            <div class="count">23</div>
-                        </div>
-
-                        
-                        <div class="post">
-                            <div class="announce-num">001</div>
-                            <div class="announce-title">안녕하세요, 보모보모입니다.</div>
-                            <div class="date">2023-09-13</div>
-                            <div class="count">23</div>
-                        </div>
-
-                        
-                        <div class="post">
-                            <div class="announce-num">001</div>
-                            <div class="announce-title">안녕하세요, 보모보모입니다.</div>
-                            <div class="date">2023-09-13</div>
-                            <div class="count">23</div>
-                        </div>
-
-                        
-                        <div class="post">
-                            <div class="announce-num">001</div>
-                            <div class="announce-title">안녕하세요, 보모보모입니다.</div>
-                            <div class="date">2023-09-13</div>
-                            <div class="count">23</div>
-                        </div>
-
-                        
-                        <div class="post">
-                            <div class="announce-num">001</div>
-                            <div class="announce-title">안녕하세요, 보모보모입니다.</div>
-                            <div class="date">2023-09-13</div>
-                            <div class="count">23</div>
-                        </div>
-
-                        
-                        <div class="post">
-                            <div class="announce-num">001</div>
-                            <div class="announce-title">안녕하세요, 보모보모입니다.</div>
-                            <div class="date">2023-09-13</div>
-                            <div class="count">23</div>
-                        </div>
-
-                        
-                        <div class="post">
-                            <div class="announce-num">001</div>
-                            <div class="announce-title">안녕하세요, 보모보모입니다.</div>
-                            <div class="date">2023-09-13</div>
-                            <div class="count">23</div>
-                        </div>
-
-                        
-                        <div class="post">
-                            <div class="announce-num">001</div>
-                            <div class="announce-title">안녕하세요, 보모보모입니다.</div>
-                            <div class="date">2023-09-13</div>
-                            <div class="count">23</div>
-                        </div>
-
-                        
-                        <div class="post">
-                            <div class="announce-num">001</div>
-                            <div class="announce-title">안녕하세요, 보모보모입니다.</div>
-                            <div class="date">2023-09-13</div>
-                            <div class="count">23</div>
-                        </div>
-
-                        
-                        <div class="post">
-                            <div class="announce-num">001</div>
-                            <div class="announce-title">안녕하세요, 보모보모입니다.</div>
-                            <div class="date">2023-09-13</div>
-                            <div class="count">23</div>
-                        </div>
-
-                    </div>
+                    <div class="announce-list"></div>
                 </div>
                 <div class="announce-list-bottom">
-                    <div class="pagination-container">
-                      <a href="#" class="bt prev">&lt;</a>
-                      <a href="#" class="bt num on">1</a>
-                      <a href="#" class="bt num">2</a>
-                      <a href="#" class="bt num">3</a>
-                      <a href="#" class="bt num">4</a>
-                      <a href="#" class="bt num">5</a>
-                      <a href="#" class="bt next">&gt;</a>
+                    <div class="pagination-container"></div>
+                    <div class="button-container">
+                        <button class="regist-btn">공지등록</button>
                     </div>
-                    <a href="adminNoticeWrite.html" class="announce-write">등록</a>
                </div>
             </div>
 
         </div>
     </div>
 </body>
-<script src="/admin/js/adminNotice.js"></script>
+<script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+<script th:src="@{/admin/js/adminNotice.js}"></script>
 <script src="/admin/js/adminHeader.js"></script>
 </html>
