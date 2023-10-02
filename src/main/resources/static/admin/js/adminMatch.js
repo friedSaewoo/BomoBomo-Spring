@@ -41,8 +41,7 @@ function loadPage(page, searchVo) {
         success: function (result) {
             console.log(result.pageVo);
             console.log(result.matchList);
-
-            loadEmpList(result);
+            loadMatchList(result);
 
         },
         error: function (a, b, c) {
@@ -54,29 +53,34 @@ function loadPage(page, searchVo) {
 
 // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 여기서부터 작업
 // ajax로 가져온 데이터를 사용해 페이징처리
-function loadEmpList(result){
+function loadMatchList(result){
 
-    if(result.adminEmpList!=0){
-        let empList = $('.emp-list');
-        empList.empty();
+    if(result.matchList!=0){
+        let matchContainer = $('.match-container');
+        matchContainer.empty();
 
-        $.each(result.adminEmpList, function (index, emp) {
-            //
-            // <div class="post">
-            //     <div class="emp-num">001</div>
-            //     <div class="emp-name">김성찬</div>
-            //     <div class="date">2023-09-13</div>
-            //     <div class="emp-phone">01071921375</div>
-            //     <div class="emp-email">zriag@naver.com</div>
-            // </div>
-
-            let empDiv = $('<div class="post">');
-            empDiv.append('<div class="emp-num">' + emp.empNumber + '</div>');
-            empDiv.append('<div class="emp-name">' + emp.empName + '</div>');
-            empDiv.append('<div class="date">' + emp.empDate + '</div>');
-            empDiv.append('<div class="emp-phone">' + emp.empPhone + '</div>');
-            empDiv.append('<div class="emp-email">'+ emp.empEmail + '</div>');
-            empList.append(empDiv);
+        $.each(result.matchList, function (index, match) {
+            let matchDiv = $('<div class="post">');
+            matchDiv.append('<div class="status">'+
+                '<p>매칭 번호 : <span>' + match.matchNumber + '</span></p>'+
+                '<p>' + (match.status == 0 ? '면접대기' : (match.status == 1 ? '결제대기' : (match.status == 2 ? '결제완료' : 'X'))) + '</p>' +
+                '</div>');
+            matchDiv.append('<div class ="user">' +
+                '<p>회원 번호 : <span>'+ match.userNumber +'</span></p>'+
+                '<p>회원 이름 : <span>'+ match.userName +'</span></p>'+
+                '<p>회원 아이디 : <span>'+ match.userId +'</span></p>'+
+                '<p>연락처  : <span>'+ match.userPhone +'</span></p>'+
+                '</div>');
+            matchDiv.append('<div class = "emp" >' +
+                '<p>직원 번호 : <span>'+ match.empNumber +'</span></p>'+
+                '<p>직원 이름 : <span>'+ match.empName +'</span></p>'+
+                '<p>연락처 : <span>'+ match.empPhone +'</span></p>'+
+                '<p>이메일 : <span>'+ match.empEmail +'</span></p>'+
+                '</div>');
+            matchDiv.append('<div class = "box">'+
+            '<a href=""><button>' + '관리' +'</button></a>'+
+            '</div>');
+            matchContainer.append(matchDiv);
 
         });
     }else{
@@ -122,11 +126,11 @@ function pagination(pageVo) {
 }
 
 
-// // 인풋박스에 엔터키를 누르면 search버튼 클릭 처리
-// function inputEnter(event) {
-//     if (event.key === "Enter") {
-//         document.getElementById("submit").click();
-//     }
-// }
-// document.getElementById("search").addEventListener("keyup", inputEnter);
+// 인풋박스에 엔터키를 누르면 search버튼 클릭 처리
+function inputEnter(event) {
+    if (event.key === "Enter") {
+        document.getElementById("submit").click();
+    }
+}
+document.getElementById("search").addEventListener("keyup", inputEnter);
 
