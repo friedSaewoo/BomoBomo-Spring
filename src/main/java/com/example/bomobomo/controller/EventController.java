@@ -32,14 +32,21 @@ public class EventController {
        model.addAttribute("list", eventDtoList);
         return "event/event";
     }
-//   상세페이지 이동
-    @GetMapping("/detail")
+
+////   상세페이지 이동
+    @GetMapping(value = "/detail")
     public String showEventDetailPage(Long eventNumber, Model model) {
 
-        model.addAttribute("detail", eventService.find(eventNumber));
-
-        return "event/detail";
+        EventDto eventDto = eventService.find(eventNumber);
+        model.addAttribute("view", eventNumber);
+        return "event/eventdetail";
     }
+
+
+//    @GetMapping("/detail")
+//    public String showMainPage(){
+//        return "event/eventdetail";
+//    }
 
 
 //   직원 목록 전체 조회

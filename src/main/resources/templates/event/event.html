@@ -46,11 +46,12 @@
                 <div class="event-goods-contents">
                 <ul>
                     <li th:each=" event : ${list}">
-                        <a href="#">
+                        <a th:href="@{/event/detail(eventNumber=${event.eventNumber})}">
                             <div class="zoom-container">
                                 <img src="/event/img/event1.jpg" alt="사진"/>
                             </div>
-                            <p><span th:text="${event.eventName}"</span> </p>
+                            <p><span th:text="${event.eventName}">
+                                </span> </p>
 
                         </a>
                     </li>
