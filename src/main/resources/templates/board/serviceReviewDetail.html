@@ -79,6 +79,8 @@
       </div>
     </div>
 
+
+    <div class="reply-total-wrap">
     <!-- 댓글 작성란 -->
     <div class="reply-wrap">
       <div th:if="${session.userNumber!=null}">
@@ -111,6 +113,7 @@
     </div>
 
   </div>
+  </div>
   <input type="hidden" th:value="${reviewDetail.sitterBoardNumber}" class="reviewDetail-num">
 
 </main>
@@ -121,7 +124,7 @@
   let loginNumber = [[${session.userNumber}]];
 </script>
 <script src="/board/js/boardServiceReviewDetail.js"></script>
-<script src="/board/js/serviceReviewReply.js"></script>
+<script type="module" src="/board/js/serviceReviewReply.js"></script>
 <script src="/fragments/js/header.js"></script>
 
 
