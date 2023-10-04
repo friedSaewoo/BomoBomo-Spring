@@ -20,6 +20,7 @@ public class SitterBoardVo {
    private Integer rating;
    private Integer sitterBoardCount;
    private String empName;
+   private Long rnum;
 //   private String empImgName;
 //   private String empImgUuid;
 //   private String empImgUploadPath;
