@@ -43,12 +43,8 @@ dependencies {
     //aop
     implementation 'org.springframework.boot:spring-boot-starter-aop'
     
+
     //이메일 인증
-    implementation 'org.springframework.boot:spring-boot-starter-mail:2.7.0'
-//    implementation 'org.springframework.boot:spring-boot-starter-mail:2.7.1'
-    //    implementation 'org.springframework.boot:spring-boot-starter-mail'
-//    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-mail
-//    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-mail', version: '3.0.5'
 
 }
 

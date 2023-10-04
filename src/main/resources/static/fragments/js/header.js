@@ -4,9 +4,9 @@ $('.sub-menu').hide();
 // 전체 슬라이드 다운
 
 $(function () {
-    var hh = $(".header-wrap").height();
-    var ih = $(".sub-menu").innerHeight();
-    var maxHeight = hh + ih;
+    let hh = $(".header-wrap").height();
+    let ih = $(".sub-menu").innerHeight();
+    let maxHeight = hh + ih;
 
     console.log(maxHeight)
 

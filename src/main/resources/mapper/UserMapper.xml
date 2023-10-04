@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.bomobomo.mapper.UserMapper">
 
-    <insert id="insert" parameterType="userDto">
+    <insert id="insertUser" parameterType="userDto">
         <selectKey keyProperty="userNumber" order="BEFORE" resultType="long">
             select seq_user.nextval from dual
         </selectKey>
@@ -12,8 +12,8 @@
             USER_PASSWORD,
             USER_NAME,
             USER_EMAIL,
-            REGISTER_DATE,
-            USER_PHONE
+            USER_PHONE,
+            REGISTER_DATE
                            )
         values (
             #{userNumber},
@@ -21,20 +21,53 @@
             #{userPassword},
             #{userName},
             #{userEmail},
-            SYSDATE,
-            #{userPhone}
+            #{userPhone},
+            SYSDATE
             )
-        </insert>
+
+</insert>
+
+    <insert id="insertAddr" parameterType="addressDto">
+        insert into address (
+            address_number,
+            user_number,
+            address_post,
+            address,
+            address_detail
+        )
+        values (
+            SEQ_ADDRESS.NEXTVAL,
+            SEQ_USER.CURRVAL ,
+            #{addressPost},
+            #{address},
+            #{addressDetail}
+        )
+
+    </insert>
 
     <select id="select" resultType="userDto">
         SELECT *
         FROM USERS
         WHERE USER_ID = #{userId} AND USER_PASSWORD = #{userPassword}
     </select>
-    
+
+
+    <select id="idCheck" resultType="_int">
+        SELECT COUNT (USER_ID) FROM USERS
+        WHERE USER_ID = #{userId}
+    </select>
+
+    <select id="nameCheck" resultType="_int">
+        SELECT COUNT (USER_NAME) FROM USERS
+        WHERE USER_NAME = #{userName}
+    </select>
+
+
+
     <update id="update">
         update USERS
         set USER_PASSWORD=#{userPassword},USER_EMAIL=#{userEmail},USER_PHONE=#{userPhone}
         where USER_NUMBER =#{userNumber}
     </update>
+
 </mapper>

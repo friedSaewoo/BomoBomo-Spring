@@ -1,21 +1,20 @@
-package com.example.bomobomo.domain.dto;
+package com.example.bomobomo.domain.vo;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
-import java.util.Date;
-
 @Data
 @Component
 @NoArgsConstructor
-public class UserDto {
+public class UserDetailVo {
     private Long userNumber;
     private String userId;
-    private String userPassword;
     private String userName;
     private String userEmail;
     private String registerDate;
     private String userPhone;
-
+    private String addressPost;
+    private String address;
+    private String addressDetail;
 }
