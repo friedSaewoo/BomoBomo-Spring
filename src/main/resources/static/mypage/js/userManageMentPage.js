@@ -52,7 +52,7 @@ function addressFind() {
 $(document).ready(function(){
     $('.updatebtn').on('click',function(){
         // alert("수정이 완료되었습니다.");
-        window.location.href="../html/mypage_main.html"
+
         //수정 완료가 두번 동작하고 페이지가 이동이 되는 이유 확인 필요
         alert("수정이 완료되었습니다.");
     })

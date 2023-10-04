@@ -74,7 +74,7 @@
                 <a th:if="${buy.reviewCheck == 1}" href="javascript:void(0)" class="text-page" >
                   <p>리뷰작성 완료</p>
                 </a>
-                <a th:if="${buy.reviewCheck == 0}" th:href="@{/mypage/siterreview(matchNumber=${buy.matchNumber},empNumber=${buy.empNumber})}" class="text-page">
+                <a th:if="${buy.reviewCheck == 0}" th:href="@{/mypage/siterreview(matchNumber=${buy.matchNumber}, empNumber=${buy.empNumber})}" class="text-page">
                   <p>리뷰작성</p>
                 </a>
                 <span th:text="${buy.estPrice}+'원'"></span>

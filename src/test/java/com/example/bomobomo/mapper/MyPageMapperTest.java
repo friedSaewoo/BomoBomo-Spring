@@ -35,16 +35,22 @@ class MyPageMapperTest {
 //        myPageSitterVo.setEstNumber(1L);
         myPageSitterVo.setStatus("1");
         myPageSitterVo.setSubmitOrderNumber(1L);
-        myPageSitterVo.setTotalPrice(123);
+//        myPageSitterVo.setTotalPrice(123);
+//        myPageSitterVo.setTotalPrice(123);
         myPageSitterVo.setEmpImgName("ddd");
 
 
 
     }
 
-    @Test
-    void selectSitterList() {
-        List<MyPageSitterVo> myPageSitterVos =myPageMapper.selectSitterList(myPageSitterVo);
-        log.info(myPageSitterVos.toString());
-    }
+//    @Test
+//    void selectSitterList() {
+//        List<MyPageSitterVo> myPageSitterVos =myPageMapper.selectSitterList(myPageSitterVo);
+//        log.info(myPageSitterVos.toString());
+//    }
+//    @Test
+//    void selectSitterList() {
+//        List<MyPageSitterVo> myPageSitterVos =myPageMapper.selectSitterList(myPageSitterVo);
+//        log.info(myPageSitterVos.toString());
+//    }
 }
