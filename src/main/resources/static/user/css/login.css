@@ -21,11 +21,6 @@ li {
     justify-content: center;
 }
 
-.header, .footer {
-    background-color: #fff;
-    padding: 20px 0;
-}
-
 .loginContainer {
     width: 1024px;
     height: 100%;
