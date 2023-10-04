@@ -81,7 +81,7 @@ li {
 .userInfo {
     width: 350px;
     border-radius: 5px;
-    border: 1px solid #bbb;
+    border: 1px solid #FF7000;
     text-indent: 25px;
     padding: 10px 12px;
     font-size: 14px;
@@ -132,7 +132,20 @@ li {
 
 }
 
+.nameAlready{
+    color:red;
+    display: none;
+    font-size: 12px;
+}
+.nameAlready, .nameOk {
+    margin-left: 55px;
+}
 
+.nameOk, .PwChOk{
+    color:greenyellow;
+    display: none;
+    font-size: 13px;
+}
 
 
 
