@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 public class OrderService {
     private final OrderMapper orderMapper;
 
-    //삽입
+    //삽입(둘째와 content값 null값 시 해당 내용으로 입력 - 디폴트 값)
     public void register(OrderDto orderDto){
         if (orderDto == null) {
             throw new IllegalArgumentException("신청내용 누락!!");

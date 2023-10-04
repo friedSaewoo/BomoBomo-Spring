@@ -49,115 +49,61 @@
 
         </div>
         <div class="review-page-area">
-          <p class="sitter-area">시터이용 내역</p>
+          <p class="sitter-area" style="background-color: rgb(255, 112, 0); color: white;">시터이용 내역</p>
           <p class="event-area">이벤트 결제 내역</p>
         </div>
         <div class="buybox">
-
-          <ul class="buy-area">
+          <!--시터 이용 후기 결제 내역 조회-->
+          <ul class="buy-area" th:each="buy : ${buyList}">
             <li class="buy-text">
               <div class="img-area">
                 <figure>
                   <!--데이터에서 파일 불러오기-->
-                  <img src="/Mypage/img/event.jpeg">
+                  <!--                  <img th:src="@{}">-->
                 </figure>
               </div>
               <div class="buy-text-area">
                 <!--클릭시 url이동-->
                 <a href="#">
                   <p>[보모보모]</p>
-                  <p>보노보노시터 후기</p>
+                  <p th:text="${buy.estTitle}"></p>
                 </a>
               </div>
 
               <div class="price">
-                <a href="/mypage/siterreview" class="text-page">
+                <a th:if="${buy.reviewCheck == 1}" href="javascript:void(0)" class="text-page" >
+                  <p>리뷰작성 완료</p>
+                </a>
+                <a th:if="${buy.reviewCheck == 0}" th:href="@{/mypage/siterreview(matchNumber=${buy.matchNumber},empNumber=${buy.empNumber})}" class="text-page">
                   <p>리뷰작성</p>
                 </a>
-                <span>14,900원</span>
-              </div>
-            </li>
-            <li class="buy-text">
-              <div class="img-area">
-                <figure>
-                  <img src="/Mypage/img/event.jpeg">
-                </figure>
-              </div>
-              <div class="buy-text-area">
-                <a href="#">
-                  <p>[보모보모]</p>
-                  <p>아이들이 좋아하는 스파스파이더맨</p>
-                </a>
-              </div>
-
-              <div class="price">
-                <a href="/Mypage/html/siter_review.html" class="text-page">
-                  <p>리뷰작성</p>
-                </a>
-                <span>14,900원</span>
-              </div>
-            </li>
-            <li class="buy-text">
-              <div class="img-area">
-                <figure>
-                  <img src="/Mypage/img/event.jpeg">
-                </figure>
-              </div>
-              <div class="buy-text-area">
-                <a href="#">
-                  <p>[보모보모]</p>
-                  <p>아이들이 좋아하는 스파스파이더맨</p>
-                </a>
-              </div>
-
-              <div class="price">
-                <a href="/Mypage/html/siter_review.html" class="text-page">
-                  <p>리뷰작성</p>
-                </a>
-                <span>14,900원</span>
-              </div>
-            </li>
-            <li class="buy-text">
-              <div class="img-area">
-                <figure>
-                  <img src="/Mypage/img/event.jpeg">
-                </figure>
-              </div>
-              <div class="buy-text-area">
-                <a href="#">
-                  <p>[보모보모]</p>
-                  <p>아이들이 좋아하는 스파스파이더맨</p>
-                </a>
-              </div>
-
-              <div class="price">
-                <a href="/Mypage/html/siter_review.html" class="text-page">
-                  <p>리뷰작성</p>
-                </a>
-                <span>14,900원</span>
+                <span th:text="${buy.estPrice}+'원'"></span>
               </div>
             </li>
           </ul>
+          <!--시터이용 결제내역 페이징 처리-->
           <div class="paging">
             <ul class="page">
-              <a href="#" class="page-a">
+
+              <a th:href="@{/mypage/buy(page=${pageVo.startPage - 1})}" class="page-a" th:if="${pageVo.prev}">
                 <li class="page-num prev">&lt</li>
               </a>
-              <a>
-                <li>1</li>
-              </a>
-              <a>
-                <li>2</li>
-              </a>
-              <a>
-                <li>3</li>
-              </a>
-              <a href="#" class="page-b">
+
+
+              <th:block th:each="i : ${#numbers.sequence(pageVo.startPage, pageVo.endPage)}">
+                <a th:href="@{/mypage/buy(page=${i})}">
+                  <li th:text="${i}"></li>
+                </a>
+              </th:block>
+
+
+              <a th:href="@{/mypage/buy(page=${pageVo.endPage + 1})}" class="page-b" th:if="${pageVo.next}">
                 <li class="page-num next">&gt</li>
               </a>
             </ul>
           </div>
         </div>
+        <!--이벤트 이용 후기 결제 내역 조회-->
         <div class="buyboxp">
 
           <ul class="buy-area-2">
