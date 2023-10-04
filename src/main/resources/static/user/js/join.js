@@ -57,10 +57,10 @@ $('#userPasswordCh').keyup(function () {
     if(pw != pwCh) {
         $('.labelPwCh').css('display','block');
         $('.labelEm').css('display','none');
-        $('.PwChOk').css('display', 'none');
+        // $('.PwChOk').css('display', 'none');
         return;
     } else {
-        $('.PwChOk').css('display', 'block');
+        // $('.PwChOk').css('display', 'block');
         $('.labelPwCh').css('display','none');
     }
 
@@ -100,7 +100,28 @@ function checkId(){
 
 };
 
+function checkPw() {
 
+    let pw = $("#userPassword").val();
+    let reg = /^(?=.*[a-zA-Z])(?=.*[!@#$%^&*()_=+])(?=.*[0-9]).{8,15}$/;
+
+    let pwCheck = reg.test(pw);
+
+    $('#userPasswordCh').change(function () {
+
+        if(pwCheck) {
+            // $('.labelPwOk').css("display", "block");
+            $('.labelPwNo').css("display", "none");
+            $('.PwChOk').css('display', 'block');
+        } else {
+            // $('.labelPwOk').css("display", "none");
+            $('.labelPwNo').css("display", "block");
+            $('.PwChOk').css('display', 'none');
+        }
+
+    });
+
+}
 
 
 
