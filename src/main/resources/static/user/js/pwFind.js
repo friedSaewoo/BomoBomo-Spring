@@ -142,32 +142,6 @@ function verifiedCode() {
 
 }
 
-// function checkEmail(){
-//
-//     $('#userEmail').change(function () {
-//         var userEmail = $('#userEmail').val(); //name값이 "name"인 입력란의 값을 저장
-//
-//         $.ajax({
-//             url: '/user/emailCheck', //Controller에서 요청 받을 주소
-//             type: 'post', //POST 방식으로 전달
-//             data: {userEmail: userEmail},
-//             success: function (emailCk) { //컨트롤러에서 넘어온 cnt값을 받는다
-//                 alert(emailCk);
-//                 if (emailCk == 0) { //cnt가 1이 아니면(=0일 경우) -> 사용 가능한 아이디
-//                     $('.emailOk').css("display", "block");
-//                 } else { // cnt가 1일 경우 -> 이미 존재하는 아이디
-//                     $('.emailOk').css("display", "none");
-//                 }
-//             },
-//             error: function () {
-//                 alert("에러입니다");
-//             }
-//         });
-//
-//     });
-//
-//
-// };
 function confirmNumber(){
 
     let number1 = $("#verified").val();
