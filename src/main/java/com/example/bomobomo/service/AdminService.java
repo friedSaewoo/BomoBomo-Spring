@@ -68,6 +68,10 @@ public class AdminService {
     public void noticeRegist(NoticeDto noticeDto){
         adminMapper.noticeRegist(noticeDto);
     }
+//    공지사항 수정
+    public void noticeUpdate(NoticeDto noticeDto){
+        adminMapper.noticeUpdate(noticeDto);
+    }
 
 //    매칭리스트 조회
     public List<MatchListVo> selectAllMatchs(Criteria criteria, SearchVo searchVo){

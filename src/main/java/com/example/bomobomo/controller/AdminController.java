@@ -60,11 +60,10 @@ public class AdminController {
         return "admin/adminUserDetail";
     }
 //    공지사항 상세정보
-    @GetMapping("/notice/detail")
-    public String selectNoticeDetail(@RequestParam(name = "noticeNumber")Long noticeNumber, Model model){
+    @GetMapping(value={"/adminNoticeDetail","/adminNoticeConfig"})
+    public void selectNoticeDetail(@RequestParam(name = "noticeNumber")Long noticeNumber, Model model){
         NoticeDto noticeDetail = adminService.selectNoticeDetail(noticeNumber);
         model.addAttribute("noticeDetail",noticeDetail);
-        return "admin/adminNoticeDetail";
     }
 
     @GetMapping("/main")
@@ -93,8 +92,7 @@ public class AdminController {
     }
 
     @GetMapping("/redirect/notice")
-    public RedirectView redirectNotice(HttpServletRequest req){
-        req.getSession().invalidate();
+    public RedirectView redirectNotice(){
         return new RedirectView("/admin/notice");
     }
     @GetMapping("/noticeRegist")
@@ -106,5 +104,10 @@ public class AdminController {
     public RedirectView noticeRegist(NoticeDto noticeDto){
         adminService.noticeRegist(noticeDto);
         return new RedirectView("/admin/notice");
+    }
+    @PostMapping("/noticeConfig")
+    public RedirectView noticeUpdate(NoticeDto noticeDto){
+        adminService.noticeUpdate(noticeDto);
+        return  new RedirectView("/admin/notice");
     }
 }

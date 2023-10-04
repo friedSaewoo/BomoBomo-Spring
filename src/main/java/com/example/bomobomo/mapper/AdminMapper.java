@@ -38,6 +38,8 @@ public interface AdminMapper {
     public NoticeDto selectNoticeDetail(Long noticeNumber);
 //    공지 등록
     public void noticeRegist(NoticeDto noticeDto);
+//    공지 수정
+    public void noticeUpdate(NoticeDto noticeDto);
 
 //    매칭 리스트
     public List<MatchListVo> selectAllMatchs(@Param("criteria")Criteria criteria, @Param("searchVo")SearchVo searchVo);
