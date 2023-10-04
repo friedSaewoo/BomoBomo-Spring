@@ -29,7 +29,8 @@ public class MailService {
         MimeMessage message = javaMailSender.createMimeMessage();
 
         try {
-            message.setFrom(senderEmail);
+//            message.setFrom(senderEmail);
+            message.setFrom("test@naver.com");
             message.setRecipients(MimeMessage.RecipientType.TO, mail);
             message.setSubject("bomobomo에서 인증번호 발송드립니다.");
             String body = "";
