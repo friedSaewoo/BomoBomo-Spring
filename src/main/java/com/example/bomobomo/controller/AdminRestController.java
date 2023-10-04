@@ -2,11 +2,8 @@ package com.example.bomobomo.controller;
 
 import com.example.bomobomo.domain.dto.EmpDto;
 import com.example.bomobomo.domain.dto.NoticeDto;
-import com.example.bomobomo.domain.dto.UserDto;
-import com.example.bomobomo.domain.vo.Criteria;
-import com.example.bomobomo.domain.vo.MatchListVo;
-import com.example.bomobomo.domain.vo.PageVo;
-import com.example.bomobomo.domain.vo.SearchVo;
+import com.example.bomobomo.domain.vo.UserListVo;
+import com.example.bomobomo.domain.vo.*;
 import com.example.bomobomo.service.AdminService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,7 +27,7 @@ public class AdminRestController {
         criteria.setPage(page);
         criteria.setAmount(10);
         PageVo pageVo = new PageVo(adminService.getTotalUsers(searchVo), criteria);
-        List<UserDto> adminUserList = adminService.selectAllUsers(criteria, searchVo);
+        List<UserListVo> adminUserList = adminService.selectAllUsers(criteria, searchVo);
 
         Map<String, Object> adminUserMap = new HashMap<>();
         adminUserMap.put("pageVo", pageVo);

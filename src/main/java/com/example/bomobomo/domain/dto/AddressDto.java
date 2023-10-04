@@ -9,9 +9,9 @@ import org.springframework.stereotype.Component;
 @NoArgsConstructor
 public class AddressDto {
 
-    Long addressNumber;
-    Long userNumber;
-    String addressPost;
-    String address;
-    String addressDetail;
+    private Long addressNumber;
+    private Long userNumber;
+    private String addressPost;
+    private String address;
+    private String addressDetail;
 }
