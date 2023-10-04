@@ -51,6 +51,9 @@
                                         <label class="labelPw">패스워드를 입력해주세요.</label>
                                     </div>
                                 </div>
+<!--                                -->
+<!--                                <span th:if="${isLogin == '0'}" th:text="아이디 또는 비밀번호를 다시 확인해주세요. "></span>-->
+                                <span class="idCheck" th:if="${isLogin == '0'}">아이디 또는 비밀번호를 다시 확인해주세요.</span>
 
                             </div>
                             <div class="buttonLogin">

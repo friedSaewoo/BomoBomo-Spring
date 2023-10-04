@@ -1,11 +1,3 @@
-// var elements = document.querySelectorAll('.post>div');
-//
-// elements.forEach(function(element) {
-//     element.addEventListener('click', function() {
-//         var url = 'admin_user_detail.html';
-//         window.location.href = url;
-//     });
-// });
 
 // 페이징 처리
 
@@ -73,15 +65,28 @@ function loadUserList(result){
             userDiv.append('<div class="user-name">' + user.userName + '</div>');
             userDiv.append('<div class="user-id">' + user.userId + '</div>');
             userDiv.append('<div class="date">' + user.registerDate + '</div>');
-            userDiv.append('<div class="review"></div>');
-            userDiv.append('<div class="status"></div>');
+            userDiv.append('<div class="review">' + user.review + '</div>');
             userList.append(userDiv);
+
+            userDiv.on('click', function() {
+                let url = `/admin/user/detail?userNumber=${user.userNumber}`;
+                window.location.href = url;
+            });
         });
     }else{
         let userList = $('.user-list');
         userList.empty(); // 기존 데이터 지우기
     }
     pagination(result.pageVo);
+
+    var elements = document.querySelector('.post>div');
+
+// elements.forEach(function(element) {
+//     element.addEventListener('click', function() {
+//         var url = '/admin/rest/emp/list/${page}';
+//         window.location.href = url;
+//     });
+// });
 }
 // 각 페이징 버튼 처리
 function pagination(pageVo) {
@@ -126,4 +131,5 @@ function inputEnter(event) {
     }
 }
 document.getElementById("search").addEventListener("keyup", inputEnter);
+
 

@@ -1,15 +1,13 @@
-package com.example.bomobomo.domain.dto;
+package com.example.bomobomo.domain.vo;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
-import java.util.Date;
-
 @Data
 @Component
 @NoArgsConstructor
-public class UserDto {
+public class UserListVo {
     private Long userNumber;
     private String userId;
     private String userPassword;
@@ -17,5 +15,5 @@ public class UserDto {
     private String userEmail;
     private String registerDate;
     private String userPhone;
-
+    private Integer review;
 }
