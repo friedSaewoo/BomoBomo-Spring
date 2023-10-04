@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>결제내역</title>
+  <link rel="stylesheet" href="/common/css/common.css"/>
+  <link rel="stylesheet" href="/fragments/css/footer.css"/>
+  <link rel="stylesheet" href="/fragments/css/header.css"/>
+  <link rel="stylesheet" href="/mypage/css/buyPage.css"/>
+
+  <script src="/common/js/index.js" defer></script>
+  <script src="/common/js/common.js" defer></script>
+  <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+  <script src="/mypage/js/buyPage.js" defer></script>
+</head>
+<body>
+<div class="header" th:replace="fragments/header.html :: header" >
+</div>
+<main>
+  <div class="buy-container">
+    <div class="section">
+      <aside class="menu-bar">
+        <!--
+                            <a href="/Mypage/html/mypage_main.html" class="logo-img">
+                                <img src="/Mypage/img/logo.png">
+                            </a> -->
+
+        <div class="announcement">
+          <!--클릭시  페이지 이동-->
+          <a href="">공지사항</a>
+        </div>
+        <div class="faq">
+          <a href="#">FAQ</a>
+        </div>
+        <div class="pay">
+          <a href="/mypage/buy">결제내역</a>
+        </div>
+        <div class="account-mg">
+          <a href="/mypage/userManage">계정관리</a>
+        </div>
+      </aside>
+      <div class="page-view">
+        <div class="page-title">
+
+          <p>
+            <a href="/mypage/main">결제내역</a>
+          </p>
+
+        </div>
+        <div class="review-page-area">
+          <p class="sitter-area" style="background-color: rgb(255, 112, 0); color: white;">시터이용 내역</p>
+          <p class="event-area">이벤트 결제 내역</p>
+        </div>
+        <div class="buybox">
+          <!--시터 이용 후기 결제 내역 조회-->
+          <ul class="buy-area" th:each="buy : ${buyList}">
+            <li class="buy-text">
+              <div class="img-area">
+                <figure>
+                  <!--데이터에서 파일 불러오기-->
+                  <!--                  <img th:src="@{}">-->
+                </figure>
+              </div>
+              <div class="buy-text-area">
+                <!--클릭시 url이동-->
+                <a href="#">
+                  <p>[보모보모]</p>
+                  <p th:text="${buy.estTitle}"></p>
+                </a>
+              </div>
+
+              <div class="price">
+                <a th:if="${buy.reviewCheck == 1}" href="javascript:void(0)" class="text-page" >
+                  <p>리뷰작성 완료</p>
+                </a>
+                <a th:if="${buy.reviewCheck == 0}" th:href="@{/mypage/siterreview(matchNumber=${buy.matchNumber},empNumber=${buy.empNumber})}" class="text-page">
+                  <p>리뷰작성</p>
+                </a>
+                <span th:text="${buy.estPrice}+'원'"></span>
+              </div>
+            </li>
+          </ul>
+          <!--시터이용 결제내역 페이징 처리-->
+          <div class="paging">
+            <ul class="page">
+
+              <a th:href="@{/mypage/buy(page=${pageVo.startPage - 1})}" class="page-a" th:if="${pageVo.prev}">
+                <li class="page-num prev">&lt</li>
+              </a>
+
+
+              <th:block th:each="i : ${#numbers.sequence(pageVo.startPage, pageVo.endPage)}">
+                <a th:href="@{/mypage/buy(page=${i})}">
+                  <li th:text="${i}"></li>
+                </a>
+              </th:block>
+
+
+              <a th:href="@{/mypage/buy(page=${pageVo.endPage + 1})}" class="page-b" th:if="${pageVo.next}">
+                <li class="page-num next">&gt</li>
+              </a>
+            </ul>
+          </div>
+        </div>
+        <!--이벤트 이용 후기 결제 내역 조회-->
+        <div class="buyboxp">
+
+          <ul class="buy-area-2">
+            <li class="buy-text-2">
+              <div class="img-area-2">
+                <figure>
+                  <!--데이터에서 파일 불러오기-->
+                  <img src="/Mypage/img/event.jpeg">
+                </figure>
+              </div>
+              <div class="buy-text-area-2">
+                <!--클릭시 url이동-->
+                <a href="#">
+                  <p>[보모보모]</p>
+                  <p>아이들이 좋아하는 스파스파이더맨</p>
+                </a>
+              </div>
+
+              <div class="price-2">
+                <a href="/mypage/reviewwrite" class="text-page-2">
+                  <p>리뷰작성</p>
+                </a>
+                <span>14,900원</span>
+              </div>
+            </li>
+            <li class="buy-text">
+              <div class="img-area-2">
+                <figure>
+                  <!--데이터에서 파일 불러오기-->
+                  <img src="/Mypage/img/event.jpeg">
+                </figure>
+              </div>
+              <div class="buy-text-area-2">
+                <!--클릭시 url이동-->
+                <a href="#">
+                  <p>[보모보모]</p>
+                  <p>아이들이 좋아하는 스파스파이더맨</p>
+                </a>
+              </div>
+
+              <div class="price-2">
+                <a href="/Mypage/html/reviewwrite.html" class="text-page-2">
+                  <p>리뷰작성</p>
+                </a>
+                <span>14,900원</span>
+              </div>
+            </li>
+            <li class="buy-text">
+              <div class="img-area-2">
+                <figure>
+                  <!--데이터에서 파일 불러오기-->
+                  <img src="/Mypage/img/event.jpeg">
+                </figure>
+              </div>
+              <div class="buy-text-area-2">
+                <!--클릭시 url이동-->
+                <a href="#">
+                  <p>[보모보모]</p>
+                  <p>아이들이 좋아하는 스파스파이더맨</p>
+                </a>
+              </div>
+
+              <div class="price-2">
+                <a href="/Mypage/html/reviewwrite.html" class="text-page-2">
+                  <p>리뷰작성</p>
+                </a>
+                <span>14,900원</span>
+              </div>
+            </li>
+            <li class="buy-text">
+              <div class="img-area-2">
+                <figure>
+                  <!--데이터에서 파일 불러오기-->
+                  <img src="/Mypage/img/event.jpeg">
+                </figure>
+              </div>
+              <div class="buy-text-area-2">
+                <!--클릭시 url이동-->
+                <a href="#">
+                  <p>[보모보모]</p>
+                  <p>아이들이 좋아하는 스파스파이더맨</p>
+                </a>
+              </div>
+
+              <div class="price-2">
+                <a href="/Mypage/html/reviewwrite.html" class="text-page-2">
+                  <p>리뷰작성</p>
+                </a>
+                <span>14,900원</span>
+              </div>
+            </li>
+          </ul>
+          <div class="paging1">
+            <ul class="page1">
+              <a href="#" class="page-c">
+                <li class="page-num1 prev">&lt</li>
+              </a>
+              <a>
+                <li>1</li>
+              </a>
+              <a>
+                <li>2</li>
+              </a>
+              <a>
+                <li>3</li>
+              </a>
+              <a href="#" class="page-d">
+                <li class="page-num1 next">&gt</li>
+              </a>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+<div class="footer" th:replace="fragments/footer.html :: footer">
+</div>
+<script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+</body>
+</html>

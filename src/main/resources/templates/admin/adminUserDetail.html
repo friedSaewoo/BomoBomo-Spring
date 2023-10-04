@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>관리자 페이지</title>
+    <link rel="stylesheet" href="/admin/css/adminUserDetail.css">
+</head>
+<body>
+    <!-- 전체 컨테이너 -->
+    <div class="admin-container">
+        <!-- 사이드 컨테이너 -->
+        <div class="side-container">
+            <div class="side-logo-box">
+                   <img class="logo" src="/admin/img/logo.png" alt="logo">
+            </div>
+            <ul class="side-item-container">
+                <li class="side-item" ><a href="/admin/main">대시보드</a></li>
+                <li class="side-item on"><a href ="/admin/user">회원정보</a></li>
+                <li class="side-item"><a href="/admin/emp">직원관리</a></li>
+                <li class="side-item"><a href="/admin/match">매칭관리</a></li>
+                <li class="side-item"><a href="/admin/event">이벤트관리</a></li>
+                <li class="side-item"><a href="/admin/notice">공지사항</a></li>
+            </ul>
+        </div>
+
+        <!-- 메인 컨테이너 -->
+        <div class="main-container">
+            <!-- 메인 헤더 -->
+            <div class="main-header">
+                <span class="main-header-title">BomoBomo</span>
+                <span class="admin-name">admin</span>
+                <button class="main-header-exit">나가기</button>
+            </div>
+            <!-- 메인 컨텐츠 -->
+            <div class="main-contents">
+                <div class="contents-title">
+                    <span class="main-contents-title-text">회원정보</span>
+                </div>
+                <div class="user-detail-container">
+                    <div class="detail-title">
+                        <span th:text="${userDetail.userName}"></span>
+                        <span>님의 회원정보</span>
+                    </div>
+                    <div class="detail-info">
+                        <ul class="detail-side">
+                            <li class="detail-item">이름</li>
+                            <li class="detail-item">아이디</li>
+                            <li class="detail-item">이메일</li>
+                            <li class="detail-item">연락처</li>
+                            <li class="detail-item">가입일</li>
+                            <li class="detail-item">주소</li>
+                        </ul>
+                        <ul class="detail-main">
+                            <li class="detail-item"><input type="text" th:value="${userDetail.userName}" readonly></li>
+                            <li class="detail-item"><input type="text" th:value="${userDetail.userId}" readonly></li>
+                            <li class="detail-item"><input type="text" th:value="${userDetail.userEmail}" readonly></li>
+                            <li class="detail-item"><input type="text" th:value="${userDetail.userPhone}" readonly></li>
+                            <li class="detail-item"><input type="text" th:value="${userDetail.registerDate}" readonly></li>
+                            <div class="address-container">
+                                <div>
+                                    <li class="detail-item">
+                                        <input class="number" type="text" th:value="${userDetail.addressPost}" readonly>
+                                        <input class="road" type="text" th:value="${userDetail.address}" readonly>
+                                    </li>
+                                </div>
+                                <li class="detail-item"><input type="text" th:value="${userDetail.addressDetail}" readonly></li>
+                            </div>
+                        </ul>
+                    </div>
+                    <a href="/admin/user">
+                        <button>목록으로</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+<script src="/admin/js/adminHeader.js"></script>
+</html>

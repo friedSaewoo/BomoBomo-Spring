@@ -81,7 +81,7 @@ li {
 .userInfo {
     width: 350px;
     border-radius: 5px;
-    border: 1px solid #bbb;
+    border: 1px solid #FF7000;
     text-indent: 25px;
     padding: 10px 12px;
     font-size: 14px;
@@ -110,7 +110,6 @@ li {
     text-align: center;
     display: none;
     width: 400px;
-
 }
 
 .idFindOk span{
@@ -120,8 +119,8 @@ li {
 
 .verifiedCh {
     margin: 10px 0px 10px 10px;
-    width : 70px;
-    height: 30px;
+    width : 120px;
+    height: 40px;
     cursor: pointer;
     color: white;
     background-color: #FF7000;
@@ -129,10 +128,29 @@ li {
     border-radius: 5px;
     font-weight: 500;
     font-size: 10px;
+    padding: 10px;
 
 }
 
+.verifiedCh a{
+    font-size: smaller;
+}
 
+.nameAlready{
+    color:red;
+    display: none;
+    font-size: 12px;
+}
+
+.nameAlready, .nameOk, .emailOk {
+    margin-left: 55px;
+}
+
+.nameOk, .PwChOk, .emailOk{
+    color:greenyellow;
+    display: none;
+    font-size: 13px;
+}
 
 
 

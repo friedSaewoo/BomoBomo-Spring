@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.bomobomo.mapper.AdminMapper">
+<!--로그인-->
+    <select id="login" resultType="adminDto">
+        SELECT *
+        FROM ADMIN
+        WHERE ADMIN_ID = #{adminId} AND ADMIN_PASSWORD = #{adminPassword}
+    </select>
+<!--주간 가입수-->
+    <select id="weeklyRegister" resultType="weeklyRegisterVo">
+        WITH DateRange AS (
+        SELECT TRUNC(SYSDATE) - LEVEL + 1 AS registration_date
+        FROM DUAL
+        <![CDATA[
+        CONNECT BY LEVEL <= 7
+        ]]>
+        )
+        SELECT
+        TO_CHAR(DateRange.registration_date, 'MM-DD') AS month_day,
+        NVL(user_counts.daily_user_count, 0) AS daily_user_count
+        FROM DateRange
+        LEFT JOIN (
+        SELECT
+        TO_CHAR(TRUNC(register_date), 'MM-DD') AS registration_date,
+        COUNT(*) AS daily_user_count
+        FROM users
+        WHERE register_date >= TRUNC(SYSDATE) - 7
+        GROUP BY TO_CHAR(TRUNC(register_date), 'MM-DD')
+        ) user_counts
+        ON TO_CHAR(DateRange.registration_date, 'MM-DD') = user_counts.registration_date
+        ORDER BY DateRange.registration_date;
+    </select>
+<!-- 회원 리스트 -->
+    <select id="selectAllUsers" resultType="userListVo">
+        SELECT
+        rnum, USER_NUMBER, USER_ID, USER_PASSWORD, USER_NAME, USER_EMAIL, TO_CHAR(REGISTER_DATE, 'YYYY-MM-DD') AS REGISTER_DATE, review
+        FROM (
+            SELECT
+            ROWNUM AS rnum, USER_NUMBER, USER_ID, USER_PASSWORD, USER_NAME, USER_EMAIL, REGISTER_DATE,review
+            FROM (
+                SELECT
+                U.USER_NUMBER, U.USER_ID, U.USER_PASSWORD, U.USER_NAME, U.USER_EMAIL, U.REGISTER_DATE,COALESCE(S.SITTER_COUNT, 0) + COALESCE(E.EVENT_COUNT, 0) as review
+                FROM USERS U
+                LEFT JOIN (
+                    SELECT USER_NUMBER, COUNT(*) AS SITTER_COUNT
+                    FROM SITTER_BOARD
+                        GROUP BY USER_NUMBER
+                        ) S ON U.USER_NUMBER = S.USER_NUMBER
+                LEFT JOIN (
+                    SELECT USER_NUMBER, COUNT(*) AS EVENT_COUNT
+                    FROM EVENT_BOARD
+                        GROUP BY USER_NUMBER
+                        ) E ON U.USER_NUMBER = E.USER_NUMBER
+        <where>
+            <choose>
+                <when test="searchVo.cate == 'userName'">
+                    AND USER_NAME LIKE '%' || #{searchVo.keyword} || '%'
+                </when>
+                <when test="searchVo.cate == 'userId'">
+                    AND USER_ID LIKE '%' || #{searchVo.keyword} || '%'
+                </when>
+            </choose>
+        </where>
+        ORDER BY USER_NUMBER DESC
+        ) <![CDATA[
+        where rownum<=#{criteria.page} * #{criteria.amount}
+            ]]>
+        )where rnum> (#{criteria.page}-1)*#{criteria.amount}
+    </select>
+<!-- 검색별 회원 수 -->
+    <select id="getTotalUsers" resultType="_int">
+        select count(user_number)
+        from users
+        <if test="'userName'.equals(cate)">
+            where user_name like '%' || #{keyword} || '%'
+        </if>
+        <if test="'userId'.equals(cate)">
+            where user_id like '%' || #{keyword} || '%'
+        </if>
+    </select>
+
+<!-- 회원 상세정보  -->
+    <select id="selectUserDetail" parameterType="Long" resultType="userDetailVo">
+        select U.USER_NUMBER AS userNumber, U.USER_ID as userId,U.USER_NAME as userName,u.USER_EMAIL as userEmail,U.REGISTER_DATE as registerDate,U.USER_PHONE as userPhone
+             ,A.ADDRESS as address, A.ADDRESS_POST as addressPost, A.ADDRESS_DETAIL as addressDetail
+        from users u
+        JOIN ADDRESS A
+        ON U.USER_NUMBER = A.USER_NUMBER
+        WHERE U.USER_NUMBER = #{userNumber}
+    </select>
+<!-- 직원 조회 -->
+    <select id="selectAllEmp" resultType="empDto">
+        SELECT
+        rnum, EMP_NUMBER, EMP_NAME, EMP_AGE, EMP_GENDER, EMP_PHONE, EMP_EMAIL, TO_CHAR(EMP_DATE, 'YYYY-MM-DD') AS EMP_DATE, EMP_CONTENT
+        FROM (
+        SELECT
+        ROWNUM AS rnum, EMP_NUMBER, EMP_NAME, EMP_AGE, EMP_GENDER, EMP_PHONE, EMP_EMAIL, EMP_DATE, EMP_CONTENT
+        FROM (
+        SELECT
+        EMP_NUMBER, EMP_NAME, EMP_AGE, EMP_GENDER, EMP_PHONE, EMP_EMAIL, EMP_DATE, EMP_CONTENT
+        FROM EMP
+        <where>
+            <choose>
+                <when test="searchVo.cate == 'empName'">
+                    AND EMP_NAME LIKE '%' || #{searchVo.keyword} || '%'
+                </when>
+                <when test="searchVo.cate == 'empEmail'">
+                    AND EMP_EMAIL LIKE '%' || #{searchVo.keyword} || '%'
+                </when>
+            </choose>
+        </where>
+        ORDER BY EMP_NUMBER DESC
+        ) <![CDATA[
+    WHERE rownum <= #{criteria.page} * #{criteria.amount}
+    ]]>
+        ) WHERE rnum > (#{criteria.page} - 1) * #{criteria.amount}
+
+    </select>
+
+<!-- 검색 별 직원 수 -->
+    <select id="getTotalEmp" resultType="_int">
+            select count(emp_number)
+            from emp
+            <if test="'empName'.equals(cate)">
+                where emp_name like '%' || #{keyword} || '%'
+            </if>
+            <if test="'empEmail'.equals(cate)">
+                where emp_email like '%' || #{keyword} || '%'
+            </if>
+    </select>
+
+<!-- 공지사항 조회 -->
+    <select id="selectAllNotice" resultType="noticeDto">
+        SELECT
+        rnum, NOTICE_NUMBER, NOTICE_TITLE, NOTICE_CONTENT,NOTICE_COUNT, TO_CHAR(NOTICE_REGISTER_DATE, 'YYYY-MM-DD') AS NOTICE_REGISTER_DATE
+                                                                      , TO_CHAR(NOTICE_MODIFY_DATE,'YYYY-MM-DD') AS NOTICE_MODIFY_DATE
+        FROM (
+        SELECT
+        ROWNUM AS rnum, NOTICE_NUMBER, NOTICE_TITLE, NOTICE_CONTENT, NOTICE_REGISTER_DATE, NOTICE_MODIFY_DATE, NOTICE_COUNT
+        FROM (
+        SELECT
+        NOTICE_NUMBER, NOTICE_TITLE, NOTICE_CONTENT, NOTICE_REGISTER_DATE, NOTICE_MODIFY_DATE, NOTICE_COUNT
+        FROM NOTICE
+        <where>
+            <choose>
+                <when test="searchVo.cate == 'noticeTitle'">
+                    AND notice_title LIKE '%' || #{searchVo.keyword} || '%'
+                </when>
+            </choose>
+        </where>
+        ORDER BY NOTICE_NUMBER DESC
+        ) <![CDATA[
+    WHERE rownum <= #{criteria.page} * #{criteria.amount}
+    ]]>
+        ) WHERE rnum > (#{criteria.page} - 1) * #{criteria.amount}
+
+    </select>
+
+<!-- 검색별 공지수 -->
+    <select id="getTotalNotice" resultType="_int">
+        select count(notice_number)
+        from notice
+        <if test="'noticeTitle'.equals(cate)">
+            where notice_title like '%' || #{keyword} || '%'
+        </if>
+    </select>
+<!--  공지사항 상세정보-->
+    <select id="selectNoticeDetail" parameterType="Long" resultType="noticeDto">
+        select notice_number, notice_title, notice_content, TO_CHAR(notice_register_date,'YYYY-MM-DD') as notice_register_date,
+               TO_CHAR( notice_modify_date,'YYYY-MM-DD') as notice_modify_date, notice_count
+        from NOTICE
+        where NOTICE_NUMBER=#{noticeNumber}
+    </select>
+<!--    공지 등록-->
+    <insert id="noticeRegist">
+        <selectKey keyProperty="noticeNumber" order="BEFORE" resultType="Long">
+            SELECT SEQ_NOTICE.NEXTVAL FROM DUAL
+        </selectKey>
+        INSERT INTO NOTICE (NOTICE_NUMBER, NOTICE_TITLE, NOTICE_CONTENT, NOTICE_REGISTER_DATE, NOTICE_MODIFY_DATE, NOTICE_COUNT)
+        VALUES (#{noticeNumber},#{noticeTitle},#{noticeContent},sysdate,sysdate,0)
+    </insert>
+
+<!-- 매칭 조회 -->
+    <select id ="selectAllMatchs" resultType="matchListVo">
+        SELECT rnum,MATCH_NUMBER,STATUS,USER_NUMBER,USER_NAME,USER_ID,USER_PHONE,emp_number,emp_name,emp_email,emp_phone
+        FROM (
+                 select rownum as rnum, MATCH_NUMBER,STATUS,USER_NUMBER,USER_NAME,USER_ID,USER_PHONE,emp_number,emp_name,emp_email,emp_phone
+                 from(
+                         SELECT
+                             M.match_number as match_number, M.status as status,M.user_number as user_number,
+                             U.user_name as user_name,U.user_id as user_id,U.user_phone as user_phone,
+                             M.emp_number as emp_number,E.emp_name as emp_name,E.emp_email as emp_email,E.emp_phone as emp_phone
+                         FROM
+                             Matchs M
+                                 JOIN
+                             users U ON M.user_number = U.user_number
+                                 JOIN
+                             EMP E ON M.emp_number = E.EMP_NUMBER
+                <where>
+                    <choose>
+                        <when test="searchVo.cate == 'userName'">
+                            AND user_name LIKE '%' || #{searchVo.keyword} || '%'
+                        </when>
+                        <when test="searchVo.cate == 'empName'">
+                            AND emp_name LIKE '%' || #{searchVo.keyword} || '%'
+                        </when>
+                    </choose>
+                </where>
+                ORDER BY match_NUMBER DESC
+                ) <![CDATA[
+            WHERE rownum <= #{criteria.page} * #{criteria.amount}
+            ]]>
+             ) WHERE rnum > (#{criteria.page} - 1) * #{criteria.amount}
+    </select>
+
+    <!-- 검색별 매칭수 -->
+    <select id="getTotalMatchs" resultType="_int">
+        select count(match_number)
+            from
+            (
+                SELECT
+                    M.match_number as match_number, M.status as status,M.user_number as user_number,
+                    U.user_name as user_name,U.user_id as user_id,U.user_phone as user_phone,
+                    M.emp_number as emp_number,E.emp_name as emp_name,E.emp_email as emp_email,E.emp_phone as emp_phone
+                    FROM Matchs M
+                    JOIN users U ON M.user_number = U.user_number
+                    JOIN EMP E ON M.emp_number = E.EMP_NUMBER
+            )
+        <if test="'userName'.equals(cate)">
+            where user_name like '%' || #{keyword} || '%'
+        </if>
+        <if test="'empName'.equals(cate)">
+            where emp_name like '%' || #{keyword} || '%'
+        </if>
+    </select>
+</mapper>

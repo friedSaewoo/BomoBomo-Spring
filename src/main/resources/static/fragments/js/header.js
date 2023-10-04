@@ -1,36 +1,12 @@
 $('.sub-menu').hide();
 
-// $('.main-menu >li a').mouseenter(function(){
-//     $('.sub-menu').stop().slideDown(2000);
-// })
-
-
-// 개별 메뉴 슬라이드 다운
-// $('#downMenu').hover(function(){
-//     $(this).children(".sub-menu").stop().slideDown(1000)
-// })
-
-// $('#downMenu').mouseleave(function(){
-//     $(this).children(".sub-menu").stop().slideUp(1000)
-// })
-
-// $('#downMenu2').hover(function(){
-//     $(this).children(".sub-menu").stop().slideDown(1000)
-// })
-
-// $('#downMenu2').mouseleave(function(){
-//     $(this).children(".sub-menu").stop().slideUp(1000)
-// })
-
-
-
 
 // 전체 슬라이드 다운
 
 $(function () {
-    var hh = $(".header-wrap").height();
-    var ih = $(".sub-menu").innerHeight();
-    var maxHeight = hh + ih;
+    let hh = $(".header-wrap").height();
+    let ih = $(".sub-menu").innerHeight();
+    let maxHeight = hh + ih;
 
     console.log(maxHeight)
 
@@ -54,6 +30,24 @@ $(function () {
 
 
 });
+
+
+//스크롤 다운 시 헤더숨기기
+//스크롤 업 헤더 등장
+const navBar = $('header');
+let preScrollPros = window.scrollY;
+
+$(window).on('scroll', function (){
+    let currScrollPros = window.scrollY;
+
+    if(currScrollPros > preScrollPros){
+        navBar.css('display', 'none');
+    }else {
+        navBar.css('display', 'block');
+    }
+    preScrollPros = currScrollPros;
+})
+
 
 
 $(window).scroll(function () {

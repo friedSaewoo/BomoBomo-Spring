@@ -83,7 +83,7 @@ li {
 .userInfo {
     width: 350px;
     border-radius: 4px;
-    border: 1px solid #bbb;
+    border: 1px solid #FF7000;
     text-indent: 25px;
     padding: 10px 12px;
     font-size: 14px;
@@ -118,9 +118,13 @@ li {
 
 .labelId, .labelPw {
     display: none;
+    color: red;
 }
 
-
+.idCheck {
+    color: red;
+    font-size: 15px;
+}
 
 
 

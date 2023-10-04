@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.bomobomo.mapper.MyPageMapper">
+    <!--결제 페이지 시터이용후기 내역 보기-->
+    <select id="selectSitterList" resultType="myPageSitterVo">
+        SELECT MATCH_NUMBER, USER_NUMBER, SUBMIT_ORDER_NUMBER, EMP_NUMBER, STATUS, EST_TITLE, EMP_IMG_NAME, EMP_IMG_UPLOAD_PATH, EMP_IMG_UUID, EST_PRICE
+             , REVIEW_CHECK
+        FROM (
+                 SELECT ROWNUM AS RNUM, P1.MATCH_NUMBER, USER_NUMBER, SUBMIT_ORDER_NUMBER, EMP_NUMBER, STATUS, EST_TITLE, EMP_IMG_NAME, EMP_IMG_UPLOAD_PATH, EMP_IMG_UUID, EST_PRICE
+                      , REVIEW_CHECK
+                 FROM (
+                          SELECT S1.MATCH_NUMBER, USER_NUMBER, SUBMIT_ORDER_NUMBER, S1.EMP_NUMBER, STATUS
+                               , EC.EST_TITLE , EC.EST_PRICE
+                               , EI.EMP_IMG_NAME, EI.EMP_IMG_UPLOAD_PATH, EI.EMP_IMG_UUID
+                               , (select count(SB.SITTER_BOARD_NUMBER) FROM SITTER_BOARD SB WHERE S1.MATCH_NUMBER = SB.MATCH_NUMBER) AS REVIEW_CHECK
+                          FROM (
+                                   SELECT match_number, user_number, submit_order_number, emp_number, status
+                                   FROM MATCHS
+                                   WHERE USER_NUMBER = #{userNumber} AND STATUS = 2
+                                  order by match_number desc
+                               ) S1
+                               left JOIN EST_CONTENT EC ON S1.MATCH_NUMBER = EC.MATCH_NUMBER
+                                   LEFT JOIN EMP_IMG EI ON S1.EMP_NUMBER = EI.EMP_NUMBER
+                      ) P1
+            <![CDATA[
+                 WHERE ROWNUM <= #{criteria.page} * #{criteria.amount}
+            ]]>
+        ) P2
+        WHERE RNUM > (#{criteria.page} - 1) * #{criteria.amount}
+    </select>
+
+    <select id="selectTotal" resultType="_int">
+        SELECT count(match_number)
+        FROM MATCHS
+        WHERE USER_NUMBER = ${userNumber} AND STATUS = 2
+    </select>
+
+</mapper>

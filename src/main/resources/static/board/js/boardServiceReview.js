@@ -1,30 +1,9 @@
-
-$(document).ready(function () {
-    showServiceReviewList(1,getSearchReviewVo());
-
-});
+import * as serviceReview from './module/boardService.js';
 
 
-//페이징처리된 숫자 클릭 시 해당 데이터를 가져와서 비동기 페이징처리
-$(document).on('click', '.page-num a', function (e) {
-    e.preventDefault();
-    const page = $(this).data('reviewNum');
-    showServiceReviewList(page,getSearchReviewVo());
+let keywordTest = '';
 
-});
-
-//검색 버튼 클릭 시 검색결과 화면에 표시를하며 동시에 페이징처리
-$('.sitter-search-btn>button' ).on('click', function (){
-
-
-
-    showServiceReviewList(1, getSearchReviewVo());
-
-
-})
-
-
-
+//검색결과
 function getSearchReviewVo(){
     let cate = $('.cate').val();
     let keyword = $('.keyword').val();
@@ -34,110 +13,52 @@ function getSearchReviewVo(){
 
     return{
         cate : cate,
-        keyword : keyword
+        keyword : keywordTest
     };
 }
 
+//첫화면 로드
+$(document).ready(function () {
+    serviceReview.showServiceReviewList(1, getSearchReviewVo());
 
-function showServiceReviewList(page, searchReviewVo){
+});
 
-    $.ajax({
-
-        url:`/reviews/service/${page}`,
-        type:'get',
-        data: searchReviewVo,
-        dataType:'json',
-        success :function (result){
-            console.log(result.pageReviewVo);
-            console.log(result.serviceReviewList);
-
-            serviceReviewList(result)
+//이벤트 후기 게시판 이동
+$('.event-review-btn').on('click', function (){
+    window.location.href="/board/eventReview";
+})
 
 
-        }, error :
-        function (a,b,c){
-            console.error(c);
-        }
+//페이징처리된 숫자 클릭 시 해당 데이터를 가져와서 비동기 페이징처리
+$(document).on('click', '.page-num a', function (e) {
+    e.preventDefault();
+    $('.keyword').val('');
 
-    });
-}
+    const page = $(this).data('reviewnum');
+    serviceReview.showServiceReviewList(page, getSearchReviewVo());
 
+});
 
-function serviceReviewList(result) {
-    let text = '';
+//검색 버튼 클릭 시 검색결과 화면에 표시를하며 동시에 페이징처리
+$('.sitter-search-btn>button' ).on('click', function (){
 
-    if(result.serviceReviewList.length !=0){
-        result.serviceReviewList.forEach(r => {
+    keywordTest = $('.keyword').val();
+    serviceReview.showServiceReviewList(1, getSearchReviewVo());
 
-            text += `
-                
-                <li>
-                    <a href="/board/reviewDetail?sitterBoardNumber=${r.sitterBoardNumber}">
-                        <div class="review-sitter-img">
-                            <img src="/common/img/보모사진1.jpg" alt="리뷰 보모사진"/>
-                        </div>
-                        <div class="review-sitter-content">
-                            <p><strong>${r.empName}</strong></p>
-                            <div class="review-score">
-                                <img src="/common/img/star.png"><span> ${r.rating} / 5</span>
-                            </div>
-                        </div>
-                        <div class="reivew-text-content">
-                            <dl>
-                                <dt><strong>${r.userName}</strong></dt>
-                                <dd>
-                                    <p>
-                                        ${r.sitterBoardContent}
-                                    </p>
-                                </dd>
-                            </dl>
-                        </div>
-                    </a>
-                </li>
-            `;
-        });
-        }else{
-            text=`
+})
 
-                    <h3 class="non-review-search-result">검색 결과가 없습니다. 시터님 정보를 다시 확인해주세요.<br>
-                            <a href="/board/serviceReview">목록으로 돌아가기</a></h3>
+//검색버튼 결과가 없을 시 나타나는 버튼 클락하면 페이징 1번으로 이동
+$(document).on('click', '.non-review-search-result-btn', function (){
+    $('.keyword').val('');
+    keywordTest='';
+    serviceReview.showServiceReviewList(1, getSearchReviewVo);
 
-
-
-            `;
-        }
-    
-       
+})
 
 
 
 
-    $('.review-ul').html(text);
-    //동시에 페이징처리
-    updatePagination(result.pageReviewVo);
-}
 
 
-//페이징처리
-function updatePagination(pageReviewVo) {
-    let $pagenation = $('.review-pagenation-container ul');
-    $pagenation.empty();
 
-    if (pageReviewVo.prev) {
-        $pagenation.append(`
-                <li class="page-num"><a href="#" data-reviewNum="${pageReviewVo.startPage-1}">&lt;</a></li>
-            `);
-    }
 
-    for (let page = pageReviewVo.startPage; page <= pageReviewVo.endPage; page++) {
-        $pagenation.append(`
-                    <li class="page-num "><a href="#" class="on" data-reviewNum="${page}">${page}</a></li>
-                `);
-
-    }
-    if (pageReviewVo.next) {
-        $pagenation.append(`
-            <li class="page-num"> <a href="#" data-reviewNum="${pageReviewVo.endPage+1}">&gt;</a></li>
-            `);
-    }
-}

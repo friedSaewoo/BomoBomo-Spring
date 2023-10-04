@@ -17,8 +17,5 @@ public class UserDto {
     private String userEmail;
     private String registerDate;
     private String userPhone;
-    private String userPostal;
-    private String userAddr1;
-    private String userAddr2;
 
 }

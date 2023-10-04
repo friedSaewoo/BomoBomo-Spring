@@ -10,12 +10,10 @@ import java.util.Date;
 @Data
 @NoArgsConstructor
 public class NoticeDto {
-
     private Long noticeNumber;
     private String noticeTitle;
     private String noticeContent;
     private String noticeRegisterDate;
     private String noticeModifyDate;
     private Integer noticeCount;
-
 }
