@@ -56,6 +56,5 @@
         <typeAlias type="com.example.bomobomo.domain.vo.SitterCommentVo" alias="sitterCommentVo"/>
         <typeAlias type="com.example.bomobomo.domain.vo.EventBoardVo" alias="eventBoardVo"/>
         <typeAlias type="com.example.bomobomo.domain.vo.MyPageSitterVo" alias="myPageSitterVo"/>
-
     </typeAliases>
 </configuration>
