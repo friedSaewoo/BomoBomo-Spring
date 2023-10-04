@@ -4,6 +4,7 @@ import com.example.bomobomo.domain.dto.EmpDto;
 import com.example.bomobomo.domain.dto.EventDetailDto;
 import com.example.bomobomo.domain.dto.EventDto;
 import com.example.bomobomo.domain.vo.Criteria;
+import com.example.bomobomo.domain.vo.EventVo;
 import com.example.bomobomo.domain.vo.PageVo;
 import com.example.bomobomo.service.EventService;
 import lombok.RequiredArgsConstructor;
@@ -24,7 +25,7 @@ public class EventController {
 
     private final EventService eventService;
 
-    //화면 임시
+//    이벤트 메인페이지 리스트
     @GetMapping("/list")
     public String showEventListPage(Model model){
 
@@ -33,20 +34,23 @@ public class EventController {
         return "event/event";
     }
 
-////   상세페이지 이동
+//   이벤트 상세페이지 이동
     @GetMapping(value = "/detail")
     public String showEventDetailPage(Long eventNumber, Model model) {
 
-        EventDto eventDto = eventService.find(eventNumber);
-        model.addAttribute("view", eventNumber);
+        EventVo eventVo = eventService.find(eventNumber);
+        model.addAttribute("detail", eventVo);
         return "event/eventdetail";
     }
 
+//   이벤트 신청서페이지 이동
+    @GetMapping("/payment")
+    public String ShowEventApplicationPage(Long eventNumber, Model model) {
 
-//    @GetMapping("/detail")
-//    public String showMainPage(){
-//        return "event/eventdetail";
-//    }
+        EventVo eventVo = eventService.find(eventNumber);
+        model.addAttribute("payment", eventVo);
+        return "event/eventPayment";
+    }
 
 
 //   직원 목록 전체 조회
@@ -62,7 +66,4 @@ public class EventController {
         model.addAttribute("pageInfo", new PageVo(eventService.getTotal(), criteria));
         return "event/employeeIntro" ;
     }
-
-
-
 }

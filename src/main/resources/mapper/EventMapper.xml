@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.bomobomo.mapper.EventMapper">
-    <select id="select" resultMap="detailList">
+    <select id="payment" resultType="EventVo">
+        select EVENT_NUMBER, EVENT_PRICE
+        from EVENT
+        where EVENT_NUMBER = #{eventNumber}
+    </select>
+
+    <select id="select" resultType="EventVo">
         SELECT e.event_number, e.event_price, e.event_name, ei.event_img_name, ed.event_detail_name
         FROM event e
                  LEFT JOIN event_img ei ON e.event_number = ei.event_number
