@@ -1,5 +1,6 @@
 package com.example.bomobomo.mapper;
 
+import com.example.bomobomo.domain.dto.EventDto;
 import lombok.extern.slf4j.Slf4j;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -16,10 +17,12 @@ import static org.junit.jupiter.api.Assertions.*;
 class EventMapperTest {
     @Autowired
     EventMapper eventMapper;
+    EventDto eventDto;
 
 
     @Test
     void selectAllTest() {
         eventMapper.selectAll().forEach(mem -> log.info(mem.toString()));
     }
+
 }
