@@ -87,14 +87,6 @@ a{
 }
 
 
-.event-search-container > form{
-    height: 30px;
-    box-sizing: border-box;
-    display: flex;
-    align-items: center;
-    padding-right: 15px;
-    margin-left: 520px;
-}
 
 .contents-title > span{
     color: #646464;
@@ -161,28 +153,7 @@ a{
     display: flex;
 }
 
-form > select{
-    margin-top: 10px;
-    margin-right: 3px;
-    height: 30px;
-    border: 1px solid #ddd;
-}
 
-form > input{
-    margin-top: 10px;
-    height: 28px;
-    border: 1px solid #ddd;
-}
-
-form > button{
-    cursor: pointer;
-    border: 1px solid #ddd;
-    width: 45px;
-    height: 30px;
-    background-color: white;
-    margin-top: 10px;
-    margin-left: 3px;
-}
 
 .pagination-container {
     display: flex;
@@ -225,14 +196,7 @@ form > button{
     border-left: 1px solid #ddd;
 }
 
-.event-search-container{
-    margin: auto 33px auto 0px;
-    width: 35%;
-}
-.event-search-container > form>button{
-    border: 1px solid #ddd;
-    border-radius: 5%;
-}
+
 
 .on{
     background-color:#01b9ff !important;
@@ -254,4 +218,36 @@ a > button{
     font-size: 15px;
     margin-top: 30px;
     margin-left: 80px;
+}
+.emp-search-container{
+    height: 30px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    margin: auto 33px auto auto;
+}
+.emp-search-container > select{
+    width: 70px;
+    margin-top: 10px;
+    margin-right: 3px;
+    height: 30px;
+    border: 1px solid #ddd;
+}
+
+.emp-search-container > input{
+    width: 165px;
+    margin-top: 10px;
+    height: 28px;
+    border: 1px solid #ddd;
+}
+
+.emp-search-container > button{
+    cursor: pointer;
+    width: 45px;
+    height: 30px;
+    background-color: white;
+    margin-top: 10px;
+    margin-left: 3px;
+    border: 1px solid #ddd;
+    border-radius: 5%;
 }

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>관리자 페이지</title>
-    <link rel="stylesheet" href="../css/admin_user_detail.css">
+    <link rel="stylesheet" href="/admin/css/adminUserDetail.css">
 </head>
 <body>
     <!-- 전체 컨테이너 -->
@@ -12,7 +12,7 @@
         <!-- 사이드 컨테이너 -->
         <div class="side-container">
             <div class="side-logo-box">
-                   <img class="logo" src="../img/logo.png" alt="logo">
+                   <img class="logo" src="/admin/img/logo.png" alt="logo">
             </div>
             <ul class="side-item-container">
                 <li class="side-item" ><a href="/admin/main">대시보드</a></li>
@@ -38,38 +38,44 @@
                     <span class="main-contents-title-text">회원정보</span>
                 </div>
                 <div class="user-detail-container">
-                    <div class="detail-title"><p>김성찬 님의 회원정보</p></div>
+                    <div class="detail-title">
+                        <span th:text="${userDetail.userName}"></span>
+                        <span>님의 회원정보</span>
+                    </div>
                     <div class="detail-info">
                         <ul class="detail-side">
                             <li class="detail-item">이름</li>
                             <li class="detail-item">아이디</li>
-                            <li class="detail-item">전화번호</li>
-                            <li class="detail-item">현재상태</li>
+                            <li class="detail-item">이메일</li>
+                            <li class="detail-item">연락처</li>
+                            <li class="detail-item">가입일</li>
                             <li class="detail-item">주소</li>
                         </ul>
                         <ul class="detail-main">
-                            <li class="detail-item"><input type="text" value="김성찬" readonly></li>
-                            <li class="detail-item"><input type="text" value="spwer12" readonly></li>
-                            <li class="detail-item"><input type="text" value="01071921375" readonly></li>
-                            <li class="detail-item"><input type="text" value="면접대기" readonly></li>
+                            <li class="detail-item"><input type="text" th:value="${userDetail.userName}" readonly></li>
+                            <li class="detail-item"><input type="text" th:value="${userDetail.userId}" readonly></li>
+                            <li class="detail-item"><input type="text" th:value="${userDetail.userEmail}" readonly></li>
+                            <li class="detail-item"><input type="text" th:value="${userDetail.userPhone}" readonly></li>
+                            <li class="detail-item"><input type="text" th:value="${userDetail.registerDate}" readonly></li>
                             <div class="address-container">
                                 <div>
                                     <li class="detail-item">
-                                        <input class="number" type="text" value="01256" readonly>
-                                        <input class="road" type="text" value="덕릉로57길29-5" readonly>
+                                        <input class="number" type="text" th:value="${userDetail.addressPost}" readonly>
+                                        <input class="road" type="text" th:value="${userDetail.address}" readonly>
                                     </li>
                                 </div>
-                                <li class="detail-item"><input type="text" value="301호" readonly></li>
+                                <li class="detail-item"><input type="text" th:value="${userDetail.addressDetail}" readonly></li>
                             </div>
                         </ul>
                     </div>
-                    <a href="adminUser.html">
-                        <button>뒤로가기</button>
+                    <a href="/admin/user">
+                        <button>목록으로</button>
                     </a>
                 </div>
             </div>
         </div>
     </div>
 </body>
+<script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
 <script src="/admin/js/adminHeader.js"></script>
 </html>

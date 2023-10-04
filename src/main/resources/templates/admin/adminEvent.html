@@ -33,17 +33,16 @@
                 <div class="contents-title">
                     <span class="main-contents-title-text">이벤트관리</span>
 
-                    <div class="event-search-container">
-                        <form action=""> 
-                          <select>
-                            <option>제목</option>
-                          </select>
-                          <input type="text" id="search" />
-                          <button type="submit">
+                    <div class="emp-search-container">
+                        <select class="cate">
+                            <option value="empName">이름</option>
+                            <option value="empEmail">이메일</option>
+                        </select>
+                        <input type="text" class="keyword" id="search" name="keyword"/>
+                        <button type="submit" class="submit" id="submit">
                             <span class="material-symbols-outlined">search</span>
-                          </button>
-                        </form>
-                   </div>
+                        </button>
+                    </div>
                    
                 </div>
                 <div class="event-container">

@@ -31,17 +31,27 @@
         ON TO_CHAR(DateRange.registration_date, 'MM-DD') = user_counts.registration_date
         ORDER BY DateRange.registration_date;
     </select>
-<!-- 회원조회 -->
-    <select id="selectAllUsers" resultType="userDto">
+<!-- 회원 리스트 -->
+    <select id="selectAllUsers" resultType="userListVo">
         SELECT
-        rnum, USER_NUMBER, USER_ID, USER_PASSWORD, USER_NAME, USER_EMAIL, TO_CHAR(REGISTER_DATE, 'YYYY-MM-DD') AS REGISTER_DATE
+        rnum, USER_NUMBER, USER_ID, USER_PASSWORD, USER_NAME, USER_EMAIL, TO_CHAR(REGISTER_DATE, 'YYYY-MM-DD') AS REGISTER_DATE, review
         FROM (
-        SELECT
-        ROWNUM AS rnum, USER_NUMBER, USER_ID, USER_PASSWORD, USER_NAME, USER_EMAIL, REGISTER_DATE
-        FROM (
-        SELECT
-        USER_NUMBER, USER_ID, USER_PASSWORD, USER_NAME, USER_EMAIL, REGISTER_DATE
-        FROM USERS
+            SELECT
+            ROWNUM AS rnum, USER_NUMBER, USER_ID, USER_PASSWORD, USER_NAME, USER_EMAIL, REGISTER_DATE,review
+            FROM (
+                SELECT
+                U.USER_NUMBER, U.USER_ID, U.USER_PASSWORD, U.USER_NAME, U.USER_EMAIL, U.REGISTER_DATE,COALESCE(S.SITTER_COUNT, 0) + COALESCE(E.EVENT_COUNT, 0) as review
+                FROM USERS U
+                LEFT JOIN (
+                    SELECT USER_NUMBER, COUNT(*) AS SITTER_COUNT
+                    FROM SITTER_BOARD
+                        GROUP BY USER_NUMBER
+                        ) S ON U.USER_NUMBER = S.USER_NUMBER
+                LEFT JOIN (
+                    SELECT USER_NUMBER, COUNT(*) AS EVENT_COUNT
+                    FROM EVENT_BOARD
+                        GROUP BY USER_NUMBER
+                        ) E ON U.USER_NUMBER = E.USER_NUMBER
         <where>
             <choose>
                 <when test="searchVo.cate == 'userName'">
@@ -56,7 +66,6 @@
         ) <![CDATA[
         where rownum<=#{criteria.page} * #{criteria.amount}
             ]]>
-
         )where rnum> (#{criteria.page}-1)*#{criteria.amount}
     </select>
 <!-- 검색별 회원 수 -->
@@ -71,6 +80,15 @@
         </if>
     </select>
 
+<!-- 회원 상세정보  -->
+    <select id="selectUserDetail" parameterType="Long" resultType="userDetailVo">
+        select U.USER_NUMBER AS userNumber, U.USER_ID as userId,U.USER_NAME as userName,u.USER_EMAIL as userEmail,U.REGISTER_DATE as registerDate,U.USER_PHONE as userPhone
+             ,A.ADDRESS as address, A.ADDRESS_POST as addressPost, A.ADDRESS_DETAIL as addressDetail
+        from users u
+        JOIN ADDRESS A
+        ON U.USER_NUMBER = A.USER_NUMBER
+        WHERE U.USER_NUMBER = #{userNumber}
+    </select>
 <!-- 직원 조회 -->
     <select id="selectAllEmp" resultType="empDto">
         SELECT
@@ -147,6 +165,22 @@
             where notice_title like '%' || #{keyword} || '%'
         </if>
     </select>
+<!--  공지사항 상세정보-->
+    <select id="selectNoticeDetail" parameterType="Long" resultType="noticeDto">
+        select notice_number, notice_title, notice_content, TO_CHAR(notice_register_date,'YYYY-MM-DD') as notice_register_date,
+               TO_CHAR( notice_modify_date,'YYYY-MM-DD') as notice_modify_date, notice_count
+        from NOTICE
+        where NOTICE_NUMBER=#{noticeNumber}
+    </select>
+<!--    공지 등록-->
+    <insert id="noticeRegist">
+        <selectKey keyProperty="noticeNumber" order="BEFORE" resultType="Long">
+            SELECT SEQ_NOTICE.NEXTVAL FROM DUAL
+        </selectKey>
+        INSERT INTO NOTICE (NOTICE_NUMBER, NOTICE_TITLE, NOTICE_CONTENT, NOTICE_REGISTER_DATE, NOTICE_MODIFY_DATE, NOTICE_COUNT)
+        VALUES (#{noticeNumber},#{noticeTitle},#{noticeContent},sysdate,sysdate,0)
+    </insert>
+
 <!-- 매칭 조회 -->
     <select id ="selectAllMatchs" resultType="matchListVo">
         SELECT rnum,MATCH_NUMBER,STATUS,USER_NUMBER,USER_NAME,USER_ID,USER_PHONE,emp_number,emp_name,emp_email,emp_phone
