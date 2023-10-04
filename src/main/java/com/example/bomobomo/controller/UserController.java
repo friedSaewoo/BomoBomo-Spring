@@ -6,15 +6,13 @@ import com.example.bomobomo.domain.dto.UserDto;
 import com.example.bomobomo.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.HashMap;
 
 @Controller
@@ -38,18 +36,16 @@ public class UserController {
 
     @GetMapping("/idFind")
     public String selectId() {
-
         return "user/idFind";
     }
 
     @GetMapping("/pwFind")
     public String selectPw() {
-
         return "user/pwFind";
     }
 
     @PostMapping("/join")
-    public String join(UserDto userDto, AddressDto addressDto, HttpServletRequest req, HashMap map) {
+    public String join(UserDto userDto, AddressDto addressDto, HttpServletRequest req) {
 
         String detail = req.getParameter("addressDetails");
         String addressDetail = addressDto.getAddressDetail() +" "+ detail;
@@ -68,16 +64,9 @@ public class UserController {
 
     @PostMapping("/login")
     public RedirectView login(String userId, String userPassword, HttpServletRequest req, RedirectAttributes redirectAttributes){
+
         UserDto userDto = null;
 
-//        UserDto userDto = userService.find(userId, userPassword);
-        req.getSession().setAttribute("userNumber", userDto.getUserNumber());
-        req.getSession().setAttribute("userName",userDto.getUserName());
-        req.getSession().setAttribute("userId", userDto.getUserId());
-
-        System.out.println("로그인 컨트롤러 : " + userDto.getUserId());
-        System.out.println("로그인 컨트롤러 : " + userDto.getUserName());
-        System.out.println("로그인 컨트롤러 : " + userDto.getUserNumber());
 
         try {
             userDto = userService.find(userId, userPassword);
@@ -85,6 +74,14 @@ public class UserController {
             redirectAttributes.addFlashAttribute("isLogin", "0");
             return new RedirectView("/user/login");
         }
+
+        req.getSession().setAttribute("userNumber", userDto.getUserNumber());
+        req.getSession().setAttribute("userName",userDto.getUserName());
+        req.getSession().setAttribute("userId", userDto.getUserId());
+
+        System.out.println("로그인 컨트롤러 : " + userDto.getUserId());
+        System.out.println("로그인 컨트롤러 : " + userDto.getUserName());
+        System.out.println("로그인 컨트롤러 : " + userDto.getUserNumber());
 
         return new RedirectView("/common/index");
     }
@@ -96,7 +93,22 @@ public class UserController {
     }
 
 
+    @PostMapping("/idFindOk")
+    public String idFindOk(String userName, String userEmail, Model model, UserDto userDto) {
 
+        userDto = userService.idFindOk(userName, userEmail);
+
+        model.addAttribute("user", userDto);
+
+        System.out.println("컨트롤러 진입.");
+        System.out.println("가입일 : " + userDto.getRegisterDate());
+        System.out.println("아이디 : " + userDto.getUserId());
+
+        return "user/idFindOk";
+    }
+
+
+    //중복 아이디 확인 메서드
     @PostMapping("/idCheck")
     @ResponseBody
     public int userCheck(String userId) {
@@ -106,14 +118,38 @@ public class UserController {
         return idCk;
     }
 
-
+    //등록된 회원 이름 확인 메서드
     @PostMapping("/nameCheck")
     @ResponseBody
     public int nameCheck(String userName) {
 
         int nameCk = userService.nameCheck(userName);
-
+        System.out.println("컨트롤러확인");
         return nameCk;
     }
+
+    @PostMapping("/emailCheck")
+    @ResponseBody
+    public int emailCheck(String userEmail, String userName) {
+        int emailCk = userService.emailCheck(userEmail, userName);
+        return emailCk;
+    }
+
+    @PostMapping("/pwEmailCheck")
+    @ResponseBody
+    public int pwEmailCheck(String userEmail, String userName, String userId) {
+        int emailCk = userService.pwEmailCheck(userEmail, userName, userId);
+        return emailCk;
+    }
+
+
+    // 비밀번호 찾기 폼
+//   	@RequestMapping(value = "/find_pw_form.do")
+//   	public String find_pw_form() throws Exception{
+//
+//        System.out.println("비밀번호 찾기 매서드 진입");
+//   		return "/member/find_pw_form";
+//   	}
+
 
 }
