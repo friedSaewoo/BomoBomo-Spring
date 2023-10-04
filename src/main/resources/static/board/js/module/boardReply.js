@@ -8,6 +8,7 @@ export function getListPage(listInfo, callback){
         success:function (result){
             console.log(result.replyList);
             console.log(result.pageReplyVo);
+            console.log(result.totalReply);
 
 
             if(callback){
@@ -84,7 +85,11 @@ export function remove(sitterCommentNumber, callback){
 
 //댓글리스트 html
 export function showReply(result){
+    let totalReply='';
     let text='';
+
+
+    totalReply='댓글 '+result.totalReply +'개';
 
     result.replyList.forEach(r =>{
 
@@ -127,6 +132,17 @@ export function showReply(result){
      </dl>                         
             `;
     })
+    
+    //댓글이 한 개도 없으면 숨김
+    if(result.totalReply!=0){
+        $('.totalReply').css('display','block')
+
+        $('.totalReply').html(totalReply);
+
+    }else {
+        $('.totalReply').css('display','none')
+    }
+
 
     $('.review-reply').html(text);
     updatePagination(result.pageReplyVo);

@@ -34,6 +34,7 @@ $('.btn-reply').on('click', function () {
         return;
     }
 
+
     let replyObj = {
         sitterCommentContent : content,
         sitterBoardNumber : sitterBoardNumber,
@@ -43,7 +44,9 @@ $('.btn-reply').on('click', function () {
     reply.addReply(replyObj, function(){
         reply.getListPage({sitterBoardNumber,page:1}, reply.showReply);
     });
-
+    
+    //등록버튼 누르면 글자수 카운팅 초기화 및 입력내용도 초기화
+    $("#lengthCheck").val("(0/ 200)");
     $('#reply-content').val('');
 });
 
@@ -115,6 +118,11 @@ $('.review-reply').on('click', '.reply-remove-btn', function () {
         let page = $('.active-page a').data('pagenum');
         let replyContent = $(this).closest('.modify-box').find('.modify-content').val();
 
+        if(replyContent.length>=200){
+            alert("200자 이내로 작성해주세요")
+        }
+        
+        
         let replyObj = {
             sitterCommentContent : replyContent
         };
@@ -125,8 +133,17 @@ $('.review-reply').on('click', '.reply-remove-btn', function () {
     });
 
 
-
-
+//글자수 체크
+$("#reply-content").keyup(function(e) {
+    let contents = $(this).val();
+    console.log("키업!");
+    $("#lengthCheck").val("(" + contents.length + "/ 200)"); //실시간 글자수 카운팅
+    if (contents.length > 200) {
+        alert("200자 이내로만 작성 가능합니다.")
+        $(this).val(contents.substring(0, 200));
+        $('#lengthCheck').html("(200 / 최대 200자)");
+    }
+});
 
 
 

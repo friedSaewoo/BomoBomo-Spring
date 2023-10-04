@@ -90,6 +90,9 @@
             <div class="reply-writer" th:text="${session.userId}">홍길동</div>
             <textarea name="replyContent" id="reply-content" cols="30" rows="2" ></textarea>
           </div>
+          <div class="word-count">
+              <input type="text" id="lengthCheck" value="(0 / 200)">
+          </div>
           <div class="reply-btn-wrap">
             <button type="button" class="btn-reply"  >작성 완료</button>
           </div>
@@ -105,7 +108,9 @@
       </div>
 
       <!-- 리뷰 댓글 + 댓글 수정삭제 버튼 -->
+      <div class="totalReply"></div>
       <div class="review-reply">
+
 
       </div>
 

@@ -54,6 +54,7 @@ public class BoardReplyRestController {
         Map<String, Object> replyMap = new HashMap<>();
         replyMap.put("pageReplyVo", pageReplyVo);
         replyMap.put("replyList", replyList);
+        replyMap.put("totalReply", replyService.getTotal(sitterBoardNumber));
 
         return replyMap;
 
