@@ -14,8 +14,9 @@ public class MailService {
 
     private final UserService userService;
     private final JavaMailSender javaMailSender;
-//    private static final String senderEmail= "gohwangbong@gmail.com";
-    private static final String senderEmail= "test@naver.com";
+
+    //이메일 계정 등록하기
+    private static final String senderEmail= "";
     private static int number;
 //    private static String rePassword;
 
@@ -29,8 +30,7 @@ public class MailService {
         MimeMessage message = javaMailSender.createMimeMessage();
 
         try {
-//            message.setFrom(senderEmail);
-            message.setFrom("test@naver.com");
+            message.setFrom(senderEmail);
             message.setRecipients(MimeMessage.RecipientType.TO, mail);
             message.setSubject("bomobomo에서 인증번호 발송드립니다.");
             String body = "";

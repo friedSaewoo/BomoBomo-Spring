@@ -163,10 +163,27 @@ function confirmNumber(){
                         icon: 'error',
                         title: '잘못된 정보가 기입되었습니다.',
                         text: 'ID, 이름, 이메일을 다시 확인해주세요.',
+
                     });
                 } else {
 
                     if(number1 == number2 && number1){
+
+
+                        $.ajax({
+                            url:'/mail/pwFindOk', //Controller에서 요청 받을 주소
+                            type:"post",
+                            dataType:"json",
+                            data:{"userEmail" : userEmail, userId: userId},
+                            success: function(data){
+                                // alert("인증번호 발송");
+                                $('#verified').attr("readonly", false);
+                                $("#Confirm").attr("value",data);
+                                location.href="/user/login";
+                            }
+                        });
+
+
                         // $('.form').submit();
                         alert("임시패스워드를 발송했습니다.");
                     }else{
@@ -184,7 +201,6 @@ function confirmNumber(){
         });
 
 
-
     } else {
         Swal.fire({
             icon: 'error',
@@ -196,18 +212,6 @@ function confirmNumber(){
 
     // 이메일 임시패스워드
 
-    $.ajax({
-        url:'/mail/pwFindOk', //Controller에서 요청 받을 주소
-        type:"post",
-        dataType:"json",
-        data:{"userEmail" : userEmail, userId: userId},
-        success: function(data){
-            // alert("인증번호 발송");
-            $('#verified').attr("readonly", false);
-            $("#Confirm").attr("value",data);
-            location.href="/user/login";
-        }
-    });
 
 
 }
