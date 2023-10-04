@@ -1,3 +1,6 @@
+// 마이페이지 시터 리뷰 비동기터리 모듈 import
+import * as myPage from './module/myPageModule.js';
+
 // 후기관리 창 띄우기
 var isBoardVisible = false; // 초기에는 보이지 않는 상태
 var isNull=false;
@@ -124,3 +127,73 @@ $("#check_module").click(function () {
         window.location.href='/mypage/main';
     });
 });
+
+
+
+let page = 1;
+
+myPage.getSitterReviewList(page, showSitterReviewList);
+
+function showSitterReviewList(result){
+    console.log(result);
+    let text = ``;
+
+    text += `
+        <tr class="review-text top">
+            <td class="review-num">번호</td>
+            <td class="review-title">제목</td>
+            <td class="review-data">날짜</td>
+        </tr>
+    `;
+
+    result.list.forEach( review => {
+        text += `
+
+            <tr class="review-text">
+                <td class="review-num">${review.rnum}</td>
+                <td class="review-title">
+                    <a href="${review.sitterBoardNumber}">${review.sitterBoardContent}</a>
+                </td>
+                <td class="review-data">${review.sitterBoardRegisterDate}</td>
+            </tr>
+        `;
+    });
+
+    $('.table').html(text);
+
+
+    let pageInfo = '';
+
+    let pageVo = result.pageVo;
+    if(pageVo.prev){
+        pageInfo += `
+            <a href="javascript:void(0)" class="page-a">
+                <li class="page-num prev" data-page="${pageVo.startPage - 1}">&lt</li>
+            </a>
+        `;
+    }
+
+    for(let i=pageVo.startPage; i<=pageVo.endPage; i++){
+        pageInfo += `
+            <a href="javascript:void(0)">
+                <li class="page-num" data-page="${i}">${i}</li>
+            </a>
+        `;
+    }
+
+    if(pageVo.next){
+        pageInfo += `
+            <a href="javascript:void(0)" class="page-b">
+                <li class="page-num next" data-page="${pageVo.endPage + 1}">&gt</li>
+            </a>
+        `;
+    }
+
+    $('.page').html(pageInfo);
+}
+
+$('.page').on('click', '.page-num', function (){
+    page = $(this).data('page');
+    myPage.getSitterReviewList(page, showSitterReviewList);
+});
+
