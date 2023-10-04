@@ -16,7 +16,7 @@ public class MailService {
     private final JavaMailSender javaMailSender;
 
     //이메일 계정 등록하기
-    private static final String senderEmail= "";
+    private static final String senderEmail= "bokyh0327@gamil.com";
     private static int number;
 //    private static String rePassword;
 
