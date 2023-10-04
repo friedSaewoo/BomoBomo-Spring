@@ -12,40 +12,37 @@
     </insert>
 
     <!--게시판과 마이페이지에서 사용하기 위한 조회 쿼리-->
-    <select id="selectAll" resultType="sitterBoardDto">
-        SELECT RNUM,SITTER_BOARD_NUMBER, SITTER_BOARD_CONTENT, SITTER_BOARD_REGISTER_DATE,
-               SITTER_BOARD_MODIFY_DATE, RATING, SITTER_BOARD_COUNT, USER_NUMBER, EMP_NUMBER, MATCH_NUMBER
-        FROM(
-            select ROWNUM AS RNUM,SITTER_BOARD_NUMBER, SITTER_BOARD_CONTENT, SITTER_BOARD_REGISTER_DATE,
-               SITTER_BOARD_MODIFY_DATE, RATING, SITTER_BOARD_COUNT, USER_NUMBER, EMP_NUMBER, MATCH_NUMBER
-            from(
-                select SITTER_BOARD_NUMBER, SITTER_BOARD_CONTENT, SITTER_BOARD_REGISTER_DATE,
-                SITTER_BOARD_MODIFY_DATE, RATING, SITTER_BOARD_COUNT, USER_NUMBER, EMP_NUMBER, MATCH_NUMBER
-                from SITTER_BOARD
-                where USER_NUMBER=#{userNumber}
-                )
+    <select id="selectAll" resultType="sitterBoardVo">
+        SELECT RNUM, SITTER_BOARD_NUMBER, SITTER_BOARD_CONTENT, TO_CHAR(SITTER_BOARD_REGISTER_DATE, 'YYYY-MM-DD') AS SITTER_BOARD_REGISTER_DATE, SITTER_BOARD_MODIFY_DATE, RATING, SITTER_BOARD_COUNT, USER_NUMBER, EMP_NUMBER, MATCH_NUMBER
+        FROM (
+                 select ROWNUM AS RNUM, SITTER_BOARD_NUMBER, SITTER_BOARD_CONTENT, SITTER_BOARD_REGISTER_DATE, SITTER_BOARD_MODIFY_DATE, RATING, SITTER_BOARD_COUNT, USER_NUMBER, EMP_NUMBER, MATCH_NUMBER
+                 from (
+                          select SITTER_BOARD_NUMBER, SITTER_BOARD_CONTENT, SITTER_BOARD_REGISTER_DATE,
+                                 SITTER_BOARD_MODIFY_DATE, RATING, SITTER_BOARD_COUNT, USER_NUMBER, EMP_NUMBER, MATCH_NUMBER
+                          from SITTER_BOARD
+                          where USER_NUMBER=#{userNumber}
+                      )
             <![CDATA[
-            WHERE ROWNUM <= #{criteria.page} * #{criteria.amount}
+                 WHERE ROWNUM <= #{criteria.page} * #{criteria.amount}
             ]]>
         )
         WHERE RNUM > (#{criteria.page} - 1) * #{criteria.amount}
     </select>
 
     <!--리부 작성시 유저가 클릭한 결제내역의 매칭번호로 결제 제목 조회-->
-    <select id="selectTitle" resultType="String">
-        select ec.est_title
-        from (
-                 select MATCH_NUMBER, USER_NUMBER, SUBMIT_ORDER_NUMBER, EMP_NUMBER, STATUS
-                 from MATCHS
-                 where MATCH_NUMBER = #{matchNumber}
-             )s1
-        join EST_CONTENT ec on s1.match_number = ec.match_number
+    <select id="selectTitle" resultType="string">
+        SELECT EC.EST_TITLE
+        FROM (
+                 SELECT MATCH_NUMBER, USER_NUMBER, SUBMIT_ORDER_NUMBER, EMP_NUMBER, STATUS
+                 FROM MATCHS
+                 WHERE MATCH_NUMBER = #{matchNumber}
+             ) S1
+                 LEFT JOIN EST_CONTENT EC ON S1.MATCH_NUMBER = EC.MATCH_NUMBER
     </select>
     <!--마이페이지에서 시터 리뷰 칸 페이징 처리를 위한 쿼리 -->
-    <select id="selectSitterRivewTotal" resultType="_int">
-        select count(SITTER_BOARD_NUMBER)
+    <select id="selectSitterReviewTotal" resultType="_int">
+        select COUNT(SITTER_BOARD_NUMBER)
         from SITTER_BOARD
-        where user_number =#{userNumber}
+        where USER_NUMBER=#{userNumber}
     </select>
-
 </mapper>
