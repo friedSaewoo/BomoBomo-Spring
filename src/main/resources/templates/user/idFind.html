@@ -18,7 +18,7 @@
     <!-- <link rel="shortcut icon" type="image/x-icon" href="/common/img/logoPic.png" alt="타이틀 로고" /> -->
     <!-- <script src="//code.jquery.com/jquery-1.11.0.min.js"></script> -->
 
-<!--    <script src="/common/js/common.js" defer></script>-->
+    <!--    <script src="/common/js/common.js" defer></script>-->
 
     <title>BOMOBOMO</title>
 </head>
@@ -42,81 +42,64 @@
 
 
                 <!-- 회원 정보 등록 -->
+                <form action="/user/idFindOk" method="post" class="form">
 
-                <div class="idFindList">
-                    <div class="inputGroup">
-                        <div class="inputText">
-                            <div class="userInfoText">
-                                <img src="/user/img/userId.png">
-                                <input class="userInfo" type="text" id="userName" name="userName" placeholder="이름" oninput="checkName()">
-                                <label class="labelName infoLabel">이름을 입력하세요.</label>
-                                <label>
-                                    <span class="nameOk">이름이 확인되었습니다.</span>
-                                </label>
-                                <label>
-                                    <span class="nameAlready">등록되지 않은 이름입니다. 다시 확인해주세요.</span>
-                                </label>
+                    <div class="idFindList">
+                        <div class="inputGroup">
+                            <div class="inputText">
+                                <div class="userInfoText">
+                                    <img src="/user/img/userId.png">
+                                    <input class="userInfo" type="text" id="userName" name="userName" placeholder="이름"
+                                           oninput="checkName()">
+                                    <label class="labelName infoLabel">이름을 입력하세요.</label>
+                                    <label>
+                                        <span class="nameOk">이름이 확인되었습니다.</span>
+                                    </label>
+                                    <label>
+                                        <span class="nameAlready">등록되지 않은 이름입니다. 다시 확인해주세요.</span>
+                                    </label>
+                                </div>
 
-                            </div>
-
-<!--                            <form action="/email/emailConfirm" method="post">-->
                                 <div class="userInfoText">
                                     <img src="/user/img/email.png">
                                     <input class="userInfo" type="email" id="userEmail" name="userEmail"
-                                           placeholder="이메일">
+                                           placeholder="이메일" oninput="checkEmail()">
+                                    <span class="verifiedCh">
+                                        <a class="" id="verifiedCode" type="button" onclick="verifiedCode()">인증번호 받기</a>
+                                    </span>
                                     <label class="labelEm infoLabel">표준 이메일이 아닙니다.</label>
-                                    <button class="verifiedCh"  id="verifiedCode" onclick="verifiedCode()">인증번호 받기</button>
-<!--                                    onclick="location.href='/email/emailConfirm';"-->
+                                    <label class="infoLabel emailOk">입력하신 이름으로 등록된 이메일이 아닙니다.</label>
+
+<!-- <button class="verifiedCh" id="verifiedCode" type="button" onclick="verifiedCode()">인증번호 받기</button>-->
                                 </div>
-<!--                            </form>-->
 
-                            <div class="userInfoText">
-                                <img src="/user/img/verified.png">
-                                <input class="userInfo" type="text" id="verified" name="verified" placeholder="인증번호 등록"
-                                       maxlength="6" readonly>
+                                <div class="userInfoText">
+                                    <img src="/user/img/verified.png">
+                                    <input class="userInfo" type="text" id="verified" name="verified"
+                                           placeholder="인증번호 등록"
+                                           maxlength="6" readonly>
+                                </div>
+
                             </div>
-
                         </div>
+
                     </div>
+                    <div class="buttonJoin">
+                        <button class="idCheckBtn" type="button" onclick="confirmNumber()">확인하기</button>
+                    </div>
+                </form>
 
-                </div>
-                <div class="buttonJoin">
-                    <button class="idCheckBtn">확인하기</button>
-                </div>
-
-                <div class="idFindOk">
-                    <label>조회하신 아이디 정보는 : <span th:text="${session.userId}">user1</span> 입니다.</label>
-                </div>
             </div>
 
         </div>
     </main>
 </div>
+<input type="text" id="Confirm" name="Confirm" style="display: none" value="">
 
 
 <!-- 푸터부분 -->
 <footer th:replace="fragments/footer.html :: footer"></footer>
 <!-- 푸터부분 -->
-
-
-
-
-<!-- <span>이메일 </span> -->
-				<div class="form-group last mb-4 email_input">
-					<label for="memail" id="mailTxt">이메일을 입력해주세요</label>
-					<input type="text" class="form-control" name="memail" id="memail">
-				</div>
-				<!-- <span>이메일 인증번호</span> -->
-				<button class="btn btn-outline-primary" type="button" id="checkEmail">인증번호</button>
-
-
-				<div class="form-group last mb-4 check_input">
-					<label for="memailconfirm" id="memailconfirmTxt">인증번호를 입력해주세요</label>
-					<input type="text" class="form-control" id="memailconfirm">
-				</div>
-
-
-
 
 
 <script src="https://code.jquery.com/jquery-3.6.4.js"></script>

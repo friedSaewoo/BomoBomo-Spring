@@ -62,6 +62,15 @@
         WHERE USER_NAME = #{userName}
     </select>
 
+    <select id="emailCheck" resultType="_int">
+        SELECT COUNT (USER_EMAIL) FROM USERS
+        WHERE USER_EMAIL = #{userEmail} AND USER_NAME = #{userName}
+    </select>
+
+    <select id="pwEmailCheck" resultType="_int">
+        SELECT COUNT (USER_EMAIL) FROM USERS
+        WHERE USER_EMAIL = #{userEmail} AND USER_NAME = #{userName} AND USER_ID = #{userId}
+    </select>
 
 
     <update id="update">
@@ -70,4 +79,16 @@
         where USER_NUMBER =#{userNumber}
     </update>
 
+
+    <select id="idFindSelect" resultType="userDto">
+        SELECT *
+        FROM USERS
+        WHERE USER_NAME = #{userName} AND USER_EMAIL = #{userEmail}
+    </select>
+
+    <update id="rePw" parameterType="String">
+         update USERS
+         set  USER_PASSWORD = #{rePassword}
+         where USER_ID = #{userId}
+    </update>
 </mapper>

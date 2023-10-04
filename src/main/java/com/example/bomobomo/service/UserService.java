@@ -39,6 +39,13 @@ public class UserService {
         return userMapper.nameCheck(userName);
     }
 
+    public int emailCheck(String userEmail, String userName) {
+        return userMapper.emailCheck(userEmail, userName);
+    }
+
+    public int pwEmailCheck(String userEmail, String userName, String userId) {
+        return userMapper.pwEmailCheck(userEmail, userName, userId);
+    }
 
 
     public void modify(UserDto userDto){
@@ -47,6 +54,21 @@ public class UserService {
         }
            userMapper.update(userDto);
     }
+
+    public UserDto idFindOk(String userName, String userEmail) {
+        System.out.println("서비스 진입.");
+        System.out.println(userName + ",     " + userEmail);
+        return userMapper.idFindSelect(userName, userEmail);
+    }
+
+    public void rePassword(String rePassword, String userId) {
+
+        System.out.println("user서비스 : " + userId);
+        System.out.println("user서비스 : " + rePassword);
+        userMapper.rePw(rePassword, userId);
+
+    }
+
 }
 
 

@@ -1,9 +1,4 @@
-$(".idCheckBtn").click(function () {
-
-    $(".idFindOk").css("display", "block");
-})
-
-//아이디 중복확인
+//이름 중복확인
 function checkName() {
 
     $('#userName').change(function () {
@@ -69,9 +64,80 @@ function verifiedCode() {
         Swal.fire({
             icon: 'success',
             title: '이메일이 송신되었습니다.',
-            text: '인증번호를 입력해주세요.',
+            text: '인증번호를 받지 못하셨다면 이메일을 다시 확인해주세요.',
         });
 
-        $('#verified').attr("readonly", false);
     }
+
+
+    //이메일 인증번호
+
+    $.ajax({
+        url:'/mail/mail', //Controller에서 요청 받을 주소
+        type:"post",
+        dataType:"json",
+        data:{"mail" : $("#userEmail").val()},
+        success: function(data){
+            // alert("인증번호 발송");
+            $('#verified').attr("readonly", false);
+            $("#Confirm").attr("value",data);
+        }
+    });
+
+
+}
+
+function confirmNumber(){
+
+    let number1 = $("#verified").val();
+    let number2 = $("#Confirm").val();
+    let userEmail = $("#userEmail").val();
+    let userName = $("#userName").val();
+
+
+    if(userName && userEmail) {
+
+        $.ajax({
+            url: '/user/emailCheck', //Controller에서 요청 받을 주소
+            type: 'post', //POST 방식으로 전달
+            data: {userEmail: userEmail, userName: userName},
+            success: function (emailCk) { //컨트롤러에서 넘어온 cnt값을 받는다
+                if (emailCk == 0) { //emailCk 0일 경우 확인한 정보가 존지해지 않음
+                    Swal.fire({
+                        icon: 'error',
+                        title: '아이디 혹은 이메일이 틀렸습니다.',
+                        text: '올바른 정보를 기입하세요.',
+                    });
+                } else {
+
+                    if(number1 == number2 && number1){
+                        $('.form').submit();
+                        alert("인증되었습니다.");
+                    }else{
+                        Swal.fire({
+                            icon: 'error',
+                            title: '인증번호를 다시 확인해주세요.',
+                            text: '올바른 인증번호를 입력하세요.',
+                        });
+                    }
+                }
+            },
+            error: function () {
+                alert("에러입니다");
+            }
+        });
+
+
+
+    } else {
+        Swal.fire({
+            icon: 'error',
+            title: '정보를 입력하세요.',
+            text: '아이디 혹은 이메일을 입력하세요.',
+        });
+    }
+
+
+
+
 }
