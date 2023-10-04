@@ -17,5 +17,6 @@ public class SitterCommentVo {
        private Long sitterBoardNumber;
        private Long userNumber;
        private String userId;
+       private Long sitterCommentXo;
 
 }

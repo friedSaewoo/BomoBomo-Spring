@@ -36,7 +36,7 @@ public interface ReplyMapper {
     //후기 게시물 당 댓글 총 개수
     public int getTotal(Long sitterBoardNumber);
     
-    
+
     
     //======================================================
     
