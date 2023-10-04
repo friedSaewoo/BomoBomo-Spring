@@ -16,7 +16,7 @@ import java.util.Optional;
 @Slf4j
 @RequiredArgsConstructor
 public class SitterBoardService {
-    private SitterBoardMapper sitterBoardMapper;
+    private final SitterBoardMapper sitterBoardMapper;
 
     //등록
     public void register(SitterBoardDto sitterBoardDto){
@@ -27,7 +27,7 @@ public class SitterBoardService {
         log.info(sitterBoardDto.toString());
         // 결제내역에서 확인된 직원 번호, 매칭번호가 필요함 해당
 
-    }
+    };
 
     //해당 유저가 작성한 게시판 후기 조회(마이페이지 및 게시판에서 조회해서 사용)
     public List<SitterBoardVo> findAll(Criteria criteria, Long userNumber){
