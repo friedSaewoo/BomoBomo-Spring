@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.bomobomo.mapper.OrderMapper">
-    <!--동적쿼리 진행 가능여부 확인-->
+    <!--마이페일지 신청서 작성 쿼리-->
     <insert id="insert">
         <selectKey keyProperty="orderNumber" order="BEFORE" resultType="long">
             select seq_order.nextval from dual

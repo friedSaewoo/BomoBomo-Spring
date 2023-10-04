@@ -49,6 +49,12 @@ $('.event-area').on('click',function(){
     console.log(2);
 })
 
+let pagea=$('.page-a').val();
+console.log(pagea);
+
+let pageb=$('page-b').val();
+console.log(pageb);
+
 
 
 

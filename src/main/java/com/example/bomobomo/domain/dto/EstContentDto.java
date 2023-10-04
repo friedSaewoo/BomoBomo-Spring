@@ -7,8 +7,13 @@ import org.springframework.stereotype.Component;
 @Data
 @Component
 @NoArgsConstructor
-public class EstDto {
-    private Long estNumber;
-    private Integer totalPrice;
+public class EstContentDto {
+    private Long estContentNumber;
     private String estContent;
+    private Integer estPrice;
+    private String estTitle;
+    private Long matchNumber;
+
+
+
 }

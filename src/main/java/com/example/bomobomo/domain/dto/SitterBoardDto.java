@@ -8,10 +8,13 @@ import org.springframework.stereotype.Component;
 @Component
 @NoArgsConstructor
 public class SitterBoardDto {
-    private Long sitterCommentNumber;
     private Long sitterBoardNumber;
+    private String sitterBoardContent;
+    private String sitterBoardRegisterDate;
+    private String sitterBoardModifyDate;
+    private Integer rating ;
+    private Integer sitterBoardCount;
     private Long userNumber;
-    private String sitterCommentContent;
-    private String sitterCommentRegisterDate;
-    private String sitterCommentModifyDate;
+    private Long empNumber;
+    private Long matchNumber;
 }
