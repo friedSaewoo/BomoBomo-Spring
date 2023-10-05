@@ -1,9 +1,6 @@
 package com.example.bomobomo.mapper;
 
-import com.example.bomobomo.domain.dto.AdminDto;
-import com.example.bomobomo.domain.dto.EmpDto;
-import com.example.bomobomo.domain.dto.NoticeDto;
-import com.example.bomobomo.domain.dto.UserDto;
+import com.example.bomobomo.domain.dto.*;
 import com.example.bomobomo.domain.vo.*;
 import com.fasterxml.jackson.databind.deser.DataFormatReaders;
 import org.apache.ibatis.annotations.Mapper;
@@ -47,4 +44,11 @@ public interface AdminMapper {
     public List<MatchListVo> selectAllMatchs(@Param("criteria")Criteria criteria, @Param("searchVo")SearchVo searchVo);
 //    검색별 매칭수
     public int getTotalMatchs(SearchVo searchVo);
+    
+//    이벤트 등록
+    public void eventRegist(EventDto eventDto);
+//    이벤트 이미지 등록\
+    public void eventImgRegist(EventImgDto eventImgDto);
+//    이벤트 상세정보 등록
+    public void eventDetailRegist(EventDetailDto eventDetailDto);
 }

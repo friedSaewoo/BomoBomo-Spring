@@ -244,4 +244,22 @@
             where emp_name like '%' || #{keyword} || '%'
         </if>
     </select>
+<!-- 이벤트 등록-->
+    <insert id="eventRegist">
+        <selectKey keyProperty="eventNumber" order="BEFORE" resultType="Long">
+            SELECT SEQ_EVENT.NEXTVAL FROM DUAL
+        </selectKey>
+            insert into EVENT (EVENT_NUMBER, EVENT_NAME, EVENT_PRICE)
+            values (#{eventNumber},#{eventName},#{eventPrice})
+    </insert>
+<!-- 이벤트 이미지 등록-->
+    <insert id="eventImgRegist">
+        insert into EVENT_IMG (EVENT_IMG_NUMBER, EVENT_NUMBER, EVENT_IMG_NAME, EVENT_IMG_UPLOAD_PATH, EVENT_IMG_UUID)
+        values (SEQ_EVENT_IMG.NEXTVAL,#{eventNumber},#{eventImgName},#{eventImgUploadPath},#{eventImgUuid})
+    </insert>
+<!-- 이벤트 상세정보 등록  -->
+    <insert id="eventDetailRegist">
+        insert into EVENT_DETAIL (EVENT_DETAIL_NUMBER, EVENT_NUMBER, EVENT_DETAIL_NAME, EVENT_DETAIL_UPLOAD_PATH,EVENT_DETAIL_UUID)
+        values (SEQ_EVENT_DETAIL.NEXTVAL,#{eventNumber},#{eventDetailName},#{eventDetailUploadPath},#{eventDetailUuid})
+    </insert>
 </mapper>
