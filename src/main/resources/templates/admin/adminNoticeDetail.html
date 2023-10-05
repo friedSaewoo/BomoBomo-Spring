@@ -73,7 +73,7 @@
                     <a href="/admin/redirect/notice" class="board-home">글 목록</a>
                     <a th:href="@{/admin/adminNoticeConfig( noticeNumber=${noticeDetail.noticeNumber} )}" class="board-fix">수정</a>
 
-                    <a href="adminNotice.html" class="board-delete">삭제</a>
+                    <a th:href="@{/admin/adminNoticeDelete( noticeNumber=${noticeDetail.noticeNumber} )}" class="board-fix">삭제</a>
                   </div>
             </div>
 

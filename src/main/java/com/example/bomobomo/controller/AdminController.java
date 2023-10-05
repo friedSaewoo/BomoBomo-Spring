@@ -59,13 +59,6 @@ public class AdminController {
         model.addAttribute("userDetail", userDetail);
         return "admin/adminUserDetail";
     }
-//    공지사항 상세정보
-    @GetMapping(value={"/adminNoticeDetail","/adminNoticeConfig"})
-    public void selectNoticeDetail(@RequestParam(name = "noticeNumber")Long noticeNumber, Model model){
-        NoticeDto noticeDetail = adminService.selectNoticeDetail(noticeNumber);
-        model.addAttribute("noticeDetail",noticeDetail);
-    }
-
     @GetMapping("/main")
     public String Main(){
         return "admin/adminMain";
@@ -86,11 +79,11 @@ public class AdminController {
     public String Event(){
         return "admin/adminEvent";
     }
+
     @GetMapping("/notice")
     public String Notice(){
         return "admin/adminNotice";
     }
-
     @GetMapping("/redirect/notice")
     public RedirectView redirectNotice(){
         return new RedirectView("/admin/notice");
@@ -99,15 +92,28 @@ public class AdminController {
     public String noticeRegist(){
         return "admin/adminNoticeWrite";
     }
-
+//      공지사항 등록
     @PostMapping("/noticeRegist")
     public RedirectView noticeRegist(NoticeDto noticeDto){
         adminService.noticeRegist(noticeDto);
         return new RedirectView("/admin/notice");
     }
+//    공지사항 수정
     @PostMapping("/noticeConfig")
     public RedirectView noticeUpdate(NoticeDto noticeDto){
         adminService.noticeUpdate(noticeDto);
         return  new RedirectView("/admin/notice");
+    }
+    //    공지사항 상세정보
+    @GetMapping(value={"/adminNoticeDetail","/adminNoticeConfig"})
+    public void selectNoticeDetail(@RequestParam(name = "noticeNumber")Long noticeNumber, Model model){
+        NoticeDto noticeDetail = adminService.selectNoticeDetail(noticeNumber);
+        model.addAttribute("noticeDetail",noticeDetail);
+    }
+//    공지사항 삭제
+    @GetMapping("/adminNoticeDelete")
+    public RedirectView noticeDelete(Long noticeNumber){
+        adminService.noticeDelete(noticeNumber);
+        return new RedirectView("/admin/notice");
     }
 }

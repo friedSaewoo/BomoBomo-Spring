@@ -72,6 +72,10 @@ public class AdminService {
     public void noticeUpdate(NoticeDto noticeDto){
         adminMapper.noticeUpdate(noticeDto);
     }
+//    공지사항 삭제
+    public void noticeDelete(Long noticeNumber){
+        adminMapper.noticeDelete(noticeNumber);
+    }
 
 //    매칭리스트 조회
     public List<MatchListVo> selectAllMatchs(Criteria criteria, SearchVo searchVo){

@@ -186,6 +186,11 @@
         set NOTICE_CONTENT = #{noticeContent} , NOTICE_TITLE = #{noticeTitle}, NOTICE_MODIFY_DATE = SYSDATE
         where NOTICE_NUMBER=#{noticeNumber}
     </update>
+<!-- 공지 삭제-->
+    <delete id ="noticeDelete" parameterType="Long">
+        delete from notice
+        where notice_number= #{noticeNumber}
+    </delete>
 <!-- 매칭 조회 -->
     <select id ="selectAllMatchs" resultType="matchListVo">
         SELECT rnum,MATCH_NUMBER,STATUS,USER_NUMBER,USER_NAME,USER_ID,USER_PHONE,emp_number,emp_name,emp_email,emp_phone
