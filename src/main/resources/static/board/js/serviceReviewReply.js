@@ -34,6 +34,10 @@ $('.btn-reply').on('click', function () {
         return;
     }
 
+    if(getTextLength()>200){
+        alert("200자 이내로만 작성 가능합니다.");
+        return;
+    }
 
     let replyObj = {
         sitterCommentContent : content,
@@ -118,8 +122,22 @@ $('.review-reply').on('click', '.reply-remove-btn', function () {
         let page = $('.active-page a').data('pagenum');
         let replyContent = $(this).closest('.modify-box').find('.modify-content').val();
 
-        if(replyContent.length>=200){
+        function getModifyTextLength() {
+            let len = 0;
+            for (let i = 0; i < replyContent.length; i++) {
+                if (escape(replyContent.charAt(i)).length == 6) {
+                    len++;
+                }
+                len++;
+            }
+            return len;
+        }
+
+
+
+        if(getModifyTextLength()>=200){
             alert("200자 이내로 작성해주세요")
+            return;
         }
         
         
@@ -133,17 +151,31 @@ $('.review-reply').on('click', '.reply-remove-btn', function () {
     });
 
 
-//글자수 체크
+
+
+//글자수 체크(byte단위로 쪼개기)
+function getTextLength() {
+    let contents = $('#reply-content').val();
+
+    let len = 0;
+    for (let i = 0; i < contents.length; i++) {
+        if (escape(contents.charAt(i)).length == 6) {
+            len++;
+        }
+        len++;
+    }
+    return len;
+}
+
 $("#reply-content").keyup(function(e) {
-    let contents = $(this).val();
-    console.log("키업!");
-    $("#lengthCheck").val("(" + contents.length + "/ 200)"); //실시간 글자수 카운팅
-    if (contents.length > 200) {
-        alert("200자 이내로만 작성 가능합니다.")
-        $(this).val(contents.substring(0, 200));
-        $('#lengthCheck').html("(200 / 최대 200자)");
+    $(".word-count").html(`<span class="overWrite">  ${getTextLength() + " / 200"} </span>`); //실시간 글자수 카운팅
+    if (getTextLength() > 200) {
+        $('.overWrite').css('color', 'red')
+
     }
 });
+
+
 
 
 

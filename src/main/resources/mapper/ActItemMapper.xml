@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.bomobomo.mapper.ActItemMapper">
+
+    <insert id="insert">
+
+        insert into emp_act_item(emp_act_item_number, act_number, emp_number)
+        values (seq_act_item.nextval, #{actNumber}, #{empNumber})
+
+
+    </insert>
+
+</mapper>
