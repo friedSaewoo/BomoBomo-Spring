@@ -1,5 +1,7 @@
 package com.example.bomobomo.service;
 
+import com.example.bomobomo.domain.vo.Criteria;
+import com.example.bomobomo.domain.vo.MyPageEventVo;
 import com.example.bomobomo.domain.vo.MyPageSitterVo;
 import com.example.bomobomo.mapper.MyPageMapper;
 import org.assertj.core.api.Assertions;
@@ -33,5 +35,23 @@ class MyPageServiceTest {
 //        List<MyPageSitterVo> myPageServiceSitterList = myPageService.findSitterList(new MyPageSitterVo());
 //
 //        assertThat(myPageServiceSitterList.size()).isEqualTo(2);
+    }
+
+    @Test
+    void findEventList(){
+        doReturn(List.of(new MyPageEventVo(),new MyPageEventVo())).when(myPageMapper).selectEventList(any(Criteria.class),any(Long.class));
+
+        List<MyPageEventVo> list=myPageService.findEventList(new Criteria(),1L);
+
+        assertThat(list.size()).isEqualTo(2);
+    }
+
+    @Test
+    void findEventTotal(){
+        doReturn(1).when(myPageMapper).selectEventTotal(any(Long.class));
+
+        myPageService.findEventTotal(1L);
+
+        assertThat(myPageService.findEventTotal(1L)).isNotNull();
     }
 }

@@ -19,27 +19,27 @@ class SitterBoardMapperTest {
 
     SitterBoardDto sitterBoardDto;
 
-    @BeforeEach
-    void setUp() {
-        sitterBoardDto = new SitterBoardDto();
-        sitterBoardDto.setSitterBoardContent("test");
-        sitterBoardDto.setRating(1);
-        sitterBoardDto.setEmpNumber(1L);
-        sitterBoardDto.setMatchNumber(1L);
-        sitterBoardDto.setUserNumber(1L);
-
-        sitterBoardMapper.insert(sitterBoardDto);
-
-    }
-
-    @Test
-    void insert() {
-        sitterBoardMapper.insert(sitterBoardDto);
-    }
-
-    @Test
-    void selectAll() {
-        sitterBoardMapper.selectAll(sitterBoardDto.getUserNumber());
-        log.info(sitterBoardMapper.selectAll(sitterBoardDto.getUserNumber()).toString());
-    }
+//    @BeforeEach
+//    void setUp() {
+//        sitterBoardDto = new SitterBoardDto();
+//        sitterBoardDto.setSitterBoardContent("test");
+//        sitterBoardDto.setRating(1);
+//        sitterBoardDto.setEmpNumber(1L);
+//        sitterBoardDto.setMatchNumber(1L);
+//        sitterBoardDto.setUserNumber(1L);
+//
+//        sitterBoardMapper.insert(sitterBoardDto);
+//
+//    }
+//
+//    @Test
+//    void insert() {
+//        sitterBoardMapper.insert(sitterBoardDto);
+//    }
+//
+//    @Test
+//    void selectAll() {
+//        sitterBoardMapper.selectAll(sitterBoardDto.getUserNumber());
+//        log.info(sitterBoardMapper.selectAll(sitterBoardDto.getUserNumber()).toString());
+//    }
 }

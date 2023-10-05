@@ -5,7 +5,7 @@ let $imgList = $('.img-list');
 // file change이벤트로 미리보기 갱신하기
 $input.on('change', function () {
     let files = this.files;
-    //   console.log(files);
+      console.log(files);
 
     // 길이 체크함수 (files, 원하는 길이)
     let newFiles = checkLength(files, 1);
@@ -45,10 +45,10 @@ function checkLength(files, num) {
 }
 
 // 이미지 미리보기 처리 함수
-// 이미지 수가 4개보다 적으면 기본이미지로 대체함
+// 이미지 수가 1개보다 적으면 기본이미지로 대체함
 function appendImg(files) {
-    for (let i = 0; i < 1; i++) {
-        if (i < files.length) {
+    for (let i = 0; i <= 1; i++) {
+        if (i <= files.length) {
             let src = URL.createObjectURL(files[i]);
 
             $imgList.eq(i).css('background-image', `url(${src})`).css('background-size', 'cover').data('name', `${files[i].name}`);
@@ -59,7 +59,7 @@ function appendImg(files) {
                 .eq(i)
                 .css(
                     'background',
-                    'url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzNiIgaGVpZ2h0PSIzNiI+PGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj48ZyBzdHJva2U9IiNCNUI1QjUiIHN0cm9rZS13aWR0aD0iMS41IiB0cmFuc2Zvcm09InRyYW5zbGF0ZSg0IDQpIj48cmVjdCB3aWR0aD0iMjgiIGhlaWdodD0iMjgiIHJ4PSIzLjUiLz48Y2lyY2xlIGN4PSI4LjU1NiIgY3k9IjguNTU2IiByPSIyLjMzMyIvPjxwYXRoIGQ9Ik0yOCAxOC42NjdsLTcuNzc3LTcuNzc4TDMuMTExIDI4Ii8+PC9nPjxwYXRoIGQ9Ik0wIDBoMzZ2MzZIMHoiLz48L2c+PC9zdmc+) no-repeat 50% #f2f2f2'
+                    'cz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzNiIgaGVpZ2h0PSIzNiI+PGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj48ZyBzdHJva2U9IiNCNUI1QjUiIHN0cm9rZS13aWR0aD0iMS41IiB0cmFuc2Zvcm09InRyYW5zbGF0ZSg0IDQpIj48cmVjdCB3aWR0aD0iMjgiIGhlaWdodD0iMjgiIHJ4PSIzLjUiLz48Y2lyY2xlIGN4PSI4LjU1NiIgY3k9IjguNTU2IiByPSIyLjMzMyIvPjxwYXRoIGQ9Ik0yOCAxOC42NjdsLTcuNzc3LTcuNzc4TDMuMTExIDI4Ii8+PC9nPjxwYXRoIGQ9Ik0wIDBoMzZ2MzZIMHoiLz48L2c+PC9zdmc+) no-repeat 50% #f2f2f2'
                 )
                 .data('name', null);
             $imgList.eq(i).removeClass('x-box');
