@@ -84,8 +84,8 @@ function loadMatchList(result){
 
         });
     }else{
-        let empList = $('.emp-list');
-        empList.empty(); // 기존 데이터 지우기
+        let matchContainer = $('.match-container');
+        matchContainer.empty();
     }
     pagination(result.pageVo);
 }

@@ -1,6 +1,7 @@
 package com.example.bomobomo.controller;
 
 import com.example.bomobomo.domain.dto.AdminDto;
+import com.example.bomobomo.domain.dto.EventDetailDto;
 import com.example.bomobomo.domain.dto.EventDto;
 import com.example.bomobomo.domain.dto.NoticeDto;
 import com.example.bomobomo.domain.vo.UserDetailVo;
@@ -96,11 +97,13 @@ public class AdminController {
     }
 
     @PostMapping("/eventRegist")
-    public RedirectView eventRegist(EventDto eventDto, @RequestParam("eventImgFile")List<MultipartFile> eventImg){
+    public RedirectView eventRegist( EventDto eventDto, @RequestParam("eventImgFile")List<MultipartFile> eventImg,
+                         EventDetailDto eventDetailDto, @RequestParam("eventDetailFile")List<MultipartFile> detailImg){
         adminService.eventRegist(eventDto);
         log.info("eventNumber = {}",eventDto.getEventNumber());
         try {
             adminService.eventImgRegistAndSave(eventImg,eventDto.getEventNumber());
+            adminService.eventDetailRegistAndSave(detailImg,eventDto.getEventNumber());
         } catch (IOException e) {
             e.printStackTrace();
         }

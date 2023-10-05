@@ -47,7 +47,7 @@ public interface AdminMapper {
     
 //    이벤트 등록
     public void eventRegist(EventDto eventDto);
-//    이벤트 이미지 등록\
+//    이벤트 이미지 등록
     public void eventImgRegist(EventImgDto eventImgDto);
 //    이벤트 상세정보 등록
     public void eventDetailRegist(EventDetailDto eventDetailDto);
