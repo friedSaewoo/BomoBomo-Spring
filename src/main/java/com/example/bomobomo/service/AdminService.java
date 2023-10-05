@@ -4,10 +4,7 @@ import com.example.bomobomo.domain.dto.AdminDto;
 import com.example.bomobomo.domain.dto.EmpDto;
 import com.example.bomobomo.domain.dto.NoticeDto;
 import com.example.bomobomo.domain.dto.UserDto;
-import com.example.bomobomo.domain.vo.Criteria;
-import com.example.bomobomo.domain.vo.MatchListVo;
-import com.example.bomobomo.domain.vo.SearchVo;
-import com.example.bomobomo.domain.vo.WeeklyRegisterVo;
+import com.example.bomobomo.domain.vo.*;
 import com.example.bomobomo.mapper.AdminMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -34,12 +31,16 @@ public class AdminService {
     }
 
 // 회원조회
-    public List<UserDto> selectAllUsers(Criteria criteria, SearchVo searchVo){
+    public List<UserListVo> selectAllUsers(Criteria criteria, SearchVo searchVo){
         return adminMapper.selectAllUsers(criteria,searchVo);
     }
 // 회원 수
     public int getTotalUsers(SearchVo searchVo){
         return adminMapper.getTotalUsers(searchVo);
+    }
+// 회원 상세정보
+    public UserDetailVo selectUserDetail(Long userNumber){
+        return adminMapper.selectUserDetail(userNumber);
     }
 
 // 직원조회
@@ -59,7 +60,15 @@ public class AdminService {
     public int getTotalNotice(SearchVo searchVo){
         return adminMapper.getTotalNotice(searchVo);
     }
-    
+//    공지사항 상세정보
+    public NoticeDto selectNoticeDetail(Long noticeNumber){
+        return adminMapper.selectNoticeDetail(noticeNumber);
+    }
+//    공지사항 등록
+    public void noticeRegist(NoticeDto noticeDto){
+        adminMapper.noticeRegist(noticeDto);
+    }
+
 //    매칭리스트 조회
     public List<MatchListVo> selectAllMatchs(Criteria criteria, SearchVo searchVo){
         return adminMapper.selectAllMatchs(criteria,searchVo);

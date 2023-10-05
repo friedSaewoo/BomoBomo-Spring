@@ -12,10 +12,13 @@
     <link rel="stylesheet" href="/user/css/idFind.css"/>
     <link rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+
     <!-- <link rel="shortcut icon" type="image/x-icon" href="/common/img/logoPic.png" alt="타이틀 로고" /> -->
     <!-- <script src="//code.jquery.com/jquery-1.11.0.min.js"></script> -->
 
-<!--    <script src="/common/js/common.js" defer></script>-->
+    <!--    <script src="/common/js/common.js" defer></script>-->
 
     <title>BOMOBOMO</title>
 </head>
@@ -39,49 +42,59 @@
 
 
                 <!-- 회원 정보 등록 -->
+                <form action="/user/idFindOk" method="post" class="form">
 
-                <div class="idFindList">
-                    <div class="inputGroup">
-                        <div class="inputText">
-                            <div class="userInfoText">
-                                <img src="/user/img/userId.png">
-                                <input class="userInfo" type="text" id="userName" name="userName" placeholder="이름">
-                                <label class="labelName infoLabel">이름을 입력하세요.</label>
-                            </div>
+                    <div class="idFindList">
+                        <div class="inputGroup">
+                            <div class="inputText">
+                                <div class="userInfoText">
+                                    <img src="/user/img/userId.png">
+                                    <input class="userInfo" type="text" id="userName" name="userName" placeholder="이름"
+                                           oninput="checkName()">
+                                    <label class="labelName infoLabel">이름을 입력하세요.</label>
+                                    <label>
+                                        <span class="nameOk">이름이 확인되었습니다.</span>
+                                    </label>
+                                    <label>
+                                        <span class="nameAlready">등록되지 않은 이름입니다. 다시 확인해주세요.</span>
+                                    </label>
+                                </div>
 
-<!--                            <form action="/email/emailConfirm" method="post">-->
                                 <div class="userInfoText">
                                     <img src="/user/img/email.png">
                                     <input class="userInfo" type="email" id="userEmail" name="userEmail"
-                                           placeholder="이메일">
+                                           placeholder="이메일" oninput="checkEmail()">
+                                    <span class="verifiedCh">
+                                        <a class="" id="verifiedCode" type="button" onclick="verifiedCode()">인증번호 받기</a>
+                                    </span>
                                     <label class="labelEm infoLabel">표준 이메일이 아닙니다.</label>
-                                    <button class="verifiedCh"  id="checkEmail1">인증번호 받기</button>
-<!--                                    onclick="location.href='/email/emailConfirm';"-->
+                                    <label class="infoLabel emailOk">입력하신 이름으로 등록된 이메일이 아닙니다.</label>
+
+<!-- <button class="verifiedCh" id="verifiedCode" type="button" onclick="verifiedCode()">인증번호 받기</button>-->
                                 </div>
-<!--                            </form>-->
 
-                            <div class="userInfoText">
-                                <img src="/user/img/verified.png">
-                                <input class="userInfo" type="text" id="verified" name="verified" placeholder="인증번호 등록"
-                                       maxlength="6" disabled>
+                                <div class="userInfoText">
+                                    <img src="/user/img/verified.png">
+                                    <input class="userInfo" type="text" id="verified" name="verified"
+                                           placeholder="인증번호 등록"
+                                           maxlength="6" readonly>
+                                </div>
+
                             </div>
-
                         </div>
+
                     </div>
+                    <div class="buttonJoin">
+                        <button class="idCheckBtn" type="button" onclick="confirmNumber()">확인하기</button>
+                    </div>
+                </form>
 
-                </div>
-                <div class="buttonJoin">
-                    <button class="joinBtn">확인하기</button>
-                </div>
-
-                <div class="idFindOk">
-                    <label>조회하신 아이디 정보는 : <span th:text="${session.userId}">user1</span> 입니다.</label>
-                </div>
             </div>
 
         </div>
     </main>
 </div>
+<input type="text" id="Confirm" name="Confirm" style="display: none" value="">
 
 
 <!-- 푸터부분 -->
@@ -89,73 +102,10 @@
 <!-- 푸터부분 -->
 
 
-
-
-<!-- <span>이메일 </span> -->
-				<div class="form-group last mb-4 email_input">
-					<label for="memail" id="mailTxt">이메일을 입력해주세요</label>
-					<input type="text" class="form-control" name="memail" id="memail">
-				</div>
-				<!-- <span>이메일 인증번호</span> -->
-				<button class="btn btn-outline-primary" type="button" id="checkEmail">인증번호</button>
-
-
-				<div class="form-group last mb-4 check_input">
-					<label for="memailconfirm" id="memailconfirmTxt">인증번호를 입력해주세요</label>
-					<input type="text" class="form-control" id="memailconfirm">
-				</div>
-
-
-
-
-
 <script src="https://code.jquery.com/jquery-3.6.4.js"></script>
 <script src="/user/js/idFind.js"></script>
 <script>
-// 이메일 인증번호
-$('#checkEmail1').click(function() {
 
-   $.ajax({
-      type : "POST",
-      url : "login/mailConfirm",
-      data : {
-         "email" : $('#memail').val()
-          // "email" : $memail.val()
-      },
-      success : function(data){
-         alert("해당 이메일로 인증번호 발송이 완료되었습니다. \n 확인부탁드립니다.")
-         console.log("data : "+data);
-         chkEmailConfirm(data, $memailconfirm, $memailconfirmTxt);
-      }
-   })
-})
-
-	// 이메일 인증번호 체크 함수
-	function chkEmailConfirm(data, $memailconfirm, $memailconfirmTxt){
-		$memailconfirm.on("keyup", function(){
-			if (data != $memailconfirm.val()) { //
-				emconfirmchk = false;
-				$memailconfirmTxt.html("<span id='emconfirmchk'>인증번호가 잘못되었습니다</span>")
-				$("#emconfirmchk").css({
-					"color" : "#FA3E3E",
-					"font-weight" : "bold",
-					"font-size" : "10px"
-
-				})
-				//console.log("중복아이디");
-			} else { // 아니면 중복아님
-				emconfirmchk = true;
-				$memailconfirmTxt.html("<span id='emconfirmchk'>인증번호 확인 완료</span>")
-
-				$("#emconfirmchk").css({
-					"color" : "#0D6EFD",
-					"font-weight" : "bold",
-					"font-size" : "10px"
-
-				})
-			}
-		})
-	}
 </script>
 </body>
 

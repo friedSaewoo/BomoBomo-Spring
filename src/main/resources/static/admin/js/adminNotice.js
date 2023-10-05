@@ -1,11 +1,3 @@
-// var elements = document.querySelectorAll('.post>div');
-//
-// elements.forEach(function(element) {
-//     element.addEventListener('click', function() {
-//         var url = 'admin_announce_detail.html';
-//         window.location.href = url;
-//     });
-// });
 
 
 // 페이징 처리
@@ -69,29 +61,17 @@ function loadNoticeList(result){
         noticeList.empty();
 
         $.each(result.adminNoticeList, function (index, notice) {
-            //
-            // let empDiv = $('<div class="post">');
-            // empDiv.append('<div class="emp-num">' + emp.empNumber + '</div>');
-            // empDiv.append('<div class="emp-name">' + emp.empName + '</div>');
-            // empDiv.append('<div class="date">' + emp.empDate + '</div>');
-            // empDiv.append('<div class="emp-phone">' + emp.empPhone + '</div>');
-            // empDiv.append('<div class="emp-email">'+ emp.empEmail + '</div>');
-            // empList.append(empDiv);
-
-            // <div class="post">
-            //     <div class="announce-num">001</div>
-            //     <div class="announce-title">안녕하세요, 보모보모입니다.</div>
-            //     <div class="date">2023-09-13</div>
-            //     <div class="count">23</div>
-            // </div>
-            //
             let noticeDiv = $('<div class="post">');
             noticeDiv.append('<div class="announce-num">' + notice.noticeNumber + '</div>');
             noticeDiv.append('<div class="announce-title">' + notice.noticeTitle + '</div>');
             noticeDiv.append('<div class="date">' + notice.noticeRegisterDate + '</div>');
             noticeDiv.append('<div class="count">' + notice.noticeCount + '</div>');
             noticeList.append(noticeDiv);
-            console.log("실행이됬어요");
+
+            noticeDiv.on('click', function() {
+                let url = `/admin/notice/detail?noticeNumber=${notice.noticeNumber}`;
+                window.location.href = url;
+            });
         });
     }else{
         let noticeList = $('.announce-list');
@@ -144,4 +124,8 @@ function inputEnter(event) {
 }
 document.getElementById("search").addEventListener("keyup", inputEnter);
 
-
+let noticeRegist = $('.regist-btn');
+noticeRegist.on('click', function() {
+    let url = `/admin/noticeRegist`;
+    window.location.href = url;
+});

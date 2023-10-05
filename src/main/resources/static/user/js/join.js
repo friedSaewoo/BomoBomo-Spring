@@ -6,50 +6,122 @@ $(".joinBtn").click(function() {
     let name = $("#userName").val();
     let email = $("#userEmail").val();
     let phone = $("#userPhone").val();
-    let addressDetail = $("#address").val();
+    let address = $("#address").val();
 
-
-    if(id && pw && pwCh && name && email && phone && address) {
-        location.href="login.html";
-    } else {
+    if($('.id_already').css('display') == 'block'){
         Swal.fire({
             icon: 'error',
-            title: '입력을 안 한 정보가 있습니다.',
-            text: '모든 입력을 완료해주세요.',
+            title: '이미 등록된 아이디입니다.',
+            text: '아이디를 다시 입력해 주세요.',
           });
-        return false;
+        return;
+    }
+
+    if(!(id && pw && pwCh && name && email && phone && address)) {
+                Swal.fire({
+                    icon: 'error',
+                    title: '입력을 안 한 정보가 있습니다.',
+                    text: '모든 입력을 완료해주세요',
+                  });
+
+        return;
     }
 
 
-    if(pw != pwCh) {
-        $('.labelPwCh').css('display','block')
-        $('.labelEm').css('display','none')  
-        return false;
-    } else {
-        $('.labelPwCh').css('display','none')
-    }
-
-    if(email.includes('@')) {
-    } else {
-        $('.labelEm').css('display','block')  
-        $('.labelPh').css('display','none')
+    if(!email.includes('@')) {
+        $('.labelEm').css('display','block');
+        $('.labelPh').css('display','none');
+        return;
     }
 
     if(phone.length != 11) {
-        $('.labelEm').css('display','none')  
-        $('.labelPh').css('display','block')
+        $('.labelEm').css('display','none');
+        $('.labelPh').css('display','block');
+        return;
     } 
-
-
-
-  
+    
+  $('.form').submit();
 
 });
 
-$(".swal2-confirm").click(function() {
+$('#userPasswordCh').keyup(function () {
+
+
+    let pw = $("#userPassword").val();
+    let pwCh = $("#userPasswordCh").val();
+
+//      || pw == ''
+
+    // alert(pw);
+    // alert(pwCh);
+    if(pw != pwCh) {
+        $('.labelPwCh').css('display','block');
+        $('.labelEm').css('display','none');
+        // $('.PwChOk').css('display', 'none');
+        return;
+    } else {
+        // $('.PwChOk').css('display', 'block');
+        $('.labelPwCh').css('display','none');
+    }
 
 });
 
+// $(".swal2-confirm").click(function() {
+//
+// });
+
+//아이디 중복확인
+function checkId(){
+
+    $('#userId').change(function() {
+
+    var userId = $('#userId').val(); //id값이 "id"인 입력란의 값을 저장
+    $.ajax({
+        url:'/user/idCheck', //Controller에서 요청 받을 주소
+        type:'post', //POST 방식으로 전달
+        data:{userId:userId},
+        success:function(idCk){ //컨트롤러에서 넘어온 cnt값을 받는다
+
+            if(idCk == 0){ //cnt가 1이 아니면(=0일 경우) -> 사용 가능한 아이디
+                $('.idOk').css("display","block");
+                $('.id_already').css("display", "none");
+            } else { // cnt가 1일 경우 -> 이미 존재하는 아이디
+                $('.id_already').css("display","block");
+                $('.idOk').css("display", "none");
+                // $('#userId').val('');
+            }
+        },
+        error:function(){
+            alert("에러입니다");
+        }
+    });
+
+    });
+
+};
+
+function checkPw() {
+
+    let pw = $("#userPassword").val();
+    let reg = /^(?=.*[a-zA-Z])(?=.*[!@#$%^&*()_=+])(?=.*[0-9]).{8,15}$/;
+
+    let pwCheck = reg.test(pw);
+
+    $('#userPasswordCh').change(function () {
+
+        if(pwCheck) {
+            // $('.labelPwOk').css("display", "block");
+            $('.labelPwNo').css("display", "none");
+            $('.PwChOk').css('display', 'block');
+        } else {
+            // $('.labelPwOk').css("display", "none");
+            $('.labelPwNo').css("display", "block");
+            $('.PwChOk').css('display', 'none');
+        }
+
+    });
+
+}
 
 
 
@@ -88,17 +160,17 @@ function addressFind() {
                     extraAddr = ' (' + extraAddr + ')';
                 } console.log(extraAddr);
                 // 조합된 참고항목을 해당 필드에 넣는다.
-                document.getElementById('userAddr2').value = extraAddr;
+                document.getElementById('addressDetail').value = extraAddr;
             
             } else {
-                document.getElementById('userAddr2').value = '';
+                document.getElementById('addressDetail').value = '';
             }
 
             // 우편번호와 주소 정보를 해당 필드에 넣는다.
-            document.getElementById('userPostal').value = data.zonecode;
-            document.getElementById('userAddr1').value = addr;
+            document.getElementById('addressPost').value = data.zonecode;
+            document.getElementById('address').value = addr;
             // 커서를 상세주소 필드로 이동한다.
-            document.getElementById('addressDetail').focus();
+            document.getElementById('addressDetails').focus();
         }
     }).open();
     console.log("성공!");

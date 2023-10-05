@@ -79,6 +79,8 @@
       </div>
     </div>
 
+
+    <div class="reply-total-wrap">
     <!-- 댓글 작성란 -->
     <div class="reply-wrap">
       <div th:if="${session.userNumber!=null}">
@@ -87,6 +89,9 @@
           <div class="reply-content__box">
             <div class="reply-writer" th:text="${session.userId}">홍길동</div>
             <textarea name="replyContent" id="reply-content" cols="30" rows="2" ></textarea>
+          </div>
+          <div class="word-count">
+              <input type="text" id="lengthCheck" value="(0 / 200)">
           </div>
           <div class="reply-btn-wrap">
             <button type="button" class="btn-reply"  >작성 완료</button>
@@ -103,13 +108,16 @@
       </div>
 
       <!-- 리뷰 댓글 + 댓글 수정삭제 버튼 -->
+      <div class="totalReply"></div>
       <div class="review-reply">
+
 
       </div>
 
 
     </div>
 
+  </div>
   </div>
   <input type="hidden" th:value="${reviewDetail.sitterBoardNumber}" class="reviewDetail-num">
 
@@ -121,7 +129,7 @@
   let loginNumber = [[${session.userNumber}]];
 </script>
 <script src="/board/js/boardServiceReviewDetail.js"></script>
-<script src="/board/js/serviceReviewReply.js"></script>
+<script type="module" src="/board/js/serviceReviewReply.js"></script>
 <script src="/fragments/js/header.js"></script>
 
 

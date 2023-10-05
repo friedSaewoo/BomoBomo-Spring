@@ -28,15 +28,26 @@ li {
 
 .loginContainer {
     width: 1024px;
-    height: 100%;
+    height: 500px;
     background-color: rgb(255, 255, 255);
 }
 
+.contentSummary {
+    width: 630px;
+    height: 50px;
+    margin: 10px auto;
+}
+
+.contentSummary div{
+    margin-top: 10px;
+}
+
 .loginArea {
-    width: 350px;
-    height: 700px;
+    width: 630px;
+    height: 300px;
     margin: 0 auto;
-    border: 0px solid black;
+    border: 2px solid #FF7000;
+    border-radius: 5px;
 }
 
 .loginGreeting {
@@ -105,6 +116,7 @@ li {
 .userInfoObt {
     display: flex;
     justify-content: center;
+    margin-bottom: 50px;
 }
 .userInfoObt a {
     font-size: medium;
@@ -126,7 +138,19 @@ li {
     font-size: 15px;
 }
 
+.idFindOk {
+    text-align: center;
+    width: 600px;
+    font-size: 15px;
+}
 
+.idFindOk label {
+    width: 50%;
+}
+.idFindOk span{
+    color: blue;
+
+}
 
 
 
