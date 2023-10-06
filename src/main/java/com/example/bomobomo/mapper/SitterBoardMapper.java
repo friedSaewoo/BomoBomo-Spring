@@ -6,6 +6,6 @@ import org.apache.ibatis.annotations.Mapper;
 public interface SitterBoardMapper {
 
 
-    //삽입
+
 
 }

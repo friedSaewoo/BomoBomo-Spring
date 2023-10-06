@@ -40,12 +40,23 @@ next.addEventListener('click', function () {
 });
 
 
+$('.sitterSelBtn').click(function () {
+
+    if($("h3").hasClass("page_move") === true) {
+        location.href="/sitter/sitterS";
+    } else {
+        alert("로그인을 먼저 해주세요.");
+        location.href="/user/login";
+    }
+});
+
 $(function() {
-  $(".sitterSelBtn").click(function() {
-    $(".modal").fadeIn();
-    $(".container").css("pointer-events", "none")
-    $("body").css("background-color", "lightgray")
-  });
+
+  // $(".sitterSelBtn").click(function() {
+  //   $(".modal").fadeIn();
+  //   $(".container").css("pointer-events", "none")
+  //   $("body").css("background-color", "lightgray")
+  // });
   
   $(".modalX").click(function() {
     $(".modal").fadeOut();

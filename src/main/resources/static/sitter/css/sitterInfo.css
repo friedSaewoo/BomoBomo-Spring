@@ -81,6 +81,17 @@ li {
     border-radius: 5px;
 }
 
+.sitterContent {
+
+    margin: 10px 0px 0px 10px;
+    width: 900px;
+    height: 280px;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    padding: 20px 150px;
+
+}
 
 .sitterInfoType {
     width: 95%;
@@ -122,6 +133,10 @@ li {
     margin-top: 8px;
 }
 
+.theBtn {
+    height:200px;
+}
+
 .sitterSel {
     text-align: center;
 }
@@ -148,7 +163,8 @@ li {
     float: right;
     width : 100px;
     height: 40px;
-    margin-top: 200px;  
+    margin-top: 90px;
+    margin-right: 40px;
     background-color: #FF7000;
     border: 2px solid #FF7000;
     border-radius: 5px;

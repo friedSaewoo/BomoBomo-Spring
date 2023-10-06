@@ -55,6 +55,26 @@ $(function() {
 
   });
 
+// function sitterInfo() {
+
+    // $('.sitterIndividual').click(function () {
+    //
+    //     let empNumber = $('.empNumber').val();
+    //     let sitterName = $('.sitterName').text();
+    //     alert("이름 : " + sitterName);
+    //     alert("번호 : " + empNumber);
+    //
+    // });
+
+// }
+
+
+
+
+
+
+
+
 
 
 
@@ -92,5 +112,28 @@ $(function() {
    
    
    });
+
+  $('.sitterTerBtn').click(function () {
+
+
+      if($("div").hasClass("day") === true) {
+          let day = $('.day').text();
+          let days = day.toString().replace(/\B(?=(\d{1})+(?!\d))/g, ', ');
+          alert("날짜 : " + days);
+          console.log(days);
+
+          let dayL = $('.day').length;
+          alert("날짜 수 : " + dayL);
+      } else {
+          alert("날짜 선택 없음")
+      }
+
+      if($("div").hasClass("timeSitter") === true) {
+        let time = $('.timeSitter').text();
+        alert("선택한 시간 : " + time);
+      } else {
+          alert("시간 선택 없음")
+      }
+  });
 
   //select 주소 설정

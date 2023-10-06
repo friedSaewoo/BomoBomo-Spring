@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.bomobomo.mapper.SitterMapper">
+
+    <select id="sitterTotal" resultType="_int">
+        SELECT COUNT(*) FROM EMP
+    </select>
+
+    <select id="sitterList" resultType="empDto">
+        SELECT  RNUM, EMP_NUMBER, EMP_NAME, EMP_AGE, EMP_GENDER, EMP_PHONE, EMP_EMAIL, EMP_DATE, EMP_CONTENT
+        FROM (
+            SELECT ROWNUM AS RNUM, EMP_NUMBER, EMP_NAME, EMP_AGE, EMP_GENDER, EMP_PHONE, EMP_EMAIL, EMP_DATE, EMP_CONTENT
+            FROM EMP
+                <![CDATA[
+                WHERE ROWNUM <= #{page} * #{amount}
+                ]]>
+            ORDER BY EMP_NUMBER DESC
+        )
+        WHERE RNUM > (#{page} - 1) * #{amount}
+    </select>
+
+    <select id="selectTotal" resultType="_int">
+        SELECT COUNT(EMP_NUMBER)
+        FROM EMP
+    </select>
+
+    <select id="sitterInfo" resultType="empDto">
+        SELECT *
+        FROM EMP
+        WHERE EMP_NUMBER = ${empNumber}
+    </select>
+
+</mapper>
