@@ -7,12 +7,12 @@
   <link rel="stylesheet" href="/common/css/common.css"/>
   <link rel="stylesheet" href="/fragments/css/footer.css"/>
   <link rel="stylesheet" href="/fragments/css/header.css"/>
-  <link rel="stylesheet" href="/mypage/css/buyPage.css"/>
+  <link rel="stylesheet" href="/mypage/css/buyEventpage.css"/>
 
   <script src="/common/js/index.js" defer></script>
   <script src="/common/js/common.js" defer></script>
   <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-  <script src="/mypage/js/buyPage.js" defer></script>
+  <script src="/mypage/js/buyEventPage.js" defer></script>
 </head>
 <body>
 <div class="header" th:replace="fragments/header.html :: header" >
@@ -49,58 +49,59 @@
 
         </div>
         <div class="review-page-area">
-          <p class="sitter-area" style="background-color: rgb(255, 112, 0); color: white;">시터이용 내역</p>
+          <p class="sitter-area">시터이용 내역</p>
 
-          <p class="event-area" >이벤트 결제 내역</p>
+          <p class="event-area" style="background-color: rgb(255, 112, 0); color: white;">이벤트 결제 내역</p>
 
         </div>
-        <!--buyList가 비어있다면 내역이 없습니다 ,그게아니라면 밑에있는 내용이 나오도록 수정-->
-        <div class="buybox">
-          <!--시터 이용 후기 결제 내역 조회-->
-          <ul class="buy-area" th:each="buy : ${buyList}">
-            <li class="buy-text">
-              <div class="img-area">
+
+        <!--이벤트 이용 후기 결제 내역 조회-->
+        <div class="buyboxp">
+
+          <ul class="buy-area-2" th:each="event : ${eventList}">
+            <li class="buy-text-2">
+              <div class="img-area-2">
                 <figure>
                   <!--데이터에서 파일 불러오기-->
-<!--                  <img th:src="@{/myPages/img(fileFullPath=${buy.empImgUploadPath} + '/' + ${buy.empImgUuid} + '_' + ${buy.empImgName})}">-->
+                  <!--                  <img th:src="@{/myPages/img(fileFullPath=${buy.empImgUploadPath} + '/' + ${buy.empImgUuid} + '_' + ${buy.empImgName})}">-->
                 </figure>
               </div>
-              <div class="buy-text-area">
+              <div class="buy-text-area-2">
                 <!--클릭시 url이동-->
                 <a href="#">
                   <p>[보모보모]</p>
-                  <p th:text="${buy.estTitle}"></p>
+                  <p th:text="${event.eventName}"></p>
                 </a>
               </div>
 
-              <div class="price">
-                <a th:if="${buy.reviewCheck == 1}" href="javascript:void(0)" class="text-page" >
-                  <p>리뷰작성 완료</p>
+              <div class="price-2">
+                <a th:if="${event.reviewCheck == 1}" href="javascript:void(0)" class="text-page-2">
+                  <p>리뷰작성완료</p>
                 </a>
-                <a th:if="${buy.reviewCheck == 0}" th:href="@{/mypage/siterreview(matchNumber=${buy.matchNumber}, empNumber=${buy.empNumber})}" class="text-page">
+                <a th:if="${event.reviewCheck == 0}" th:href="@{/mypage/reviewwrite(eventNumber=${event.eventNumber})}" class="text-page-2">
                   <p>리뷰작성</p>
                 </a>
-                <span th:text="${buy.estPrice}+'원'"></span>
+                <span th:text="${event.eventPrice}+'원'"></span>
               </div>
             </li>
+
           </ul>
-          <!--시터이용 결제내역 페이징 처리-->
-          <div class="paging">
-            <ul class="page">
-              <a th:href="@{/mypage/buy(page=${pageVo.startPage - 1})}" class="page-a" th:if="${pageVo.prev}">
-                <li class="page-num prev">&lt</li>
+          <div class="paging1">
+            <ul class="page1">
+              <a th:href="@{/mypage/buyEvent(page=${pageVO.startPage + 1})}" class="page-c" th:if="${pageVO.prev}">
+                <li class="page-num1 prev">&lt</li>
               </a>
 
-              <th:block th:each="i : ${#numbers.sequence(pageVo.startPage, pageVo.endPage)}">
-                <a th:href="@{/mypage/buy(page=${i})}">
-                  <li th:text="${i}"></li>
+              <th:block th:each="e:${#numbers.sequence(pageVO.startPage,pageVO.endPage)}">
+                <a th:href="@{/mypage/buyEvent(page=${e})}">
+                  <li th:text="${e}"></li>
                 </a>
               </th:block>
 
-
-              <a th:href="@{/mypage/buy(page=${pageVo.endPage + 1})}" class="page-b" th:if="${pageVo.next}">
-                <li class="page-num next">&gt</li>
+              <a th:href="@{/mypage/buyEvent(page=${pagrVO.endPage - 1})}" class="page-d" th:if="${pageVO.next}">
+                <li class="page-num1 next">&gt</li>
               </a>
+
             </ul>
           </div>
         </div>

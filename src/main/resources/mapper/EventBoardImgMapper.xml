@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.bomobomo.mapper.EventBoardFileMapper">
+   <!--게시글 작성시 파일을 저장하는 쿼리-->
+    <insert id="insert">
+        insert into EVENT_BOARD_IMG (EVENT_BOARD_IMG_NUMBER, EVENT_BOARD_NUMBER, EVENT_BOARD_IMG_NAME,
+                                     EVENT_BOARD_IMG_UPLOAD_PATH, EVENT_BOARD_IMG_UUID)
+        values (SEQ_EVENT_BOARD_IMG.NEXTVAL,#{eventBoardNumber},#{eventBoardImgName},#{evntBoardImgUploadPath},#{eventBoardImgUuid})
+    </insert>
+    <!---->
+    <select id="selectList" resultType="eventBoardImgDto">
+        select EVENT_BOARD_IMG_NUMBER, EVENT_BOARD_NUMBER, EVENT_BOARD_IMG_NAME,
+               EVENT_BOARD_IMG_UPLOAD_PATH, EVENT_BOARD_IMG_UUID
+        from event_board_img
+        where event_board_number = #{eventBoardNumber}
+    </select>
+</mapper>
