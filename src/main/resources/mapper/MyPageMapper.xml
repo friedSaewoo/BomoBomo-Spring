@@ -73,4 +73,37 @@
             )S1
                 JOIN EVENT_PAY EP ON S1.APPLY_NUMBER=EP.APPLY_NUMBER
     </select>
+
+    <!--마이페이지에서 매칭된 시터의 정보를 출력-->
+    <select id="selectMachEmpInfo" resultType="matchEmpInfoVo">
+        SELECT MATCH_NUMBER,USER_NUMBER,SUBMIT_ORDER_NUMBER, M3.EMP_NUMBER,STATUS, EMP_NAME,EMP_AGE,EMP_GENDER,
+               EMP_IMG_NUMBER,EMP_IMG_NAME,EMP_IMG_UPLOAD_PATH,EMP_IMG_UUID,EMP_ACT_ITEM_NUMBER,M3.ACT_NUMBER,ACT_NAME,
+               ACT_IMG_NAME,ACT_IMG_UPLOAD_PATH,ACT_IMG_UUID
+        FROM (  SELECT MATCH_NUMBER,USER_NUMBER,SUBMIT_ORDER_NUMBER, M1.EMP_NUMBER,STATUS, EMP_NAME,EMP_AGE,EMP_GENDER,
+                       EMP_IMG_NUMBER,EMP_IMG_NAME,EMP_IMG_UPLOAD_PATH,EMP_IMG_UUID,EMP_ACT_ITEM_NUMBER,ACT_NUMBER
+                FROM(
+                        SELECT MATCH_NUMBER,USER_NUMBER,SUBMIT_ORDER_NUMBER,EMP_NUMBER,STATUS
+                        FROM MATCHS
+                        WHERE USER_NUMBER=#{userNumber} AND STATUS =1
+                    )M1
+                        JOIN EMP EP ON M1.EMP_NUMBER = EP.EMP_NUMBER
+                        JOIN EMP_IMG EI ON M1.EMP_NUMBER= EI.EMP_NUMBER
+                        JOIN EMP_ACT_ITEM EAI ON M1.EMP_NUMBER = EAI.EMP_NUMBER
+             )M3
+                 JOIN ACT A ON M3.ACT_NUMBER=A.ACT_NUMBER
+                 JOIN ACT_IMG AI ON M3.ACT_NUMBER = AI.ACT_NUMBER
+    </select>
+
+    <!--사용자와 매칭된 직원의 평점 출력-->
+    <select id="selectMatchEmpAvg" resultType="matchEmpRatingAvgVo">
+        SELECT DISTINCT S1.MATCH_NUMBER,S1.USER_NUMBER,SUBMIT_ORDER_NUMBER,S1.EMP_NUMBER,STATUS,
+                        (SELECT AVG(RATING) FROM SITTER_BOARD) AS AVG
+        FROM(
+            SELECT MATCH_NUMBER,USER_NUMBER,SUBMIT_ORDER_NUMBER,EMP_NUMBER,STATUS
+            FROM MATCHS
+            WHERE USER_NUMBER=#{userNumber} AND STATUS =1
+            )S1
+            JOIN EMP EP ON S1.EMP_NUMBER= EP.EMP_NUMBER
+            JOIN SITTER_BOARD SB ON S1.EMP_NUMBER=SB.EMP_NUMBER
+    </select>
 </mapper>

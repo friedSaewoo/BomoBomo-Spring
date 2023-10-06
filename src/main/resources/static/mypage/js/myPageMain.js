@@ -264,3 +264,6 @@ $('.page1').on('click', '.page-num1', function (){
     pages = $(this).data('page1');
     myPage.getEventReviewList(pages,showEventReviewList);
 });
+
+
+

@@ -1,8 +1,6 @@
 package com.example.bomobomo.service;
 
-import com.example.bomobomo.domain.vo.Criteria;
-import com.example.bomobomo.domain.vo.MyPageEventVo;
-import com.example.bomobomo.domain.vo.MyPageSitterVo;
+import com.example.bomobomo.domain.vo.*;
 import com.example.bomobomo.mapper.MyPageMapper;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -54,4 +52,39 @@ class MyPageServiceTest {
 
         assertThat(myPageService.findEventTotal(1L)).isNotNull();
     }
+    // 사용자와 매칭된 결제대기 상테의 직원의 정보 출력 테스트
+//    @Test
+//    void findMatchEmpInfoList(){
+//        doReturn(List.of(new MatchEmpInfoVo(),new MatchEmpInfoVo())).when(myPageMapper)
+//            .selectMachEmpInfo(any(Long.class));
+//
+//        List<MatchEmpInfoVo> list = myPageService.findMachEmpInfoList(1L);
+//
+//        assertThat(list.size()).isNotNull();
+//
+//    }
+
+    @Test
+    void findMatchEmpAvg(){
+        doReturn(new MatchEmpRatingAvgVo()).when(myPageMapper).selectMatchEmpAvg(any(Long.class));
+
+
+        MatchEmpRatingAvgVo avg=myPageService.findMatchEmpAvg(1L);
+
+        assertThat(avg).isNotNull();
+
+
+    }
+
 }
+
+
+
+
+
+
+
+
+
+
+

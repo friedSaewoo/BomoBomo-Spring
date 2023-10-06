@@ -1,9 +1,7 @@
 package com.example.bomobomo.service;
 
 
-import com.example.bomobomo.domain.vo.Criteria;
-import com.example.bomobomo.domain.vo.MyPageEventVo;
-import com.example.bomobomo.domain.vo.MyPageSitterVo;
+import com.example.bomobomo.domain.vo.*;
 import com.example.bomobomo.mapper.MyPageMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -49,4 +47,47 @@ public class MyPageService {
 
         return myPageMapper.selectEventTotal(userNumber);
     }
+
+    //사용자와 매칭되어있는 직원의 정보 출력
+    public List<MatchEmpInfoVo> findMachEmpInfoList(Long userNumber){
+        if (userNumber == null) {
+            throw new IllegalArgumentException("회원정보 누락!");
+        }
+
+        return myPageMapper.selectMachEmpInfo(userNumber);
+    }
+
+    //사용자와 매칭된 직원의 평균 점수 출력
+    public MatchEmpRatingAvgVo findMatchEmpAvg(Long userNumber){
+        if (userNumber == null) {
+            throw new IllegalArgumentException("회원정보 누락!!");
+        }
+
+        return myPageMapper.selectMatchEmpAvg(userNumber);
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

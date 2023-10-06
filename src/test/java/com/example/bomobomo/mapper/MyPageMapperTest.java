@@ -1,5 +1,7 @@
 package com.example.bomobomo.mapper;
 
+import com.example.bomobomo.domain.vo.MatchEmpInfoVo;
+import com.example.bomobomo.domain.vo.MatchEmpRatingAvgVo;
 import com.example.bomobomo.domain.vo.MyPageSitterVo;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
@@ -53,4 +55,36 @@ class MyPageMapperTest {
 //        List<MyPageSitterVo> myPageSitterVos =myPageMapper.selectSitterList(myPageSitterVo);
 //        log.info(myPageSitterVos.toString());
 //    }
+
+//    @Test
+//    public void selectMachEmpInfo(){
+//        List<MatchEmpInfoVo> matchEmpInfoVos=myPageMapper.selectMachEmpInfo(1L) ;
+//        log.info(matchEmpInfoVos.toString());
+//
+//    }
+
+    //마이페이지 유저와 매칭된 직원이 평점 출력
+    @Test
+    void selectMatchEmpAvg(){
+        MatchEmpRatingAvgVo matchEmpRatingAvgVo= myPageMapper.selectMatchEmpAvg(1L);
+        log.info(matchEmpRatingAvgVo.toString());
+
+    }
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

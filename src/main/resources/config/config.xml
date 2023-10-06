@@ -57,5 +57,7 @@
         <typeAlias type="com.example.bomobomo.domain.vo.EventBoardVo" alias="eventBoardVo"/>
         <typeAlias type="com.example.bomobomo.domain.vo.MyPageSitterVo" alias="myPageSitterVo"/>
         <typeAlias type="com.example.bomobomo.domain.vo.MyPageEventVo" alias="myPageEventVo"/>
+        <typeAlias type="com.example.bomobomo.domain.vo.MatchEmpInfoVo" alias="matchEmpInfoVo"/>
+        <typeAlias type="com.example.bomobomo.domain.vo.MatchEmpRatingAvgVo" alias="matchEmpRatingAvgVo"/>
     </typeAliases>
 </configuration>

@@ -33,7 +33,7 @@ public class myPageController {
     @GetMapping("/main")
     public String showMainPage(HttpServletRequest req){
         Long userNumber=(Long)req.getSession().getAttribute("userNumber");
-
+   //처음 페이지로 진입시 매칭 상태에 따라 마이페이지가 변해야함 
         return "mypage/myPageMain";
     }
     // 신청서 페이지 이동
