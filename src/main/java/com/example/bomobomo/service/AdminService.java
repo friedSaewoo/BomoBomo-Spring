@@ -134,7 +134,7 @@ public EventImgDto saveEventImg(MultipartFile evenImg) throws IOException {
 //        이미지 파일인 경우에만 썸네일을 저장해야한다.
     if(Files.probeContentType(uploadFile.toPath()).startsWith("image") ){
         FileOutputStream out = new FileOutputStream(new File(uploadPath, "th_" + sysName));
-        Thumbnailator.createThumbnail(evenImg.getInputStream(), out, 300, 200);
+        Thumbnailator.createThumbnail(evenImg.getInputStream(), out, 270, 170);
         out.close();
     }
 

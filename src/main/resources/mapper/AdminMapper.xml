@@ -252,6 +252,29 @@
             insert into EVENT (EVENT_NUMBER, EVENT_NAME, EVENT_PRICE)
             values (#{eventNumber},#{eventName},#{eventPrice})
     </insert>
+<!-- 이벤트 조회 -->
+    <select id="selectAllEvent" resultType="eventVo">
+        select rnum, EVENT_NUMBER, EVENT_NAME, EVENT_PRICE,
+               EVENT_IMG_NAME, EVENT_IMG_UPLOAD_PATH, EVENT_IMG_UUID,
+               EVENT_DETAIL_NAME, EVENT_DETAIL_UPLOAD_PATH, EVENT_DETAIL_UUID
+               from(
+                    select rownum as rnum,event_number, event_name, event_price,
+                               event_img_name, event_img_upload_path, event_img_uuid,
+                               event_detail_name, event_detail_upload_path, event_detail_uuid
+                        from(
+                                select e.event_number, e.EVENT_NAME, e.EVENT_PRICE,
+                                       ei.EVENT_IMG_NAME,ei.EVENT_IMG_UPLOAD_PATH,EVENT_IMG_UUID,
+                                       ed.EVENT_DETAIL_NAME,ed.EVENT_DETAIL_UPLOAD_PATH,ed.EVENT_DETAIL_UUID
+                                from event e
+                                         left join EVENT_IMG ei on e.EVENT_NUMBER = ei.EVENT_NUMBER
+                                         left join EVENT_DETAIL ed on e.EVENT_NUMBER = ed.EVENT_NUMBER
+                                order by event_number
+                            ) <![CDATA[
+                 WHERE rownum <= #{criteria.page} * #{criteria.amount}
+                ]]>
+                ) WHERE rnum > (#{criteria.page} - 1) * #{criteria.amount}
+    </select>
+
 <!-- 이벤트 이미지 등록-->
     <insert id="eventImgRegist">
         insert into EVENT_IMG (EVENT_IMG_NUMBER, EVENT_NUMBER, EVENT_IMG_NAME, EVENT_IMG_UPLOAD_PATH, EVENT_IMG_UUID)

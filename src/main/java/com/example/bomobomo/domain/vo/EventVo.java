@@ -4,16 +4,17 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
-@Data
-@Component
-@NoArgsConstructor
-public class EventVo {
-    Long eventNumber;
-    Long eventImgNumber;
-    Long eventDetailNumber;
-    String eventName;
-    Integer eventPrice;
-    String eventImgName;
-    String eventDetailName;
-
-}
+    @Data
+    @Component
+    @NoArgsConstructor
+    public class EventVo {
+        Long eventNumber;
+        String eventName;
+        Integer eventPrice;
+        String eventImgName;
+        String eventImgUploadPath;
+        String eventImgUuid;
+        String eventDetailName;
+        String eventDetailUploadPath;
+        String eventDetailUuid;
+    }
