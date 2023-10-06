@@ -100,7 +100,6 @@ public class AdminController {
     public RedirectView eventRegist( EventDto eventDto, @RequestParam("eventImgFile")List<MultipartFile> eventImg,
                          EventDetailDto eventDetailDto, @RequestParam("eventDetailFile")List<MultipartFile> detailImg){
         adminService.eventRegist(eventDto);
-        log.info("eventNumber = {}",eventDto.getEventNumber());
         try {
             adminService.eventImgRegistAndSave(eventImg,eventDto.getEventNumber());
             adminService.eventDetailRegistAndSave(detailImg,eventDto.getEventNumber());

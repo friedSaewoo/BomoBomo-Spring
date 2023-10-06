@@ -26,8 +26,11 @@ import java.util.UUID;
 public class AdminService {
     private final AdminMapper adminMapper;
 
-    @Value("${file.dir}")
-    private String fileDir;
+//    application.properties에 각자 경로추가
+    @Value("${file.eventImg}")
+    private String fileEventImg;
+    @Value("${file.eventDetail}")
+    private String fileEventDetail;
 
 // 관리자 로그인
     @Transactional
@@ -105,6 +108,7 @@ public class AdminService {
     public void eventImgRegist(EventImgDto eventImgDto){
         adminMapper.eventImgRegist(eventImgDto);
     }
+
 //    이벤트 이미지 저장처리
 public EventImgDto saveEventImg(MultipartFile evenImg) throws IOException {
 //        사용자가 올린 파일 이름(확장자를 포함)
@@ -116,7 +120,7 @@ public EventImgDto saveEventImg(MultipartFile evenImg) throws IOException {
     String sysName = uuid.toString() + "_" + originName;
 
 //        상위 경로와 하위경로를 합친다.
-    File uploadPath = new File(fileDir, getUploadPath());
+    File uploadPath = new File(fileEventImg, getUploadPath());
 
 //        경로가 존재하지 않는다면 (폴더가 없다면)
     if(!uploadPath.exists()){
@@ -153,6 +157,7 @@ public EventImgDto saveEventImg(MultipartFile evenImg) throws IOException {
             eventImgRegist(eventImgDto);
         }
     }
+
 //    이벤트 상세정보 등록
     public void eventDetailRegist(EventDetailDto eventDetailDto){
         adminMapper.eventDetailRegist(eventDetailDto);
@@ -168,7 +173,7 @@ public EventImgDto saveEventImg(MultipartFile evenImg) throws IOException {
         String sysName = uuid.toString() + "_" + originName;
 
 //        상위 경로와 하위경로를 합친다.
-        File uploadPath = new File(fileDir, getUploadPath());
+        File uploadPath = new File(fileEventDetail, getUploadPath());
 
 //        경로가 존재하지 않는다면 (폴더가 없다면)
         if(!uploadPath.exists()){
@@ -182,14 +187,6 @@ public EventImgDto saveEventImg(MultipartFile evenImg) throws IOException {
 //        매개변수로 받은 파일을 우리가 만든 경로와 이름으로 저장한다.
         detailImg.transferTo(uploadFile);
 
-//        썸네일을 저장한다.
-//        이미지 파일인 경우에만 썸네일을 저장해야한다.
-        if(Files.probeContentType(uploadFile.toPath()).startsWith("image") ){
-            FileOutputStream out = new FileOutputStream(new File(uploadPath, "th_" + sysName));
-            Thumbnailator.createThumbnail(detailImg.getInputStream(), out, 300, 200);
-            out.close();
-        }
-
         EventDetailDto eventDetailDto = new EventDetailDto();
         eventDetailDto.setEventDetailName(originName);
         eventDetailDto.setEventDetailUuid(uuid.toString());
@@ -197,7 +194,7 @@ public EventImgDto saveEventImg(MultipartFile evenImg) throws IOException {
 
         return eventDetailDto;
     }
-    // 이벤트 이미지 저장, 데이터베이스 저장
+    // 이벤트 상세정보 저장, 데이터베이스 저장
     public void eventDetailRegistAndSave(List<MultipartFile> detailImg, Long eventNumber) throws IOException{
         for(MultipartFile file : detailImg){
             EventDetailDto eventDetailDto = saveDetailImg(file);
