@@ -11,6 +11,6 @@ public class ActImgDto {
     private Long actImgNumber;
     private Long actNumber;
     private String actImgName;
-    private String actImgUpload;
+    private String actImgUploadPath;
     private String actImgUuid;
 }

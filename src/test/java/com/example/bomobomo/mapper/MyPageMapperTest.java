@@ -19,7 +19,8 @@ class MyPageMapperTest {
     @Autowired
     MyPageMapper myPageMapper;
 
-    MyPageSitterVo myPageSitterVo;
+//    MyPageSitterVo myPageSitterVo;
+
 
     @BeforeEach
     void setUp() {
@@ -43,11 +44,8 @@ class MyPageMapperTest {
 
     }
 
-//    @Test
-//    void selectSitterList() {
-//        List<MyPageSitterVo> myPageSitterVos =myPageMapper.selectSitterList(myPageSitterVo);
-//        log.info(myPageSitterVos.toString());
-//    }
+
+
 //    @Test
 //    void selectSitterList() {
 //        List<MyPageSitterVo> myPageSitterVos =myPageMapper.selectSitterList(myPageSitterVo);

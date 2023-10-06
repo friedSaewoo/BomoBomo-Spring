@@ -49,7 +49,7 @@
           </li>
           <li th:text="${reviewDetail.rating}"><span>4.5/5</span></li>
 
-          <li th:if="${reviewDetail.sitterBoardModifyDate==reviewDetail.sitterBoardRegisterDate}">
+          <li th:if="${reviewDetail.sitterBoardModifyDate!=reviewDetail.sitterBoardRegisterDate}">
             <p>수정일자 <span th:text="${reviewDetail.sitterBoardModifyDate}"> 2023/09/16</span></p>
           </li>
           <li>
@@ -91,7 +91,6 @@
             <textarea name="replyContent" id="reply-content" cols="30" rows="2" ></textarea>
           </div>
           <div class="word-count">
-              <input type="text" id="lengthCheck" value="(0 / 200)">
           </div>
           <div class="reply-btn-wrap">
             <button type="button" class="btn-reply"  >작성 완료</button>
