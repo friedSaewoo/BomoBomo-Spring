@@ -172,7 +172,7 @@
         from NOTICE
         where NOTICE_NUMBER=#{noticeNumber}
     </select>
-<!--    공지 등록-->
+<!-- 공지 등록-->
     <insert id="noticeRegist">
         <selectKey keyProperty="noticeNumber" order="BEFORE" resultType="Long">
             SELECT SEQ_NOTICE.NEXTVAL FROM DUAL
@@ -180,7 +180,17 @@
         INSERT INTO NOTICE (NOTICE_NUMBER, NOTICE_TITLE, NOTICE_CONTENT, NOTICE_REGISTER_DATE, NOTICE_MODIFY_DATE, NOTICE_COUNT)
         VALUES (#{noticeNumber},#{noticeTitle},#{noticeContent},sysdate,sysdate,0)
     </insert>
-
+<!-- 공지 수정-->
+    <update id="noticeUpdate" parameterType="noticeDto">
+        update notice
+        set NOTICE_CONTENT = #{noticeContent} , NOTICE_TITLE = #{noticeTitle}, NOTICE_MODIFY_DATE = SYSDATE
+        where NOTICE_NUMBER=#{noticeNumber}
+    </update>
+<!-- 공지 삭제-->
+    <delete id ="noticeDelete" parameterType="Long">
+        delete from notice
+        where notice_number= #{noticeNumber}
+    </delete>
 <!-- 매칭 조회 -->
     <select id ="selectAllMatchs" resultType="matchListVo">
         SELECT rnum,MATCH_NUMBER,STATUS,USER_NUMBER,USER_NAME,USER_ID,USER_PHONE,emp_number,emp_name,emp_email,emp_phone
@@ -234,4 +244,22 @@
             where emp_name like '%' || #{keyword} || '%'
         </if>
     </select>
+<!-- 이벤트 등록-->
+    <insert id="eventRegist">
+        <selectKey keyProperty="eventNumber" order="BEFORE" resultType="Long">
+            SELECT SEQ_EVENT.NEXTVAL FROM DUAL
+        </selectKey>
+            insert into EVENT (EVENT_NUMBER, EVENT_NAME, EVENT_PRICE)
+            values (#{eventNumber},#{eventName},#{eventPrice})
+    </insert>
+<!-- 이벤트 이미지 등록-->
+    <insert id="eventImgRegist">
+        insert into EVENT_IMG (EVENT_IMG_NUMBER, EVENT_NUMBER, EVENT_IMG_NAME, EVENT_IMG_UPLOAD_PATH, EVENT_IMG_UUID)
+        values (SEQ_EVENT_IMG.NEXTVAL,#{eventNumber},#{eventImgName},#{eventImgUploadPath},#{eventImgUuid})
+    </insert>
+<!-- 이벤트 상세정보 등록  -->
+    <insert id="eventDetailRegist">
+        insert into EVENT_DETAIL (EVENT_DETAIL_NUMBER, EVENT_NUMBER, EVENT_DETAIL_NAME, EVENT_DETAIL_UPLOAD_PATH,EVENT_DETAIL_UUID)
+        values (SEQ_EVENT_DETAIL.NEXTVAL,#{eventNumber},#{eventDetailName},#{eventDetailUploadPath},#{eventDetailUuid})
+    </insert>
 </mapper>

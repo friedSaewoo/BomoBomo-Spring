@@ -69,7 +69,7 @@ function loadNoticeList(result){
             noticeList.append(noticeDiv);
 
             noticeDiv.on('click', function() {
-                let url = `/admin/notice/detail?noticeNumber=${notice.noticeNumber}`;
+                let url = `/admin/adminNoticeDetail?noticeNumber=${notice.noticeNumber}`;
                 window.location.href = url;
             });
         });
