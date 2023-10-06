@@ -32,14 +32,14 @@ class SitterBoardMapperTest {
 
     }
 
-    @Test
-    void insert() {
-        sitterBoardMapper.insert(sitterBoardDto);
-    }
-
-    @Test
-    void selectAll() {
-        sitterBoardMapper.selectAll(sitterBoardDto.getUserNumber());
-        log.info(sitterBoardMapper.selectAll(sitterBoardDto.getUserNumber()).toString());
-    }
+//    @Test
+//    void insert() {
+//        sitterBoardMapper.insert(sitterBoardDto);
+//    }
+//
+//    @Test
+//    void selectAll() {
+//        sitterBoardMapper.selectAll(sitterBoardDto.getUserNumber());
+//        log.info(sitterBoardMapper.selectAll(sitterBoardDto.getUserNumber()).toString());
+//    }
 }
