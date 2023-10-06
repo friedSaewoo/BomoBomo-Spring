@@ -1,4 +1,3 @@
-/*우편번호 찾기 코드*/
 function addressFind() {
     new daum.Postcode({
         oncomplete: function(data) {
@@ -47,13 +46,3 @@ function addressFind() {
     }).open();
     console.log("성공!");
 }
-
-//수정후 버튼 클릭시 이동
-$(document).ready(function(){
-    $('.updatebtn').on('click',function(){
-        // alert("수정이 완료되었습니다.");
-
-        //수정 완료가 두번 동작하고 페이지가 이동이 되는 이유 확인 필요
-        alert("수정이 완료되었습니다.");
-    })
-});

@@ -1,6 +1,7 @@
 package com.example.bomobomo.service;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +17,7 @@ public class MailService {
     private final JavaMailSender javaMailSender;
 
     //이메일 계정 등록하기
+    @Value("${user.email}")
     private static final String senderEmail= "";
     private static int number;
 //    private static String rePassword;
