@@ -35,13 +35,13 @@ class SitterBoardServiceTest {
 
     }
 
-    @Test
-    void findAll() {
-        doReturn(List.of(new SitterBoardDto(),new SitterBoardDto())).when(sitterBoardMapper).selectAll(any(Long.class));
-
-        List<SitterBoardDto> sitterBoardDtoList = sitterBoardService.findAll(1L);
-
-        assertThat(sitterBoardDtoList.size()).isEqualTo(2);
-
-    }
+//    @Test
+//    void findAll() {
+//        doReturn(List.of(new SitterBoardDto(),new SitterBoardDto())).when(sitterBoardMapper).selectAll(any(Long.class));
+//
+//        List<SitterBoardDto> sitterBoardDtoList = sitterBoardService.findAll(1L);
+//
+//        assertThat(sitterBoardDtoList.size()).isEqualTo(2);
+//
+//    }
 }

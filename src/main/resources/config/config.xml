@@ -44,7 +44,8 @@
         <typeAlias type="com.example.bomobomo.domain.dto.EventPayDto" alias="eventPayDto"/>
         <typeAlias type="com.example.bomobomo.domain.dto.EventBoardDto" alias="eventBoardDto"/>
         <typeAlias type="com.example.bomobomo.domain.dto.EventCommentDto" alias="eventCommentDto"/>
-
+        <!--======================== 이벤트 게시판 작성 파일 ========================-->
+        <typeAlias type="com.example.bomobomo.domain.dto.EventBoardImgDto" alias="eventBoardImgDto"/>
         <!--======================== Vo ========================-->
         <typeAlias type="com.example.bomobomo.domain.vo.Criteria" alias="criteria"/>
         <typeAlias type="com.example.bomobomo.domain.vo.PageVo" alias="pageVo"/>
@@ -55,5 +56,8 @@
         <typeAlias type="com.example.bomobomo.domain.vo.SitterCommentVo" alias="sitterCommentVo"/>
         <typeAlias type="com.example.bomobomo.domain.vo.EventBoardVo" alias="eventBoardVo"/>
         <typeAlias type="com.example.bomobomo.domain.vo.MyPageSitterVo" alias="myPageSitterVo"/>
+        <typeAlias type="com.example.bomobomo.domain.vo.MyPageEventVo" alias="myPageEventVo"/>
+        <typeAlias type="com.example.bomobomo.domain.vo.MatchEmpInfoVo" alias="matchEmpInfoVo"/>
+        <typeAlias type="com.example.bomobomo.domain.vo.MatchEmpRatingAvgVo" alias="matchEmpRatingAvgVo"/>
     </typeAliases>
 </configuration>
