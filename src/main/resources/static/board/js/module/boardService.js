@@ -1,6 +1,4 @@
 
-
-
 //돌봄 서비스 리뷰 불러오기(검색포함)
 export function showServiceReviewList(page, searchReviewVo){
 
