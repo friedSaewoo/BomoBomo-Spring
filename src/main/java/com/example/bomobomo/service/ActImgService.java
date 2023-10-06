@@ -30,7 +30,7 @@ public class ActImgService {
         actImgMapper.insertAct(actDto);
     }
     
-    @Value("${file.dir}")
+    @Value("${actImg.dir}")
     private String imgDir;
 
     //활동 사진 등록
