@@ -6,12 +6,17 @@
 </head>
 <body>
 
-    <form action="/sample/choices" method="post">
-        언어놀이<input type="checkbox" value="1" name="sample" class="sample"/>
-        숫자놀이<input type="checkbox" value="2" name="sample" class="sample"/>
-        영어놀이<input type="checkbox" value="3" name="sample" class="sample"/>
-        야외놀이<input type="checkbox" value="4" name="sample" class="sample"/>
-        실내놀이<input type="checkbox" value="5" name="sample" class="sample"/>
+    <form action="/sample/choices" method="post" enctype="multipart/form-data">
+<!--        <select name="selectAct">-->
+<!--            <option value="1">언어놀이</option>-->
+<!--            <option value="2">숫자놀이</option>-->
+<!--            <option value="3">영어놀이</option>-->
+<!--            <option value="4">야외놀이</option>-->
+<!--            <option value="5">실내놀이</option>-->
+<!--        </select>-->
+
+        <input type="text" id="act-type" name="actType"/>
+        <input type="file"  id="act-img" name="actImg" accept="image/*" multiple/>
         <button>전송</button>
     </form>
 

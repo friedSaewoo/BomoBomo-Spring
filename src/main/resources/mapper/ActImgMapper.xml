@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.bomobomo.mapper.ActImgMapper">
+
+
+
+<!--    활동 입력-->
+    <insert id="insertAct">
+
+        <selectKey keyProperty="actNumber" order="BEFORE" resultType="long">
+            select seq_act.nextval from dual
+        </selectKey>
+
+        insert into act(act_number, act_name)
+        values (#{actNumber}, #{actName})
+
+    </insert>
+
+
+<!--    각 활동에 맞는 활동 이미지 등록-->
+    <insert id="insert">
+
+
+        insert into ACT_IMG (ACT_IMG_NUMBER, ACT_NUMBER, ACT_IMG_NAME, ACT_IMG_UPLOAD_PATH, ACT_IMG_UUID)
+        values (seq_act_img.nextval, #{actNumber}, #{actImgName}, #{actImgUploadPath}, #{actImgUuid})
+
+    </insert>
+
+</mapper>
