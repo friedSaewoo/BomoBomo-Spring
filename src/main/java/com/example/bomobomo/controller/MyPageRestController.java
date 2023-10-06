@@ -23,12 +23,20 @@ public class MyPageRestController {
     private final MyPageService myPageService;
     private final SitterBoardService sitterBoardService;
     private final EventBoardService eventBoardService;
-//     파일경로 확인
+//     파일경로 확인 , 시터 결제내역 이미지
 //    @Value("${file.dir}")
 //    private String fileDir;
 //
 //    @GetMapping("/img")
 //    public byte[] getPfpImg(String fileFullPath) throws IOException {
+//        return FileCopyUtils.copyToByteArray(new File(fileDir, fileFullPath));
+//    }
+// 이벤트 결제 내역 이미지
+//    @Value("${file.dir}")
+//    private String fileDir;
+//
+//    @GetMapping("/eventimg")
+//    public byte[] getEventImg(String fileFullPath) throws IOException {
 //        return FileCopyUtils.copyToByteArray(new File(fileDir, fileFullPath));
 //    }
     // 마이페이지 시터 이용후기 사용자가 작성한 내용만 출력
