@@ -33,17 +33,16 @@
                 <div class="contents-title">
                     <span class="main-contents-title-text">이벤트관리</span>
 
-                    <div class="event-search-container">
-                        <form action=""> 
-                          <select>
-                            <option>제목</option>
-                          </select>
-                          <input type="text" id="search" />
-                          <button type="submit">
+                    <div class="emp-search-container">
+                        <select class="cate">
+                            <option value="empName">이름</option>
+                            <option value="empEmail">이메일</option>
+                        </select>
+                        <input type="text" class="keyword" id="search" name="keyword"/>
+                        <button type="submit" class="submit" id="submit">
                             <span class="material-symbols-outlined">search</span>
-                          </button>
-                        </form>
-                   </div>
+                        </button>
+                    </div>
                    
                 </div>
                 <div class="event-container">
@@ -127,14 +126,15 @@
                        <a href="#" class="bt num">5</a>
                        <a href="#" class="bt next">&gt;</a>
                      </div>
-                     <a href="adminEventRegist.html">
-                        <button>이벤트등록</button>
-                     </a>
+                    <div class="button-container">
+                        <button class="regist-btn">공지등록</button>
+                    </div>
                </div>
             </div>
         </div>
     </div>
 </body>
-<script src="/admin/js/adminEvent.js"></script>
+<script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+<script th:src="@{/admin/js/adminEvent.js}"></script>
 <script src="/admin/js/adminHeader.js"></script>
 </html>

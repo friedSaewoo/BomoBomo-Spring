@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>관리자 페이지</title>
-    <link rel="stylesheet" href="../css/admin_announce_write.css">
+    <link rel="stylesheet" href="/admin/css/adminNoticeWrite.css">
 </head>
 <body>
     <!-- 전체 컨테이너 -->
@@ -12,7 +12,7 @@
         <!-- 사이드 컨테이너 -->
         <div class="side-container">
             <div class="side-logo-box">
-                   <img class="logo" src="../img/logo.png" alt="logo">
+                   <img class="logo" src="/admin/img/logo.png" alt="logo">
             </div>
             <ul class="side-item-container">
                 <li class="side-item" ><a href="/admin/main">대시보드</a></li>
@@ -38,28 +38,29 @@
                 <div class="contents-title">
                     <span class="main-contents-title-text">공지사항</span>
                 </div>
+            <form action="/admin/noticeRegist" method="post" enctype="multipart/form-data">
                 <div class="announce-write-container">
                   <div class="board-main">
                     <div class="write-title">
-                      <input class="content-title" type="text" placeholder="제목을 입력하세요" maxlength="50">
+                      <input class="content-title" name="noticeTitle" type="text" placeholder="제목을 입력하세요" maxlength="50">
                     </div>
                     <div class="board-write">
                       <div class="write-content">
-                        <textarea></textarea>
+                        <textarea name="noticeContent"></textarea>
                       </div>
-
                     </div>
                 </div>
                 </div>
                 <div class="write-bottom">
-                  <a href="adminNotice.html" class="write-btn list">글 목록</a>
-  
-                  <a href="adminNotice.html" class="write-btn write">등록</a>
+                  <a href="/admin/redirect/notice" class="write-btn list">글 목록</a>
+                    <button type="submit" class="write-btn write">등록</button>
                 </div>
+            </form>
             </div>
-
         </div>
     </div>
 </body>
+<script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+<script th:src="@{/admin/js/adminNoticeWrite.js}"></script>
 <script src="/admin/js/adminHeader.js"></script>
 </html>

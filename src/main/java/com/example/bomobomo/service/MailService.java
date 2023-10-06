@@ -16,6 +16,7 @@ public class MailService {
     private final UserService userService;
     private final JavaMailSender javaMailSender;
 
+
     //이메일 계정 등록하기
     @Value("${user.email}")
     private static final String senderEmail= "";

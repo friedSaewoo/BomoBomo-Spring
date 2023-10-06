@@ -73,4 +73,6 @@ public class ReplyService {
        return replyMapper.getTotal(sitterBoardNumber);
     }
 
+
+
 }

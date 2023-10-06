@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>게시물 작성</title>
+  <title>시터이용후기 게시물 작성</title>
   <link rel="stylesheet" href="/mypage/css/siterReview.css" />
   <link rel="stylesheet" href="/common/css/common.css"/>
   <link rel="stylesheet" href="/fragments/css/footer.css"/>
@@ -44,31 +44,30 @@
         </p>
       </div>
       <div class="review-container">
-        <form class="new-post-form" action="#" method="#">
+        <form class="new-post-form" action="/mypage/siterreview" method="post">
           <div class="form-group">
             <label for="post-title" class="title">제목
-              <p>
-                <span>시터:</span>
-                <span class="sister-name">임형준</span>
-              </p>
             </label>
-            <input type="text" id="post-title"  name="boardTitle" required />
+            <!--해당 input에 결제내역에 있는 직원이름으로 대체 -->
+            <input type="text" id="post-title" th:value="${title}" required />
+            <input type="hidden" name="matchNumber" th:value="${matchNumber}">
+            <input type="hidden" name="empNumber" th:value="${empNumber}">
           </div>
           <div class="form-group">
             <label for="post-content">내용</label>
-            <textarea id="post-content" name="boardContent" rows="10" required></textarea>
+            <textarea id="post-content" name="sitterBoardContent" rows="10" required></textarea>
             <div class="grade-group">
               <fieldset class="grade">
                 <!-- <span class="text-bold">평점</span> -->
-                <input type="radio" name="reviewStar" value="1" id="rate1"><label
+                <input type="radio" name="rating" value="1" id="rate1"><label
                       for="rate1">★</label>
-                <input type="radio" name="reviewStar" value="2" id="rate2"><label
+                <input type="radio" name="rating" value="2" id="rate2"><label
                       for="rate2">★</label>
-                <input type="radio" name="reviewStar" value="3" id="rate3"><label
+                <input type="radio" name="rating" value="3" id="rate3"><label
                       for="rate3">★</label>
-                <input type="radio" name="reviewStar" value="4" id="rate4"><label
+                <input type="radio" name="rating" value="4" id="rate4"><label
                       for="rate4">★</label>
-                <input type="radio" name="reviewStar" value="5" id="rate5"><label
+                <input type="radio" name="rating" value="5" id="rate5"><label
                       for="rate5">★</label>
                 <span class="text-bold">평점</span>
               </fieldset>
@@ -86,6 +85,6 @@
 </div>
 <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.6.4.js"></script>
-<script src="mypage/js/siterReview.js"></script>
+
 </body>
 </html>

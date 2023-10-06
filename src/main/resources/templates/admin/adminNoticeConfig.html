@@ -1,65 +1,67 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>관리자 페이지</title>
-    <link rel="stylesheet" href="../css/admin_announce_config.css">
+    <link rel="stylesheet" href="/admin/css/adminNoticeWrite.css">
 </head>
 <body>
-    <!-- 전체 컨테이너 -->
-    <div class="admin-container">
-        <!-- 사이드 컨테이너 -->
-        <div class="side-container">
-            <div class="side-logo-box">
-                   <img class="logo" src="../img/logo.png" alt="logo">
-            </div>
-            <ul class="side-item-container">
-                <li class="side-item" ><a href="/admin/main">대시보드</a></li>
-                <li class="side-item"><a href ="/admin/user">회원정보</a></li>
-                <li class="side-item"><a href="/admin/emp">직원관리</a></li>
-                <li class="side-item"><a href="/admin/match">매칭관리</a></li>
-                <li class="side-item"><a href="/admin/event">이벤트관리</a></li>
-                <li class="side-item on"><a href="/admin/notice">공지사항</a></li>
-            </ul>
-            </ul>
+<!-- 전체 컨테이너 -->
+<div class="admin-container">
+    <!-- 사이드 컨테이너 -->
+    <div class="side-container">
+        <div class="side-logo-box">
+            <img class="logo" src="/admin/img/logo.png" alt="logo">
         </div>
+        <ul class="side-item-container">
+            <li class="side-item" ><a href="/admin/main">대시보드</a></li>
+            <li class="side-item"><a href ="/admin/user">회원정보</a></li>
+            <li class="side-item"><a href="/admin/emp">직원관리</a></li>
+            <li class="side-item"><a href="/admin/match">매칭관리</a></li>
+            <li class="side-item"><a href="/admin/event">이벤트관리</a></li>
+            <li class="side-item on"><a href="/admin/notice">공지사항</a></li>
+        </ul>
+        </ul>
+    </div>
 
-        <!-- 메인 컨테이너 -->
-        <div class="main-container">
-            <!-- 메인 헤더 -->
-            <div class="main-header">
-                <span class="main-header-title">BomoBomo</span>
-                <span class="admin-name">admin</span>
-                <button class="main-header-exit">나가기</button>
+    <!-- 메인 컨테이너 -->
+    <div class="main-container">
+        <!-- 메인 헤더 -->
+        <div class="main-header">
+            <span class="main-header-title">BomoBomo</span>
+            <span class="admin-name">admin</span>
+            <button class="main-header-exit">나가기</button>
+        </div>
+        <!-- 메인 컨텐츠 -->
+        <div class="main-contents">
+            <div class="contents-title">
+                <span class="main-contents-title-text">공지사항</span>
             </div>
-            <!-- 메인 컨텐츠 -->
-            <div class="main-contents">
-                <div class="contents-title">
-                    <span class="main-contents-title-text">공지사항</span>
-                </div>
+            <form action="/admin/noticeConfig" method="post" enctype="multipart/form-data">
+                <input type="hidden" th:value="${noticeDetail.noticeNumber}" name="noticeNumber"/>
                 <div class="announce-write-container">
-                  <div class="board-main">
-                    <div class="write-title">
-                      <input class="content-title" type="text" value="안녕하세요,보모보모입니다." placeholder="제목을 입력하세요" maxlength="50">
+                    <div class="board-main">
+                        <div class="write-title">
+                            <input class="content-title" name="noticeTitle" type="text" th:value="${noticeDetail.noticeTitle}" placeholder="제목을 입력하세요" maxlength="50">
+                        </div>
+                        <div class="board-write">
+                            <div class="write-content">
+                                <textarea name="noticeContent">[[${noticeDetail.noticeContent}]]</textarea>
+                            </div>
+                        </div>
                     </div>
-                    <div class="board-write">
-                      <div class="write-content">
-                        <textarea>글내용이들어갑니다.</textarea>
-                      </div>
-
-                    </div>
-                </div>
                 </div>
                 <div class="write-bottom">
-                  <a href="" class="write-btn list">뒤로가기</a>
-  
-                  <a href="adminNotice.html" class="write-btn write">수정</a>
+                    <a href="/admin/" class="write-btn list">뒤로가기</a>
+                    <button type="submit" class="write-btn write">수정</button>
                 </div>
-            </div>
-
+            </form>
         </div>
     </div>
+</div>
 </body>
+<script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+<script th:src="@{/admin/js/adminNoticeConfig.js}"></script>
 <script src="/admin/js/adminHeader.js"></script>
 </html>

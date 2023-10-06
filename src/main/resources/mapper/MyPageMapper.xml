@@ -3,27 +3,36 @@
 <mapper namespace="com.example.bomobomo.mapper.MyPageMapper">
     <!--결제 페이지 시터이용후기 내역 보기-->
     <select id="selectSitterList" resultType="myPageSitterVo">
-        SELECT S1.MATCH_NUMBER, USER_NUMBER, SUBMIT_ORDER_NUMBER, EST_NUMBER, EMP_NUMBER, STATUS,
-               TOTAL_PRICE,
-               EMP_NAME,
-               EMP_IMG_NUMBER, EMP_IMG_NAME, EMP_IMG_UPLOAD_PATH, EMP_IMG_UUID, CNT AS REVIEW_CHECK
+        SELECT MATCH_NUMBER, USER_NUMBER, SUBMIT_ORDER_NUMBER, EMP_NUMBER, STATUS, EST_TITLE, EMP_IMG_NAME, EMP_IMG_UPLOAD_PATH, EMP_IMG_UUID, EST_PRICE
+             , REVIEW_CHECK
         FROM (
-                 SELECT MATCH_NUMBER, USER_NUMBER, SUBMIT_ORDER_NUMBER, M.EST_NUMBER, M.EMP_NUMBER, STATUS,
-                        TOTAL_PRICE,
-                        EP.EMP_NAME,
-                        EI.EMP_IMG_NUMBER, EMP_IMG_NAME, EMP_IMG_UPLOAD_PATH, EMP_IMG_UUID
-                 FROM MATCHS M JOIN EST E
-                                    ON STATUS = 1 AND USER_NUMBER = #{userNumber} AND M.EST_NUMBER = E.EST_NUMBER
-                               JOIN EMP EP
-                                    ON M.EMP_NUMBER = EP.EMP_NUMBER
-                               LEFT JOIN EMP_IMG EI
-                                         ON EP.EMP_NUMBER = EI.EMP_NUMBER
-             ) S1
-                 JOIN (
-            SELECT MATCH_NUMBER, COUNT(SITTER_BOARD_NUMBER) CNT
-            FROM SITTER_BOARD
-            GROUP BY MATCH_NUMBER
-        ) S2
-                      ON S1.MATCH_NUMBER = S2.MATCH_NUMBER
+                 SELECT ROWNUM AS RNUM, P1.MATCH_NUMBER, USER_NUMBER, SUBMIT_ORDER_NUMBER, EMP_NUMBER, STATUS, EST_TITLE, EMP_IMG_NAME, EMP_IMG_UPLOAD_PATH, EMP_IMG_UUID, EST_PRICE
+                      , REVIEW_CHECK
+                 FROM (
+                          SELECT S1.MATCH_NUMBER, USER_NUMBER, SUBMIT_ORDER_NUMBER, S1.EMP_NUMBER, STATUS
+                               , EC.EST_TITLE , EC.EST_PRICE
+                               , EI.EMP_IMG_NAME, EI.EMP_IMG_UPLOAD_PATH, EI.EMP_IMG_UUID
+                               , (select count(SB.SITTER_BOARD_NUMBER) FROM SITTER_BOARD SB WHERE S1.MATCH_NUMBER = SB.MATCH_NUMBER) AS REVIEW_CHECK
+                          FROM (
+                                   SELECT match_number, user_number, submit_order_number, emp_number, status
+                                   FROM MATCHS
+                                   WHERE USER_NUMBER = #{userNumber} AND STATUS = 2
+                                  order by match_number desc
+                               ) S1
+                               left JOIN EST_CONTENT EC ON S1.MATCH_NUMBER = EC.MATCH_NUMBER
+                                   LEFT JOIN EMP_IMG EI ON S1.EMP_NUMBER = EI.EMP_NUMBER
+                      ) P1
+            <![CDATA[
+                 WHERE ROWNUM <= #{criteria.page} * #{criteria.amount}
+            ]]>
+        ) P2
+        WHERE RNUM > (#{criteria.page} - 1) * #{criteria.amount}
     </select>
+
+    <select id="selectTotal" resultType="_int">
+        SELECT count(match_number)
+        FROM MATCHS
+        WHERE USER_NUMBER = ${userNumber} AND STATUS = 2
+    </select>
+
 </mapper>

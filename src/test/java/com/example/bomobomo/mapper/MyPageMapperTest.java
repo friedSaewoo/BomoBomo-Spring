@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
@@ -17,30 +19,36 @@ class MyPageMapperTest {
     @Autowired
     MyPageMapper myPageMapper;
 
-    MyPageSitterVo myPageSitterVo;
+//    MyPageSitterVo myPageSitterVo;
+
 
     @BeforeEach
     void setUp() {
         myPageSitterVo=new MyPageSitterVo();
         myPageSitterVo.setEmpImgName("test");
         myPageSitterVo.setEmpImgNumber(1L);
-        myPageSitterVo.setUserNumber(5L);
+        myPageSitterVo.setUserNumber(1L);
         myPageSitterVo.setEmpImgUploadPath("asdasd");
         myPageSitterVo.setEmpImgUuid("123123");
         myPageSitterVo.setEmpName("test");
         myPageSitterVo.setReviewCheck(1);
         myPageSitterVo.setMatchNumber(1L);
-        myPageSitterVo.setEstNumber(1L);
+//        myPageSitterVo.setEstNumber(1L);
         myPageSitterVo.setStatus("1");
         myPageSitterVo.setSubmitOrderNumber(1L);
-        myPageSitterVo.setTotalPrice(123);
+//        myPageSitterVo.setTotalPrice(123);
+//        myPageSitterVo.setTotalPrice(123);
         myPageSitterVo.setEmpImgName("ddd");
 
 
 
     }
 
-    @Test
-    void selectMyPageSitterList() {
-    }
+
+
+//    @Test
+//    void selectSitterList() {
+//        List<MyPageSitterVo> myPageSitterVos =myPageMapper.selectSitterList(myPageSitterVo);
+//        log.info(myPageSitterVos.toString());
+//    }
 }

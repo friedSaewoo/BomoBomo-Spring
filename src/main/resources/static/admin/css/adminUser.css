@@ -148,22 +148,19 @@ select:focus{
 }
 
 .top .user-num{
-    margin-right: auto;
+    width: 20%;
 }
 .top .user-name{
-    margin-left: 60px;
+    width: 20%;
 }
 .top .user-id{
-    margin-left: 60px;
+    width: 20%;
 }
 .top .date{
-    margin-left: 100px;
+    width: 20%;
 }
 .top .review{
-    margin-left: 100px;
-}
-.top .status{
-    margin-left: 100px;
+    width: 20%;
 }
 .user-list{
     height: 690px;
@@ -181,35 +178,32 @@ select:focus{
 .post{
     display: flex;
     align-items: center;
-    text-align: center;
+    /* text-align: center; */
     height: 67px;
     font-size: 18px;
 }
 
-.post>div{
+.post{
     cursor: pointer;
 }
 .post .user-num{
 
-    width: 12%;
-
+    width: 16%;
+    margin-left: 40px;
 }
 .post .user-name{
-    width: 15%;
-
+    width: 20%;
 }
 .post .user-id{
-    width: 10%;
+    width: 18%;
 }
 .post .date{
-    width: 29%;
+    width: 20%;
+
 }
 .post .review{
-    width: 9%;
-}
-.post .status{
-    margin-left: auto;
-    width: 18%;
+    width: 15%;
+    margin: 0 auto;
 }
 
 .user-list-bottom{

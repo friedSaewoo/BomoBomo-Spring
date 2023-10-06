@@ -1,11 +1,14 @@
+import * as reply from './module/boardReply.js';
+
+
+
 //input hidden에 넣어놓은 값 가져오기
 let sitterBoardNumber = $('.reviewDetail-num').val();
 console.log(sitterBoardNumber);
 
 //댓글 불러오기
 let page = 1;
-getListPage({sitterBoardNumber,page:1}, showReply);
-
+reply.getListPage({sitterBoardNumber,page:1}, reply.showReply);
 
 
 
@@ -13,7 +16,7 @@ getListPage({sitterBoardNumber,page:1}, showReply);
 $(document).on('click', '.page-num a', function (e) {
     e.preventDefault();
     const page = $(this).data('pagenum');
-    getListPage({sitterBoardNumber, page},showReply);
+    reply.getListPage({sitterBoardNumber, page}, reply.showReply);
 
 
     $('.page-num a').removeClass('active-page');
@@ -22,11 +25,17 @@ $(document).on('click', '.page-num a', function (e) {
 });
 
 
+//댓글 등록
 $('.btn-reply').on('click', function () {
     let content = $('#reply-content').val();
 
     if(!(content)){
         alert('내용을 입력해주세요');
+        return;
+    }
+
+    if(getTextLength()>200){
+        alert("200자 이내로만 작성 가능합니다.");
         return;
     }
 
@@ -36,10 +45,12 @@ $('.btn-reply').on('click', function () {
         userNumber : loginNumber
     };
 
-    addReply(replyObj, function(){
-        getListPage({sitterBoardNumber,page:1}, showReply);
+    reply.addReply(replyObj, function(){
+        reply.getListPage({sitterBoardNumber,page:1}, reply.showReply);
     });
-
+    
+    //등록버튼 누르면 글자수 카운팅 초기화 및 입력내용도 초기화
+    $("#lengthCheck").val("(0/ 200)");
     $('#reply-content').val('');
 });
 
@@ -53,96 +64,7 @@ let listInfo = {
 
 }
 
-function getListPage(listInfo, callback){
-    $.ajax({
 
-        url : `/replies/list/${listInfo.sitterBoardNumber}/${listInfo.page}`,
-        type : 'get',
-        dataType : 'Json',
-        success:function (result){
-            console.log(result.replyList);
-            console.log(result.pageReplyVo);
-
-
-            if(callback){
-                callback(result);
-            }
-
-        }, error : function (a,b,c){
-            console.error(c);
-        }
-
-    });
-}
-
-
-// function showServiceReviewReply(sitterBoardNumber, callback){
-//
-//     $.ajax({
-//         url:`/replies/list/${sitterBoardNumber}`,
-//         type:'get',
-//         dataType:'JSON',
-//         success : function (result){
-//             if(callback){
-//                 callback(result)
-//             }
-//
-//         }, error : function (a,b,c,){
-//             console.error(c);
-//         }
-//
-//
-//
-//     })
-// }
-
-function showReply(result){
-    let text='';
-
-        result.replyList.forEach(r =>{
-            text += `
-            
-     <dl>
-        <dt>
-            <div class="reply-box__writer" data-replyNum="${r.sitterCommentNumber}">
-                <strong>${r.userId}</strong>
-            </div>
-        </dt>
-
-        <dd>
-            <div class="reply-list-wrap">
-                <div class="reply">
-                    <div class="reply-box">
-                        <div class="reply-box__content">${r.sitterCommentContent}</div>
-                    </div>
-                     <div class="reply-btn-box">
-                    `;
-
-            if(r.userNumber == loginNumber){
-              text+=  `
-                        <span class="reply-btns"></span>
-                        <div class="reply-btns__box none">
-                            <div class="reply-remove-btn" data-deletenum="${r.sitterCommentNumber}">삭제</div>
-                            <div class="reply-modify-btn" data-modifynum="${r.sitterCommentNumber}" >수정</div>
-                        </div>
-                `;
-            }
-
-            text+=
-                    `                        
-                    </div>
-                </div>
-            </div>
-        </dd>
-     </dl>                         
-            `;
-        })
-
-    $('.review-reply').html(text);
-    updatePagination(result.pageReplyVo);
-
-
-}
 
 //댓글 수정 삭제버튼 팝업
 $('.review-reply').on('click', '.reply-btns', function () {
@@ -181,30 +103,15 @@ $('.review-reply').on('click', '.reply-remove-btn', function () {
     $('.reply-btns__box').addClass('none');
 
     let sitterCommentNumber = $(this).closest('.reply').find('.reply-remove-btn').data('deletenum');
-    remove(sitterCommentNumber, function (){
+    reply.remove(sitterCommentNumber, function (){
         
         //댓글 삭제 시 페이징 1번으로 이동
-        getListPage({sitterBoardNumber,page:1}, showReply);
+        reply.getListPage({sitterBoardNumber,page:1}, reply.showReply);
     });
 });
 
 
-function remove(sitterCommentNumber, callback){
-    $.ajax({
 
-        url:`/replies/${sitterCommentNumber}`,
-        type:'delete',
-        success : function (result){
-            if(callback){
-                callback(result);
-            }
-        },error : function (a,b,c){
-            console.error(c);
-        }
-
-
-    })
-}
 // 리플 수정 완료 처리
     $('.review-reply').on('click', '.modify-content-btn', function () {
 
@@ -215,96 +122,60 @@ function remove(sitterCommentNumber, callback){
         let page = $('.active-page a').data('pagenum');
         let replyContent = $(this).closest('.modify-box').find('.modify-content').val();
 
+        function getModifyTextLength() {
+            let len = 0;
+            for (let i = 0; i < replyContent.length; i++) {
+                if (escape(replyContent.charAt(i)).length == 6) {
+                    len++;
+                }
+                len++;
+            }
+            return len;
+        }
+
+
+
+        if(getModifyTextLength()>=200){
+            alert("200자 이내로 작성해주세요")
+            return;
+        }
+        
+        
         let replyObj = {
             sitterCommentContent : replyContent
         };
 
-        modify(sitterCommentNumber, replyObj, function (){
-            getListPage({sitterBoardNumber,page:page}, showReply);
+        reply.modify(sitterCommentNumber, replyObj, function (){
+            reply.getListPage({sitterBoardNumber,page:page}, reply.showReply);
         });
     });
 
 
-function modify(sitterCommentNumber, replyInfo, callback){
-    $.ajax({
 
-        url:`/replies/${sitterCommentNumber}`,
-        type:'patch',
-        data : JSON.stringify(replyInfo),
-        contentType: 'application/json; charset=utf-8',
-        success : function (result){
-            if(callback){
-                callback(result)
-            }
-        }, error : function (a,b,c){
-            console.error(c);
+
+//글자수 체크(byte단위로 쪼개기)
+function getTextLength() {
+    let contents = $('#reply-content').val();
+
+    let len = 0;
+    for (let i = 0; i < contents.length; i++) {
+        if (escape(contents.charAt(i)).length == 6) {
+            len++;
         }
-
-    })
-
+        len++;
+    }
+    return len;
 }
 
-function addReply(reply, callback){
-    $.ajax({
+$("#reply-content").keyup(function(e) {
+    $(".word-count").html(`<span class="overWrite">  ${getTextLength() + " / 200"} </span>`); //실시간 글자수 카운팅
+    if (getTextLength() > 200) {
+        $('.overWrite').css('color', 'red')
 
-        url:'/replies',
-        type:'post',
-        data: JSON.stringify(reply),
-        contentType:' application/json; charset=utf-8',
-        success : function (){
-            if(callback){
-                callback();
-            }
-        }, error : function (a,b,c){
-            console.error(c);
-        }
-
-
-
-    })
-}
-
-// 페이징처리
-function updatePagination(pageReplyVo) {
-    let $pagenation = $('.reply-pagenation-container ul');
-    $pagenation.empty();
-
-    if (pageReplyVo.prev) {
-        $pagenation.append(`
-                <li class="page-num"><a href="#" data-pagenum="${pageReplyVo.startPage-1}">&lt;</a></li>
-            `);
     }
+});
 
 
-    //게시물이 1개도 존재하지 않는다면 페이징 표시 x
-    //한 개라도 존재할 때 페이징 번호가 나타난다.
-    if(pageReplyVo.realEnd!=0){
-        //한 개라도 있으면 높이값 고정
-        $('.review-reply').css('height','500px');
-        for (let page = pageReplyVo.startPage; page <= pageReplyVo.endPage; page++) {
-            if(page == pageReplyVo.criteria.page){
-                $pagenation.append(`
-                    <li class="page-num active-page"><a href="#" data-pagenum="${page}">${page}</a></li>
-                `);
-            }else {
-                $pagenation.append(`
-                    <li class="page-num "><a href="#" data-pagenum="${page}">${page}</a></li>
-                `);
-
-            }
-
-        }
-    }else{
-        `<li></li>`
-    }
-
-
-    if (pageReplyVo.next) {
-        $pagenation.append(`
-            <li class="page-num"> <a href="#" data-pagenum="${pageReplyVo.endPage+1}">&gt;</a></li>
-            `);
-    }
-}
 
 
 
