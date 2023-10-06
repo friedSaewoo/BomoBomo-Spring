@@ -119,7 +119,7 @@ $(function() {
       if($("div").hasClass("day") === true) {
           let day = $('.day').text();
           let days = day.toString().replace(/\B(?=(\d{1})+(?!\d))/g, ', ');
-          alert("날짜 : " + days);
+          alert("날짜!!! : " + days);
           console.log(days);
 
           let dayL = $('.day').length;
