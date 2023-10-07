@@ -44,7 +44,11 @@ public interface AdminMapper {
     public List<MatchListVo> selectAllMatchs(@Param("criteria")Criteria criteria, @Param("searchVo")SearchVo searchVo);
 //    검색별 매칭수
     public int getTotalMatchs(SearchVo searchVo);
-    
+
+//    이벤트 리스트
+    public List<EventVo> selectAllEvents(@Param("criteria")Criteria criteria, @Param("searchVo")SearchVo searchVo);
+//    검색별 이벤트수
+    public int getTotalEvents(SearchVo searchVo);
 //    이벤트 등록
     public void eventRegist(EventDto eventDto);
 //    이벤트 이미지 등록

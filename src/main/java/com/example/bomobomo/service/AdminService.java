@@ -99,7 +99,15 @@ public class AdminService {
     public int getTotalMatchs(SearchVo searchVo){
         return adminMapper.getTotalMatchs(searchVo);
     }
-    
+
+//    이벤트 리스트
+    public List<EventVo> selectAllEvents(Criteria criteria, SearchVo searchVo){
+        return adminMapper.selectAllEvents(criteria,searchVo);
+    }
+//   이벤트 리스트 수
+    public int getTotalEvents(SearchVo searchVo){
+        return adminMapper.getTotalEvents(searchVo);
+    }
 //    이벤트 등록
     public void eventRegist(EventDto eventDto){
         adminMapper.eventRegist(eventDto);
