@@ -18,8 +18,8 @@
 <!--헤더영역-->
 <div class="header" th:replace="fragments/header :: header">
 </div>
-    <div class="main" style="height: 1300px;">
-        <div class="event-detail" th:each="event:${detail}" >
+    <div class="main" style="height: 1300px;" th:each="event:${detail}">
+        <div class="event-detail"  >
             <div class="event-detail-banner">
                 <p th:text="${event.eventImgName}"></p>
                 <img src="" alt="매인배너"/>
@@ -33,14 +33,14 @@
 
         <div class="event-main-detail">
             <div class="event-main-info" th:each="event:${detail}" >
-                <div th:unless="${event.eventImgName == null}" class="board-item-image" style="background-image: url(https://via.placeholder.com/300x200)"></div>
 
-<!--                <img th:src="@{/event/detail(fileFullPath=${event.eventImgUploadPath} + '/'-->
-<!--                + ${event.eventImgUuid} + '_' + ${event.eventImgName})}">-->
+
+              <img th:src="@{/event/detail(fileFullPath=${event.eventImgUploadPath} + '/'
+                + ${event.eventImgUuid} + '_' + ${event.eventImgName})}">
             </div>
         </div>
         <div class="event-apply">
-            <button type="button">신청하기</button>
+            <a th:href="@{/event/payment(eventNumber=${event.eventNumber})}">신청하기</a>
         </div>
     </div>
 </main>
