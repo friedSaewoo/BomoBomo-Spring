@@ -9,11 +9,14 @@ import org.springframework.stereotype.Component;
 @NoArgsConstructor
 public class EventVo {
     Long eventNumber;
-    Long eventImgNumber;
-    Long eventDetailNumber;
     String eventName;
     Integer eventPrice;
-    String eventImgName;
-    String eventDetailName;
 
+    String eventImgName;
+    String eventImgUploadPath;
+    String eventImgUuid;
+
+    String eventDetailName;
+    String eventDetailUploadPath;
+    String eventDetailUuid;
 }

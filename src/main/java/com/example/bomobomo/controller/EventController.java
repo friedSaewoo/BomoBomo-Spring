@@ -9,11 +9,15 @@ import com.example.bomobomo.domain.vo.PageVo;
 import com.example.bomobomo.service.EventService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 
@@ -41,17 +45,19 @@ public class EventController {
         EventVo eventVo = eventService.find(eventNumber);
         model.addAttribute("detail", eventVo);
         return "event/eventdetail";
+
+
+
     }
 
-//   이벤트 신청서페이지 이동
-    @GetMapping("/payment")
-    public String ShowEventApplicationPage(Long eventNumber, Model model) {
+//    이벤트 결제 내역 이미지
+    @Value("${file.eventImg}")
+    private String fileeventImg;
 
-        EventVo eventVo = eventService.find(eventNumber);
-        model.addAttribute("payment", eventVo);
-        return "event/eventPayment";
+    @GetMapping("/eventimg")
+    public byte[] getEventImg(String fileFullPath) throws IOException {
+        return FileCopyUtils.copyToByteArray(new File(fileeventImg, fileFullPath));
     }
-
 
 //   직원 목록 전체 조회
     @GetMapping("/empIntro")

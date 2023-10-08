@@ -33,8 +33,10 @@
 
         <div class="event-main-detail">
             <div class="event-main-info" th:each="event:${detail}" >
-                <p th:text="${event.eventDetailName}"></p>
-                <img src="" alt="매인배너"/>
+                <div th:unless="${event.eventImgName == null}" class="board-item-image" style="background-image: url(https://via.placeholder.com/300x200)"></div>
+
+<!--                <img th:src="@{/event/detail(fileFullPath=${event.eventImgUploadPath} + '/'-->
+<!--                + ${event.eventImgUuid} + '_' + ${event.eventImgName})}">-->
             </div>
         </div>
         <div class="event-apply">

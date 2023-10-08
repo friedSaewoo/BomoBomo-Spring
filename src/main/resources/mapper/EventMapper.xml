@@ -8,7 +8,8 @@
     </select>
 
     <select id="select" resultType="EventVo">
-        SELECT e.event_number, e.event_price, e.event_name, ei.event_img_name, ed.event_detail_name
+        SELECT e.event_number, e.event_price, e.event_name, ei.event_img_name, ei.EVENT_IMG_UPLOAD_PATH,
+               ei.EVENT_IMG_UUID, ed.event_detail_name, ed.EVENT_DETAIL_UPLOAD_PATH, ed.EVENT_DETAIL_UUID
         FROM event e
                  LEFT JOIN event_img ei ON e.event_number = ei.event_number
                  LEFT JOIN event_detail ed ON e.event_number = ed.event_number
