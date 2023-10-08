@@ -45,12 +45,22 @@ public class EventController {
         EventVo eventVo = eventService.find(eventNumber);
         model.addAttribute("detail", eventVo);
         return "event/eventdetail";
+    }
+    //이벤트 컨트롤러 (신청페이지 이동)
 
+//   이벤트 신청서페이지 이동
+    @GetMapping("/payment")
+    public String ShowEventApplicationPage(Long eventNumber, Model model) {
 
-
+        EventVo eventVo = eventService.find(eventNumber);
+        model.addAttribute("payment", eventVo);
+        return "event/eventPayment";
     }
 
-//    이벤트 결제 내역 이미지
+
+
+
+    //    이벤트 결제 내역 이미지
     @Value("${file.eventImg}")
     private String fileeventImg;
 
