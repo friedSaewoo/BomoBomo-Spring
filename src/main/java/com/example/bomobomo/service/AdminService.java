@@ -3,7 +3,6 @@ package com.example.bomobomo.service;
 import com.example.bomobomo.domain.dto.*;
 import com.example.bomobomo.domain.vo.*;
 import com.example.bomobomo.mapper.AdminMapper;
-import jdk.jfr.Event;
 import lombok.RequiredArgsConstructor;
 import net.coobird.thumbnailator.Thumbnailator;
 import org.springframework.beans.factory.annotation.Value;
@@ -100,6 +99,14 @@ public class AdminService {
         return adminMapper.getTotalMatchs(searchVo);
     }
 
+//    이벤트 조회
+    public EventVo selectEventDetail(Long eventNumber){
+        return adminMapper.selectEventDetail(eventNumber);
+    }
+//    이벤트 삭제
+    public void eventDelete(Long eventNumber){
+        adminMapper.eventDelete(eventNumber);
+    }
 //    이벤트 리스트
     public List<EventVo> selectAllEvents(Criteria criteria, SearchVo searchVo){
         return adminMapper.selectAllEvents(criteria,searchVo);
@@ -111,6 +118,18 @@ public class AdminService {
 //    이벤트 등록
     public void eventRegist(EventDto eventDto){
         adminMapper.eventRegist(eventDto);
+    }
+//    이벤트 업데이트
+    public void updateEvent(EventVo eventVo){
+        adminMapper.updateEvent(eventVo);
+    }
+//    이벤트 이미지 업데이트
+    public void updateEventImg(EventImgDto eventImgDto){
+        adminMapper.updateEventImg(eventImgDto);
+    }
+//    이벤트 상세정보 업데이트
+    public void updateEventDetail(EventDetailDto eventDetailDto){
+        adminMapper.updateEventDetail(eventDetailDto);
     }
 //    이벤트 이미지 등록
     public void eventImgRegist(EventImgDto eventImgDto){
@@ -165,7 +184,14 @@ public EventImgDto saveEventImg(MultipartFile evenImg) throws IOException {
             eventImgRegist(eventImgDto);
         }
     }
-
+    // 이벤트 이미지 업데이트, 데이터베이스 업데이트
+    public void eventImgUpdateAndSave(List<MultipartFile> eventImg, Long eventNumber) throws IOException{
+        for(MultipartFile file : eventImg){
+            EventImgDto eventImgDto = saveEventImg(file);
+            eventImgDto.setEventNumber(eventNumber);
+            updateEventImg(eventImgDto);
+        }
+    }
 //    이벤트 상세정보 등록
     public void eventDetailRegist(EventDetailDto eventDetailDto){
         adminMapper.eventDetailRegist(eventDetailDto);
@@ -208,6 +234,14 @@ public EventImgDto saveEventImg(MultipartFile evenImg) throws IOException {
             EventDetailDto eventDetailDto = saveDetailImg(file);
             eventDetailDto.setEventNumber(eventNumber);
             eventDetailRegist(eventDetailDto);
+        }
+    }
+    // 이벤트 상세정보 업데이트, 데이터베이스 업데이트
+    public void eventDetailUpdateAndSave(List<MultipartFile> eventImg, Long eventNumber) throws IOException{
+        for(MultipartFile file : eventImg){
+            EventDetailDto eventDetailDto = saveDetailImg(file);
+            eventDetailDto.setEventNumber(eventNumber);
+            updateEventDetail(eventDetailDto);
         }
     }
     //경로설정

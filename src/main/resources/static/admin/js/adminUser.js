@@ -69,7 +69,7 @@ function loadUserList(result){
             userList.append(userDiv);
 
             userDiv.on('click', function() {
-                let url = `/admin/user/detail?userNumber=${user.userNumber}`;
+                let url = `/admin/adminUserDetail?userNumber=${user.userNumber}`;
                 window.location.href = url;
             });
         });

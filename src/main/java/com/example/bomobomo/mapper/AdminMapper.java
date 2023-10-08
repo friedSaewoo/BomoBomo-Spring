@@ -49,10 +49,20 @@ public interface AdminMapper {
     public List<EventVo> selectAllEvents(@Param("criteria")Criteria criteria, @Param("searchVo")SearchVo searchVo);
 //    검색별 이벤트수
     public int getTotalEvents(SearchVo searchVo);
+//    이벤트 조회
+    public EventVo selectEventDetail(Long eventNumber);
 //    이벤트 등록
     public void eventRegist(EventDto eventDto);
 //    이벤트 이미지 등록
     public void eventImgRegist(EventImgDto eventImgDto);
 //    이벤트 상세정보 등록
     public void eventDetailRegist(EventDetailDto eventDetailDto);
+//    이벤트 삭제
+    public void eventDelete(Long eventNumber);
+//    이벤트 업데이트
+    public void updateEvent(EventVo eventVo);
+//    이벤트 이미지 업데이트
+    public void updateEventImg(EventImgDto eventImgDto);
+//    이벤트 상세정보 업데이트
+    public void updateEventDetail(EventDetailDto eventDetailDto);
 }

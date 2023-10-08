@@ -299,4 +299,37 @@
             where event_name like '%' || #{keyword} || '%'
         </if>
     </select>
+    <!-- 이벤트 조회-->
+    <select id="selectEventDetail" resultType="eventVo">
+        select e.event_number, e.event_name, e.event_price,
+               ei.EVENT_IMG_NAME, ei.EVENT_IMG_UPLOAD_PATH,ei.EVENT_IMG_UUID,
+               ED.EVENT_DETAIL_NAME, ED.EVENT_DETAIL_UPLOAD_PATH, ED.EVENT_DETAIL_UUID
+        from event e
+                 LEFT JOIN event_img ei on e.EVENT_NUMBER = ei.event_number
+                 LEFT JOIN  EVENT_DETAIL ed on e.EVENT_NUMBER = ed.event_number
+        where e.event_number = #{eventNumber}
+    </select>
+    <!-- 이벤트 삭제 -->
+    <delete id="eventDelete" parameterType="Long">
+        delete from event
+        where event_number=#{eventNumber}
+    </delete>
+    <!-- 이벤트 수정 -->
+    <update id="updateEvent" parameterType="eventVo">
+        update event
+        set event_name = #{eventName}, event_price = #{eventPrice}
+        where event_number=#{eventNumber}
+    </update>
+
+    <update id="updateEventImg" parameterType="eventImgDto">
+        update event_img
+        set event_img_name =#{eventImgName}, event_img_uuid=#{eventImgUuid},event_img_upload_path=#{eventImgUploadPath}
+        where event_number=#{eventNumber}
+    </update>
+
+    <update id="updateEventDetail" parameterType="eventDetailDto">
+        update event_detail
+        set event_detail_name = #{eventDetailName}, event_detail_uuid = #{eventDetailUuid}, event_detail_upload_path = #{eventDetailUploadPath}
+        where event_number = #{eventNumber}
+    </update>
 </mapper>

@@ -54,7 +54,10 @@ function loadEventList(result){
     if(result.eventList!=0){
         let list = $('.event-list');
         list.empty();
-
+        // noticeDiv.on('click', function() {
+        //     let url = `/admin/adminNoticeDetail?noticeNumber=${notice.noticeNumber}`;
+        //     window.location.href = url;
+        // });
         $.each(result.eventList, function (index, event) {
             let eventDiv = $('<div class="event-item">');
             let imagePath =event.eventImgUploadPath + '/th_' + event.eventImgUuid + '_' + event.eventImgName;
@@ -62,6 +65,10 @@ function loadEventList(result){
                 `<img class = "thumbnail" src="/admin/rest/display?fileName=${imagePath}" alt="썸네일"/>`+
                 '</div>');
             eventDiv.append('<div class ="event-title">' + event.eventName+'</div>');
+            eventDiv.on('click', function(){
+               let url = `/admin/adminEventDetail?eventNumber=${event.eventNumber}`
+                window.location.href=url;
+            });
             list.append(eventDiv);
         });
     }else{

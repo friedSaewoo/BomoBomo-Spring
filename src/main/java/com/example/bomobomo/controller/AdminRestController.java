@@ -107,4 +107,8 @@ public class AdminRestController {
     public byte[] display(String fileName) throws IOException {
         return FileCopyUtils.copyToByteArray(new File(eventImgPath, fileName));
     }
+    @GetMapping("/displayDetail")
+    public byte[] displayDetail(String fileName) throws IOException {
+        return FileCopyUtils.copyToByteArray(new File(eventDetailPath, fileName));
+    }
 }
