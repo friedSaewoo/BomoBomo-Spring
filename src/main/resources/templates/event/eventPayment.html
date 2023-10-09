@@ -28,7 +28,7 @@
             <div class="payment-application-write" >
                 <div class="eventInfo-area">
                     <div class="info-date" style="text-align: left;" >날짜 및 시간</div>
-                    <input class="eventInfo" type="text" placeholder="(ex: 2023/09/18 오후 2시)" required>
+                    <input class="eventInfo" id="eventDate" type="text" placeholder="(ex: 2023/09/18 오후 2시)" required>
                 </div>
 
                 <div class="eventInfo-area">
@@ -39,7 +39,7 @@
                 <div class="eventInfo-area">
                     <div class="info-price" style="text-align: left;">이벤트 가격</div>
                     <li th:each="event : ${payment}">
-                    <input class="eventInfo" type="text" th:value="${event.eventPrice}" disabled>
+                    <input class="eventInfo" type="text" th:id="price" th:value="${event.eventPrice}" disabled>
                     </li>
                 </div>
 
