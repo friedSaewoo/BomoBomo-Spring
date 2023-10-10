@@ -151,6 +151,23 @@
         insert into EMP_ACT_ITEM (EMP_ACT_ITEM_NUMBER, ACT_NUMBER, EMP_NUMBER)
         values (seq_emp_act_item.nextval,#{actNumber},#{empNumber})
     </insert>
+<!-- 직원 상세 -->
+    <select id="selectEmpDetail" resultType="empVo">
+        SELECT E.EMP_NUMBER, E.EMP_NAME, E.EMP_AGE, E.EMP_GENDER, E.EMP_PHONE, E.EMP_EMAIL, E.EMP_DATE, E.EMP_CONTENT,
+               EI.EMP_IMG_NUMBER, EI.EMP_IMG_NAME, EI.EMP_IMG_UPLOAD_PATH, EI.EMP_IMG_UUID
+        FROM EMP E LEFT JOIN EMP_IMG EI on E.EMP_NUMBER = EI.EMP_NUMBER
+        WHERE E.EMP_NUMBER = #{empNumber}
+    </select>
+<!-- 직원 활동 조회-->
+    <select id="selectEmpAct" resultType="actVo">
+        select a.act_name, ai.act_img_number,ai.act_number, ai.act_img_name, ai.act_img_upload_path, ai.act_img_uuid
+        from act a join act_img ai on a.ACT_NUMBER = ai.ACT_NUMBER
+        where ai.act_number IN(
+            select act_number
+            from emp_act_item
+            where emp_number= #{empNumber}
+        )
+    </select>
 <!-- 공지사항 조회 -->
     <select id="selectAllNotice" resultType="noticeDto">
         SELECT

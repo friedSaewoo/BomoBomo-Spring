@@ -11,7 +11,7 @@ function loadImage() {
 
         document.querySelector('.event-img').appendChild(eventImgDiv[0]);
     };
-    img.src = "/admin/rest/display?fileName=" + imagePath;
+    img.src = "/admin/rest/displayEventImg?fileName=" + imagePath;
 }
 function loadDetail(){
     let eventDetailUploadPath = document.getElementById('eventDetailUploadPath').value;
@@ -26,7 +26,7 @@ function loadDetail(){
 
         document.querySelector('.event-detail-img').appendChild(eventDetailDiv[0]);
     };
-    img.src = "/admin/rest/displayDetail?fileName=" + imagePath;
+    img.src = "/admin/rest/displayEventDetail?fileName=" + imagePath;
 }
 loadImage();
 loadDetail();

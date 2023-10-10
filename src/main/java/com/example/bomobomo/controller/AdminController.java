@@ -1,6 +1,7 @@
 package com.example.bomobomo.controller;
 
 import com.example.bomobomo.domain.dto.*;
+import com.example.bomobomo.domain.vo.EmpVo;
 import com.example.bomobomo.domain.vo.EventVo;
 import com.example.bomobomo.domain.vo.UserDetailVo;
 import com.example.bomobomo.service.AdminService;
@@ -82,7 +83,6 @@ public class AdminController {
         log.info("========================================={}",actList);
         return "admin/adminEmpRegist";
     }
-
     @PostMapping("/emp/regist")
     public RedirectView empRegist(EmpDto empDto,@RequestParam("actNumber")List<Long> actNumber
                                                ,@RequestParam("empImgFile")List<MultipartFile> empImg){
@@ -103,6 +103,12 @@ public class AdminController {
         }
 
         return new RedirectView("/admin/emp");
+    }
+    @GetMapping(value={"/admin/adminEmpDetail"})
+    public void selectEmpDetail(@RequestParam(name="empNumber")Long empNumber, Model model){
+        EmpVo empDetail= adminService.selectEmpDetail(empNumber);
+        model.addAttribute("empDetail",empDetail);
+
     }
 
     @GetMapping("/match")

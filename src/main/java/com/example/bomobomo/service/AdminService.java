@@ -71,7 +71,7 @@ public class AdminService {
     public List<ActDto> selectAct(){
         return adminMapper.selectAct();
     }
-// 직원 등록
+//  직원 등록
     public void empRegist(EmpDto empDto){
         adminMapper.empRegist(empDto);
     }
@@ -118,7 +118,7 @@ public class AdminService {
 
         return empImgDto;
     }
-// 이벤트 이미지 저장, 데이터베이스 저장
+// 직원 이미지 저장, 데이터베이스 저장
     public void empImgRegistAndSave(List<MultipartFile> empImg, Long empNumber) throws IOException{
         for(MultipartFile file : empImg){
             EmpImgDto empImgDto = saveEmpImg(file);
@@ -135,6 +135,15 @@ public class AdminService {
 //            updateEventImg(eventImgDto);
 //        }
 //    }
+
+//    직원 상세
+    public EmpVo selectEmpDetail(Long empNumber){
+        return adminMapper.selectEmpDetail(empNumber);
+    }
+//    직원 활동 이미지
+    public List<ActVo> selectEmpAct(Long empNumber){
+        return adminMapper.selectEmpAct(empNumber);
+    }
 
 //    공지사항 조회
     public List<NoticeDto> selectAllNotice(Criteria criteria, SearchVo searchVo){

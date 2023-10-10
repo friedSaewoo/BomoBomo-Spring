@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>관리자 페이지</title>
-    <link rel="stylesheet" href="/admin/css/admin_emp_detail.css">
+    <link rel="stylesheet" href="/admin/css/adminEmpDetail.css">
 </head>
 <body>
     <!-- 전체 컨테이너 -->
@@ -12,7 +12,7 @@
         <!-- 사이드 컨테이너 -->
         <div class="side-container">
             <div class="side-logo-box">
-                   <img class="logo" src="../img/logo.png" alt="logo">
+                   <img class="logo" src="/admin/img/logo.png" alt="logo">
             </div>
             <ul class="side-item-container">
                 <li class="side-item" ><a href="/admin/main">대시보드</a></li>
@@ -40,27 +40,39 @@
                 <div class="emp-detail-container">
                     <div class="emp-info-container1">
                         <div class="img">
-                            <img class="self" src="../img/logo.png">
+<!--                            <img class="self" src="../img/logo.png">-->
                         </div>
                         <div class="info">
-                            <span class="name">김보노</span>
-                            <span class="age-gender">57세 남</span>
+                            <span class="emp-num">no.<span th:text="${empDetail.empNumber}">1</span></span>
+                            <span class="name" th:text="${empDetail.empName}">김보노</span>
+                            <span class="age-gender"><span th:text="${empDetail.empAge}"/>세<span> 남</span>
+                            <span class="rating">★★★☆☆</span>
+                            <span class="review">후기 10개</span>
                             <div class="info-detail">
-                                <div class="rating">★★★☆☆</div>
-                                <div class="review">후기 10개</div>
-                                <div class="emp-num">no.001</div>
+                                <p class="emp-phone">연락처: <span th:text="${empDetail.empPhone}">01071921375</span></p>
+                                <p class="emp-email">이메일: <span th:text="${empDetail.empEmail}">zriag@naver.com</span></p>
                             </div>
-                            <div class="tag"></div>
-                            <p class="emp-date">입사일: <span>2023-09-15</span></p>
-                            <p class="emp-phone">연락처: <span>01071921375</span></p>
-                            <p class="emp-email">이메일: <span>zriag@naver.com</span></p>
+                            <p class="emp-date">입사일: <span th:text="${empDetail.empDate}">2023-09-15</span></p>
+                            <fieldset class="tag">
+                                <legend>활동</legend>
+                                    <ul class="act-item-container">
+<!--                                        <li class="act-item">-->
+<!--                                            <img src="../img/0002.png" class="act-img">-->
+<!--                                            <p>영어놀이다</p>-->
+<!--                                        </li>-->
+<!--                                        <li class="act-item">-->
+<!--                                            <img src="../img/0002.png" class="act-img">-->
+<!--                                            <p>수학</p>-->
+<!--                                        </li>-->
+                                    </ul>
+                            </fieldset>
                         </div>
                     </div>
                     <div class="emp-info-container2">
                         <div class="introduction">
                             <div class="title">간단 자기소개</div>
                             <textarea id="selfint" name="selfint" readonly>
-안녕하세요 보노보노의 보노보노를 맡고있는 보노보노입니다.
+[[${empDetail.empContent}]]
                             </textarea>
                         </div>
                     </div>
@@ -72,7 +84,12 @@
             </div>
         </div>
     </div>
+<input type="hidden" id="empNumber" th:value="${empDetail.empNumber}">
+<input type="hidden" id="empImgUploadPath" th:value="${empDetail.empImgUploadPath}">
+<input type="hidden" id="empImgName" th:value="${empDetail.empImgName}">
+<input type="hidden" id="empImgUuid" th:value="${empDetail.empImgUuid}">
 </body>
-<script src="../js/admin_emp_detail.js"></script>
+<script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+<script th:src="@{/admin/js/adminEmpDetail.js}"></script>
 <script src="/admin/js/adminHeader.js"></script>
 </html>

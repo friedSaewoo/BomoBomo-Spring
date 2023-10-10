@@ -62,7 +62,7 @@ function loadEventList(result){
             let eventDiv = $('<div class="event-item">');
             let imagePath =event.eventImgUploadPath + '/th_' + event.eventImgUuid + '_' + event.eventImgName;
             eventDiv.append('<div class="event-img">'+
-                `<img class = "thumbnail" src="/admin/rest/display?fileName=${imagePath}" alt="썸네일"/>`+
+                `<img class = "thumbnail" src="/admin/rest/displayEventImg?fileName=${imagePath}" alt="썸네일"/>`+
                 '</div>');
             eventDiv.append('<div class ="event-title">' + event.eventName+'</div>');
             eventDiv.on('click', function(){

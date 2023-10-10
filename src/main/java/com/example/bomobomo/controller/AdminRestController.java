@@ -32,6 +32,11 @@ public class AdminRestController {
     private String eventImgPath;
     @Value("${file.eventDetail}")
     private String eventDetailPath;
+    @Value("${file.empImg}")
+    private String empImgPath;
+    @Value("${actImg.dir}")
+    private String actImgPath;
+
 
     @GetMapping("/user/list/{page}")
     public Map<String, Object> selectAllUsers(@PathVariable("page")int page, SearchVo searchVo) {
@@ -61,6 +66,7 @@ public class AdminRestController {
         adminEmpMap.put("adminEmpList", adminEmpList);
         return adminEmpMap;
     }
+
 
     @GetMapping("/notice/list/{page}")
     public Map<String, Object> selectAllNotice(@PathVariable("page")int page, SearchVo searchVo){
@@ -103,12 +109,28 @@ public class AdminRestController {
         eventListMap.put("eventList",eventList);
         return eventListMap;
     }
-    @GetMapping("/display")
+    @GetMapping("/displayEventImg")
     public byte[] display(String fileName) throws IOException {
         return FileCopyUtils.copyToByteArray(new File(eventImgPath, fileName));
     }
-    @GetMapping("/displayDetail")
+    @GetMapping("/displayEventDetail")
     public byte[] displayDetail(String fileName) throws IOException {
         return FileCopyUtils.copyToByteArray(new File(eventDetailPath, fileName));
+    }
+    @GetMapping("/displayEmpImg")
+    public byte[] displayEmpImg(String fileName) throws IOException {
+        return FileCopyUtils.copyToByteArray(new File(empImgPath, fileName));
+    }
+
+
+    @GetMapping("/actImg")
+    public List<ActVo> actImgList(Long empNumber){
+        log.info("===============================여기야{}",empNumber);
+        return adminService.selectEmpAct(empNumber);
+    }
+    @GetMapping("/displayActImg")
+    public byte[] displayActImg(String fileName) throws IOException {
+        log.info("=================================={}여기야",fileName);
+        return FileCopyUtils.copyToByteArray(new File(actImgPath, fileName));
     }
 }
