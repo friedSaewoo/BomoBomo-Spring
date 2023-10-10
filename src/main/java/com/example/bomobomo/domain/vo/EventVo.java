@@ -11,12 +11,10 @@ public class EventVo {
     Long eventNumber;
     String eventName;
     Integer eventPrice;
-
-    String eventImgName;
-    String eventImgUploadPath;
-    String eventImgUuid;
-
     String eventDetailName;
     String eventDetailUploadPath;
     String eventDetailUuid;
+    String eventImgName;
+    String eventImgUploadPath;
+    String eventImgUuid;
 }

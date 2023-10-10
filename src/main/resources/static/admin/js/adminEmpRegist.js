@@ -41,3 +41,16 @@ function displayResizedImage() {
         reader.readAsDataURL(imageInput.files[0]);
     }
 }
+
+// 원하는 체크박스 갯수 제한
+const maxChecked = 3; // 체크박수 갯수 제한 3개
+const checkboxes = document.querySelectorAll('.act-check');
+
+checkboxes.forEach(checkbox => {
+    checkbox.addEventListener('change', function() {
+        const checkedCheckboxes = document.querySelectorAll('.act-check:checked');
+        if (checkedCheckboxes.length > maxChecked) {
+            this.checked = false;
+        }
+    });
+});

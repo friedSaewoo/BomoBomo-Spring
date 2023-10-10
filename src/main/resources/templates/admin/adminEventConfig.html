@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>관리자 페이지</title>
+    <link rel="stylesheet" href="/admin/css/adminEventModify.css">
+</head>
+<body>
+<!-- 전체 컨테이너 -->
+<div class="admin-container">
+    <!-- 사이드 컨테이너 -->
+    <div class="side-container">
+        <div class="side-logo-box">
+            <img class="logo" src="/admin/img/logo.png" alt="logo">
+        </div>
+        <ul class="side-item-container">
+            <li class="side-item" ><a href="/admin/main">대시보드</a></li>
+            <li class="side-item"><a href ="/admin/user">회원정보</a></li>
+            <li class="side-item"><a href="/admin/emp">직원관리</a></li>
+            <li class="side-item"><a href="/admin/match">매칭관리</a></li>
+            <li class="side-item on"><a href="/admin/event">이벤트관리</a></li>
+            <li class="side-item"><a href="/admin/notice">공지사항</a></li>
+        </ul>
+    </div>
+
+    <!-- 메인 컨테이너 -->
+    <div class="main-container">
+        <!-- 메인 헤더 -->
+        <div class="main-header">
+            <span class="main-header-title">BomoBomo</span>
+            <span class="admin-name">admin</span>
+            <button class="main-header-exit">나가기</button>
+        </div>
+        <!-- 메인 컨텐츠 -->
+        <div class="main-contents">
+            <div class="contents-title">
+                <span class="main-contents-title-text">이벤트관리</span>
+            </div>
+            <div class="event-detail-container">
+                <form action="/admin/adminEventConfig" method="post" enctype="multipart/form-data">
+                    <input type ="hidden" th:value="${eventDetail.eventNumber}" name="eventNumber">
+                    <div class="event-main">
+                        <div class="title-box">
+                            <label for="name">이벤트 명 : </label>
+                            <input type="text" id="name" name="eventName" th:value="${eventDetail.eventName}" required><br>
+                        </div>
+                        <div class="event-img">
+                            <canvas id="event-img-preview"></canvas>
+                            <input type="file" name="eventImgFile" id="event-img-input"  onchange="displayResizedEventImg()">
+                        </div>
+
+                        <div class="detail">프로그램 상세설명</div>
+
+                        <div class="event-detail-img">
+                            <canvas id="event-detail-img-preview"></canvas>
+                            <input type="file" name="eventDetailFile" id="event-detail-img-input" onchange="displayResizedEventDetailImg()">
+                        </div>
+                        <div class="cost-box">
+                            <label for="cost">비용 : </label>
+                            <input type="text" id="cost" name="eventPrice" th:value="${eventDetail.eventPrice}" required><br><br>
+                        </div>
+                        <div class="bt-container">
+                            <a href="/admin/redirect/event" class="board-home">글 목록</a>
+                            <button type="submit" class="event-regist-btn">수정</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<input type="hidden" id="eventUploadPath" th:value="${eventDetail.eventImgUploadPath}">
+<input type="hidden" id="eventImgUuid" th:value="${eventDetail.eventImgUuid}">
+<input type="hidden" id="eventImgName" th:value="${eventDetail.eventImgName}">
+<input type="hidden" id ="eventDetailUploadPath" th:value="${eventDetail.eventDetailUploadPath}">
+<input type="hidden" id ="eventDetailUuid" th:value="${eventDetail.eventDetailUuid}">
+<input type="hidden" id ="eventDetailName" th:value="${eventDetail.eventDetailName}">
+</body>
+<script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+<script th:src="@{/admin/js/adminEventModify.js}"></script>
+<script src="/admin/js/adminHeader.js"></script>
+</html>
