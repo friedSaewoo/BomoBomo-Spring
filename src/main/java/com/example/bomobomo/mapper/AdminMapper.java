@@ -26,6 +26,13 @@ public interface AdminMapper {
     public List<EmpDto> selectAllEmp(@Param("criteria")Criteria criteria, @Param("searchVo")SearchVo searchVo);
 //    검색별 직원 수
     public int getTotalEmp(SearchVo searchVo);
+    public List<ActDto> selectAct();
+//    직원 등록
+    public void empRegist(EmpDto empDto);
+//    직원 이미지 등록
+    public void empImgRegist(EmpImgDto empImgDto);
+//    직원 활동 등록
+    public void empActRegist(EmpActItemDto empActItemDto);
 
 //    공지사항 리스트
     public List<NoticeDto> selectAllNotice(@Param("criteria")Criteria criteria, @Param("searchVo")SearchVo searchVo);

@@ -129,7 +129,28 @@
                 where emp_email like '%' || #{keyword} || '%'
             </if>
     </select>
-
+<!-- Act 전체 조회-->
+    <select id="selectAct" resultType="actDto">
+        select * from act
+    </select>
+<!-- 직원 등록 -->
+    <insert id="empRegist" >
+        <selectKey keyProperty="empNumber" order="BEFORE" resultType="Long">
+            select SEQ_EMP.NEXTVAL FROM DUAL
+        </selectKey>
+        insert into EMP (EMP_NUMBER, EMP_NAME, EMP_AGE, EMP_GENDER, EMP_PHONE, EMP_EMAIL, EMP_CONTENT)
+        values (#{empNumber},#{empName},#{empAge},#{empGender},#{empPhone},#{empEmail},#{empContent})
+    </insert>
+<!-- 직원 이미지 등록 -->
+    <insert id ="empImgRegist">
+        insert into EMP_IMG (EMP_IMG_NUMBER, EMP_IMG_NAME, EMP_IMG_UPLOAD_PATH, EMP_IMG_UUID, EMP_NUMBER)
+        values (seq_emp_img.nextval,#{empImgName},#{empImgUploadPath},#{empImgUuid},#{empNumber})
+    </insert>
+<!-- 직원 활동 등록 -->
+    <insert id="empActRegist">
+        insert into EMP_ACT_ITEM (EMP_ACT_ITEM_NUMBER, ACT_NUMBER, EMP_NUMBER)
+        values (seq_emp_act_item.nextval,#{actNumber},#{empNumber})
+    </insert>
 <!-- 공지사항 조회 -->
     <select id="selectAllNotice" resultType="noticeDto">
         SELECT

@@ -137,3 +137,9 @@ function inputEnter(event) {
 }
 document.getElementById("search").addEventListener("keyup", inputEnter);
 
+$(document).ready(function() {
+    $('.regist-btn').on('click', function() {
+        let url = '/admin/emp/regist';
+        window.location.href = url;
+    });
+});

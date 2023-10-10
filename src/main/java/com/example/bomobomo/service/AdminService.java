@@ -4,6 +4,7 @@ import com.example.bomobomo.domain.dto.*;
 import com.example.bomobomo.domain.vo.*;
 import com.example.bomobomo.mapper.AdminMapper;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import net.coobird.thumbnailator.Thumbnailator;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -20,6 +21,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class AdminService {
@@ -30,8 +32,9 @@ public class AdminService {
     private String fileEventImg;
     @Value("${file.eventDetail}")
     private String fileEventDetail;
-
-// 관리자 로그인
+    @Value("${file.empImg}")
+    private String fileEmpImg;
+    // 관리자 로그인
     @Transactional
     public AdminDto adminLogin(String adminId, String adminPassword){
         return Optional.ofNullable(adminMapper.login(adminId, adminPassword))
@@ -64,6 +67,74 @@ public class AdminService {
     public int getTotalEmp(SearchVo searchVo){
         return adminMapper.getTotalEmp(searchVo);
     }
+//  Act 전체조회
+    public List<ActDto> selectAct(){
+        return adminMapper.selectAct();
+    }
+// 직원 등록
+    public void empRegist(EmpDto empDto){
+        adminMapper.empRegist(empDto);
+    }
+//  직원 활동 등록
+    public void empActRegist(EmpActItemDto empActItemDto){
+        adminMapper.empActRegist(empActItemDto);
+    }
+//  직원 이미지 등록
+    public void empImgRegist(EmpImgDto empImgDto){
+        adminMapper.empImgRegist(empImgDto);
+    }
+//  직원 이미지 저장처리
+    public EmpImgDto saveEmpImg(MultipartFile empImg) throws IOException {
+//        사용자가 올린 파일 이름(확장자를 포함)
+        String originName = empImg.getOriginalFilename();
+//        파일이름에 붙여줄 uuid를 생성(파일이름 중복이 나오지 않게 처리)
+        UUID uuid = UUID.randomUUID();
+
+//        uuid와 파일이름을 합쳐준다.
+        String sysName = uuid.toString() + "_" + originName;
+
+//        상위 경로와 하위경로를 합친다.
+        File uploadPath = new File(fileEmpImg, getUploadPath());
+
+//        경로가 존재하지 않는다면 (폴더가 없다면)
+        if(!uploadPath.exists()){
+//            경로를 만들어준다.(폴더를 만든다)
+            uploadPath.mkdirs();
+        }
+
+//        전체 경로와 파일이름을 연결한다.
+        File uploadFile = new File(uploadPath,sysName);
+
+//        매개변수로 받은 파일을 우리가 만든 경로와 이름으로 저장한다.
+        empImg.transferTo(uploadFile);
+
+//        썸네일을 저장한다.
+//        이미지 파일인 경우에만 썸네일을 저장해야한다.
+
+        EmpImgDto empImgDto = new EmpImgDto();
+        empImgDto.setEmpImgName(originName);
+        empImgDto.setEmpImgUuid(uuid.toString());
+        empImgDto.setEmpImgUploadPath(getUploadPath());
+
+        return empImgDto;
+    }
+// 이벤트 이미지 저장, 데이터베이스 저장
+    public void empImgRegistAndSave(List<MultipartFile> empImg, Long empNumber) throws IOException{
+        for(MultipartFile file : empImg){
+            EmpImgDto empImgDto = saveEmpImg(file);
+            empImgDto.setEmpNumber(empNumber);
+            empImgRegist(empImgDto);
+            log.info("================================{}",empImgDto);
+        }
+    }
+// 직원 이미지 업데이트, 데이터베이스 업데이트
+//    public void eventImgUpdateAndSave(List<MultipartFile> eventImg, Long eventNumber) throws IOException{
+//        for(MultipartFile file : eventImg){
+//            EventImgDto eventImgDto = saveEventImg(file);
+//            eventImgDto.setEventNumber(eventNumber);
+//            updateEventImg(eventImgDto);
+//        }
+//    }
 
 //    공지사항 조회
     public List<NoticeDto> selectAllNotice(Criteria criteria, SearchVo searchVo){

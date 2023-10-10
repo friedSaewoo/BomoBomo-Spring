@@ -1,9 +1,6 @@
 package com.example.bomobomo.controller;
 
-import com.example.bomobomo.domain.dto.AdminDto;
-import com.example.bomobomo.domain.dto.EventDetailDto;
-import com.example.bomobomo.domain.dto.EventDto;
-import com.example.bomobomo.domain.dto.NoticeDto;
+import com.example.bomobomo.domain.dto.*;
 import com.example.bomobomo.domain.vo.EventVo;
 import com.example.bomobomo.domain.vo.UserDetailVo;
 import com.example.bomobomo.service.AdminService;
@@ -78,11 +75,40 @@ public class AdminController {
     public String Emp(){
         return "admin/adminEmp";
     }
+    @GetMapping("/emp/regist")
+    public String empRegist(Model model){
+        List<ActDto> actList = adminService.selectAct();
+        model.addAttribute("actList",actList);
+        log.info("========================================={}",actList);
+        return "admin/adminEmpRegist";
+    }
+
+    @PostMapping("/emp/regist")
+    public RedirectView empRegist(EmpDto empDto,@RequestParam("actNumber")List<Long> actNumber
+                                               ,@RequestParam("empImgFile")List<MultipartFile> empImg){
+        log.info("=====================================================컨트롤러도착");
+        adminService.empRegist(empDto);
+
+        for(int i=0 ; i<actNumber.size();i++){
+            EmpActItemDto empActItemDto = new EmpActItemDto();
+            empActItemDto.setEmpNumber(empDto.getEmpNumber());
+            empActItemDto.setActNumber(actNumber.get(i));
+            log.info("================================{}",empActItemDto);
+            adminService.empActRegist(empActItemDto);
+        }
+        try {
+            adminService.empImgRegistAndSave(empImg, empDto.getEmpNumber());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return new RedirectView("/admin/emp");
+    }
+
     @GetMapping("/match")
     public String Match(){
         return "admin/adminMatch";
     }
-
     @GetMapping("/event")
     public String Event(){
         return "admin/adminEvent";
