@@ -36,7 +36,7 @@
                 <img th:src="'/upload/' + ${event.eventImgUploadPath} + '/' + ${event.eventImgUuid} +'_' + ${event.eventImgName}">
             </div>
         </div>
-        <div class="event-apply">
+        <div class="event-apply" th:block th:if="${session.userId!=null}">
             <a th:href="@{/event/payment(eventNumber=${event.eventNumber})}">신청하기</a>
         </div>
     </div>
