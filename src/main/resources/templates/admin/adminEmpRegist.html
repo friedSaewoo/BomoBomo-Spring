@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>관리자 페이지</title>
-    <link rel="stylesheet" href="../css/admin_emp_regist.css">
+    <link rel="stylesheet" href="/admin/css/adminEmpRegist.css">
 </head>
 <body>
     <!-- 전체 컨테이너 -->
@@ -12,7 +12,7 @@
         <!-- 사이드 컨테이너 -->
         <div class="side-container">
             <div class="side-logo-box">
-                   <img class="logo" src="../img/logo.png" alt="logo">
+                   <img class="logo" src="/admin/img/logo.png" alt="logo">
             </div>
             <ul class="side-item-container">
                 <li class="side-item" ><a href="/admin/main">대시보드</a></li>
@@ -37,36 +37,50 @@
                 <div class="contents-title">
                     <span class="main-contents-title-text">직원관리</span>
                 </div>
-                <form action="#" method="post" enctype="multipart/form-data">
+                <form action="/admin/emp/regist" method="post" enctype="multipart/form-data">
                 <div class="emp-detail-container">
                     <div class="emp-info-container1">
                         <div class="img">
                             <canvas id="image-preview"></canvas>
-                                <input type="file" name="image" id="image-input" onchange="displayResizedImage()">
+                                <input type="file" name="empImgFile" id="image-input" onchange="displayResizedImage()">
                         </div>
                         <div class="info">
-                            <label for="name">이름:</label>
-                            <input type="text" id="name" name="name" required><br><br>
-                    
-                            <label for="age">나이:</label>
-                            <input type="text" id="age" name="age" required><br><br>
-                            <label for="gender">성별:</label>
-                            <select id="gender" name="gender">
-                                <option value="male">남성</option>
-                                <option value="female">여성</option>
-                            </select><br><br>
-                    
-                            <label for="contact">연락처:</label>
-                            <input type="text" id="contact" name="contact"><br><br>
-                    
-                            <label for="email">이메일:</label>
-                            <input type="email" id="email" name="email" required><br><br>
+                            <div class="name-age-container">
+                                <label for="name">이름 &nbsp;&nbsp;:&nbsp;</label>
+                                <input type="text" id="name" name="empName" required>
+
+                                <label for="age">나이:&nbsp;</label>
+                                <input type="text" id="age" name="empAge" required>
+
+                                <label for="gender">성별:&nbsp;</label>
+                                <select id="gender" name="empGender">
+                                    <option value="M">남성</option>
+                                    <option value="F">여성</option>
+                                </select>
+                            </div>
+
+                            <div class="email-phone-container">
+                                <label for="contact">연락처:&nbsp;</label>
+                                <input type="text" id="contact" name="empPhone"><br><br>
+
+                                <label for="email">이메일:&nbsp;</label>
+                                <input type="email" id="email" name="empEmail" required><br><br>
+                            </div>
+                            <div class="act-checkbox">
+                                <fieldset>
+                                    <legend>활동</legend>
+                                    <div th:each="act: ${actList}">
+                                        <label th:text="${act.actName}"/>
+                                            <input class ="act-check" th:name="actNumber" th:value="${act.actNumber}" type="checkbox">
+                                    </div>
+                                </fieldset>
+                            </div>
                         </div>
                     </div>
                     <div class="emp-info-container2">
                         <div class="introduction">
                             <div class="title">간단 자기소개</div>
-                            <textarea id="selfint" name="selfint" required></textarea>
+                            <textarea id="selfint" name="empContent" required></textarea>
                         </div>
                     </div>
                     <div class="submit-button">

@@ -85,3 +85,41 @@ function displayResizedEventDetailImg() {
         reader.readAsDataURL(imageInput.files[0]);
     }
 }
+
+function loadImage() {
+    let eventImgUploadPath = document.getElementById('eventUploadPath').value;
+    let eventImgUuid = document.getElementById('eventImgUuid').value;
+    let eventImgName = document.getElementById('eventImgName').value;
+    let imagePath = eventImgUploadPath + '/' + eventImgUuid + '_' + eventImgName;
+
+    let canvas = document.getElementById('event-img-preview');
+    let context = canvas.getContext('2d');
+    let img = new Image();
+
+    img.onload = function() {
+        canvas.width = img.width;  // 이미지와 같은 크기로 캔버스 크기 설정
+        canvas.height = img.height;
+        context.drawImage(img, 0, 0);  // 이미지를 캔버스에 그립니다.
+    };
+    img.src = "/admin/rest/display?fileName=" + imagePath;
+}
+function loadDetail() {
+    let eventDetailUploadPath = document.getElementById('eventDetailUploadPath').value;
+    let eventDetailUuid = document.getElementById('eventDetailUuid').value;
+    let eventDetailName = document.getElementById('eventDetailName').value;
+    let imagePath = eventDetailUploadPath + '/' + eventDetailUuid + '_' + eventDetailName;
+
+    let canvas = document.getElementById('event-detail-img-preview');
+    let context = canvas.getContext('2d');
+    let img = new Image();
+
+    img.onload = function() {
+        canvas.width = img.width;  // 이미지와 같은 크기로 캔버스 크기 설정
+        canvas.height = img.height;
+        context.drawImage(img, 0, 0);  // 이미지를 캔버스에 그립니다.
+    };
+
+    img.src = "/admin/rest/displayDetail?fileName=" + imagePath;
+}
+loadImage();
+loadDetail();

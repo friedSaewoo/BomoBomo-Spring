@@ -135,7 +135,7 @@ textarea:focus{
 .emp-info-container1{
     margin: 10px;
     display: flex;
-    height: 300px;
+    height: 340px;
     width: 98%;
 }
 .emp-info-container1>.img{
@@ -143,7 +143,7 @@ textarea:focus{
     border-radius: 5%;
     border: 2px solid #01b9ff;
     width: 320px;
-    height: 290px;
+    height: 325px;
 }
 #image-preview{
     width: 320px;
@@ -158,8 +158,8 @@ textarea:focus{
     width: 600px;
 }
 .emp-info-container2{
-    margin: 40px 10px 10px 10px;
-    border: 2px solid #01b9ff; 
+    margin: 0 10px 10px 10px;
+    border: 2px solid #01b9ff;
     border-radius: 1%;
     height: 500px;
     width: 98%;
@@ -217,53 +217,74 @@ textarea:focus{
 /***************************************/
 .self{
     width: 320px;
-    height: 290px;
+    height: 325px;
     border-radius: 5%;
 }
 .info>.name{
-    margin-left: 20px;
-    font-size: 23px;
+    margin-left: 5px;
+    font-size: 20px;
     font-weight: bold;
 }
 .info>.age-gender{
     color:rgb(136,136, 136);
-    margin-left: 30px;
+    margin-left: 10px;
     font-size: 18px;
 }
 .info-detail{
     display: flex;
 }
-.info-detail>.rating{
+.rating{
     color: orange;
     margin-left: 10px;
     font-size: 25px;
 }
-.info-detail>.review{
+.review{
     color:rgb(136,136, 136);
     margin-top:5px;
     margin-left: 15px;
     font-size: 20px;
 }
-.info-detail>.emp-num{
+.emp-num{
     margin-left: 15px;
-    font-size: 25px;
+    font-size: 20px;
+}
+legend{
+    font-size: 20px;
 }
 .tag{
-    width: 100%;
-    border: 1px solid black;
-    height: 70px;
+    width: 95%;
+    height: 190px;
+    margin: 10px auto 0;
+    border: 1px solid rgb(136,136, 136);
+    border-radius: 2%;
 }
 .emp-date{
     margin-top:10px;
-    font-size: 25px;
+    margin-left: 10px;
+    font-size: 20px;
 }
 .emp-phone{
+    margin-left: 10px;
     margin-top: 10px;
-    font-size: 25px;
+    margin-right: 55px;
+    font-size: 20px;
 }
 .emp-email{
     margin-top:10px;
-    font-size: 25px;
+    font-size: 20px;
 }
-
-
+.act-item-container{
+    list-style-type: none;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4개의 열을 만듭니다. */
+    padding: 10px;
+}
+.act-item{
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.act-img{
+    width: 50px;
+    height: 50px;
+}
