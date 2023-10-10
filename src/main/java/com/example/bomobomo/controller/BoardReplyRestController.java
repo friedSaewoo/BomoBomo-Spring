@@ -69,7 +69,7 @@ public class BoardReplyRestController {
         replyService.modify(sitterCommentDto);
     }
 
-
+    //댓글삭제
     @DeleteMapping("/{sitterCommentNumber}")
     public void removeReply(@PathVariable("sitterCommentNumber") Long sitterCommentNumber){
         if (sitterCommentNumber == null) {

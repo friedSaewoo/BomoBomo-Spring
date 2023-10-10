@@ -15,4 +15,8 @@ public class IndexController {
     public String showMainPage(){
         return "common/index";
     }
+
+
+
+
 }
