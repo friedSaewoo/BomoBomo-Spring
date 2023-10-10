@@ -39,6 +39,31 @@
 
     </select>
 
+<!--    조회수 높은 게시물 6개 -->
+    <select id="selectTopCount">
+
+        select rnum, SITTER_BOARD_NUMBER, user_number, user_id, EMP_NUMBER,SITTER_BOARD_CONTENT, SITTER_BOARD_REGISTER_DATE,
+               SITTER_BOARD_MODIFY_DATE, RATING, SITTER_BOARD_COUNT, EMP_NAME, emp_img_UPLOAD_PATH, emp_img_UUID, emp_img_NAME
+        from(
+                select rownum as rnum, SITTER_BOARD_NUMBER, user_number, user_id, EMP_NUMBER,SITTER_BOARD_CONTENT,
+                       SITTER_BOARD_REGISTER_DATE, SITTER_BOARD_MODIFY_DATE, RATING, SITTER_BOARD_COUNT, EMP_NAME,
+                       emp_img_UPLOAD_PATH, emp_img_UUID, emp_img_NAME
+                from (
+                         select  s.SITTER_BOARD_NUMBER, s.user_number, u.user_id,s.EMP_NUMBER,SITTER_BOARD_CONTENT,
+                                 SITTER_BOARD_REGISTER_DATE, SITTER_BOARD_MODIFY_DATE, RATING, SITTER_BOARD_COUNT, e.EMP_NAME,
+                                 i.emp_img_UPLOAD_PATH, i.emp_img_UUID, i.emp_img_NAME
+                         from SITTER_BOARD s join users u
+                                                  on s.user_number = u.user_number
+                                             join emp e
+                                                  on s.EMP_NUMBER = e.EMP_NUMBER
+                                             left outer join EMP_IMG i on e.EMP_NUMBER = i.emp_number
+                         order by SITTER_BOARD_COUNT desc
+                     )
+            )where rnum between 1 and 6
+
+
+    </select>
+
 
 <!--    돌봄서비스 리뷰 게시물 개수-->
     <select id="getTotal" resultType="_int">
@@ -136,6 +161,36 @@
         where rownum <=#{criteria.page} * #{criteria.amount}
         )]]>
         where rnum>(#{criteria.page}-1) * #{criteria.amount}
+
+    </select>
+
+
+    <select id="selectTopEventCount">
+
+        select rnum, event_BOARD_NUMBER, user_number, user_id, event_NUMBER, event_BOARD_CONTENT,
+        event_BOARD_REGISTER_DATE,
+        event_BOARD_MODIFY_DATE, RATING, event_BOARD_COUNT, event_NAME,event_img_UPLOAD_PATH, event_img_UUID, event_img_NAME
+        from (
+        select rownum as rnum, event_BOARD_NUMBER, user_number, user_id, event_NUMBER, event_BOARD_CONTENT,
+        event_BOARD_REGISTER_DATE,
+        event_BOARD_MODIFY_DATE, RATING, event_BOARD_COUNT, event_NAME,event_img_UPLOAD_PATH, event_img_UUID, event_img_NAME
+        from (
+        select  event_BOARD_NUMBER, s.user_number, u.user_id, s.event_NUMBER, event_BOARD_CONTENT,
+        event_BOARD_REGISTER_DATE,
+        event_BOARD_MODIFY_DATE, RATING, event_BOARD_COUNT, e.event_NAME,event_img_UPLOAD_PATH, event_img_UUID, event_img_NAME
+        from EVENT_Board s join users u
+        on s.user_number = u.user_number
+        join event e
+        on s.event_NUMBER = e.event_NUMBER
+        left outer join event_IMG img
+        on s.EVENT_NUMBER = img.EVENT_NUMBER
+
+        order by event_BOARD_count desc
+
+        )
+        )
+        where rnum between 1 and 6
+
 
     </select>
 

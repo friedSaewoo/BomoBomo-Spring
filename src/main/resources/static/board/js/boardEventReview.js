@@ -117,7 +117,7 @@ function eventReviewList(result){
                 <li>
                     <a href="/board/reviewEventDetail?eventBoardNumber=${r.eventBoardNumber}">
                         <div class="review-sitter-img">
-                        <img src="/reviews/img?fileFullName=${r.eventImgUploadPath + r.eventImgUuid + '_' + r.eventImgName}" alt="리뷰 보모사진"/>
+                        <img src="/reviews/img?fileFullName=${r.eventImgUploadPath +'/' + r.eventImgUuid + '_' + r.eventImgName}" alt="리뷰 보모사진"/>
                         </div>
                         <div class="review-sitter-content">
                             <p><strong>${r.eventName}</strong></p>

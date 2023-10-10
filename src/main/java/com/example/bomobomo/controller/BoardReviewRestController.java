@@ -27,7 +27,15 @@ public class BoardReviewRestController {
 
     
    
+    @Value("${file.empImg}")
+    String empImg;
 
+    @GetMapping("/empPic")
+    public byte[] getEmpPic(String empPicFullName) throws IOException{
+        System.out.println("========================");
+        System.out.println(empPicFullName);
+        return FileCopyUtils.copyToByteArray(new File(empImg, empPicFullName));
+    }
 
 
     //돌봄 서비스 후기 리스트(검색포함)
@@ -67,7 +75,7 @@ public class BoardReviewRestController {
     public byte[] getImg(String fileFullName) throws IOException{
         System.out.println("============================================================");
         System.out.println(fileFullName);
-        return FileCopyUtils.copyToByteArray(new File("C:", fileFullName));
+        return FileCopyUtils.copyToByteArray(new File(fileEventImg, fileFullName));
     }
 
 

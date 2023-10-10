@@ -99,162 +99,42 @@
                 <div class="review-title">
                     <h2>이렇게나 많은 분들이요!</h2>
                 </div>
-                <div class="review-panel">
-                    <ul>
-                        <li>
-                            <a href="">
-                                <img src="/common/img/보모사진1.jpg" alt="보모님 사진"/>
-                            </a>
+                <div class="review-panel" >
+                    <ul >
+                        <li th:each="reviewTop : ${reviewTop}">
+                                <img th:src="'/upload/' + ${reviewTop.empImgUploadPath} +'/'+ ${reviewTop.empImgUuid} +'_' + ${reviewTop.empImgName}" alt="보모님 사진"/>
                             <div>
                                 <dl>
-                                    <dt><strong>이정미 보모님</strong></dt>
-                                    <dd><img src="/common/img/star.png"><span>4.5/5</span></dd>
-                                    <dd><p>정말 손주 보듯이 봐주셨어요!</p></dd>
-                                </dl>
-                            </div>
-                        </li>
-                        <li>
-                            <a href="">
-                                <img src="/common/img/보모사진1.jpg" alt="보모님 사진"/>
-                            </a>
-                            <div>
-                                <dl>
-                                    <dt><strong>이정미 보모님</strong></dt>
-                                    <dd><img src="/common/img/star.png"><span>4.5/5</span></dd>
-                                    <dd><p>정말 손주 보듯이 봐주셨어요!</p></dd>
-                                </dl>
-                            </div>
-                        </li>
-                        <li>
-                            <a href="">
-                                <img src="/common/img/보모사진1.jpg" alt="보모님 사진"/>
-                            </a>
-                            <div>
-                                <dl>
-                                    <dt><strong>이정미 보모님</strong></dt>
-                                    <dd><img src="/common/img/star.png"><span>4.5/5</span></dd>
-                                    <dd><p>정말 손주 보듯이 봐주셨어요!</p></dd>
-                                </dl>
-                            </div>
-                        </li>
-                        <li>
-                            <a href="">
-                                <img src="/common/img/보모사진1.jpg" alt="보모님 사진"/>
-                            </a>
-                            <div>
-                                <dl>
-                                    <dt><strong>이정미 보모님</strong></dt>
-                                    <dd><img src="/common/img/star.png"><span>4.5/5</span></dd>
-                                    <dd><p>정말 손주 보듯이 봐주셨어요!</p></dd>
-                                </dl>
-                            </div>
-                        </li>
-                        <li>
-                            <a href="">
-                                <img src="/common/img/보모사진1.jpg" alt="보모님 사진"/>
-                            </a>
-                            <div>
-                                <dl>
-                                    <dt><strong>이정미 보모님</strong></dt>
-                                    <dd><img src="/common/img/star.png"><span>4.5/5</span></dd>
-                                    <dd><p>정말 손주 보듯이 봐주셨어요!</p></dd>
-                                </dl>
-                            </div>
-                        </li>
-                        <li>
-                            <a href="">
-                                <img src="/common/img/보모사진1.jpg" alt="보모님 사진"/>
-                            </a>
-                            <div>
-                                <dl>
-                                    <dt><strong>이정미 보모님</strong></dt>
-                                    <dd><img src="/common/img/star.png"><span>4.5/5</span></dd>
-                                    <dd><p>정말 손주 보듯이 봐주셨어요!</p></dd>
+                                    <dt><strong  th:text="${reviewTop.empName}">이정미 보모님</strong></dt>
+                                    <dd><img src="/common/img/star.png"><span th:text="${reviewTop.rating} +' / 5'"></span></dd>
+                                    <dd><p th:text="${reviewTop.sitterBoardContent}">정말 손주 보듯이 봐주셨어요!</p></dd>
                                 </dl>
                             </div>
                         </li>
 
+
                     </ul>
                 </div>
+
+
                 <div class="review-panel2">
-                    <ul>
-                        <li>
-                            <a href="">
-                                <img src="/common/img/보모사진1.jpg" alt="보모님 사진"/>
-                            </a>
+                    <ul >
+                        <li th:each="eventReviewTop : ${eventReviewTop}">
+                            <img th:src="'/upload/' + ${eventReviewTop.eventImgUploadPath} +'/'+ ${eventReviewTop.eventImgUuid} +'_' + ${eventReviewTop.eventImgName}" alt="보모님 사진"/>
                             <div>
                                 <dl>
-                                    <dt><strong>이정미 보모님</strong></dt>
-                                    <dd><img src="/common/img/star.png"><span>4.5/5</span></dd>
-                                    <dd><p>정말 손주 보듯이 봐주셨어요!</p></dd>
+                                    <dt ><strong th:text="${eventReviewTop.eventName}">이정미 보모님</strong></dt>
+                                    <dd><img src="/common/img/star.png"><span th:text="${eventReviewTop.rating} +' / 5'"></span></dd>
+                                    <dd><p th:text="${eventReviewTop.eventBoardContent}">정말 손주 보듯이 봐주셨어요!</p></dd>
                                 </dl>
                             </div>
                         </li>
-                        <li>
-                            <a href="">
-                                <img src="/common/img/보모사진1.jpg" alt="보모님 사진"/>
-                            </a>
-                            <div>
-                                <dl>
-                                    <dt><strong>이정미 보모님</strong></dt>
-                                    <dd><img src="/common/img/star.png"><span>4.5/5</span></dd>
-                                    <dd><p>정말 손주 보듯이 봐주셨어요!</p></dd>
-                                </dl>
-                            </div>
-                        </li>
-                        <li>
-                            <a href="">
-                                <img src="/common/img/보모사진1.jpg" alt="보모님 사진"/>
-                            </a>
-                            <div>
-                                <dl>
-                                    <dt><strong>이정미 보모님</strong></dt>
-                                    <dd><img src="/common/img/star.png"><span>4.5/5</span></dd>
-                                    <dd><p>정말 손주 보듯이 봐주셨어요!</p></dd>
-                                </dl>
-                            </div>
-                        </li>
-                        <li>
-                            <a href="">
-                                <img src="/common/img/보모사진1.jpg" alt="보모님 사진"/>
-                            </a>
-                            <div>
-                                <dl>
-                                    <dt><strong>이정미 보모님</strong></dt>
-                                    <dd><img src="/common/img/star.png"><span>4.5/5</span></dd>
-                                    <dd><p>정말 손주 보듯이 봐주셨어요!</p></dd>
-                                </dl>
-                            </div>
-                        </li>
-                        <li>
-                            <a href="">
-                                <img src="/common/img/보모사진1.jpg" alt="보모님 사진"/>
-                            </a>
-                            <div>
-                                <dl>
-                                    <dt><strong>이정미 보모님</strong></dt>
-                                    <dd><img src="/common/img/star.png"><span>4.5/5</span></dd>
-                                    <dd><p>정말 손주 보듯이 봐주셨어요!</p></dd>
-                                </dl>
-                            </div>
-                        </li>
-                        <li>
-                            <a href="">
-                                <img src="/common/img/보모사진1.jpg" alt="보모님 사진"/>
-                            </a>
-                            <div>
-                                <dl>
-                                    <dt><strong>이정미 보모님</strong></dt>
-                                    <dd><img src="/common/img/star.png"><span>4.5/5</span></dd>
-                                    <dd><p>정말 손주 보듯이 봐주셨어요!</p></dd>
-                                </dl>
-                            </div>
-                        </li>
+
 
                     </ul>
                 </div>
                 <div class="review-board-btn">
-                    <a href="#">전체 후기 보기</a>
+                    <a href="/board/serviceReview">전체 후기 보기</a>
                 </div>
 
 

@@ -40,7 +40,7 @@ let preScrollPros = window.scrollY;
 $(window).on('scroll', function (){
     let currScrollPros = window.scrollY;
 
-    if(currScrollPros <= preScrollPros ){
+    if(currScrollPros >= preScrollPros || currScrollPros==0){
         navBar.css('display', 'block');
     }else {
         navBar.css('display', 'none');

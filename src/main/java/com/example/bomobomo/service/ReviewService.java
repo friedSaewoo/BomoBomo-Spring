@@ -83,6 +83,11 @@ public class ReviewService {
 
     }
 
+    //돌봄 후기 조회수 탑 6개 게시물 가져오기
+    public List<SitterBoardVo> findTopCount(){
+          return reviewMapper.selectTopCount();
+    }
+
     //=================================================================
 
     //이벤트 서비스 리뷰 게시글 리스트
@@ -128,6 +133,11 @@ public class ReviewService {
             throw new IllegalArgumentException("이벤트 리뷰 번호 누락");
         }
         reviewMapper.updateEventReviewCount(eventBoardNumber);
+    }
+
+    //이벤트 리뷰 조회수 상위 6개 게시물 가져오기
+    public List<EventBoardVo> findEventTopCount(){
+          return reviewMapper.selectTopEventCount();
     }
 
 }
