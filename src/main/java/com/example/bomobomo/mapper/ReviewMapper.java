@@ -35,6 +35,9 @@ public interface ReviewMapper {
     //돌봄서비스 리뷰 게시판 댓글
     public List<SitterCommentDto> selectServiceReviewReply();
 
+    //돌봄서비스 조회수 탑 6개 뽑아오기
+    public List<SitterBoardVo> selectTopCount();
+
 
     //=====================================
     
@@ -58,5 +61,9 @@ public interface ReviewMapper {
     public void deleteEventReview(Long eventBoardNumber);
 
     //이벤트 서비스 리뷰 게시판 댓글
+
+
+    //이벤트 서비스 조회수 상위 6개 게시물 가져오기
+    public List<EventBoardVo> selectTopEventCount();
 
 }

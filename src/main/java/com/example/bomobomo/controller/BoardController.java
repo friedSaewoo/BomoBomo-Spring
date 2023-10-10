@@ -104,7 +104,9 @@ public class BoardController {
 
 
     //=========================================================
-    //돌봄후기 게시판 
+    //돌봄후기 게시판
+
+
     @GetMapping("/serviceReview")
     public String showServiceReviewPage(){
         return "board/boardServiceReview";
