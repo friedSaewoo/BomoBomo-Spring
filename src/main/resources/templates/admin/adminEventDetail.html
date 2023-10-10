@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>관리자 페이지</title>
-    <link rel="stylesheet" href="../css/admin_event_detail.css">
+    <link rel="stylesheet" href="/admin/css/adminEventDetail.css">
 </head>
 <body>
     <!-- 전체 컨테이너 -->
@@ -12,7 +12,7 @@
         <!-- 사이드 컨테이너 -->
         <div class="side-container">
             <div class="side-logo-box">
-                   <img class="logo" src="../img/logo.png" alt="logo">
+                   <img class="logo" src="/admin/img/logo.png" alt="logo">
             </div>
             <ul class="side-item-container">
                 <li class="side-item" ><a href="/admin/main">대시보드</a></li>
@@ -40,28 +40,35 @@
                 <div class="event-detail-container">
                     <div class="event-main">
                         <div class="event-title">
-                            <p>이벤트 명 : <span>땅파기</span></p>
+                            <p>이벤트 명 : <span th:text="${eventDetail.eventName}">땅파기</span></p>
                         </div>
                         <div class="event-img">
-                            <img src="../img/event1.jpg" alt="eventImg">
                         </div>
                         <div class="detail">프로그램 상세설명</div>
                         <div class="event-detail-img">
-                            <img src="../img/event1detail.png" alt="eventDetail">
                         </div>
                         <div class="event-cost">
-                            <p>비용 : <span>5,000</span></p>
+                            <p>비용 : <span th:text="${eventDetail.eventPrice}"></span></p>
                         </div>
                     </div>
                     <div class="bt-container">
-                        <a href="adminEvent.html" class="board-home">글 목록</a>
-                        <a href="adminEventModify.html" class="board-fix">수정</a>
-                        <a href="adminEvent.html" class="board-delete">삭제</a>
+                        <a href="/admin/redirect/event" class="board-home">글 목록</a>
+                        <a th:href="@{/admin/adminEventConfig( eventNumber=${eventDetail.eventNumber} )}" class="board-fix">수정</a>
+                        <a th:href="@{/admin/adminEventDelete( eventNumber=${eventDetail.eventNumber} )}" class="board-delete">삭제</a>
                       </div>
                 </div>
             </div>
         </div>
     </div>
+    <input type="hidden" th:value="${eventDetail.eventNumber}" class="event-num">
+    <input type="hidden" id="eventUploadPath" th:value="${eventDetail.eventImgUploadPath}">
+    <input type="hidden" id="eventImgUuid" th:value="${eventDetail.eventImgUuid}">
+    <input type="hidden" id="eventImgName" th:value="${eventDetail.eventImgName}">
+    <input type="hidden" id ="eventDetailUploadPath" th:value="${eventDetail.eventDetailUploadPath}">
+    <input type="hidden" id ="eventDetailUuid" th:value="${eventDetail.eventDetailUuid}">
+    <input type="hidden" id ="eventDetailName" th:value="${eventDetail.eventDetailName}">
 </body>
+<script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+<script th:src="@{/admin/js/adminEventDetail.js}"></script>
 <script src="/admin/js/adminHeader.js"></script>
 </html>

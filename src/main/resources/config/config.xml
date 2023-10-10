@@ -13,7 +13,7 @@
         <!--======================== 직원 ========================-->
         <typeAlias type="com.example.bomobomo.domain.dto.EmpDto" alias="empDto"/>
         <typeAlias type="com.example.bomobomo.domain.dto.EmpImgDto" alias="empImgDto"/>
-
+        <typeAlias type="com.example.bomobomo.domain.vo.EmpVo" alias="empVo"/>
         <!--======================== 회원 ========================-->
         <typeAlias type="com.example.bomobomo.domain.dto.UserDto" alias="userDto"/>
         <typeAlias type="com.example.bomobomo.domain.dto.AddressDto" alias="addressDto"/>
@@ -31,7 +31,7 @@
         <typeAlias type="com.example.bomobomo.domain.dto.ActItemDto" alias="actItemDto"/>
         <typeAlias type="com.example.bomobomo.domain.dto.ActImgDto" alias="actImgDto"/>
         <typeAlias type="com.example.bomobomo.domain.dto.EmpActItemDto" alias="empActItemDto"/>
-
+        <typeAlias type="com.example.bomobomo.domain.vo.ActVo" alias="actVo"/>
         <!--======================== 게시판 ========================-->
         <typeAlias type="com.example.bomobomo.domain.dto.SitterBoardDto" alias="sitterBoardDto"/>
         <typeAlias type="com.example.bomobomo.domain.dto.SitterCommentDto" alias="sitterCommentDto"/>
