@@ -144,6 +144,10 @@ public class AdminService {
     public List<ActVo> selectEmpAct(Long empNumber){
         return adminMapper.selectEmpAct(empNumber);
     }
+//    직원 삭제
+    public void empDelete(Long empNumber){
+        adminMapper.empDelete(empNumber);
+    }
 
 //    공지사항 조회
     public List<NoticeDto> selectAllNotice(Criteria criteria, SearchVo searchVo){

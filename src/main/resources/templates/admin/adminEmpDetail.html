@@ -45,7 +45,7 @@
                         <div class="info">
                             <span class="emp-num">no.<span th:text="${empDetail.empNumber}">1</span></span>
                             <span class="name" th:text="${empDetail.empName}">김보노</span>
-                            <span class="age-gender"><span th:text="${empDetail.empAge}"/>세<span> 남</span>
+                            <span class="age-gender"><span th:text="${empDetail.empAge}"/>세</span><span> 남</span>
                             <span class="rating">★★★☆☆</span>
                             <span class="review">후기 10개</span>
                             <div class="info-detail">
@@ -76,10 +76,12 @@
                             </textarea>
                         </div>
                     </div>
-                    <div class="submit-button">
-                        <a href="adminEmpConfig.html"><button>수정</button></a>
-                        <button onclick="confirmDelete()">삭제</button>
-                    </div>
+
+                </div>
+                <div class="bt-container">
+                    <a href="/admin/emp" class="board-home">목록으로</a>
+                    <a th:href="@{/admin/adminEmpConfig( empNumber=${empDetail.empNumber} )}" class="board-fix">수정</a>
+                    <a th:href="@{/admin/adminEmpDelete( empNumber=${empDetail.empNumber} )}" class="board-delete">삭제</a>
                 </div>
             </div>
         </div>
