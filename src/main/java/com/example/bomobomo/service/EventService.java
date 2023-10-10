@@ -17,7 +17,7 @@ public class EventService {
     private final EventMapper eventMapper;
 
 
-    public List<EventDto> findAll(){
+    public List<EventVo> findAll(){
         return eventMapper.selectAll();
     }
 

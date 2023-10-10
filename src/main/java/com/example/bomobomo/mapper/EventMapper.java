@@ -17,7 +17,7 @@ public interface EventMapper {
     public EventVo payment(long eventNumber);
 
     //이벤트 페이지 전체 조회
-    public List<EventDto> selectAll();
+    public List<EventVo> selectAll();
 
     //회사소개페이지 전체 조회
     public List<EmpDto> selectEmpAll(Criteria criteria);

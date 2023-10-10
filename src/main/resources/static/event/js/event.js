@@ -37,3 +37,4 @@ function checkEnd2() {
         $('.recently-right-button').css('display', 'block');
     }
 }
+

@@ -33,7 +33,7 @@ public class EventController {
     @GetMapping("/list")
     public String showEventListPage(Model model){
 
-       List<EventDto> eventDtoList = eventService.findAll();
+       List<EventVo> eventDtoList = eventService.findAll();
        model.addAttribute("list", eventDtoList);
         return "event/event";
     }
@@ -58,15 +58,13 @@ public class EventController {
     }
 
 
-
-
-    //    이벤트 결제 내역 이미지
+    //    이벤트 조회 이미지
     @Value("${file.eventImg}")
-    private String fileeventImg;
+    private String fileEventImg;
 
     @GetMapping("/eventimg")
     public byte[] getEventImg(String fileFullPath) throws IOException {
-        return FileCopyUtils.copyToByteArray(new File(fileeventImg, fileFullPath));
+        return FileCopyUtils.copyToByteArray(new File(fileEventImg, fileFullPath));
     }
 
 //   직원 목록 전체 조회

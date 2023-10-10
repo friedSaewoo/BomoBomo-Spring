@@ -51,7 +51,7 @@ function addressFind() {
 
 $("#check_module").click(function () {
 
-    const payAmount = parseInt($('#price').text());
+    const payAmount = parseInt($('#price').val());
 
 
     var IMP = window.IMP; // 생략가능

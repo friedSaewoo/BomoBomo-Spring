@@ -17,9 +17,12 @@
     </select>
 
 
-    <select id="selectAll" resultType="EventDto">
-        SELECT EVENT_NUMBER, EVENT_NAME, EVENT_PRICE
-        FROM EVENT
+    <select id="selectAll" resultType="EventVo">
+        SELECT e.event_number, e.event_price, e.event_name, ei.event_img_name, ei.EVENT_IMG_UPLOAD_PATH,
+               ei.EVENT_IMG_UUID
+        FROM event e
+                 Full outer join EVENT_IMG ei
+                                 on e.EVENT_NUMBER = ei.EVENT_NUMBER
     </select>
 
     <select id="selectEmpAll" resultType="EmpDto">
