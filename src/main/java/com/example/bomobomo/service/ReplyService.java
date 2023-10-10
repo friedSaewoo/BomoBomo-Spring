@@ -3,6 +3,7 @@ package com.example.bomobomo.service;
 
 import com.example.bomobomo.domain.dto.SitterCommentDto;
 import com.example.bomobomo.domain.vo.Criteria;
+import com.example.bomobomo.domain.vo.EventCommentVo;
 import com.example.bomobomo.domain.vo.SitterCommentVo;
 import com.example.bomobomo.mapper.ReplyMapper;
 import lombok.RequiredArgsConstructor;
@@ -74,8 +75,43 @@ public class ReplyService {
     //============================================
     //이벤트 서비스 리뷰 댓글
     //댓글 등록
-    
+    public void registerEventReply(EventCommentVo eventCommentVo){
+        replyMapper.insertEventReply(eventCommentVo);
+
+    }
+
+    //댓글 리스트조회(페이징 포함)
+    public List<EventCommentVo> findAllEventReply(Long eventBoardNumber, Criteria criteria){
+
+        if (eventBoardNumber == null) {
+            throw new IllegalArgumentException("이벤트 보드 넘버 누락");
+        }
+
+        return replyMapper.selectListEventReply(eventBoardNumber, criteria);
+    }
+
+    //댓글 수정
+    public void modifyEventReply(EventCommentVo eventCommentVo){
+        replyMapper.updateEventReply(eventCommentVo);
+    }
 
 
+    //댓글 삭제
+    public void removeEventReply(Long eventCommentNumber){
+        if (eventCommentNumber == null) {
+            throw new IllegalArgumentException("이벤트 댓글 번호 누락");
+        }
 
+        replyMapper.deleteEventReply(eventCommentNumber);
+    }
+
+    //댓글 개수 가져오기
+    public int getTotalEventReply(Long eventBoardNumber){
+        if (eventBoardNumber == null) {
+            throw new IllegalArgumentException("이벤트 게시판 번호 누락");
+        }
+
+        return replyMapper.getTotalEventReply(eventBoardNumber);
+
+    }
 }

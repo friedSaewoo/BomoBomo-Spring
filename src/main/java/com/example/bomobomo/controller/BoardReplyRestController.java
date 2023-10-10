@@ -1,10 +1,7 @@
 package com.example.bomobomo.controller;
 
 import com.example.bomobomo.domain.dto.SitterCommentDto;
-import com.example.bomobomo.domain.vo.Criteria;
-import com.example.bomobomo.domain.vo.PageVo;
-import com.example.bomobomo.domain.vo.SitterBoardVo;
-import com.example.bomobomo.domain.vo.SitterCommentVo;
+import com.example.bomobomo.domain.vo.*;
 import com.example.bomobomo.service.ReplyService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -82,8 +79,6 @@ public class BoardReplyRestController {
 
     
     
-    //=======================================================================
-    
-    //이벤트 서비스 리뷰
+
 
 }
