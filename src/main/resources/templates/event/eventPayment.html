@@ -25,7 +25,7 @@
     <div class="payment-section">
         <div class="payment-section-name">이벤트 신청서</div>
         <div class="payment-application">
-            <div class="payment-application-write" >
+            <form class="payment-application-write" >
                 <div class="eventInfo-area">
                     <div class="info-date" style="text-align: left;" >날짜 및 시간</div>
                     <input class="eventInfo" id="eventDate" type="text" placeholder="(ex: 2023/09/18 오후 2시)" required>
@@ -39,7 +39,7 @@
                 <div class="eventInfo-area">
                     <div class="info-price" style="text-align: left;">이벤트 가격</div>
                     <li th:each="event : ${payment}">
-                    <input class="eventInfo" type="text" th:id="price" th:value="${event.eventPrice}" disabled>
+                    <input class="eventInfo" type="text" id="price" th:value="${event.eventPrice}" disabled>
                     </li>
                 </div>
 
@@ -53,11 +53,13 @@
                     <input type="text" class="addressplus" id="address_extra" placeholder="참고주소" >
                     <input type="text" class="addressdetail" id="address_detail" placeholder="상세주소 입력" >
                 </div>
-            </div>
-        </div>
-        <div class="payment-application-button" >
-            <button type="button" id="check_module">결제하기</button>
 
+
+
+        <div class="payment-application-button" style="margin-top: 100px" >
+            <button type="button" id="check_module">결제하기</button>
+        </div>
+        </form>
         </div>
     </div>
 </main>

@@ -51,8 +51,8 @@ function addressFind() {
 
 $("#check_module").click(function () {
 
-    const payAmount = parseInt($('#price').text().replace(',',''));
-    const Date = String($('#eventDate').text());
+    const payAmount = parseInt($('#price').text());
+
 
     var IMP = window.IMP; // 생략가능
     IMP.init('imp14503134');
@@ -67,14 +67,14 @@ $("#check_module").click(function () {
          *  https://docs.iamport.kr/implementation/payment
          *  위에 url에 따라가시면 넣을 수 있는 방법이 있습니다.
          */
-        name: Date,
+        name: '주문명',
         // 결제창에서 보여질 이름
         // name: '주문명 : ${auction.a_title}',
         // 위와같이 model에 담은 정보를 넣어 쓸수도 있습니다.
-        amount: 1000,
+        amount: payAmount,
         // amount: ${bid.b_bid},
         // 가격
-        buyer_name: name,
+        buyer_name: '안녕',
         // 구매자 이름, 구매자 정보도 model값으로 바꿀 수 있습니다.
         // 구매자 정보에 여러가지도 있으므로, 자세한 내용은 맨 위 링크를 참고해주세요.
         buyer_postcode: '123-456',
@@ -92,6 +92,6 @@ $("#check_module").click(function () {
             // 창이 사라지고 원래 페이지로 이동
         }
         alert(msg);
-        window.location.href='/mypage/main';
+        window.location.href='/event/list';
     });
 });

@@ -32,11 +32,8 @@
         </div>
 
         <div class="event-main-detail">
-            <div class="event-main-info" th:each="event:${detail}" >
-
-
-              <img th:src="@{/event/detail(fileFullPath=${event.eventImgUploadPath} + '/'
-                + ${event.eventImgUuid} + '_' + ${event.eventImgName})}">
+            <div class="event-main-info" th:each="event:${eventimg}">
+                <img th:src="@{/event/detail(eventNumber=${event.eventNumber})(fileFullPath=${event.empImgUploadPath} + '/' + ${event.empImgUuid} + '_' + ${event.empImgName})}">
             </div>
         </div>
         <div class="event-apply">
