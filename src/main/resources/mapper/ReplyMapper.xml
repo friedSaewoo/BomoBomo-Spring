@@ -71,16 +71,6 @@
     </select>
 
 
-    <select id="sell">
-
-
-        --
---         select sitter_comment_number, sitter_comment_content, sitter_comment_register_date, sitter_comment_modify_date, sitter_board_number, s.user_number, user_id
---         from sitter_comment s join users u on sitter_board_number = #{sitterBoardNumber} and s.user_number = u.user_number
---         order by sitter_comment_number desc
---
-    </select>
-
     <select id="selectServiceReviewReply" resultType="sitterCommentDto">
 
         select rnum, SITTER_COMMENT_NUMBER, SITTER_BOARD_NUMBER, user_number, SITTER_COMMENT_CONTENT, SITTER_COMMENT_REGISTER_DATE,

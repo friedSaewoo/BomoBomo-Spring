@@ -18,6 +18,7 @@ public class ReplyService {
     private final ReplyMapper replyMapper;
 
 
+    //돌봄서비스 리뷰 댓글
     //댓글 입력
     public void register(SitterCommentDto sitterCommentDto){
        replyMapper.insert(sitterCommentDto);
@@ -33,7 +34,6 @@ public class ReplyService {
 
         return replyMapper.select(sitterBoardNumber);
     }
-
 
 
     //댓글 리스트 조회(페이징 포함)
@@ -52,7 +52,6 @@ public class ReplyService {
 
     }
 
-
     //댓글 삭제
     public void remove(Long sitterCommentNumber){
         if (sitterCommentNumber == null) {
@@ -63,8 +62,6 @@ public class ReplyService {
         replyMapper.delete(sitterCommentNumber);
     }
 
-
-
     //댓글 개수 가져오기
     public int getTotal(Long sitterBoardNumber){
         if (sitterBoardNumber == null) {
@@ -72,6 +69,12 @@ public class ReplyService {
         }
        return replyMapper.getTotal(sitterBoardNumber);
     }
+
+
+    //============================================
+    //이벤트 서비스 리뷰 댓글
+    //댓글 등록
+    
 
 
 

@@ -21,8 +21,8 @@ public class IndexController {
 
 
     private final ReviewService reviewService;
-
-//    화면 볼려고 만든 임시 컨트롤러
+    
+    //메인페이지
     @GetMapping("/index")
     public String showMainPage(Model model){
 
