@@ -1,0 +1,75 @@
+
+.error-container {
+
+    width: 450px;
+    margin: 50px auto;
+}
+
+
+.error-title a {
+    display: inline-block;
+    font-family: 'Dongle', sans-serif !important;
+    color: #FF7000;
+    font-size: 35px;
+}
+
+
+.error-content {
+    font-family: 'IBM Plex Sans KR', sans-serif;
+    line-height: 1.7;
+    padding: 15px;
+}
+
+.error-detail dt {
+    margin-bottom: 30px;
+}
+
+.error-detail dd {
+    font-size: 14px;
+
+}
+
+.error-btn {
+    width: 450px;
+}
+
+.error-btn ul{
+    margin: 0 auto;
+    padding: 15px;
+    width: 120px;
+    display: flex;
+    justify-content: space-around;
+}
+.error-btn a {
+    cursor: pointer;
+    font-family: 'IBM Plex Sans KR', sans-serif;
+    width: 50px;
+    height: 33px;
+}
+
+
+.error-copy-right {
+    font-family: 'Dongle', sans-serif !important;
+    margin: 0 auto;
+    padding: 15px;
+    width: 400px;
+}
+.error-copy-right ul{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.error-copy-right li {
+
+    font-size: 20px;
+}
+
+.copy-title span {
+    font-weight: bold;
+    font-size: 25px;
+    color: #FF7000;
+}
+
+.copy-content span {
+    font-weight: bold;
+}

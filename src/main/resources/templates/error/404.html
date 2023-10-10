@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/error/css/error.css"/>
+    <link rel="stylesheet" href="/common/css/common.css"/>
+    <title>잘못된 접근입니다.</title>
+</head>
+<body>
+
+<div class="error-container">
+    <div class="error-title">
+        <a href="/common/index"> <h2>BomoBomo</h2></a>
+    </div>
+    <div class="error-content">
+        <dl class="error-detail">
+            <dt><strong>죄송합니다. <br>요청하신 페이지를 찾을 수 없습니다.</strong></dt>
+            <dd>방문하시려는 페이지의 주소가 잘못 입력되었거나,</dd>
+            <dd>페이지의 주소가 변경 혹은 삭제되어 요청하신 페이지를 찾을 수 없습니다.</dd>
+            <dd>입력하신 주소가 정확한지 다시 한번 확인해 주시기 바랍니다.</dd>
+        </dl>
+    </div>
+    <div class="error-btn">
+        <ul>
+            <li><a th:if="${session.userNumber!=null}" class="myPage-btn">마이페이지</a></li>
+            <li><a th:unless="${session.userNumber!=null}" class="login-btn">로그인</a></li>
+            <li><a class="index-btn">홈</a></li>
+        </ul>
+    </div>
+    <div class="error-copy-right">
+
+        <ul>
+            <li class="copy-title"><span>BomoBomo</span></li>
+            <li class="copy-content">Copyright &copy; <span> BomoBomo Corp</span></li>
+            <li class="copy-rights">All Rights Reserved</li>
+
+        </ul>
+
+    </div>
+</div>
+
+
+</body>
+<script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+<script src="/error/js/error.js"></script>
+</html>

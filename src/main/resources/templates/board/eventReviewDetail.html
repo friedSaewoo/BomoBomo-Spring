@@ -20,7 +20,10 @@
         <!-- 리뷰대상인 이벤트 정보-->
         <div class="review-detail-sitter">
             <div class="review-detail-sitter-pic">
-                <img src="/board/img/reviewImg.webp" alt="리뷰" />
+<!--                <img src="/board/img/reviewImg.webp" alt="리뷰" />-->
+<!--                <div th:style="'background-image: url(/upload/' + ${reviewEventDetail.eventImgUploadPath} +'/'+ ${reviewEventDetail.eventImgUuid} + '_' + ${reviewEventDetail.eventImgName} +  ')'"></div>-->
+            <img th:src="'/upload/' + ${reviewEventDetail.eventImgUploadPath}+'/' + ${reviewEventDetail.eventImgUuid} + '_' + ${reviewEventDetail.eventImgName}" alt=""/>
+
             </div>
             <div class="review-detail-sitter-info">
                 <dl class="review-detail-sitter-name">
