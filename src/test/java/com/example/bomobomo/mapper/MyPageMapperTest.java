@@ -1,5 +1,7 @@
 package com.example.bomobomo.mapper;
 
+import com.example.bomobomo.domain.dto.MatchDto;
+import com.example.bomobomo.domain.vo.EmpActItemImgVo;
 import com.example.bomobomo.domain.vo.MatchEmpInfoVo;
 import com.example.bomobomo.domain.vo.MatchEmpRatingAvgVo;
 import com.example.bomobomo.domain.vo.MyPageSitterVo;
@@ -62,14 +64,47 @@ class MyPageMapperTest {
 //    }
 
     //마이페이지 유저와 매칭된 직원이 평점 출력
-    @Test
-    void selectMatchEmpAvg(){
-        MatchEmpRatingAvgVo matchEmpRatingAvgVo= myPageMapper.selectMatchEmpAvg(1L);
-        log.info(matchEmpRatingAvgVo.toString());
+//    @Test
+//    void selectMatchEmpAvg(){
+//        MatchEmpRatingAvgVo matchEmpRatingAvgVo= myPageMapper.selectMatchEmpAvg(1L);
+//        log.info(matchEmpRatingAvgVo.toString());
+//
+//    }
 
+
+//     마이페이지 진입시 매칭되는 직원의 상태 출력
+//    @Test
+//    void selectMatch(){
+//        myPageMapper.selectMatch(1L);
+//        log.info(myPageMapper.selectMatch(1L).toString());
+//    }
+
+    //메칭된 직원의 정보와 이미지 조회
+    @Test
+    void selectEmpInfoImg(){
+        myPageMapper.selectEmpInfoImg(6L);
+        log.info(myPageMapper.selectEmpInfoImg(6L).toString());
     }
 
+    //매칭된 직원의 활동 이름과 활동 이미지 조회
+    @Test
+    void selectEmpActItemImg(){
+        List<EmpActItemImgVo> empActItemImgVos = myPageMapper.selectEmpActItemImg(6L);
+
+        log.info(empActItemImgVos.toString());
+    }
+
+    //매칭된 직원의 평점을 구하는 쿼리
+    @Test
+    void selectMatchEmpRating(){
+        myPageMapper.selectMatchEmpRating(1L);
+
+        log.info(myPageMapper.selectMatchEmpRating(1L).toString());
+    }
+
+
 }
+
 
 
 
