@@ -29,10 +29,10 @@
         </a> -->
         <div class="announcement">
           <!--클릭시  페이지 이동-->
-          <a href="#">공지사항</a>
+          <a href="/board/notice">공지사항</a>
         </div>
         <div class="faq">
-          <a href="#">FAQ</a>
+          <a href="/board/faq">FAQ</a>
         </div>
         <div class="pay">
           <a href="/mypage/buy">결제내역</a>
@@ -60,12 +60,12 @@
                   <!--아이디 수정-->
                 </div>
                 <div class="userInfo-area">
-                  <input class="userInfo" type="password" placeholder="비밀번호" name="userPassword"  required>
-                  <p class="checkPw">유효하지 않은 비밀번호입니다.</p>
+                  <input class="userInfo" type="password" placeholder="비밀번호" id="userPassword" oninput="checkPw()" required>
+                  <p class="checkPw">특수문자와 숫자를 포함한 8자 이상을 기입하세요.</p>
                 </div>
                 <div class="userInfo-area">
-                  <input class="userInfo" type="password" placeholder="비밀번호 체크" required>
-                  <p class="checkPw">비밀번호가 일치하지 않습니다.</p>
+                  <input class="userInfo" type="password" placeholder="비밀번호 체크" id="userPassword1" oninput="checkPassword()" required>
+                  <p class="checkPws">비밀번호가 일치하지 않습니다.</p>
                 </div>
                 <div class="userInfo-area">
                   <input class="userInfo" type="text" th:placeholder="${session.userName}" disabled>

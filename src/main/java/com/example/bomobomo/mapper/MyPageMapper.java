@@ -1,5 +1,6 @@
 package com.example.bomobomo.mapper;
 
+import com.example.bomobomo.domain.dto.MatchDto;
 import com.example.bomobomo.domain.vo.*;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -21,8 +22,27 @@ public interface MyPageMapper {
     //이벤트 결제 내역 전체 페이지 구하기
     public int selectEventTotal(Long userNumber);
 
-    //마이페이지 유저와 매치된 직원의 정보 출력()
-    public List<MatchEmpInfoVo> selectMachEmpInfo(Long userNumber);
-    //마이페이지 유저와 매칭된 직원이 평점 출력
-    public MatchEmpRatingAvgVo  selectMatchEmpAvg(Long userNumber);
+   // 마이페이지 진입시 매칭되는 직원의 상태 출력
+    public MatchDto selectMatch(Long userNumber);
+
+    //메칭된 직원의 정보와 이미지 조회
+    public MatchEmpInfoVo selectEmpInfoImg(Long empNumber);
+
+    //매칭된 직원의 활동 이름과 활동 이미지 조회
+    public List<EmpActItemImgVo> selectEmpActItemImg(Long empNumber);
+
+    //매칭된 직원의 평점을 구하는 쿼리
+    public MatchEmpRatingAvgVo selectMatchEmpRating(Long empNumber);
+
+    //매칭 단건 조회
+//    public MatchDto selectOne(Long userNumber);
+
+    // 매치된 회원의 정보
+    public MatchUserInfoVo selectMatchUserInfo(Long userNunmber);
+
+    //결제 정보
+    public MatchBuyInfoVo selectMatchBuyInfo(Long userNumber);
+
+    //결제후 매칭되었던 데이터 상태 수정
+    public MatchDto update(Long matchNumber);
 }
