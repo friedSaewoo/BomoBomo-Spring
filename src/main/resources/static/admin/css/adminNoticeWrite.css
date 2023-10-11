@@ -202,6 +202,7 @@ input:focus{
 .write-content > textarea{
     width: 774px;
     height: 500px;
+    font-size:17px;
 }
 .write-content > textarea:focus{
     outline: none;
@@ -230,11 +231,14 @@ input:focus{
 }
 .write-btn.write{
     margin-left: 30px;
-    width: 55px;
-    height: 25px;
+    width: 65px;
+    height: 35px;
     background-color:#01b9ff;
     color: white;
     border-radius: 10%;
+    border: none;
+    font-size: 16px;
+    cursor:pointer;
 }
 .checkbox{
     display: flex;
@@ -248,18 +252,45 @@ input:focus{
     height: 15px;
     margin: auto 5px;
 }
+.bt-container{
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    margin: 20px auto 0;
+    width: 90%
+}
+.bt-container >a{
+    text-align: center;
+    text-decoration: none;
+    color: white;
+}
+.board-home{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 65px;
+    height: 25px;
+    margin-right: auto;
+    background-color:#01b9ff;
+    color: white;
+    border-radius: 10%;
+    padding: 5px;
+}
 
 .board-fix{
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 44px;
-    height: 25px;
+    width: 55px;
+    height: 35px;
+    font-size: 16px;
     margin-right: 10px;
     background-color:#01b9ff;
     color: white;
     border-radius: 10%;
     padding: 5px;
+    border: none;
+    cursor:pointer;
 }
 .board-delete{
     display: flex;
