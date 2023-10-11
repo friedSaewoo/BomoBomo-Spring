@@ -200,7 +200,7 @@ a{
     display: -webkit-box;
      -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
-    -webkit-text-fill-color: #FF7000;
+    -webkit-text-fill-color: white;
 }
 
 .sitterContext span {
@@ -621,4 +621,23 @@ input[type="checkbox"]:checked {
     border-radius: 10px;
     outline: 3px solid #F8E4FF;
     border-radius: 10px;
+}
+
+.sitterInformation {
+    pointer-events: auto;
+}
+
+.sitterGrade {
+    margin-top: 10px;
+    width: 180px;
+    height: 40px;
+}
+.sitterGrade img{
+    width: 25px;
+    height: 20px;
+}
+
+.sitterName span {
+    font-size: 13px;
+    color: darkgray;
 }

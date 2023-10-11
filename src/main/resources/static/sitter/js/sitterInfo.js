@@ -39,15 +39,21 @@ next.addEventListener('click', function () {
   }
 });
 
+$('.sitterInformation')
+
 
 $('.sitterSelBtn').click(function () {
 
-    if($("h3").hasClass("page_move") === true) {
-        location.href="/sitter/sitterS";
-    } else {
+    let sitterNumber = $('#sitterNum').val();
+
+    if($("h3").hasClass("page_move") !== true) {
         alert("로그인을 먼저 해주세요.");
         location.href="/user/login";
+        return;
+
     }
+    $('.sitterForm').submit();
+
 });
 
 $(function() {

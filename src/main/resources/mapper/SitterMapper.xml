@@ -30,4 +30,39 @@
         WHERE EMP_NUMBER = ${empNumber}
     </select>
 
+    <select id="sitterBoardList" resultType="sitterBoardDto">
+        SELECT *
+        FROM SITTER_BOARD
+        WHERE EMP_NUMBER = ${empNumber}
+    </select>
+
+    <select id="addrCheck" resultType="empDto">
+        SELECT  RNUM, EMP_NUMBER, EMP_NAME, EMP_AGE, EMP_GENDER, EMP_PHONE, EMP_EMAIL, EMP_DATE, EMP_CONTENT
+        FROM (
+            SELECT ROWNUM AS RNUM, EMP_NUMBER, EMP_NAME, EMP_AGE, EMP_GENDER, EMP_PHONE, EMP_EMAIL, EMP_DATE, EMP_CONTENT
+            FROM EMP
+                <![CDATA[
+                WHERE ROWNUM <= #{page} * #{amount} AND EMP_GENDER = 'F'
+                ]]>
+            ORDER BY EMP_NUMBER DESC
+        )
+        WHERE RNUM > (#{page} - 1) * #{amount}
+    </select>
+    <select id="sitterAddrTotal" resultType="_int">
+        SELECT COUNT(*) FROM EMP WHERE EMP_GENDER = 'F'
+    </select>
+
+    <select id="sitterReview" resultType="double">
+        SELECT s.RATING, e.EMP_NUMBER
+        FROM EMP e JOIN SITTER_BOARD s
+        ON e.EMP_NUMBER = s.EMP_NUMBER
+        WHERE e.EMP_NUMBER = #{empNumber}
+    </select>
+
+    <!--    <select id="addrCheck" resultType="int">-->
+<!--        select *-->
+<!--        from EMP-->
+<!--        WHERE EMP_시터시도 = 시터가 업무 가능한 시도 AND EMP_시터구군 = 시터가 업무 가능한 구군-->
+<!--    </select>-->
+
 </mapper>

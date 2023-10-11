@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="/common/css/common.css"/>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css"/>
-    <title>BOMOBOMO</title>
+    <title>시터 찾기</title>
 </head>
 
 <body>
@@ -47,7 +47,7 @@
 
         <div id="wrap">
             <a href="javascript:openModal('modal1');" class="button modal-open">지역 검색하기▼</a>
-            <a href="javascript:openModal('modal2');" class="button modal-open">돌봄 일정▼</a>
+            <a href="javascript:openModal('modal2');" class="button modal-open">돌봄 선택▼</a>
         </div>
 
         <div id="modal"></div>
@@ -63,14 +63,20 @@
                 <div class="sitterIndividual" th:each="sitterList : ${sitterList}">
 <!--                    <a href="/sitter/sitterInfo" onclick="sitterInfo()">-->
 <!--                    <a href="#" onclick="sitterInfo()">-->
-                        <a th:href="@{/sitter/sitterInfo(empNumber=${sitterList.empNumber})}">
-<!--                            <a th:href="@{/board/detail(boardNumber=${board.boardNumber})}">-->
+                        <a th:href="@{/sitter/sitterInfo(empNumber=${sitterList.empNumber})}" class="sitterInformation">
                         <div>
                             <div class="sitterInfoAndImg test">
                                 <div class="sitterInfo">
                                     <input type="hidden" th:value="${sitterList.empNumber}" class="empNumber" name="empNumber">
-                                    <div th:text="${sitterList.empName}" name="sitterName" class="sitterName"></div>
-                                    <div>평점 ✯4.4/5</div>
+                                        <div name="sitterName" class="sitterName">
+                                            <strong th:text="${sitterList.empName}"></strong>&nbsp;&nbsp;
+                                            <span th:text="'   ' + ${sitterList.empGender}"></span>
+                                        </div>
+                                    <div class="sitterGrade">
+                                        <img src="/common/img/star.png">
+                                        <span th:text="${getAvg} + '/ 5'"></span>
+<!--                                        <span> 4.3/ 5</span>-->
+                                    </div>
                                     <div>가능한 교육들</div>
                                 </div>
                                 <div class="sitterImg">
@@ -119,9 +125,8 @@
 
 
     <!--        모달-->
+    <form action="/sitter/addrCheck" method="post" class="sitterAddr"></form>
     <div class="modal-con modal1">
-
-        <!-- <p class="title"><strong>가능한 일들</strong></p> -->
         <div class="sitterInfoType">
             <div class="areaSel">
                 <label>돌봄지역 선택</label>
@@ -132,7 +137,7 @@
                 <select name="gugun1" id="gugun1" class="addrSelList"></select>
             </div>
             <div class="sitterSel">
-                <button class="sitterTerBtn">활동 선택</button>
+                <button class="sitterTerBtn" type="button" onclick="sitterTerBtn()">활동 선택</button>
             </div>
         </div>
     </div>

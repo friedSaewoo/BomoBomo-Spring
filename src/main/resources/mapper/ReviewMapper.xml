@@ -76,8 +76,6 @@
                             join emp e on s.EMP_NUMBER = e.EMP_NUMBER
         where SITTER_BOARD_NUMBER= #{sitterBoardNumber}
 
-
-
     </select>
 
 
