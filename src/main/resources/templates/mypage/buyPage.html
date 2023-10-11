@@ -80,7 +80,7 @@
                 <a th:if="${buy.reviewCheck == 0}" th:href="@{/mypage/siterreview(matchNumber=${buy.matchNumber}, empNumber=${buy.empNumber})}" class="text-page">
                   <p>리뷰작성</p>
                 </a>
-                <span th:text="${buy.estPrice}+'원'"></span>
+                <span th:text="${#numbers.formatInteger(buy.estPrice, 3, 'COMMA')}+'원'"></span>
               </div>
             </li>
           </ul>
@@ -92,9 +92,12 @@
               </a>
 
               <th:block th:each="i : ${#numbers.sequence(pageVo.startPage, pageVo.endPage)}">
-                <a th:href="@{/mypage/buy(page=${i})}">
-                  <li th:text="${i}"></li>
+
+                <a th:href="@{/mypage/buy(page=${i})}" class="pageactive">
+                  <li th:text="${i}" ></li>
                 </a>
+
+
               </th:block>
 
 

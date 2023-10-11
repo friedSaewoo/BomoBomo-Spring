@@ -208,11 +208,18 @@ function showSitterReviewList(result){
     }
 
     for(let i=pageVo.startPage; i<=pageVo.endPage; i++){
+        if(i==pageVo.criteria.page){
         pageInfo += `
             <a href="javascript:void(0)">
-                <li class="page-num" data-page="${i}">${i}</li>
+                <li class="page-num active-num1" data-page="${i}">${i}</li>
+            </a>
+        `;}else{
+            pageInfo += `
+            <a href="javascript:void(0)">
+                <li class="page-num " data-page="${i}">${i}</li>
             </a>
         `;
+        }
     }
 
     if(pageVo.next){
@@ -274,11 +281,18 @@ function showEventReviewList(result){
     }
 
     for(let i=pagesVo.startPage; i<=pagesVo.endPage; i++){
+        if(i == pagesVo.criteria.page){
         pagesInfo += `
+            <a href="javascript:void(0)" >
+                <li class="page-num1 active-num"  data-pages="${i}">${i}</li>
+            </a>
+        `;}else{
+            pagesInfo += `
             <a href="javascript:void(0)">
                 <li class="page-num1" data-pages="${i}">${i}</li>
             </a>
         `;
+        }
     }
 
     if(pagesVo.next){
@@ -368,6 +382,10 @@ function purchasePage(result){
 $('.check-btn').on('click',  function (){
     myPage.buyInfo(purchasePage);
 });
+
+
+
+
 
 
 

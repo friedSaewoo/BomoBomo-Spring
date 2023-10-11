@@ -34,3 +34,4 @@ $('.event-area').on('click',function(){
 
 })
 
+
