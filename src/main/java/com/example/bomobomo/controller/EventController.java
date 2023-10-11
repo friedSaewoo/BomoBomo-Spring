@@ -83,7 +83,7 @@ public class EventController {
     //    인재 채용 페이지 이동
     @GetMapping("/rec")
     public String showRecruitmentPage(){
-        return "event/recruiment";
+        return "event/recruitment";
     }
 }
 
