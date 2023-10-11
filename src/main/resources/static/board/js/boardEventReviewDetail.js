@@ -11,7 +11,6 @@ function showReviewListBtn(){
 };
 
 
-
 //해당 이벤트 서비스 리뷰 삭제
 $('.deleteBtn').on('click', function (){
     let eventBoardNumber = $(this).data('number');

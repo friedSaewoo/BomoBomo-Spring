@@ -25,7 +25,7 @@
       <div class="review-detail-sitter-info">
         <dl class="review-detail-sitter-name">
           <dt>
-            <p th:text="${reviewDetail.empName}"><span><strong></strong></span></p>
+            <p ><span><strong th:text="${reviewDetail.empName}"></strong></span></p>
             <p>시터님에 대한 리뷰입니다.</p>
           </dt>
           <dd>
@@ -44,8 +44,8 @@
       <!-- 리뷰 평점 / 리뷰작성일자 -->
       <div class="review-score-date">
         <ul>
-          <li>
-            <img src="/common/img/star.png" alt="">
+          <li >
+            <img src="/common/img/star.png" alt="시터 후기 점수">
           </li>
           <li th:text="${reviewDetail.rating}"><span>4.5/5</span></li>
 
@@ -72,7 +72,7 @@
       <!-- 리뷰 수정 삭제 목록 버튼-->
       <div class="update-delete-btn" >
         <th:block th:if="${session.userNumber==reviewDetail.userNumber}">
-        <button class="updateBtn">수정</button>
+        <button class="updateBtn" type="button" th:data-number="${reviewDetail.sitterBoardNumber}">수정</button>
         <button class="deleteBtn" type="button" th:data-number="${reviewDetail.sitterBoardNumber}">삭제</button>
         </th:block>
         <button class="reviewListBtn" onclick="showReviewListBtn()">목록</button>

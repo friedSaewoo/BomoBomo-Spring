@@ -1,5 +1,6 @@
 package com.example.bomobomo.mapper;
 
+import com.example.bomobomo.domain.dto.SitterBoardDto;
 import com.example.bomobomo.domain.dto.SitterCommentDto;
 import com.example.bomobomo.domain.vo.Criteria;
 import com.example.bomobomo.domain.vo.EventBoardVo;
@@ -37,6 +38,9 @@ public interface ReviewMapper {
 
     //돌봄서비스 조회수 탑 6개 뽑아오기
     public List<SitterBoardVo> selectTopCount();
+
+    //돌봄 후기 수정
+    public void updateServiceReview(SitterBoardDto sitterBoardDto);
 
 
     //=====================================

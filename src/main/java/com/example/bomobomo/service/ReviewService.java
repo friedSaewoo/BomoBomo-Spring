@@ -1,6 +1,7 @@
 package com.example.bomobomo.service;
 
 
+import com.example.bomobomo.domain.dto.SitterBoardDto;
 import com.example.bomobomo.domain.vo.Criteria;
 import com.example.bomobomo.domain.vo.EventBoardVo;
 import com.example.bomobomo.domain.vo.SearchReviewVo;
@@ -70,6 +71,13 @@ public class ReviewService {
         }
 
         reviewMapper.updateCount(sitterBoardNumber);
+
+    }
+
+    //돌봄 후기 수정
+    public void modifyServiceReview(SitterBoardDto sitterBoardDto){
+
+          reviewMapper.updateServiceReview(sitterBoardDto);
 
     }
 

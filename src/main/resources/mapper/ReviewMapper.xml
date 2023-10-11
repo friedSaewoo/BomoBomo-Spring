@@ -117,6 +117,15 @@
     </select>
 
 
+<!--돌봄 서비스 리뷰 수정-->
+    <update id="updateServiceReview">
+
+        update sitter_board
+        set sitter_board_content = #{sitterBoardContent}, sitter_board_modify_date = sysdate, rating = #{rating}
+        where sitter_board_number = #{sitterBoardNumber}
+
+    </update>
+
 <!--돌봄 서비스 리뷰 삭제-->
     <delete id="delete">
 

@@ -9,9 +9,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.Cookie;
@@ -172,6 +171,33 @@ public class BoardController {
         log.info(sitterBoardVo.toString());
         return "board/serviceReviewDetail";
     }
+    //돌봄 후기 수정창으로 이동
+    @GetMapping("/modifyServiceReview")
+    public String modifyServiceReview(@ModelAttribute("sitterBoardNumber") Long sitterBoardNumber,
+                                      Model model){
+
+
+        model.addAttribute("sitter",  reviewService.selectOne(sitterBoardNumber));
+        return "board/serviceReviewModify";
+    }
+
+    //돌봄 후기 수정 완료
+    @PostMapping("/modifySR")
+    public RedirectView modifySR(SitterBoardDto sitterBoardDto,
+                                 @RequestParam("sitterBoardNumber") Long sitterBoardNumber,
+                                 RedirectAttributes redirectAttributes)
+        {
+
+        sitterBoardDto.setSitterBoardNumber(sitterBoardNumber);
+        log.info(sitterBoardDto.toString()+"*******************===========================");
+        reviewService.modifyServiceReview(sitterBoardDto);
+
+            redirectAttributes.addAttribute("sitterBoardNumber", sitterBoardDto.getSitterBoardNumber());
+
+            return new RedirectView("/board/reviewDetail");
+    }
+
+
 
     //돌봄후기 삭제
     @GetMapping("/removeSReview")
