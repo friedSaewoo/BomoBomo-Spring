@@ -74,36 +74,114 @@
                 JOIN EVENT_PAY EP ON S1.APPLY_NUMBER=EP.APPLY_NUMBER
     </select>
 
-    <!--마이페이지에서 매칭된 시터의 정보를 출력-->
-    <select id="selectMachEmpInfo" resultType="matchEmpInfoVo">
-        SELECT MATCH_NUMBER,USER_NUMBER,SUBMIT_ORDER_NUMBER, M3.EMP_NUMBER,STATUS, EMP_NAME,EMP_AGE,EMP_GENDER,
-               EMP_IMG_NUMBER,EMP_IMG_NAME,EMP_IMG_UPLOAD_PATH,EMP_IMG_UUID,EMP_ACT_ITEM_NUMBER,M3.ACT_NUMBER,ACT_NAME,
-               ACT_IMG_NAME,ACT_IMG_UPLOAD_PATH,ACT_IMG_UUID
-        FROM (  SELECT MATCH_NUMBER,USER_NUMBER,SUBMIT_ORDER_NUMBER, M1.EMP_NUMBER,STATUS, EMP_NAME,EMP_AGE,EMP_GENDER,
-                       EMP_IMG_NUMBER,EMP_IMG_NAME,EMP_IMG_UPLOAD_PATH,EMP_IMG_UUID,EMP_ACT_ITEM_NUMBER,ACT_NUMBER
-                FROM(
-                        SELECT MATCH_NUMBER,USER_NUMBER,SUBMIT_ORDER_NUMBER,EMP_NUMBER,STATUS
-                        FROM MATCHS
-                        WHERE USER_NUMBER=#{userNumber} AND STATUS =1
-                    )M1
-                        JOIN EMP EP ON M1.EMP_NUMBER = EP.EMP_NUMBER
-                        JOIN EMP_IMG EI ON M1.EMP_NUMBER= EI.EMP_NUMBER
-                        JOIN EMP_ACT_ITEM EAI ON M1.EMP_NUMBER = EAI.EMP_NUMBER
-             )M3
-                 JOIN ACT A ON M3.ACT_NUMBER=A.ACT_NUMBER
-                 JOIN ACT_IMG AI ON M3.ACT_NUMBER = AI.ACT_NUMBER
+    <!--마이페이지에 진입시 매칭된 인원 상태 출력-->
+    <select id="selectMatch" resultType="matchDto">
+        select  match_number, user_number, submit_order_number, emp_number, status
+        from matchs
+        where user_number =#{userNumber} and (STATUS=1 or STATUS=0)
     </select>
 
-    <!--사용자와 매칭된 직원의 평점 출력-->
-    <select id="selectMatchEmpAvg" resultType="matchEmpRatingAvgVo">
-        SELECT DISTINCT S1.MATCH_NUMBER,S1.USER_NUMBER,SUBMIT_ORDER_NUMBER,S1.EMP_NUMBER,STATUS,
-                        (SELECT AVG(RATING) FROM SITTER_BOARD) AS AVG
-        FROM(
-            SELECT MATCH_NUMBER,USER_NUMBER,SUBMIT_ORDER_NUMBER,EMP_NUMBER,STATUS
-            FROM MATCHS
-            WHERE USER_NUMBER=#{userNumber} AND STATUS =1
-            )S1
-            JOIN EMP EP ON S1.EMP_NUMBER= EP.EMP_NUMBER
-            JOIN SITTER_BOARD SB ON S1.EMP_NUMBER=SB.EMP_NUMBER
+    <!--매칭된 직원의 정보와 이미지 조회-->
+    <select id="selectEmpInfoImg" resultType="matchEmpInfoVo">
+        select  em.emp_number,emp_name,emp_age,emp_gender,emp_phone,emp_email,emp_date,emp_content, emp_img_name,emp_img_upload_path,emp_img_uuid
+        from(
+                select emp_number,emp_name,emp_age,emp_gender,emp_phone,emp_email,emp_date,emp_content
+                from emp
+                where EMP_NUMBER =#{empNumber}
+            ) em
+                join EMP_IMG ei on em.EMP_NUMBER=ei.EMP_NUMBER
+
+
     </select>
+
+    <!--매칭된 직원의 활동 이름과 활동 이미지 조회 -->
+    <select id="selectEmpActItemImg" resultType="empActItemImgVo">
+        select em2.emp_number,em2.emp_act_item_number,em2.act_number,ACT_IMG_NUMBER,act_img_name,act_img_upload_path,act_img_uuid
+        from (
+                 select em1.ACT_NUMBER, act_name, EMP_ACT_ITEM_NUMBER,EMP_NUMBER
+                 from (
+                          select em.EMP_NUMBER, EMP_ACT_ITEM_NUMBER, act_number
+                          from (
+                                   select emp_number,
+                                          emp_name,
+                                          emp_age,
+                                          emp_gender,
+                                          emp_phone,
+                                          emp_email,
+                                          emp_date,
+                                          emp_content
+                                   from emp
+                                   where EMP_NUMBER = #{empNumber}
+                               ) em
+                                   join emp_act_item aci on em.EMP_NUMBER = aci.EMP_NUMBER
+                      ) em1
+                          join act a on em1.ACT_NUMBER = a.ACT_NUMBER
+             )em2
+                 join act_img ai on em2.ACT_NUMBER=ai.ACT_NUMBER
+
+    </select>
+    <!--매칭된 직원의 평점을 구하는 쿼리-->
+    <select id="selectMatchEmpRating" resultType="matchEmpRatingAvgVo">
+        select distinct (select avg(RATING) from SITTER_BOARD) as avg
+        from SITTER_BOARD
+        where EMP_NUMBER=#{empNumber}
+    </select>
+
+    <!--매치된 회원의 정보-->
+    <select id="selectMatchUserInfo" resultType="matchUserInfoVo">
+        select match_number,m2.user_number,submit_order_number,emp_number,status,user_name,user_phone,
+               user_email, ADDRESS,ADDRESS_DETAIL
+        from (
+                 select match_number,
+                        m1.user_number,
+                        submit_order_number,
+                        emp_number,
+                        status,
+                        user_name,
+                        user_phone,
+                        user_email
+                 from (
+                          select match_number, user_number, submit_order_number, emp_number, status
+                          from MATCHS
+                          where USER_NUMBER = #{userNumber}
+                            and STATUS = '1'
+                      ) m1
+                          join users u on m1.USER_NUMBER = u.USER_NUMBER
+             ) m2
+                 join address ad on m2.user_number = ad.USER_NUMBER
+
+    </select>
+    <!--결제 정보-->
+    <select id="selectMatchBuyInfo" resultType="matchBuyInfoVo">
+        select s1.match_number, user_number, submit_order_number, emp_number, status,EST_CONTENT,EST_TITLE,EST_PRICE
+        from (
+                 select match_number, user_number, submit_order_number, emp_number, status
+                 from MATCHS
+                 where USER_NUMBER = #{userNumber}
+                   and STATUS = '1'
+             )s1
+                 join EST_CONTENT sc on s1.MATCH_NUMBER = sc.MATCH_NUMBER
+    </select>
+
+
+    <!--결제완료시 상태 수정-->
+    <update id="update">
+        update MATCHS
+        set  status= 2
+        where match_number=#{matchNumber}
+
+    </update>
+
+
+
+
+
+
+
+
+
+
+
+
+
 </mapper>

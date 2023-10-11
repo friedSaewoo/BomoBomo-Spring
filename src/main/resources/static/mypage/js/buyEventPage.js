@@ -32,3 +32,6 @@ $('.sitter-area').on('click',function(){
 
 
 })
+
+
+

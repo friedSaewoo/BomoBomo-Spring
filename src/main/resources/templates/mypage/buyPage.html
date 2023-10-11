@@ -28,10 +28,10 @@
 
         <div class="announcement">
           <!--클릭시  페이지 이동-->
-          <a href="">공지사항</a>
+          <a href="/board/notice">공지사항</a>
         </div>
         <div class="faq">
-          <a href="#">FAQ</a>
+          <a href="/board/faq">FAQ</a>
         </div>
         <div class="pay">
           <a href="/mypage/buy">결제내역</a>
@@ -61,8 +61,8 @@
             <li class="buy-text">
               <div class="img-area">
                 <figure>
-                  <!--데이터에서 파일 불러오기-->
-<!--                  <img th:src="@{/myPages/img(fileFullPath=${buy.empImgUploadPath} + '/' + ${buy.empImgUuid} + '_' + ${buy.empImgName})}">-->
+<!--                  데이터에서 파일 불러오기-->
+                  <img th:src="@{/myPages/img(fileFullPath=${buy.empImgUploadPath} + '/' + ${buy.empImgUuid} + '_' + ${buy.empImgName})}">
                 </figure>
               </div>
               <div class="buy-text-area">
@@ -80,7 +80,7 @@
                 <a th:if="${buy.reviewCheck == 0}" th:href="@{/mypage/siterreview(matchNumber=${buy.matchNumber}, empNumber=${buy.empNumber})}" class="text-page">
                   <p>리뷰작성</p>
                 </a>
-                <span th:text="${buy.estPrice}+'원'"></span>
+                <span th:text="${#numbers.formatInteger(buy.estPrice, 3, 'COMMA')}+'원'"></span>
               </div>
             </li>
           </ul>
@@ -92,9 +92,12 @@
               </a>
 
               <th:block th:each="i : ${#numbers.sequence(pageVo.startPage, pageVo.endPage)}">
-                <a th:href="@{/mypage/buy(page=${i})}">
-                  <li th:text="${i}"></li>
+
+                <a th:href="@{/mypage/buy(page=${i})}" class="pageactive">
+                  <li th:text="${i}" ></li>
                 </a>
+
+
               </th:block>
 
 

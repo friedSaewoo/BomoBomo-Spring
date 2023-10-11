@@ -81,6 +81,12 @@ $('.btn').on('mouseout',function(){
 //결제 대기 클릭시 결제 페이지 작동
 
 $('.siter-situation span').on('click',function(){
+    let datastatus=$('.status').data('statusnum');
+    console.log(datastatus);
+    if(datastatus == 0){
+        console.log(datastatus);
+        return;
+    }
     $('.modal-pay').css('display','block');
 
 })
@@ -91,6 +97,25 @@ $("#check_module").click(function () {
     IMP.init('imp22267731');
     // i'mport 관리자 페이지 -> 내정보 -> 가맹점식별코드
     // ''안에 띄어쓰기 없이 가맹점 식별코드를 붙여넣어주세요. 안그러면 결제창이 안뜹니다.
+
+    // DOM객체를 가져온다
+        let estTitles = $('.estTitle').text();
+        console.log(estTitles);
+        let money = $('.totalMoney').text();
+        console.log(money);
+        let usernames =$('.user-name').text();
+        console.log(usernames);
+        let addressinfo = $('.address-info').text();
+        console.log(addressinfo);
+        let userNumber =$('.userinfo-userNumber').val();
+        console.log(userNumber);
+       let matchNumber =$('.userinfo-matchNumber').val();
+        console.log(matchNumber);
+
+        let matchObj ={ userNumber : userNumber,
+            matchNumber:matchNumber
+
+        };
     IMP.request_pay({
         pg: 'kakaopay.TC0ONETIME',
         pay_method: 'card',
@@ -100,22 +125,29 @@ $("#check_module").click(function () {
          *  https://docs.iamport.kr/implementation/payment
          *  위에 url에 따라가시면 넣을 수 있는 방법이 있습니다.
          */
-        name: '주문명 : 알뜰살뜰 돌보기',
+        name: '주문명 : ' + estTitles,
         // 결제창에서 보여질 이름
         // name: '주문명 : ${auction.a_title}',
         // 위와같이 model에 담은 정보를 넣어 쓸수도 있습니다.
-        amount: 10000000,
+        amount: money,
         // amount: ${bid.b_bid},
         // 가격
-        buyer_name: '김성찬',
+        buyer_name: usernames,
         // 구매자 이름, 구매자 정보도 model값으로 바꿀 수 있습니다.
         // 구매자 정보에 여러가지도 있으므로, 자세한 내용은 맨 위 링크를 참고해주세요.
-        buyer_postcode: '123-456',
+        buyer_postcode: addressinfo,
     }, function (rsp) {
         console.log(rsp);
         if (rsp.success) {
             var msg = '결제가 완료되었습니다.';
             msg += '결제 금액 : ' + rsp.paid_amount;
+            $.ajax({
+                type: "patch",
+                url: `/myPages/${matchNumber}`,
+                data: JSON.stringify(matchObj),
+                contentType : 'application/json; charset=utf-8'
+            });
+
             // success.submit();
             // 결제 성공 시 정보를 넘겨줘야한다면 body에 form을 만든 뒤 위의 코드를 사용하는 방법이 있습니다.
             // 자세한 설명은 구글링으로 보시는게 좋습니다.
@@ -176,11 +208,18 @@ function showSitterReviewList(result){
     }
 
     for(let i=pageVo.startPage; i<=pageVo.endPage; i++){
+        if(i==pageVo.criteria.page){
         pageInfo += `
             <a href="javascript:void(0)">
-                <li class="page-num" data-page="${i}">${i}</li>
+                <li class="page-num active-num1" data-page="${i}">${i}</li>
+            </a>
+        `;}else{
+            pageInfo += `
+            <a href="javascript:void(0)">
+                <li class="page-num " data-page="${i}">${i}</li>
             </a>
         `;
+        }
     }
 
     if(pageVo.next){
@@ -242,11 +281,18 @@ function showEventReviewList(result){
     }
 
     for(let i=pagesVo.startPage; i<=pagesVo.endPage; i++){
+        if(i == pagesVo.criteria.page){
         pagesInfo += `
+            <a href="javascript:void(0)" >
+                <li class="page-num1 active-num"  data-pages="${i}">${i}</li>
+            </a>
+        `;}else{
+            pagesInfo += `
             <a href="javascript:void(0)">
                 <li class="page-num1" data-pages="${i}">${i}</li>
             </a>
         `;
+        }
     }
 
     if(pagesVo.next){
@@ -264,6 +310,82 @@ $('.page1').on('click', '.page-num1', function (){
     pages = $(this).data('page1');
     myPage.getEventReviewList(pages,showEventReviewList);
 });
+
+
+
+// 결제 정보를 출력
+// myPage.buyInfo(purchasePage);
+function purchasePage(result){
+    console.log("----------------");
+    console.log(result);
+
+    let text ='';
+
+    let userInfos= result.userInfo;
+        text = `<li class="user">
+                                                    <p>주문자</p>
+                                                    <input type="hidden" value="${userInfos.userNumber}" class="userinfo-userNumber">
+                                                    <input type="hidden" value="${userInfos.matchNumber}" class="userinfo-matchNumber">
+                                                    <p class="user-private-area">
+                                                        <span class="user-name" >${userInfos.userName}</span>
+                                                        <span class="user-phone">${userInfos.userPhone}</span>
+                                                    </p>
+
+                                                    <p class="user-email">${userInfos.userEmail}</p>
+                                                </li>
+                                                <li class="user-address">
+                                                    <p>배송자 정보</p>
+                                                    <p class="address">주소</p>
+                                                    <p class="address-info">${userInfos.address}</p>
+                                                    <p class="address-detail">${userInfos.addressDetail}</p>
+                                                </li>
+    
+        `;
+
+    $('.user-detail').html(text);
+
+    let texts = ``;
+
+    let buyInfos =result.buyInfo;
+
+    texts = `    <li class="product-detail">
+                                                    <p class="product-title">
+                                                        <span>[보모보모]</span>
+                                                        <span class="estTitle">${buyInfos.estTitle}</span>
+                                                    </p>
+                                                    <p class="usetime">
+                                                        <span>활동 :</span>
+                                                        <span>${buyInfos.estContent}</span>
+                                                    </p>
+                                                    <p class="pay">
+                                                        <span>결제 금액</span>
+                                                        <span>${buyInfos.estPrice}원</span>
+                                                    </p>
+                                                </li>
+            
+            
+                `;
+
+    $('.product-info').html(texts);
+
+    let texTs =``;
+    texTs=`
+              <p class="total-payment">
+                                                <span>최종 결제 금액 : </span>
+                                                <span class="totalMoney">${buyInfos.estPrice}원</span>
+                                            </p>
+    
+    `;
+
+    $('.total-area').html(texTs);
+}
+$('.check-btn').on('click',  function (){
+    myPage.buyInfo(purchasePage);
+});
+
+
+
+
 
 
 
