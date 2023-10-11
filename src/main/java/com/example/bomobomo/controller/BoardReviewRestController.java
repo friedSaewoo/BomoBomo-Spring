@@ -5,11 +5,15 @@ import com.example.bomobomo.domain.vo.*;
 import com.example.bomobomo.service.ReviewService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,8 +25,20 @@ import java.util.Map;
 public class BoardReviewRestController {
     private final ReviewService reviewService;
 
+    
+   
+    @Value("${file.empImg}")
+    String empImg;
 
-    //돌봄 서비스 후기 리스트검색포함
+    @GetMapping("/empPic")
+    public byte[] getEmpPic(String empPicFullName) throws IOException{
+        System.out.println("========================");
+        System.out.println(empPicFullName);
+        return FileCopyUtils.copyToByteArray(new File(empImg, empPicFullName));
+    }
+
+
+    //돌봄 서비스 후기 리스트(검색포함)
     @GetMapping("/service/{page}")
     public Map<String, Object> findListAll(@PathVariable("page") int page, SearchReviewVo searchReviewVo){
 
@@ -42,6 +58,24 @@ public class BoardReviewRestController {
 
         return reviewMap;
 
+    }
+
+
+
+
+    //====================================================================
+
+
+    //이벤트 서비스 후기 사진 저장경로
+    @Value("${file.eventImg}")
+    String fileEventImg;
+
+    //이벤트 서비스 후기 사진(검색포함)
+    @GetMapping("/img")
+    public byte[] getImg(String fileFullName) throws IOException{
+        System.out.println("============================================================");
+        System.out.println(fileFullName);
+        return FileCopyUtils.copyToByteArray(new File(fileEventImg, fileFullName));
     }
 
 

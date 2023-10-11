@@ -6,11 +6,14 @@ import com.example.bomobomo.domain.vo.UserListVo;
 import com.example.bomobomo.domain.vo.*;
 import com.example.bomobomo.service.AdminService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.ResponseEntity;
+import org.springframework.util.FileCopyUtils;
+import org.springframework.web.bind.annotation.*;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,8 +21,19 @@ import java.util.Map;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/admin/rest/*")
+@Slf4j
 public class AdminRestController {
     private final AdminService adminService;
+
+    @Value("${file.eventImg}")
+    private String eventImgPath;
+    @Value("${file.eventDetail}")
+    private String eventDetailPath;
+    @Value("${file.empImg}")
+    private String empImgPath;
+    @Value("${actImg.dir}")
+    private String actImgPath;
+
 
     @GetMapping("/user/list/{page}")
     public Map<String, Object> selectAllUsers(@PathVariable("page")int page, SearchVo searchVo) {
@@ -50,6 +64,7 @@ public class AdminRestController {
         return adminEmpMap;
     }
 
+
     @GetMapping("/notice/list/{page}")
     public Map<String, Object> selectAllNotice(@PathVariable("page")int page, SearchVo searchVo){
         Criteria criteria = new Criteria();
@@ -76,5 +91,43 @@ public class AdminRestController {
         matchListMap.put("pageVo",pageVo);
         matchListMap.put("matchList",matchList);
         return matchListMap;
+    }
+
+    @GetMapping("/event/list/{page}")
+    public Map<String,Object> selectAllEvents(@PathVariable("page")int page, SearchVo searchVo){
+        Criteria criteria = new Criteria();
+        criteria.setPage(page);
+        criteria.setAmount(9);
+        PageVo pageVo = new PageVo(adminService.getTotalEvents(searchVo), criteria);
+        List<EventVo> eventList = adminService.selectAllEvents(criteria,searchVo);
+
+        Map<String,Object> eventListMap = new HashMap<>();
+        eventListMap.put("pageVo",pageVo);
+        eventListMap.put("eventList",eventList);
+        return eventListMap;
+    }
+    @GetMapping("/displayEventImg")
+    public byte[] display(String fileName) throws IOException {
+        return FileCopyUtils.copyToByteArray(new File(eventImgPath, fileName));
+    }
+    @GetMapping("/displayEventDetail")
+    public byte[] displayDetail(String fileName) throws IOException {
+        return FileCopyUtils.copyToByteArray(new File(eventDetailPath, fileName));
+    }
+    @GetMapping("/displayEmpImg")
+    public byte[] displayEmpImg(String fileName) throws IOException {
+        return FileCopyUtils.copyToByteArray(new File(empImgPath, fileName));
+    }
+
+
+    @GetMapping("/actImg")
+    public List<ActVo> actImgList(Long empNumber){
+        log.info("===============================여기야empNumber{}",empNumber);
+        return adminService.selectEmpAct(empNumber);
+    }
+    @GetMapping("/displayActImg")
+    public byte[] displayActImg(@RequestParam("fileName")String fileName) throws IOException {
+        log.info("==================================여기야fileName{}",fileName);
+        return FileCopyUtils.copyToByteArray(new File(actImgPath, fileName));
     }
 }

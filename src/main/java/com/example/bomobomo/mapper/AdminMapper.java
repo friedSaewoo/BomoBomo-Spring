@@ -26,6 +26,19 @@ public interface AdminMapper {
     public List<EmpDto> selectAllEmp(@Param("criteria")Criteria criteria, @Param("searchVo")SearchVo searchVo);
 //    검색별 직원 수
     public int getTotalEmp(SearchVo searchVo);
+    public List<ActDto> selectAct();
+//    직원 등록
+    public void empRegist(EmpDto empDto);
+//    직원 이미지 등록
+    public void empImgRegist(EmpImgDto empImgDto);
+//    직원 활동 등록
+    public void empActRegist(EmpActItemDto empActItemDto);
+//    직원 상세
+    public EmpVo selectEmpDetail(Long empNumber);
+//    직원 활동 이미지
+    public List<ActVo> selectEmpAct(Long empNumber);
+//    직원 삭제
+    public void empDelete(Long empNumber);
 
 //    공지사항 리스트
     public List<NoticeDto> selectAllNotice(@Param("criteria")Criteria criteria, @Param("searchVo")SearchVo searchVo);
@@ -44,11 +57,25 @@ public interface AdminMapper {
     public List<MatchListVo> selectAllMatchs(@Param("criteria")Criteria criteria, @Param("searchVo")SearchVo searchVo);
 //    검색별 매칭수
     public int getTotalMatchs(SearchVo searchVo);
-    
+
+//    이벤트 리스트
+    public List<EventVo> selectAllEvents(@Param("criteria")Criteria criteria, @Param("searchVo")SearchVo searchVo);
+//    검색별 이벤트수
+    public int getTotalEvents(SearchVo searchVo);
+//    이벤트 조회
+    public EventVo selectEventDetail(Long eventNumber);
 //    이벤트 등록
     public void eventRegist(EventDto eventDto);
 //    이벤트 이미지 등록
     public void eventImgRegist(EventImgDto eventImgDto);
 //    이벤트 상세정보 등록
     public void eventDetailRegist(EventDetailDto eventDetailDto);
+//    이벤트 삭제
+    public void eventDelete(Long eventNumber);
+//    이벤트 업데이트
+    public void updateEvent(EventVo eventVo);
+//    이벤트 이미지 업데이트
+    public void updateEventImg(EventImgDto eventImgDto);
+//    이벤트 상세정보 업데이트
+    public void updateEventDetail(EventDetailDto eventDetailDto);
 }

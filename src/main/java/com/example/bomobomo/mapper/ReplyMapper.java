@@ -2,6 +2,7 @@ package com.example.bomobomo.mapper;
 
 import com.example.bomobomo.domain.dto.SitterCommentDto;
 import com.example.bomobomo.domain.vo.Criteria;
+import com.example.bomobomo.domain.vo.EventCommentVo;
 import com.example.bomobomo.domain.vo.SitterCommentVo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -42,4 +43,19 @@ public interface ReplyMapper {
     
     //이벤트 서비스 리뷰
     //댓글달기 삽입
+    public void insertEventReply(EventCommentVo eventCommentVo);
+
+    //댓글리스트 조회(페이징포함)
+    public List<EventCommentVo> selectListEventReply(@Param("eventBoardNumber") Long eventBoardNumber,
+                                                 @Param("criteria") Criteria criteria);
+
+    //댓글 수정
+    public void updateEventReply(EventCommentVo eventCommentVo);
+
+    //댓글 삭제
+    public void deleteEventReply(Long eventCommentNumber);
+
+    //후기 게시물 당 댓글 총 개수
+    public int getTotalEventReply(Long eventBoardNumber);
+
 }

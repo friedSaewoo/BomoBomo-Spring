@@ -20,7 +20,7 @@
         <!-- 리뷰대상인 이벤트 정보-->
         <div class="review-detail-sitter">
             <div class="review-detail-sitter-pic">
-                <img src="/board/img/reviewImg.webp" alt="리뷰" />
+                <img th:src="'/upload/' + ${reviewEventDetail.eventImgUploadPath}+'/' + ${reviewEventDetail.eventImgUuid} + '_' + ${reviewEventDetail.eventImgName}" alt=""/>
             </div>
             <div class="review-detail-sitter-info">
                 <dl class="review-detail-sitter-name">
@@ -121,8 +121,8 @@
     let loginNumber = [[${session.userNumber}]];
 </script>
 <script src="/board/js/boardEventReviewDetail.js"></script>
-<!--<script src="/board/js/eventReviewReply.js"></script>-->
 <script src="/fragments/js/header.js"></script>
+<script type="module" src="/board/js/eventReviewReply.js"></script>
 
 
 </body>

@@ -31,6 +31,7 @@ public class MyPageSitterVo {
     private Integer reviewCheck;
     private String estTitle;
 
+// buy 페이지에서 씨터 결제내역을 저장하기위한 클래스
 
 
 }

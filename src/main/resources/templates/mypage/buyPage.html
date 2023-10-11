@@ -50,8 +50,11 @@
         </div>
         <div class="review-page-area">
           <p class="sitter-area" style="background-color: rgb(255, 112, 0); color: white;">시터이용 내역</p>
-          <p class="event-area">이벤트 결제 내역</p>
+
+          <p class="event-area" >이벤트 결제 내역</p>
+
         </div>
+        <!--buyList가 비어있다면 내역이 없습니다 ,그게아니라면 밑에있는 내용이 나오도록 수정-->
         <div class="buybox">
           <!--시터 이용 후기 결제 내역 조회-->
           <ul class="buy-area" th:each="buy : ${buyList}">
@@ -59,7 +62,7 @@
               <div class="img-area">
                 <figure>
                   <!--데이터에서 파일 불러오기-->
-                  <!--                  <img th:src="@{}">-->
+<!--                  <img th:src="@{/myPages/img(fileFullPath=${buy.empImgUploadPath} + '/' + ${buy.empImgUuid} + '_' + ${buy.empImgName})}">-->
                 </figure>
               </div>
               <div class="buy-text-area">
@@ -84,11 +87,9 @@
           <!--시터이용 결제내역 페이징 처리-->
           <div class="paging">
             <ul class="page">
-
               <a th:href="@{/mypage/buy(page=${pageVo.startPage - 1})}" class="page-a" th:if="${pageVo.prev}">
                 <li class="page-num prev">&lt</li>
               </a>
-
 
               <th:block th:each="i : ${#numbers.sequence(pageVo.startPage, pageVo.endPage)}">
                 <a th:href="@{/mypage/buy(page=${i})}">
@@ -99,119 +100,6 @@
 
               <a th:href="@{/mypage/buy(page=${pageVo.endPage + 1})}" class="page-b" th:if="${pageVo.next}">
                 <li class="page-num next">&gt</li>
-              </a>
-            </ul>
-          </div>
-        </div>
-        <!--이벤트 이용 후기 결제 내역 조회-->
-        <div class="buyboxp">
-
-          <ul class="buy-area-2">
-            <li class="buy-text-2">
-              <div class="img-area-2">
-                <figure>
-                  <!--데이터에서 파일 불러오기-->
-                  <img src="/Mypage/img/event.jpeg">
-                </figure>
-              </div>
-              <div class="buy-text-area-2">
-                <!--클릭시 url이동-->
-                <a href="#">
-                  <p>[보모보모]</p>
-                  <p>아이들이 좋아하는 스파스파이더맨</p>
-                </a>
-              </div>
-
-              <div class="price-2">
-                <a href="/mypage/reviewwrite" class="text-page-2">
-                  <p>리뷰작성</p>
-                </a>
-                <span>14,900원</span>
-              </div>
-            </li>
-            <li class="buy-text">
-              <div class="img-area-2">
-                <figure>
-                  <!--데이터에서 파일 불러오기-->
-                  <img src="/Mypage/img/event.jpeg">
-                </figure>
-              </div>
-              <div class="buy-text-area-2">
-                <!--클릭시 url이동-->
-                <a href="#">
-                  <p>[보모보모]</p>
-                  <p>아이들이 좋아하는 스파스파이더맨</p>
-                </a>
-              </div>
-
-              <div class="price-2">
-                <a href="/Mypage/html/reviewwrite.html" class="text-page-2">
-                  <p>리뷰작성</p>
-                </a>
-                <span>14,900원</span>
-              </div>
-            </li>
-            <li class="buy-text">
-              <div class="img-area-2">
-                <figure>
-                  <!--데이터에서 파일 불러오기-->
-                  <img src="/Mypage/img/event.jpeg">
-                </figure>
-              </div>
-              <div class="buy-text-area-2">
-                <!--클릭시 url이동-->
-                <a href="#">
-                  <p>[보모보모]</p>
-                  <p>아이들이 좋아하는 스파스파이더맨</p>
-                </a>
-              </div>
-
-              <div class="price-2">
-                <a href="/Mypage/html/reviewwrite.html" class="text-page-2">
-                  <p>리뷰작성</p>
-                </a>
-                <span>14,900원</span>
-              </div>
-            </li>
-            <li class="buy-text">
-              <div class="img-area-2">
-                <figure>
-                  <!--데이터에서 파일 불러오기-->
-                  <img src="/Mypage/img/event.jpeg">
-                </figure>
-              </div>
-              <div class="buy-text-area-2">
-                <!--클릭시 url이동-->
-                <a href="#">
-                  <p>[보모보모]</p>
-                  <p>아이들이 좋아하는 스파스파이더맨</p>
-                </a>
-              </div>
-
-              <div class="price-2">
-                <a href="/Mypage/html/reviewwrite.html" class="text-page-2">
-                  <p>리뷰작성</p>
-                </a>
-                <span>14,900원</span>
-              </div>
-            </li>
-          </ul>
-          <div class="paging1">
-            <ul class="page1">
-              <a href="#" class="page-c">
-                <li class="page-num1 prev">&lt</li>
-              </a>
-              <a>
-                <li>1</li>
-              </a>
-              <a>
-                <li>2</li>
-              </a>
-              <a>
-                <li>3</li>
-              </a>
-              <a href="#" class="page-d">
-                <li class="page-num1 next">&gt</li>
               </a>
             </ul>
           </div>

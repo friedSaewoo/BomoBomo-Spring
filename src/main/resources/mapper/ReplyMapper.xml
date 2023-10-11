@@ -71,36 +71,94 @@
     </select>
 
 
-    <select id="sell">
-
-
-        --
---         select sitter_comment_number, sitter_comment_content, sitter_comment_register_date, sitter_comment_modify_date, sitter_board_number, s.user_number, user_id
---         from sitter_comment s join users u on sitter_board_number = #{sitterBoardNumber} and s.user_number = u.user_number
---         order by sitter_comment_number desc
---
-    </select>
-
     <select id="selectServiceReviewReply" resultType="sitterCommentDto">
+--
+--         select rnum, SITTER_COMMENT_NUMBER, SITTER_BOARD_NUMBER, user_number, SITTER_COMMENT_CONTENT, SITTER_COMMENT_REGISTER_DATE,
+--                SITTER_COMMENT_MODIFY_DATE
+--         from(
+--                 select rownum as rnum, r.SITTER_COMMENT_NUMBER, r.SITTER_BOARD_NUMBER, r.user_number, r.SITTER_COMMENT_CONTENT,
+--                        r.SITTER_COMMENT_REGISTER_DATE, r.SITTER_COMMENT_MODIFY_DATE
+--                 from SITTER_COMMENT r join SITTER_BOARD b
+--                                            on r.SITTER_BOARD_NUMBER = b.SITTER_BOARD_NUMBER
+--                                       join users u
+--                                            on r.USER_NUMBER = u.USER_NUMBER
+--         <![CDATA[
+--                 where rownum <=#{page} * #{amount}
+--             ]]>
+--         )
+--         where rnum >(#{page}-1) * #{amount}
 
-        select rnum, SITTER_COMMENT_NUMBER, SITTER_BOARD_NUMBER, user_number, SITTER_COMMENT_CONTENT, SITTER_COMMENT_REGISTER_DATE,
-               SITTER_COMMENT_MODIFY_DATE
-        from(
-                select rownum as rnum, r.SITTER_COMMENT_NUMBER, r.SITTER_BOARD_NUMBER, r.user_number, r.SITTER_COMMENT_CONTENT,
-                       r.SITTER_COMMENT_REGISTER_DATE, r.SITTER_COMMENT_MODIFY_DATE
-                from SITTER_COMMENT r join SITTER_BOARD b
-                                           on r.SITTER_BOARD_NUMBER = b.SITTER_BOARD_NUMBER
-                                      join users u
-                                           on r.USER_NUMBER = u.USER_NUMBER
-        <![CDATA[
-                where rownum <=#{page} * #{amount}
-            ]]>
-        )
-        where rnum >(#{page}-1) * #{amount}
+    </select>
+
+
+<!--    이벤트 리뷰 댓글-->
+    <insert id="insertEventReply">
+
+
+        <selectKey keyProperty="eventCommentNumber" order="BEFORE" resultType="Long">
+
+            select seq_event_comment.nextval from dual
+
+        </selectKey>
+
+        insert into EVENT_COMMENT (EVENT_COMMENT_NUMBER, EVENT_BOARD_NUMBER, USER_NUMBER, EVENT_COMMENT_CONTENT)
+        values (#{eventCommentNumber}, #{eventBoardNumber}, #{userNumber}, #{eventCommentContent})
+
+    </insert>
+
+
+    <select id="selectEventReply" resultType="eventCommentVo">
+
+        select event_comment_number,event_comment_content,event_comment_register_date,event_comment_modify_date,event_board_number, c.user_number, user_id
+        from event_comment c join users r on c.user_number = r.user_number and event_board_number = #{eventBoardNumber}
+        order by event_comment_number desc
 
     </select>
 
 
 
+
+    <select id="selectListEventReply" resultType="eventCommentVo">
+
+
+        select rnum, event_comment_number, event_comment_content, event_comment_register_date, event_comment_modify_date, event_board_number, user_number, user_id
+        from (select rownum as rnum, event_comment_number, event_comment_content, event_comment_register_date, event_comment_modify_date, event_board_number, user_number, user_id
+              from(select event_comment_number, event_comment_content, event_comment_register_date, event_comment_modify_date, event_board_number, s.user_number, u.user_id
+                   from event_comment s join users u on event_board_number = #{eventBoardNumber} and s.user_number = u.user_number
+                   order by event_comment_number desc)
+
+        <![CDATA[
+        where rownum<=#{criteria.page} * #{criteria.amount}
+             ) ]]>
+        where rnum > (#{criteria.page}-1) * #{criteria.amount}
+
+
+    </select>
+
+
+    <delete id="deleteEventReply">
+
+        delete from event_comment
+        where event_comment_number = #{eventCommentNumber}
+
+    </delete>
+
+    <update id="updateEventReply">
+
+
+        update event_comment
+        set event_comment_content = #{eventCommentContent}, event_comment_modify_date = sysdate
+        where event_comment_number = #{eventCommentNumber}
+
+    </update>
+
+
+    <select id="getTotalEventReply" resultType="_int">
+
+        select count(event_comment_number)
+        from event_comment
+        where event_board_number = #{eventBoardNumber}
+
+    </select>
 
 </mapper>

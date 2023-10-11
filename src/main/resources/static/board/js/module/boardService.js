@@ -1,6 +1,4 @@
 
-
-
 //돌봄 서비스 리뷰 불러오기(검색포함)
 export function showServiceReviewList(page, searchReviewVo){
 
@@ -37,7 +35,7 @@ export function serviceReviewList(result) {
                 <li>
                     <a href="/board/reviewDetail?sitterBoardNumber=${r.sitterBoardNumber}">
                         <div class="review-sitter-img">
-                            <img src="/common/img/보모사진1.jpg" alt="리뷰 보모사진"/>
+                            <img src="/reviews/empPic?empPicFullName=${r.empImgUploadPath + '/'+ r.empImgUuid + '_' + r.empImgName}" alt="리뷰 보모사진"/>
                         </div>
                         <div class="review-sitter-content">
                             <p><strong>${r.empName}</strong></p>

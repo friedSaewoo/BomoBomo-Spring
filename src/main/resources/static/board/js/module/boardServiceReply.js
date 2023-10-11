@@ -95,6 +95,7 @@ export function showReply(result){
 
 
 
+
         text += `
             
      <dl>
@@ -108,7 +109,7 @@ export function showReply(result){
             <div class="reply-list-wrap">
                 <div class="reply">
                     <div class="reply-box">
-                        <div class="reply-box__content">${r.sitterCommentContent}</div>
+                        <div class="reply-box__content"><p>${r.sitterCommentContent}</p></div>
                     </div>
                      <div class="reply-btn-box">
                     `;
@@ -118,13 +119,14 @@ export function showReply(result){
                         <span class="reply-btns"></span>
                         <div class="reply-btns__box none">
                             <div class="reply-remove-btn" data-deletenum="${r.sitterCommentNumber}">삭제</div>
-                            <div class="reply-modify-btn" data-modifynum="${r.sitterCommentNumber}" >수정</div>
+                            <div class="reply-modify-btn" data-modifynum="${r.sitterCommentNumber}">수정</div>
                         </div>
                 `;
         }
 
         text+=
-            `                        
+            `          
+              
                     </div>
                 </div>
             </div>

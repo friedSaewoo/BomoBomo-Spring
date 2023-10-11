@@ -8,6 +8,6 @@ import org.springframework.stereotype.Component;
 @Component
 @NoArgsConstructor
 public class ActDto {
-    Long actNumber;
-    String actName;
+    private Long actNumber;
+    private String actName;
 }

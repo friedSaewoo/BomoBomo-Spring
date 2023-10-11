@@ -1,5 +1,6 @@
 // 마이페이지 시터 리뷰 비동기터리 모듈 import
 import * as myPage from './module/myPageModule.js';
+import {getEventReviewList} from "./module/myPageModule.js";
 
 // 후기관리 창 띄우기
 var isBoardVisible = false; // 초기에는 보이지 않는 상태
@@ -129,7 +130,7 @@ $("#check_module").click(function () {
 });
 
 
-
+// 시터 리뷰를 작성한 내용을 메인에 비동기 뿌려주느 코드
 let page = 1;
 
 myPage.getSitterReviewList(page, showSitterReviewList);
@@ -152,7 +153,8 @@ function showSitterReviewList(result){
             <tr class="review-text">
                 <td class="review-num">${review.rnum}</td>
                 <td class="review-title">
-                    <a href="${review.sitterBoardNumber}">${review.sitterBoardContent}</a>
+                    <a href="/board/reviewDetail?sitterBoardNumber=${review.sitterBoardNumber}">${review.sitterBoardContent}</a>
+               
                 </td>
                 <td class="review-data">${review.sitterBoardRegisterDate}</td>
             </tr>
@@ -196,4 +198,72 @@ $('.page').on('click', '.page-num', function (){
     page = $(this).data('page');
     myPage.getSitterReviewList(page, showSitterReviewList);
 });
+
+//이벤트 리뷰를 작성한 내용을 게시판으로 뿌려주는 코드
+
+let pages =1;
+myPage.getEventReviewList(pages,showEventReviewList);
+function showEventReviewList(result){
+    console.log(result);
+    let texts=``;
+
+    texts += ` <tr class="review-text1 top1">
+                   <td class="review-num1">번호</td>
+                   <td class="review-title1">제목</td>
+                   <td class="review-data1">날짜</td>
+              </tr>
+            `;
+
+    result.eventlist.forEach( eventreview => {
+       texts += ` 
+        
+        <tr class="review-text1">
+            <td class="review-num1">${eventreview.rnum}</td>
+            <td class="review-title1">
+                <a href="/board/reviewDetail?eventBoardNumber=${eventreview.eventBoardNumber}">${eventreview.eventBoardContent}</a>
+            </td>
+            <td class="review-data1">${eventreview.eventBoardRegisterDate}</td>
+        </tr>
+        `;
+    });
+
+    $('.table1').html(texts);
+
+    let pagesInfo = '';
+
+    let pagesVo=result.pageVO;
+
+    if(pagesVo.prev){
+        pagesInfo += `
+         <a href="javascript:void(0)" class="page-a1">
+              <li class="page-num1 prev" data-pages="${pagesVo.startPage - 1}">&lt</li>
+         </a>
+        `;
+    }
+
+    for(let i=pagesVo.startPage; i<=pagesVo.endPage; i++){
+        pagesInfo += `
+            <a href="javascript:void(0)">
+                <li class="page-num1" data-pages="${i}">${i}</li>
+            </a>
+        `;
+    }
+
+    if(pagesVo.next){
+        pagesInfo += `
+            <a href="javascript:void(0)" class="page-b1">
+                <li class="page-num1 next" data-pages="${pagesVo.endPage + 1}">&gt</li>
+            </a>
+        `;
+    }
+
+    $('.page1').html(pagesInfo);
+}
+
+$('.page1').on('click', '.page-num1', function (){
+    pages = $(this).data('page1');
+    myPage.getEventReviewList(pages,showEventReviewList);
+});
+
+
 

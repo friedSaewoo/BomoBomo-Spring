@@ -256,7 +256,7 @@
     height: 150px;
 }
 
-.review-panel ul li a>img, .review-panel2 ul li a>img {
+.review-panel ul li img, .review-panel2 ul li img {
     width: 100%;
     height: 100%;
 }
@@ -411,3 +411,92 @@
     margin-right: 10px;
     font-weight: bold;
 }
+
+
+
+/*.review-content-container {*/
+/*    width: 1024px;*/
+
+/*    overflow: hidden;*/
+/*    height: 700px;*/
+/*}*/
+
+/*.review-ul {*/
+/*    font-family: 'IBM Plex Sans KR', sans-serif;*/
+/*    padding-top: 50px;*/
+/*    width: 2100px;*/
+/*    display: flex;*/
+
+/*    !* border: 2px solid red; *!*/
+/*}*/
+
+/*.review-ul li {*/
+
+/*    !* border: 2px solid red; *!*/
+/*    width: 250px;*/
+/*    border: 1px solid gray;*/
+/*}*/
+/*.review-ul li a {*/
+/*    color: black;*/
+/*}*/
+
+/*.review-sitter-img {*/
+/*    width: 250px;*/
+/*    height: 180px;*/
+/*}*/
+/*.review-sitter-img img {*/
+/*    width: 100%;*/
+/*    height: 100%;*/
+/*}*/
+
+/*.review-sitter-content {*/
+/*    padding: 5px;*/
+/*    display: flex;*/
+/*    border-bottom: 1px solid gray;*/
+
+/*}*/
+/*.review-sitter-content p {*/
+/*    width: 170px;*/
+/*}*/
+
+/*.review-score {*/
+
+/*    display: flex;*/
+/*    align-items: center;*/
+/*    justify-content: end;*/
+/*    width: 80px;*/
+/*}*/
+
+/*.review-score img {*/
+/*    width: 20%;*/
+/*    height: 100%;*/
+/*}*/
+/*.review-text-content {*/
+
+/*}*/
+/*.review-text-content dl {*/
+/*    height: 90px;*/
+/*}*/
+/*.review-text-content dl dt {*/
+/*    padding: 5px;*/
+/*}*/
+
+/*.review-text-content dl dd {*/
+/*    height: 70px;*/
+/*}*/
+/*!* 리뷰내용 말줄임표 css *!*/
+/*.review-text-content dd p {*/
+/*    line-height: 1.3;*/
+/*    box-sizing: border-box;*/
+/*    padding: 5px;*/
+/*    !* border: 2px solid red; *!*/
+/*    height: 45px;*/
+/*    overflow: hidden;*/
+/*    text-overflow: ellipsis;*/
+/*    white-space: normal;*/
+/*    text-align: left;*/
+/*    -webkit-line-clamp: 2;*/
+/*    -webkit-box-orient: vertical;*/
+/*    display: -webkit-box;*/
+/*    font-size: 16px;*/
+/*}*/

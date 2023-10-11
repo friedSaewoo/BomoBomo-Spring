@@ -69,15 +69,6 @@ function loadEmpList(result){
         empList.empty();
 
         $.each(result.adminEmpList, function (index, emp) {
-            //
-            // <div class="post">
-            //     <div class="emp-num">001</div>
-            //     <div class="emp-name">김성찬</div>
-            //     <div class="date">2023-09-13</div>
-            //     <div class="emp-phone">01071921375</div>
-            //     <div class="emp-email">zriag@naver.com</div>
-            // </div>
-
             let empDiv = $('<div class="post">');
             empDiv.append('<div class="emp-num">' + emp.empNumber + '</div>');
             empDiv.append('<div class="emp-name">' + emp.empName + '</div>');
@@ -86,6 +77,10 @@ function loadEmpList(result){
             empDiv.append('<div class="emp-email">'+ emp.empEmail + '</div>');
             empList.append(empDiv);
 
+            empDiv.on('click', function() {
+                let url = `/admin/adminEmpDetail?empNumber=${emp.empNumber}`;
+                window.location.href = url;
+            });
         });
     }else{
         let empList = $('.emp-list');
@@ -137,3 +132,9 @@ function inputEnter(event) {
 }
 document.getElementById("search").addEventListener("keyup", inputEnter);
 
+$(document).ready(function() {
+    $('.regist-btn').on('click', function() {
+        let url = '/admin/emp/regist';
+        window.location.href = url;
+    });
+});

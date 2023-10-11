@@ -10,10 +10,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -28,13 +26,14 @@ public class myPageController {
     private final UserService userService;
     private final SitterBoardService sitterBoardService;
     private final MyPageService myPageService;
+    private final EventBoardService eventBoardService;
 
 
     //mypage 메인 으로 이동
     @GetMapping("/main")
     public String showMainPage(HttpServletRequest req){
         Long userNumber=(Long)req.getSession().getAttribute("userNumber");
-
+   //처음 페이지로 진입시 매칭 상태에 따라 마이페이지가 변해야함 
         return "mypage/myPageMain";
     }
     // 신청서 페이지 이동
@@ -68,11 +67,23 @@ public class myPageController {
         PageVo pageVo = new PageVo(myPageService.getTotal(userNumber), criteria);
 //        Criteria criteria = new Criteria();
 
-        //myPageSitterVo의 값을 모델 객체에 담아서 뿌려준다
 
         model.addAttribute("buyList",myPageService.findSitterList(criteria, userNumber));
         model.addAttribute("pageVo", pageVo);
+
         return "mypage/buyPage";
+    }
+    @GetMapping("/buyEvent")
+    public String showBuyEventPage(Model model, HttpServletRequest req, Criteria criteria){
+        criteria.setAmount(5);
+        Long userNumber = (Long)req.getSession().getAttribute("userNumber");
+
+//        Criteria criteria = new Criteria();
+
+        PageVo pageVO=new PageVo(myPageService.findEventTotal(userNumber),criteria);
+        model.addAttribute("eventList",myPageService.findEventList(criteria,userNumber));
+        model.addAttribute("pageVO",pageVO);
+        return "mypage/buyEventPage";
     }
 
     //회원정보 수정 창으로 이동
@@ -86,7 +97,7 @@ public class myPageController {
         System.out.println(userId);
         System.out.println(userName);
 
-        return "myPage/userManageMentPage";
+        return "mypage/userManageMentPage";
     }
     //회원정보 수정후 이동
     @PostMapping("/userManage")
@@ -115,12 +126,30 @@ public class myPageController {
 
 
     @GetMapping("/reviewwrite")
-    public String showreviewwritePage(){
-        return "myPage/reviewWrite";
+    public String showreviewwritePage(HttpServletRequest req,
+                                      @ModelAttribute("eventNumber") Long eventNumber,
+                                      Model model){
+        Long userNUmber =(Long)req.getSession().getAttribute("userNumber");
+        System.out.println(eventNumber);
+        model.addAttribute("eventTitle",eventBoardService.findEventTitle(eventNumber));
+
+
+        return "mypage/reviewWrite";
+    }
+
+    @PostMapping("/reviewwrite")
+    public RedirectView eventreviewwrite(EventBoardDto eventBoardDto, HttpServletRequest req,
+                                         @RequestParam("eventBoardImg")MultipartFile file){
+        Long userNumber=(Long) req.getSession().getAttribute("userNumber");
+        eventBoardDto.setUserNumber(userNumber);
+        System.out.println(eventBoardDto);
+        eventBoardService.registerAndFileproc(eventBoardDto,file);
+
+        return new RedirectView("/mypage/main");
     }
 
 
-    // buy페이지에서 시터 리뷰로 이동하는 컨트롤러
+   // buy페이지에서 시터 리뷰로 이동하는 컨트롤러
     @GetMapping("/siterreview")
     public String showsiterreviewPage(HttpServletRequest req,
                                       @ModelAttribute("matchNumber") Long matchNumber,
@@ -136,7 +165,7 @@ public class myPageController {
         Long userNumber = (Long)req.getSession().getAttribute("userNumber");
         sitterBoardDto.setUserNumber(userNumber);
         sitterBoardService.register(sitterBoardDto);
-        // main에서 userNumber를 받고 있기때문에 따로 req하지 않음
+
         return new RedirectView("/mypage/main");
     }
 

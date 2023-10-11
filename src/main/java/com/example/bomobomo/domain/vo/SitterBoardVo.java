@@ -21,8 +21,8 @@ public class SitterBoardVo {
    private Integer sitterBoardCount;
    private String empName;
    private Long rnum;
-//   private String empImgName;
-//   private String empImgUuid;
-//   private String empImgUploadPath;
+   private String empImgName;
+   private String empImgUuid;
+   private String empImgUploadPath;
 
 }
