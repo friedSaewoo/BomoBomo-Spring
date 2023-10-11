@@ -35,7 +35,7 @@ $('.btn-reply').on('click', function () {
         return;
     }
 
-    if(getTextLength()>200){
+    if(text.limitText()>200){
         alert("200자 이내로만 작성 가능합니다.");
         return;
     }
@@ -51,8 +51,8 @@ $('.btn-reply').on('click', function () {
     });
     
     //등록버튼 누르면 글자수 카운팅 초기화 및 입력내용도 초기화
-    $("#lengthCheck").val("(0/ 200)");
     $('#reply-content').val('');
+    $(".word-count").text('');
 });
 
 
@@ -91,12 +91,16 @@ $('.review-reply').on('click', '.reply-modify-btn', function () {
     let $content = $(this).closest('.reply').find('.reply-box__content');
     $content.replaceWith(`
       <div class='modify-box'>
-        <textarea class='modify-content'>${$content.text()}</textarea>
+        <textarea class='modify-content' cols="30" rows="2">${$content.text()}</textarea>
         <button type='button' class='modify-content-btn'>수정 완료</button>
-        <span class="textLengthCheck"></span>
       </div>
+      <div><span class="textLengthCheck">${text.getTextLength($content.text()) + ' / 200'}</span>
+</div>
     `);
     $('.reply-btns__box').addClass('none');
+
+
+
 });
 
 
@@ -124,27 +128,12 @@ $('.review-reply').on('click', '.reply-remove-btn', function () {
         let page = $('.active-page a').data('pagenum');
         let replyContent = $(this).closest('.modify-box').find('.modify-content').val();
 
-        function getModifyTextLength() {
-            let len = 0;
-            for (let i = 0; i < replyContent.length; i++) {
-                if (escape(replyContent.charAt(i)).length == 6) {
-                    len++;
-                }
-                len++;
-            }
-            return len;
-        }
 
-
-
-
-        if(getModifyTextLength()>=200){
+        if(text.limitModifyText()>200){
             alert("200자 이내로 작성해주세요")
             return;
         }
 
-
-        
         let replyObj = {
             sitterCommentContent : replyContent
         };
@@ -155,21 +144,9 @@ $('.review-reply').on('click', '.reply-remove-btn', function () {
     });
 
 
+    
 
-
-
-
-$("#reply-content").keyup(function(e) {
-    $(".word-count").html(`<span class="overWrite">  ${text.getTextLength() + " / 200"} </span>`); //실시간 글자수 카운팅
-    if (text.getTextLength() > 200) {
-        $('.overWrite').css('color', 'red')
-
-    }
-});
-
-
-
-
-
-
+//댓글 입력창 및 수정창 글자 수 제한
+text.limitText();
+text.limitModifyText();
 

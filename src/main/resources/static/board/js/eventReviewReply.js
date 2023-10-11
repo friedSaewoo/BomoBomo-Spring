@@ -22,6 +22,7 @@ $(document).on('click', '.page-num a', function (e) {
 
 });
 
+
 let listInfo = {
 
     eventBoardNumber : eventBoardNumber,

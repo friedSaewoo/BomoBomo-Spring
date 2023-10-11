@@ -7,6 +7,7 @@ import com.example.bomobomo.service.ReplyService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.HashMap;
 import java.util.List;
@@ -49,5 +50,28 @@ public class BoardEventReplyRestController {
 
         return replyMap;
     }
+
+
+    //댓글 삭제
+    @DeleteMapping("/{eventCommentNumber}")
+    public void removeReply(@PathVariable("eventCommentNumber") Long eventCommentNumber){
+        if (eventCommentNumber == null) {
+            throw new IllegalArgumentException("이벤트 댓글번호 누락");
+        }
+
+        replyService.removeEventReply(eventCommentNumber);
+    }
+
+
+    //댓글 수정
+    @PatchMapping("{eventCommentNumber}")
+    public void modifyEventReply(@PathVariable("eventCommentNumber") Long eventCommentNumber,
+                                 @RequestBody EventCommentVo eventCommentVo){
+
+        eventCommentVo.setEventCommentNumber(eventCommentNumber);
+        replyService.modifyEventReply(eventCommentVo);
+
+    }
+
 
 }

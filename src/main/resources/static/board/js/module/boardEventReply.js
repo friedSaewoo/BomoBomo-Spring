@@ -41,6 +41,45 @@ export function addReply(reply, callback){
 }
 
 
+//댓글 삭제
+export function deleteReply(eventCommentNumber, callback){
+    $.ajax({
+
+        url:`/eventReplies/${eventCommentNumber}`,
+        type:'delete',
+        success : function (result){
+
+            if(callback){
+                callback(result);
+            }
+        }, error : function (a,b,c){
+            console.error(c);
+
+        }
+
+    })
+}
+
+
+//댓글 수정
+export function modifyEventReply(eventCommentNumber, replyInfo, callback){
+
+    $.ajax({
+
+        url:`/eventReplies/${eventCommentNumber}`,
+        type:'patch',
+        data : JSON.stringify(replyInfo),
+        contentType:'application/json; charset=utf-8',
+        success : function (result){
+            if (callback){
+                callback(result);
+            }
+        },error : function (a,b,c){
+            console.error(c);
+        }
+
+    })
+}
 
 export function showReply(result){
     let totalReply='';
@@ -95,7 +134,6 @@ export function showReply(result){
     //댓글이 한 개도 없으면 숨김
     if(result.totalReply!=0){
         $('.totalReply').css('display','block')
-
         $('.totalReply').html(totalReply);
 
     }else {
