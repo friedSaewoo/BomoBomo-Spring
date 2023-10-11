@@ -101,7 +101,7 @@ function loadImage() {
         canvas.height = img.height;
         context.drawImage(img, 0, 0);  // 이미지를 캔버스에 그립니다.
     };
-    img.src = "/admin/rest/display?fileName=" + imagePath;
+    img.src = "/admin/rest/displayEventImg?fileName=" + imagePath;
 }
 function loadDetail() {
     let eventDetailUploadPath = document.getElementById('eventDetailUploadPath').value;
@@ -119,7 +119,7 @@ function loadDetail() {
         context.drawImage(img, 0, 0);  // 이미지를 캔버스에 그립니다.
     };
 
-    img.src = "/admin/rest/displayDetail?fileName=" + imagePath;
+    img.src = "/admin/rest/displayEventDetail?fileName=" + imagePath;
 }
 loadImage();
 loadDetail();

@@ -168,6 +168,11 @@
             where emp_number= #{empNumber}
         )
     </select>
+<!-- 직원 삭제 -->
+    <delete id="empDelete" parameterType="Long">
+        DELETE FROM EMP
+        WHERE EMP_NUMBER = #{empNumber}
+    </delete>
 <!-- 공지사항 조회 -->
     <select id="selectAllNotice" resultType="noticeDto">
         SELECT

@@ -115,13 +115,13 @@ function pagination(pageVo) {
 }
 
 
-// // 인풋박스에 엔터키를 누르면 search버튼 클릭 처리
-// function inputEnter(event) {
-//     if (event.key === "Enter") {
-//         document.getElementById("submit").click();
-//     }
-// }
-// document.getElementById("search").addEventListener("keyup", inputEnter);
+// 인풋박스에 엔터키를 누르면 search버튼 클릭 처리
+function inputEnter(event) {
+    if (event.key === "Enter") {
+        document.getElementById("submit").click();
+    }
+}
+document.getElementById("search").addEventListener("keyup", inputEnter);
 
 //이벤트 등록 버튼 처리
 let eventRegist = $('.regist-btn');
