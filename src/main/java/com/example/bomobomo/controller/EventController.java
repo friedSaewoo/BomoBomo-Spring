@@ -80,4 +80,12 @@ public class EventController {
         model.addAttribute("pageInfo", new PageVo(eventService.getTotal(), criteria));
         return "event/employeeIntro" ;
     }
+    //    인재 채용 페이지 이동
+    @GetMapping("/rec")
+    public String showRecruitmentPage(){
+        return "event/recruiment";
+    }
 }
+
+
+
