@@ -2,7 +2,7 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <link rel="stylesheet" href="/board/css/board.css"/>
-    <link rel="stylesheet" href="/board/css/boardServiceReviewDetail.css"/>
+    <link rel="stylesheet" href="/board/css/boardReviewDetail.css"/>
     <link rel="stylesheet" href="/common/css/common.css"/>
     <link rel="stylesheet" href="/fragments/css/footer.css"/>
     <link rel="stylesheet" href="/fragments/css/header.css"/>
@@ -85,7 +85,10 @@
                 <h3>댓글 작성</h3>
                 <div class="reply-wrap__box">
                     <div class="reply-content__box">
-                        <div class="reply-writer" th:text="${session.userId}">홍길동</div>
+                        <div class="reply-flex">
+                            <div class="reply-writer" th:text="${session.userId}">홍길동</div>
+                            <div class="word-count"></div>
+                        </div>
                         <textarea name="replyContent" id="reply-content" cols="30" rows="2" ></textarea>
                     </div>
                     <div class="reply-btn-wrap">
@@ -95,16 +98,18 @@
             </div>
 
 
+
+
+            <!-- 리뷰 댓글 + 댓글 수정삭제 버튼 -->
+            <div class="review-reply">
+
+            </div>
+
             <!-- 페이징처리 -->
             <div class="reply-pagenation-container">
                 <ul>
 
                 </ul>
-            </div>
-
-            <!-- 리뷰 댓글 + 댓글 수정삭제 버튼 -->
-            <div class="review-reply">
-
             </div>
 
 
