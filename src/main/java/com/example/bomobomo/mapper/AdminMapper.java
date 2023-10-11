@@ -37,7 +37,8 @@ public interface AdminMapper {
     public EmpVo selectEmpDetail(Long empNumber);
 //    직원 활동 이미지
     public List<ActVo> selectEmpAct(Long empNumber);
-
+//    직원 삭제
+    public void empDelete(Long empNumber);
 
 //    공지사항 리스트
     public List<NoticeDto> selectAllNotice(@Param("criteria")Criteria criteria, @Param("searchVo")SearchVo searchVo);

@@ -32,6 +32,8 @@ function loadPage(empNumber) {
         dataType: 'json',
         success: function (result) {
             console.log(result);
+            console.log(result);
+            loadActImg(result)
         },
         error: function (a, b, c) {
             console.log("실패");
@@ -41,3 +43,22 @@ function loadPage(empNumber) {
 }
 
 // actList 받아오기까지 완료 html에 붙여주기부터 시작
+function loadActImg(result){
+
+    if(result.adminEmpList!=0){
+        let actImgContainer = $('.act-item-container');
+        actImgContainer.empty();
+
+        $.each(result, function (index, actImg) {
+            // let imagePath = eventDetailUploadPath + '/' + eventDetailUuid + '_' + eventDetailName;
+            let imagePath = actImg.actImgUploadPath + '/' + actImg.actImgUuid +'_' + actImg.actImgName;
+            let actDiv = $('<li class="act-item">');
+            actDiv.append('<img src="/admin/rest/displayActImg?fileName=' + imagePath + '" class="act-img">');
+            actDiv.append('<p>' + actImg.actName + '</p>');
+            actImgContainer.append(actDiv);
+        });
+    }else{
+        let empList = $('.emp-list');
+        empList.empty();
+    }
+}

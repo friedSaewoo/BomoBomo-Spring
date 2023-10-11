@@ -104,11 +104,15 @@ public class AdminController {
 
         return new RedirectView("/admin/emp");
     }
+    @GetMapping("/admin/adminEmpDelete")
+    public RedirectView empDelete(Long empNumber){
+        adminService.empDelete(empNumber);
+        return new RedirectView("/admin/emp");
+    }
     @GetMapping(value={"/admin/adminEmpDetail"})
     public void selectEmpDetail(@RequestParam(name="empNumber")Long empNumber, Model model){
         EmpVo empDetail= adminService.selectEmpDetail(empNumber);
         model.addAttribute("empDetail",empDetail);
-
     }
 
     @GetMapping("/match")

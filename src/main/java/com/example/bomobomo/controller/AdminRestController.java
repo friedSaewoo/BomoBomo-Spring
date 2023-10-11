@@ -10,10 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.FileCopyUtils;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.File;
 import java.io.IOException;
@@ -125,12 +122,12 @@ public class AdminRestController {
 
     @GetMapping("/actImg")
     public List<ActVo> actImgList(Long empNumber){
-        log.info("===============================여기야{}",empNumber);
+        log.info("===============================여기야empNumber{}",empNumber);
         return adminService.selectEmpAct(empNumber);
     }
     @GetMapping("/displayActImg")
-    public byte[] displayActImg(String fileName) throws IOException {
-        log.info("=================================={}여기야",fileName);
+    public byte[] displayActImg(@RequestParam("fileName")String fileName) throws IOException {
+        log.info("==================================여기야fileName{}",fileName);
         return FileCopyUtils.copyToByteArray(new File(actImgPath, fileName));
     }
 }
