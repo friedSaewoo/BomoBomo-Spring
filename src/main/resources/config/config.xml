@@ -60,5 +60,9 @@
         <typeAlias type="com.example.bomobomo.domain.vo.MyPageEventVo" alias="myPageEventVo"/>
         <typeAlias type="com.example.bomobomo.domain.vo.MatchEmpInfoVo" alias="matchEmpInfoVo"/>
         <typeAlias type="com.example.bomobomo.domain.vo.MatchEmpRatingAvgVo" alias="matchEmpRatingAvgVo"/>
+        <typeAlias type="com.example.bomobomo.domain.vo.EmpActItemImgVo" alias="empActItemImgVo"/>
+        <typeAlias type="com.example.bomobomo.domain.vo.MatchBuyInfoVo" alias="matchBuyInfoVo"/>
+        <typeAlias type="com.example.bomobomo.domain.vo.MatchUserInfoVo" alias="matchUserInfoVo"/>
+
     </typeAliases>
 </configuration>

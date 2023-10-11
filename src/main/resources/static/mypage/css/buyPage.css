@@ -53,6 +53,8 @@ main{
 .menu-bar>div>a:hover{
     color: white;
     background-color: #FF7000;
+    font-size: 20px;
+    font-weight: bold;
 }
 
 .menu-bar>div>a{
@@ -62,8 +64,10 @@ main{
     line-height: 40px;
     color: black;
     font-family: 'IBM Plex Sans KR', sans-serif;
-    font-size: 25px;
+    font-size: 20px;
+    font-weight: bold;
     width: 150px;
+
     /* border-radius: 10%; */
 }
 
@@ -96,6 +100,7 @@ main{
 .page-title>p>a{
     text-decoration: none;
     color: #FF7000;
+    font-size: 70px;
 }
 
 .review-page-area{
@@ -219,6 +224,9 @@ main{
     /* background-color: #e6e6e6; */
     border: 1px solid #e6e6e6;
 }
+.pageactive{
+    background-color: #FF7000
+    }
 
 /*이벤트 ㄹ뷰 작성 공간*/
 .buyboxp{

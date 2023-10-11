@@ -28,10 +28,10 @@
 
         <div class="announcement">
           <!--클릭시  페이지 이동-->
-          <a href="">공지사항</a>
+          <a href="/board/notice">공지사항</a>
         </div>
         <div class="faq">
-          <a href="#">FAQ</a>
+          <a href="/board/faq">FAQ</a>
         </div>
         <div class="pay">
           <a href="/mypage/buy">결제내역</a>
@@ -63,7 +63,7 @@
               <div class="img-area-2">
                 <figure>
                   <!--데이터에서 파일 불러오기-->
-                  <!--                  <img th:src="@{/myPages/img(fileFullPath=${buy.empImgUploadPath} + '/' + ${buy.empImgUuid} + '_' + ${buy.empImgName})}">-->
+                  <img th:src="@{/myPages/eventimg(fileFullPath=${event.eventImgUploadPath} + '/' + ${event.eventImgUuid} + '_' + ${event.eventImgName})}">
                 </figure>
               </div>
               <div class="buy-text-area-2">
@@ -75,13 +75,13 @@
               </div>
 
               <div class="price-2">
-                <a th:if="${event.reviewCheck == 1}" href="javascript:void(0)" class="text-page-2">
+                <a th:if="${event.reviewCheck >= 1}" href="javascript:void(0)" class="text-page-2">
                   <p>리뷰작성완료</p>
                 </a>
                 <a th:if="${event.reviewCheck == 0}" th:href="@{/mypage/reviewwrite(eventNumber=${event.eventNumber})}" class="text-page-2">
                   <p>리뷰작성</p>
                 </a>
-                <span th:text="${event.eventPrice}+'원'"></span>
+                <span th:text="${#numbers.formatInteger(event.eventPrice, 3, 'COMMA')}+'원'"></span>
               </div>
             </li>
 
@@ -93,10 +93,10 @@
               </a>
 
               <th:block th:each="e:${#numbers.sequence(pageVO.startPage,pageVO.endPage)}">
-                <a th:href="@{/mypage/buyEvent(page=${e})}">
-                  <li th:text="${e}"></li>
-                </a>
-              </th:block>
+                  <a th:href="@{/mypage/buyEvent(page=${e})}" class="pageVObox">
+                    <li th:text="${e}"></li>
+                  </a>
+
 
               <a th:href="@{/mypage/buyEvent(page=${pagrVO.endPage - 1})}" class="page-d" th:if="${pageVO.next}">
                 <li class="page-num1 next">&gt</li>
