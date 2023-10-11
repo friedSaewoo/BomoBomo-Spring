@@ -15,7 +15,7 @@ public class MyPageEventVo {
     String eventDate;
     String eventName;
     Integer eventPrice;
-    String EventImgName;
+    String eventImgName;
     String eventImgUploadPath;
     String eventImgUuid;
     Integer reviewCheck;

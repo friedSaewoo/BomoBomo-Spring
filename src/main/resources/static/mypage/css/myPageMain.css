@@ -202,9 +202,12 @@ main{
 }
 .siter-info{
     /* border: 1px solid black; */
-    width: 200px;
+    width: 250px;
 }
-
+.imgs{
+    width: 250px;
+    height: 250px;
+    }
 .siter-private-info{
     display: flex;
 }
@@ -539,12 +542,14 @@ main{
     margin-top: 10px;
     height: 30px;
     line-height: 30px;
+    text-align: center;
 
 
 }
 
 .user-address{
     /* border: 1px solid black; */
+
 }
 
 .user-address p:first-child{
@@ -566,6 +571,7 @@ main{
     height: 30px;
     line-height: 30px;
     margin-top: 8px;
+    text-align: center;
 }
 
 .address-detail{
@@ -574,6 +580,7 @@ main{
     height: 30px;
     line-height: 30px;
     margin-top: 10px;
+    text-align: center;
 
 }
 

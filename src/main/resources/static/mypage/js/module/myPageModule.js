@@ -35,22 +35,21 @@ export function getEventReviewList (pages, callback){
 
 
 
-//마이페이지 매칭인원 등록
-export function showMtpageMatch(userNumber, callback){
+//결제페이지에 결제 정보 넣기
+export function buyInfo(callback){
     $.ajax({
 
-        url:`/myPages/matchEmpInfo/${userNumber}`,
+        url:`/myPages/purchase`,
         type:'post',
+
         dataType: 'json',
-        success : function (){
+        success : function (result){
             if(callback){
-                callback();
+                callback(result);
             }
         }, error : function (a,b,c){
             console.error(c);
         }
-
-
 
     })
 }

@@ -1,5 +1,6 @@
 package com.example.bomobomo.controller;
 
+import com.example.bomobomo.domain.dto.MatchDto;
 import com.example.bomobomo.domain.vo.*;
 import com.example.bomobomo.service.EventBoardService;
 import com.example.bomobomo.service.MyPageService;
@@ -24,21 +25,39 @@ public class MyPageRestController {
     private final SitterBoardService sitterBoardService;
     private final EventBoardService eventBoardService;
 //     파일경로 확인 , 시터 결제내역 이미지
-//    @Value("${file.dir}")
-//    private String fileDir;
-//
-//    @GetMapping("/img")
-//    public byte[] getPfpImg(String fileFullPath) throws IOException {
-//        return FileCopyUtils.copyToByteArray(new File(fileDir, fileFullPath));
-//    }
+    @Value("${file.sitterBuyImg}")
+    private String fileSitterBuyImg;
+
+    @GetMapping("/img")
+    public byte[] getPfpImg(String fileFullPath) throws IOException {
+        return FileCopyUtils.copyToByteArray(new File(fileSitterBuyImg, fileFullPath));
+    }
 // 이벤트 결제 내역 이미지
-//    @Value("${file.dir}")
-//    private String fileDir;
-//
-//    @GetMapping("/eventimg")
-//    public byte[] getEventImg(String fileFullPath) throws IOException {
-//        return FileCopyUtils.copyToByteArray(new File(fileDir, fileFullPath));
-//    }
+    @Value("${file.eventImg}")
+    private String fileeventImg;
+
+    @GetMapping("/eventimg")
+    public byte[] getEventImg(String fileFullPath) throws IOException {
+        return FileCopyUtils.copyToByteArray(new File(fileeventImg, fileFullPath));
+    }
+
+    // 마이페이지 메인에서 데이터 정보 출력
+    @Value("${file.empImg}")
+    private String fileEmpImg;
+
+    @GetMapping("/empimg")
+    public byte[] getEmpImg(String fileFullPath) throws IOException {
+        return FileCopyUtils.copyToByteArray(new File(fileEmpImg, fileFullPath));
+    }
+
+    //마이페이지 메인헤서 활동 이미지 출력
+    @Value("${file.empactImg}")
+    private String fileEmpActImg;
+
+    @GetMapping("/empActimg")
+    public byte[] getEmpActImg(String fileFullPath) throws IOException {
+        return FileCopyUtils.copyToByteArray(new File(fileEmpActImg, fileFullPath));
+    }
     // 마이페이지 시터 이용후기 사용자가 작성한 내용만 출력
     @GetMapping("/sitterReviewList")
     public Map<String, Object> showEventReviewList(HttpServletRequest req, Criteria criteria){
@@ -64,24 +83,31 @@ public class MyPageRestController {
         map.put("eventlist", eventBoardVoList);
         return map;
     }
-    //유저가 매칭을 한 직원의 정보를 출력
-    @PostMapping("/matchEmpInfo/{userNumber}")
-    public Map<String , Object> findMatchEmpInfo(HttpServletRequest req, @PathVariable("userNumber") Long userNumber){
-//        Long userNumber = (Long)req.getSession().getAttribute("userNumber");
-        System.out.println("로그인 번호 : "+userNumber);
-        List<MatchEmpInfoVo> matchEmpInfoVoList = myPageService.findMachEmpInfoList(userNumber);
-        MatchEmpRatingAvgVo matchEmpRatingAvgVo = myPageService.findMatchEmpAvg(userNumber);
 
-        Map<String,Object> map =new HashMap<>();
-        // 직원의 활동내용을 하나씩 뽑아야함
-        map.put("infoList",matchEmpInfoVoList);
-        map.put("avg",matchEmpRatingAvgVo);
+
+    @PostMapping("/purchase")
+    public Map<String, Object> purchasePage(HttpServletRequest req){
+        Long userNumber = (Long)req.getSession().getAttribute("userNumber");
+        System.out.println(userNumber);
+        MatchUserInfoVo matchUserInfoVo=myPageService.findMatchUserInfo(userNumber);
+        MatchBuyInfoVo matchBuyInfoVo=myPageService.findMatchBuyInfo(userNumber);
+
+        Map<String, Object> map =new HashMap<>();
+        map.put("userInfo",matchUserInfoVo);
+        map.put("buyInfo",matchBuyInfoVo);
 
         return map;
     }
 
+    @PatchMapping("/{matchNumber}")
+    public void modify(@PathVariable("matchNumber") Long matchNumber,
+                       @RequestBody MatchDto matchDto){
+        //json형식으로 받을거야
 
+        matchDto.setMatchNumber(matchNumber);
 
+        myPageService.statusUpdate(matchNumber);
+    }
 
 }
 
