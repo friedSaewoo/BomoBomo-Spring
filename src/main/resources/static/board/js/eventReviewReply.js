@@ -1,4 +1,5 @@
 import * as reply from './module/boardEventReply.js';
+import * as text from './module/textLength.js'
 
 
 //input hidden에 넣어놓은 값 가져오기
@@ -52,3 +53,8 @@ $('.btn-reply').on('click', function (){
     })
 })
 
+
+
+
+text.limitText();
+text.limitModifyText();
