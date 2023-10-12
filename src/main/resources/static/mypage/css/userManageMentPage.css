@@ -184,10 +184,12 @@ main{
 .addressnumbtn{
     width: 70px;
     height: 40px;
-    background-color: #FF7000;
-    border: 1px solid #FF7000;
-    color: white;
+    background-color: white;
+    border: 1.5px solid black;
+    color: black;
     cursor: pointer;
+    font-weight: bold;
+    border-radius: 5px;
 }
 .addressInput{
     margin-top: 20px;

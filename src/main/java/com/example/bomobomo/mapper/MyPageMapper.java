@@ -1,6 +1,8 @@
 package com.example.bomobomo.mapper;
 
+import com.example.bomobomo.domain.dto.AddressDto;
 import com.example.bomobomo.domain.dto.MatchDto;
+import com.example.bomobomo.domain.dto.UserDto;
 import com.example.bomobomo.domain.vo.*;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -45,4 +47,12 @@ public interface MyPageMapper {
 
     //결제후 매칭되었던 데이터 상태 수정
     public MatchDto update(Long matchNumber);
+
+
+    //회원정보수정 디폴트 값 조회(아이디 ,휴대전화)
+    public UserDto selectUser(Long userNumber);
+
+    //회원정보수정 디폴트 값 조회(주솟)
+    public AddressDto selectUserAddress(Long userNumber);
+
 }

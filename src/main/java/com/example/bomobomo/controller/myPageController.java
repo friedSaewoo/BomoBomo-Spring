@@ -104,14 +104,17 @@ public class myPageController {
 
     //회원정보 수정 창으로 이동
     @GetMapping("/userManage")
-    public String showuserManagePage(HttpServletRequest req){
+    public String showuserManagePage(HttpServletRequest req,Model model){
         Long userNumber=(Long)req.getSession().getAttribute("userNumber");
-        String userId= (String)req.getSession().getAttribute("userId");
-        String userName=(String)req.getSession().getAttribute("userName");
+
+        myPageService.findUser(userNumber);
+        model.addAttribute("user",myPageService.findUser(userNumber));
+        myPageService.findUserAddress(userNumber);
+        model.addAttribute("userAddress",myPageService.findUserAddress(userNumber));
+
 
         System.out.println(userNumber);
-        System.out.println(userId);
-        System.out.println(userName);
+
 
         return "mypage/userManageMentPage";
     }

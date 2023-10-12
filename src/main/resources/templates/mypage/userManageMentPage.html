@@ -54,7 +54,7 @@
               <div class="updateText">
                 <div class="userInfo-area">
                   <!-- <img src="/user/img/userId.png"> -->
-                  <input class="userInfo" type="text" th:placeholder="${session.userId}" disabled>
+                  <input class="userInfo" type="text" th:value="${user.userId}" disabled>
                   <!-- <label>로그인 X</label> -->
 
                   <!--아이디 수정-->
@@ -68,22 +68,22 @@
                   <p class="checkPws">비밀번호가 일치하지 않습니다.</p>
                 </div>
                 <div class="userInfo-area">
-                  <input class="userInfo" type="text" th:placeholder="${session.userName}" disabled>
+                  <input class="userInfo" type="text" th:value="${user.userName}" disabled>
                 </div>
                 <div class="userInfo-area">
-                  <input class="userInfo" type="text" placeholder="휴대폰번호" name="userPhone"  required>
+                  <input class="userInfo" type="text" th:value="${user.userPhone}" name="userPhone"  required>
                 </div>
                 <div class="userInfo-area">
-                  <input class="userInfo" type="email" placeholder="이메일" name="userEmail" required>
+                  <input class="userInfo" type="email" th:value="${user.userEmail}" name="userEmail" required>
                 </div>
                 <div class="userInfo-area">
-                  <input type="text" class="addressnum" id="address-num" placeholder="우편번호" name="addressPost" >
-                  <button type="button" class="addressnumbtn" value="우편번호 찾기" onclick="addressFind()">우편번호</button>
+                  <input type="text" class="addressnum" id="address-num" th:value="${userAddress.addressPost}" name="addressPost" >
+                  <button type="button" class="addressnumbtn" value="우편번호 찾기" onclick="addressFind()" required>우편번호</button>
                   <br/>
-                  <input type="text" class="addressInput" id="address" placeholder="주소 입력" name="address">
+                  <input type="text" class="addressInput" id="address"  th:value="${userAddress.address}" name="address" required>
                   <br/>
-                  <input type="text" class="addressplus" id="address_extra" placeholder="참고주소" name="address">
-                  <input type="text" class="addressdetail" id="address_detail" placeholder="상세주소 입력" name="addressDetail">
+                  <input type="text" class="addressplus" id="address_extra"  name="address">
+                  <input type="text" class="addressdetail" id="address_detail" placeholder="상세주소 입력" name="addressDetail" th:value="${userAddress.addressDetail}" required>
 
                 </div>
               </div>
