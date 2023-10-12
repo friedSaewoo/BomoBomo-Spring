@@ -1,20 +1,18 @@
 <!DOCTYPE html>
-
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BOMOBOMO</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="/fragments/css/header.css"/>
+    <link rel="stylesheet" href="/fragments/css/footer.css"/>
+    <link rel="stylesheet" href="/common/css/common.css"/>
 
-  <link rel="stylesheet" href="/common/css/common.css"/>
-  <link rel="stylesheet" href="/fragments/css/footer.css"/>
-  <link rel="stylesheet" href="/fragments/css/header.css"/>
-
-  <link rel="stylesheet" href="/myPage/css/applicationPage.css"/>
-  <script src="/common/js/index.js" defer></script>
-  <script src="/common/js/common.js" defer></script>
+    <link rel="stylesheet" href="/sitter/css/sitterS.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css"/>
+    <title>BOMOBOMO</title>
 </head>
+
 <body>
 <div class="header" th:replace="fragments/header.html :: header" >
 </div>
@@ -22,26 +20,6 @@
 <main>
   <div class="user-container">
     <div class="section">
-      <aside class="menu-bar">
-
-        <!-- <a href="/Mypage/html/mypage_main.html" class="logo-img">
-            <img src="/Mypage/img/logo.png">
-        </a> -->
-
-        <div class="announcement">
-          <!--클릭시  페이지 이동-->
-          <a href="/board/notice">공지사항</a>
-        </div>
-        <div class="faq">
-          <a href="/board/faq">FAQ</a>
-        </div>
-        <div class="pay">
-          <a href="/mypage/buy">결제내역</a>
-        </div>
-        <div class="account-mg">
-          <a href="/mypage/userManage">계정관리</a>
-        </div>
-      </aside>
       <div class="page-view">
         <div class="page-title">
 
@@ -60,10 +38,10 @@
             <h4>님께 알려주세요.</h4>
           </div>
 
-          <form class="check-area" action="/mypage/application" method="post">
+          <form class="check-area" action="/sitter/sitterApplication" method="post">
             <div class="childern-check">
               <p>돌봄이 필요한 아이</p>
-              <input class="one-check" type="radio" name="one" /> 1명
+              <input class="one-check" type="radio" name="one" checked/> 1명
               <input class="two-check" type="radio" name="one" /> 2명
             </div>
             <!--버튼 클릿 js 필요-->
@@ -130,8 +108,15 @@
 </main>
 <div class="footer" th:replace="fragments/footer.html :: footer">
 </div>
+
+
+
+
 <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-<script src="/myPage/js/applicationPage.js"></script>
+
+<script src="/sitter/js/sitterS.js"></script>
+<script src="/fragments/js/header.js"></script>
 </body>
+
 </html>

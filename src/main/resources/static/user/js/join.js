@@ -50,10 +50,6 @@ $('#userPasswordCh').keyup(function () {
     let pw = $("#userPassword").val();
     let pwCh = $("#userPasswordCh").val();
 
-//      || pw == ''
-
-    // alert(pw);
-    // alert(pwCh);
     if(pw != pwCh) {
         $('.labelPwCh').css('display','block');
         $('.labelEm').css('display','none');
@@ -107,14 +103,12 @@ function checkPw() {
 
     let pwCheck = reg.test(pw);
 
-    $('#userPasswordCh').change(function () {
+    $('#userPassword').on('keypress', function () {
 
         if(pwCheck) {
-            // $('.labelPwOk').css("display", "block");
             $('.labelPwNo').css("display", "none");
             $('.PwChOk').css('display', 'block');
         } else {
-            // $('.labelPwOk').css("display", "none");
             $('.labelPwNo').css("display", "block");
             $('.PwChOk').css('display', 'none');
         }

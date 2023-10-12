@@ -10,6 +10,7 @@ import java.util.List;
 
 @Mapper
 public interface AdminMapper {
+
 //    관리자 로그인
     public AdminDto login(@Param("adminId")String adminId, @Param("adminPassword")String adminPassword);
 //    주간 가입수

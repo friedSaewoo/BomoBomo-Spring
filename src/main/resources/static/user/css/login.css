@@ -2,12 +2,6 @@ a {
     text-decoration: none;
 }
 
-li {
-    margin: 15px auto;
-    list-style-type: none;
-    float: left;
-}
-
 .ul {
     position: absolute;
     margin-left: -10px;
@@ -108,6 +102,12 @@ li {
 .userInfoObt a:hover {
     font-size: medium;
     color: orange;
+}
+
+.userInfoObt li {
+    margin: 15px auto;
+    list-style-type: none;
+    float: left;
 }
 
 

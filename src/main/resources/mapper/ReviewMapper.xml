@@ -102,8 +102,6 @@
                             left outer join emp_img k on e.EMP_NUMBER = k.emp_number
         where SITTER_BOARD_NUMBER= #{sitterBoardNumber}
 
-
-
     </select>
 
 
