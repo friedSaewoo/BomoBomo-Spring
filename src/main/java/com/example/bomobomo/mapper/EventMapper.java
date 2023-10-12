@@ -3,6 +3,7 @@ package com.example.bomobomo.mapper;
 import com.example.bomobomo.domain.dto.EmpDto;
 import com.example.bomobomo.domain.dto.EventDto;
 import com.example.bomobomo.domain.vo.Criteria;
+import com.example.bomobomo.domain.vo.EventPayVo;
 import com.example.bomobomo.domain.vo.EventVo;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -24,4 +25,11 @@ public interface EventMapper {
 
     //회사소개페이지 전체 회원수 조회
     public int selectTotal();
+
+
+
+
+    void saveEvent(EventPayVo eventPayVo);
+
+    void savePayment(EventPayVo eventPayVo);
 }

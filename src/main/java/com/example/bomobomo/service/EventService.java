@@ -3,6 +3,7 @@ package com.example.bomobomo.service;
 import com.example.bomobomo.domain.dto.EmpDto;
 import com.example.bomobomo.domain.dto.EventDto;
 import com.example.bomobomo.domain.vo.Criteria;
+import com.example.bomobomo.domain.vo.EventPayVo;
 import com.example.bomobomo.domain.vo.EventVo;
 import com.example.bomobomo.mapper.EventMapper;
 import lombok.RequiredArgsConstructor;
@@ -49,6 +50,16 @@ public class EventService {
 
     public int getTotal(){
         return eventMapper.selectTotal();
+    }
+
+
+
+    public void saveEvent(EventPayVo eventPayVo) {
+        eventMapper.saveEvent(eventPayVo);
+    }
+
+    public void savePayment(EventPayVo eventPayVo) {
+        eventMapper.savePayment(eventPayVo);
     }
 
 }

@@ -52,14 +52,43 @@ function addressFind() {
 $("#check_module").click(function () {
 
     const payAmount = parseInt($('#price').val());
+    console.log(payAmount);
     const postCode = $('#address-num').val();
+    console.log(postCode);
     const date = $('#eventDate').val();
+    console.log(date);
     const evName = $('#eventName').val();
+    console.log(evName);
     const userNumber = loginNumber;
+    console.log(userNumber);
     const userName = loginName;
-    const address = $('#address_extra').val
-    const phoneNum = $('#phoneNumber').val
+    console.log(userName);
+    const address = $('#address_extra').val();
+    console.log(address);
+    const phoneNum = $('#phoneNumber').val();
+    console.log(phoneNum);
+    const eventNumber = $('#eventNumber').val();
+    console.log(eventNumber);
 
+    if (!phoneNum) {
+        alert("입력하신 정보를 확인해주세요");
+        return;
+    }
+
+    if (!address) {
+        alert("입력하신 정보를 확인해주세요");
+        return;
+    }
+
+    if (!date) {
+        alert("입력하신 정보를 확인해주세요");
+        return;
+    }
+
+    let EventObj ={
+        userNumber:userNumber,
+        eventNumber:eventNumber,
+    };
 
     var IMP = window.IMP; // 생략가능
     IMP.init('imp14503134');
@@ -68,23 +97,22 @@ $("#check_module").click(function () {
     IMP.request_pay({
         pg: 'kakaopay.TC0ONETIME',
         pay_method: 'card',
-        merchant_uid: 'merchant_' + new Date().getTime(),
+        merchant_uid: eventNumber + new Date().getTime(),
         /*
          *  merchant_uid에 경우
          *  https://docs.iamport.kr/implementation/payment
          *  위에 url에 따라가시면 넣을 수 있는 방법이 있습니다.
          */
-        name: evName,
 
+        name: evName,
         // 결제창에서 보여질 이름
         // name: '주문명 : ${auction.a_title}',
         // 위와같이 model에 담은 정보를 넣어 쓸수도 있습니다.
         amount: payAmount,
-
         // amount: ${bid.b_bid},
         // 가격
         buyer_name: userName,
-        buyer_addr: address,
+        buyer_address: address,
         buyer_tel: phoneNum,
         // 구매자 이름, 구매자 정보도 model값으로 바꿀 수 있습니다.
         // 구매자 정보에 여러가지도 있으므로, 자세한 내용은 맨 위 링크를 참고해주세요.
@@ -95,11 +123,12 @@ $("#check_module").click(function () {
             var msg = '결제가 완료되었습니다.';
             msg += '결제 금액 : ' + rsp.paid_amount;
             $.ajax({
-                type: "patch",
-                url: `/event/complete`,
-                data: JSON.stringify(Obj),
-                contentType : 'application/json; charset=utf-8'
+                type: "POST",
+                url: "/events/complete",
+                data: JSON.stringify(EventObj),
+                contentType : "application/json; charset=utf-8"
             });
+            console.log(EventObj);
             // success.submit();a
             // 결제 성공 시 정보를 넘겨줘야한다면 body에 form을 만든 뒤 위의 코드를 사용하는 방법이 있습니다.
             // 자세한 설명은 구글링으로 보시는게 좋습니다.

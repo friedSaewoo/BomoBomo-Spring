@@ -56,6 +56,7 @@
                 <div class="eventInfo-area">
                     <li th:each="event : ${payment}" >
                     <input type="hidden" id="eventName" th:value="${event.eventName}">
+                    <input type="hidden" id="eventNumber" th:value="${event.eventNumber}">
                     </li>
                 </div>
 
