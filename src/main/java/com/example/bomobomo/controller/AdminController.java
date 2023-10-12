@@ -109,7 +109,7 @@ public class AdminController {
         adminService.empDelete(empNumber);
         return new RedirectView("/admin/emp");
     }
-    @GetMapping(value={"/admin/adminEmpDetail"})
+    @GetMapping(value={"/admin/adminEmpDetail","/admin/adminEmpConfig"})
     public void selectEmpDetail(@RequestParam(name="empNumber")Long empNumber, Model model){
         EmpVo empDetail= adminService.selectEmpDetail(empNumber);
         model.addAttribute("empDetail",empDetail);
