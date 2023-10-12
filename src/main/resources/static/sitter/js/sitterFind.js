@@ -1,10 +1,3 @@
-import * as sitterModule from "./module/sitterFindModule";
-
-$(function() {
-    $(".sitterSelBtn").click(function() {
-      $(".modal").fadeIn();
-      $(".container").css("pointer-events", "none")
-      $("body").css("background-color", "lightgray")
 import * as sitterModule from "./module/sitterFindModule.js";
 import {getSitterListAddrPage} from "./module/sitterFindModule.js";
 
@@ -190,16 +183,14 @@ function showListAndPage(sitter) {
 }
 
 
-
-
-
-
-
-
 $('.paging').on('click', '.pageNum', function (){
-           page = $(this).data('pagenum');
-           sitterModule.getSitterListByPage({page: page}, showListAndPage);
+    page = $(this).data('pagenum');
+    sitterModule.getSitterListByPage({page: page}, showListAndPage);
 });
+
+
+
+
 
 
 
