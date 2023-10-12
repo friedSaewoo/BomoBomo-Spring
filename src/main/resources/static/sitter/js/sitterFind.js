@@ -1,5 +1,3 @@
-
-
 $(function() {
     $(".sitterSelBtn").click(function() {
       $(".modal").fadeIn();
