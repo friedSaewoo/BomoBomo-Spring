@@ -3,6 +3,7 @@ package com.example.bomobomo.service;
 import com.example.bomobomo.domain.dto.EmpDto;
 import com.example.bomobomo.domain.dto.EventDto;
 import com.example.bomobomo.domain.vo.Criteria;
+import com.example.bomobomo.domain.vo.EmpVo;
 import com.example.bomobomo.domain.vo.EventPayVo;
 import com.example.bomobomo.domain.vo.EventVo;
 import com.example.bomobomo.mapper.EventMapper;
@@ -42,7 +43,7 @@ public class EventService {
 
 
 //      전체 직원 조회
-    public List<EmpDto> findEmpAll(Criteria criteria) {
+    public List<EmpVo> findEmpAll(Criteria criteria) {
         return eventMapper.selectEmpAll(criteria);
     }
 

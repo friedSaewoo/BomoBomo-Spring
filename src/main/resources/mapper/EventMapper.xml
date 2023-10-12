@@ -43,15 +43,15 @@
                                  on e.EVENT_NUMBER = ei.EVENT_NUMBER
     </select>
 
-    <select id="selectEmpAll" resultType="EmpDto">
+    <select id="selectEmpAll" resultType="EmpVo">
         SELECT RNUM, EMP_NAME, EMP_AGE, EMP_GENDER, EMP_PHONE, EMP_EMAIL, EMP_DATE, EMP_CONTENT, EMP_NUMBER,
-               EMP_IMG_UPLOAD_PATH
+               EMP_IMG_UPLOAD_PATH, EMP_IMG_UUID, EMP_IMG_NAME
         FROM(
                 SELECT ROWNUM AS RNUM, EMP_NAME, EMP_AGE, EMP_GENDER, EMP_PHONE, EMP_EMAIL, EMP_DATE, EMP_CONTENT, EMP_NUMBER,
-                       EMP_IMG_UPLOAD_PATH
+                       EMP_IMG_UPLOAD_PATH, EMP_IMG_UUID, EMP_IMG_NAME
                 FROM(
                         SELECT EMP_NAME, EMP_AGE, EMP_GENDER, EMP_PHONE, EMP_EMAIL, EMP_DATE, EMP_CONTENT, E.EMP_NUMBER,
-                               I.EMP_IMG_UPLOAD_PATH
+                               I.EMP_IMG_UPLOAD_PATH, I.EMP_IMG_UUID, I.EMP_IMG_NAME
                         FROM EMP E JOIN EMP_IMG I
                                         ON E.EMP_NUMBER = I.EMP_NUMBER
                     ) X

@@ -21,11 +21,11 @@
 <!--헤더영역-->
 <div class="header" th:replace="fragments/header :: header">
 </div>
-<main style="height: 850px;">
+<main style="height: 750px;">
     <div class="payment-section">
         <div class="payment-section-name">이벤트 신청서</div>
         <div class="payment-application">
-            <form class="payment-application-write" >
+            <div class="payment-application-write" >
                 <div class="eventInfo-area">
                     <div class="info-date" style="text-align: left;" >날짜 및 시간</div>
                     <input class="eventInfo" id="eventDate" type="text" placeholder="(ex: 2023/09/18 오후 2시)" required>
@@ -61,10 +61,11 @@
                 </div>
 
 
+
         <div class="payment-application-button" style="margin-top: 100px" >
             <button type="button" id="check_module">결제하기</button>
         </div>
-        </form>
+            </div>
         </div>
     </div>
 </main>

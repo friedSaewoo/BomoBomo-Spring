@@ -21,7 +21,6 @@
     <div class="main" style="height: 1300px;" th:each="event:${detail}">
         <div class="event-detail"  >
             <div class="event-detail-banner">
-                <p th:text="${event.eventImgName}"></p>
                 <img th:src="'/upload/' + ${event.eventDetailUploadPath} + '/' + ${event.eventDetailUuid} +'_' + ${event.eventDetailName}">
             </div>
         </div>
