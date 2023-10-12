@@ -7,6 +7,7 @@ import com.example.bomobomo.domain.vo.*;
 import com.example.bomobomo.service.AdminService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.*;
@@ -91,7 +92,6 @@ public class AdminRestController {
         matchListMap.put("matchList",matchList);
         return matchListMap;
     }
-
     @GetMapping("/event/list/{page}")
     public Map<String,Object> selectAllEvents(@PathVariable("page")int page, SearchVo searchVo){
         Criteria criteria = new Criteria();
@@ -104,6 +104,13 @@ public class AdminRestController {
         eventListMap.put("pageVo",pageVo);
         eventListMap.put("eventList",eventList);
         return eventListMap;
+    }
+    @GetMapping("/match/status")
+    public String updateStatus(@RequestParam(name="matchNumber")Long matchNumber,@RequestParam(name="status") String status){
+        adminService.updateStatus(matchNumber,status);
+        log.info("============================matchNumber={}",matchNumber);
+        log.info("============================status={}",status);
+        return status;
     }
     @GetMapping("/displayEventImg")
     public byte[] display(String fileName) throws IOException {

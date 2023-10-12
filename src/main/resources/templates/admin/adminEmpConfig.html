@@ -37,7 +37,8 @@
             <div class="contents-title">
                 <span class="main-contents-title-text">직원관리</span>
             </div>
-            <form action="/admin/emp/regist" method="post" enctype="multipart/form-data">
+            <form action="/admin/emp/update" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="empNumber" th:value="${empDetail.empNumber}">
                 <div class="emp-detail-container">
                     <div class="emp-info-container1">
                         <div class="img">
@@ -71,7 +72,8 @@
                                     <legend>활동</legend>
                                     <div th:each="act: ${actList}">
                                         <label th:text="${act.actName}"/>
-                                        <input class ="act-check" th:name="actNumber" th:value="${act.actNumber}" type="checkbox">
+                                        <input class="act-check" th:name="actNumber" th:value="${act.actNumber}" type="checkbox"
+                                               th:checked="${empActList.![actNumber].contains(act.actNumber)}">
                                     </div>
                                 </fieldset>
                             </div>
@@ -91,6 +93,9 @@
         </div>
     </div>
 </div>
+<input type="hidden" id="empImgName" th:value="${empDetail.empImgName}">
+<input type="hidden" id="empImgUploadPath" th:value="${empDetail.empImgUploadPath}">
+<input type="hidden" id="empImgUuid" th:value="${empDetail.empImgUuid}">
 </body>
 <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
 <script th:src="@{/admin/js/adminEmpConfig.js}"></script>

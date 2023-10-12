@@ -125,17 +125,15 @@ input:focus{
     height: 85%;
     margin: 30px auto 0px;
     background-color: white;
-    box-shadow: 5px 5px 5px 5px gray;
-    border:3px solid #01b9ff;
-    border-radius: 3%;
+    box-shadow: 3px 3px 3px 3px gray;
+    border:3px solid white;
 }
 .info-container{
     display: flex;
     height: 50%;
 }
 .user-info{
-    border: 3px solid #01b9ff;
-    border-radius: 5%;
+    border: 3px solid black;
     margin: 20px;
     padding: 20px 0px 0px 20px;
     width: 45%;
@@ -152,7 +150,6 @@ input:focus{
     height: 40px;
     color: white;
     background-color: #01b9ff;
-    border-radius: 10%;
     border: 1px solid #e7e7e7;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     cursor: pointer;
@@ -163,8 +160,7 @@ input:focus{
     padding : 20px 0px 0px 20px;
     width: 50%;
     height: 90%;
-    border: 3px solid #01b9ff;
-    border-radius: 5%;
+    border: 3px solid black;
 }
 .emp-info>p{
     padding-top: 10px;
@@ -174,8 +170,7 @@ input:focus{
     display: flex;
     margin: 20px;
     height: 400px;
-    border: 3px solid #01b9ff;
-    border-radius: 3%;
+    border: 3px solid black;
     padding: 20px 0px 0px 20px;
 }
 
@@ -190,7 +185,6 @@ input:focus{
     color: white;
     margin-left: 20px;
     background-color: #01b9ff;
-    border-radius: 10%;
     border: 1px solid #e7e7e7;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     cursor: pointer;
