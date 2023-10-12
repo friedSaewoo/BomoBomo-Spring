@@ -1,5 +1,6 @@
 package com.example.bomobomo.mapper;
 
+import com.example.bomobomo.domain.dto.EventBoardDto;
 import com.example.bomobomo.domain.dto.SitterBoardDto;
 import com.example.bomobomo.domain.dto.SitterCommentDto;
 import com.example.bomobomo.domain.vo.Criteria;
@@ -66,6 +67,8 @@ public interface ReviewMapper {
 
     //이벤트 서비스 리뷰 게시판 댓글
 
+    //이벤트 리뷰 수정
+    public void updateEventReview(EventBoardDto eventBoardDto);
 
     //이벤트 서비스 조회수 상위 6개 게시물 가져오기
     public List<EventBoardVo> selectTopEventCount();

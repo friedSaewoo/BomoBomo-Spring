@@ -24,3 +24,9 @@ $('.deleteBtn').on('click', function (){
 
     }
 })
+
+//해당 돌봄 서비스 리뷰 수정
+$('.updateBtn').on('click', function (){
+    let eventBoardNumber = $(this).data('number');
+    window.location.href = '/board/modifyEventReview?eventBoardNumber=' + eventBoardNumber;
+});

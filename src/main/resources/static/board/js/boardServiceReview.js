@@ -35,7 +35,7 @@ $(document).on('click', '.page-num a', function (e) {
     e.preventDefault();
     $('.keyword').val('');
 
-    const page = $(this).data('reviewnum');
+    const page = $(this).data('pagenum');
     boardReview.getServiceReviewList(page, getSearchReviewVo(), serviceReviewList);
 
 });

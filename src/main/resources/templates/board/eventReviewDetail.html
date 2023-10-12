@@ -20,7 +20,7 @@
         <!-- 리뷰대상인 이벤트 정보-->
         <div class="review-detail-sitter">
             <div class="review-detail-sitter-pic">
-                <img th:src="'/upload/' + ${reviewEventDetail.eventImgUploadPath}+'/' + ${reviewEventDetail.eventImgUuid} + '_' + ${reviewEventDetail.eventImgName}" alt=""/>
+                <img th:src="'/upload/' + ${reviewEventDetail.eventBoardImgUploadPath}+'/' + ${reviewEventDetail.eventBoardImgUuid} + '_' + ${reviewEventDetail.eventBoardImgName}" alt=""/>
             </div>
             <div class="review-detail-sitter-info">
                 <dl class="review-detail-sitter-name">
@@ -72,7 +72,7 @@
             <!-- 리뷰 수정 삭제 목록 버튼-->
             <div class="update-delete-btn" >
                 <th:block th:if="${session.userNumber==reviewEventDetail.userNumber}">
-                    <button class="updateBtn">수정</button>
+                    <button class="updateBtn" type="button" th:data-number="${reviewEventDetail.eventBoardNumber}">수정</button>
                     <button class="deleteBtn" type="button" th:data-number="${reviewEventDetail.eventBoardNumber}">삭제</button>
                 </th:block>
                 <button class="reviewListBtn" onclick="showReviewListBtn()">목록</button>

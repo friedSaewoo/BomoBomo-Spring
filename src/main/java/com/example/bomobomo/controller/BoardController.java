@@ -1,5 +1,6 @@
 package com.example.bomobomo.controller;
 
+import com.example.bomobomo.domain.dto.EventBoardDto;
 import com.example.bomobomo.domain.dto.SitterBoardDto;
 import com.example.bomobomo.domain.vo.EventBoardVo;
 import com.example.bomobomo.domain.vo.SitterBoardVo;
@@ -10,6 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -274,8 +276,37 @@ public class BoardController {
         return "board/eventReviewDetail";
 
     }
-    //이벤트 후기 수정
+    //이벤트 후기 수정 페이지 이동
+    @GetMapping("/modifyEventReview")
+    public String modifyEventReview(@ModelAttribute("eventBoardNumber") Long eventBoardNumber,
+                                    Model model){
 
+        model.addAttribute("eventReview", reviewService.showEReviewDetail(eventBoardNumber));
+        return "/board/eventReviewModify";
+    }
+
+
+    //이벤트 후기 수정 등록
+    @PostMapping("/modifyER")
+    public RedirectView modifyER(@RequestParam("eventBoardNumber")Long eventBoardNumber,
+                                 @RequestParam("userNumber")Long userNumber,
+                                 @RequestParam("eventNumber")Long eventNumber,
+                                 EventBoardDto eventBoardDto,
+                                 RedirectAttributes redirectAttributes, @RequestParam("eventBoardImg") MultipartFile files){
+
+
+            eventBoardDto.setEventBoardNumber(eventBoardNumber);
+            eventBoardDto.setUserNumber(userNumber);
+            eventBoardDto.setEventNumber(eventNumber);
+
+        log.info(eventBoardDto.toString()+"*******************===========================");
+
+        reviewService.modifyEventReview(eventBoardDto, files);
+        redirectAttributes.addAttribute("eventBoardNumber", eventBoardDto.getEventBoardNumber());
+
+        return new RedirectView("/board/reviewEventDetail");
+
+    }
 
     //이벤트 후기 삭제
     @GetMapping("/removeEReview")

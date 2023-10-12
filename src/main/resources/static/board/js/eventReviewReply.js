@@ -86,6 +86,11 @@ $('body').click(function (e) {
 
 //댓글 수정창 팝업
 $('.review-reply').on('click', '.reply-modify-btn', function () {
+
+    //리플 수정창 팝업 시 작성시간(일자) 숨기기
+    let $hide = $('.reply-time');
+    $hide.css('display','none')
+
     let $content = $(this).closest('.reply').find('.reply-box__content');
     $content.replaceWith(`
       <div class='modify-box'>

@@ -9,10 +9,10 @@ import org.springframework.stereotype.Component;
 @NoArgsConstructor
 public class EventBoardImgDto {
 
-    Long eventBoardImgNumber;
-    Long eventBoardNumber;
-    String eventBoardImgName;
-    String evntBoardImgUploadPath;
-    String eventBoardImgUuid;
+    private Long eventBoardImgNumber;
+    private Long eventBoardNumber;
+    private String eventBoardImgName;
+    private String eventBoardImgUploadPath;
+    private String eventBoardImgUuid;
 
 }

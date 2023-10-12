@@ -120,7 +120,7 @@
                 <div class="review-panel2">
                     <ul >
                         <li th:each="eventReviewTop : ${eventReviewTop}">
-                            <img th:src="'/upload/' + ${eventReviewTop.eventImgUploadPath} +'/'+ ${eventReviewTop.eventImgUuid} +'_' + ${eventReviewTop.eventImgName}" alt="보모님 사진"/>
+                            <img th:src="'/upload/' + ${eventReviewTop.eventBoardImgUploadPath} +'/'+ ${eventReviewTop.eventBoardImgUuid} +'_' + ${eventReviewTop.eventBoardImgName}" alt="보모님 사진"/>
                             <div>
                                 <dl>
                                     <dt ><strong th:text="${eventReviewTop.eventName}">이정미 보모님</strong></dt>

@@ -1,24 +1,32 @@
 package com.example.bomobomo.service;
 
 
+import com.example.bomobomo.domain.dto.EventBoardDto;
+import com.example.bomobomo.domain.dto.EventBoardImgDto;
 import com.example.bomobomo.domain.dto.SitterBoardDto;
 import com.example.bomobomo.domain.vo.Criteria;
 import com.example.bomobomo.domain.vo.EventBoardVo;
 import com.example.bomobomo.domain.vo.SearchReviewVo;
 import com.example.bomobomo.domain.vo.SitterBoardVo;
+import com.example.bomobomo.mapper.EventBoardFileMapper;
 import com.example.bomobomo.mapper.ReviewMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class ReviewService {
 
 
     private final ReviewMapper reviewMapper;
+    private final EventBoardFileService eventBoardFileService;
 
 
     //돌봄 서비스 후기 리스트
@@ -131,7 +139,7 @@ public class ReviewService {
         if (eventBoardNumber == null) {
             throw new IllegalArgumentException("이벤트 리뷰 게시판 번호 누락");
         }
-
+        eventBoardFileService.remove(eventBoardNumber);
         reviewMapper.deleteEventReview(eventBoardNumber);
     }
 
@@ -146,6 +154,22 @@ public class ReviewService {
     //이벤트 리뷰 조회수 상위 6개 게시물 가져오기
     public List<EventBoardVo> findEventTopCount(){
           return reviewMapper.selectTopEventCount();
+    }
+
+
+    //이벤트 리뷰 수정
+
+    public void modifyEventReview(EventBoardDto eventBoardDto, MultipartFile files){
+
+            if(!files.isEmpty()){
+                eventBoardFileService.remove(eventBoardDto.getEventBoardNumber());
+                try{
+                    eventBoardFileService.registerAndSaveFile(files, eventBoardDto.getEventBoardNumber());
+                }catch(IOException e){
+                    e.printStackTrace();
+                }
+                reviewMapper.updateEventReview(eventBoardDto);
+            }
     }
 
 }
