@@ -105,6 +105,14 @@ $('.sitterTerBtn').on('click', function (){
     let city = $("select[name=sido1] option:selected").text();
     let cityAddr = $("select[name=gugun1] option:selected").text();
 
+    if(city == "주소 선택") {
+        Swal.fire({
+            icon: 'error',
+            title: '주소를 선택하세요.',
+            text: '',
+          });
+        return;
+    }
     page = 1;
     sitterModule.getSitterListAddrPage({page: page, city:city, cityAddr:cityAddr}, showListAndPage);
     $("#modal").fadeOut(300);
