@@ -6,11 +6,14 @@
         SELECT COUNT(*) FROM EMP
     </select>
 
-    <select id="sitterList" resultType="empDto">
-        SELECT  RNUM, EMP_NUMBER, EMP_NAME, EMP_AGE, EMP_GENDER, EMP_PHONE, EMP_EMAIL, EMP_DATE, EMP_CONTENT
+    <select id="sitterList" resultType="empVo">
+        SELECT  RNUM, EMP_NUMBER, EMP_NAME, EMP_AGE, EMP_GENDER, EMP_PHONE, EMP_EMAIL, EMP_DATE, EMP_CONTENT, avg
         FROM (
-            SELECT ROWNUM AS RNUM, EMP_NUMBER, EMP_NAME, EMP_AGE, EMP_GENDER, EMP_PHONE, EMP_EMAIL, EMP_DATE, EMP_CONTENT
-            FROM EMP
+            SELECT ROWNUM AS RNUM, e.EMP_NUMBER, e.EMP_NAME, e.EMP_AGE, e.EMP_GENDER, e.EMP_PHONE, e.EMP_EMAIL, e.EMP_DATE, e.EMP_CONTENT, s1.avg
+            FROM EMP e left join(
+                select EMP_NUMBER, avg(RATING) avg from SITTER_BOARD sb
+                group by EMP_NUMBER
+                )s1 on e.EMP_NUMBER = s1.EMP_NUMBER
                 <![CDATA[
                 WHERE ROWNUM <= #{page} * #{amount}
                 ]]>
@@ -33,14 +36,19 @@
     <select id="sitterBoardList" resultType="sitterBoardDto">
         SELECT *
         FROM SITTER_BOARD
-        WHERE EMP_NUMBER = ${empNumber}
+                    <![CDATA[
+        WHERE EMP_NUMBER = ${empNumber} AND ROWNUM <= 10
+        ]]>
     </select>
 
-    <select id="addrCheck" resultType="empDto">
-        SELECT  RNUM, EMP_NUMBER, EMP_NAME, EMP_AGE, EMP_GENDER, EMP_PHONE, EMP_EMAIL, EMP_DATE, EMP_CONTENT
+    <select id="addrCheck" resultType="empVo">
+        SELECT  RNUM, EMP_NUMBER, EMP_NAME, EMP_AGE, EMP_GENDER, EMP_PHONE, EMP_EMAIL, EMP_DATE, EMP_CONTENT, avg
         FROM (
-            SELECT ROWNUM AS RNUM, EMP_NUMBER, EMP_NAME, EMP_AGE, EMP_GENDER, EMP_PHONE, EMP_EMAIL, EMP_DATE, EMP_CONTENT
-            FROM EMP
+            SELECT ROWNUM AS RNUM, e.EMP_NUMBER, e.EMP_NAME, e.EMP_AGE, e.EMP_GENDER, e.EMP_PHONE, e.EMP_EMAIL, e.EMP_DATE, e.EMP_CONTENT, s1.avg
+            FROM EMP e left join(
+                select EMP_NUMBER, avg(RATING) avg from SITTER_BOARD sb
+                group by EMP_NUMBER
+                )s1 on e.EMP_NUMBER = s1.EMP_NUMBER
                 <![CDATA[
                 WHERE ROWNUM <= #{page} * #{amount} AND EMP_GENDER = 'F'
                 ]]>
@@ -48,6 +56,7 @@
         )
         WHERE RNUM > (#{page} - 1) * #{amount}
     </select>
+
     <select id="sitterAddrTotal" resultType="_int">
         SELECT COUNT(*) FROM EMP WHERE EMP_GENDER = 'F'
     </select>

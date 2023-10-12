@@ -4,9 +4,7 @@ import com.example.bomobomo.domain.dto.EmpDto;
 import com.example.bomobomo.domain.dto.OrderDto;
 import com.example.bomobomo.domain.dto.SitterBoardDto;
 import com.example.bomobomo.domain.dto.UserDto;
-import com.example.bomobomo.domain.vo.Criteria;
-import com.example.bomobomo.domain.vo.PageVo;
-import com.example.bomobomo.domain.vo.SitterBoardVo;
+import com.example.bomobomo.domain.vo.*;
 import com.example.bomobomo.service.OrderService;
 import com.example.bomobomo.service.ReviewService;
 import com.example.bomobomo.service.SitterService;
@@ -14,16 +12,11 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
-import java.util.IntSummaryStatistics;
-import java.util.List;
+import java.util.*;
 
 @Controller
 @Slf4j
@@ -38,16 +31,6 @@ public class SitterController {
     //    @LoggingPointcut
     @GetMapping("/sitterFind")
     public String sitterPage(Model model, Criteria criteria) {
-        int sitterTotal = sitterService.sitterTotalPeople();
-
-        criteria.setAmount(6);
-
-        model.addAttribute("sitterTotal", sitterTotal);
-        model.addAttribute("sitterList", sitterService.sitterSelect(criteria));
-        model.addAttribute("pageInfo", new PageVo(sitterService.getTotal(), criteria));
-
-//        System.out.println("크리테리아 겟 페이지 : " + criteria.getPage());
-//        System.out.println("크리테리아 : " + criteria);
 
         return "sitter/sitterFind";
     }
@@ -140,23 +123,6 @@ public class SitterController {
         log.info(orderDto.getUserNumber().toString());
         // 신청서 내용 입력 후 이동
         return new RedirectView("/common/index");
-    }
-
-    @PostMapping("/addrCheck")
-    public String addrCheck(String city, String cityAddr, Model model, Criteria criteria) {
-
-        System.out.println("시도 : " + city + ", 구군 : " + cityAddr);
-        int sitterAddrTotal = sitterService.sitterAddrTotal();
-        model.addAttribute("sitterTotal", sitterAddrTotal);
-
-        criteria.setAmount(6);
-
-        System.out.println("여기 오나 확인");
-
-        model.addAttribute("sitterList", sitterService.addrCheck(criteria));
-        model.addAttribute("pageInfo", new PageVo(sitterService.getTotal(), criteria));
-
-        return "sitter/sitterFind";
     }
 
 }

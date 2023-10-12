@@ -3,6 +3,7 @@ package com.example.bomobomo.service;
 import com.example.bomobomo.domain.dto.EmpDto;
 import com.example.bomobomo.domain.dto.SitterBoardDto;
 import com.example.bomobomo.domain.vo.Criteria;
+import com.example.bomobomo.domain.vo.EmpVo;
 import com.example.bomobomo.domain.vo.SitterBoardVo;
 import com.example.bomobomo.mapper.SitterMapper;
 import lombok.RequiredArgsConstructor;
@@ -24,7 +25,7 @@ public class SitterService {
     }
 
     // 시터 전체 조회
-    public List<EmpDto> sitterSelect(Criteria criteria) {
+    public List<EmpVo> sitterSelect(Criteria criteria) {
         System.out.println("서비스의 sitterSelect 메소드");
         return sitterMapper.sitterList(criteria);
     }
@@ -71,7 +72,7 @@ public class SitterService {
 
 
     //    고객이 선택한 시터 주소 리스트
-        public List<EmpDto> addrCheck(Criteria criteria) {
+        public List<EmpVo> addrCheck(Criteria criteria) {
             System.out.println("서비스 오나 확인");
             return sitterMapper.addrCheck(criteria);
         }
