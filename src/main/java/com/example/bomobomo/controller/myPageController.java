@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @Slf4j
 @Controller
@@ -31,9 +32,24 @@ public class myPageController {
 
     //mypage 메인 으로 이동
     @GetMapping("/main")
-    public String showMainPage(HttpServletRequest req){
+    public String showMainPage(HttpServletRequest req,Model model){
         Long userNumber=(Long)req.getSession().getAttribute("userNumber");
-   //처음 페이지로 진입시 매칭 상태에 따라 마이페이지가 변해야함 
+
+        try {
+            myPageService.findMatch(userNumber);
+            model.addAttribute("match",myPageService.findMatch(userNumber));
+            log.info("예외처리"+myPageService.findMatch(userNumber).toString());
+
+        } catch (NullPointerException e) {
+            return "mypage/myPageMain";
+        }
+        myPageService.findEmpInfoImg(myPageService.findMatch(userNumber).getEmpNumber());
+        model.addAttribute("empInfoImg",myPageService.findEmpInfoImg(myPageService.findMatch(userNumber).getEmpNumber()));
+        log.info(myPageService.findEmpInfoImg(myPageService.findMatch(userNumber).getEmpNumber()).toString());
+        myPageService.findEmpActItemImg(myPageService.findMatch(userNumber).getEmpNumber());
+        model.addAttribute("empActItemImgList",myPageService.findEmpActItemImg(myPageService.findMatch(userNumber).getEmpNumber()));
+        myPageService.findMatchEmpRating(myPageService.findMatch(userNumber).getEmpNumber());
+        model.addAttribute("rating",myPageService.findMatchEmpRating(myPageService.findMatch(userNumber).getEmpNumber()));
         return "mypage/myPageMain";
     }
     // 신청서 페이지 이동
