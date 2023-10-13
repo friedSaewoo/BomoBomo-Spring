@@ -1,7 +1,7 @@
 let $slideBox2 = $('.event-goods-contents ul');
 let $slideImgs2 = $('.event-goods-contents ul img');
 let slideWidth2 = 1051;
-let currentIdx2 = 0;
+let currentIdx2 = 8;
 let slideCnt2 = $slideImgs2.length;
 console.log('slideCnt : ' + slideCnt2);
 checkEnd2()
