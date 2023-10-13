@@ -203,3 +203,53 @@ textarea:focus{
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     cursor: pointer;
 }
+
+.name-age-container{
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+#name{
+    width: 70px;
+    height: 12px;
+    margin-right: 10px;
+}
+#age{
+    width: 30px;
+    height: 12px;
+    margin-right: 10px;
+}
+#gender{
+    height: 22px;
+}
+.email-phone-container{
+    display:flex;
+    align-items: center;
+}
+#contact{
+    width:120px;
+    height: 15px;
+    margin-right: 10px;
+}
+#email{
+    width: 200px;
+    height: 15px;
+}
+.act-checkbox > fieldset{
+    height: 160px;
+    border-radius: 2%;
+    padding: 10px;
+    align-items: center;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4개의 열을 만듭니다. */
+}
+.act-checkbox > fieldset>span{
+    margin-right: 10px;
+    /* margin-bottom:5px ; */
+}
+.act-check{
+    width: 15px;
+    height: 15px;
+}

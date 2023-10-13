@@ -1,37 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>관리자 페이지</title>
-    <link rel="stylesheet" href="../css/admin_match_manage.css">
+    <link rel="stylesheet" href="/admin/css/adminMatchManage.css">
 </head>
 <body>
     <!-- 전체 컨테이너 -->
     <div class="admin-container">
-        <!-- 사이드 컨테이너 -->
-        <div class="side-container">
-            <div class="side-logo-box">
-                   <img class="logo" src="../img/logo.png" alt="logo">
-            </div>
-            <ul class="side-item-container">
-                <li class="side-item" ><a href="/admin/main">대시보드</a></li>
-                <li class="side-item"><a href ="/admin/user">회원정보</a></li>
-                <li class="side-item"><a href="/admin/emp">직원관리</a></li>
-                <li class="side-item on"><a href="/admin/match">매칭관리</a></li>
-                <li class="side-item"><a href="/admin/event">이벤트관리</a></li>
-                <li class="side-item"><a href="/admin/notice">공지사항</a></li>
-            </ul>
-        </div>
-
+        <!-- 메인 헤더 -->
+        <div th:replace="fragments/adminHeader :: main-header"></div>
         <!-- 메인 컨테이너 -->
         <div class="main-container">
-            <!-- 메인 헤더 -->
-            <div class="main-header">
-                <span class="main-header-title">BomoBomo</span>
-                <span class="admin-name">admin</span>
-                <button class="main-header-exit">나가기</button>
-            </div>
+            <!-- 사이드 컨테이너 -->
+            <nav th:replace= "fragments/adminSide :: side-container" class="side-container"></nav>
             <!-- 메인 컨텐츠 -->
             <div class="main-contents">
                 <div class="contents-title">
@@ -40,37 +23,39 @@
                 <div class="match-manage-container">
                     <div class="info-container">
                         <div class="user-info">
-                            <p>회원번호 : <span>001</span></p>
-                            <p>이름 : <span>김성찬</span></p>
-                            <p>아이디 : <span>spwer12</span></p>
-                            <p>연락처 : <span>01071921375</span></p>
+                            <p>회원번호 : <span th:text="${matchDetail.userNumber}"></span></p>
+                            <p>이름 : <span th:text="${matchDetail.userName}"></span></p>
+                            <p>아이디 : <span th:text="${matchDetail.userId}"></span></p>
+                            <p>연락처 : <span th:text="${matchDetail.userPhone}"></span></p>
                             <a><button>신청서 열람</button></a>
                         </div>
                         <div class="emp-info">
-                            <p>직원번호 : <span>001</span></p>
-                            <p>이름 : <span>김직원</span></p>
-                            <p>이메일 : <span>spwer12@gmail.com</span></p>
-                            <p>연락처 : <span>01071921375</span></p>
+                            <p>직원번호 : <span th:text="${matchDetail.empNumber}"></span></p>
+                            <p>이름 : <span th:text="${matchDetail.empName}"></span></p>
+                            <p>이메일 : <span th:text="${matchDetail.empEmail}"></span></p>
+                            <p>연락처 : <span th:text="${matchDetail.empPhone}"></span></p>
                         
                         </div>
                     </div>
                     <div class="management">
                         <div class="match-info">
-                            <p>매칭 번호 : <span>001</span></p>
-                            <p>현재 상태 : <span>면접대기</span></p>
-                            <a href="#"><button>결제 내역 작성</button></a>
+                            <p>매칭 번호 : <span th:text="${matchDetail.matchNumber}"></span></p>
+                            <th:block th:if="${matchDetail.status == '0'}">
+                                <p>현재 상태 : <span class="current-status">면접대기</span></p>
+                            </th:block>
+                            <th:block th:if="${matchDetail.status == '1'}">
+                                <p>현재 상태 : <span class="current-status">결제완료</span></p>
+                            </th:block>
+                            <a><button>결제 내역 작성</button></a>
                         </div>
                         <div class="status-manage">
-                            <form action="#" method="post">
                                 <select id="status" name="status">
-                                    <option value="면접대기">면접대기</option>
-                                    <option value="결제대기" selected>결제대기</option>
-                                    <option value="완료">완료</option>
+                                    <option value="0">면접대기</option>
+                                    <option value="1">결제대기</option>
                                 </select>
-                                <button>상태변경</button>
-                            </form>
+                                <a class="update-status"><button>상태변경</button></a>
                             <div>
-                                <a href="adminMatch.html"><button>뒤로가기</button></a>
+                                <a href="/admin/match"><button>뒤로가기</button></a>
                             </div>
                         </div>
                     </div>
@@ -78,6 +63,9 @@
             </div>
         </div>
     </div>
+<input type="hidden" id="matchNumber" th:value="${matchDetail.matchNumber}">
 </body>
+<script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+<script th:src="@{/admin/js/adminMatchManage.js}"></script>
 <script src="/admin/js/adminHeader.js"></script>
 </html>
