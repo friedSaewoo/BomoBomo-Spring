@@ -68,6 +68,9 @@
         WHERE e.EMP_NUMBER = #{empNumber}
     </select>
 
+    <select id="sitterAvg" resultType="sitterBoardVo">
+
+    </select>
     <!--    <select id="addrCheck" resultType="int">-->
 <!--        select *-->
 <!--        from EMP-->

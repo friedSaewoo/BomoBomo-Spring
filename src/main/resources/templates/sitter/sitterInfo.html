@@ -39,13 +39,14 @@
                             <img src="/common/img/star.png">
                             <span th:text="${sitterTotalReview} + '/ 5'" class="sitterTotalReview"></span>
                         </div>
-                        <div>내여ㅛㅇ</div>
+                        <div th:text="'시터 시작일 : ' + ${emp.empDate}"></div>
                         <br>
                     </div>
                     <div>
+
                         <div class="sitterAbility">
                             <div class="possibleImg">
-                                <img src="/sitter/img/k_study.png">
+                                <img src="/sitter/img/filter.png">
                                 <div class="possibleName">실외교육</div>
                             </div>
 
@@ -79,6 +80,7 @@
                                 <div class="possibleName">예체능</div>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -90,7 +92,7 @@
         <div class="sitterInfoType">
             <div class="possible"><strong>자기소개</strong></div>
             <div class="selfIntroduction">
-                <div class="sitterContent" th:text="${emp.empContent}">
+                <div class="sitterContent" th:text="${emp.empContent}" style="white-space: pre-line;">
 
                 </div>
                 <!--                    <textarea  readonly>1234567890</textarea>-->

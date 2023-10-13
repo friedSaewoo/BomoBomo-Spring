@@ -111,7 +111,7 @@ a{
     overflow: hidden;
 }
 
-.sitterInfo div{
+.sitterInfo div:not(.possibleName){
     margin: 10px 0px 0px 10px;
 }
 
@@ -579,7 +579,7 @@ input[type="checkbox"]:checked {
 
 
 .possibleName {
-    margin-top: 20px;
+    width: 70px;
 }
 
 .areaSel {
@@ -640,4 +640,25 @@ input[type="checkbox"]:checked {
 .sitterName span {
     font-size: 13px;
     color: darkgray;
+}
+
+
+.sitterAbility {
+    height: 40px;
+    text-align: center;
+    align-items: center;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(50px, 50px));
+    border-radius: 5px;
+}
+.sitterPossible img{
+    margin-top: -10px;
+    width: 30px;
+    height: 30px;
+}
+
+.sitterPossible {
+    display: flex;
+    width: 50px;
+    height: 50px;
 }

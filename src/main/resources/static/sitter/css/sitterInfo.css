@@ -82,14 +82,10 @@ li {
 }
 
 .sitterContent {
-
     margin: 10px 0px 0px 10px;
     width: 900px;
     height: 280px;
-    align-items: center;
-    text-align: center;
-    justify-content: center;
-    padding: 20px 150px;
+    padding: 25px 130px;
 
 }
 

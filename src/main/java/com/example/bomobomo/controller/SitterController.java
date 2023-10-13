@@ -29,22 +29,21 @@ public class SitterController {
     private final ReviewService reviewService;
 
     //    @LoggingPointcut
+    // 전체 시터 리스트 페이지 컨트롤러
     @GetMapping("/sitterFind")
     public String sitterPage(Model model, Criteria criteria) {
-
         return "sitter/sitterFind";
     }
 
+    // 선택한 시터 정보 컨트롤러
     @GetMapping("/sitterInfo")
     public void sitterInfo(Long empNumber, Model model) {
         EmpDto empDto = sitterService.sitterInfo(empNumber);
         List<SitterBoardDto> sitterBoardList = sitterService.selectSitterBoardList(empNumber);
 
         ArrayList<Double> sitterReview = sitterService.sitterReview(empNumber);
-        System.out.println("각 평점 : " + sitterReview);
 
         if(sitterReview.size() == 0) {
-            System.out.println("널인지 확인");
             sitterReview.add(0.0);
         }
         double sum = 0;
@@ -53,35 +52,28 @@ public class SitterController {
         }
 
         double sitterTotalReview = sum / sitterReview.size();
-        System.out.println(sitterTotalReview);
 
         String gender = empDto.getEmpGender();
-        System.out.println("시터 성별 확인 : " + empDto.getEmpGender());
-        if (empDto.getEmpGender() == "F") {
-            System.out.println("성별이 여자");
+        if (empDto.getEmpGender().equals("F")) {
             empDto.setEmpGender("여");
-        } else if(empDto.getEmpGender() == "M") {
-            System.out.println("성별이 남자");
+        } else if(empDto.getEmpGender().equals("M")) {
             empDto.setEmpGender("남");
         }
-
-        System.out.println("선택 시터 성별 : " + empDto.getEmpGender());
-//        empDto.getEmpContent().replaceAll("\r\n", "<br>");
-
-//        System.out.println("시터 자기소개 내용 : " + empDto.getEmpContent());
-//        System.out.println("이름 : " + empDto.getEmpName() + "  ,  성별 : " + empDto.getEmpGender());
-//        System.out.println("시터 번호 : " + empDto.getEmpNumber());
-//        System.out.println("시터 게시판 번호 : " + sitterBoardDto.);
-
+        System.out.println("dtoContent : " + empDto.getEmpContent());
+//        String empContent = empDto.getEmpContent().replaceAll("\r\n", "\n");
+//        empDto.setEmpContent(empContent);
+//        System.out.println("=================================");
+//        System.out.println("empContent : " + empContent);
+        String empDate = empDto.getEmpDate().substring(0, 10);
+        empDto.setEmpDate(empDate);
+        System.out.println("시작일 : " + empDto.getEmpDate());
         model.addAttribute("emp", empDto);
         model.addAttribute("sitterBoardList", sitterBoardList);
         model.addAttribute("sitterTotalReview", sitterTotalReview);
 
-
-
     }
 
-
+//    선택한 시터 신청 컨트롤러(현재 로그인 상태 확인)
     @GetMapping("/sitterRegister")
     public String sitterRegister(HttpServletRequest req) {
 
@@ -92,14 +84,13 @@ public class SitterController {
         return "/sitter/sitterRegister";
     }
 
+//    선택한 시터 신청 컨트롤러
     @PostMapping("/sitterRegister")
     public String sitterRegister(HttpServletRequest req, Long sitterNumber,
                                  @RequestParam("sitterNum") Long empNumber) {
 
 //        req.getParameter("sitterNum");
         Long userNumber = (Long) req.getSession().getAttribute("userNumber");
-        System.out.println("로그인된 유저 번호 : " + userNumber);
-        System.out.println(" --> : " + empNumber);
 
         if (userNumber == null) {
             return "/user/login";
@@ -114,11 +105,8 @@ public class SitterController {
         // 저장 서비스 실행
         Long userNumber = (Long) req.getSession().getAttribute("userNumber");
 
-        System.out.println("로그인된 유저 번호 : " + userNumber);
-
         orderDto.setUserNumber(userNumber);
 //        orderService.register(orderDto);
-
 
         log.info(orderDto.getUserNumber().toString());
         // 신청서 내용 입력 후 이동

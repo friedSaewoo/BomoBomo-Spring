@@ -97,13 +97,15 @@ $("select[name^=sido]").change(function () {
 
 
 let page = 1;
+let city = '';
+let cityAddr = '';
 
 sitterModule.getSitterListByPage({page: page}, showListAndPage);
 
 //주소찾기 버튼 이벤트
 $('.sitterTerBtn').on('click', function (){
-    let city = $("select[name=sido1] option:selected").text();
-    let cityAddr = $("select[name=gugun1] option:selected").text();
+    city = $("select[name=sido1] option:selected").text();
+    cityAddr = $("select[name=gugun1] option:selected").text();
 
     if(city == "주소 선택") {
         Swal.fire({
@@ -114,7 +116,9 @@ $('.sitterTerBtn').on('click', function (){
         return;
     }
     page = 1;
-    sitterModule.getSitterListAddrPage({page: page, city:city, cityAddr:cityAddr}, showListAndPage);
+    sitterModule.getSitterListByPage({page: page, city:city, cityAddr:cityAddr}, showListAndPage);
+    // sitterModule.getSitterListByPage({page: page, city:city, cityAddr:cityAddr}, showListAndPage);
+
     $("#modal").fadeOut(300);
     $(".modal-con").fadeOut(300);
     $('.sitterInformation').css("pointer-events", "auto");
@@ -124,16 +128,18 @@ $('.sitterTerBtn').on('click', function (){
 
 function showListAndPage(sitter) {
     let str = "";
-    let city = $("select[name=sido1] option:selected").text();
-    let cityAddr = $("select[name=gugun1] option:selected").text();
+    city = $("select[name=sido1] option:selected").text();
+    cityAddr = $("select[name=gugun1] option:selected").text();
 
     $('.sitterInfoList').empty();
     $('.sitterFindCount > strong').empty();
     $('.paging').empty();
 
     console.log("sitter : " + sitter);
-    $('.sitterFindCount > strong').append(sitter.sitterTotal);
+    console.log("pageInfo.criteria.end : " + sitter.pageInfo.endPage);
 
+    $('.sitterFindCount > strong').append(sitter.sitterTotal);
+    console.log("시터 점수 : " + sitter.sitterList.avg);
     sitter.sitterList.forEach(function (sitterList) {
         str = "<div class='sitterIndividual'>" +
             "<a href='/sitter/sitterInfo?empNumber=" + sitterList.empNumber + "' class='sitterInformation'><div><div class='sitterInfoAndImg test'> <div class='sitterInfo'>";
@@ -145,8 +151,23 @@ function showListAndPage(sitter) {
         } else {
             str += "<div class='sitterGrade'><img src='/common/img/star.png'> <span>" + sitterList.avg + "/ 5" + "</span></div>";
         }
-        str += "<div>가능한 교육들</div></div>";
-        str += "<div class='sitterImg'>"
+        str += `<div class="sitterAbility">`;
+        str += `<div class="sitterPossible">`;
+        str += `<img src="/sitter/img/filter.png">`;
+        str += `</div>`;
+        str += `<div class="sitterPossible">`;
+        str += `<img src="/sitter/img/filter.png">`;
+        str += `</div>`;
+        str += `<div class="sitterPossible">`;
+        str += `<img src="/sitter/img/filter.png">`;
+        str += `</div>`;
+        str += `</div></div>`;
+        // <div className="possibleName">실외교육</div>
+
+
+
+
+    str += "<div class='sitterImg'>"
         str += "<img  src='https://search.pstatic.net/common?type=b&amp;size=216&amp;expire=1&amp;refresh=true&amp;quality=100&amp;direct=true&amp;src=http%3A%2F%2Fsstatic.naver.net%2Fpeople%2Fportrait%2F202207%2F20220727155425320.jpg'></div></div></div>";
 
         str += "<div class='sitterContext'>"
@@ -185,7 +206,7 @@ function showListAndPage(sitter) {
 
 $('.paging').on('click', '.pageNum', function (){
     page = $(this).data('pagenum');
-    sitterModule.getSitterListByPage({page: page}, showListAndPage);
+    sitterModule.getSitterListByPage({page: page, city:city, cityAddr:cityAddr}, showListAndPage);
 });
 
 

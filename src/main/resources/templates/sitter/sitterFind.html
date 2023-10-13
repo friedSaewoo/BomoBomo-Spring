@@ -76,7 +76,7 @@
 
                                     <div class="sitterGrade" th:if="${sitterList.avg == null}">
                                         <img src="/common/img/star.png">
-                                        <span>0.0/ 5</span>
+                                        <span>0.0/ 5!!!</span>
                                     </div>
 
                                     <div class="sitterGrade" th:unless="${sitterList.avg == null}">
@@ -84,8 +84,13 @@
                                         <span th:text="${sitterList.avg} + '/ 5'"></span>
                                     </div>
 
+                                    <div class="sitterAbility">
+                                        <div class="possibleImg">
+                                            <img src="/sitter/img/filter.png">
+                                            <div class="possibleName">실외교육</div>
+                                        </div>
+                                    </div>
 
-                                    <div>가능한 교육들</div>
                                 </div>
 
                                 <div class="sitterImg">
