@@ -38,35 +38,32 @@
                     <br>방문한 아이들에게 늘 새로운 경험을 선사합니다.</a2>
             </div>
         </div>
-        <div class="event-categorie">
-            <div class="event-categorie-section">
+
                 <div class="event-title-tap">
                     <h2>보모보모 이벤트 소개</h2>
                 </div>
-                <div class="event-goods-contents">
-                <ul>
-                    <li th:each=" event : ${list}">
-                        <a th:href="@{/event/detail(eventNumber=${event.eventNumber})}">
-                            <div class="zoom-container">
-                                <img th:src="'/upload/' + ${event.eventImgUploadPath} + '/' + ${event.eventImgUuid} +'_' + ${event.eventImgName}">
+        <div class="swiper-container" >
+            <div class="swiper-wrapper" >
+                <div class="swiper-slide" th:each=" event : ${list}">
+                    <a th:href="@{/event/detail(eventNumber=${event.eventNumber})}">
+                    <div class="image-container">
+                        <img th:src="'/upload/' + ${event.eventImgUploadPath} + '/' + ${event.eventImgUuid} +'_' + ${event.eventImgName}">
+                    </div>
+                    <div class="title-container" th:text="${event.eventName}">
+                    </div>
+                    </a>
+                </div>
 
-                            </div>
-                            <p><span th:text="${event.eventName}">
-                                </span> </p>
-                        </a>
-                    </li>
-                </ul>
+                <!-- 다른 이미지와 제목을 가진 슬라이드를 더 추가하세요 -->
             </div>
-       </div>
-            <button class="recently-section-button recently-left-button"><span class="material-symbols-outlined">
-                                <
-            </span>
-            </button>
-            <button class="recently-section-button recently-right-button"><span class="material-symbols-outlined">
-                                >
-            </span>
-            </button>
-        </div>
+
+                    <!-- 네비게이션 -->
+                    <div class="swiper-button-next"></div><!-- 다음 버튼 (오른쪽에 있는 버튼) -->
+                    <div class="swiper-button-prev"></div><!-- 이전 버튼 -->
+
+                    <!-- 페이징 -->
+                    <div class="swiper-pagination"></div>
+                </div>
     </div>
 </main>
 
@@ -76,6 +73,8 @@
 </div>
 <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
 <script src="/fragments/js/header.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/css/swiper.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/js/swiper.min.js"></script>
 </body>
 
 <!--폰트 임포트는 common.css에 있음-->

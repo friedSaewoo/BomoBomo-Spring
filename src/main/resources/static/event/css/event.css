@@ -59,15 +59,13 @@
     font-family: 'IBM Plex Sans KR', sans-serif;
     font-family: 'Single Day', cursive;
     font-size: 70px;
-    line-height:170%;
+    line-height:170;
 
     position:absolute;
     left:50%;
     top:50%;
     margin-left:-500px;
     margin-top:-150px;
-
-
 
 }
 
@@ -86,104 +84,22 @@
     font-size: 40px;
 }
 
-
-.event-categorie{
-    margin: 0 auto;
-    height: 600px;
-    width: 1024px;
-    position: relative;
-}
-
-.event-categorie-section{
-    margin-top: 50px;
-    width: 1024px;
-    position: relative;
-    overflow: hidden;
-    height: 750px;
-    font-family: 'Black Han Sans', sans-serif;
-    font-family: 'Dongle', sans-serif !important;
-    font-family: 'Gamja Flower', cursive;
-    font-family: 'IBM Plex Sans KR', sans-serif;
-    font-family: 'Single Day', cursive;
-    font-size: 30px;
-}
-
 .event-title-tap {
-    display: flex;
+    position: relative;
+    margin: 0 auto;
     align-items: center;
     /* padding: 5px;
     box-sizing: border-box; */
     height: 150px;
-}
+    width: 1024px;
+    top: 35px;
+    font-size: 40px;
 
-.event-title-tap h2 {
-   text-align: center;
 }
 
 .event-goods-contents {
     width: 1024px;
 
-}
-
-.event-goods-contents ul {
-    display: flex;
-    justify-content: space-between;
-    width: 2075px;
-    position: absolute;
-    left: 0;
-    margin-top: 10px;
-}
-
-.event-goods-contents ul li a {
-    display: block;
-    width: 180px;
-    color: black;
-    font-size: 20px;
-    font-weight: 600;
-}
-
-.event-goods-contents ul li a img {
-    width: 180px;
-    height: 200px;
-}
-
-
-
-.goods-section-button, .recently-section-button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    border: none;
-    background-color: white;
-    box-shadow: 2px 1px 1px gray;
-    cursor: pointer;
-    position: absolute;
-    opacity: 0.6;
-}
-
-
-
-.recently-section-button  {
-    top: 245px;
-
-}
-.goods-section-button span, .recently-section-button span {
-    color: gray;
-}
-
-
-
-.recently-left-button {
-    text-indent: 6px;
-    left: -20px
-}
-
-
-.goods-right-button, .recently-right-button {
-    right: -20px;
 }
 
 .service-content-container {
@@ -192,3 +108,55 @@
     height: 350px;
 }
 
+.swiper-container {
+    width: 1024px;
+    min-width: 1024px;
+    height: 500px;
+    border: 5px solid silver;
+    border-radius: 7px;
+    box-shadow: 0 0 20px #ccc inset;
+}
+.swiper-slide {
+    text-align: center;
+    display: flex; /* 내용을 중앙정렬 하기위해 flex 사용 */
+    flex-direction: column; /* 이미지 밑에 이미지 제목이 나오도록 세로로 배치 */
+    align-items: center; /* 중앙정렬 */
+    top: 130px;
+}
+
+.event-title-tap {
+    width: 1024px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.event-title-tap h2 {
+    text-align: center;
+    font-family: 'Black Han Sans', sans-serif;
+    font-family: 'Dongle', sans-serif !important;
+    font-family: 'Gamja Flower', cursive;
+    font-family: 'IBM Plex Sans KR', sans-serif;
+    font-family: 'Single Day', cursive;
+}
+
+.swiper-wrapper li {
+    margin-right: 21px;
+}
+.swiper-slide img {
+    position: relative;
+    box-shadow: 0 0 5px #555;
+    width: 240px;
+    height: 240px; /* 이미지 최대너비를 제한, 슬라이드에 이미지가 여러개가 보여질때 필요 */
+    /* 이 예제에서 필요해서 설정했습니다. 상황에따라 다를 수 있습니다. */
+}
+.title-container {
+    font-weight: bold;
+    margin-top: 10px; /* 이미지와 제목 사이의 여백을 조절하세요 */
+    font-family: 'Black Han Sans', sans-serif;
+    font-family: 'Dongle', sans-serif !important;
+    font-family: 'Gamja Flower', cursive;
+    font-family: 'IBM Plex Sans KR', sans-serif;
+    font-family: 'Single Day', cursive;
+    font-size: 30px;
+    color: black;
+}
