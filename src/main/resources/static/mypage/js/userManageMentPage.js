@@ -57,3 +57,43 @@ $(document).ready(function(){
         alert("수정이 완료되었습니다.");
     })
 });
+
+//비밀번호 특수 문자 및 비밀번호 확인
+function checkPw() {
+
+    let pw = $("#userPassword").val();
+    let reg = /^(?=.*[a-zA-Z])(?=.*[!@#$%^&*()_=+])(?=.*[0-9]).{8,15}$/;
+
+    let pwCheck = reg.test(pw);
+    console.log(pwCheck);
+    $('#userPassword').on('keypress',function () {
+
+        if(pwCheck) {
+            // $('.labelPwOk').css("display", "block");
+            $('.checkPw').css("display", "none");
+            console.log("실행!");
+        } else {
+            // $('.labelPwOk').css("display", "none");
+            $('.checkPw').css("display", "block");
+            console.log("altlfgod!")
+        }
+
+    });
+}
+
+function checkPassword() {
+    let pw = $("#userPassword").val();
+    let up = $('#userPassword1').val();
+    console.log(up);
+    $('#userPassword1').on('keyup', function () {
+
+        if (up == pw || !up) {
+            $('.checkPws').css("display", "none");
+            console.log("맞다!");
+        } else {
+            $('.checkPws').css("display", "block");
+            console.log("틀리다!")
+        }
+
+    });
+}

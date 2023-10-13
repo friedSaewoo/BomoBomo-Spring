@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.bomobomo.mapper.MyPageMapper">
-    <!--결제 페이지 시터이용후기 내역 보기-->
+    <!--결제 페이지 시터 결제 매역 및 후기 작성  보기-->
     <select id="selectSitterList" resultType="myPageSitterVo">
         SELECT MATCH_NUMBER, USER_NUMBER, SUBMIT_ORDER_NUMBER, EMP_NUMBER, STATUS, EST_TITLE, EMP_IMG_NAME, EMP_IMG_UPLOAD_PATH, EMP_IMG_UUID, EST_PRICE
              , REVIEW_CHECK
@@ -17,11 +17,12 @@
                                    SELECT match_number, user_number, submit_order_number, emp_number, status
                                    FROM MATCHS
                                    WHERE USER_NUMBER = #{userNumber} AND STATUS = 2
-                                  order by match_number desc
+
                                ) S1
                                left JOIN EST_CONTENT EC ON S1.MATCH_NUMBER = EC.MATCH_NUMBER
-                                   LEFT JOIN EMP_IMG EI ON S1.EMP_NUMBER = EI.EMP_NUMBER
-                      ) P1
+                                LEFT JOIN EMP_IMG EI ON S1.EMP_NUMBER = EI.EMP_NUMBER
+                                order by match_number desc
+                     ) P1
             <![CDATA[
                  WHERE ROWNUM <= #{criteria.page} * #{criteria.amount}
             ]]>
@@ -34,5 +35,153 @@
         FROM MATCHS
         WHERE USER_NUMBER = ${userNumber} AND STATUS = 2
     </select>
+
+    <!--결제 페이지 이벤트 결제 내역 및 리뷰 작성확인  보기-->
+    <select id="selectEventList" resultType="myPageEventVo">
+        select  RNUM,EVENT_PAY_NUMBER ,APPLY_NUMBER,USER_NUMBER, EVENT_NUMBER,EVENT_DATE,
+        EVENT_NAME, EVENT_PRICE,EVENT_IMG_NAME, EVENT_IMG_UPLOAD_PATH, EVENT_IMG_UUID,REVIEW_CHECK
+        from(
+            select ROWNUM AS RNUM,EVENT_PAY_NUMBER ,APPLY_NUMBER,USER_NUMBER, EVENT_NUMBER,EVENT_DATE,
+            EVENT_NAME, EVENT_PRICE,EVENT_IMG_NAME, EVENT_IMG_UPLOAD_PATH, EVENT_IMG_UUID,REVIEW_CHECK
+            from(
+                SELECT E1.APPLY_NUMBER,E2.EVENT_PAY_NUMBER ,USER_NUMBER, e1.EVENT_NUMBER,EVENT_DATE,
+                E3.EVENT_NAME, E3.EVENT_PRICE,EI.EVENT_IMG_NAME, EI.EVENT_IMG_UPLOAD_PATH, EI.EVENT_IMG_UUID
+                ,(SELECT COUNT(EB.EVENT_NUMBER) FROM EVENT_BOARD EB WHERE EB.EVENT_NUMBER =e1.EVENT_NUMBER) AS REVIEW_CHECK
+                FROM(
+                    SELECT APPLY_NUMBER,USER_NUMBER,EVENT_NUMBER,EVENT_DATE
+                    FROM EVENT_APPLY
+                    WHERE USER_NUMBER = #{userNumber}
+                    )E1
+                JOIN EVENT_PAY E2 ON E1.APPLY_NUMBER = E2.APPLY_NUMBER
+                JOIN EVENT E3 ON E1.EVENT_NUMBER = E3.EVENT_NUMBER
+                left JOIN EVENT_IMG EI ON E3.EVENT_NUMBER = EI.EVENT_NUMBER
+                ORDER BY EVENT_NUMBER DESC
+                )
+            <![CDATA[
+            where ROWNUM <= #{criteria.page} * #{criteria.amount}
+                ]]>
+        )
+        where RNUM > (#{criteria.page} - 1) * #{criteria.amount}
+    </select>
+<!--이벤트 결제진행된 내역 전체 조회-->
+    <select id="selectEventTotal" resultType="_int">
+        select COUNT(EP.APPLY_NUMBER) AS PAYTOTAL
+        from(
+                SELECT APPLY_NUMBER
+                FROM EVENT_APPLY
+                WHERE USER_NUMBER = #{userNumber}
+            )S1
+                JOIN EVENT_PAY EP ON S1.APPLY_NUMBER=EP.APPLY_NUMBER
+    </select>
+
+    <!--마이페이지에 진입시 매칭된 인원 상태 출력-->
+    <select id="selectMatch" resultType="matchDto">
+        select  match_number, user_number, submit_order_number, emp_number, status
+        from matchs
+        where user_number =#{userNumber} and (STATUS=1 or STATUS=0)
+    </select>
+
+    <!--매칭된 직원의 정보와 이미지 조회-->
+    <select id="selectEmpInfoImg" resultType="matchEmpInfoVo">
+        select  em.emp_number,emp_name,emp_age,emp_gender,emp_phone,emp_email,emp_date,emp_content, emp_img_name,emp_img_upload_path,emp_img_uuid
+        from(
+                select emp_number,emp_name,emp_age,emp_gender,emp_phone,emp_email,emp_date,emp_content
+                from emp
+                where EMP_NUMBER =#{empNumber}
+            ) em
+                join EMP_IMG ei on em.EMP_NUMBER=ei.EMP_NUMBER
+
+
+    </select>
+
+    <!--매칭된 직원의 활동 이름과 활동 이미지 조회 -->
+    <select id="selectEmpActItemImg" resultType="empActItemImgVo">
+        select em2.emp_number,em2.emp_act_item_number,em2.act_number,ACT_IMG_NUMBER,act_img_name,act_img_upload_path,act_img_uuid
+        from (
+                 select em1.ACT_NUMBER, act_name, EMP_ACT_ITEM_NUMBER,EMP_NUMBER
+                 from (
+                          select em.EMP_NUMBER, EMP_ACT_ITEM_NUMBER, act_number
+                          from (
+                                   select emp_number,
+                                          emp_name,
+                                          emp_age,
+                                          emp_gender,
+                                          emp_phone,
+                                          emp_email,
+                                          emp_date,
+                                          emp_content
+                                   from emp
+                                   where EMP_NUMBER = #{empNumber}
+                               ) em
+                                   join emp_act_item aci on em.EMP_NUMBER = aci.EMP_NUMBER
+                      ) em1
+                          join act a on em1.ACT_NUMBER = a.ACT_NUMBER
+             )em2
+                 join act_img ai on em2.ACT_NUMBER=ai.ACT_NUMBER
+
+    </select>
+    <!--매칭된 직원의 평점을 구하는 쿼리-->
+    <select id="selectMatchEmpRating" resultType="matchEmpRatingAvgVo">
+        select distinct (select avg(RATING) from SITTER_BOARD) as avg
+        from SITTER_BOARD
+        where EMP_NUMBER=#{empNumber}
+    </select>
+
+    <!--매치된 회원의 정보-->
+    <select id="selectMatchUserInfo" resultType="matchUserInfoVo">
+        select match_number,m2.user_number,submit_order_number,emp_number,status,user_name,user_phone,
+               user_email, ADDRESS,ADDRESS_DETAIL
+        from (
+                 select match_number,
+                        m1.user_number,
+                        submit_order_number,
+                        emp_number,
+                        status,
+                        user_name,
+                        user_phone,
+                        user_email
+                 from (
+                          select match_number, user_number, submit_order_number, emp_number, status
+                          from MATCHS
+                          where USER_NUMBER = #{userNumber}
+                            and STATUS = '1'
+                      ) m1
+                          join users u on m1.USER_NUMBER = u.USER_NUMBER
+             ) m2
+                 join address ad on m2.user_number = ad.USER_NUMBER
+
+    </select>
+    <!--결제 정보-->
+    <select id="selectMatchBuyInfo" resultType="matchBuyInfoVo">
+        select s1.match_number, user_number, submit_order_number, emp_number, status,EST_CONTENT,EST_TITLE,EST_PRICE
+        from (
+                 select match_number, user_number, submit_order_number, emp_number, status
+                 from MATCHS
+                 where USER_NUMBER = #{userNumber}
+                   and STATUS = '1'
+             )s1
+                 join EST_CONTENT sc on s1.MATCH_NUMBER = sc.MATCH_NUMBER
+    </select>
+
+
+    <!--결제완료시 상태 수정-->
+    <update id="update">
+        update MATCHS
+        set  status= 2
+        where match_number=#{matchNumber}
+
+    </update>
+
+
+
+
+
+
+
+
+
+
+
+
 
 </mapper>

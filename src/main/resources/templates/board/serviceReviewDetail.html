@@ -20,7 +20,7 @@
     <!-- 리뷰 대상자(시터 정보) -->
     <div class="review-detail-sitter">
       <div class="review-detail-sitter-pic">
-        <img src="/board/img/reviewImg.webp" alt="리뷰" />
+        <img th:src="'/upload/'+ ${reviewDetail.empImgUploadPath} +'/'+${reviewDetail.empImgUuid}+'_' +${reviewDetail.empImgName}" alt="리뷰" />
       </div>
       <div class="review-detail-sitter-info">
         <dl class="review-detail-sitter-name">

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.bomobomo.mapper.EventBoardMapper">
+   <!--게시글 작성후 삽입하는 쿼리 파람으로 이벤트 넘버 넘겨주기 -->
+    <insert id="insert">
+        <selectKey keyProperty="eventBoardNumber" order="BEFORE" resultType="Long">
+            select seq_event_board.nextval from dual
+        </selectKey>
+        insert into EVENT_BOARD (EVENT_BOARD_NUMBER, USER_NUMBER, EVENT_NUMBER, EVENT_BOARD_CONTENT, RATING)
+        values (#{eventBoardNumber},#{userNumber},#{eventNumber},#{eventBoardContent},#{rating})
+    </insert>
+
+    <!--게시판과 마이페이지에서 사용하기 위한 조회 쿼리  Vo확인-->
+    <select id="selectEventAll" resultType="EventBoardVo">
+        SELECT RNUM, event_BOARD_NUMBER, event_BOARD_CONTENT, TO_CHAR(event_BOARD_REGISTER_DATE, 'YYYY-MM-DD') AS event_BOARD_REGISTER_DATE, event_BOARD_MODIFY_DATE, RATING, event_BOARD_COUNT, USER_NUMBER,
+               event_number
+        FROM (
+                 select ROWNUM AS RNUM, EVENT_BOARD_NUMBER, USER_NUMBER, EVENT_NUMBER, EVENT_BOARD_CONTENT, EVENT_BOARD_REGISTER_DATE,
+                        EVENT_BOARD_MODIFY_DATE, RATING, EVENT_BOARD_COUNT
+                 from (
+                          select EVENT_BOARD_NUMBER, USER_NUMBER, EVENT_NUMBER, EVENT_BOARD_CONTENT, EVENT_BOARD_REGISTER_DATE,
+                                 EVENT_BOARD_MODIFY_DATE, RATING, EVENT_BOARD_COUNT
+                          from event_board
+                          where USER_NUMBER=#{userNumber}
+                      )
+            <![CDATA[
+                 WHERE ROWNUM <= #{criteria.page} * #{criteria.amount}
+            ]]>
+        )
+        WHERE RNUM > (#{criteria.page} - 1) * #{criteria.amount}
+    </select>
+
+    <!--리부 작성시 유저가 클릭한 결제내역의 매칭번호로 결제 제목 조회-->
+    <select id="selectEventTitle" resultType="string">
+        select EVENT_NAME
+        from (
+                 select EVENT_NAME ,APPLY_NUMBER
+                 from (
+                          SELECT event_NUMBER, event_name, event_price
+                          FROM event
+                          WHERE event_number = #{eventNumber}
+                      ) s1
+                          join EVENT_APPLY ea on s1.EVENT_NUMBER = ea.EVENT_NUMBER
+             )s2
+                 join EVENT_PAY ep on ep.APPLY_NUMBER= s2.APPLY_NUMBER
+    </select>
+    <!--마이페이지에서 시터 리뷰 칸 페이징 처리를 위한 쿼리 -->
+    <select id="selectEventReviewTotal" resultType="_int">
+        select COUNT(event_board_number)
+        from event_board
+        where USER_NUMBER=#{userNumber}
+    </select>
+</mapper>

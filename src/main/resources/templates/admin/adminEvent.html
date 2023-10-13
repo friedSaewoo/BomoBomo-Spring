@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,25 +9,12 @@
 <body>
     <!-- 전체 컨테이너 -->
     <div class="admin-container">
-        <!-- 사이드 컨테이너 -->
-        <div class="side-container">
-            <div class="side-logo-box">
-                   <img class="logo" src="/admin/img/logo.png" alt="logo">
-            </div>
-            <ul class="side-item-container">
-                <li class="side-item" ><a href="/admin/main">대시보드</a></li>
-                <li class="side-item"><a href ="/admin/user">회원정보</a></li>
-                <li class="side-item"><a href="/admin/emp">직원관리</a></li>
-                <li class="side-item"><a href="/admin/match">매칭관리</a></li>
-                <li class="side-item on"><a href="/admin/event">이벤트관리</a></li>
-                <li class="side-item"><a href="/admin/notice">공지사항</a></li>
-            </ul>
-        </div>
-
+        <!-- 메인 헤더 -->
+        <div th:replace="fragments/adminHeader :: main-header"></div>
         <!-- 메인 컨테이너 -->
         <div class="main-container">
-            <!-- 메인 헤더 -->
-            <div th:replace="fragments/adminHeader :: main-header"></div>
+            <!-- 사이드 컨테이너 -->
+            <nav th:replace= "fragments/adminSide :: side-container" class="side-container"></nav>
             <!-- 메인 컨텐츠 -->
             <div class="main-contents">
                 <div class="contents-title">
@@ -35,8 +22,7 @@
 
                     <div class="emp-search-container">
                         <select class="cate">
-                            <option value="empName">이름</option>
-                            <option value="empEmail">이메일</option>
+                            <option value="eventName">이름</option>
                         </select>
                         <input type="text" class="keyword" id="search" name="keyword"/>
                         <button type="submit" class="submit" id="submit">
@@ -47,72 +33,12 @@
                 </div>
                 <div class="event-container">
                     <div class="event-list">
-
-                        <div class="event-item">
-                            <div class="event-img">
-                                <img class="thumbnail" src="/admin/img/event1.jpg" alt="썸네일">
-                            </div>
-                            <div class="event-title">땅파기</div>
-                        </div>
-
-                        <div class="event-item">
-                            <div class="event-img">
-                                <img class="thumbnail" src="/admin/img/event2.jpg" alt="썸네일">
-                            </div>
-                            <div class="event-title">손닦기</div>
-                        </div>
-
-                        <div class="event-item">
-                            <div class="event-img">
-                                <img class="thumbnail" src="/admin/img/event3.jpg" alt="썸네일">
-                            </div>
-                            <div class="event-title">공놀이</div>
-                        </div>
-
-                        
-                        <div class="event-item">
-                            <div class="event-img">
-                                <img class="thumbnail" src="/admin/img/event1.jpg" alt="썸네일">
-                            </div>
-                            <div class="event-title">땅파기</div>
-                        </div>
-
-                        <div class="event-item">
-                            <div class="event-img">
-                                <img class="thumbnail" src="/admin/img/event2.jpg" alt="썸네일">
-                            </div>
-                            <div class="event-title">손닦기</div>
-                        </div>
-
-                        <div class="event-item">
-                            <div class="event-img">
-                                <img class="thumbnail" src="/admin/img/event3.jpg" alt="썸네일">
-                            </div>
-                            <div class="event-title">공놀이</div>
-                        </div>
-
-                        
-                        <div class="event-item">
-                            <div class="event-img">
-                                <img class="thumbnail" src="/admin/img/event1.jpg" alt="썸네일">
-                            </div>
-                            <div class="event-title">땅파기</div>
-                        </div>
-
-                        <div class="event-item">
-                            <div class="event-img">
-                                <img class="thumbnail" src="/admin/img/event2.jpg" alt="썸네일">
-                            </div>
-                            <div class="event-title">손닦기</div>
-                        </div>
-
-                        <div class="event-item">
-                            <div class="event-img">
-                                <img class="thumbnail" src="/admin/img/event3.jpg" alt="썸네일">
-                            </div>
-                            <div class="event-title">공놀이</div>
-                        </div>
-
+<!--                        <div class="event-item">-->
+<!--                            <div class="event-img">-->
+<!--                                <img class="thumbnail" src="/admin/img/event1.jpg" alt="썸네일">-->
+<!--                            </div>-->
+<!--                            <div class="event-title">땅파기</div>-->
+<!--                        </div>-->
                     </div>
                 </div>
                 <div class="event-list-bottom">
@@ -127,7 +53,7 @@
                        <a href="#" class="bt next">&gt;</a>
                      </div>
                     <div class="button-container">
-                        <button class="regist-btn">공지등록</button>
+                        <button class="regist-btn">등록</button>
                     </div>
                </div>
             </div>

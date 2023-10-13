@@ -11,7 +11,6 @@ public class MatchDto {
     private Long matchNumber;
     private Long userNumber;
     private Long submitOrderNumber;
-    private Long estNumber;
     private Long empNumber;
     private String status;
 }

@@ -17,4 +17,8 @@ public class EmpVo {
     private String empDate;
     private String empContent;
 
+    private Long empImgNumber;
+    private String empImgName;
+    private String empImgUploadPath;
+    private String empImgUuid;
 }

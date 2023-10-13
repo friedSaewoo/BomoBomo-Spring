@@ -29,7 +29,7 @@
         GROUP BY TO_CHAR(TRUNC(register_date), 'MM-DD')
         ) user_counts
         ON TO_CHAR(DateRange.registration_date, 'MM-DD') = user_counts.registration_date
-        ORDER BY DateRange.registration_date;
+        ORDER BY DateRange.registration_date
     </select>
 <!-- 회원 리스트 -->
     <select id="selectAllUsers" resultType="userListVo">
@@ -129,7 +129,88 @@
                 where emp_email like '%' || #{keyword} || '%'
             </if>
     </select>
+<!-- Act 전체 조회-->
+    <select id="selectAct" resultType="actDto">
+        select * from act
+    </select>
+<!-- 직원 등록 -->
+    <insert id="empRegist" >
+        <selectKey keyProperty="empNumber" order="BEFORE" resultType="Long">
+            select SEQ_EMP.NEXTVAL FROM DUAL
+        </selectKey>
+        insert into EMP (EMP_NUMBER, EMP_NAME, EMP_AGE, EMP_GENDER, EMP_PHONE, EMP_EMAIL, EMP_CONTENT)
+        values (#{empNumber},#{empName},#{empAge},#{empGender},#{empPhone},#{empEmail},#{empContent})
+    </insert>
 
+<!--    &lt;!&ndash; 이벤트 수정 &ndash;&gt;-->
+<!--    <update id="updateEvent" parameterType="eventVo">-->
+<!--        update event-->
+<!--        set event_name = #{eventName}, event_price = #{eventPrice}-->
+<!--        where event_number=#{eventNumber}-->
+<!--    </update>-->
+
+<!--    <update id="updateEventImg" parameterType="eventImgDto">-->
+<!--        update event_img-->
+<!--        set event_img_name =#{eventImgName}, event_img_uuid=#{eventImgUuid},event_img_upload_path=#{eventImgUploadPath}-->
+<!--        where event_number=#{eventNumber}-->
+<!--    </update>-->
+
+<!-- 직원 정보 수정 -->
+    <update id="empUpdate" parameterType="empDto">
+        update emp
+        set emp_name = #{empName}, emp_Age = #{empAge}, emp_gender = #{empGender}
+            ,emp_phone = #{empPhone}, emp_Email = #{empEmail}, emp_content = #{empContent}
+        where emp_number = #{empNumber}
+    </update>
+<!-- 직원 이미지 수정 -->
+    <update id ="empImgUpdate" parameterType="empImgDto">
+        update emp_img
+        set emp_img_name = #{empImgName}, emp_img_uuid = #{empImgUuid}, emp_img_upload_path = #{empImgUploadPath}
+        where emp_number = #{empNumber}
+    </update>
+    <!-- 직원 활동 등록 -->
+    <insert id="empActRegist">
+        insert into EMP_ACT_ITEM (EMP_ACT_ITEM_NUMBER, ACT_NUMBER, EMP_NUMBER)
+        values (seq_emp_act_item.nextval,#{actNumber},#{empNumber})
+    </insert>
+<!-- 직원 활동 삭제 -->
+    <delete id="empActDelete" parameterType="Long">
+        delete from emp_act_item
+        where emp_number = #{empNumber}
+    </delete>
+<!-- 직원 이미지 등록 -->
+    <insert id ="empImgRegist">
+        insert into EMP_IMG (EMP_IMG_NUMBER, EMP_IMG_NAME, EMP_IMG_UPLOAD_PATH, EMP_IMG_UUID, EMP_NUMBER)
+        values (seq_emp_img.nextval,#{empImgName},#{empImgUploadPath},#{empImgUuid},#{empNumber})
+    </insert>
+
+<!-- 직원 상세 -->
+    <select id="selectEmpDetail" resultType="empVo">
+        SELECT E.EMP_NUMBER, E.EMP_NAME, E.EMP_AGE, E.EMP_GENDER, E.EMP_PHONE, E.EMP_EMAIL, E.EMP_DATE, E.EMP_CONTENT,
+               EI.EMP_IMG_NUMBER, EI.EMP_IMG_NAME, EI.EMP_IMG_UPLOAD_PATH, EI.EMP_IMG_UUID
+        FROM EMP E LEFT JOIN EMP_IMG EI on E.EMP_NUMBER = EI.EMP_NUMBER
+        WHERE E.EMP_NUMBER = #{empNumber}
+    </select>
+<!--직원 활동조회 -->
+    <select id = "selectEmpActItem" resultType="empActItemDto">
+        select emp_act_item_number, act_number, emp_number
+        from emp_act_item where emp_number = #{empNumber}
+    </select>
+<!--직원 활동 이미지 조회-->
+    <select id="selectEmpAct" resultType="actVo">
+        select a.act_name, ai.act_img_number,ai.act_number, ai.act_img_name, ai.act_img_upload_path, ai.act_img_uuid
+        from act a join act_img ai on a.ACT_NUMBER = ai.ACT_NUMBER
+        where ai.act_number IN(
+            select act_number
+            from emp_act_item
+            where emp_number= #{empNumber}
+        )
+    </select>
+<!-- 직원 삭제 -->
+    <delete id="empDelete" parameterType="Long">
+        DELETE FROM EMP
+        WHERE EMP_NUMBER = #{empNumber}
+    </delete>
 <!-- 공지사항 조회 -->
     <select id="selectAllNotice" resultType="noticeDto">
         SELECT
@@ -244,6 +325,26 @@
             where emp_name like '%' || #{keyword} || '%'
         </if>
     </select>
+<!-- 매칭 상세정보 -->
+    <select id="selectMatchDetail" resultType="matchListVo">
+        SELECT
+            M.match_number as match_number, M.status as status,M.user_number as user_number,
+            U.user_name as user_name,U.user_id as user_id,U.user_phone as user_phone,
+            M.emp_number as emp_number,E.emp_name as emp_name,E.emp_email as emp_email,E.emp_phone as emp_phone
+        FROM
+            Matchs M
+                JOIN
+            users U ON M.user_number = U.user_number
+                JOIN
+            EMP E ON M.emp_number = E.EMP_NUMBER
+        where m.match_number = #{matchNumber}
+    </select>
+<!-- 매칭 상태변경 -->
+    <update id ="updateStatus">
+        update matchs
+        set status = #{status}
+        where match_number = #{matchNumber}
+    </update>
 <!-- 이벤트 등록-->
     <insert id="eventRegist">
         <selectKey keyProperty="eventNumber" order="BEFORE" resultType="Long">
@@ -262,4 +363,74 @@
         insert into EVENT_DETAIL (EVENT_DETAIL_NUMBER, EVENT_NUMBER, EVENT_DETAIL_NAME, EVENT_DETAIL_UPLOAD_PATH,EVENT_DETAIL_UUID)
         values (SEQ_EVENT_DETAIL.NEXTVAL,#{eventNumber},#{eventDetailName},#{eventDetailUploadPath},#{eventDetailUuid})
     </insert>
+<!-- 이벤트 리스트 조회-->
+    <select id="selectAllEvents" resultType="eventVo">
+        select rnum, event_number, event_name, event_price,
+               event_img_name, event_img_upload_path, event_img_uuid,
+               event_detail_name, event_detail_upload_path, event_detail_uuid
+        from(
+                select ROWNUM AS RNUM, event_number, event_name, event_price,
+                       event_img_name, event_img_upload_path, event_img_uuid,
+                       event_detail_name, event_detail_upload_path, event_detail_uuid
+                from (
+                         select e.event_number, e.event_name, e.event_price,
+                                ei.EVENT_IMG_NAME, ei.EVENT_IMG_UPLOAD_PATH,ei.EVENT_IMG_UUID,
+                                ED.EVENT_DETAIL_NAME, ED.EVENT_DETAIL_UPLOAD_PATH, ED.EVENT_DETAIL_UUID
+                         from event e
+                                  LEFT JOIN event_img ei on e.EVENT_NUMBER = ei.event_number
+                                  LEFT JOIN  EVENT_DETAIL ed on e.EVENT_NUMBER = ed.event_number
+                        <where>
+                            <choose>
+                                <when test="searchVo.cate == 'eventName'">
+                                    AND event_name LIKE '%' || #{searchVo.keyword} || '%'
+                                </when>
+                            </choose>
+                        </where>
+                        order by EVENT_NUMBER DESC
+                        ) <![CDATA[
+                    WHERE rownum <= #{criteria.page} * #{criteria.amount}
+                    ]]>
+                        ) WHERE rnum > (#{criteria.page} - 1) * #{criteria.amount}
+    </select>
+    <!-- 검색별 매칭수 -->
+    <select id="getTotalEvents" resultType="_int">
+        select count(event_number)
+        from event
+        <if test="'eventName'.equals(cate)">
+            where event_name like '%' || #{keyword} || '%'
+        </if>
+    </select>
+    <!-- 이벤트 조회-->
+    <select id="selectEventDetail" resultType="eventVo">
+        select e.event_number, e.event_name, e.event_price,
+               ei.EVENT_IMG_NAME, ei.EVENT_IMG_UPLOAD_PATH,ei.EVENT_IMG_UUID,
+               ED.EVENT_DETAIL_NAME, ED.EVENT_DETAIL_UPLOAD_PATH, ED.EVENT_DETAIL_UUID
+        from event e
+                 LEFT JOIN event_img ei on e.EVENT_NUMBER = ei.event_number
+                 LEFT JOIN  EVENT_DETAIL ed on e.EVENT_NUMBER = ed.event_number
+        where e.event_number = #{eventNumber}
+    </select>
+    <!-- 이벤트 삭제 -->
+    <delete id="eventDelete" parameterType="Long">
+        delete from event
+        where event_number=#{eventNumber}
+    </delete>
+    <!-- 이벤트 수정 -->
+    <update id="updateEvent" parameterType="eventVo">
+        update event
+        set event_name = #{eventName}, event_price = #{eventPrice}
+        where event_number=#{eventNumber}
+    </update>
+
+    <update id="updateEventImg" parameterType="eventImgDto">
+        update event_img
+        set event_img_name =#{eventImgName}, event_img_uuid=#{eventImgUuid},event_img_upload_path=#{eventImgUploadPath}
+        where event_number=#{eventNumber}
+    </update>
+
+    <update id="updateEventDetail" parameterType="eventDetailDto">
+        update event_detail
+        set event_detail_name = #{eventDetailName}, event_detail_uuid = #{eventDetailUuid}, event_detail_upload_path = #{eventDetailUploadPath}
+        where event_number = #{eventNumber}
+    </update>
 </mapper>

@@ -1,9 +1,9 @@
 package com.example.bomobomo.controller;
 
-import com.example.bomobomo.domain.dto.AdminDto;
-import com.example.bomobomo.domain.dto.EventDetailDto;
-import com.example.bomobomo.domain.dto.EventDto;
-import com.example.bomobomo.domain.dto.NoticeDto;
+import com.example.bomobomo.domain.dto.*;
+import com.example.bomobomo.domain.vo.EmpVo;
+import com.example.bomobomo.domain.vo.EventVo;
+import com.example.bomobomo.domain.vo.MatchListVo;
 import com.example.bomobomo.domain.vo.UserDetailVo;
 import com.example.bomobomo.service.AdminService;
 import jdk.jfr.Event;
@@ -60,11 +60,10 @@ public class AdminController {
     }
 
 //    회원 상세정보
-    @GetMapping("/user/detail")
-    public String selectUserDetail(@RequestParam(name = "userNumber") Long userNumber, Model model) {
+    @GetMapping("/adminUserDetail")
+    public void selectUserDetail(@RequestParam(name = "userNumber") Long userNumber, Model model) {
         UserDetailVo userDetail = adminService.selectUserDetail(userNumber);
         model.addAttribute("userDetail", userDetail);
-        return "admin/adminUserDetail";
     }
     @GetMapping("/main")
     public String Main(){
@@ -78,9 +77,99 @@ public class AdminController {
     public String Emp(){
         return "admin/adminEmp";
     }
+    @GetMapping("/emp/regist")
+    public String empRegist(Model model){
+        List<ActDto> actList = adminService.selectAct();
+        model.addAttribute("actList",actList);
+        log.info("========================================={}",actList);
+        return "admin/adminEmpRegist";
+    }
+    @PostMapping("/emp/regist")
+    public RedirectView empRegist(EmpDto empDto,@RequestParam(name = "actNumber", required = false)List<Long> actNumber
+                                               ,@RequestParam("empImgFile")List<MultipartFile> empImg){
+        log.info("================================actNumber{}",actNumber);
+        adminService.empRegist(empDto);
+        if(actNumber != null) {
+            for (int i = 0; i < actNumber.size(); i++) {
+                EmpActItemDto empActItemDto = new EmpActItemDto();
+                empActItemDto.setEmpNumber(empDto.getEmpNumber());
+                empActItemDto.setActNumber(actNumber.get(i));
+                log.info("================================{}", empActItemDto);
+                adminService.empActRegist(empActItemDto);
+            }
+        }
+        try {
+            adminService.empImgRegistAndSave(empImg, empDto.getEmpNumber());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return new RedirectView("/admin/emp");
+    }
+    @PostMapping("/emp/update")
+    public RedirectView empUpdate(EmpDto empDto, @RequestParam(name="empImgFile")List<MultipartFile> empImg
+                                               , @RequestParam(name="actNumber",required = false)List<Long> actNumber){
+        adminService.empUpdate(empDto);
+
+        if(actNumber != null) {
+            adminService.empActDelete(empDto.getEmpNumber());
+            for (int i = 0; i < actNumber.size(); i++) {
+                EmpActItemDto empActItemDto = new EmpActItemDto();
+                empActItemDto.setEmpNumber(empDto.getEmpNumber());
+                empActItemDto.setActNumber(actNumber.get(i));
+                log.info("================================{}", empActItemDto);
+                adminService.empActRegist(empActItemDto);
+            }
+        }
+
+        try{
+//            스프링에서 Mulipart 요청 처리시 파일을 선택하지않아도 객체를 생성해서 전달되므로
+//            파일의 실제크기를 선택해 파일의 유무 확인
+            if(empImg != null && empImg.get(0).getSize() > 0) {
+                adminService.empImgUpdateAndSave(empImg, empDto.getEmpNumber());
+            }
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+
+        String url = "/admin/adminEmpDetail?empNumber=" + empDto.getEmpNumber();
+        return new RedirectView(url);
+    }
+    @GetMapping("/admin/adminEmpDelete")
+    public RedirectView empDelete(Long empNumber){
+        adminService.empDelete(empNumber);
+        return new RedirectView("/admin/emp");
+    }
+    @GetMapping(value={"/admin/adminEmpDetail"})
+    public void selectEmpDetail(@RequestParam(name="empNumber")Long empNumber, Model model){
+        EmpVo empDetail= adminService.selectEmpDetail(empNumber);
+        model.addAttribute("empDetail",empDetail);
+    }
+    @GetMapping("/admin/adminEmpConfig")
+    public void empUpdate(@RequestParam(name="empNumber")Long empNumber, Model model){
+        EmpVo empDetail= adminService.selectEmpDetail(empNumber);
+        List<ActDto> actList = adminService.selectAct();
+        log.info("==============================서비스체크");
+        List<EmpActItemDto> empActList = adminService.selectEmpActItem(empNumber);
+        log.info("============================체크1{}",actList);
+        log.info("============================체크2{}",empActList);
+        log.info("============================체크2끝");
+
+        model.addAttribute("empDetail",empDetail);
+        model.addAttribute("actList",actList);
+        model.addAttribute("empActList",empActList);
+    }
+
+
     @GetMapping("/match")
     public String Match(){
         return "admin/adminMatch";
+    }
+    @GetMapping("/match/detail")
+    public String selectMatchDetail(@RequestParam(name="matchNumber")Long matchNumber,Model model){
+        MatchListVo matchDetail =  adminService.selectMatchDetail(matchNumber);
+        model.addAttribute("matchDetail",matchDetail);
+        return "/admin/adminMatchManage";
     }
 
     @GetMapping("/event")
@@ -91,14 +180,21 @@ public class AdminController {
     public RedirectView redirectEvent(){
         return new RedirectView("/admin/event");
     }
+//    이벤트 조회
+    @GetMapping(value={"/adminEventDetail","/adminEventConfig"})
+    public void selectEventDetail(@RequestParam(name="eventNumber")Long eventNumber,Model model){
+        EventVo eventDetail = adminService.selectEventDetail(eventNumber);
+        model.addAttribute("eventDetail",eventDetail);
+    }
+
     @GetMapping("/eventRegist")
     public String eventRegist(){
         return "admin/adminEventRegist";
     }
-
+//    이벤트 등록
     @PostMapping("/eventRegist")
     public RedirectView eventRegist( EventDto eventDto, @RequestParam("eventImgFile")List<MultipartFile> eventImg,
-                         EventDetailDto eventDetailDto, @RequestParam("eventDetailFile")List<MultipartFile> detailImg){
+                         @RequestParam("eventDetailFile")List<MultipartFile> detailImg){
         adminService.eventRegist(eventDto);
         try {
             adminService.eventImgRegistAndSave(eventImg,eventDto.getEventNumber());
@@ -108,7 +204,30 @@ public class AdminController {
         }
         return new RedirectView("/admin/event");
     }
-
+    @PostMapping("/adminEventConfig")
+    public RedirectView eventUpdate(EventVo eventVo, @RequestParam("eventImgFile")List<MultipartFile> eventImg,
+                                    @RequestParam("eventDetailFile")List<MultipartFile> detailImg){
+        adminService.updateEvent(eventVo);
+        try{
+//            스프링에서 Mulipart 요청 처리시 파일을 선택하지않아도 객체를 생성해서 전달되므로
+//            파일의 실제크기를 선택해 파일의 유무 확인
+            if(eventImg != null && eventImg.get(0).getSize() > 0) {
+                adminService.eventImgUpdateAndSave(eventImg, eventVo.getEventNumber());
+            }
+            if(detailImg != null && detailImg.get(0).getSize()>0) {
+                adminService.eventDetailUpdateAndSave(detailImg, eventVo.getEventNumber());
+            }
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+        return new RedirectView("/admin/event");
+    }
+//    이벤트 삭제
+    @GetMapping("/adminEventDelete")
+    public RedirectView eventDelete(Long eventNumber){
+        adminService.eventDelete(eventNumber);
+        return new RedirectView("/admin/event");
+    }
 
     @GetMapping("/notice")
     public String Notice(){

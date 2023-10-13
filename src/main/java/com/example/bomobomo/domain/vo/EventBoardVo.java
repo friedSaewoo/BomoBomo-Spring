@@ -20,5 +20,9 @@ public class EventBoardVo {
        private Integer rating;
        private Integer eventBoardCount;
        private String eventName;
+       private Long rnum;
+       private String eventImgUploadPath;
+       private String eventImgUuid;
+       private String eventImgName;
 
 }
