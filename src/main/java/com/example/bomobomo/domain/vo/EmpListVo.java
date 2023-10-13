@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 @Data
 @Component
 @NoArgsConstructor
-public class EmpVo {
+public class EmpListVo {
     private Long empNumber;
     private String empName;
     private Integer empAge;
@@ -16,5 +16,6 @@ public class EmpVo {
     private String empEmail;
     private String empDate;
     private String empContent;
+    private String avg;
 
 }
