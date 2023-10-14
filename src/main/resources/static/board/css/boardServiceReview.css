@@ -181,6 +181,9 @@
     justify-content: end;
     width: 80px;
 }
+.review-score span {
+    color: #e89f14d9;
+}
 
 .review-score img {
     width: 20%;

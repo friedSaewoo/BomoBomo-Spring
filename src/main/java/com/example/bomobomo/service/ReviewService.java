@@ -104,6 +104,17 @@ public class ReviewService {
           return reviewMapper.selectTopCount();
     }
 
+    //돌봄 후기 상세보기 페이지에 해당 시터 다른 리뷰들 뽑아오기
+    public List<SitterBoardVo> findReviewDetail(Long empNumber){
+        if (empNumber == null) {
+            throw new IllegalArgumentException("직원 번호 누락");
+        }
+
+       return reviewMapper.serviceReviewDetailTopCount(empNumber);
+    }
+
+
+
     //=================================================================
 
     //이벤트 서비스 리뷰 게시글 리스트
@@ -171,5 +182,16 @@ public class ReviewService {
                 reviewMapper.updateEventReview(eventBoardDto);
             }
     }
+
+
+    //이벤트 후기 상세보기 페이지에 동일 이벤트 리뷰들 뽑아오기
+    public List<EventBoardVo> findEventReviewTopCount(Long eventNumber){
+
+        if (eventNumber == null) {
+            throw new IllegalArgumentException("이벤트 번호 누락");
+        }
+         return reviewMapper.eventReviewDetailTopCount(eventNumber);
+    }
+
 
 }

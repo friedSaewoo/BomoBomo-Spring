@@ -30,3 +30,16 @@ $('.updateBtn').on('click', function (){
     let eventBoardNumber = $(this).data('number');
     window.location.href = '/board/modifyEventReview?eventBoardNumber=' + eventBoardNumber;
 });
+
+
+$('.hovers').hide();
+$('.sitter-avg').on('mouseenter', function (){
+    $('.hovers').show();
+})
+$('.sitter-avg').on('mouseleave', function (){
+    $('.hovers').hide();
+})
+
+
+let avg = $('.sitter-avg-rating').data('rating')
+console.log(avg)

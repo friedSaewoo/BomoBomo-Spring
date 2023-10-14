@@ -20,6 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.net.http.HttpResponse;
 import java.util.Date;
+import java.util.List;
 
 
 @Controller
@@ -121,18 +122,15 @@ public class BoardController {
     //돌봄후기 상세보기
     @GetMapping("/reviewDetail")
     public String showServiceReviewDetailPage(@RequestParam("sitterBoardNumber") Long sitterBoardNumber,
-           Model model, HttpServletRequest req, HttpServletResponse resp){
+                                               Model model, HttpServletRequest req, HttpServletResponse resp){
+
+
 
         SitterBoardVo sitterBoardVo = reviewService.selectOne(sitterBoardNumber);
+        List<SitterBoardVo> sitterBoardVoList = reviewService.findReviewDetail(sitterBoardVo.getEmpNumber());
         double getAvg = reviewService.getAvgRating(sitterBoardVo.getEmpNumber());
 
-
-
-        model.addAttribute("serviceReviewDetail", sitterBoardVo);
-        model.addAttribute("getAvg", (Math.round(getAvg*100) / 100.0));
-
-        log.info(String.valueOf(getAvg));
-
+        Long emp = sitterBoardVo.getEmpNumber();
 
         Cookie[] cookies = req.getCookies();
         boolean updateCount = true;
@@ -143,16 +141,19 @@ public class BoardController {
                     String cookieValue = cookie.getValue();
 
                     String[] values = cookieValue.split("_");
-                    String sitterBoardNumbers = values[0];
+                    String sitterBoardNumbers = values[0] + "_" +values[1];
+
+                    System.out.println(sitterBoardNumbers);
 
                     log.info(cookieValue+"=====================================================");
                     log.info(values[0]+"=====================================================");
                     log.info(values[1]+"=====================================================");
+                    log.info(values[2]+"=====================================================");
 
-                    long storedTimestamp = Long.parseLong(values[1]);
+                    long storedTimestamp = Long.parseLong(values[2]);
                     long currentTimestamp = new Date().getTime();
 
-                    if (sitterBoardNumbers.equals(req.getParameter("sitterBoardNumber")) && (currentTimestamp - storedTimestamp) < (24 * 60 * 60 * 1000)) {
+                    if ((sitterBoardNumbers.equals(req.getParameter("sitterBoardNumber") + "_" + emp)) && (currentTimestamp - storedTimestamp) < (24 * 60 * 60 * 1000)) {
 
                         updateCount = false;
                         break;
@@ -162,7 +163,7 @@ public class BoardController {
         }
 
         if (updateCount) {
-            Cookie newCookie = new Cookie("reviewDetail_count_cookie", req.getParameter("sitterBoardNumber") + "_" + new Date().getTime());
+            Cookie newCookie = new Cookie("reviewDetail_count_cookie", req.getParameter("sitterBoardNumber") + "_" + emp + "_" + new Date().getTime());
             newCookie.setMaxAge(24 * 60 * 60);
             resp.addCookie(newCookie);
 
@@ -170,7 +171,13 @@ public class BoardController {
         }
 
 
+        model.addAttribute("sitterReviewList", sitterBoardVoList);
+        model.addAttribute("serviceReviewDetail", sitterBoardVo);
+        model.addAttribute("getAvg", (Math.round(getAvg*100) / 100.0));
+
+        log.info(String.valueOf(getAvg));
         log.info(sitterBoardVo.toString());
+        log.info(sitterBoardVoList.toString());
         return "board/serviceReviewDetail";
     }
     //돌봄 후기 수정창으로 이동
@@ -227,12 +234,15 @@ public class BoardController {
     public String showEventReviewDetailPage(@RequestParam("eventBoardNumber")Long eventBoardNumber
             , Model model, HttpServletRequest req, HttpServletResponse resp){
 
+
         EventBoardVo eventBoardVo = reviewService.showEReviewDetail(eventBoardNumber);
+        List<EventBoardVo> eventBoardVoList = reviewService.findEventReviewTopCount(eventBoardVo.getEventNumber());
         double getAvgEventReview = reviewService.getAvgEventReviewRating(eventBoardVo.getEventNumber());
 
         log.info(String.valueOf(getAvgEventReview) +"===============================================");
         log.info(eventBoardVo.toString()+"====================******************");
 
+        model.addAttribute("eventReviewList", eventBoardVoList);
         model.addAttribute("eventReviewDetail", eventBoardVo);
         model.addAttribute("avgEventReview", (Math.round(getAvgEventReview*100) / 100.0));
 

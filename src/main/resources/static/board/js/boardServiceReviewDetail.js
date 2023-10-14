@@ -34,4 +34,14 @@ $('.updateBtn').on('click', function (){
 
 
 
+$('.hovers').hide();
+$('.sitter-avg').on('mouseenter', function (){
+    $('.hovers').show();
+})
+$('.sitter-avg').on('mouseleave', function (){
+    $('.hovers').hide();
+})
 
+
+let avg = $('.sitter-avg-rating').data('rating')
+console.log(avg)

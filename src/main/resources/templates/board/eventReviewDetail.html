@@ -17,52 +17,92 @@
 <main style="height: 100%; padding-bottom: 50px;"th:each="reviewEventDetail : ${eventReviewDetail}">
     <div class="review-detail-container"  >
 
-        <!-- 리뷰대상인 이벤트 정보-->
+        <!-- 리뷰 대상자(이벤트 정보) -->
         <div class="review-detail-sitter">
             <div class="review-detail-sitter-pic">
                 <img th:src="'/upload/' + ${reviewEventDetail.eventBoardImgUploadPath}+'/' + ${reviewEventDetail.eventBoardImgUuid} + '_' + ${reviewEventDetail.eventBoardImgName}" alt=""/>
             </div>
             <div class="review-detail-sitter-info">
-                <dl class="review-detail-sitter-name">
-                    <dt>
-                        <p th:text="${reviewEventDetail.eventName}"><span><strong></strong></span></p>
-                        <p>dd</p>
-                    </dt>
-                    <dd>
-                        <dl class="review-sitter-avg-score">
-                            <dt ><strong>평균 별점</strong></dt>
-                            <dd>
-                                <img src="/common/img/star.png" alt="">
-                            </dd>
-                            <dd  ><span th:text="${avgEventReview} + '/ 5'"><strong></strong></span> </dd>
-                        </dl>
-                    </dd>
-                </dl>
+                <div class="sitter-avg-detail-info">
+                    <ul>
+                        <li>
+                            <div>
+                                <p ><span><strong th:text="${reviewEventDetail.eventName}"></strong></span></p>
+                                <p>이벤트에 대한 리뷰입니다.</p>
+                            </div>
+
+                        </li>
+                        <div class="sitter-avg-rating" th:data-rating="${avgEventReview}">
+                            <p><strong>평균 별점</strong></p>
+                            <div class="sitter-avg">
+
+                                <span th:if="${avgEventReview >=0 && avgEventReview <0.5}" class="avg">☆☆☆☆☆</span>
+                                <span th:if="${avgEventReview >=0.5 && avgEventReview <1.5}" class="avg" style="font-size: 20px">★☆☆☆☆ </span>
+                                <span th:if="${avgEventReview >=1.5 && avgEventReview <2.5}" class="avg">★★☆☆☆ </span>
+                                <span th:if="${avgEventReview >=2.5 && avgEventReview <3.5}" class="avg" style="font-size: 20px">★★★☆☆ </span>
+                                <span th:if="${avgEventReview >=3.5 && avgEventReview <4.5}" class="avg">★★★★☆ </span>
+                                <span th:if="${avgEventReview >=4.5 && avgEventReview ==5}" class="avg">★★★★★ </span>
+                            </div>
+                            <div class="hovers" >
+                                <span th:text="${avgEventReview} + ' / 5'"><strong></strong></span>
+                            </div>
+                        </div>
+                    </ul>
+
+                </div>
+                <div class="related-sitter-review-container" >
+                    <ul>
+                        <li th:each="reviewList : ${eventReviewList}">
+                            <a th:href="@{/board/reviewEventDetail(eventBoardNumber=${reviewList.eventBoardNumber})}">
+                                <div class="related-sitter-review" th:if="${reviewEventDetail.eventBoardNumber != reviewList.eventBoardNumber}">
+                                    <ul>
+                                        <li ><strong th:text="${reviewList.userId}" ></strong></li>
+                                        <li th:text="${reviewList.eventBoardContent}"></li>
+                                        <li th:text="${reviewList.eventBoardCount}"></li>
+                                    </ul>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
+
+
         <div class="review-detail-content" >
             <!-- 리뷰 평점 / 리뷰작성일자 -->
             <div class="review-score-date">
                 <ul>
-                    <li>
-                        <img src="/common/img/star.png" alt="">
+                    <li class="rating-star-count">
+                        <div>
+                            <span th:if="${reviewEventDetail.rating==0}">☆☆☆☆☆</span>
+                            <span th:if="${reviewEventDetail.rating==1}">★☆☆☆☆</span>
+                            <span th:if="${reviewEventDetail.rating==2}">★★☆☆☆</span>
+                            <span th:if="${reviewEventDetail.rating==3}">★★★☆☆</span>
+                            <span th:if="${reviewEventDetail.rating==4}">★★★★☆</span>
+                            <span th:if="${reviewEventDetail.rating==5}">★★★★★</span>
+                        </div>
                     </li>
-                    <li th:text="${reviewEventDetail.rating}"><span>4.5/5</span></li>
-
-                    <li th:if="${reviewEventDetail.eventBoardModifyDate!=reviewEventDetail.eventBoardRegisterDate}">
-                        <p>수정일자 <span th:text="${reviewEventDetail.eventBoardModifyDate}"> 2023/09/16</span></p>
+                    <li class="blank" th:if="${reviewEventDetail.eventBoardModifyDate==reviewEventDetail.eventBoardRegisterDate}">
                     </li>
-                    <li>
-                        <p>작성일자 <span th:text="${reviewEventDetail.eventBoardRegisterDate}"> 2023/09/16</span></p>
+                    <li class="modify-date" th:if="${reviewEventDetail.eventBoardModifyDate!=reviewEventDetail.eventBoardRegisterDate}">
+                        수정일자 <span th:text="${reviewEventDetail.eventBoardModifyDate}"> 2023/09/16</span>
                     </li>
-                    <li>
-                        <p>조회수 <span th:text="${reviewEventDetail.eventBoardCount}"> </span></p>
+                    <li class="register-date">
+                        작성일자 <span th:text="${reviewEventDetail.eventBoardRegisterDate}"> 2023/09/16</span>
+                    </li>
+                    <li class="review-count">
+                        조회수 <span th:text="${reviewEventDetail.eventBoardCount}"> </span>
                     </li>
                 </ul>
+
             </div>
+
+
+
             <!-- 리뷰 작성자 -->
             <div class="review-userid" >
-                <p th:text="${reviewEventDetail.userId}"><span><strong>보노보노</strong></span>님이 남기신 리뷰입니다.</p>
+                <p ><span><strong th:text="${reviewEventDetail.userId}">보노보노</strong></span>님이 남기신 리뷰입니다.</p>
             </div>
 
             <!-- 리뷰내용 -->

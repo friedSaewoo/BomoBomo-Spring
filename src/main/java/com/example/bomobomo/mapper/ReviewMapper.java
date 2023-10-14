@@ -43,6 +43,8 @@ public interface ReviewMapper {
     //돌봄 후기 수정
     public void updateServiceReview(SitterBoardDto sitterBoardDto);
 
+    //돌봄 후기 상세보기 페이지에 해당 시터 다른 리뷰들 뽑아오기
+    public List<SitterBoardVo> serviceReviewDetailTopCount(Long empNumber);
 
     //=====================================
     
@@ -72,5 +74,8 @@ public interface ReviewMapper {
 
     //이벤트 서비스 조회수 상위 6개 게시물 가져오기
     public List<EventBoardVo> selectTopEventCount();
+
+    //이벤트 후기 상세보기 페이지에 동일 이벤트 리뷰들 뽑아오기
+    public List<EventBoardVo> eventReviewDetailTopCount(Long eventNumber);
 
 }

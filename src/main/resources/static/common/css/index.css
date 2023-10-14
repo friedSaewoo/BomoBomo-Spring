@@ -40,13 +40,9 @@
 }
 
 .main-letter dl{
-    font-size: 33px;
     line-height: 1.5;
-    font-family: 'Black Han Sans', sans-serif;
-    font-family: 'Dongle', sans-serif !important;
-    font-family: 'Gamja Flower', cursive;
-    font-family: 'IBM Plex Sans KR', sans-serif;
-    font-family: 'Single Day', cursive;
+    font-family: GmarketSansMedium;
+
 }
 
 .left-letter {
@@ -58,11 +54,8 @@
 }
 .left-letter span {
     font-size: 1em;
-    font-family: 'Black Han Sans', sans-serif;
-    font-family: 'Dongle', sans-serif !important;
-    font-family: 'Gamja Flower', cursive;
-    font-family: 'IBM Plex Sans KR', sans-serif;
-    font-family: 'Single Day', cursive;
+    font-family: GmarketSansMedium;
+
 }
 
 .right-letter {
@@ -370,7 +363,6 @@
     background-color: rgba(202, 201, 201, 0.24);
     width: 100%;
     height: 100%;
-    font-size: 1.9em;
 
 }
 
@@ -381,11 +373,9 @@
     /* border: 2px solid red; */
     padding: 30px;
     box-sizing: border-box;
-    font-family: 'Black Han Sans', sans-serif;
-    font-family: 'Dongle', sans-serif !important;
-    font-family: 'Gamja Flower', cursive;
-    font-family: 'IBM Plex Sans KR', sans-serif;
-    font-family: 'Single Day', cursive;
+    font-size: 1.5em;
+    font-family: GmarketSansMedium;
+
 }
 
 #map {
@@ -396,15 +386,13 @@
 }
 
 .company-location-text {
+
     padding: 30px 0px 0px 0px;
     width: 1024px;
     margin: 0 auto;
     text-align: center;
-    font-family: 'Black Han Sans', sans-serif;
-    font-family: 'Dongle', sans-serif !important;
-    font-family: 'Gamja Flower', cursive;
-    font-family: 'IBM Plex Sans KR', sans-serif;
-    font-family: 'Single Day', cursive;
+    font-family: GmarketSansMedium;
+
 }
 
 .company-location-text span {

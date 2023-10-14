@@ -181,13 +181,12 @@
     width: 80px;
 }
 
-.review-score img {
-    width: 20%;
-    height: 100%;
+.review-score span {
+    color: #e89f14d9;
 }
-.reivew-text-content {
 
-}
+
+
 .reivew-text-content dl {
     height: 90px;
 }

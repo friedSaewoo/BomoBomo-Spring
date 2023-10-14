@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>공지사항</title>
+  <title>돌봄 후기</title>
 </head>
 <body>
 <div class="header" th:replace="fragments/header :: header"></div>
@@ -23,46 +23,80 @@
         <img th:src="'/upload/'+ ${reviewDetail.empImgUploadPath} +'/'+${reviewDetail.empImgUuid}+'_' +${reviewDetail.empImgName}" alt="리뷰" />
       </div>
       <div class="review-detail-sitter-info">
-        <dl class="review-detail-sitter-name">
-          <dt>
-            <p ><span><strong th:text="${reviewDetail.empName}"></strong></span></p>
-            <p>시터님에 대한 리뷰입니다.</p>
-          </dt>
-          <dd>
-            <dl class="review-sitter-avg-score">
-              <dt ><strong>평균 별점</strong></dt>
-              <dd>
-                <img src="/common/img/star.png" alt="">
-              </dd>
-              <dd  ><span th:text="${getAvg} + '/ 5'"><strong></strong></span> </dd>
-            </dl>
-          </dd>
-        </dl>
+        <div class="sitter-avg-detail-info">
+        <ul>
+          <li>
+              <div>
+                <p ><span><strong th:text="${reviewDetail.empName}"></strong></span></p>
+                <p>시터님에 대한 리뷰입니다.</p>
+              </div>
+
+          </li>
+              <div class="sitter-avg-rating" th:data-rating="${getAvg}">
+                <p><strong>평균 별점</strong></p>
+                  <div class="sitter-avg">
+
+                  <span th:if="${getAvg >=0 && getAvg <0.5}" class="avg">☆☆☆☆☆</span>
+                  <span th:if="${getAvg >=0.5 && getAvg <1.5}" class="avg" style="font-size: 20px">★☆☆☆☆ </span>
+                  <span th:if="${getAvg >=1.5 && getAvg <2.5}" class="avg">★★☆☆☆ </span>
+                  <span th:if="${getAvg >=2.5 && getAvg <3.5}" class="avg" style="font-size: 20px">★★★☆☆ </span>
+                  <span th:if="${getAvg >=3.5 && getAvg <4.5}" class="avg">★★★★☆ </span>
+                  <span th:if="${getAvg >=4.5 && getAvg ==5}" class="avg">★★★★★ </span>
+                  </div>
+                <div class="hovers" >
+                  <span th:text="${getAvg} + ' / 5'"><strong></strong></span>
+                </div>
+              </div>
+        </ul>
+
+        </div>
+        <div class="related-sitter-review-container" >
+          <ul>
+            <li th:each="reviewList : ${sitterReviewList}">
+              <a th:href="@{/board/reviewDetail(sitterBoardNumber=${reviewList.sitterBoardNumber})}">
+                <div class="related-sitter-review" th:if="${reviewDetail.sitterBoardNumber != reviewList.sitterBoardNumber}">
+                  <ul>
+                    <li ><strong th:text="${reviewList.userId}" ></strong></li>
+                    <li th:text="${reviewList.sitterBoardContent}"></li>
+                    <li th:text="${reviewList.sitterBoardCount}"></li>
+                  </ul>
+                </div>
+              </a>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
     <div class="review-detail-content" >
       <!-- 리뷰 평점 / 리뷰작성일자 -->
       <div class="review-score-date">
         <ul>
-          <li >
-            <img src="/common/img/star.png" alt="시터 후기 점수">
+          <li class="rating-star-count">
+            <div>
+              <span th:if="${reviewDetail.rating==0}">☆☆☆☆☆</span>
+              <span th:if="${reviewDetail.rating==1}">★☆☆☆☆</span>
+              <span th:if="${reviewDetail.rating==2}">★★☆☆☆</span>
+              <span th:if="${reviewDetail.rating==3}">★★★☆☆</span>
+              <span th:if="${reviewDetail.rating==4}">★★★★☆</span>
+              <span th:if="${reviewDetail.rating==5}">★★★★★</span>
+            </div>
           </li>
-          <li th:text="${reviewDetail.rating}"><span>4.5/5</span></li>
-
-          <li th:if="${reviewDetail.sitterBoardModifyDate!=reviewDetail.sitterBoardRegisterDate}">
-            <p>수정일자 <span th:text="${reviewDetail.sitterBoardModifyDate}"> 2023/09/16</span></p>
+          <li class="blank" th:if="${reviewDetail.sitterBoardModifyDate==reviewDetail.sitterBoardRegisterDate}">
           </li>
-          <li>
-            <p>작성일자 <span th:text="${reviewDetail.sitterBoardRegisterDate}"> 2023/09/16</span></p>
+          <li class="modify-date" th:if="${reviewDetail.sitterBoardModifyDate!=reviewDetail.sitterBoardRegisterDate}">
+            수정일자 <span th:text="${reviewDetail.sitterBoardModifyDate}"> 2023/09/16</span>
           </li>
-          <li>
-            <p>조회수 <span th:text="${reviewDetail.sitterBoardCount}"> </span></p>
+          <li class="register-date">
+            작성일자 <span th:text="${reviewDetail.sitterBoardRegisterDate}"> 2023/09/16</span>
+          </li>
+          <li class="review-count">
+            조회수 <span th:text="${reviewDetail.sitterBoardCount}"> </span>
           </li>
         </ul>
       </div>
       <!-- 리뷰 작성자 -->
       <div class="review-userid" >
-        <p th:text="${reviewDetail.userId}"><span><strong>보노보노</strong></span>님이 남기신 리뷰입니다.</p>
+        <p ><span><strong th:text="${reviewDetail.userId}">보노보노</strong></span>님이 남기신 리뷰입니다.</p>
       </div>
 
       <!-- 리뷰내용 -->
@@ -121,7 +155,8 @@
 
   </div>
   </div>
-  <input type="hidden" th:value="${reviewDetail.sitterBoardNumber}" class="reviewDetail-num">
+  <input type="hidden" th:value="${reviewDetail.sitterBoardNumber}" class="reviewDetail-num" name="review-board-number">
+  <input type="hidden" th:value="${reviewDetail.empNumber}" class="emp-num" name="empNumber">
 
 </main>
 <div class="footer" th:replace="fragments/footer :: footer"></div>

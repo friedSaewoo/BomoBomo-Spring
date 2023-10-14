@@ -72,9 +72,38 @@ function serviceReviewList(result) {
                         </div>
                         <div class="review-sitter-content">
                             <p><strong>${r.empName}</strong></p>
-                            <div class="review-score">
-                                <img src="/common/img/star.png"><span> ${r.rating} / 5</span>
-                            </div>
+                                                        <div class="review-score">
+
+                            `;
+
+                if(r.rating==1){
+                    text +=`
+                                <span> ★☆☆☆☆</span>
+
+                            `
+                }else if(r.rating==2){
+                    text +=`
+                                <span> ★★☆☆☆</span>
+                            `
+                }
+                else if(r.rating==3){
+                    text +=`
+                                <span> ★★★☆☆</span>
+                            `
+                }
+                else if(r.rating==4){
+                    text +=`
+                                <span> ★★★★☆</span>
+                            `
+                }
+                else if(r.rating==5){
+                    text +=`
+                                <span> ★★★★★</span>
+                            `
+                }
+
+
+            text+=     `</div>
                         </div>
                         <div class="reivew-text-content">
                             <dl>
@@ -94,7 +123,7 @@ function serviceReviewList(result) {
         text=`
 
                     <h3 class="non-review-search-result">검색 결과가 없습니다. 시터님 정보를 다시 확인해주세요.<br>
-                            <button class="non-review-search-result-btn" type="button" data-reviewnum="1">목록으로 돌아가기</button></h3>
+                            <button class="non-review-search-result-btn" type="button" data-pagenum="1">목록으로 돌아가기</button></h3>
 
             `;
     }
@@ -104,6 +133,7 @@ function serviceReviewList(result) {
     let $pagination = $('.review-pagenation-container ul');
     paging.updatePagination(result.pageReviewVo, $pagination);
 }
+
 
 
 
