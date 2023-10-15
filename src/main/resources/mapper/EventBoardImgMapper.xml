@@ -14,4 +14,16 @@
         from event_board_img
         where event_board_number = #{eventBoardNumber}
     </select>
+
+
+    <delete id="delete">
+
+        delete from event_board_img
+        where event_board_number = #{eventBoardNumber}
+
+    </delete>
+
+
+
+
 </mapper>

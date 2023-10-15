@@ -96,4 +96,50 @@ public class EventBoardFileService {
 
     }
 
+    //삭제
+    public void remove(Long eventBoardNumber){
+        if (eventBoardNumber == null) {
+            throw new IllegalArgumentException("이벤트 리뷰 번호 누락");
+        }
+        List<EventBoardImgDto> fileList = findList(eventBoardNumber);
+
+        for(EventBoardImgDto eventReviewImg : fileList){
+
+            System.out.println(eventReviewImg+"^*^&*^&^*^&*&^*&^*^&*^&");
+
+            File target = new File(fileDir, eventReviewImg.getEventBoardImgUploadPath() + "/"
+                    + eventReviewImg.getEventBoardImgUuid() + "_" + eventReviewImg.getEventBoardImgName());
+
+
+                if(target.exists()){
+                    target.delete();
+                }
+
+        }
+        eventBoardFileMapper.delete(eventBoardNumber);
+
+    }
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -2,7 +2,7 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <link rel="stylesheet" href="/board/css/board.css"/>
-    <link rel="stylesheet" href="/board/css/boardEventReview.css"/>
+    <link rel="stylesheet" href="/board/css/boardReview.css"/>
     <link rel="stylesheet" href="/common/css/common.css"/>
     <link rel="stylesheet" href="/fragments/css/footer.css"/>
     <link rel="stylesheet" href="/fragments/css/header.css"/>
@@ -20,30 +20,25 @@
 
             <p>이곳은, <br>소중한 후기들이 모여있는 곳입니다</p>
         </div>
-        <div class="event-review-move-btn">
-            <button class="service-review-btn">돌봄 후기 게시판 바로가기</button>
-        </div>
+<!--        <div class="event-review-move-btn">-->
+<!--            <button class="service-review-btn">돌봄 후기 게시판 바로가기</button>-->
+<!--        </div>-->
     </div>
     <div class="review-container service-review">
         <div class="review-main-title">
-            <h3>후기 게시판</h3>
-        </div>
-        <div class="review-title-container">
-            <div class="review-section-title">
-                <ul>
-                    <li><a href="/board/eventReview" style="color: black;">이벤트 후기</a></li>
-                </ul>
+            <div class="review-title">
+                <h3>후기 게시판</h3>
             </div>
             <div class="review-search">
                 <div class="sitter-name-select" style="display: none">
-                    <select name="cate" id="sitter-name" class="cate">
-                        <option value="eventName">이름</option>
+                    <select name="cate" id="event-name" class="cate">
+                        <option value="eventName">이벤트명</option>
                     </select>
                 </div>
                 <div class="search-bar">
                     <input type="text" name="keyword" class="keyword" placeholder="이벤트명을 검색해보세요!"/>
                 </div>
-                <div class="sitter-search-btn">
+                <div class="event-search-btn sitter-search-btn ">
                     <button type="button" >
                                 <span class="material-symbols-outlined">
                                 search
@@ -52,6 +47,17 @@
                 </div>
             </div>
         </div>
+
+        <div class="review-title-container">
+            <div class="review-section-title">
+                <ul>
+                    <li><a href="/board/serviceReview" style="color: black; ">돌봄 이용 후기</a></li>
+                    <li style="background-color:#FF7000"><a href="/board/eventReview" style="color: white;">이벤트 이용 후기</a></li>
+                </ul>
+            </div>
+
+        </div>
+
         <!--        리뷰영역-->
         <div class="review-content-container">
             <ul class="review-ul">
@@ -73,7 +79,7 @@
 <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
 <!-- <script src="/board/js/boardFAQ.js" defer></script> -->
 <script src="/fragments/js/header.js"></script>
-<script src="/board/js/boardEventReview.js"></script>
+<script type="module" src="/board/js/boardEventReview.js"></script>
 
 
 </body>

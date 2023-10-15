@@ -26,6 +26,7 @@
 }
 
 
+
 .review-banner>p{
     position: absolute;
     font-size: 2em;
@@ -71,26 +72,37 @@
 }
 
 .review-main-title {
+    display: flex;
     height: 40px;
     border-bottom: 2px solid black;
 }
+.review-title {
+    font-family: 'S-CoreDream-3Light';
+    font-size: 13px;
+    width: 600px;
+}
 
 .review-section-title ul {
-    width: 600px;
+    width: 1024px;
     display: flex;
 }
 
 .review-section-title ul li {
-    font-family: 'Black Han Sans', sans-serif;
-    font-family: 'Dongle', sans-serif !important;
-    font-family: 'Gamja Flower', cursive;
-    font-family: 'IBM Plex Sans KR', sans-serif;
-    font-family: 'Single Day', cursive;
-    width: 120px;
-    font-size: 1.9em;
-    height: 60px;
+    font-family: 'S-CoreDream-3Light';
+    width: 512px;
+    font-size: 0.9em;
+    height: 35px;
+
+
+}
+.review-section-title ul li a {
+    /*letter-spacing: 0px;*/
+    width: 512px;
+    height: 35px;
     display: flex;
+    justify-content: center;
     align-items: center;
+    font-weight: bold;
 
 }
 
@@ -157,10 +169,15 @@
 .review-sitter-img {
     width: 250px;
     height: 180px;
+    overflow: hidden;
 }
 .review-sitter-img img {
+    transition: 0.4s all;
     width: 100%;
     height: 100%;
+}
+.review-img-zoom:hover .review-sitter-img img {
+    scale:1.2
 }
 
 .review-sitter-content {
@@ -170,6 +187,7 @@
 
 }
 .review-sitter-content p {
+    font-size: 15px;
     width: 170px;
 }
 
@@ -179,6 +197,9 @@
     align-items: center;
     justify-content: end;
     width: 80px;
+}
+.review-score span {
+    color: #e89f14d9;
 }
 
 .review-score img {
@@ -193,6 +214,7 @@
 }
 .reivew-text-content dl dt {
     padding: 5px;
+    font-size: 15px;
 }
 
 .reivew-text-content dl dd {
@@ -203,8 +225,7 @@
     line-height: 1.3;
     box-sizing: border-box;
     padding: 5px;
-    /* border: 2px solid red; */
-    height: 45px;
+    height: 40px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: normal;
@@ -212,7 +233,9 @@
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     display: -webkit-box;
-    font-size: 16px;
+    font-size: 13px;
+    font-family: S-CoreDream-3Light;
+
 }
 
 

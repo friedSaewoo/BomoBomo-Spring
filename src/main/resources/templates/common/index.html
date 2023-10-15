@@ -22,17 +22,11 @@
                 <div class="main-letter">
                     <div class="left-letter">
                         <dl>
-                            <dt><strong style="font-size: 41px; line-height: 3;">우리는,</strong></dt>
+                            <dt><strong style="font-size: 23px; line-height: 3;">우리는,</strong></dt>
                             <dd><span>아이돌봄서비스를 연구, 기획하여 육아 가정에 제공하며, 부모님의 육아를 돕습니다.</span></dd>
                             <dd><span>아이, 양육자, 교사 그리고 조직원 간의 지속가능한 행복을 최우선하며 이를 위해 소통에 주력합니다.</span></dd>
                             <dd><span>서비스 품질과 신뢰 만큼은 업계 독보적 기준이 되겠습니다.</span></dd>
                         </dl>
-                    </div>
-                    <div class="right-letter">
-                        <h1>
-                            <span>"Bomo</span>
-                            <span>Bomo"</span>
-                        </h1>
                     </div>
                 </div>
             </div>
@@ -94,20 +88,31 @@
                 </dl>
             </div>
             <div class="review-content-contatiner">
-                <h2><span>찐!</span> 이용자인,
-                    아이 부모님들이 남기셨어요!</h2>
                 <div class="review-title">
-                    <h2>이렇게나 많은 분들이요!</h2>
-                </div>
+
+                <h2><span>찐!</span> 이용자인,
+                        아이 부모님들이 남기셨어요!</h2>
+                        <h2>이렇게나 많은 분들이요!</h2>
+                    </div>
+                <div class="review-content">
+
                 <div class="review-panel" >
                     <ul >
-                        <li th:each="reviewTop : ${reviewTop}">
+                        <li th:each="reviewTop : ${reviewTop}" class="review-section">
                                 <img th:src="'/upload/' + ${reviewTop.empImgUploadPath} +'/'+ ${reviewTop.empImgUuid} +'_' + ${reviewTop.empImgName}" alt="보모님 사진"/>
                             <div>
                                 <dl>
                                     <dt><strong  th:text="${reviewTop.empName}">이정미 보모님</strong></dt>
-                                    <dd><img src="/common/img/star.png"><span th:text="${reviewTop.rating} +' / 5'"></span></dd>
-                                    <dd><p th:text="${reviewTop.sitterBoardContent}">정말 손주 보듯이 봐주셨어요!</p></dd>
+                                    <dd class="review-rating">
+
+                                        <span th:if="${reviewTop.rating==1}">★☆☆☆☆</span>
+                                        <span th:if="${reviewTop.rating==2}">★★☆☆☆</span>
+                                        <span th:if="${reviewTop.rating==3}">★★★☆☆</span>
+                                        <span th:if="${reviewTop.rating==4}">★★★★☆</span>
+                                        <span th:if="${reviewTop.rating==5}">★★★★★</span>
+
+                                    </dd>
+                                    <dd class="review-text"><p th:text="${reviewTop.sitterBoardContent}">정말 손주 보듯이 봐주셨어요!</p></dd>
                                 </dl>
                             </div>
                         </li>
@@ -119,13 +124,19 @@
 
                 <div class="review-panel2">
                     <ul >
-                        <li th:each="eventReviewTop : ${eventReviewTop}">
-                            <img th:src="'/upload/' + ${eventReviewTop.eventImgUploadPath} +'/'+ ${eventReviewTop.eventImgUuid} +'_' + ${eventReviewTop.eventImgName}" alt="보모님 사진"/>
+                        <li th:each="eventReviewTop : ${eventReviewTop}" class="review-section">
+                            <img th:src="'/upload/' + ${eventReviewTop.eventBoardImgUploadPath} +'/'+ ${eventReviewTop.eventBoardImgUuid} +'_' + ${eventReviewTop.eventBoardImgName}" alt="보모님 사진"/>
                             <div>
                                 <dl>
                                     <dt ><strong th:text="${eventReviewTop.eventName}">이정미 보모님</strong></dt>
-                                    <dd><img src="/common/img/star.png"><span th:text="${eventReviewTop.rating} +' / 5'"></span></dd>
-                                    <dd><p th:text="${eventReviewTop.eventBoardContent}">정말 손주 보듯이 봐주셨어요!</p></dd>
+                                    <dd class="review-rating">
+                                        <span th:if="${eventReviewTop.rating==1}">★☆☆☆☆</span>
+                                        <span th:if="${eventReviewTop.rating==2}">★★☆☆☆</span>
+                                        <span th:if="${eventReviewTop.rating==3}">★★★☆☆</span>
+                                        <span th:if="${eventReviewTop.rating==4}">★★★★☆</span>
+                                        <span th:if="${eventReviewTop.rating==5}">★★★★★</span>
+                                    </dd>
+                                    <dd class="review-text"><p th:text="${eventReviewTop.eventBoardContent}">정말 손주 보듯이 봐주셨어요!</p></dd>
                                 </dl>
                             </div>
                         </li>
@@ -136,11 +147,10 @@
                 <div class="review-board-btn">
                     <a href="/board/serviceReview">전체 후기 보기</a>
                 </div>
-
-
+                </div>
             </div>
             <div class="company-map-container">
-                <h2><span>우린,</span>여기있어요!</h2>
+                <h2><span>우린, </span> 여기있어요!</h2>
                 <div id="map"></div>
                 <div class="company-location-text">
                     <dl>

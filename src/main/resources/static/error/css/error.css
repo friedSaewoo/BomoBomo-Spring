@@ -1,8 +1,7 @@
 
 .error-container {
-
     width: 450px;
-    margin: 50px auto;
+    margin: 40px auto;
 }
 
 
@@ -30,29 +29,47 @@
 }
 
 .error-btn {
-    width: 450px;
-}
-
-.error-btn ul{
-    margin: 0 auto;
-    padding: 15px;
-    width: 120px;
-    display: flex;
-    justify-content: space-around;
-}
-.error-btn a {
-    cursor: pointer;
     font-family: 'IBM Plex Sans KR', sans-serif;
-    width: 50px;
-    height: 33px;
+
 }
 
+.error-btn ul {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+
+.error-btn ul li {
+    padding:5px;
+    text-align: center;
+}
+
+.error-btn ul li a {
+    font-size: 13px;
+    font-weight: bold;
+    /*border-bottom: 1px solid gray;*/
+    cursor: pointer;
+}
+
+
+.error-img {
+    margin: 0 auto;
+    width: 400px;
+    padding:15px;
+    border-radius: 10px;
+}
+.error-img img {
+    border-radius: 10px;
+
+    width: 100%;
+}
 
 .error-copy-right {
+    box-sizing: border-box;
     font-family: 'Dongle', sans-serif !important;
     margin: 0 auto;
     padding: 15px;
-    width: 400px;
+    width: 450px;
 }
 .error-copy-right ul{
     display: flex;

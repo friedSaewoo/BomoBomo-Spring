@@ -237,3 +237,18 @@ input[type='file'] {
 .grade input[type=radio]:checked ~ label{
     text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
 }
+
+
+
+
+
+
+
+
+
+
+/*수정 페이지 별점 css*/
+.rating p {
+    font-size: 28px;
+    color: #e89f14d9
+}
