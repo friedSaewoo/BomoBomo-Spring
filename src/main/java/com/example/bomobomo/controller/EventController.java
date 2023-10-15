@@ -45,7 +45,7 @@ public class EventController {
 
         EventVo eventVo = eventService.find(eventNumber);
         model.addAttribute("detail", eventVo);
-        return "event/eventdetail";
+        return "event/eventDetail";
     }
     //이벤트 컨트롤러 (신청페이지 이동)
 
@@ -58,8 +58,7 @@ public class EventController {
         return "event/eventPayment";
     }
 
-
-    //    이벤트 조회 이미지
+//  이벤트 조회 이미지
     @Value("${file.eventImg}")
     private String fileEventImg;
 
@@ -82,7 +81,7 @@ public class EventController {
     public String showEmpList(Criteria criteria, Model model){
         log.info("> request : {}", criteria);
         criteria.setPage(criteria.getPage());
-        criteria.setAmount(3);
+        criteria.setAmount(6);
 
         List<EmpVo> empVoList = eventService.findEmpAll(criteria);
         log.info("> List : {}", empVoList);

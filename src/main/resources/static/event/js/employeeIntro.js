@@ -25,6 +25,19 @@ function renderSlides() {
     }
 }
 
+function textLengthOverCut(txt, len, lastTxt) {
+    if (len == "" || len == null) { // 기본값
+        len = 20;
+    }
+    if (lastTxt == "" || lastTxt == null) { // 기본값
+        lastTxt = "...";
+    }
+    if (txt.length > len) {
+        txt = txt.substr(0, len) + lastTxt;
+    }
+    return txt;
+}
+
 renderSlides(); // 페이지 로드시 초기 슬라이드 표시
 
 $('.recently-right-button').stop().on('click', function () {
