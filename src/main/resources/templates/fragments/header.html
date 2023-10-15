@@ -27,7 +27,7 @@
                             </dl>
                         </li>
                         <li><a href="/sitter/sitterFind">씨터찾기</a></li>
-                        <li><a href="#">이벤트</a></li>
+
                         <li><a href="/event/list">이벤트</a></li>
                         <li id="downMenu2"><a href="/board/faq">커뮤니티</a>
                             <dl style="display: none" class="sub-menu" id="subMenu2">
@@ -48,7 +48,7 @@
                 <ul th:unless="${session.userNumber == null}">
                     <li>
                         <a href="/mypage/main">
-                            <h3 class="page_move" th:text="${session.userName} + '님'"></h3>
+                            <h3 class="page_move" >마이페이지</h3>
                         </a>
                     </li>
                     <li><a href="/user/logout" class="nav-item login">로그아웃</a></li>
