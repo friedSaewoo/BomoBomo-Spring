@@ -96,7 +96,7 @@
 
     <!--매칭된 직원의 활동 이름과 활동 이미지 조회 -->
     <select id="selectEmpActItemImg" resultType="empActItemImgVo">
-        select em2.emp_number,em2.emp_act_item_number,em2.act_number,ACT_IMG_NUMBER,act_img_name,act_img_upload_path,act_img_uuid
+        select em2.emp_number,em2.emp_act_item_number,em2.act_number,ACT_IMG_NUMBER,act_img_name,act_img_upload_path,act_img_uuid,act_name
         from (
                  select em1.ACT_NUMBER, act_name, EMP_ACT_ITEM_NUMBER,EMP_NUMBER
                  from (

@@ -14,7 +14,13 @@
     <update id="update">
         update ORDERS
         set  GENDER_FIRST=#{genderFirst}, GENDER_SECOND=#{genderSecond},KIDS_CONTENT=#{kidsContent}
-        where ORDER_NUMBER=#{orderNumber} AND USER_NUMBER=${userNumber}
+        where   USER_NUMBER=${userNumber}
     </update>
+
+    <select id="selectOrder" resultType="orderDto">
+        select ORDER_NUMBER, USER_NUMBER, GENDER_FIRST, GENDER_SECOND, KIDS_CONTENT
+        from ORDERs
+        where user_number = #{userNumber}
+    </select>
 
 </mapper>

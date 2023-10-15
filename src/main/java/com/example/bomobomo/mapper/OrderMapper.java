@@ -14,4 +14,6 @@ public interface OrderMapper {
     //수정
     public void update(OrderDto orderDto);
 
+    //조회
+    public OrderDto selectOrder(Long userNumber);
 }

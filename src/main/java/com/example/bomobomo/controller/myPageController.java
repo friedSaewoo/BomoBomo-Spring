@@ -54,10 +54,23 @@ public class myPageController {
     }
     // 신청서 페이지 이동
     @GetMapping("/application")
-    public String showapplicationPage(HttpServletRequest req){
+    public String showapplicationPage(HttpServletRequest req,Model model){
         Long userNumber=(Long)req.getSession().getAttribute("userNumber");
         System.out.println(userNumber);
-        return "mypage/applicationPage";
+        // Order 조회하는 서비스
+        //if
+        // 수정 페이지
+        //(model에 값을 넣어서 뿌려준다)
+        try {
+            orderService.findOrder(userNumber);
+            System.out.println(orderService.findOrder(userNumber).toString());
+            model.addAttribute("order",orderService.findOrder(userNumber));
+        } catch (NullPointerException e) {
+            return "mypage/applicationPage";
+        }
+
+
+        return "mypage/updateApplicationPage";
     }
 
     //신청서 데이터 저장후 이동
@@ -72,6 +85,16 @@ public class myPageController {
 
         log.info(orderDto.getUserNumber().toString());
         // 신청서 내용 입력 후 이동
+        return new RedirectView("/mypage/main");
+    }
+    @PostMapping("/updateApplication")
+    public RedirectView updateApplication(OrderDto orderDto,HttpServletRequest req){
+        Long userNumber =(Long)req.getSession().getAttribute("userNumber");
+        log.info("=============================오더{}",orderDto);
+        orderDto.setUserNumber(userNumber);
+        orderService.orderUpdate(orderDto);
+        log.info("=============================오더{}",orderDto);
+
         return new RedirectView("/mypage/main");
     }
 
@@ -122,14 +145,12 @@ public class myPageController {
     @PostMapping("/userManage")
     public RedirectView userManageModify(UserDto userDto, AddressDto addressDto,HttpServletRequest req){
         Long userNumber=(Long)req.getSession().getAttribute("userNumber");
-        String userId= (String)req.getSession().getAttribute("userId");
-        String userName=(String)req.getSession().getAttribute("userName");
+
         userDto.setUserNumber(userNumber);
         addressDto.setUserNumber(userNumber);
 
         System.out.println(userNumber);
-        System.out.println(userId);
-        System.out.println(userName);
+
 
         userService.modify(userDto);
         adressService.modify(addressDto);

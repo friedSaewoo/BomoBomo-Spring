@@ -8,6 +8,6 @@ import org.springframework.stereotype.Component;
 @Component
 @NoArgsConstructor
 public class EventPayDto {
-    Long eventPayNumber;
-    Long applyNumber;
+    private Long eventPayNumber;
+    private Long applyNumber;
 }
