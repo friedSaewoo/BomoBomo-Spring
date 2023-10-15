@@ -1,72 +1,71 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>관리자 페이지</title>
-    <link rel="stylesheet" href="../css/admin_emp_config.css">
+    <link rel="stylesheet" href="/admin/css/adminEmpRegist.css">
 </head>
 <body>
-    <!-- 전체 컨테이너 -->
-    <div class="admin-container">
+<!-- 전체 컨테이너 -->
+<div class="admin-container">
+    <!-- 메인 헤더 -->
+    <div th:replace="fragments/adminHeader :: main-header"></div>
+    <!-- 메인 컨테이너 -->
+    <div class="main-container">
         <!-- 사이드 컨테이너 -->
-        <div class="side-container">
-            <div class="side-logo-box">
-                   <img class="logo" src="../img/logo.png" alt="logo">
+        <nav th:replace= "fragments/adminSide :: side-container" class="side-container"></nav>
+        <!-- 메인 컨텐츠 -->
+        <div class="main-contents">
+            <div class="contents-title">
+                <span class="main-contents-title-text">직원관리</span>
             </div>
-            <ul class="side-item-container">
-                <li class="side-item" ><a href="/admin/main">대시보드</a></li>
-                <li class="side-item"><a href ="/admin/user">회원정보</a></li>
-                <li class="side-item on"><a href="/admin/emp">직원관리</a></li>
-                <li class="side-item"><a href="/admin/match">매칭관리</a></li>
-                <li class="side-item"><a href="/admin/event">이벤트관리</a></li>
-                <li class="side-item"><a href="/admin/notice">공지사항</a></li>
-            </ul>
-        </div>
-
-        <!-- 메인 컨테이너 -->
-        <div class="main-container">
-            <!-- 메인 헤더 -->
-            <div class="main-header">
-                <span class="main-header-title">BomoBomo</span>
-                <span class="admin-name">admin</span>
-                <button class="main-header-exit">나가기</button>
-            </div>
-            <!-- 메인 컨텐츠 -->
-            <div class="main-contents">
-                <div class="contents-title">
-                    <span class="main-contents-title-text">직원관리</span>
-                </div>
-                <form action="#" method="post" enctype="multipart/form-data">
+            <form action="/admin/emp/update" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="empNumber" th:value="${empDetail.empNumber}">
                 <div class="emp-detail-container">
                     <div class="emp-info-container1">
                         <div class="img">
                             <canvas id="image-preview"></canvas>
-                                <input type="file" name="image" id="image-input" onchange="displayResizedImage()">
+                            <input type="file" name="empImgFile" id="image-input" onchange="displayResizedImage()">
                         </div>
                         <div class="info">
-                            <label for="name">이름:</label>
-                            <input type="text" id="name" name="name" value="김성찬"required><br><br>
-                    
-                            <label for="age">나이:</label>
-                            <input type="text" id="age" name="age" value="27" required><br><br>
-                            <label for="gender">성별:</label>
-                            <select id="gender" name="gender">
-                                <option value="male">남성</option>
-                                <option value="female">여성</option>
-                            </select><br><br>
-                    
-                            <label for="contact">연락처:</label>
-                            <input type="text" id="contact" value="01071921375" name="contact"><br><br>
-                    
-                            <label for="email">이메일:</label>
-                            <input type="email" id="email" value="zriag@naver.com" name="email" required><br><br>
+                            <div class="name-age-container">
+                                <label for="name">이름 &nbsp;&nbsp;:&nbsp;</label>
+                                <input type="text" id="name" name="empName" th:value="${empDetail.empName}" required>
+
+                                <label for="age">나이:&nbsp;</label>
+                                <input type="text" id="age" name="empAge" th:value="${empDetail.empAge}" required>
+
+                                <label for="gender">성별:&nbsp;</label>
+                                <select id="gender" name="empGender">
+                                    <option value="M">남성</option>
+                                    <option value="F">여성</option>
+                                </select>
+                            </div>
+
+                            <div class="email-phone-container">
+                                <label for="contact">연락처:&nbsp;</label>
+                                <input type="text" id="contact" name="empPhone" th:value="${empDetail.empPhone}"><br><br>
+
+                                <label for="email">이메일:&nbsp;</label>
+                                <input type="email" id="email" name="empEmail" th:value="${empDetail.empEmail}" required><br><br>
+                            </div>
+                            <div class="act-checkbox">
+                                <fieldset>
+                                    <legend>활동</legend>
+                                    <div th:each="act: ${actList}">
+                                        <label th:text="${act.actName}"/>
+                                        <input class="act-check" th:name="actNumber" th:value="${act.actNumber}" type="checkbox"
+                                               th:checked="${empActList.![actNumber].contains(act.actNumber)}">
+                                    </div>
+                                </fieldset>
+                            </div>
                         </div>
                     </div>
                     <div class="emp-info-container2">
                         <div class="introduction">
                             <div class="title">간단 자기소개</div>
-                            <textarea id="selfint" name="selfint" required>안녕하세요</textarea>
+                            <textarea id="selfint" name="empContent" required>[[${empDetail.empContent}]]</textarea>
                         </div>
                     </div>
                     <div class="submit-button">
@@ -74,10 +73,14 @@
                     </div>
                 </div>
             </form>
-            </div>
         </div>
     </div>
+</div>
+<input type="hidden" id="empImgName" th:value="${empDetail.empImgName}">
+<input type="hidden" id="empImgUploadPath" th:value="${empDetail.empImgUploadPath}">
+<input type="hidden" id="empImgUuid" th:value="${empDetail.empImgUuid}">
 </body>
-<script src="../js/admin_emp_config.js"></script>
+<script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+<script th:src="@{/admin/js/adminEmpConfig.js}"></script>
 <script src="/admin/js/adminHeader.js"></script>
 </html>

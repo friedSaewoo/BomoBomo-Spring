@@ -82,14 +82,21 @@ $('.btn').on('mouseout',function(){
 
 $('.siter-situation span').on('click',function(){
     let datastatus=$('.status').data('statusnum');
-    console.log(datastatus);
+    // console.log(datastatus);
     if(datastatus == 0){
         console.log(datastatus);
         return;
     }
     $('.modal-pay').css('display','block');
+    $('body').css('backgroundColor','rgba(0,0,0,0.5)');
+
+
+
+
+
 
 })
+
 
 //결제하기 결제하기 클릭시 카카오페이로 이동하는 js
 $("#check_module").click(function () {
@@ -100,17 +107,11 @@ $("#check_module").click(function () {
 
     // DOM객체를 가져온다
         let estTitles = $('.estTitle').text();
-        console.log(estTitles);
         let money = $('.totalMoney').text();
-        console.log(money);
         let usernames =$('.user-name').text();
-        console.log(usernames);
         let addressinfo = $('.address-info').text();
-        console.log(addressinfo);
         let userNumber =$('.userinfo-userNumber').val();
-        console.log(userNumber);
        let matchNumber =$('.userinfo-matchNumber').val();
-        console.log(matchNumber);
 
         let matchObj ={ userNumber : userNumber,
             matchNumber:matchNumber
@@ -148,6 +149,7 @@ $("#check_module").click(function () {
                 contentType : 'application/json; charset=utf-8'
             });
 
+
             // success.submit();
             // 결제 성공 시 정보를 넘겨줘야한다면 body에 form을 만든 뒤 위의 코드를 사용하는 방법이 있습니다.
             // 자세한 설명은 구글링으로 보시는게 좋습니다.
@@ -155,9 +157,10 @@ $("#check_module").click(function () {
             var msg = '결제에 실패하였습니다.';
             msg += '에러내용 : ' + rsp.error_msg;
             // 창이 사라지고 원래 페이지로 이동
+            alert(msg);
+            window.location.href='/mypage/main';
         }
-        alert(msg);
-        window.location.href='/mypage/main';
+
     });
 });
 
@@ -167,11 +170,16 @@ let page = 1;
 
 myPage.getSitterReviewList(page, showSitterReviewList);
 
-function showSitterReviewList(result){
+function showSitterReviewList(result) {
     console.log(result);
-    let text = ``;
+    if (result.list.length == 0) {
+        $('.table').css('display', 'none');
+        console.log(result);
+    } else {
+        $('.table').css('display','block');
+        let text = ``;
 
-    text += `
+        text += `
         <tr class="review-text top">
             <td class="review-num">번호</td>
             <td class="review-title">제목</td>
@@ -179,8 +187,8 @@ function showSitterReviewList(result){
         </tr>
     `;
 
-    result.list.forEach( review => {
-        text += `
+        result.list.forEach(review => {
+            text += `
 
             <tr class="review-text">
                 <td class="review-num">${review.rnum}</td>
@@ -191,46 +199,51 @@ function showSitterReviewList(result){
                 <td class="review-data">${review.sitterBoardRegisterDate}</td>
             </tr>
         `;
-    });
+        });
 
-    $('.table').html(text);
+        $('.table').html(text);
 
 
-    let pageInfo = '';
+        let pageInfo = '';
 
-    let pageVo = result.pageVo;
-    if(pageVo.prev){
-        pageInfo += `
+        let pageVo = result.pageVo;
+        if (pageVo.prev) {
+            pageInfo += `
             <a href="javascript:void(0)" class="page-a">
                 <li class="page-num prev" data-page="${pageVo.startPage - 1}">&lt</li>
             </a>
         `;
-    }
-
-    for(let i=pageVo.startPage; i<=pageVo.endPage; i++){
-        if(i==pageVo.criteria.page){
-        pageInfo += `
+        }
+        if (pageVo.realEnd != 0) {
+            for (let i = pageVo.startPage; i <= pageVo.endPage; i++) {
+                if (i == pageVo.criteria.page) {
+                    pageInfo += `
             <a href="javascript:void(0)">
                 <li class="page-num active-num1" data-page="${i}">${i}</li>
             </a>
-        `;}else{
-            pageInfo += `
+        `;
+                } else {
+                    pageInfo += `
             <a href="javascript:void(0)">
                 <li class="page-num " data-page="${i}">${i}</li>
             </a>
         `;
+                }
+            }
+        } else {
+            `<li></li>`
         }
-    }
 
-    if(pageVo.next){
-        pageInfo += `
+        if (pageVo.next) {
+            pageInfo += `
             <a href="javascript:void(0)" class="page-b">
                 <li class="page-num next" data-page="${pageVo.endPage + 1}">&gt</li>
             </a>
         `;
-    }
+        }
 
-    $('.page').html(pageInfo);
+        $('.page').html(pageInfo);
+    }
 }
 
 $('.page').on('click', '.page-num', function (){
@@ -243,67 +256,77 @@ $('.page').on('click', '.page-num', function (){
 let pages =1;
 myPage.getEventReviewList(pages,showEventReviewList);
 function showEventReviewList(result){
-    console.log(result);
-    let texts=``;
 
-    texts += ` <tr class="review-text1 top1">
+    if(result.eventlist.length == 0){
+        $('.table1').css('display','none');
+        console.log(result);
+    }else {
+        $('.table1').css('display','block');
+        let texts = ``;
+
+        texts += ` <tr class="review-text1 top1">
                    <td class="review-num1">번호</td>
                    <td class="review-title1">제목</td>
                    <td class="review-data1">날짜</td>
               </tr>
             `;
 
-    result.eventlist.forEach( eventreview => {
-       texts += ` 
+        result.eventlist.forEach(eventreview => {
+            texts += ` 
         
         <tr class="review-text1">
             <td class="review-num1">${eventreview.rnum}</td>
             <td class="review-title1">
-                <a href="/board/reviewDetail?eventBoardNumber=${eventreview.eventBoardNumber}">${eventreview.eventBoardContent}</a>
+                <a href="/board/reviewEventDetail?eventBoardNumber=${eventreview.eventBoardNumber}">${eventreview.eventBoardContent}</a>
             </td>
             <td class="review-data1">${eventreview.eventBoardRegisterDate}</td>
         </tr>
         `;
-    });
+        });
 
-    $('.table1').html(texts);
+        $('.table1').html(texts);
 
-    let pagesInfo = '';
+        let pagesInfo = '';
 
-    let pagesVo=result.pageVO;
+        let pagesVo = result.pageVO;
 
-    if(pagesVo.prev){
-        pagesInfo += `
+        if (pagesVo.prev) {
+            pagesInfo += `
          <a href="javascript:void(0)" class="page-a1">
               <li class="page-num1 prev" data-pages="${pagesVo.startPage - 1}">&lt</li>
          </a>
         `;
-    }
-
-    for(let i=pagesVo.startPage; i<=pagesVo.endPage; i++){
-        if(i == pagesVo.criteria.page){
-        pagesInfo += `
+        }
+        if (pagesVo.realEnd != 0) {
+            for (let i = pagesVo.startPage; i <= pagesVo.endPage; i++) {
+                if (i == pagesVo.criteria.page) {
+                    pagesInfo += `
             <a href="javascript:void(0)" >
                 <li class="page-num1 active-num"  data-pages="${i}">${i}</li>
             </a>
-        `;}else{
-            pagesInfo += `
+        `;
+                } else {
+                    pagesInfo += `
             <a href="javascript:void(0)">
                 <li class="page-num1" data-pages="${i}">${i}</li>
             </a>
         `;
+                }
+            }
+        } else {
+            `<li></li>`
         }
-    }
 
-    if(pagesVo.next){
-        pagesInfo += `
+        if (pagesVo.next) {
+            pagesInfo += `
             <a href="javascript:void(0)" class="page-b1">
                 <li class="page-num1 next" data-pages="${pagesVo.endPage + 1}">&gt</li>
             </a>
         `;
-    }
+        }
 
-    $('.page1').html(pagesInfo);
+        $('.page1').html(pagesInfo);
+    }
 }
 
 $('.page1').on('click', '.page-num1', function (){
@@ -334,8 +357,7 @@ function purchasePage(result){
                                                     <p class="user-email">${userInfos.userEmail}</p>
                                                 </li>
                                                 <li class="user-address">
-                                                    <p>배송자 정보</p>
-                                                    <p class="address">주소</p>
+                                                    <p>배송자 주소</p>
                                                     <p class="address-info">${userInfos.address}</p>
                                                     <p class="address-detail">${userInfos.addressDetail}</p>
                                                 </li>
@@ -359,7 +381,7 @@ function purchasePage(result){
                                                     </p>
                                                     <p class="pay">
                                                         <span>결제 금액</span>
-                                                        <span>${buyInfos.estPrice}원</span>
+                                                        <span class="money">${buyInfos.estPrice}원</span>
                                                     </p>
                                                 </li>
             
@@ -378,14 +400,37 @@ function purchasePage(result){
     `;
 
     $('.total-area').html(texTs);
+
+
+
+    let priceElement = $('.money');
+    let priceText = priceElement.text().replace(/\D/g, ''); // 가격에서 숫자만 추출합니다.
+
+    // 쉼표(,)를 추가한 형식으로 가격을 변경합니다.
+    let formattedPrice = numberWithCommas(priceText);
+    priceElement.text(formattedPrice+'원');
+
+    let totalPrice =$('.totalMoney');
+    let totalPrices =$('.totalMoney').text().replace(/\D/g, '');
+    let formattedtotal = numberWithCommas(totalPrices);
+    totalPrice.text(formattedtotal+'원');
 }
 $('.check-btn').on('click',  function (){
     myPage.buyInfo(purchasePage);
+
 });
+// 결제하기의 금액 ,마 함수 정리
+function numberWithCommas(price) {
+    console.log(price);
+    return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
 
-
-
-
+$('.page-remove').on('click',function (){
+    $('.modal-pay').css('display','none');
+    console.log("실행!!!");
+    $('body').css('backgroundColor','white');
+    console.log("실행!!!");
+})
 
 
 

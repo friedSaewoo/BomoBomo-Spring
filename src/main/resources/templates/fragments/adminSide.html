@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+<nav th:fragment="side-container" class="side-container">
+  <div class="admin-user">
+    <h4>회원 관리</h4>
+    <ul>
+      <li><a href="/admin/user">회원 목록 조회</a></li>
+    </ul>
+  </div>
+  <div class="admin-emp">
+    <h4>직원관리</h4>
+    <ul>
+      <li><a href="/admin/emp">직원 목록 조회</a></li>
+      <li><a href="/admin/emp/regist">직원 등록</a></li>
+    </ul>
+  </div>
+  <div class="admin-match">
+    <h4>매칭 관리</h4>
+    <ul>
+      <li><a href="/admin/match">매칭 목록 조회</a></li>
+    </ul>
+  </div>
+  <div class="admin-event">
+    <h4>이벤트 관리</h4>
+    <ul>
+      <li><a href ="/admin/event">이벤트 목록 조회</a></li>
+      <li><a href ="/admin/eventRegist">이벤트 등록</a></li>
+    </ul>
+  </div>
+  <div class="admin-notice">
+    <h4>공지사항 관리</h4>
+    <ul>
+      <li><a href="/admin/notice">공지사항 목록 조회</a></li>
+      <li><a href="/admin/noticeRegist">공지사항 등록</a></li>
+    </ul>
+  </div>
+</nav>
+</body>
+</html>

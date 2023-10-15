@@ -9,16 +9,16 @@ import org.springframework.stereotype.Component;
 @Data
 @NoArgsConstructor
 public class MatchEmpInfoVo {
-    Long empNumber;
-    String empName;
-    Integer empAge;
-    String empGender;
-    String empPhone;
-    String empEmail;
-    String empDate;
-    String empContent;
-    String empImgName;
-    String empImgUploadPath;
-    String empImgUuid;
+    private Long empNumber;
+    private String empName;
+    private Integer empAge;
+    private String empGender;
+    private String empPhone;
+    private String empEmail;
+    private String empDate;
+    private String empContent;
+    private String empImgName;
+    private String empImgUploadPath;
+    private String empImgUuid;
 
 }

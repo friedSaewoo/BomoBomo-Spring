@@ -75,13 +75,25 @@ public class AdminService {
     public void empRegist(EmpDto empDto){
         adminMapper.empRegist(empDto);
     }
+//  직원 수정
+    public void empUpdate(EmpDto empDto){
+        adminMapper.empUpdate(empDto);
+    }
 //  직원 활동 등록
     public void empActRegist(EmpActItemDto empActItemDto){
         adminMapper.empActRegist(empActItemDto);
     }
+//  직원 활동 삭제
+    public void empActDelete(Long empNumber){
+        adminMapper.empActDelete(empNumber);
+    }
 //  직원 이미지 등록
     public void empImgRegist(EmpImgDto empImgDto){
         adminMapper.empImgRegist(empImgDto);
+    }
+//  직원 이미지 수정
+    public void empImgUpdate(EmpImgDto empImgDto){
+        adminMapper.empImgUpdate(empImgDto);
     }
 //  직원 이미지 저장처리
     public EmpImgDto saveEmpImg(MultipartFile empImg) throws IOException {
@@ -128,17 +140,22 @@ public class AdminService {
         }
     }
 // 직원 이미지 업데이트, 데이터베이스 업데이트
-//    public void eventImgUpdateAndSave(List<MultipartFile> eventImg, Long eventNumber) throws IOException{
-//        for(MultipartFile file : eventImg){
-//            EventImgDto eventImgDto = saveEventImg(file);
-//            eventImgDto.setEventNumber(eventNumber);
-//            updateEventImg(eventImgDto);
-//        }
-//    }
+    public void empImgUpdateAndSave(List<MultipartFile> empImg, Long empNumber) throws IOException{
+        for(MultipartFile file : empImg){
+            EmpImgDto empImgDto = saveEmpImg(file);
+            empImgDto.setEmpNumber(empNumber);
+            empImgUpdate(empImgDto);
+        }
+    }
 
 //    직원 상세
     public EmpVo selectEmpDetail(Long empNumber){
+
         return adminMapper.selectEmpDetail(empNumber);
+    }
+//    직원 활동 조회
+    public List<EmpActItemDto> selectEmpActItem(Long empNumber){
+        return adminMapper.selectEmpActItem(empNumber);
     }
 //    직원 활동 이미지
     public List<ActVo> selectEmpAct(Long empNumber){
@@ -178,9 +195,17 @@ public class AdminService {
     public List<MatchListVo> selectAllMatchs(Criteria criteria, SearchVo searchVo){
         return adminMapper.selectAllMatchs(criteria,searchVo);
     }
+//    매칭 관리
+    public MatchListVo selectMatchDetail(Long matchNumber){
+        return adminMapper.selectMatchDetail(matchNumber);
+    }
 //    매칭 리스트 수
     public int getTotalMatchs(SearchVo searchVo){
         return adminMapper.getTotalMatchs(searchVo);
+    }
+//    매칭 상태 업데이트
+    public void updateStatus(Long matchNumber,String status){
+        adminMapper.updateStatus(matchNumber,status);
     }
 
 //    이벤트 조회

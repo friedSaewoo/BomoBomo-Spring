@@ -1,4 +1,7 @@
 //버튼 체크시 성별 단락이 나타나는 코드
+
+
+
 $(document).ready(function() {
 
     $('.one-check').change(function(){
@@ -64,6 +67,7 @@ $(document).ready(function(){
     $('.btn').on('mouseover',function(){
         $(this).css("backgroundColor","#FF7000");
         $(this).css("color","white");
+        $(this).css("fontWeight","bold");
         console.log("asd")
     })
 

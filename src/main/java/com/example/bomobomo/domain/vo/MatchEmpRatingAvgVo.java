@@ -8,11 +8,11 @@ import org.springframework.stereotype.Component;
 @Data
 @NoArgsConstructor
 public class MatchEmpRatingAvgVo {
-    Long matchNumber;
-    Long userNumber;
-    Long submitOrderNumber;
-    Long empNumber;
-    Integer status;
-    Integer avg;
+    private Long matchNumber;
+    private Long userNumber;
+    private Long submitOrderNumber;
+    private Long empNumber;
+    private Integer status;
+    private Integer avg;
 
 }
