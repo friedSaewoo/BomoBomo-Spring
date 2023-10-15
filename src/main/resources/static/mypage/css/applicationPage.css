@@ -115,6 +115,7 @@ main{
     height: 60px;
     font-family: "Luckiest Guy", fantasy;
     line-height: 90px;
+    text-shadow: 0px 0px 1px;
 }
 
 .check-area{

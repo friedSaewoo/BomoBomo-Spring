@@ -8,17 +8,17 @@ import org.springframework.stereotype.Component;
 @Component
 @NoArgsConstructor
 public class MyPageEventVo {
-    Long eventPayNumber;
-    Long applyNumber;
-    Long userNumber;
-    Long eventNumber;
-    String eventDate;
-    String eventName;
-    Integer eventPrice;
-    String eventImgName;
-    String eventImgUploadPath;
-    String eventImgUuid;
-    Integer reviewCheck;
-    Integer rnum;
+    private Long eventPayNumber;
+    private Long applyNumber;
+    private Long userNumber;
+    private Long eventNumber;
+    private String eventDate;
+    private String eventName;
+    private Integer eventPrice;
+    private String eventImgName;
+    private String eventImgUploadPath;
+    private String eventImgUuid;
+    private Integer reviewCheck;
+    private Integer rnum;
     // buy 페이지에서 이벤트 결제내역을 저장하기위한 클래스
 }
