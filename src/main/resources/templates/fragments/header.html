@@ -47,8 +47,9 @@
                 <ul th:unless="${session.userNumber == null}">
                     <li>
                         <a href="/mypage/main">
-                            <h3 class="page_move" th:text="${session.userName} + 님"></h3></li>
+                            <h3 class="page_move" >마이페이지</h3>
                         </a>
+                    </li>
                     <li><a href="/user/logout" class="nav-item login">로그아웃</a></li>
                 </ul>
             </div>
