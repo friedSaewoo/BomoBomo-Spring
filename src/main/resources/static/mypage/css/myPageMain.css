@@ -57,7 +57,7 @@ main{
     color: white;
     background-color: #FF7000;
     font-size: 15px;
-    font-family:'IBM Plex Sans KR', sans-serif;
+    font-family: 'S-CoreDream-3Light';
 }
 
 .menu-bar>div>a{
@@ -66,9 +66,9 @@ main{
     text-decoration: none;
     line-height: 40px;
     color: black;
-    font-family: 'IBM Plex Sans KR', sans-serif;
+    font-family: 'S-CoreDream-3Light';
 
-    width: 150px;
+    width: 90px;
     font-size: 15px;
 }
 
@@ -216,11 +216,17 @@ main{
     border-right: 1px solid #bbb;
 
 }
+.siterimg-line{
 
-.siterimg>img{
-    width: 60px;
-    margin-left: 8px;
-    margin-top: 5px;
+}
+.siterimg-img{
+    width: 70px;
+}
+
+.siterimg-img>img{
+    width: 100%;
+    height: 100%;
+
     box-shadow: 0px 0px 2px 2px rgba(163,174,184,0.7);
     border-radius: 5px;
 }
@@ -247,6 +253,19 @@ main{
     text-align: center;
     border-right: 1px solid #bbb;
 
+}
+.avg{
+
+}
+
+.review-H3{
+    font-size: 16px;
+}
+.existH3{
+    font-size: 16px;
+}
+.h3{
+    font-size: 16px;
 }
 .siter-infos>span{
     display: inline-block;
