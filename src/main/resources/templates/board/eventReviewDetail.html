@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>공지사항</title>
+    <title>이벤트 이용 후기</title>
 </head>
 <body>
 <div class="header" th:replace="fragments/header :: header"></div>
@@ -28,7 +28,7 @@
                         <li>
                             <div>
                                 <p ><span><strong th:text="${reviewEventDetail.eventName}"></strong></span></p>
-                                <p>이벤트에 대한 리뷰입니다.</p>
+                                <p class="review-info">이벤트에 대한 리뷰입니다.</p>
                             </div>
 
                         </li>
@@ -37,9 +37,9 @@
                             <div class="sitter-avg">
 
                                 <span th:if="${avgEventReview >=0 && avgEventReview <0.5}" class="avg">☆☆☆☆☆</span>
-                                <span th:if="${avgEventReview >=0.5 && avgEventReview <1.5}" class="avg" style="font-size: 20px">★☆☆☆☆ </span>
+                                <span th:if="${avgEventReview >=0.5 && avgEventReview <1.5}" class="avg">★☆☆☆☆ </span>
                                 <span th:if="${avgEventReview >=1.5 && avgEventReview <2.5}" class="avg">★★☆☆☆ </span>
-                                <span th:if="${avgEventReview >=2.5 && avgEventReview <3.5}" class="avg" style="font-size: 20px">★★★☆☆ </span>
+                                <span th:if="${avgEventReview >=2.5 && avgEventReview <3.5}" class="avg" >★★★☆☆ </span>
                                 <span th:if="${avgEventReview >=3.5 && avgEventReview <4.5}" class="avg">★★★★☆ </span>
                                 <span th:if="${avgEventReview >=4.5 && avgEventReview ==5}" class="avg">★★★★★ </span>
                             </div>
@@ -53,8 +53,9 @@
                 <div class="related-sitter-review-container" >
                     <ul>
                         <li th:each="reviewList : ${eventReviewList}">
+                            <th:block th:if="${reviewEventDetail.eventBoardNumber != reviewList.eventBoardNumber}">
                             <a th:href="@{/board/reviewEventDetail(eventBoardNumber=${reviewList.eventBoardNumber})}">
-                                <div class="related-sitter-review" th:if="${reviewEventDetail.eventBoardNumber != reviewList.eventBoardNumber}">
+                                <div class="related-sitter-review" >
                                     <ul>
                                         <li ><strong th:text="${reviewList.userId}" ></strong></li>
                                         <li th:text="${reviewList.eventBoardContent}"></li>
@@ -62,6 +63,7 @@
                                     </ul>
                                 </div>
                             </a>
+                            </th:block>
                         </li>
                     </ul>
                 </div>

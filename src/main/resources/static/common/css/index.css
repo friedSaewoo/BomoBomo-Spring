@@ -40,16 +40,17 @@
 }
 
 .main-letter dl{
-    line-height: 1.5;
+    line-height: 1.9;
     font-family: GmarketSansMedium;
 
 }
 
 .left-letter {
+    height: 230px;
     color: black;
     box-sizing: border-box;
     padding: 15px;
-    /* border: 2px solid red; */
+
     width: 1024px;
 }
 .left-letter span {
@@ -58,73 +59,7 @@
 
 }
 
-.right-letter {
-    box-sizing: border-box;
-    padding: 15px;
-    display: flex;
-    justify-content: end;
-    /* border: 2px solid blue; */
-    width: 1024px;
-}
 
-.right-letter h1 {
-    justify-content: center;
-    align-items: center;
-    display: flex;
-    margin: 0;
-    font-size: 4em;
-    padding: 0;
-    color: white;
-    text-shadow: 0 0.1em 20px black, 0.05em -0.03em 0 black, 0.05em 0.005em 0 black, 0em 0.08em 0 black, 0.05em 0.08em 0 black, 0px -0.03em 0 black, -0.03em -0.03em 0 black, -0.03em 0.08em 0 black, -0.03em 0 0 black;
-}
-.right-letter h1 span {
-
-    font-family: "Luckiest Guy", cursive;
-    transform: scale(0.9);
-    display: inline-block;
-}
-.right-letter h1 span:first-child {
-    -webkit-animation: bop 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards infinite alternate;
-    animation: bop 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards infinite alternate;
-}
-.right-letter h1 span:last-child {
-    -webkit-animation: bopB 1s 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards infinite alternate;
-    animation: bopB 1s 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards infinite alternate;
-}
-
-@-webkit-keyframes bop {
-    0% {
-        transform: scale(0.9);
-    }
-    50%, 100% {
-        transform: scale(1);
-    }
-}
-
-@keyframes bop {
-    0% {
-        transform: scale(0.9);
-    }
-    50%, 100% {
-        transform: scale(1);
-    }
-}
-@-webkit-keyframes bopB {
-    0% {
-        transform: scale(0.9);
-    }
-    80%, 100% {
-        transform: scale(1) rotateZ(-3deg);
-    }
-}
-@keyframes bopB {
-    0% {
-        transform: scale(0.9);
-    }
-    80%, 100% {
-        transform: scale(1) rotateZ(-3deg);
-    }
-}
 
 
 
@@ -199,42 +134,50 @@
 
 /* 시터 및 이벤트 서비스 리뷰 영역 */
 .review-content-contatiner{
-    /* border: 2px solid blue; */
-    width: 1024px;
+    width: 100%;
     height: 800px;
-    padding-top: 50px;
-    padding-bottom: 100px;
-    /* border-bottom: 1px solid gray; */
-    margin: 0 auto;
+    padding-bottom: 50px;
+
 
 
 }
 
 
-.review-content-contatiner h2{
-    text-align: center;
-    font-family: 'Black Han Sans', sans-serif;
-    font-family: 'Dongle', sans-serif !important;
-    font-family: 'Gamja Flower', cursive;
-    font-family: 'IBM Plex Sans KR', sans-serif;
-    font-family: 'Single Day', cursive;
-    font-size: 2.2em;
+.review-content {
+    width: 1024px;
+    margin: 30px auto;
 }
 
-.review-content-contatiner h2 span {
-    font-size: 1.8em;
-    color: #FF7000;
+.review-title{
+    min-width: 1024px;
+    padding:50px;
+    background-color: #FF7000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+
+
+.review-title h2 span {
+    font-size: 1.1em;
+    color: white;
 }
 
 .review-title>h2{
-    padding-bottom: 30px;
+    text-align: center;
+    font-family: 'GmarketSansMedium';
+    font-weight: bold;
+    font-size: 1.1em;
+
 }
 
 
 .review-panel, .review-panel2 {
-    /* border: 2px solid red; */
     width: 1024px;
-    height: 290px;
+    height: 270px;
     overflow: hidden;
 }
 .review-panel ul, .review-panel2 ul {
@@ -245,7 +188,7 @@
 }
 
 .review-panel ul li, .review-panel2 ul li {
-    width: 300px;
+    width: 295px;
     height: 150px;
 }
 
@@ -253,68 +196,72 @@
     width: 100%;
     height: 100%;
 }
-.review-panel dl, .review-panel2 dl {
-    border: 2px solid red;
+.review-panel dl dt, .review-panel2 dl dt {
+    padding: 5px;
 }
-.review-panel dl dd:nth-child(2),
-.review-panel2 dl dd:nth-child(2) {
-    border: 2px solid red;
+
+.review-panel dl, .review-panel2 dl {
+    border: 1px solid gray;
+
+}
+
+.review-section {
+    border: 1px solid gray;
+}
+.review-rating {
     width: 75px;
     height: 30px;
     position: relative;
-    right:-220px;
-    top:-25px;
+    right:-200px;
+    top:-35px;
     display: flex;
     align-items: center;
-}
-.review-panel dl span,
-.review-panel2 dl span{
-    margin-left: 4px;
-    font-size: 15px;
-}
-.review-panel dl dd img,
-.review-panel2 dl dd img {
-
-    width: 30px;
-    height: 100%;
+    color: #e89f14d9;
+    font-size: 18px;
 }
 
-.review-panel dl dd:nth-child(3),
-.review-panel2 dl dd:nth-child(3) {
-    border: 2px solid red;
-    height: 50px;
+
+.review-text {
+    box-sizing: border-box;
+    padding:5px;
+    height: 45px;
+    text-overflow: ellipsis;
+    white-space: normal;
+    text-align: left;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+    overflow: hidden;
+    font-size: 14px;
 }
 
 
 .review-board-btn{
+    padding-top: 20px;
     display: flex;
     justify-content: center;
     /* border: 2px solid red; */
 }
 
 .review-board-btn a {
-    font-family: 'Black Han Sans', sans-serif;
-    font-family: 'Dongle', sans-serif !important;
-    font-family: 'Gamja Flower', cursive;
-    font-family: 'IBM Plex Sans KR', sans-serif;
-    font-family: 'Single Day', cursive;
-    /* border: 2px solid blue; */
-    font-size: 2em;
+    font-family: 'GmarketSansMedium';
+    font-weight: bold;
+    font-size: 1em;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 300px;
+    width: 900px;
     text-align: center;
-    height: 40px;
-    background-color:#dfb015 ;
-    border-radius: 15px;
+    height: 35px;
+    background-color:#FF7000 ;
+    border-radius: 10px;
     color: white;
 }
 
 /* 서비스 디테일 영역 */
 .service-detail-container{
     border-top: 1px solid gray;
-    border-bottom: 1px solid gray;
+    /*border-bottom: 1px solid gray;*/
     width: 1024px;
     margin: 0 auto;
     padding-top: 50px;
@@ -325,14 +272,11 @@
 
 .service-detail-container dt {
     text-align: center;
-    font-size: 2.2em;
+    font-size: 1em;
     font-weight: bold;
     padding: 30px;
-    font-family: 'Black Han Sans', sans-serif;
-    font-family: 'Dongle', sans-serif !important;
-    font-family: 'Gamja Flower', cursive;
-    font-family: 'IBM Plex Sans KR', sans-serif;
-    font-family: 'Single Day', cursive;
+    font-family: 'GmarketSansMedium';
+
 }
 
 

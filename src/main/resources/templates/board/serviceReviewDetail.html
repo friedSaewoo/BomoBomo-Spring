@@ -28,7 +28,7 @@
           <li>
               <div>
                 <p ><span><strong th:text="${reviewDetail.empName}"></strong></span></p>
-                <p>시터님에 대한 리뷰입니다.</p>
+                <p class="review-info">시터님에 대한 리뷰입니다.</p>
               </div>
 
           </li>
@@ -37,9 +37,9 @@
                   <div class="sitter-avg">
 
                   <span th:if="${getAvg >=0 && getAvg <0.5}" class="avg">☆☆☆☆☆</span>
-                  <span th:if="${getAvg >=0.5 && getAvg <1.5}" class="avg" style="font-size: 20px">★☆☆☆☆ </span>
+                  <span th:if="${getAvg >=0.5 && getAvg <1.5}" class="avg" >★☆☆☆☆ </span>
                   <span th:if="${getAvg >=1.5 && getAvg <2.5}" class="avg">★★☆☆☆ </span>
-                  <span th:if="${getAvg >=2.5 && getAvg <3.5}" class="avg" style="font-size: 20px">★★★☆☆ </span>
+                  <span th:if="${getAvg >=2.5 && getAvg <3.5}" class="avg">★★★☆☆ </span>
                   <span th:if="${getAvg >=3.5 && getAvg <4.5}" class="avg">★★★★☆ </span>
                   <span th:if="${getAvg >=4.5 && getAvg ==5}" class="avg">★★★★★ </span>
                   </div>
@@ -53,8 +53,9 @@
         <div class="related-sitter-review-container" >
           <ul>
             <li th:each="reviewList : ${sitterReviewList}">
+              <th:block th:if="${reviewDetail.sitterBoardNumber != reviewList.sitterBoardNumber}">
               <a th:href="@{/board/reviewDetail(sitterBoardNumber=${reviewList.sitterBoardNumber})}">
-                <div class="related-sitter-review" th:if="${reviewDetail.sitterBoardNumber != reviewList.sitterBoardNumber}">
+                <div class="related-sitter-review" >
                   <ul>
                     <li ><strong th:text="${reviewList.userId}" ></strong></li>
                     <li th:text="${reviewList.sitterBoardContent}"></li>
@@ -62,6 +63,7 @@
                   </ul>
                 </div>
               </a>
+              </th:block>
             </li>
           </ul>
         </div>

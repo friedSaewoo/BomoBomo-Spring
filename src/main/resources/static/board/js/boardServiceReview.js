@@ -66,7 +66,7 @@ function serviceReviewList(result) {
             text += `
                 
                 <li>
-                    <a href="/board/reviewDetail?sitterBoardNumber=${r.sitterBoardNumber}">
+                    <a href="/board/reviewDetail?sitterBoardNumber=${r.sitterBoardNumber}" class="review-img-zoom">
                         <div class="review-sitter-img">
                             <img src="/reviews/empPic?empPicFullName=${r.empImgUploadPath + '/'+ r.empImgUuid + '_' + r.empImgName}" alt="리뷰 보모사진"/>
                         </div>
