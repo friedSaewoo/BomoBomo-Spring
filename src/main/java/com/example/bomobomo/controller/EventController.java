@@ -68,7 +68,7 @@ public class EventController {
         return FileCopyUtils.copyToByteArray(new File(fileEventImg, fileFullPath));
     }
 
-    //    직원 조회 이미지
+//   직원 조회 이미지
     @Value("${file.empImg}")
     private String fileEmpImg;
 
@@ -90,11 +90,16 @@ public class EventController {
         model.addAttribute("pageInfo", new PageVo(eventService.getTotal(), criteria));
         return "event/employeeIntro" ;
     }
-    //    인재 채용 페이지 이동
+//   인재 채용 페이지 이동
     @GetMapping("/rec")
     public String showRecruitmentPage(){
         return "event/recruitment";
     }
+
+//   이용가이드 페이지 이동
+    @GetMapping("/guide")
+    public String showUserGuidePage() {
+        return "event/userGuide"; }
 }
 
 
