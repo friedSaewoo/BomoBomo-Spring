@@ -131,50 +131,48 @@ public class BoardController {
         double getAvg = reviewService.getAvgRating(sitterBoardVo.getEmpNumber());
 
 
-//        Cookie[] cookies = req.getCookies();
-//        boolean updateCount = true;
-//
-//        if (cookies != null) {
-//            for (Cookie cookie : cookies) {
-//                if ("reviewDetail_count_cookie".equals(cookie.getName())) {
-//                    String cookieValue = cookie.getValue();
-//
-//                    String[] values = cookieValue.split("/");
-//                    log.info("%%%%%%%%%% {}", Arrays.toString(values));
-//
-//                    List<Long> valueList = Arrays.stream(values).mapToLong(Long::parseLong).boxed().collect(Collectors.toList());
-//
-//                    if(valueList.contains(sitterBoardNumber)){
-//                        updateCount = false;
-//                        break;
-//                    }
-//
-//                    valueList.add(sitterBoardNumber);
-//                    log.info("##############3 {}", valueList);
-//
-//                    String result = String.join("/", valueList.stream().map(ele -> ele+"").collect(Collectors.toList()));
-//
-//                    log.info("**************************** {}", result);
-//                    cookie.setValue(result);
-//                    resp.addCookie(cookie);
-//                    updateCount = false;
-//                    reviewService.updateCount(sitterBoardNumber);
-//
-//                }
-//
-//            }
-//        }
-//
-//        if (updateCount) {
-//            Cookie newCookie = new Cookie("reviewDetail_count_cookie", req.getParameter("sitterBoardNumber"));
-//            newCookie.setMaxAge(24 * 60 * 60);
-//            resp.addCookie(newCookie);
-//
-//            reviewService.updateCount(sitterBoardNumber);
-//        }
+        Cookie[] cookies = req.getCookies();
+        boolean updateCount = true;
 
-        CookieCount cookieCount = new CookieCount(reviewService);
-        cookieCount.cookies(req, resp, "reviewDetail_count_cookie", sitterBoardNumber, "reviewService");
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
+                if ("reviewDetail_count_cookie".equals(cookie.getName())) {
+                    String cookieValue = cookie.getValue();
+
+                    String[] values = cookieValue.split("/");
+                    log.info("%%%%%%%%%% {}", Arrays.toString(values));
+
+                    List<Long> valueList = Arrays.stream(values).mapToLong(Long::parseLong).boxed().collect(Collectors.toList());
+
+                    if(valueList.contains(sitterBoardNumber)){
+                        updateCount = false;
+                        break;
+                    }
+
+                    valueList.add(sitterBoardNumber);
+                    log.info("##############3 {}", valueList);
+
+                    String result = String.join("/", valueList.stream().map(ele -> ele+"").collect(Collectors.toList()));
+
+                    log.info("**************************** {}", result);
+                    cookie.setValue(result);
+                    resp.addCookie(cookie);
+                    updateCount = false;
+                    reviewService.updateCount(sitterBoardNumber);
+
+                }
+
+            }
+        }
+
+        if (updateCount) {
+            Cookie newCookie = new Cookie("reviewDetail_count_cookie", req.getParameter("sitterBoardNumber"));
+            newCookie.setMaxAge(24 * 60 * 60);
+            resp.addCookie(newCookie);
+
+            reviewService.updateCount(sitterBoardNumber);
+        }
+
 
         model.addAttribute("sitterReviewList", sitterBoardVoList);
         model.addAttribute("serviceReviewDetail", sitterBoardVo);
@@ -253,44 +251,47 @@ public class BoardController {
 
 
 
-//        Cookie[] cookies = req.getCookies();
-//        boolean updateCount = true;
-//
-//        if(cookies!=null){
-//            for(Cookie cookie : cookies){
-//                if("eventReviewDetail_count_cookie".equals(cookie.getName())){
-//                    String cookieValue = cookie.getValue();
-//
-//
-//                    String[] values = cookieValue.split("_");
-//                    String eventBoardNumbers = values[0];
-//
-//                    Long storedTimestamp = Long.parseLong(values[1]);
-//                    Long currentTimestamp = new Date().getTime();
-//
-//                    if(eventBoardNumbers.equals(req.getParameter("eventBoardNumber")) && (currentTimestamp - storedTimestamp) < (24 * 60 * 60 * 1000)){
-//
-//                            updateCount = false;
-//                            break;
-//                    }
-//
-//
-//                }
-//            }
-//
-//        }
-//        if(updateCount){
-//            Cookie newCookie = new Cookie("eventReviewDetail_count_cookie", req.getParameter("eventBoardNumber")+ "_" + new Date().getTime());
-//            newCookie.setMaxAge(24*60*60);
-//            resp.addCookie(newCookie);
-//
-//            reviewService.updateEventReviewCount(eventBoardNumber);
-//
-//        }
+        Cookie[] cookies = req.getCookies();
+        boolean updateCount = true;
 
-//        CookieCount cookieCount = new CookieCount(reviewService);
-//        cookieCount.cookies(req, resp,"eventReviewDetail_count_cookie" ,eventBoardNumber, "reviewService" );
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
+                if ("eventReviewDetail_count_cookie".equals(cookie.getName())) {
+                    String cookieValue = cookie.getValue();
 
+                    String[] values = cookieValue.split("/");
+                    log.info("%%%%%%%%%% {}", Arrays.toString(values));
+
+                    List<Long> valueList = Arrays.stream(values).mapToLong(Long::parseLong).boxed().collect(Collectors.toList());
+
+                    if(valueList.contains(eventBoardNumber)){
+                        updateCount = false;
+                        break;
+                    }
+
+                    valueList.add(eventBoardNumber);
+                    log.info("##############3 {}", valueList);
+
+                    String result = String.join("/", valueList.stream().map(ele -> ele+"").collect(Collectors.toList()));
+
+                    log.info("**************************** {}", result);
+                    cookie.setValue(result);
+                    resp.addCookie(cookie);
+                    updateCount = false;
+                    reviewService.updateEventReviewCount(eventBoardNumber);
+
+                }
+
+            }
+        }
+
+        if (updateCount) {
+            Cookie newCookie = new Cookie("eventReviewDetail_count_cookie", req.getParameter("eventBoardNumber"));
+            newCookie.setMaxAge(24 * 60 * 60);
+            resp.addCookie(newCookie);
+
+            reviewService.updateEventReviewCount(eventBoardNumber);
+        }
         return "board/eventReviewDetail";
 
     }
