@@ -57,7 +57,7 @@ main{
     color: white;
     background-color: #FF7000;
     font-size: 15px;
-    font-family:'IBM Plex Sans KR', sans-serif;
+    font-family: 'S-CoreDream-3Light';
 }
 
 .menu-bar>div>a{
@@ -66,9 +66,9 @@ main{
     text-decoration: none;
     line-height: 40px;
     color: black;
-    font-family: 'IBM Plex Sans KR', sans-serif;
+    font-family: 'S-CoreDream-3Light';
 
-    width: 150px;
+    width: 90px;
     font-size: 15px;
 }
 
@@ -216,11 +216,17 @@ main{
     border-right: 1px solid #bbb;
 
 }
+.siterimg-line{
 
-.siterimg>img{
-    width: 60px;
-    margin-left: 8px;
-    margin-top: 5px;
+}
+.siterimg-img{
+    width: 70px;
+}
+
+.siterimg-img>img{
+    width: 100%;
+    height: 100%;
+
     box-shadow: 0px 0px 2px 2px rgba(163,174,184,0.7);
     border-radius: 5px;
 }
@@ -247,6 +253,19 @@ main{
     text-align: center;
     border-right: 1px solid #bbb;
 
+}
+.avg{
+    color: #e89f14d9;
+}
+
+.review-H3{
+    font-size: 16px;
+}
+.existH3{
+    font-size: 16px;
+}
+.h3{
+    font-size: 16px;
 }
 .siter-infos>span{
     display: inline-block;
@@ -328,12 +347,8 @@ main{
     padding-bottom: 20px;
 }
 .reviewtab-area>span{
-    font-family: 'Black Han Sans', sans-serif;
-    font-family: 'Dongle', sans-serif !important;
-    font-family: 'Gamja Flower', cursive;
-    font-family: 'IBM Plex Sans KR', sans-serif;
-    font-family: 'Single Day', cursive;
-    font-size: 25px;
+    font-family: 'S-CoreDream-3Light';
+    font-size: 16px;
     border: 1px solid #bbb;
     cursor: pointer;
     display: inline-block;
@@ -341,6 +356,7 @@ main{
     text-align: center;
     border-radius: 5px;
     margin: 5px;
+    padding: 5px;
 }
 .review-list-area{
     height: 300px;
@@ -365,8 +381,8 @@ main{
 
 .review-text>td{
     border-collapse: collapse;
-    font-size: 15px;
-    text-align: center;
+    font-size: 13px;
+
     border-left: none;
     border-right: none;
     border-bottom: 1px solid #bbb;
@@ -374,18 +390,29 @@ main{
 }
 .review-num{
     width: 100px;
+    text-align: center;
 }
 .review-title{
     width: 500px;
     font-weight: bold;
+    text-align: start;
 
 }
 .review-title>a{
     color: black;
     font-weight: bold;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    text-align: left;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+    font-size: 13px;
 }
 .review-data{
     width: 100px;
+    text-align: center;
 }
 
 .paging{
@@ -434,8 +461,7 @@ main{
 .review-text1>td{
 
     border-collapse: collapse;
-    font-size: 15px;
-    text-align: center;
+    font-size: 13px;
     border-left: none;
     border-right: none;
     border-bottom: 1px solid #bbb;
@@ -444,20 +470,31 @@ main{
 .review-num1{
     width: 100px;
     border: none;
+    text-align: center;
 }
 .review-title1{
     width: 500px;
     border: none;
     font-weight: bold;
+    text-align: start;
 }
 
 .review-title1>a{
     color: black;
     font-weight: bold;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    text-align: left;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+    font-size: 13px;
 }
 .review-data1{
     width: 100px;
     border: none;
+    text-align: center;
 }
 
 .paging1{

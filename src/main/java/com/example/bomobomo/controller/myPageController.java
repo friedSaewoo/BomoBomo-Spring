@@ -167,11 +167,11 @@ public class myPageController {
 
     @GetMapping("/reviewwrite")
     public String showreviewwritePage(HttpServletRequest req,
-                                      @ModelAttribute("eventNumber") Long eventNumber,
+                                      @ModelAttribute("eventPayNumber") Long eventPayNumber,
                                       Model model){
         Long userNUmber =(Long)req.getSession().getAttribute("userNumber");
-        System.out.println(eventNumber);
-        model.addAttribute("eventTitle",eventBoardService.findEventTitle(eventNumber));
+        System.out.println(eventPayNumber);
+        model.addAttribute("eventNameNumber",eventBoardService.findEventTitle(eventPayNumber));
 
 
         return "mypage/reviewWrite";
@@ -182,6 +182,7 @@ public class myPageController {
                                          @RequestParam("eventBoardImg")MultipartFile file){
         Long userNumber=(Long) req.getSession().getAttribute("userNumber");
         eventBoardDto.setUserNumber(userNumber);
+
         System.out.println(eventBoardDto);
         eventBoardService.registerAndFileproc(eventBoardDto,file);
 
