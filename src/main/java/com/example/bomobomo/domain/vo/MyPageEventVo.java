@@ -19,6 +19,8 @@ public class MyPageEventVo {
     private String eventImgUploadPath;
     private String eventImgUuid;
     private Integer reviewCheck;
+    private Long eventBoardNumber;
     private Integer rnum;
     // buy 페이지에서 이벤트 결제내역을 저장하기위한 클래스
+
 }

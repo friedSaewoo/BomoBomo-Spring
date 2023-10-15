@@ -16,4 +16,5 @@ public class EventBoardDto {
     private String eventBoardModifyDate;
     private Integer rating;
     private Integer eventBoardCount;
+    private Long eventPayNumber;
 }

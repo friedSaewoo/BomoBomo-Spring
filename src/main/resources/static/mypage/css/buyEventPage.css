@@ -50,7 +50,7 @@ main{
     color: white;
     background-color: #FF7000;
     font-size: 15px;
-    font-family:'IBM Plex Sans KR', sans-serif;
+    font-family: 'S-CoreDream-3Light';
 }
 
 
@@ -60,9 +60,9 @@ main{
     text-decoration: none;
     line-height: 40px;
     color: black;
-    font-family: 'IBM Plex Sans KR', sans-serif;
+    font-family: 'S-CoreDream-3Light';
 
-    width: 150px;
+    width: 90px;
     font-size: 15px;
 }
 
@@ -104,11 +104,7 @@ main{
     border-radius: 5px;
     width: 400px;
     border: 1px solid #bbb;
-    font-family: 'Black Han Sans', sans-serif;
-    font-family: 'Dongle', sans-serif !important;
-    font-family: 'Gamja Flower', cursive;
-    font-family: 'IBM Plex Sans KR', sans-serif;
-    font-family: 'Single Day', cursive;
+    font-family: 'S-CoreDream-3Light';
     font-size: 30px;
     text-align: center;
     cursor: pointer;
@@ -119,11 +115,7 @@ main{
     border-radius: 5px;
     width: 400px;
     border: 1px solid #bbb;
-    font-family: 'Black Han Sans', sans-serif;
-    font-family: 'Dongle', sans-serif !important;
-    font-family: 'Gamja Flower', cursive;
-    font-family: 'IBM Plex Sans KR', sans-serif;
-    font-family: 'Single Day', cursive;
+    font-family: 'S-CoreDream-3Light';
     font-size: 30px;
     text-align: center;
     cursor: pointer;

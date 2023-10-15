@@ -77,12 +77,13 @@
               </div>
 
               <div class="price-2">
-                <a th:if="${event.reviewCheck >= 1}" href="javascript:void(0)" class="text-page-2">
-                  <p>리뷰작성완료</p>
-                </a>
-                <a th:if="${event.reviewCheck == 0}" th:href="@{/mypage/reviewwrite(eventNumber=${event.eventNumber})}" class="text-page-2">
+                <a th:if="${event.eventBoardNumber == null}" th:href="@{/mypage/reviewwrite(eventPayNumber=${event.eventPayNumber})}" class="text-page-2">
                   <p>리뷰작성</p>
                 </a>
+                <a th:unless="${event.eventBoardNumber == null}" href="javascript:void(0)" class="text-page-2">
+                  <p>리뷰작성완료</p>
+                </a>
+
                 <span th:text="${#numbers.formatInteger(event.eventPrice, 3, 'COMMA')}+'원'"></span>
               </div>
             </li>
