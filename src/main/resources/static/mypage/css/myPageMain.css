@@ -255,7 +255,7 @@ main{
 
 }
 .avg{
-
+    color: #e89f14d9;
 }
 
 .review-H3{
@@ -347,12 +347,8 @@ main{
     padding-bottom: 20px;
 }
 .reviewtab-area>span{
-    font-family: 'Black Han Sans', sans-serif;
-    font-family: 'Dongle', sans-serif !important;
-    font-family: 'Gamja Flower', cursive;
-    font-family: 'IBM Plex Sans KR', sans-serif;
-    font-family: 'Single Day', cursive;
-    font-size: 25px;
+    font-family: 'S-CoreDream-3Light';
+    font-size: 16px;
     border: 1px solid #bbb;
     cursor: pointer;
     display: inline-block;
@@ -360,6 +356,7 @@ main{
     text-align: center;
     border-radius: 5px;
     margin: 5px;
+    padding: 5px;
 }
 .review-list-area{
     height: 300px;
@@ -464,8 +461,7 @@ main{
 .review-text1>td{
 
     border-collapse: collapse;
-    font-size: 15px;
-    text-align: center;
+    font-size: 13px;
     border-left: none;
     border-right: none;
     border-bottom: 1px solid #bbb;
@@ -474,20 +470,31 @@ main{
 .review-num1{
     width: 100px;
     border: none;
+    text-align: center;
 }
 .review-title1{
     width: 500px;
     border: none;
     font-weight: bold;
+    text-align: start;
 }
 
 .review-title1>a{
     color: black;
     font-weight: bold;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    text-align: left;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+    font-size: 13px;
 }
 .review-data1{
     width: 100px;
     border: none;
+    text-align: center;
 }
 
 .paging1{

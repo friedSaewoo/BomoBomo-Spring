@@ -38,30 +38,39 @@
 
     <!--결제 페이지 이벤트 결제 내역 및 리뷰 작성확인  보기-->
     <select id="selectEventList" resultType="myPageEventVo">
-        select  RNUM,EVENT_PAY_NUMBER ,APPLY_NUMBER,USER_NUMBER, EVENT_NUMBER,EVENT_DATE,
-        EVENT_NAME, EVENT_PRICE,EVENT_IMG_NAME, EVENT_IMG_UPLOAD_PATH, EVENT_IMG_UUID,REVIEW_CHECK
-        from(
-            select ROWNUM AS RNUM,EVENT_PAY_NUMBER ,APPLY_NUMBER,USER_NUMBER, EVENT_NUMBER,EVENT_DATE,
-            EVENT_NAME, EVENT_PRICE,EVENT_IMG_NAME, EVENT_IMG_UPLOAD_PATH, EVENT_IMG_UUID,REVIEW_CHECK
-            from(
-                SELECT E1.APPLY_NUMBER,E2.EVENT_PAY_NUMBER ,USER_NUMBER, e1.EVENT_NUMBER,EVENT_DATE,
-                E3.EVENT_NAME, E3.EVENT_PRICE,EI.EVENT_IMG_NAME, EI.EVENT_IMG_UPLOAD_PATH, EI.EVENT_IMG_UUID
-                ,(SELECT COUNT(EB.EVENT_NUMBER) FROM EVENT_BOARD EB WHERE EB.EVENT_NUMBER =e1.EVENT_NUMBER) AS REVIEW_CHECK
-                FROM(
-                    SELECT APPLY_NUMBER,USER_NUMBER,EVENT_NUMBER,EVENT_DATE
-                    FROM EVENT_APPLY
-                    WHERE USER_NUMBER = #{userNumber}
-                    )E1
-                JOIN EVENT_PAY E2 ON E1.APPLY_NUMBER = E2.APPLY_NUMBER
-                JOIN EVENT E3 ON E1.EVENT_NUMBER = E3.EVENT_NUMBER
-                left JOIN EVENT_IMG EI ON E3.EVENT_NUMBER = EI.EVENT_NUMBER
-                ORDER BY EVENT_NUMBER DESC
-                )
-            <![CDATA[
-            where ROWNUM <= #{criteria.page} * #{criteria.amount}
-                ]]>
-        )
-        where RNUM > (#{criteria.page} - 1) * #{criteria.amount}
+        select RNUM,APPLY_NUMBER,USER_NUMBER,EVENT_NUMBER,EVENT_DATE,EVENT_NAME,EVENT_PRICE,EVENT_PAY_NUMBER,EVENT_BOARD_NUMBER,
+                event_img_name,EVENT_IMG_UPLOAD_PATH,EVENT_IMG_UUID
+        from (
+                select ROWNUM AS RNUM,APPLY_NUMBER,USER_NUMBER,EVENT_NUMBER,EVENT_DATE,EVENT_NAME,EVENT_PRICE,EVENT_PAY_NUMBER,EVENT_BOARD_NUMBER,
+                event_img_name,EVENT_IMG_UPLOAD_PATH,EVENT_IMG_UUID
+                from (
+                        select e3.APPLY_NUMBER,e3.USER_NUMBER,e3.EVENT_NUMBER,EVENT_DATE,EVENT_NAME,EVENT_PRICE,e3.EVENT_PAY_NUMBER,
+                        EVENT_BOARD_NUMBER,event_img_name,EVENT_IMG_UPLOAD_PATH,EVENT_IMG_UUID
+                        from (
+                                select e2.APPLY_NUMBER,USER_NUMBER,e2.EVENT_NUMBER,EVENT_DATE,EVENT_NAME,EVENT_PRICE,EVENT_PAY_NUMBER,
+                                event_img_name,EVENT_IMG_UPLOAD_PATH,EVENT_IMG_UUID
+                                from (
+                                        select APPLY_NUMBER,USER_NUMBER,e1.EVENT_NUMBER,EVENT_DATE,EVENT_NAME,EVENT_PRICE,
+                                        event_img_name,EVENT_IMG_UPLOAD_PATH,EVENT_IMG_UUID
+                                        from (
+                                                SELECT APPLY_NUMBER, USER_NUMBER, EVENT_NUMBER, EVENT_DATE
+                                                FROM EVENT_APPLY
+                                                WHERE USER_NUMBER = #{userNumber}
+                                                ) e1
+                                                join EVENT e on e1.EVENT_NUMBER = e.EVENT_NUMBER
+                                                left join event_img ei on e1.EVENT_NUMBER=ei.EVENT_NUMBER
+                                        ) e2
+                                        join EVENT_PAY ep on e2.APPLY_NUMBER = ep.APPLY_NUMBER
+
+                                ) e3
+                                left join EVENT_BOARD eb on e3.EVENT_PAY_NUMBER = eb.EVENT_PAY_NUMBER
+                                ORDER BY event_board_register_date asc
+                        )
+                    <![CDATA[
+                        where ROWNUM <= #{criteria.page} * #{criteria.amount}
+                        ]]>
+                 )
+                    where RNUM > (#{criteria.page} - 1) * #{criteria.amount}
     </select>
 <!--이벤트 결제진행된 내역 전체 조회-->
     <select id="selectEventTotal" resultType="_int">

@@ -3,6 +3,7 @@ package com.example.bomobomo.service;
 import com.example.bomobomo.domain.dto.EventBoardDto;
 import com.example.bomobomo.domain.vo.Criteria;
 import com.example.bomobomo.domain.vo.EventBoardVo;
+import com.example.bomobomo.domain.vo.EventNameNumberVo;
 import com.example.bomobomo.mapper.EventBoardMapper;
 import lombok.RequiredArgsConstructor;
 import org.apache.ibatis.annotations.Param;
@@ -25,12 +26,12 @@ public class EventBoardService {
     }
 
     //리뷰 작성시 결제한 이벤트 이름 조회하기
-    public String findEventTitle(Long eventNumber){
-        if (eventNumber == null) {
+    public EventNameNumberVo findEventTitle(Long eventPayNumber){
+        if (eventPayNumber == null) {
             throw new IllegalArgumentException("조회된 이벤트 번호 누락!");
         }
 
-        return Optional.ofNullable(eventBoardMapper.selectEventTitle(eventNumber))
+        return Optional.ofNullable(eventBoardMapper.selectEventTitle(eventPayNumber))
                 .orElseThrow(()->{throw new IllegalArgumentException("조회결과 없음!");});
 
     }
