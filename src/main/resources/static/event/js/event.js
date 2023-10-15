@@ -1,39 +1,20 @@
-let $slideBox2 = $('.event-goods-contents ul');
-let $slideImgs2 = $('.event-goods-contents ul img');
-let slideWidth2 = 1051;
-let currentIdx2 = 0;
-let slideCnt2 = $slideImgs2.length;
-console.log('slideCnt : ' + slideCnt2);
-checkEnd2()
+new Swiper('.swiper-container', {
+    slidesPerView: 4, // 동시에 보여줄 슬라이드 갯수
+    spaceBetween: 30, // 슬라이드간 간격
+    slidesPerGroup: 4, // 그룹으로 묶을 수, slidesPerView와 같은 값을 지정하는 게 좋음
 
-$('.recently-right-button').stop().on('click', function () {
-    console.log('aa');
-    currentIdx2++;
-    console.log('currentIdx : ' + currentIdx2);
-    $slideBox2.css('left', -(currentIdx2 * slideWidth2));
-    $slideBox2.css('transition', '0.5s ease');
-    checkEnd2()
+    // 그룹수가 맞지 않을 경우 빈칸으로 메우기
+    // 3개가 나와야 되는데 1개만 있다면 2개는 빈칸으로 채워서 3개를 만듬
+    loopFillGroupWithBlank: true,
+
+    loop: true, // 무한 반복
+
+    pagination: { // 페이징
+        el: '.swiper-pagination',
+        clickable: true, // 페이징을 클릭하면 해당 영역으로 이동, 필요시 지정해 줘야 기능 작동
+    },
+    navigation: { // 네비게이션
+        nextEl: '.swiper-button-next', // 다음 버튼 클래스명
+        prevEl: '.swiper-button-prev', // 이번 버튼 클래스명
+    },
 });
-
-$('.recently-left-button').on('click', function () {
-    console.log('bbb');
-    currentIdx2--;
-    console.log('currentIdx : ' + currentIdx2);
-    $slideBox2.css('left', -(currentIdx2 * slideWidth2));
-    $slideBox2.css('transition', '0.5s ease');
-    checkEnd2()
-});
-
-function checkEnd2() {
-    if (currentIdx2 <= 0) {
-        $('.recently-left-button').css('display', 'none');
-    } else {
-        $('.recently-left-button').css('display', 'block');
-    }
-
-    if (currentIdx2==1) {
-        $('.recently-right-button').css('display', 'none');
-    } else {
-        $('.recently-right-button').css('display', 'block');
-    }
-}

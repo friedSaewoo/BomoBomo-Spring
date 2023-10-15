@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="/fragments/css/header.css"/>
     <link rel="stylesheet" href="/fragments/css/footer.css"/>
     <link rel="stylesheet" href="/common/css/common.css"/>
-    <link rel="stylesheet" href="/event/css/eventdetail.css"/>
+    <link rel="stylesheet" href="/event/css/userGuide.css"/>
     <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
     <script src="/common/js/common.js" defer></script>
 
@@ -18,27 +18,8 @@
 <!--헤더영역-->
 <div class="header" th:replace="fragments/header :: header">
 </div>
-    <div class="main" style="height: 1300px;" th:each="event:${detail}">
-        <div class="event-detail"  >
-            <div class="event-detail-banner">
-                <img th:src="'/upload/' + ${event.eventImgUploadPath} + '/' + ${event.eventImgUuid} +'_' + ${event.eventImgName}">
-            </div>
-        </div>
-        <div class="event-detail-main">`
-            <div class="event-detail-line">
-                프로그램 상세설명
-            </div>
-        </div>
+    <main style="height: 700px;">
 
-        <div class="event-main-detail">
-            <div class="event-main-info">
-                <img th:src="'/upload/' + ${event.eventDetailUploadPath} + '/' + ${event.eventDetailUuid} +'_' + ${event.eventDetailName}">
-            </div>
-        </div>
-        <div class="event-apply" th:block th:if="${session.userId!=null}">
-            <a th:href="@{/event/payment(eventNumber=${event.eventNumber})}">신청하기</a>
-        </div>
-    </div>
 </main>
 
 

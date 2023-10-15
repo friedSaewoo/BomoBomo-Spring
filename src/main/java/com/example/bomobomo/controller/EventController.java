@@ -4,16 +4,21 @@ import com.example.bomobomo.domain.dto.EmpDto;
 import com.example.bomobomo.domain.dto.EventDetailDto;
 import com.example.bomobomo.domain.dto.EventDto;
 import com.example.bomobomo.domain.vo.Criteria;
+import com.example.bomobomo.domain.vo.EmpVo;
 import com.example.bomobomo.domain.vo.EventVo;
 import com.example.bomobomo.domain.vo.PageVo;
 import com.example.bomobomo.service.EventService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 
@@ -29,7 +34,7 @@ public class EventController {
     @GetMapping("/list")
     public String showEventListPage(Model model){
 
-       List<EventDto> eventDtoList = eventService.findAll();
+       List<EventVo> eventDtoList = eventService.findAll();
        model.addAttribute("list", eventDtoList);
         return "event/event";
     }
@@ -42,6 +47,7 @@ public class EventController {
         model.addAttribute("detail", eventVo);
         return "event/eventdetail";
     }
+    //이벤트 컨트롤러 (신청페이지 이동)
 
 //   이벤트 신청서페이지 이동
     @GetMapping("/payment")
@@ -53,6 +59,24 @@ public class EventController {
     }
 
 
+    //    이벤트 조회 이미지
+    @Value("${file.eventImg}")
+    private String fileEventImg;
+
+    @GetMapping("/eventimg")
+    public byte[] getEventImg(String fileFullPath) throws IOException {
+        return FileCopyUtils.copyToByteArray(new File(fileEventImg, fileFullPath));
+    }
+
+//   직원 조회 이미지
+    @Value("${file.empImg}")
+    private String fileEmpImg;
+
+    @GetMapping("/empimg")
+    public byte[] getEmpImg(String fileFullPath) throws IOException {
+        return FileCopyUtils.copyToByteArray(new File(fileEmpImg, fileFullPath));
+    }
+
 //   직원 목록 전체 조회
     @GetMapping("/empIntro")
     public String showEmpList(Criteria criteria, Model model){
@@ -60,10 +84,23 @@ public class EventController {
         criteria.setPage(criteria.getPage());
         criteria.setAmount(3);
 
-        List<EmpDto> empDtoList = eventService.findEmpAll(criteria);
-        log.info("> List : {}", empDtoList);
-        model.addAttribute("empIntro", empDtoList);
+        List<EmpVo> empVoList = eventService.findEmpAll(criteria);
+        log.info("> List : {}", empVoList);
+        model.addAttribute("empIntro", empVoList);
         model.addAttribute("pageInfo", new PageVo(eventService.getTotal(), criteria));
         return "event/employeeIntro" ;
     }
+//   인재 채용 페이지 이동
+    @GetMapping("/rec")
+    public String showRecruitmentPage(){
+        return "event/recruitment";
+    }
+
+//   이용가이드 페이지 이동
+    @GetMapping("/guide")
+    public String showUserGuidePage() {
+        return "event/userGuide"; }
 }
+
+
+
