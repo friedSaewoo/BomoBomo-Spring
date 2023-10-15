@@ -1,9 +1,13 @@
 //버튼 체크시 성별 단락이 나타나는 코드
-
+let second=$('#second').val();
 
 
 $(document).ready(function() {
-
+  if(second == 'n'){
+      $('.text-area-1').css('display','none');
+  }else{
+      $('.text-area-1').css('display','block');
+  }
     $('.one-check').change(function(){
         if($('.one-check').is(':checked')){
             console.log($('.one-check').is(':checked'));
@@ -23,6 +27,7 @@ $(document).ready(function() {
 
 //남자, 여자 선택시 색상 변화
 $(document).ready(function(){
+
     let $genderbox = $('.gender-box');
 // console.log("안ㄴ여!");
     $genderbox.on('click',function(e){
@@ -40,6 +45,36 @@ $(document).ready(function(){
 
     })
 });
+
+
+$(document).ready(function(){
+    let genderm=$('#gender-m');
+    let genderw=$('#gender-w');
+    let gendermen =$('#gender-men');
+    let genderwomen =$('#gender-women');
+    let genderbox = $('.gender-box');
+    let genderboxsecond =$('.gender-box-second');
+    console.log("aslkfnsd")
+    console.log(genderm);
+    if(genderm.is(':checked')){
+        console.log("Asdasd");
+         genderbox.eq(0).addClass('checked');
+    }else if(genderw.is(':checked')){
+        console.log("바보");
+        genderbox.eq(1).addClass('checked');
+    }
+
+    if(gendermen.is(':checked')){
+        console.log(gendermen.is(':checked'));
+        genderboxsecond.eq(0).addClass('checked-second');
+    }else if(genderwomen.is(':checked')){
+        console.log(genderwomen.is(':checked'));
+        genderboxsecond.eq(1).addClass('checked-second');
+    }
+
+
+})
+
 
 $(document).ready(function(){
     let $genderboxsecond = $('.gender-box-second');
@@ -68,14 +103,15 @@ $(document).ready(function(){
         $(this).css("backgroundColor","#FF7000");
         $(this).css("color","white");
         $(this).css("fontWeight","bold");
-        console.log("asd")
+        console.log("asd");
+
     })
 
 
     $('.btn').on('mouseout',function(){
         $(this).css("backgroundColor","white");
         $(this).css("color","#FF7000");
-        console.log("asd")
+        console.log("asd");
     })
 /*성별 미선택시 선택을 하도록 처리하는 코드*/
     $('.btn').on('click',function(){

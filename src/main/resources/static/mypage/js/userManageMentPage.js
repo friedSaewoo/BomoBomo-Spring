@@ -99,5 +99,22 @@ function checkPassword() {
 
 $('.addressnumbtn').on('mouseover',function (){
     $(this).css('backgroundColor','#FF7000');
+    $(this).css('color','white');
+    $(this).css('border','1.5px solid #FF7000');
 
+});
+
+$('.addressnumbtn').on('mouseout',function (){
+    $(this).css('backgroundColor','white');
+    $(this).css('color','black');
+    $(this).css('border','1.5px solid black');
+
+});
+
+$('.buttonJoin button').on('mouseover',function (){
+    $(this).css('fontWeight','bold');
+})
+
+$('.buttonJoin button').on('mouseout',function (){
+    $(this).css('fontWeight','none');
 })

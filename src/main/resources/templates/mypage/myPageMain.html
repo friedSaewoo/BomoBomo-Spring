@@ -32,52 +32,33 @@
                     <img src="/Mypage/img/logo.png">
                 </a> -->
 
-                <div class="announcement">
-                    <!--클릭시  페이지 이동-->
-                    <a href="/board/notice">공지사항</a>
-                </div>
-                <div class="faq">
-                    <a href="/board/faq">FAQ</a>
-                </div>
+
                 <div class="pay">
                     <a href="/mypage/buy">결제내역</a>
                 </div>
                 <div class="account-mg">
                     <a href="/mypage/userManage">계정관리</a>
                 </div>
+                <div class="applicationPage">
+                    <a href="/mypage/application">신청서관리</a>
+                </div>
             </aside>
             <div class="page-view">
                 <div class="page-title">
                     <p>마이페이지</p>
                 </div>
-                <div class="user-area">
-                    <div class="user-area-container">
-                        <div class="userimg">
-                            <img src="/mypage/img/bobo.jpeg" class="img"/>
-                        </div>
-                        <div class="username">
-                            <p th:text="${session.userName}+' 부모님'"></p>
-                            <p>신청서 관리</p>
-                        </div>
-                        <div class="application">
-                            <a href="/mypage/application" class="pagemove">
-                                            <span class="material-symbols-outlined">
-                                                chevron_right
-                                            </span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+
                 <!--데이터를 받아서 면접중인 시터가 있을때와 없을때 구분-->
                 <div class="siterinfo-area">
                     <div class="siterinfo-area-container">
 
                             <!--상태 2 -> 내용 없음-->
                             <th:block th:if="${match == null}">
-                                <div class="siter-info" >
-
+                                <div class="siters-info" >
+                                    <h3>나의 매칭</h3>
+                                    <div class="noneEmpArea">
                                     <img src="/mypage/img/qbz20exc.png" class="imgs"/>
-
+                                    </div>
                                 </div>
 
                             </th:block>
@@ -85,74 +66,104 @@
                             <th:block th:if="${#strings.equals(match.status,'0')}">
                                 <input type="hidden" th:value="${match.matchNumber}">
                                 <input type="hidden" th:data-statusnum="${match.status}" class="status">
-                                <div class="siterimg">
-                                    <!--데이터에서 이미지 받기-->
-                                    <img th:src="@{/myPages/empimg(fileFullPath=${empInfoImg.empImgUploadPath} + '/' + ${empInfoImg.empImgUuid} + '_' + ${empInfoImg.empImgName})}">
-                                </div>
-                                <div class="siter-info">
-                                    <div class="siter-detail-info">
-                                        <ul class="siter-private-info">
-                                            <li th:text="${empInfoImg.empName}"></li>
-                                            <li th:text="${empInfoImg.empAge}+'세'"></li>
-                                            <li th:text="${empInfoImg.empGender}"></li>
-                                        </ul>
-                                        <p><span th:text="'평점 '+${rating.avg}"></span></p>
-                                        <!--시터의 주요 자격 이미지로 들어옴-->
-                                        <ul class="siter-prove" >
+                                <h3>나의 매칭</h3>
+                                <div class="empArea">
 
+                                    <ul class="siterarea">
+                                        <li class="siterimg">
+
+                                            <!--데이터에서 이미지 받기-->
+                                            <img th:src="@{/myPages/empimg(fileFullPath=${empInfoImg.empImgUploadPath} + '/' + ${empInfoImg.empImgUuid} + '_' + ${empInfoImg.empImgName})}">
+
+                                        </li>
+                                        <li class="siter-info">
+                                            <span th:text="${empInfoImg.empName}"></span>
+                                        </li>
+                                        <li class="siter-info">
+                                            <span th:text="${empInfoImg.empAge}+'세'"></span>
+                                        </li>
+                                        <li class="siter-info">
+                                            <th:block th:if= "${empInfoImg.empGender == 'M'}">
+                                                <span >남자</span>
+                                            </th:block>
+                                            <th:block th:if= "${empInfoImg.empGender == 'F'}">
+                                                <span th:text="${empInfoImg.empGender}">여자</span>
+                                            </th:block>
+                                        </li>
+                                        <li class="siter-infos">
+                                            <span th:text="'평점 : '+${rating.avg}"></span>
+                                        </li>
+
+                                        <li class="siter-act" >
+                                            <ul class="siter-act-detail" >
                                                 <li th:each="empActItemImg :${empActItemImgList}">
                                                     <img th:src="@{/myPages/empActimg(fileFullPath=${empActItemImg.actImgUploadPath} + '/' + ${empActItemImg.actImgUuid} + '_' + ${empActItemImg.actImgName})}">
+                                                    <span th:text="${empActItemImg.actName}" class="empActName"></span>
                                                 </li>
 
-                                        </ul>
-                                    </div>
-                                    <!--데이터 값의 조건을 걸어서 보여지는 창을 바꿔야함
-                                    추가로 창 을 2개더 만들어서 조건으로 창을 바꿔야함-->
-                                    <div class="siter-situation">
+                                            </ul>
+                                        </li>
+                                        <li class="siter-situation" >
+                                            <span onclick="javascript:void(0)">면접대기중</span>
+                                        </li>
+                                    </ul>
 
-                                        <span>면접대기중</span>
-
-                                        <!--모달창으로 만들어서 띄우기 -->
-                                    </div>
                                 </div>
                             </th:block>
                             <th:block th:if="${#strings.equals(match.status,'1')}">
                                 <input type="hidden" th:value="${match.matchNumber}">
                                 <input type="hidden" th:data-statusnum="${match.status}" class="status">
-                                <div class="siterimg">
-                                    <!--데이터에서 이미지 받기-->
-                                    <img th:src="@{/myPages/empimg(fileFullPath=${empInfoImg.empImgUploadPath} + '/' + ${empInfoImg.empImgUuid} + '_' + ${empInfoImg.empImgName})}">
-                                </div>
-                                <div class="siter-info">
-                                    <div class="siter-detail-info">
+                                <h3>나의 매칭</h3>
+                                <div class="empArea">
 
-                                        <ul class="siter-private-info">
-                                            <li th:text="${empInfoImg.empName}"></li>
-                                            <li th:text="${empInfoImg.empAge}+'세'"></li>
-                                            <li th:text="${empInfoImg.empGender}"></li>
-                                        </ul>
-                                        <p><span th:text="'평점 '+${rating.avg}"></span></p>
-                                        <!--시터의 주요 자격 이미지로 들어옴-->
-                                        <ul class="siter-prove" >
-                                                <li th:each="empActItemImg : ${empActItemImgList}">
+                                    <ul class="siterarea">
+                                        <li class="siterimg">
+
+                                            <!--데이터에서 이미지 받기-->
+                                            <img th:src="@{/myPages/empimg(fileFullPath=${empInfoImg.empImgUploadPath} + '/' + ${empInfoImg.empImgUuid} + '_' + ${empInfoImg.empImgName})}">
+
+                                        </li>
+                                        <li class="siter-info">
+                                            <span th:text="${empInfoImg.empName}"></span>
+                                        </li>
+                                        <li class="siter-info">
+                                            <span th:text="${empInfoImg.empAge}+'세'"></span>
+                                        </li>
+                                        <li class="siter-info">
+                                            <th:block th:if= "${empInfoImg.empGender == 'M'}">
+                                                <span >남자</span>
+                                            </th:block>
+                                            <th:block th:if= "${empInfoImg.empGender == 'F'}">
+                                                <span th:text="${empInfoImg.empGender}">여자</span>
+                                            </th:block>
+                                        </li>
+                                        <li class="siter-infos">
+                                            <span th:text="'평점 : '+${rating.avg}+'점'"></span>
+                                        </li>
+
+                                        <li class="siter-act" >
+                                            <ul class="siter-act-detail" >
+                                                <li th:each="empActItemImg :${empActItemImgList}">
                                                     <img th:src="@{/myPages/empActimg(fileFullPath=${empActItemImg.actImgUploadPath} + '/' + ${empActItemImg.actImgUuid} + '_' + ${empActItemImg.actImgName})}">
+                                                    <span th:text="${empActItemImg.actName}" class="empActName"></span>
                                                 </li>
-                                        </ul>
-                                    </div>
-                                    <!--데이터 값의 조건을 걸어서 보여지는 창을 바꿔야함
-                                    추가로 창 을 2개더 만들어서 조건으로 창을 바꿔야함-->
-                                    <div class="siter-situation">
 
-                                        <span class="check-btn">결제대기중</span>
+                                            </ul>
+                                        </li>
+                                        <li class="siter-situation">
+                                            <span class="check-btn">결제대기중</span>
+                                        </li>
+                                    </ul>
 
-                                        <!--모달창으로 만들어서 띄우기 -->
-                                    </div>
                                 </div>
                             </th:block>
                             </th:block>
                         <!--비동기 처리 필요 -->
-                            <form class="modal-pay" action="#" method="">
-                                <h1 class="pay-name">결제하기</h1>
+                            <div class="modal-pay">
+                                <div class="pay-heard">
+                                    <h1 class="pay-name">결제하기</h1>
+                                    <span class="page-remove">x</span>
+                                </div>
                                 <div class="payment-wrap">
 
                                     <div class="payment-wrap-left">
@@ -173,14 +184,15 @@
 
                                         </div>
                                         <div class="check-area">
-                                            <button class="btn" id="check_module">결제하기</button>
+                                            <button type="button" class="btn" id="check_module">결제하기</button>
                                         </div>
                                     </div>
                                 </div>
-                            </form>
+                            </div>
                     </div>
                 </div>
                 <div class="review-area">
+                    <h3>나의 이용후기</h3>
                     <div class="reviewtab-area">
                         <span class="reviewtab1" style="background-color: rgb(255, 112, 0); color: white;">시터 이용 후기</span>
                         <span class="reviewtab2">이벤트 이용 후기</span>
@@ -188,11 +200,11 @@
                     <!--데이터로 게시판 넘겨받을 영역-->
                     <div class="review-list-area">
                         <table class="table">
-                            <tr class="review-text top">
-                                <td class="review-num">번호</td>
-                                <td class="review-title">제목</td>
-                                <td class="review-data">날짜</td>
-                            </tr>
+<!--                            <tr class="review-text top">-->
+<!--                                <td class="review-num">번호</td>-->
+<!--                                <td class="review-title">제목</td>-->
+<!--                                <td class="review-data">날짜</td>-->
+<!--                            </tr>-->
 
 
                         </table>
@@ -205,11 +217,11 @@
                     <!--===-->
                     <div class="review-list-area1">
                         <table class="table1">
-                            <tr class="review-text1 top1">
-                                <td class="review-num1">번호</td>
-                                <td class="review-title1">제목</td>
-                                <td class="review-data1">날짜</td>
-                            </tr>
+<!--                            <tr class="review-text1 top1">-->
+<!--                                <td class="review-num1">번호</td>-->
+<!--                                <td class="review-title1">제목</td>-->
+<!--                                <td class="review-data1">날짜</td>-->
+<!--                            </tr>-->
                             <!--                            ========     -->
 
 

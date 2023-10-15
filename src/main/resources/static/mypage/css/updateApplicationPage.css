@@ -30,17 +30,33 @@ main{
     /* background-color: #e6e6e6; */
 }
 .menu-bar{
-
+    /* display: flex;
+    flex-direction: column;
+    justify-content: center; */
+    /* border: 1px solid #bbb; */
+    /* background-color: red; */
     height: 900px;
     width: 180px;
     margin-left: 10px;
     margin-bottom: 15px;
 }
-
+/* .menu-bar>div:first-child{
+  width: 180px;
+  height: 100px;
+  margin: 0;
+  border: none;
+} */
+/* .logo-img>img{
+    height: 100px;
+    width: 170px;
+} */
 .menu-bar>div{
-
+    /* background-color: rgb(255, 255, 255); */
+    /* background-color: black; */
     margin: 30px auto;
+    /* border: 1px solid #bbb; */
     text-align: center;
+    /* border-radius: 10%; */
     width: 150px;
     height: 40px;
     color: black;
@@ -56,6 +72,7 @@ main{
     font-family: 'IBM Plex Sans KR', sans-serif;
 }
 
+
 .menu-bar>div>a{
     text-align: center;
     display: block;
@@ -70,6 +87,7 @@ main{
 
 .page-view{
     width: 900px;
+
     margin-left: 20px;
 }
 .page-title{
@@ -88,6 +106,7 @@ main{
     font-family: 'IBM Plex Sans KR', sans-serif;
     font-family: 'Single Day', cursive;
     color: #FF7000;
+
 }
 
 .page-title>p>a{
@@ -95,26 +114,27 @@ main{
     color: #FF7000;
 }
 .application-page{
+    /* border: 1px solid black; */
     margin-top: 10px;
 
 
 }
 
 .logo-container-text {
+    /* border: 2px solid red; */
     width: 890px;
     height: 90px;
     display: flex;
     justify-content: center;
     font-size: 20px;
 
-
 }
-
 
 .logo-container-text h4{
     height: 60px;
     font-family: "Luckiest Guy", fantasy;
     line-height: 90px;
+
 }
 
 .check-area{
@@ -146,7 +166,7 @@ main{
 
 
 .gender-text p{
-    font-size: 22px;
+    font-size: 16px;
     font-weight: bold;
     color: black;
     width: 600px;
@@ -155,7 +175,7 @@ main{
 }
 .gender-wrap{
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-around;
     width: 600px;
     margin: 0 auto;
 }
@@ -211,7 +231,7 @@ main{
 
 .gender-wrap-second{
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-around;
     width: 600px;
     margin: 0 auto;
 }
@@ -282,8 +302,8 @@ main{
 }
 
 
-
 .inputbtn{
+    /* border: 1px solid black; */
     width: 600px;
     margin: 0 auto;
     margin-top: 20px;
