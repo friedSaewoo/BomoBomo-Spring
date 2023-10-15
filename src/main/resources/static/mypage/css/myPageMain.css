@@ -384,8 +384,8 @@ main{
 
 .review-text>td{
     border-collapse: collapse;
-    font-size: 15px;
-    text-align: center;
+    font-size: 13px;
+
     border-left: none;
     border-right: none;
     border-bottom: 1px solid #bbb;
@@ -393,18 +393,29 @@ main{
 }
 .review-num{
     width: 100px;
+    text-align: center;
 }
 .review-title{
     width: 500px;
     font-weight: bold;
+    text-align: start;
 
 }
 .review-title>a{
     color: black;
     font-weight: bold;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    text-align: left;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+    font-size: 13px;
 }
 .review-data{
     width: 100px;
+    text-align: center;
 }
 
 .paging{
