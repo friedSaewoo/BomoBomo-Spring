@@ -54,13 +54,13 @@ function loadPage(page, searchVo) {
 // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 여기서부터 작업
 // ajax로 가져온 데이터를 사용해 페이징처리
 function loadMatchList(result){
-
     if(result.matchList!=0){
         let matchContainer = $('.match-container');
         matchContainer.empty();
 
         $.each(result.matchList, function (index, match) {
             let matchDiv = $('<div class="post">');
+            let matchNumber = match.matchNumber;
             matchDiv.append('<div class="status">'+
                 '<p>매칭 번호 : <span>' + match.matchNumber + '</span></p>'+
                 '<p>' + (match.status == 0 ? '면접대기' : (match.status == 1 ? '결제대기' : (match.status == 2 ? '결제완료' : 'X'))) + '</p>' +
@@ -78,7 +78,7 @@ function loadMatchList(result){
                 '<p>이메일 : <span>'+ match.empEmail +'</span></p>'+
                 '</div>');
             matchDiv.append('<div class = "box">'+
-            '<a href=""><button>' + '관리' +'</button></a>'+
+            '<a href="/admin/match/detail?matchNumber='+matchNumber+'"><button>' + '관리' +'</button></a>'+
             '</div>');
             matchContainer.append(matchDiv);
 
