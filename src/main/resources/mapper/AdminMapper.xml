@@ -29,7 +29,7 @@
         GROUP BY TO_CHAR(TRUNC(register_date), 'MM-DD')
         ) user_counts
         ON TO_CHAR(DateRange.registration_date, 'MM-DD') = user_counts.registration_date
-        ORDER BY DateRange.registration_date;
+        ORDER BY DateRange.registration_date
     </select>
 <!-- 회원 리스트 -->
     <select id="selectAllUsers" resultType="userListVo">
@@ -141,16 +141,49 @@
         insert into EMP (EMP_NUMBER, EMP_NAME, EMP_AGE, EMP_GENDER, EMP_PHONE, EMP_EMAIL, EMP_CONTENT)
         values (#{empNumber},#{empName},#{empAge},#{empGender},#{empPhone},#{empEmail},#{empContent})
     </insert>
+
+<!--    &lt;!&ndash; 이벤트 수정 &ndash;&gt;-->
+<!--    <update id="updateEvent" parameterType="eventVo">-->
+<!--        update event-->
+<!--        set event_name = #{eventName}, event_price = #{eventPrice}-->
+<!--        where event_number=#{eventNumber}-->
+<!--    </update>-->
+
+<!--    <update id="updateEventImg" parameterType="eventImgDto">-->
+<!--        update event_img-->
+<!--        set event_img_name =#{eventImgName}, event_img_uuid=#{eventImgUuid},event_img_upload_path=#{eventImgUploadPath}-->
+<!--        where event_number=#{eventNumber}-->
+<!--    </update>-->
+
+<!-- 직원 정보 수정 -->
+    <update id="empUpdate" parameterType="empDto">
+        update emp
+        set emp_name = #{empName}, emp_Age = #{empAge}, emp_gender = #{empGender}
+            ,emp_phone = #{empPhone}, emp_Email = #{empEmail}, emp_content = #{empContent}
+        where emp_number = #{empNumber}
+    </update>
+<!-- 직원 이미지 수정 -->
+    <update id ="empImgUpdate" parameterType="empImgDto">
+        update emp_img
+        set emp_img_name = #{empImgName}, emp_img_uuid = #{empImgUuid}, emp_img_upload_path = #{empImgUploadPath}
+        where emp_number = #{empNumber}
+    </update>
+    <!-- 직원 활동 등록 -->
+    <insert id="empActRegist">
+        insert into EMP_ACT_ITEM (EMP_ACT_ITEM_NUMBER, ACT_NUMBER, EMP_NUMBER)
+        values (seq_emp_act_item.nextval,#{actNumber},#{empNumber})
+    </insert>
+<!-- 직원 활동 삭제 -->
+    <delete id="empActDelete" parameterType="Long">
+        delete from emp_act_item
+        where emp_number = #{empNumber}
+    </delete>
 <!-- 직원 이미지 등록 -->
     <insert id ="empImgRegist">
         insert into EMP_IMG (EMP_IMG_NUMBER, EMP_IMG_NAME, EMP_IMG_UPLOAD_PATH, EMP_IMG_UUID, EMP_NUMBER)
         values (seq_emp_img.nextval,#{empImgName},#{empImgUploadPath},#{empImgUuid},#{empNumber})
     </insert>
-<!-- 직원 활동 등록 -->
-    <insert id="empActRegist">
-        insert into EMP_ACT_ITEM (EMP_ACT_ITEM_NUMBER, ACT_NUMBER, EMP_NUMBER)
-        values (seq_emp_act_item.nextval,#{actNumber},#{empNumber})
-    </insert>
+
 <!-- 직원 상세 -->
     <select id="selectEmpDetail" resultType="empVo">
         SELECT E.EMP_NUMBER, E.EMP_NAME, E.EMP_AGE, E.EMP_GENDER, E.EMP_PHONE, E.EMP_EMAIL, E.EMP_DATE, E.EMP_CONTENT,
@@ -158,7 +191,12 @@
         FROM EMP E LEFT JOIN EMP_IMG EI on E.EMP_NUMBER = EI.EMP_NUMBER
         WHERE E.EMP_NUMBER = #{empNumber}
     </select>
-<!-- 직원 활동 조회-->
+<!--직원 활동조회 -->
+    <select id = "selectEmpActItem" resultType="empActItemDto">
+        select emp_act_item_number, act_number, emp_number
+        from emp_act_item where emp_number = #{empNumber}
+    </select>
+<!--직원 활동 이미지 조회-->
     <select id="selectEmpAct" resultType="actVo">
         select a.act_name, ai.act_img_number,ai.act_number, ai.act_img_name, ai.act_img_upload_path, ai.act_img_uuid
         from act a join act_img ai on a.ACT_NUMBER = ai.ACT_NUMBER
@@ -287,6 +325,26 @@
             where emp_name like '%' || #{keyword} || '%'
         </if>
     </select>
+<!-- 매칭 상세정보 -->
+    <select id="selectMatchDetail" resultType="matchListVo">
+        SELECT
+            M.match_number as match_number, M.status as status,M.user_number as user_number,
+            U.user_name as user_name,U.user_id as user_id,U.user_phone as user_phone,
+            M.emp_number as emp_number,E.emp_name as emp_name,E.emp_email as emp_email,E.emp_phone as emp_phone
+        FROM
+            Matchs M
+                JOIN
+            users U ON M.user_number = U.user_number
+                JOIN
+            EMP E ON M.emp_number = E.EMP_NUMBER
+        where m.match_number = #{matchNumber}
+    </select>
+<!-- 매칭 상태변경 -->
+    <update id ="updateStatus">
+        update matchs
+        set status = #{status}
+        where match_number = #{matchNumber}
+    </update>
 <!-- 이벤트 등록-->
     <insert id="eventRegist">
         <selectKey keyProperty="eventNumber" order="BEFORE" resultType="Long">

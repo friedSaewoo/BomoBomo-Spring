@@ -3,6 +3,7 @@ package com.example.bomobomo.controller;
 import com.example.bomobomo.domain.dto.*;
 import com.example.bomobomo.domain.vo.EmpVo;
 import com.example.bomobomo.domain.vo.EventVo;
+import com.example.bomobomo.domain.vo.MatchListVo;
 import com.example.bomobomo.domain.vo.UserDetailVo;
 import com.example.bomobomo.service.AdminService;
 import jdk.jfr.Event;
@@ -84,17 +85,18 @@ public class AdminController {
         return "admin/adminEmpRegist";
     }
     @PostMapping("/emp/regist")
-    public RedirectView empRegist(EmpDto empDto,@RequestParam("actNumber")List<Long> actNumber
+    public RedirectView empRegist(EmpDto empDto,@RequestParam(name = "actNumber", required = false)List<Long> actNumber
                                                ,@RequestParam("empImgFile")List<MultipartFile> empImg){
-        log.info("=====================================================컨트롤러도착");
+        log.info("================================actNumber{}",actNumber);
         adminService.empRegist(empDto);
-
-        for(int i=0 ; i<actNumber.size();i++){
-            EmpActItemDto empActItemDto = new EmpActItemDto();
-            empActItemDto.setEmpNumber(empDto.getEmpNumber());
-            empActItemDto.setActNumber(actNumber.get(i));
-            log.info("================================{}",empActItemDto);
-            adminService.empActRegist(empActItemDto);
+        if(actNumber != null) {
+            for (int i = 0; i < actNumber.size(); i++) {
+                EmpActItemDto empActItemDto = new EmpActItemDto();
+                empActItemDto.setEmpNumber(empDto.getEmpNumber());
+                empActItemDto.setActNumber(actNumber.get(i));
+                log.info("================================{}", empActItemDto);
+                adminService.empActRegist(empActItemDto);
+            }
         }
         try {
             adminService.empImgRegistAndSave(empImg, empDto.getEmpNumber());
@@ -103,6 +105,35 @@ public class AdminController {
         }
 
         return new RedirectView("/admin/emp");
+    }
+    @PostMapping("/emp/update")
+    public RedirectView empUpdate(EmpDto empDto, @RequestParam(name="empImgFile")List<MultipartFile> empImg
+                                               , @RequestParam(name="actNumber",required = false)List<Long> actNumber){
+        adminService.empUpdate(empDto);
+
+        if(actNumber != null) {
+            adminService.empActDelete(empDto.getEmpNumber());
+            for (int i = 0; i < actNumber.size(); i++) {
+                EmpActItemDto empActItemDto = new EmpActItemDto();
+                empActItemDto.setEmpNumber(empDto.getEmpNumber());
+                empActItemDto.setActNumber(actNumber.get(i));
+                log.info("================================{}", empActItemDto);
+                adminService.empActRegist(empActItemDto);
+            }
+        }
+
+        try{
+//            스프링에서 Mulipart 요청 처리시 파일을 선택하지않아도 객체를 생성해서 전달되므로
+//            파일의 실제크기를 선택해 파일의 유무 확인
+            if(empImg != null && empImg.get(0).getSize() > 0) {
+                adminService.empImgUpdateAndSave(empImg, empDto.getEmpNumber());
+            }
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+
+        String url = "/admin/adminEmpDetail?empNumber=" + empDto.getEmpNumber();
+        return new RedirectView(url);
     }
     @GetMapping("/admin/adminEmpDelete")
     public RedirectView empDelete(Long empNumber){
@@ -114,11 +145,33 @@ public class AdminController {
         EmpVo empDetail= adminService.selectEmpDetail(empNumber);
         model.addAttribute("empDetail",empDetail);
     }
+    @GetMapping("/admin/adminEmpConfig")
+    public void empUpdate(@RequestParam(name="empNumber")Long empNumber, Model model){
+        EmpVo empDetail= adminService.selectEmpDetail(empNumber);
+        List<ActDto> actList = adminService.selectAct();
+        log.info("==============================서비스체크");
+        List<EmpActItemDto> empActList = adminService.selectEmpActItem(empNumber);
+        log.info("============================체크1{}",actList);
+        log.info("============================체크2{}",empActList);
+        log.info("============================체크2끝");
+
+        model.addAttribute("empDetail",empDetail);
+        model.addAttribute("actList",actList);
+        model.addAttribute("empActList",empActList);
+    }
+
 
     @GetMapping("/match")
     public String Match(){
         return "admin/adminMatch";
     }
+    @GetMapping("/match/detail")
+    public String selectMatchDetail(@RequestParam(name="matchNumber")Long matchNumber,Model model){
+        MatchListVo matchDetail =  adminService.selectMatchDetail(matchNumber);
+        model.addAttribute("matchDetail",matchDetail);
+        return "/admin/adminMatchManage";
+    }
+
     @GetMapping("/event")
     public String Event(){
         return "admin/adminEvent";
