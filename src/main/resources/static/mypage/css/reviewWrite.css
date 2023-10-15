@@ -238,7 +238,7 @@ input[type='file'] {
 
 .grade{
     display: flex;
-    direction: rtl;
+
     border:0;
     /* border: 1px solid black; */
     /* flex-di rection: column; */
@@ -252,9 +252,12 @@ input[type='file'] {
     line-height: 30px;
     height: 15px;
     margin-right: 5px;
+
 }
-.grade legend{
+.grade legend {
     text-align: right;
+    direction: rtl;
+    display: flex;
 }
 .grade input[type=radio]{
     display: none;

@@ -14,4 +14,7 @@ public class ActVo {
     private String actImgUploadPath;
     private String actImgUuid;
     private String actName;
+
+
 }
+

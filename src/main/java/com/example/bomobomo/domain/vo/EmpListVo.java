@@ -4,10 +4,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Data
 @Component
 @NoArgsConstructor
-public class EmpVo {
+public class EmpListVo {
     private Long empNumber;
     private String empName;
     private Integer empAge;
@@ -16,12 +18,10 @@ public class EmpVo {
     private String empEmail;
     private String empDate;
     private String empContent;
-
-    private Long empImgNumber;
+    private String avg;
     private String empImgName;
     private String empImgUploadPath;
     private String empImgUuid;
 
-
-
+    private List<ActVo> ActImgList;
 }

@@ -92,7 +92,7 @@ public class UserController {
         return "user/login";
     }
 
-
+    //회원 아이디 확인 메서드
     @PostMapping("/idFindOk")
     public String idFindOk(String userName, String userEmail, Model model, UserDto userDto) {
 
@@ -128,6 +128,7 @@ public class UserController {
         return nameCk;
     }
 
+    //등록된 회원 이메일 확인 메서드
     @PostMapping("/emailCheck")
     @ResponseBody
     public int emailCheck(String userEmail, String userName) {
@@ -135,6 +136,7 @@ public class UserController {
         return emailCk;
     }
 
+    //등록된 회원 정보 확인 및 패스워드 메서드
     @PostMapping("/pwEmailCheck")
     @ResponseBody
     public int pwEmailCheck(String userEmail, String userName, String userId) {
