@@ -653,12 +653,17 @@ input[type="checkbox"]:checked {
 }
 .sitterPossible img{
     margin-top: -10px;
-    width: 30px;
-    height: 30px;
+    margin-left: 10px;
+    width: 35px;
+    height: 35px;
 }
 
 .sitterPossible {
     display: flex;
     width: 50px;
     height: 50px;
+}
+
+.sitterActSelect {
+
 }

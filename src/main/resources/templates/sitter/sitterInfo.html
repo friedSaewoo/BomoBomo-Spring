@@ -22,109 +22,85 @@
 
         <div class="sitterImg">
             <!-- 시터 상세 -->
-            <div class="sitterInfoList">
-                <div>
-                    <img
-                            src="https://search.pstatic.net/common?type=b&amp;size=216&amp;expire=1&amp;refresh=true&amp;quality=100&amp;direct=true&amp;src=http%3A%2F%2Fsstatic.naver.net%2Fpeople%2Fportrait%2F202207%2F20220727155425320.jpg">
-                </div>
-
-                <div class="sitterInfo">
-                    <div class="sitterCon">
-                        <div>
-                            <strong th:text="${emp.empName}"></strong>
-                            <span th:text="${emp.empAge} + '세  ' + ${emp.empGender}"></span>
-                        </div>
-                        <br>
-                        <div class="sitterGrade">
-                            <img src="/common/img/star.png">
-                            <span th:text="${sitterTotalReview} + '/ 5'" class="sitterTotalReview"></span>
-                        </div>
-                        <div th:text="'시터 시작일 : ' + ${emp.empDate}"></div>
-                        <br>
-                    </div>
-                    <div>
-
-                        <div class="sitterAbility">
-                            <div class="possibleImg">
-                                <img src="/sitter/img/filter.png">
-                                <div class="possibleName">실외교육</div>
+                        <div class="sitterInfoList">
+                            <div>
+                                <img
+                                        src="https://search.pstatic.net/common?type=b&amp;size=216&amp;expire=1&amp;refresh=true&amp;quality=100&amp;direct=true&amp;src=http%3A%2F%2Fsstatic.naver.net%2Fpeople%2Fportrait%2F202207%2F20220727155425320.jpg">
                             </div>
 
-                            <div class="possibleImg">
-                                <img src="/sitter/img/filter.png">
-                                <div class="possibleName">영어교육</div>
-                            </div>
+                            <div class="sitterInfo">
+                                <div class="sitterCon">
+                                    <div>
+                                        <strong th:text="${emp.empName}"></strong>
+                                        <span th:text="${emp.empAge} + '세  ' + ${emp.empGender}"></span>
+                                    </div>
+                                    <br>
+                                    <div class="sitterGrade" th:if="${sitterTotalReview == null}">
+                                        <img src="/common/img/star.png">
+                                        <span class="sitterTotalReview">0/ 5</span>
+                                    </div>
+                                    <div class="sitterGrade" th:unless="${sitterTotalReview == null}">
+                                        <img src="/common/img/star.png">
+                                        <span th:text="${sitterTotalReview} + '/ 5'" class="sitterTotalReview"></span>
+                                    </div>
 
-                            <div class="possibleImg">
-                                <img src="/sitter/img/filter.png">
-                                <div class="possibleName">국어교육</div>
-                            </div>
 
-                            <div class="possibleImg">
-                                <img src="/sitter/img/filter.png">
-                                <div class="possibleName">IT교육</div>
-                            </div>
+                                    <div th:text="'시터 시작일 : ' + ${emp.empDate}"></div>
+                                    <br>
+                                </div>
+                                <div>
 
-                            <div class="possibleImg">
-                                <img src="/sitter/img/filter.png">
-                                <div class="possibleName">코딩교육</div>
-                            </div>
+                                    <div class="sitterAbility">
+                                        <div class="possibleImg" th:each="actVoList : ${actVoList}" th:if="${actVoList.actName} == null ">
+                                            <img src="">
+                                            <div class="possibleName"></div>
+                                        </div>
 
-                            <div class="possibleImg">
-                                <img src="/sitter/img/filter.png">
-                                <div class="possibleName">인성교육</div>
-                            </div>
+                                        <div class="possibleImg" th:each="actVoList : ${actVoList}"
+                                             th:unless="${actVoList.actName} == null ">
+                                            <!--                                <img src="/sitter/img/filter.png">-->
+                                            <img th:src="'/admin/rest/displayActImg?fileName=' + ${actVoList.actImgUploadPath} + '/' + ${actVoList.actImgUuid} + '_' + ${actVoList.actImgName}">
+                                            <div class="possibleName" th:text="${actVoList.actName}"></div>
+                                        </div>
 
-                            <div class="possibleImg">
-                                <img src="/sitter/img/filter.png">
-                                <div class="possibleName">예체능</div>
+                                    </div>
+
+                                </div>
                             </div>
                         </div>
-
-                    </div>
-                </div>
-            </div>
         </div>
-        <input type="hidden" th:value="${emp.empNumber}" id="sitterNum" name="sitterNum">
+
+        <input type="hidden" th:value="${emp.empNumber}" id="empNumber" name="empNumber">
 
         <hr>
         <!-- 시터 상세 -->
         <div class="sitterInfoType">
             <div class="possible"><strong>자기소개</strong></div>
             <div class="selfIntroduction">
-                <div class="sitterContent" th:text="${emp.empContent}" style="white-space: pre-line;">
-
-                </div>
-                <!--                    <textarea  readonly>1234567890</textarea>-->
+                <div class="sitterContent" th:text="${emp.empContent}"></div>
             </div>
-
-
         </div>
 
-        <div style="text-align: center; margin: 30px auto;">
-
+        <div>
             <div class="possible"><strong>시터 후기</strong></div>
-
             <div id="slideShow">
-
                 <ul class="slides">
                     <a th:href="@{/board/reviewDetail(sitterBoardNumber=${sitterBoardList.sitterBoardNumber})}"
                        th:each="sitterBoardList : ${sitterBoardList}">
-                        <li style=""><img src="/sitter/img/sImg.png" alt="">
+                        <li style="">
+                            <img src="/sitter/img/sImg.png" alt="">
                             <div class="ReviewInfo" th:text="${sitterBoardList.sitterBoardContent}"></div>
                         </li>
                     </a>
                 </ul>
-
                 <p class="controller">
-
-                    <!-- &lang: 왼쪽 방향 화살표
-              &rang: 오른쪽 방향 화살표 -->
+                    <!-- &lang: 왼쪽 방향 화살표 &rang: 오른쪽 방향 화살표 -->
                     <span class="prev">&lang;</span>
                     <span class="next">&rang;</span>
                 </p>
             </div>
         </div>
+
 
         <div class="theBtn">
             <div class="sitterSel">
@@ -135,24 +111,8 @@
                 <button class="sitterF" type="button" onclick="location='/sitter/sitterFind'">시터찾기</button>
             </div>
         </div>
-
     </div>
 </form>
-
-
-<!--    <div class="modal">-->
-<!--        <div class="modalHeader">-->
-<!--            <div class=" modalX">X</div>-->
-<!--        </div>-->
-<!--        <div class="modalContent">-->
-<!--            내요용요요요-->
-<!--        </div>-->
-<!--    </div>-->
-
-
-<!-- 푸터 -->
-<footer th:replace="fragments/footer.html :: footer"></footer>
-<!-- 푸터 -->
 
 
 <script src="https://code.jquery.com/jquery-3.6.4.js"></script>
@@ -160,7 +120,10 @@
 <!--<script th:src="@{/sitter/js/sitterInfo.js}"></script>-->
 <script src="/fragments/js/header.js"></script>
 <script src="/common/js/index.js" defer></script>
-<script src="/common/js/common.js" defer></script>
+<!--<script src="/common/js/common.js" defer></script>-->
+<!-- 푸터 -->
+<footer th:replace="fragments/footer.html :: footer"></footer>
+<!-- 푸터 -->
 
 </body>
 

@@ -21,4 +21,7 @@ public class EmpVo {
     private String empImgName;
     private String empImgUploadPath;
     private String empImgUuid;
+
+
+
 }

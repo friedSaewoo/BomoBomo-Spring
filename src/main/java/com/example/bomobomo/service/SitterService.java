@@ -1,12 +1,13 @@
 package com.example.bomobomo.service;
 
+import com.example.bomobomo.domain.dto.EmpActItemDto;
 import com.example.bomobomo.domain.dto.EmpDto;
 import com.example.bomobomo.domain.dto.SitterBoardDto;
-import com.example.bomobomo.domain.vo.Criteria;
-import com.example.bomobomo.domain.vo.EmpVo;
-import com.example.bomobomo.domain.vo.SitterBoardVo;
+import com.example.bomobomo.domain.vo.*;
+import com.example.bomobomo.mapper.AdminMapper;
 import com.example.bomobomo.mapper.SitterMapper;
 import lombok.RequiredArgsConstructor;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -17,20 +18,30 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class SitterService {
     private final SitterMapper sitterMapper;
+    private final AdminMapper adminMapper;
 
     // 전체 시터의 수 조회
-    public int sitterTotalPeople() {
-        return sitterMapper.sitterTotal();
+    public int sitterTotalPeople(String cityName, String countryName, Integer actNumber) {
+        return sitterMapper.sitterTotal(cityName, countryName, actNumber);
     }
 
     // 시터 전체 조회
-    public List<EmpVo> sitterSelect(Criteria criteria) {
+    public List<EmpListVo> sitterSelect(Criteria criteria, String cityName, String countryName, Integer actNumber) {
+        List<EmpListVo> empListVos = sitterMapper.sitterList(criteria, cityName, countryName, actNumber);
 
-        return sitterMapper.sitterList(criteria);
+        for(EmpListVo empListVo : empListVos){
+            Long num = empListVo.getEmpNumber();
+            List<ActVo> actVo= adminMapper.selectEmpAct(num);
+            empListVo.setActImgList(actVo);
+        }
+
+
+        return empListVos;
     }
 
     // 시터 정보 조회
-    public EmpDto sitterInfo(Long empNumber) {
+    public EmpVo sitterInfo(Long empNumber) {
+        System.out.println("서비스 시터 번호 : " + empNumber);
         if (empNumber == null) {
             throw new IllegalArgumentException("시터 번호 누락");
         }
@@ -49,17 +60,19 @@ public class SitterService {
     }
 
     //시터 평점
-    public ArrayList<Double> sitterReview(Long empNumber){
+    public Double sitterReview(Long empNumber){
+
         if (empNumber == null) {
             throw new IllegalArgumentException("시터 번호 누락");
         }
 
-        return Optional.ofNullable(sitterMapper.sitterReview(empNumber))
-                .orElseThrow(()->{throw new IllegalArgumentException("없는 시터 정보");});
+        return sitterMapper.sitterReview(empNumber);
+//        return Optional.ofNullable(sitterMapper.sitterReview(empNumber))
+//                                    .orElseThrow(()->{throw new IllegalArgumentException("널값이 존재함");});
     }
 
     //    고객이 선택한 시터 주소 리스트
-        public List<EmpVo> addrCheck(Criteria criteria) {
+        public List<EmpListVo> addrCheck(Criteria criteria) {
             return sitterMapper.addrCheck(criteria);
         }
     //주소로 선택한 시터 수
@@ -67,10 +80,21 @@ public class SitterService {
         return sitterMapper.sitterAddrTotal();
     }
 
+//
+    public List<ActVo> sitterPossibleList(Long empNumber) {
+        System.out.println("서비스 진입 확인");
+        System.out.println("서비스 확인 : " + sitterMapper.sitterPossibleList(empNumber));
+        return  sitterMapper.sitterPossibleList(empNumber);
+    }
 //    시터 평점
-    public List<SitterBoardVo> selectSitterAvg() {
+//    public List<SitterBoardVo> selectSitterAvg() {
+//
+//        return sitterMapper.sitterAvg();
+//    }
 
-        return sitterMapper.sitterAvg();
+
+    public List<EmpListVo> sitterActImg() {
+        return  sitterMapper.sitterActImg();
     }
 
 }

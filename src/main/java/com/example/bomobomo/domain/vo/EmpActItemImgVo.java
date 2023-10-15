@@ -19,5 +19,4 @@ public class EmpActItemImgVo {
     String actImgUploadPath;
     String actImgUuid;
 
-
 }

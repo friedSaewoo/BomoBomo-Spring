@@ -97,15 +97,22 @@ $("select[name^=sido]").change(function () {
 
 
 let page = 1;
-let city = '';
-let cityAddr = '';
+let cityName = '';
+let countryName = '';
+let actNumber = 0;
 
-sitterModule.getSitterListByPage({page: page}, showListAndPage);
+$('.sitterActSelect').on('change', function(){
+    actNumber = $(this).val();
+    page = 1;
+    sitterModule.getSitterListByPage({page: page, cityName:cityName, countryName:countryName, actNumber:actNumber}, showListAndPage);
+});
+
+sitterModule.getSitterListByPage({page: page, actNumber:actNumber}, showListAndPage);
 
 //주소찾기 버튼 이벤트
 $('.sitterTerBtn').on('click', function (){
-    city = $("select[name=sido1] option:selected").text();
-    cityAddr = $("select[name=gugun1] option:selected").text();
+    cityName = $("select[name=sido1] option:selected").text();
+    countryName = $("select[name=gugun1] option:selected").text();
 
     if(city == "주소 선택") {
         Swal.fire({
@@ -116,8 +123,8 @@ $('.sitterTerBtn').on('click', function (){
         return;
     }
     page = 1;
-    sitterModule.getSitterListByPage({page: page, city:city, cityAddr:cityAddr}, showListAndPage);
-    // sitterModule.getSitterListByPage({page: page, city:city, cityAddr:cityAddr}, showListAndPage);
+    sitterModule.getSitterListByPage({page: page, cityName:cityName, countryName:countryName, actNumber:actNumber}, showListAndPage);
+    // sitterModule.getSitterListAddrPage({page: page, city:city, cityAddr:cityAddr}, showListAndPage);
 
     $("#modal").fadeOut(300);
     $(".modal-con").fadeOut(300);
@@ -128,18 +135,21 @@ $('.sitterTerBtn').on('click', function (){
 
 function showListAndPage(sitter) {
     let str = "";
-    city = $("select[name=sido1] option:selected").text();
-    cityAddr = $("select[name=gugun1] option:selected").text();
+    cityName = $("select[name=sido1] option:selected").text();
+    // if(city == "주소 선택") {
+    //     city = null;
+    // }
+    countryName = $("select[name=gugun1] option:selected").text();
 
     $('.sitterInfoList').empty();
     $('.sitterFindCount > strong').empty();
     $('.paging').empty();
 
     console.log("sitter : " + sitter);
-    console.log("pageInfo.criteria.end : " + sitter.pageInfo.endPage);
+    console.log(sitter);
+    console.log(sitter.sitterList.actImgList);
 
     $('.sitterFindCount > strong').append(sitter.sitterTotal);
-    console.log("시터 점수 : " + sitter.sitterList.avg);
     sitter.sitterList.forEach(function (sitterList) {
         str = "<div class='sitterIndividual'>" +
             "<a href='/sitter/sitterInfo?empNumber=" + sitterList.empNumber + "' class='sitterInformation'><div><div class='sitterInfoAndImg test'> <div class='sitterInfo'>";
@@ -151,25 +161,22 @@ function showListAndPage(sitter) {
         } else {
             str += "<div class='sitterGrade'><img src='/common/img/star.png'> <span>" + sitterList.avg + "/ 5" + "</span></div>";
         }
+
         str += `<div class="sitterAbility">`;
         str += `<div class="sitterPossible">`;
-        str += `<img src="/sitter/img/filter.png">`;
-        str += `</div>`;
-        str += `<div class="sitterPossible">`;
-        str += `<img src="/sitter/img/filter.png">`;
-        str += `</div>`;
-        str += `<div class="sitterPossible">`;
-        str += `<img src="/sitter/img/filter.png">`;
-        str += `</div>`;
+        sitterList.actImgList.forEach(function (actImgList) {
+            str += "<img src='/admin/rest/displayActImg?fileName=" + actImgList.actImgUploadPath + "/" + actImgList.actImgUuid  + "_" + actImgList.actImgName + "'>";
+            // str += "<div class='possibleName'>" + actImgList.actName + "</div>";
+        })
         str += `</div></div>`;
-        // <div className="possibleName">실외교육</div>
+        str += `</div>`;
 
 
 
 
     str += "<div class='sitterImg'>"
-        str += "<img  src='https://search.pstatic.net/common?type=b&amp;size=216&amp;expire=1&amp;refresh=true&amp;quality=100&amp;direct=true&amp;src=http%3A%2F%2Fsstatic.naver.net%2Fpeople%2Fportrait%2F202207%2F20220727155425320.jpg'></div></div></div>";
-
+        str += "<img  src='/admin/rest/displayEmpImg?fileName=" + sitterList.empImgUploadPath + "/" + sitterList.empImgUuid + "_" + sitterList.empImgName + "'>";
+        str += "</div></div></div>";
         str += "<div class='sitterContext'>"
         str += "<span>" + sitterList.empContent + "</span></div></a></div>";
 
@@ -206,7 +213,7 @@ function showListAndPage(sitter) {
 
 $('.paging').on('click', '.pageNum', function (){
     page = $(this).data('pagenum');
-    sitterModule.getSitterListByPage({page: page, city:city, cityAddr:cityAddr}, showListAndPage);
+    sitterModule.getSitterListByPage({page: page, cityName:cityName, countryName:countryName, actNumber:actNumber}, showListAndPage);
 });
 
 
