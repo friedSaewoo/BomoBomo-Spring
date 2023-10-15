@@ -3,6 +3,8 @@ package com.example.bomobomo.service;
 import com.example.bomobomo.domain.dto.EmpDto;
 import com.example.bomobomo.domain.dto.EventDto;
 import com.example.bomobomo.domain.vo.Criteria;
+import com.example.bomobomo.domain.vo.EmpVo;
+import com.example.bomobomo.domain.vo.EventPayVo;
 import com.example.bomobomo.domain.vo.EventVo;
 import com.example.bomobomo.mapper.EventMapper;
 import lombok.RequiredArgsConstructor;
@@ -17,7 +19,7 @@ public class EventService {
     private final EventMapper eventMapper;
 
 
-    public List<EventDto> findAll(){
+    public List<EventVo> findAll(){
         return eventMapper.selectAll();
     }
 
@@ -41,7 +43,7 @@ public class EventService {
 
 
 //      전체 직원 조회
-    public List<EmpDto> findEmpAll(Criteria criteria) {
+    public List<EmpVo> findEmpAll(Criteria criteria) {
         return eventMapper.selectEmpAll(criteria);
     }
 
@@ -49,6 +51,16 @@ public class EventService {
 
     public int getTotal(){
         return eventMapper.selectTotal();
+    }
+
+
+
+    public void saveEvent(EventPayVo eventPayVo) {
+        eventMapper.saveEvent(eventPayVo);
+    }
+
+    public void savePayment(EventPayVo eventPayVo) {
+        eventMapper.savePayment(eventPayVo);
     }
 
 }
