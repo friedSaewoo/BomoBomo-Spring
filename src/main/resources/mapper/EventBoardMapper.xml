@@ -6,8 +6,8 @@
         <selectKey keyProperty="eventBoardNumber" order="BEFORE" resultType="Long">
             select seq_event_board.nextval from dual
         </selectKey>
-        insert into EVENT_BOARD (EVENT_BOARD_NUMBER, USER_NUMBER, EVENT_NUMBER, EVENT_BOARD_CONTENT, RATING)
-        values (#{eventBoardNumber},#{userNumber},#{eventNumber},#{eventBoardContent},#{rating})
+        insert into EVENT_BOARD (EVENT_BOARD_NUMBER, USER_NUMBER, EVENT_NUMBER, EVENT_BOARD_CONTENT, RATING,event_pay_number)
+        values (#{eventBoardNumber},#{userNumber},#{eventNumber},#{eventBoardContent},#{rating},#{eventPayNumber})
     </insert>
 
     <!--게시판과 마이페이지에서 사용하기 위한 조회 쿼리  Vo확인-->
@@ -31,18 +31,18 @@
     </select>
 
     <!--리부 작성시 유저가 클릭한 결제내역의 매칭번호로 결제 제목 조회-->
-    <select id="selectEventTitle" resultType="string">
-        select EVENT_NAME
+    <select id="selectEventTitle" resultType="eventNameNumberVo">
+        select event_name,ep2.event_number,ep2.EVENT_PAY_NUMBER
         from (
-                 select EVENT_NAME ,APPLY_NUMBER
+                 select EVENT_PAY_NUMBER, ep1.APPLY_NUMBER,ea.event_number
                  from (
-                          SELECT event_NUMBER, event_name, event_price
-                          FROM event
-                          WHERE event_number = #{eventNumber}
-                      ) s1
-                          join EVENT_APPLY ea on s1.EVENT_NUMBER = ea.EVENT_NUMBER
-             )s2
-                 join EVENT_PAY ep on ep.APPLY_NUMBER= s2.APPLY_NUMBER
+                          select EVENT_PAY_NUMBER, APPLY_NUMBER
+                          from EVENT_PAY
+                          where EVENT_PAY_NUMBER = #{eventPayNumber}
+                      ) ep1
+                          join EVENT_APPLY ea on ep1.APPLY_NUMBER = ea.APPLY_NUMBER
+             ) ep2
+                 join event e on ep2.event_number= e.event_number
     </select>
     <!--마이페이지에서 시터 리뷰 칸 페이징 처리를 위한 쿼리 -->
     <select id="selectEventReviewTotal" resultType="_int">

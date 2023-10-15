@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 @Component
 @NoArgsConstructor
 public class EventApplyDto {
-    Long applyNumber;
-    Long userNumber;
-    Long eventNumber;
+    private Long applyNumber;
+    private Long userNumber;
+    private Long eventNumber;
 }

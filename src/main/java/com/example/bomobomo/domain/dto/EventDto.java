@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 @Component
 @NoArgsConstructor
 public class EventDto {
-    Long eventNumber;
-    String eventName;
-    Integer eventPrice;
+    private Long eventNumber;
+    private String eventName;
+    private Integer eventPrice;
 }

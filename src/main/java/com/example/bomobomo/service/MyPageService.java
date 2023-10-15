@@ -1,7 +1,9 @@
 package com.example.bomobomo.service;
 
 
+import com.example.bomobomo.domain.dto.AddressDto;
 import com.example.bomobomo.domain.dto.MatchDto;
+import com.example.bomobomo.domain.dto.UserDto;
 import com.example.bomobomo.domain.vo.*;
 import com.example.bomobomo.mapper.MyPageMapper;
 import lombok.RequiredArgsConstructor;
@@ -122,6 +124,30 @@ public class MyPageService {
             return Optional.ofNullable(myPageMapper.update(matchNumber))
                     .orElseThrow(()->{throw new IllegalArgumentException("일치하는 정보가 없습니다");});
         }
+
+        // 마이페이지 회원정보 수정 회원 디폴트값 조회
+        public UserDto findUser(Long userNumber){
+            if (userNumber == null) {
+                throw new IllegalArgumentException("회원정보 없음!");
+            }
+
+            return Optional.ofNullable(myPageMapper.selectUser(userNumber))
+                    .orElseThrow(()->{throw new IllegalArgumentException("회원정보 없음!");});
+        }
+
+        //마이페이지 회원정보 수정 회원 주소 조회
+        public AddressDto findUserAddress(Long userNumber){
+            if (userNumber == null) {
+                throw new IllegalArgumentException("회원정보 없음!");
+            }
+
+            return Optional.ofNullable(myPageMapper.selectUserAddress(userNumber))
+                    .orElseThrow(()->{throw new IllegalArgumentException("주소정보 없음!");});
+
+        }
+
+
+
 }
 
 

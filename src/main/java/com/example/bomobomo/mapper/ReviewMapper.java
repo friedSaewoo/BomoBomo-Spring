@@ -1,5 +1,7 @@
 package com.example.bomobomo.mapper;
 
+import com.example.bomobomo.domain.dto.EventBoardDto;
+import com.example.bomobomo.domain.dto.SitterBoardDto;
 import com.example.bomobomo.domain.dto.SitterCommentDto;
 import com.example.bomobomo.domain.vo.Criteria;
 import com.example.bomobomo.domain.vo.EventBoardVo;
@@ -38,6 +40,11 @@ public interface ReviewMapper {
     //돌봄서비스 조회수 탑 6개 뽑아오기
     public List<SitterBoardVo> selectTopCount();
 
+    //돌봄 후기 수정
+    public void updateServiceReview(SitterBoardDto sitterBoardDto);
+
+    //돌봄 후기 상세보기 페이지에 해당 시터 다른 리뷰들 뽑아오기
+    public List<SitterBoardVo> serviceReviewDetailTopCount(Long empNumber);
 
     //=====================================
     
@@ -62,8 +69,13 @@ public interface ReviewMapper {
 
     //이벤트 서비스 리뷰 게시판 댓글
 
+    //이벤트 리뷰 수정
+    public void updateEventReview(EventBoardDto eventBoardDto);
 
     //이벤트 서비스 조회수 상위 6개 게시물 가져오기
     public List<EventBoardVo> selectTopEventCount();
+
+    //이벤트 후기 상세보기 페이지에 동일 이벤트 리뷰들 뽑아오기
+    public List<EventBoardVo> eventReviewDetailTopCount(Long eventNumber);
 
 }
