@@ -93,7 +93,7 @@ $(document).ready(function(){
                 return;
             }
         }
-          alert("저장이 완료되었습니다.!!!!!!!!!!!");
+          alert("신청되었습니다");
          $('.check-area').submit();
     })
 });

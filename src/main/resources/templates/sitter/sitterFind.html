@@ -50,7 +50,16 @@
 
         <div id="wrap">
             <a href="javascript:void(0);" class="button modal-open">지역 검색하기▼</a>
-<!--            <a href="javascript:openModal('modal2');" class="button modal-open">돌봄 선택▼</a>-->
+            <button class="button">
+            <select class="sitterActSelect">
+                <option value="">선택안함</option>
+                <th:block th:each=" act : ${actList}">
+                    <option th:value="${act.actNumber}" th:text="${act.actName}"></option>
+                </th:block>
+            </select>
+            </button>
+
+<!--            <a href="javascript:openModal('modal2');" class="button modal-open">카테고리 검색▼</a>-->
         </div>
 
         <div id="modal"></div>
@@ -76,7 +85,7 @@
 
                                     <div class="sitterGrade" th:if="${sitterList.avg == null}">
                                         <img src="/common/img/star.png">
-                                        <span>0.0/ 5</span>
+                                        <span>0.0/ 5!!!</span>
                                     </div>
 
                                     <div class="sitterGrade" th:unless="${sitterList.avg == null}">
@@ -84,8 +93,13 @@
                                         <span th:text="${sitterList.avg} + '/ 5'"></span>
                                     </div>
 
+                                    <div class="sitterAbility">
+                                        <div class="possibleImg">
+                                            <img src="/sitter/img/filter.png">
+                                            <div class="possibleName">실외교육</div>
+                                        </div>
+                                    </div>
 
-                                    <div>가능한 교육들</div>
                                 </div>
 
                                 <div class="sitterImg">
