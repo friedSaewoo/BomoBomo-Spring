@@ -26,6 +26,22 @@ $('.deleteBtn').on('click', function (){
     }
 })
 
+//해당 돌봄 서비스 리뷰 수정
+$('.updateBtn').on('click', function (){
+    let sitterBoardNumber = $(this).data('number');
+    window.location.href = '/board/modifyServiceReview?sitterBoardNumber=' + sitterBoardNumber;
+});
 
 
 
+$('.hovers').hide();
+$('.sitter-avg').on('mouseenter', function (){
+    $('.hovers').show();
+})
+$('.sitter-avg').on('mouseleave', function (){
+    $('.hovers').hide();
+})
+
+
+let avg = $('.sitter-avg-rating').data('rating')
+console.log(avg)

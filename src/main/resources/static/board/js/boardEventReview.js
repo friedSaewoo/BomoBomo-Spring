@@ -1,49 +1,7 @@
+import * as paging from './module/boardPagination.js';
+import * as boardReview from './module/boardReviews.js';
+
 let keywordVar = '';
-
-
-//이벤트 후기 게시판 이동
-$('.service-review-btn').on('click', function (){
-    window.location.href="/board/serviceReview";
-})
-
-
-
-
-//이벤트 후기 게시판 첫화면
-$(document).ready(function (){
-    getEventReviewPage(1, getSearchVo())
-
-})
-
-
-//페이징처리
-$(document).on('click', '.page-num a', function (e){
-    e.preventDefault()
-    $('.keyword').val('');
-
-    const page = $(this).data('reviewnum');
-    getEventReviewPage(page, getSearchVo())
-
-})
-
-
-//검색처리
-$('.sitter-search-btn>button').on('click', function (){
-
-    keywordVar = $('.keyword').val();
-    getEventReviewPage(1, getSearchVo())
-
-})
-
-
-// //페이징 이동처리
-// $(document).on('click','.page-num a', function (e){
-//     e.preventDefault();
-//     const page = $('.page-num a').data('reviewnum');
-//     loadPage(page, eventReviewList)
-//
-// })
-
 
 function getSearchVo(){
 
@@ -63,67 +21,100 @@ function getSearchVo(){
 
 }
 
-function getEventReviewPage(page, searchReviewVo){
-    $.ajax({
 
-        url:`/reviews/eventReview/${page}`,
-        type:'get',
-        data:searchReviewVo,
-        dataType: 'json',
-        success : function (result){
-            console.log(result.eventReviewList);
-            console.log(result.pageEventReviewVo)
+//이벤트 후기 게시판 첫화면
+$(document).ready(function (){
+    boardReview.getEventReviewPage(1, getSearchVo(),eventReviewList)
 
+})
 
-            eventReviewList(result)
+//이벤트 후기 게시판 이동
+$('.service-review-btn').on('click', function (){
+    window.location.href="/board/serviceReview";
+})
 
 
-        },error : function (a,b,c){
-            console.error(c)
-        }
+
+//페이징처리된 숫자 클릭 시 해당 데이터를 가져와서 비동기 페이징처리
+$(document).on('click', '.page-num a', function (e){
+    e.preventDefault()
+    $('.keyword').val('');
+
+    const page = $(this).data('pagenum');
+    boardReview.getEventReviewPage(page, getSearchVo(),eventReviewList)
+
+})
 
 
-    })
-}
+//검색 버튼 클릭 시 검색결과 화면에 표시를하며 동시에 페이징처리
+$('.sitter-search-btn>button').on('click', function (){
+
+    keywordVar = $('.keyword').val();
+    boardReview.getEventReviewPage(1, getSearchVo(),eventReviewList)
+
+})
+
+//검색버튼 결과가 없을 시 나타나는 버튼 클락하면 페이징 1번으로 이동
+$(document).on('click', '.non-review-search-result-btn', function (){
+    $('.keyword').val('');
+    keywordVar=``;
+    boardReview.getEventReviewPage(1, getSearchVo, eventReviewList);
+})
 
 
-// function loadPage(page, callback){
-//
-//     $.ajax({
-//
-//         url:`/reviews/eventReview/${page}`,
-//         type:'get',
-//         dataType:'json',
-//         success : function (result){
-//
-//             eventReviewList(result)
-//
-//             console.log(result.eventReviewList)
-//         }, error : function (a,b,c){
-//             console.error(c);
-//         }
-//     })
-// }
+
 
 function eventReviewList(result){
 
     let text = '';
+    if(result.eventReviewList.length !=0) {
+        result.eventReviewList.forEach(r => {
 
-    result.eventReviewList.forEach(r => {
-
-        text += `
+            text += `
         
         
                 <li>
-                    <a href="/board/reviewEventDetail?eventBoardNumber=${r.eventBoardNumber}">
+                    <a href="/board/reviewEventDetail?eventBoardNumber=${r.eventBoardNumber}" class="review-img-zoom">
                         <div class="review-sitter-img">
-                        <img src="/reviews/img?fileFullName=${r.eventImgUploadPath +'/' + r.eventImgUuid + '_' + r.eventImgName}" alt="리뷰 보모사진"/>
+                        <img src="/reviews/img?fileFullName=${r.eventBoardImgUploadPath + '/' + r.eventBoardImgUuid + '_' + r.eventBoardImgName}" alt="이벤트 리뷰 사진"/>
                         </div>
                         <div class="review-sitter-content">
                             <p><strong>${r.eventName}</strong></p>
                             <div class="review-score">
-                                <img src="/common/img/star.png"><span> ${r.rating} / 5</span>
-                            </div>
+                    `;
+
+
+
+            if(r.rating==1){
+                text +=`
+                                <span> ★☆☆☆☆</span>
+
+                            `
+            }else if(r.rating==2){
+                text +=`
+                                <span> ★★☆☆☆</span>
+                            `
+            }
+            else if(r.rating==3){
+                text +=`
+                                <span> ★★★☆☆</span>
+                            `
+            }
+            else if(r.rating==4){
+                text +=`
+                                <span> ★★★★☆</span>
+                            `
+            }
+            else if(r.rating==5){
+                text +=`
+                                <span> ★★★★★</span>
+                            `
+            }
+
+
+
+               text += ` 
+                                </div>
                         </div>
                         <div class="reivew-text-content">
                             <dl>
@@ -138,51 +129,19 @@ function eventReviewList(result){
                     </a>
                 </li>
         `;
-    })
-
-    $('.review-ul').html(text);
-    updatePagination(result.pageEventReviewVo)
-}
-
-//페이징처리
-function updatePagination(pageEventReviewVo) {
-    let $pagenation = $('.review-pagenation-container ul');
-    $pagenation.empty();
-
-    if (pageEventReviewVo.prev) {
-        $pagenation.append(`
-                <li class="page-num"><a href="#" data-reviewnum="${pageEventReviewVo.startPage-1}">&lt;</a></li>
-            `);
-    }
-
-
-
-    //게시물이 1개도 존재하지 않는다면 페이징 표시 x
-    //한 개라도 존재할 때 페이징 번호가 나타난다.
-    if(pageEventReviewVo.realEnd!=0){
-        for (let page = pageEventReviewVo.startPage; page <= pageEventReviewVo.endPage; page++) {
-            if(page == pageEventReviewVo.criteria.page){
-                $pagenation.append(`
-                    <li class="page-num active-page"><a href="#" class="on" data-reviewnum="${page}">${page}</a></li>
-                `);
-
-            }
-            else{
-                $pagenation.append(`
-                    <li class="page-num"><a href="#" class="on" data-reviewnum="${page}">${page}</a></li>
-                `);
-            }
-        }
+        })
     }else{
-        `<li></li>`
+        text=`
+        <h3 class="non-review-search-result">검색 결과가 없습니다. 이벤트 정보를 다시 확인해주세요.<br>
+                            <button class="non-review-search-result-btn" type="button" data-pagenum="1">목록으로 돌아가기</button></h3>
+
+        
+        
+        `
+
     }
-
-
-
-
-    if (pageEventReviewVo.next) {
-        $pagenation.append(`
-            <li class="page-num"> <a href="#" data-reviewnum="${pageEventReviewVo.endPage+1}">&gt;</a></li>
-            `);
-    }
+    $('.review-ul').html(text);
+   let $pagination = $('.review-pagenation-container ul');
+    paging.updatePagination(result.pageEventReviewVo, $pagination)
 }
+

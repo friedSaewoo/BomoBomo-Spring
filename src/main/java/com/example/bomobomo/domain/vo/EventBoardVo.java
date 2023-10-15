@@ -21,8 +21,8 @@ public class EventBoardVo {
        private Integer eventBoardCount;
        private String eventName;
        private Long rnum;
-       private String eventImgUploadPath;
-       private String eventImgUuid;
-       private String eventImgName;
+       private String eventBoardImgUploadPath;
+       private String eventBoardImgUuid;
+       private String eventBoardImgName;
 
 }

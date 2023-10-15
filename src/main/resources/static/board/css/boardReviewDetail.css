@@ -9,12 +9,14 @@
 
 /* 리뷰대상자(시터) 정보가 담긴 영역 */
 .review-detail-sitter {
-
+    padding-bottom: 10px;
+    width: 1024px;
     display: flex;
 }
 
 .review-detail-sitter-pic {
     width: 600px;
+    height: 350px ;
 }
 .review-detail-sitter-pic img {
     width: 100%;
@@ -23,31 +25,101 @@
 
 .review-detail-sitter-info {
     display: flex;
-    align-items: end;
-    width: 424px;
+    flex-direction: column;
+    /*width: 424px;*/
 }
-.review-detail-sitter-name >dt {
-    padding: 30px 30px 10px 30px;
-}
-
-.review-sitter-avg-score  {
-    padding: 0px 10px 10px 30px;
-    height: 30px;
+.sitter-avg-detail-info {
     display: flex;
-    border: 2px solid red;
-    align-items: center;
-
+}
+.related-sitter-review-container {
+    box-sizing: border-box;
+    padding-top: 20px;
+}
+.related-sitter-review-container ul{
+    display: flex;
+    flex-direction: column;
 }
 
-.review-detail-sitter-info :nth-child(2) span {
-    font-size: 15px
-
+.review-info {
+    line-height: 1.6;
 }
-.review-detail-sitter-info dd img{
+
+
+.related-sitter-review ul {
+    display: flex;
+    flex-direction: row;
+}
+
+
+.related-sitter-review ul li {
+    color: black;
+    padding:4px;
     width: 20px;
-    height: 15px;
-    margin-left: 10px;
-    margin-right: 10px;
+    border-bottom: 1px solid darkgray;
+}
+
+
+.related-sitter-review ul li:nth-child(1){
+    font-size: 14px;
+    width: 110px;
+}
+
+.related-sitter-review ul li:nth-child(2){
+    font-size: 13.5px;
+    overflow: hidden;
+    padding-left: 10px;
+    width: 350px;
+    text-overflow: ellipsis;
+    white-space: normal;
+    text-align: left;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+}
+.related-sitter-review ul li:nth-child(3){
+    font-size: 13.5px;
+    width: 40px;
+}
+
+.hovers{
+    font-weight: bold;
+    font-size: 14.5px;
+    position: absolute;
+    top: 50px;
+    right: -20px;
+    border-radius: 10px;
+    border: 1px solid gray;
+    width: 110px;
+    height: 30px;
+    padding:5px;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.review-detail-sitter-info ul {
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 424px;
+    display: flex;
+}
+.review-detail-sitter-info ul li {
+
+    width: 212px;
+}
+.sitter-avg {
+    cursor: pointer;
+}
+.sitter-avg-rating {
+    position: relative;
+}
+.sitter-avg-rating div {
+    display: flex;
+}
+
+.avg {
+    color: #e89f14d9
 }
 
 
@@ -83,33 +155,43 @@
     font-size: 13px;
     height: 20px;
 }
-.review-score-date ul li img {
-    /* border: 2px solid burlywood; */
+.rating-star-count {
+    font-size: 20px !important;
+    color: #e89f14d9;
+    width: 300px;
+    text-align: start;
+}
+
+.blank {
+    width: 400px;
+}
+
+
+
+.rating-star-count div {
+    display: flex;
+    align-items: center;
     height: 20px;
 }
-.review-score-date ul li:nth-child(2){
+
+.modify-date{
     font-size: 15px;
-    letter-spacing: 3px;
-    text-align: center;
-    width: 70px;
-    border: 2px solid blue;
+    text-align: end;
+    width: 400px;
 }
 
 
-.review-score-date ul li:nth-child(3){
-    width: 734px;
+.register-date{
+    width: 230px;
     text-align: end;
 }
 
-.review-score-date ul li:nth-child(4){
-    width: 184px;
-    text-align: end;
-}
-
-.review-score-date ul li:nth-child(5){
+.review-count{
     width: 100px;
     text-align: end;
 }
+
+
 
 .review-userid {
     font-size: 14px;
@@ -162,12 +244,15 @@
     box-sizing: border-box;
 }
 .review-reply dl p {
+    display: flex;
+    align-items: center;
+    height: 38px;
     word-break: break-word;
 }
 .review-reply dl dd:nth-child(2){
     font-size: 13px;
-    padding: 20px;
-    width: 874px;
+    padding: 20px 20px 20px 0px;
+    width: 100%;
 }
 
 
@@ -200,9 +285,23 @@
     padding: 10px;
 }
 
+.reply-flex {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
 .reply-writer {
     font-weight: bold;
     font-size: 14px;
+    width: 700px;
+
+}
+
+.word-count {
+    width: 324px;
+    font-size: 12px;
+    text-align: end;
 }
 
 .reply-btn-wrap {
@@ -236,11 +335,15 @@
     width: 95%;
 }
 
+
+
+
 .reply-box__writer {
+
     font-weight: bold;
     font-size: 14px;
-    margin-bottom: 10px;
 }
+
 
 .reply-box__content {
     margin-bottom: 10px;
@@ -321,9 +424,11 @@
 
 
 .reply-time {
+    text-align: end;
     font-size: 10px;
     color: #777777;
     min-width: 80px;
+    padding-top: 5px;
 }
 
 /*페이징처리*/

@@ -13,4 +13,7 @@ public interface EventBoardFileMapper {
 
     //조회
     public List<EventBoardImgDto> selectList(Long eventBoardNumber);
+
+    //삭제
+    public void delete(Long eventBoardNumber);
 }
