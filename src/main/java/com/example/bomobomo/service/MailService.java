@@ -21,7 +21,6 @@ public class MailService {
     @Value("${user.email}")
     private static final String senderEmail= "";
     private static int number;
-//    private static String rePassword;
 
     public static void createNumber(){
         System.out.println("여기도 도는지 확인");

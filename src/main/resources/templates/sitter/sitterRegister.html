@@ -1,20 +1,18 @@
 <!DOCTYPE html>
-
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BOMOBOMO</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="/fragments/css/header.css"/>
+    <link rel="stylesheet" href="/fragments/css/footer.css"/>
+    <link rel="stylesheet" href="/common/css/common.css"/>
 
-  <link rel="stylesheet" href="/common/css/common.css"/>
-  <link rel="stylesheet" href="/fragments/css/footer.css"/>
-  <link rel="stylesheet" href="/fragments/css/header.css"/>
-
-  <link rel="stylesheet" href="/myPage/css/applicationPage.css"/>
-  <script src="/common/js/index.js" defer></script>
-  <script src="/common/js/common.js" defer></script>
+    <link rel="stylesheet" href="/sitter/css/sitterRegister.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css"/>
+    <title>BOMOBOMO</title>
 </head>
+
 <body>
 <div class="header" th:replace="fragments/header.html :: header" >
 </div>
@@ -22,23 +20,6 @@
 <main>
   <div class="user-container">
     <div class="section">
-      <aside class="menu-bar">
-
-        <!-- <a href="/Mypage/html/mypage_main.html" class="logo-img">
-            <img src="/Mypage/img/logo.png">
-        </a> -->
-
-
-        <div class="pay">
-          <a href="/mypage/buy">결제내역</a>
-        </div>
-        <div class="account-mg">
-          <a href="/mypage/userManage">계정관리</a>
-        </div>
-        <div class="applicationPage">
-          <a href="/mypage/application">신청서관리</a>
-        </div>
-      </aside>
       <div class="page-view">
         <div class="page-title">
 
@@ -51,13 +32,16 @@
         <div class="application-page">
 
           <div class="logo-container-text">
-            <h4>신청서를 입력해주세요.</h4>
+            <a href="#">
+              <h1>Bomo</h1><h1>Bomo</h1>
+            </a>
+            <h4>님께 알려주세요.</h4>
           </div>
 
-          <form class="check-area" action="/mypage/application" method="post">
+          <form class="check-area" action="/sitter/sitterApplication" method="post">
             <div class="childern-check">
               <p>돌봄이 필요한 아이</p>
-              <input class="one-check" type="radio" name="one"+ checked/> 1명
+              <input class="one-check" type="radio" name="one" checked/> 1명
               <input class="two-check" type="radio" name="one" /> 2명
             </div>
             <!--버튼 클릿 js 필요-->
@@ -110,8 +94,8 @@
             <!--아이상세 정보 작성-->
             <div class="chilren-detil">
               <p>아이 성격</p>
-              <textarea class="children-text"  name="kidsContent" placeholder="예시) 보노보노보다 뽀로로를 더 좋아해요."></textarea>
-
+              <textarea class="children-text"  name="kidsContent" placeholder="예시) 보노보노보다 뽀로로를 더 좋아해요.">
+              </textarea>
             </div>
             <div class="inputbtn">
               <button type="button" class="btn">저장하기</button>
@@ -124,8 +108,15 @@
 </main>
 <div class="footer" th:replace="fragments/footer.html :: footer">
 </div>
+
+
+
+
 <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-<script src="/myPage/js/applicationPage.js"></script>
+
+<script src="/sitter/js/sitterRegister.js"></script>
+<script src="/fragments/js/header.js"></script>
 </body>
+
 </html>

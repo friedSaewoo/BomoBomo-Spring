@@ -10,8 +10,7 @@ import java.util.List;
 
 @Mapper
 public interface SitterBoardMapper {
-
-
+    
     //삽입
     public void insert(SitterBoardDto sitterBoardDto);
 
