@@ -65,7 +65,7 @@ function checkPw() {
 
     let pwCheck = reg.test(pw);
     console.log(pwCheck);
-    $('#userPassword').on('keypress',function () {
+    $('#userPassword').on('keyup',function () {
 
         if(pwCheck) {
             // $('.labelPwOk').css("display", "block");
