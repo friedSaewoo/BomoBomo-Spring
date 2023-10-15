@@ -7,8 +7,8 @@ import org.springframework.stereotype.Component;
 @Data
 @Component
 @NoArgsConstructor
-public class EventApplyDto {
-    private Long applyNumber;
-    private Long userNumber;
-    private Long eventNumber;
+public class CountryDto {
+    private Long countryNumber;
+    private Long cityNumber;
+    private String countryName;
 }

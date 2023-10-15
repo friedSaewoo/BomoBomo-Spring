@@ -8,13 +8,13 @@ import org.springframework.stereotype.Component;
 @Component
 @NoArgsConstructor
 public class EventVo {
-    Long eventNumber;
-    String eventName;
-    Integer eventPrice;
-    String eventDetailName;
-    String eventDetailUploadPath;
-    String eventDetailUuid;
-    String eventImgName;
-    String eventImgUploadPath;
-    String eventImgUuid;
+    private Long eventNumber;
+    private String eventName;
+    private Integer eventPrice;
+    private String eventDetailName;
+    private String eventDetailUploadPath;
+    private String eventDetailUuid;
+    private String eventImgName;
+    private String eventImgUploadPath;
+    private String eventImgUuid;
 }

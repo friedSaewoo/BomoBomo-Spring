@@ -9,6 +9,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 @Slf4j
 @RequiredArgsConstructor
@@ -29,6 +31,31 @@ public class OrderService {
         }
         System.out.println(orderDto.toString());
         orderMapper.insert(orderDto);
+
+    }
+
+
+
+    //수정
+    public void orderUpdate(OrderDto orderDto){
+        if(orderDto.getGenderSecond()==null){
+            orderDto.setGenderSecond("n");
+        }
+        if(orderDto.getKidsContent()==null){
+            orderDto.setKidsContent("n");
+        }
+        orderMapper.update(orderDto);
+
+    }
+
+    //조회
+    public OrderDto findOrder(Long userNumber)throws NullPointerException{
+        if (userNumber == null) {
+            throw new IllegalArgumentException("회원정보 없음!");
+        }
+
+
+        return orderMapper.selectOrder(userNumber);
 
     }
 

@@ -65,5 +65,8 @@
         <typeAlias type="com.example.bomobomo.domain.vo.MatchBuyInfoVo" alias="matchBuyInfoVo"/>
         <typeAlias type="com.example.bomobomo.domain.vo.MatchUserInfoVo" alias="matchUserInfoVo"/>
 
+        <!-- 지역 -->
+        <typeAlias type="com.example.bomobomo.domain.dto.CityDto" alias="cityDto"/>
+        <typeAlias type="com.example.bomobomo.domain.dto.CountryDto" alias="countyDto"/>
     </typeAliases>
 </configuration>

@@ -8,10 +8,10 @@ import org.springframework.stereotype.Component;
 @Component
 @NoArgsConstructor
 public class EventCommentDto {
-    Long eventCommentNumber;
-    Long eventBoardNumber;
-    Long userNumber;
-    String eventCommentContent;
-    String eventCommentRegisterDate;
-    String eventCommentModifyDate;
+    private Long eventCommentNumber;
+    private Long eventBoardNumber;
+    private Long userNumber;
+    private String eventCommentContent;
+    private String eventCommentRegisterDate;
+    private String eventCommentModifyDate;
 }

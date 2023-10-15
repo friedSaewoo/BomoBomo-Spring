@@ -49,14 +49,13 @@ function addressFind() {
 }
 
 //수정후 버튼 클릭시 이동
-$(document).ready(function(){
+
     $('.updatebtn').on('click',function(){
-        // alert("수정이 완료되었습니다.");
 
         //수정 완료가 두번 동작하고 페이지가 이동이 되는 이유 확인 필요
-        alert("수정이 완료되었습니다.");
-    })
-});
+
+    });
+
 
 //비밀번호 특수 문자 및 비밀번호 확인
 function checkPw() {
@@ -97,3 +96,25 @@ function checkPassword() {
 
     });
 }
+
+$('.addressnumbtn').on('mouseover',function (){
+    $(this).css('backgroundColor','#FF7000');
+    $(this).css('color','white');
+    $(this).css('border','1.5px solid #FF7000');
+
+});
+
+$('.addressnumbtn').on('mouseout',function (){
+    $(this).css('backgroundColor','white');
+    $(this).css('color','black');
+    $(this).css('border','1.5px solid black');
+
+});
+
+$('.buttonJoin button').on('mouseover',function (){
+    $(this).css('fontWeight','bold');
+})
+
+$('.buttonJoin button').on('mouseout',function (){
+    $(this).css('fontWeight','none');
+})

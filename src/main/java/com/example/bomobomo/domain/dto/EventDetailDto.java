@@ -8,9 +8,9 @@ import org.springframework.stereotype.Component;
 @Component
 @NoArgsConstructor
 public class EventDetailDto {
-    Long eventDetailNumber;
-    Long eventNumber;
-    String eventDetailName;
-    String eventDetailUploadPath;
-    String eventDetailUuid;
+    private Long eventDetailNumber;
+    private Long eventNumber;
+    private String eventDetailName;
+    private String eventDetailUploadPath;
+    private String eventDetailUuid;
 }
