@@ -37,12 +37,8 @@ main{
 }
 
 .menu-bar>div{
-    /* background-color: rgb(255, 255, 255); */
-    /* background-color: black; */
     margin: 30px auto;
-    /* border: 1px solid #bbb; */
     text-align: center;
-    /* border-radius: 10%; */
     width: 150px;
     height: 40px;
     color: black;
@@ -53,9 +49,10 @@ main{
 .menu-bar>div>a:hover{
     color: white;
     background-color: #FF7000;
-    font-size: 20px;
-    font-weight: bold;
+    font-size: 15px;
+    font-family:'IBM Plex Sans KR', sans-serif;
 }
+
 
 .menu-bar>div>a{
     text-align: center;
@@ -64,21 +61,17 @@ main{
     line-height: 40px;
     color: black;
     font-family: 'IBM Plex Sans KR', sans-serif;
-    font-size: 20px;
-    font-weight: bold;
+
     width: 150px;
-    /* border-radius: 10%; */
+    font-size: 15px;
 }
 
 .page-view{
-    /* border: 1px solid black; */
-    /* background-color: blue; */
-    /* margin-top: 5px; */
+
     margin-left: 20px;
-    width: 900px;
+    width: 800px;
 }
 .page-title{
-    /* border: 1px solid black; */
     height: 80px;
     border-bottom: 1px solid #bbb;
     padding-bottom: 5px;
@@ -86,9 +79,8 @@ main{
 .page-title>p{
     margin-left: 20px;
     height: 80px;
-    /* border: 1px solid black; */
     line-height: 100px;
-    font-size: 70px;
+    font-size: 30px;
     font-family: 'Black Han Sans', sans-serif;
     font-family: 'Dongle', sans-serif !important;
     font-family: 'Gamja Flower', cursive;
@@ -109,7 +101,8 @@ main{
     line-height: 40px;
 }
 .sitter-area{
-    width: 120px;
+    border-radius: 5px;
+    width: 400px;
     border: 1px solid #bbb;
     font-family: 'Black Han Sans', sans-serif;
     font-family: 'Dongle', sans-serif !important;
@@ -122,7 +115,9 @@ main{
 }
 
 .event-area{
-    width: 140px;
+    margin-left: 5px;
+    border-radius: 5px;
+    width: 400px;
     border: 1px solid #bbb;
     font-family: 'Black Han Sans', sans-serif;
     font-family: 'Dongle', sans-serif !important;
@@ -134,19 +129,17 @@ main{
     cursor: pointer;
 }
 
-.buybox{
-    /* display: none; */
-}
+
+
 .buy-area{
-    /* border: 1px solid black; */
-    /* margin-top: 0px; */
+
     height: 80px;
 
 }
 
 .buy-text{
     border: 1px solid black;
-    width: 810px;
+    width: 800px;
     height: 130px;
     display: flex;
     justify-content: space-around;
@@ -230,14 +223,12 @@ main{
 
 
 .buy-area-2{
-    /* border: 1px solid black; */
-    /* margin-top: 0px; */
-    /*height: 80px;*/
+    border-bottom: 1px solid #bbb;
 
 }
 
 .buy-text-2{
-    border: 1px solid black;
+
     width: 810px;
     height: 130px;
     display: flex;
@@ -253,10 +244,15 @@ main{
     width: 100px;
     height: 100px;
     border: 1px solid black;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    /* background-color: #bbb; */
+    align-items: center;
 }
 .img-area-2 img{
-    width: 100px;
-    height: 100px;
+    width: 90px;
+    height: 90px;
 }
 .buy-text-area-2{
     /* border: 1px solid black; */
@@ -293,8 +289,8 @@ a{
 }
 
 .price-2 span{
-    /* border: 1px solid black; */
     line-height: 120px;
+    float: right;
 }
 
 .paging1{
@@ -320,5 +316,36 @@ a{
     border: 1px solid #e6e6e6;
 }
 .pageVObox{
-    background-color: #FF7000
+    background-color: #FF7000;
+    color: white;
 }
+.pages-nums:hover{
+    background-color: #FF7000;
+    color: white;
+}
+
+ .material-symbols-outlined {
+     font-family: 'Material Symbols Outlined';
+     font-weight: normal;
+     font-style: normal;
+     font-size: 50px;
+     line-height: 1;
+     letter-spacing: normal;
+     text-transform: none;
+     display: inline-block;
+     white-space: nowrap;
+     word-wrap: normal;
+     direction: ltr;
+     -webkit-font-smoothing: antialiased;
+ }
+.none{
+    margin-top: 25px;
+}
+
+.noneProduct{margin: 20px auto;
+
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;}

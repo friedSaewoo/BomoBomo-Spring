@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 @Component
 @NoArgsConstructor
 public class ActItemDto {
-    Long actItemNumber;
-    Long actNumber;
-    Long submitOrderNumber;
+    private Long actItemNumber;
+    private Long actNumber;
+    private Long submitOrderNumber;
 }

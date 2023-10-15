@@ -73,7 +73,7 @@ public class EventBoardFileService {
         EventBoardImgDto eventBoardImgDto =new EventBoardImgDto();
         eventBoardImgDto.setEventBoardImgName(originName);
         eventBoardImgDto.setEventBoardImgUuid(uuid.toString());
-        eventBoardImgDto.setEvntBoardImgUploadPath(getUploadPath());
+        eventBoardImgDto.setEventBoardImgUploadPath(getUploadPath());
 
         return eventBoardImgDto;
 

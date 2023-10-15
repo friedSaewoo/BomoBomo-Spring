@@ -11,13 +11,14 @@ import org.springframework.stereotype.Component;
 @NoArgsConstructor
 public class EmpActItemImgVo {
 
-    Long empNumber;
-    Long empActItemNumber;
-    Long actNumber;
-    Long actImgNumber;
-    String actImgName;
-    String actImgUploadPath;
-    String actImgUuid;
+    private Long empNumber;
+    private Long empActItemNumber;
+    private Long actNumber;
+    private Long actImgNumber;
+    private String actImgName;
+    private String actImgUploadPath;
+    private String actImgUuid;
+    private String actName;
 
 
 }

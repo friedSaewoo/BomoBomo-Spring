@@ -6,7 +6,6 @@
     padding: 0px;
 }
 
-
 main{
 
     margin-top: 45px;
@@ -40,23 +39,13 @@ main{
     margin-left: 10px;
     margin-bottom: 15px;
 }
-/* .menu-bar>div:first-child{
-    width: 180px;
-    height: 100px;
-    margin: 0;
-    border: none;
-  } */
-/* .logo-img>img{
-  height: 100px;
-  width: 170px;
-} */
+
 .menu-bar>div{
-    /* background-color: rgb(255, 255, 255); */
-    /* background-color: black; */
+
     margin: 30px auto;
-    /* border: 1px solid #bbb; */
+
     text-align: center;
-    /* border-radius: 10%; */
+
     width: 150px;
     height: 40px;
     color: black;
@@ -67,8 +56,8 @@ main{
 .menu-bar>div>a:hover{
     color: white;
     background-color: #FF7000;
-    font-size: 20px;
-    font-weight: bold;
+    font-size: 15px;
+    font-family:'IBM Plex Sans KR', sans-serif;
 }
 
 .menu-bar>div>a{
@@ -80,28 +69,22 @@ main{
     font-family: 'IBM Plex Sans KR', sans-serif;
 
     width: 150px;
-    /* border-radius: 10%; */
-    font-size: 20px;
-    font-weight: bold;
+    font-size: 15px;
 }
 
 .page-view{
-    /* border: 1px solid black; */
-    /* background-color: blue; */
-    /* margin-top: 5px; */
+
     margin-left: 20px;
 }
 .page-title{
-    /* border: 1px solid black; */
     height: 80px;
     border-bottom: 1px solid #bbb;
 }
 .page-title>p{
     margin-left: 20px;
     height: 80px;
-    /* border: 1px solid black; */
     line-height: 100px;
-    font-size: 70px;
+    font-size: 35px;
     font-family: 'Black Han Sans', sans-serif;
     font-family: 'Dongle', sans-serif !important;
     font-family: 'Gamja Flower', cursive;
@@ -110,7 +93,6 @@ main{
     color: #FF7000;
 }
 .user-area{
-    /* border: 1px solid rebeccapurple; */
     height: 100px;
     border-bottom: 1px solid#bbb;
     margin-top: 20px;
@@ -122,21 +104,18 @@ main{
     height: 50px;
     margin-top: 5px;
     width: 800px;
-    /* margin: 30px  auto; */
-    /* background-color:#e7e7e7; */
+
 
 }
 .userimg{
     width: 60px;
     margin-left: 100px;
-    /* background-color: black; */
 }
 .userimg>img{
     border: 1px solid #bbb;
     margin-top: 10px;
     width: 70px;
     border-radius: 10%;
-    /* background-color: black; */
 
 }
 .username{
@@ -144,7 +123,6 @@ main{
 }
 .username>p:first-child{
     margin-top: 10px;
-    /* border: 1px solid black;s */
     font-family: 'Black Han Sans', sans-serif;
     font-family: 'Dongle', sans-serif !important;
     font-family: 'Gamja Flower', cursive;
@@ -153,7 +131,6 @@ main{
     font-size: 30px;
 }
 .username>p:last-child{
-    /* border: 1px solid black; */
     margin-top: -10px;
     font-family: 'Black Han Sans', sans-serif;
     font-family: 'Dongle', sans-serif !important;
@@ -167,7 +144,6 @@ main{
     margin-left: 400px;
 }
 .pagemove>span{
-    /* border: 1px solid #bbb; */
     margin-top: 30px;
 
 }
@@ -177,7 +153,6 @@ main{
             'wght' 400,
             'GRAD' 0,
             'opsz' 24;
-    /* margin-top: 40px; */
     cursor: pointer;
     color: black;
 }
@@ -187,116 +162,170 @@ main{
             'wght' 400,
             'GRAD' 0,
             'opsz' 24;
-    /* margin-top: 40px; */
     cursor: pointer;
     color: #FF7000;
 }
 .siterinfo-area{
-    /* border: 1px solid black; */
     height: 250px;
     position: relative;
 }
 .siterinfo-area-container{
-    border: 1px solid black;
-    width: 600px;
+    /*border: 1px solid #bbb;*/
+    width: 800px;
     margin: 30px auto;
     height: 250px;
-    display: flex;
-    justify-content: space-around
+
 }
+.siters-info{
+
+}
+.noneEmpArea{
+    margin-top: 10px;
+    width: 800px;
+    text-align: center;
+}
+.noneEmpArea>img{
+    width: 300px;
+    height: 250px;
+}
+/*수정 css*/
+.empArea{
+    margin-top: 10px;
+    border: 1px solid #bbb;
+    display: flex;
+    width: 800px;
+    height: 90px;
+    align-items: center;
+    border-radius: 5px;
+}
+.siterarea{
+    display: flex;
+    /* width: 100px; */
+}
+
+.siterarea>li{
+    /* border-right: 1px solid black; */
+    /* width: 110px; */
+    height: 60px;
+
+}
+
 .siterimg{
-    /* border: 1px solid black;+ */
-    /* width: 300px; */
-    margin-left: 20px;
+    width: 80px;
+    margin-left: 8px;
+    border-right: 1px solid #bbb;
+
 }
 
 .siterimg>img{
-    /* border: 1px solid black; */
-    width: 200px;
-    height: 250px;
+    width: 60px;
+    margin-left: 8px;
+    margin-top: 5px;
+    box-shadow: 0px 0px 2px 2px rgba(163,174,184,0.7);
+    border-radius: 5px;
 }
+
 .siter-info{
-    /* border: 1px solid black; */
-    width: 250px;
-}
-.imgs{
-    width: 250px;
-    height: 250px;
-    }
-.siter-private-info{
-    display: flex;
-}
-.siter-private-info>li:first-child{
-    font-size: 25px;
-    padding: 10px;
-}
+    width: 80px;
+    /* line-height: 85px; */
+    border-right: 1px solid #bbb;
 
-.siter-private-info>li:nth-last-child(2){
-    margin-top: 18px;
-    margin-left: 20px;
-    color: #666;
+    text-align: center;
 }
-.siter-private-info>li:last-child{
-    margin-top: 18px;
-    margin-left: 5px;
-    color: #666;
-}
-.siter-detail-info>p{
+.siter-info>span{
+    display: inline-block;
     /* border: 1px solid black; */
-    /* text-align: center; */
-    margin-left: 12px;
-    margin-top: -5px;
-    font-size: 13px;
-    color: #666;
-}
-
-.siter-prove{
+    width: 70px;
+    /* line-height: 85px; */
     margin-top: 20px;
-    /* border: 1px solid black; */
-    display: flex;
-    justify-content: space-around;
+    font-size: 15px;
 
-    /* 차후 3가지 이상으로 할시 flex-warp 사용해서 현재 창크기에 맞춰
-    들어갈수 있게 조절 */
 }
-.siter-prove>li>img{
+.siter-infos{
+    width: 100px;
+    /* line-height: 85px; */
+    text-align: center;
+    border-right: 1px solid #bbb;
+
+}
+.siter-infos>span{
+    display: inline-block;
+    /* border: 1px solid black; */
+    width: 100px;
+    /* line-height: 85px; */
+    margin-top: 20px;
+    font-size: 15px;
+
+}
+.siter-act{
+    width: 230px;
+    /* text-align: center; */
+    border-right: 1px solid #bbb;
+
+
+}
+
+.siter-act-detail>li{
+    margin-left: 10px;
     width: 40px;
-    height: 40px;
+    text-align: center;
+}
+.siter-act-detail>li>img{
+    width: 30px;
+    background-color: #c0fff5;
+    border-radius: 10px;
+}
+.siter-act-detail{
+    display: flex;
+    margin-top: 5px;
+}
+.empActName{
+    font-size: 8px;
+    font-weight: bold;
+}
+.siter-act>img{
+    margin-left: 10px;
+    margin-top: 5px;
+    width: 50px;
+    /* border: 1px solid black; */
 }
 .siter-situation{
-    /* border: 1px solid black; */
-    text-align: right;
-    margin-top: 50px;
-
-
-}
-.siter-situation>span{
-    border: 1px solid #FF7000;
-    display: inline-block;
-    width: 150px;
+    width: 140px;
     text-align: center;
-    font-family: 'Black Han Sans', sans-serif;
-    font-family: 'Dongle', sans-serif !important;
-    font-family: 'Gamja Flower', cursive;
-    font-family: 'IBM Plex Sans KR', sans-serif;
-    font-family: 'Single Day', cursive;
-    font-size: 40px;
-    color: #FF7000;
-    background-color:white;
-    cursor: pointer;
+    border: none;
 }
 
+.siter-situation>span{
+    display: inline-block;
+
+    border-radius: 5px;
+    margin-top: 10px;
+    width: 110px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 25px;
+        border: 1px solid #FF7000;
+        text-align: center;
+        font-family: 'Black Han Sans', sans-serif;
+        font-family: 'Dongle', sans-serif !important;
+        font-family: 'Gamja Flower', cursive;
+        font-family: 'IBM Plex Sans KR', sans-serif;
+        font-family: 'Single Day', cursive;
+        color: #FF7000;
+        background-color:white;
+        cursor: pointer;
+}
 
 .review-area{
-    /* border: 1px solid black; */
     height: 390px;
     width: 800px;
-    margin-top: 30px;
+    margin-top: 40px;
 }
 .reviewtab-area{
-    /* border: 1px solid black; */
-    margin-top: 20px;
+    /*margin-top: 20px;*/
     padding: 10px;
+    display: flex;
+    padding-bottom: 20px;
 }
 .reviewtab-area>span{
     font-family: 'Black Han Sans', sans-serif;
@@ -307,9 +336,13 @@ main{
     font-size: 25px;
     border: 1px solid #bbb;
     cursor: pointer;
+    display: inline-block;
+    width: 500px;
+    text-align: center;
+    border-radius: 5px;
+    margin: 5px;
 }
 .review-list-area{
-    /*border: 1px solid black;*/
     height: 300px;
     width: 800px;
 
@@ -317,8 +350,6 @@ main{
 }
 
 .table{
-    /* border: 1px solid red; */
-    /* background-color: yellowgreen; */
     width: 800px;
     border-collapse: collapse;
 
@@ -327,57 +358,51 @@ main{
 
 .top{
     border-bottom: 1px solid black;
-    /* border: 1px solid black; */
 
 }
 
 
 
 .review-text>td{
-    /* border: 1px solid black; */
     border-collapse: collapse;
     font-size: 15px;
     text-align: center;
     border-left: none;
     border-right: none;
     border-bottom: 1px solid #bbb;
+    padding: 5px;
 }
 .review-num{
     width: 100px;
-    /* border: none; */
 }
 .review-title{
     width: 500px;
-    /* border: none; */
+    font-weight: bold;
 
 }
 .review-title>a{
     color: black;
+    font-weight: bold;
 }
 .review-data{
     width: 100px;
-    /* border: none; */
 }
 
 .paging{
-    /* border: 1px solid black; */
     margin-top: 10px;
 
 }
 .page{
     display: flex;
     margin: auto;
-    /* border: 1px solid rebeccapurple; */
     text-align: center;
     justify-content: center;
-    /* padding: 10px; */
 }
 .active-num{
-    background-color: #FF7000;
+
 
 }
 .active-num1{
-    background-color: #FF7000;
 }
 .page>a{
     border: 1px solid black;
@@ -385,16 +410,13 @@ main{
     width: 20px;
     text-align: center;
     font-weight: bold;
-    /* background-color: #e6e6e6; */
     border: 1px solid #bbb;
     color: black;
     font-size:14px;
 }
 
-/*css 비슷한 지점*/
 
 .review-list-area1{
-    /*border: 1px solid black;*/
     height: 300px;
     width: 800px;
     display: none;
@@ -402,8 +424,7 @@ main{
 }
 
 .table1{
-    /* border: 1px solid red; */
-    /* background-color: yellowgreen; */
+
     width: 800px;
     border-collapse: collapse;
 
@@ -411,13 +432,14 @@ main{
 }
 
 .review-text1>td{
-    border: 1px solid black;
+
     border-collapse: collapse;
     font-size: 15px;
     text-align: center;
     border-left: none;
     border-right: none;
     border-bottom: 1px solid #bbb;
+    padding: 5px;
 }
 .review-num1{
     width: 100px;
@@ -426,10 +448,12 @@ main{
 .review-title1{
     width: 500px;
     border: none;
-
+    font-weight: bold;
 }
+
 .review-title1>a{
     color: black;
+    font-weight: bold;
 }
 .review-data1{
     width: 100px;
@@ -467,17 +491,40 @@ main{
 .modal-pay{
     display: none;
     position: absolute;
-    top: -200px;
+    top: 0px;
     left: 10px;
-    border: 1px solid black;
+    border: 2px solid black;
     background-color: white;
+    box-shadow: 1px 1px 3px 5px rgba(0,0,0,0.7);
+}
+.pay-heard{
+    /*border: 1px solid black;*/
+    display: flex;
+    justify-content: space-between;
 }
 .pay-name{
     /* border-bottom: 1px solid black; */
     padding-left: 10px;
     padding-bottom: 5px;
+    padding-top: 15px;
+
+    font-size: 20px;
     /* background-color: #FF7000; */
 }
+.page-remove{
+    font-size: 20px;
+    display: inline-block;
+    width: 20px;
+    text-align: center;
+    margin-right: 10px;
+    margin-top: 5px;
+    height: 20px;
+    line-height: 15px;
+}
+.page-remove:hover{
+    color: red;
+}
+
 .payment-wrap{
 
     margin-top: 5px;
@@ -504,7 +551,7 @@ main{
 .user-info{
     /* border: 1px solid black; */
     height: 30px;
-    font-size: 20px;
+    font-size: 16px;
     padding-bottom: 10px;
     border-bottom: 1px solid #666;
     font-weight: bold;
@@ -524,7 +571,7 @@ main{
 .user p:first-child{
     /* border: 1px solid black; */
     margin-top: 5px;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: bold;
 }
 
@@ -541,6 +588,7 @@ main{
     border-radius: 5px;
     text-align: center;
     margin-top: 5px;
+    font-size: 15px;
 
 }
 
@@ -550,6 +598,8 @@ main{
     width: 100px;
     height: 30px;
     line-height: 30px;
+
+
 
 }
 
@@ -570,27 +620,18 @@ main{
     height: 30px;
     line-height: 30px;
     text-align: center;
-
-
-}
-
-.user-address{
-    /* border: 1px solid black; */
+    font-size: 15px;
 
 }
+
+
 
 .user-address p:first-child{
-    font-size: 20px;
+    font-size: 16px;
     font-weight: bold;
 }
 
-.address{
-    /* border: 1px solid black; */
-    margin-top: 8px;
-    font-size: 18px;
-    font-weight: bold;
 
-}
 
 .address-info{
     border: 1px solid #666;
@@ -599,6 +640,7 @@ main{
     line-height: 30px;
     margin-top: 8px;
     text-align: center;
+    font-size: 15px;
 }
 
 .address-detail{
@@ -608,6 +650,7 @@ main{
     line-height: 30px;
     margin-top: 10px;
     text-align: center;
+    font-size: 15px;
 
 }
 
@@ -652,6 +695,7 @@ main{
 
 .pay span:first-child{
     font-weight: bold;
+    font-size: 16px;
 }
 
 .total-payment{
@@ -663,14 +707,17 @@ main{
 
 .total-payment span{
     line-height: 50px;
-    font-size: 20px;
+    font-size: 18px;
 
 }
-
+.total-payment span:first-child{
+    font-weight: bold;
+}
 
 .total-area{
     /* border: 1px solid black; */
     height: 40px;
+    margin-top: 180px;
 }
 
 .check-area{
@@ -682,8 +729,9 @@ main{
 .check-area button{
     height: 40px;
     width: 200px;
-    font-size: 25px;
+    font-size: 20px;
     background-color: white;
     color: #FF7000;
     border: 1px solid #FF7000;
+    border-radius: 10px;
 }
