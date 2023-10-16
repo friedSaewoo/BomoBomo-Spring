@@ -147,7 +147,6 @@ function showListAndPage(sitter) {
     console.log(sitter.sitterList.actImgList);
 
     $('.sitterFindCount > strong').append(sitter.sitterTotal);
-    if(sitterList != null) {
         sitter.sitterList.forEach(function (sitterList) {
 
             str = "<div class='sitterIndividual'>" +
@@ -181,8 +180,6 @@ function showListAndPage(sitter) {
 
 
 
-
-    }
 
 
 
