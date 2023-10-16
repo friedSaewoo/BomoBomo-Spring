@@ -90,7 +90,7 @@ public class MyPageService {
         if (empNumber == null) {
             throw new IllegalArgumentException("회원정보 없음!");
         }
-        log.info("=========================전");
+
 
         double avg = 0;
         try {
@@ -99,12 +99,9 @@ public class MyPageService {
             avg=0.0;
         }
 
-        log.info("===================바보놈{}",avg);
-        log.info("=========================후");
-        log.info("===================바보놈{}",avg);
+
         return avg;
-//        return Optional.ofNullable(myPageMapper.selectMatchEmpRating(empNumber))
-//                .orElseThrow(()->{throw new IllegalArgumentException("평균점수 조회 없음!");});
+
     }
 
      // 매치된 회원의 정보
