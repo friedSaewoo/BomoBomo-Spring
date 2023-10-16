@@ -64,6 +64,31 @@
 
     </select>
 
+<!--    돌봄 서비스 리뷰 상세보기에 해당 시터 조회수 높은 리뷰들 불러오기-->
+    <select id="serviceReviewDetailTopCount">
+        select rnum, SITTER_BOARD_NUMBER, user_number, user_id, EMP_NUMBER,SITTER_BOARD_CONTENT, SITTER_BOARD_REGISTER_DATE,
+               SITTER_BOARD_MODIFY_DATE, RATING, SITTER_BOARD_COUNT, EMP_NAME, emp_img_UPLOAD_PATH, emp_img_UUID, emp_img_NAME
+        from(
+                select rownum as rnum, SITTER_BOARD_NUMBER, user_number, user_id, EMP_NUMBER,SITTER_BOARD_CONTENT,
+                       SITTER_BOARD_REGISTER_DATE, SITTER_BOARD_MODIFY_DATE, RATING, SITTER_BOARD_COUNT, EMP_NAME,
+                       emp_img_UPLOAD_PATH, emp_img_UUID, emp_img_NAME
+                from (
+                         select  s.SITTER_BOARD_NUMBER, s.user_number, u.user_id,s.EMP_NUMBER,SITTER_BOARD_CONTENT,
+                                 SITTER_BOARD_REGISTER_DATE, SITTER_BOARD_MODIFY_DATE, RATING, SITTER_BOARD_COUNT, e.EMP_NAME,
+                                 i.emp_img_UPLOAD_PATH, i.emp_img_UUID, i.emp_img_NAME
+                         from SITTER_BOARD s join users u
+                                                  on s.user_number = u.user_number
+                                             join emp e
+                                                  on s.EMP_NUMBER = e.EMP_NUMBER
+                                             left outer join EMP_IMG i on e.EMP_NUMBER = i.emp_number
+                         where e.EMP_NUMBER = #{empNumber}
+                         order by SITTER_BOARD_COUNT desc
+                     )
+            )where rnum between 1 and 6
+
+    </select>
+
+
 
 <!--    돌봄서비스 리뷰 게시물 개수-->
     <select id="getTotal" resultType="_int">
@@ -102,8 +127,6 @@
                             left outer join emp_img k on e.EMP_NUMBER = k.emp_number
         where SITTER_BOARD_NUMBER= #{sitterBoardNumber}
 
-
-
     </select>
 
 
@@ -116,6 +139,15 @@
 
     </select>
 
+
+<!--돌봄 서비스 리뷰 수정-->
+    <update id="updateServiceReview">
+
+        update sitter_board
+        set sitter_board_content = #{sitterBoardContent}, sitter_board_modify_date = sysdate
+        where sitter_board_number = #{sitterBoardNumber}
+
+    </update>
 
 <!--돌봄 서비스 리뷰 삭제-->
     <delete id="delete">
@@ -134,67 +166,98 @@
 <!--이벤트 리뷰 리스트 불러오기(검색기능 및 페이징 처리포함)-->
     <select id="selectER" resultType="eventBoardVo">
 
+
         select rnum, event_BOARD_NUMBER, user_number, user_id, event_NUMBER, event_BOARD_CONTENT,
         event_BOARD_REGISTER_DATE,
-        event_BOARD_MODIFY_DATE, RATING, event_BOARD_COUNT, event_NAME,event_img_UPLOAD_PATH, event_img_UUID, event_img_NAME
+        event_BOARD_MODIFY_DATE, RATING, event_BOARD_COUNT, event_NAME,event_board_img_UPLOAD_PATH, event_board_img_UUID, event_board_img_NAME
         from (
         select rownum as rnum, event_BOARD_NUMBER, user_number, user_id, event_NUMBER, event_BOARD_CONTENT,
         event_BOARD_REGISTER_DATE,
-        event_BOARD_MODIFY_DATE, RATING, event_BOARD_COUNT, event_NAME,event_img_UPLOAD_PATH, event_img_UUID, event_img_NAME
+        event_BOARD_MODIFY_DATE, RATING, event_BOARD_COUNT, event_NAME,event_board_img_UPLOAD_PATH, event_board_img_UUID, event_board_img_NAME
         from (
-        select  event_BOARD_NUMBER, s.user_number, u.user_id, s.event_NUMBER, event_BOARD_CONTENT,
+        select  s.event_BOARD_NUMBER, s.user_number, u.user_id, s.event_NUMBER, event_BOARD_CONTENT,
         event_BOARD_REGISTER_DATE,
-        event_BOARD_MODIFY_DATE, RATING, event_BOARD_COUNT, e.event_NAME,event_img_UPLOAD_PATH, event_img_UUID, event_img_NAME
+        event_BOARD_MODIFY_DATE, RATING, event_BOARD_COUNT, e.event_NAME, event_board_img_UPLOAD_PATH, event_board_img_UUID, event_board_img_NAME
         from EVENT_Board s join users u
         on s.user_number = u.user_number
         join event e
         on s.event_NUMBER = e.event_NUMBER
-        left outer join event_IMG img
-        on s.EVENT_NUMBER = img.EVENT_NUMBER
+        left outer join event_board_IMG i
+        on s.EVENT_board_NUMBER = i.EVENT_board_NUMBER
         <if test="'eventName'.equals(searchReviewVo.cate)">
-        where event_name Like '%'|| #{searchReviewVo.keyword} ||'%'
-        </if>
-        order by event_BOARD_NUMBER desc
+            where event_name Like '%'|| #{searchReviewVo.keyword} ||'%'
+        </if>        order by event_BOARD_NUMBER desc
 
-        )
-        <![CDATA[
+        )        <![CDATA[
+
         where rownum <=#{criteria.page} * #{criteria.amount}
         )]]>
         where rnum>(#{criteria.page}-1) * #{criteria.amount}
+
 
     </select>
 
 
     <select id="selectTopEventCount">
-
         select rnum, event_BOARD_NUMBER, user_number, user_id, event_NUMBER, event_BOARD_CONTENT,
-        event_BOARD_REGISTER_DATE,
-        event_BOARD_MODIFY_DATE, RATING, event_BOARD_COUNT, event_NAME,event_img_UPLOAD_PATH, event_img_UUID, event_img_NAME
+               event_BOARD_REGISTER_DATE,
+               event_BOARD_MODIFY_DATE, RATING, event_BOARD_COUNT, event_NAME,event_board_img_UPLOAD_PATH, event_board_img_UUID, event_board_img_NAME
         from (
-        select rownum as rnum, event_BOARD_NUMBER, user_number, user_id, event_NUMBER, event_BOARD_CONTENT,
-        event_BOARD_REGISTER_DATE,
-        event_BOARD_MODIFY_DATE, RATING, event_BOARD_COUNT, event_NAME,event_img_UPLOAD_PATH, event_img_UUID, event_img_NAME
-        from (
-        select  event_BOARD_NUMBER, s.user_number, u.user_id, s.event_NUMBER, event_BOARD_CONTENT,
-        event_BOARD_REGISTER_DATE,
-        event_BOARD_MODIFY_DATE, RATING, event_BOARD_COUNT, e.event_NAME,event_img_UPLOAD_PATH, event_img_UUID, event_img_NAME
-        from EVENT_Board s join users u
-        on s.user_number = u.user_number
-        join event e
-        on s.event_NUMBER = e.event_NUMBER
-        left outer join event_IMG img
-        on s.EVENT_NUMBER = img.EVENT_NUMBER
+                 select rownum as rnum, event_BOARD_NUMBER, user_number, user_id, event_NUMBER, event_BOARD_CONTENT,
+                        event_BOARD_REGISTER_DATE,
+                        event_BOARD_MODIFY_DATE, RATING, event_BOARD_COUNT, event_NAME,event_board_img_UPLOAD_PATH, event_board_img_UUID, event_board_img_NAME
+                 from (
+                          select  img.event_BOARD_NUMBER, s.user_number, u.user_id, s.event_NUMBER, event_BOARD_CONTENT,
+                                  event_BOARD_REGISTER_DATE,
+                                  event_BOARD_MODIFY_DATE, RATING, event_BOARD_COUNT, e.event_NAME,event_board_img_UPLOAD_PATH, event_board_img_UUID, event_board_img_NAME
+                          from EVENT_Board s join users u
+                                                  on s.user_number = u.user_number
+                                             join event e
+                                                  on s.event_NUMBER = e.event_NUMBER
+                                             left outer join event_board_IMG img
+                                                             on s.EVENT_board_NUMBER = img.EVENT_board_NUMBER
 
-        order by event_BOARD_count desc
+                          order by event_BOARD_count desc
 
-        )
-        )
+                      )
+             )
         where rnum between 1 and 6
 
 
     </select>
 
-<!--이벤트 리뷰 개수(검색결과 포함)-->
+
+    <!--    이벤트 서비스 리뷰 상세보기에  조회수 높은 리뷰들 불러오기-->
+    <select id="eventReviewDetailTopCount">
+
+
+        select rnum, event_BOARD_NUMBER, user_number, user_id, event_NUMBER, event_BOARD_CONTENT,
+               event_BOARD_REGISTER_DATE,
+               event_BOARD_MODIFY_DATE, RATING, event_BOARD_COUNT, event_NAME,event_board_img_UPLOAD_PATH, event_board_img_UUID, event_board_img_NAME
+        from (
+                 select rownum as rnum, event_BOARD_NUMBER, user_number, user_id, event_NUMBER, event_BOARD_CONTENT,
+                        event_BOARD_REGISTER_DATE,
+                        event_BOARD_MODIFY_DATE, RATING, event_BOARD_COUNT, event_NAME,event_board_img_UPLOAD_PATH, event_board_img_UUID, event_board_img_NAME
+                 from (
+                          select  img.event_BOARD_NUMBER, s.user_number, u.user_id, s.event_NUMBER, event_BOARD_CONTENT,
+                                  event_BOARD_REGISTER_DATE,
+                                  event_BOARD_MODIFY_DATE, RATING, event_BOARD_COUNT, e.event_NAME,event_board_img_UPLOAD_PATH, event_board_img_UUID, event_board_img_NAME
+                          from EVENT_Board s join users u
+                                                  on s.user_number = u.user_number
+                                             join event e
+                                                  on s.event_NUMBER = e.event_NUMBER
+                                             left outer join event_board_IMG img
+                                                             on s.EVENT_board_NUMBER = img.EVENT_board_NUMBER
+                        where e.event_number = #{eventNumber}
+                          order by event_BOARD_count desc
+
+                      )
+             )
+        where rnum between 1 and 6
+
+    </select>
+
+    <!--이벤트 리뷰 개수(검색결과 포함)-->
     <select id="getTotalER" resultType="_int">
 
 
@@ -214,12 +277,12 @@
 <!--이벤트 리뷰 상세보기-->
     <select id="selectOne2" resultType="eventBoardVo">
 
-        select event_board_number, e.user_number, user_id, e.event_number, EVENT_BOARD_CONTENT,
-               EVENT_BOARD_REGISTER_DATE, EVENT_BOARD_MODIFY_DATE, RATING, EVENT_BOARD_COUNT, EVENT_NAME, event_img_name, event_img_upload_path, event_img_uuid
+        select e.event_board_number, e.user_number, user_id, n.event_number, EVENT_BOARD_CONTENT,
+               EVENT_BOARD_REGISTER_DATE, EVENT_BOARD_MODIFY_DATE, RATING, EVENT_BOARD_COUNT, EVENT_NAME, event_board_img_name, event_board_img_upload_path, event_board_img_uuid
         from EVENT_BOARD e join users u on e.USER_NUMBER = u.USER_NUMBER
                            join event n on e.EVENT_NUMBER = n.EVENT_NUMBER
-                           join event_img img on e.EVENT_NUMBER = img.EVENT_NUMBER
-        where EVENT_BOARD_NUMBER= #{eventBoardNumber}
+                           join event_board_img i on e.EVENT_board_NUMBER = i.EVENT_board_NUMBER
+        where e.EVENT_BOARD_NUMBER= #{eventBoardNumber}
 
 
     </select>
@@ -233,6 +296,16 @@
         where event_number = #{eventNumber}
 
     </select>
+
+    <!--이벤트 서비스 리뷰 수정-->
+    <update id="updateEventReview">
+
+        update event_board
+        set event_board_content = #{eventBoardContent}, event_board_modify_date = sysdate
+        where event_board_number = #{eventBoardNumber}
+
+    </update>
+
 
 <!--이벤트 리뷰 삭제-->
     <delete id="deleteEventReview" >

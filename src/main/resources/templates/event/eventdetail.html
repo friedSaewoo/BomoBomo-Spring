@@ -18,27 +18,25 @@
 <!--헤더영역-->
 <div class="header" th:replace="fragments/header :: header">
 </div>
-    <div class="main" style="height: 1300px;">
-        <div class="event-detail" th:each="event:${detail}" >
+    <div class="main" style="height: 1300px;" th:each="event:${detail}">
+        <div class="event-detail"  >
             <div class="event-detail-banner">
-                <p th:text="${event.eventImgName}"></p>
-                <img src="" alt="매인배너"/>
+                <img th:src="'/upload/' + ${event.eventImgUploadPath} + '/' + ${event.eventImgUuid} +'_' + ${event.eventImgName}">
             </div>
         </div>
         <div class="event-detail-main">`
-            <div class="evetn-detail-line">
-                <span>프로그램 상세설명</span>
+            <div class="event-detail-line">
+                프로그램 상세설명
             </div>
         </div>
 
         <div class="event-main-detail">
-            <div class="event-main-info" th:each="event:${detail}" >
-                <p th:text="${event.eventDetailName}"></p>
-                <img src="" alt="매인배너"/>
+            <div class="event-main-info">
+                <img th:src="'/upload/' + ${event.eventDetailUploadPath} + '/' + ${event.eventDetailUuid} +'_' + ${event.eventDetailName}">
             </div>
         </div>
-        <div class="event-apply">
-            <button type="button">신청하기</button>
+        <div class="event-apply" th:block th:if="${session.userId!=null}">
+            <a th:href="@{/event/payment(eventNumber=${event.eventNumber})}">신청하기</a>
         </div>
     </div>
 </main>

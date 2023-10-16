@@ -14,6 +14,7 @@
         <typeAlias type="com.example.bomobomo.domain.dto.EmpDto" alias="empDto"/>
         <typeAlias type="com.example.bomobomo.domain.dto.EmpImgDto" alias="empImgDto"/>
         <typeAlias type="com.example.bomobomo.domain.vo.EmpVo" alias="empVo"/>
+        <typeAlias type="com.example.bomobomo.domain.vo.EmpListVo" alias="empListVo"/>
         <!--======================== 회원 ========================-->
         <typeAlias type="com.example.bomobomo.domain.dto.UserDto" alias="userDto"/>
         <typeAlias type="com.example.bomobomo.domain.dto.AddressDto" alias="addressDto"/>
@@ -44,6 +45,7 @@
         <typeAlias type="com.example.bomobomo.domain.dto.EventPayDto" alias="eventPayDto"/>
         <typeAlias type="com.example.bomobomo.domain.dto.EventBoardDto" alias="eventBoardDto"/>
         <typeAlias type="com.example.bomobomo.domain.dto.EventCommentDto" alias="eventCommentDto"/>
+        <typeAlias type="com.example.bomobomo.domain.vo.EventPayVo" alias="eventPayVo"/>
         <!--======================== 이벤트 게시판 작성 파일 ========================-->
         <typeAlias type="com.example.bomobomo.domain.dto.EventBoardImgDto" alias="eventBoardImgDto"/>
         <!--======================== Vo ========================-->
@@ -63,6 +65,10 @@
         <typeAlias type="com.example.bomobomo.domain.vo.EmpActItemImgVo" alias="empActItemImgVo"/>
         <typeAlias type="com.example.bomobomo.domain.vo.MatchBuyInfoVo" alias="matchBuyInfoVo"/>
         <typeAlias type="com.example.bomobomo.domain.vo.MatchUserInfoVo" alias="matchUserInfoVo"/>
+        <typeAlias type="com.example.bomobomo.domain.vo.EventNameNumberVo" alias="eventNameNumberVo"/>
 
+        <!-- 지역 -->
+        <typeAlias type="com.example.bomobomo.domain.dto.CityDto" alias="cityDto"/>
+        <typeAlias type="com.example.bomobomo.domain.dto.CountryDto" alias="countyDto"/>
     </typeAliases>
 </configuration>

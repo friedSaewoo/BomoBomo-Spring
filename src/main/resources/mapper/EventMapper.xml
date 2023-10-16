@@ -1,6 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.bomobomo.mapper.EventMapper">
+    <insert id="saveEvent">
+        <selectKey keyProperty="applyNumber" order="BEFORE" resultType="long">
+            select seq_event_apply.nextval from dual
+        </selectKey>
+        INSERT INTO EVENT_APPLY (APPLY_NUMBER, USER_NUMBER, EVENT_NUMBER, EVENT_DATE)
+        VALUES (#{applyNumber}, #{userNumber}, #{eventNumber}, SYSDATE)
+    </insert>
+
+    <insert id="savePayment">
+        <selectKey keyProperty="eventPayNumber" order="BEFORE" resultType="long">
+            select seq_event_pay.nextval from dual
+        </selectKey>
+        INSERT INTO EVENT_PAY (APPLY_NUMBER, EVENT_PAY_NUMBER)
+        VALUES (#{applyNumber}, #{eventPayNumber})
+    </insert>
+
+
+
     <select id="payment" resultType="EventVo">
         select EVENT_NUMBER, EVENT_PRICE
         from EVENT
@@ -8,7 +26,8 @@
     </select>
 
     <select id="select" resultType="EventVo">
-        SELECT e.event_number, e.event_price, e.event_name, ei.event_img_name, ed.event_detail_name
+        SELECT e.event_number, e.event_price, e.event_name, ei.event_img_name, ei.EVENT_IMG_UPLOAD_PATH,
+               ei.EVENT_IMG_UUID, ed.event_detail_name, ed.EVENT_DETAIL_UPLOAD_PATH, ed.EVENT_DETAIL_UUID
         FROM event e
                  LEFT JOIN event_img ei ON e.event_number = ei.event_number
                  LEFT JOIN event_detail ed ON e.event_number = ed.event_number
@@ -16,20 +35,23 @@
     </select>
 
 
-    <select id="selectAll" resultType="EventDto">
-        SELECT EVENT_NUMBER, EVENT_NAME, EVENT_PRICE
-        FROM EVENT
+    <select id="selectAll" resultType="EventVo">
+        SELECT e.event_number, e.event_price, e.event_name, ei.event_img_name, ei.EVENT_IMG_UPLOAD_PATH,
+               ei.EVENT_IMG_UUID
+        FROM event e
+                 Full outer join EVENT_IMG ei
+                                 on e.EVENT_NUMBER = ei.EVENT_NUMBER
     </select>
 
-    <select id="selectEmpAll" resultType="EmpDto">
+    <select id="selectEmpAll" resultType="EmpVo">
         SELECT RNUM, EMP_NAME, EMP_AGE, EMP_GENDER, EMP_PHONE, EMP_EMAIL, EMP_DATE, EMP_CONTENT, EMP_NUMBER,
-               EMP_IMG_UPLOAD_PATH
+               EMP_IMG_UPLOAD_PATH, EMP_IMG_UUID, EMP_IMG_NAME
         FROM(
                 SELECT ROWNUM AS RNUM, EMP_NAME, EMP_AGE, EMP_GENDER, EMP_PHONE, EMP_EMAIL, EMP_DATE, EMP_CONTENT, EMP_NUMBER,
-                       EMP_IMG_UPLOAD_PATH
+                       EMP_IMG_UPLOAD_PATH, EMP_IMG_UUID, EMP_IMG_NAME
                 FROM(
                         SELECT EMP_NAME, EMP_AGE, EMP_GENDER, EMP_PHONE, EMP_EMAIL, EMP_DATE, EMP_CONTENT, E.EMP_NUMBER,
-                               I.EMP_IMG_UPLOAD_PATH
+                               I.EMP_IMG_UPLOAD_PATH, I.EMP_IMG_UUID, I.EMP_IMG_NAME
                         FROM EMP E JOIN EMP_IMG I
                                         ON E.EMP_NUMBER = I.EMP_NUMBER
                     ) X

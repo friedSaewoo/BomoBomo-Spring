@@ -84,6 +84,12 @@
     background-color: #ffffff;
 }
 
+.board-item-image img {
+    height: 100%;
+    width: 100%;
+    border-radius: 100%;
+}
+
 .board-item-title {           /* 직원 이름 */
     font-size: 30px;
     margin-bottom: 5px;

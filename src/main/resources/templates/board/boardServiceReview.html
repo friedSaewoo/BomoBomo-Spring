@@ -2,7 +2,7 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <link rel="stylesheet" href="/board/css/board.css"/>
-    <link rel="stylesheet" href="/board/css/boardServiceReview.css"/>
+    <link rel="stylesheet" href="/board/css/boardReview.css"/>
     <link rel="stylesheet" href="/common/css/common.css"/>
     <link rel="stylesheet" href="/fragments/css/footer.css"/>
     <link rel="stylesheet" href="/fragments/css/header.css"/>
@@ -17,40 +17,44 @@
     <div class="review-banner-container">
         <div class="review-banner">
             <img src="/board/img/boardBannerImg.png" alt=""/>
-
             <p>이곳은, <br>소중한 후기들이 모여있는 곳입니다</p>
         </div>
-        <div class="event-review-move-btn">
-            <button class="event-review-btn">이벤트 후기 게시판 바로가기</button>
-        </div>
+<!--        <div class="event-review-move-btn">-->
+<!--            <button class="event-review-btn">이벤트 후기 게시판 바로가기</button>-->
+<!--        </div>-->
     </div>
     <div class="review-container service-review">
         <div class="review-main-title">
-            <h3>후기 게시판</h3>
-        </div>
-        <div class="review-title-container">
-            <div class="review-section-title">
-                <ul>
-                    <li><a href="/board/serviceReview" style="color: black;">돌봄 후기</a></li>
-                </ul>
+            <div class="review-title">
+                <h3>후기 게시판</h3>
             </div>
             <div class="review-search">
-                    <div class="sitter-name-select" style="display: none">
-                        <select name="cate" id="sitter-name" class="cate">
-                            <option value="sitterName">이름</option>
-                        </select>
-                    </div>
-                    <div class="search-bar">
-                        <input type="text" name="keyword" class="keyword" placeholder="시터님을 검색해보세요!"/>
-                    </div>
-                    <div class="event-search-btn sitter-search-btn ">
-                        <button type="button" >
+                <div class="sitter-name-select" style="display: none">
+                    <select name="cate" id="sitter-name" class="cate">
+                        <option value="sitterName">이름</option>
+                    </select>
+                </div>
+                <div class="search-bar">
+                    <input type="text" name="keyword" class="keyword" placeholder="시터님을 검색해보세요!"/>
+                </div>
+                <div class="event-search-btn sitter-search-btn ">
+                    <button type="button" >
                                 <span class="material-symbols-outlined">
                                 search
                                 </span>
-                        </button>
-                    </div>
+                    </button>
+                </div>
             </div>
+        </div>
+
+        <div class="review-title-container">
+            <div class="review-section-title">
+                <ul>
+                    <li style="background-color:#FF7000"><a href="/board/serviceReview" style="color:white;">돌봄 이용 후기</a></li>
+                    <li><a href="/board/eventReview" style="color: black;">이벤트 이용 후기</a></li>
+                </ul>
+            </div>
+
         </div>
 <!--        리뷰영역-->
         <div class="review-content-container">

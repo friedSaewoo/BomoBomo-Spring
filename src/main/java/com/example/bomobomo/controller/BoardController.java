@@ -1,5 +1,6 @@
 package com.example.bomobomo.controller;
 
+import com.example.bomobomo.domain.dto.EventBoardDto;
 import com.example.bomobomo.domain.dto.SitterBoardDto;
 import com.example.bomobomo.domain.vo.EventBoardVo;
 import com.example.bomobomo.domain.vo.SitterBoardVo;
@@ -9,9 +10,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.Cookie;
@@ -19,6 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.net.http.HttpResponse;
 import java.util.Date;
+import java.util.List;
 
 
 @Controller
@@ -120,18 +122,15 @@ public class BoardController {
     //돌봄후기 상세보기
     @GetMapping("/reviewDetail")
     public String showServiceReviewDetailPage(@RequestParam("sitterBoardNumber") Long sitterBoardNumber,
-           Model model, HttpServletRequest req, HttpServletResponse resp){
+                                               Model model, HttpServletRequest req, HttpServletResponse resp){
+
+
 
         SitterBoardVo sitterBoardVo = reviewService.selectOne(sitterBoardNumber);
+        List<SitterBoardVo> sitterBoardVoList = reviewService.findReviewDetail(sitterBoardVo.getEmpNumber());
         double getAvg = reviewService.getAvgRating(sitterBoardVo.getEmpNumber());
 
-
-
-        model.addAttribute("serviceReviewDetail", sitterBoardVo);
-        model.addAttribute("getAvg", (Math.round(getAvg*100) / 100.0));
-
-        log.info(String.valueOf(getAvg));
-
+        Long emp = sitterBoardVo.getEmpNumber();
 
         Cookie[] cookies = req.getCookies();
         boolean updateCount = true;
@@ -142,16 +141,19 @@ public class BoardController {
                     String cookieValue = cookie.getValue();
 
                     String[] values = cookieValue.split("_");
-                    String sitterBoardNumbers = values[0];
+                    String sitterBoardNumbers = values[0] + "_" +values[1];
+
+                    System.out.println(sitterBoardNumbers);
 
                     log.info(cookieValue+"=====================================================");
                     log.info(values[0]+"=====================================================");
                     log.info(values[1]+"=====================================================");
+                    log.info(values[2]+"=====================================================");
 
-                    long storedTimestamp = Long.parseLong(values[1]);
+                    long storedTimestamp = Long.parseLong(values[2]);
                     long currentTimestamp = new Date().getTime();
 
-                    if (sitterBoardNumbers.equals(req.getParameter("sitterBoardNumber")) && (currentTimestamp - storedTimestamp) < (24 * 60 * 60 * 1000)) {
+                    if ((sitterBoardNumbers.equals(req.getParameter("sitterBoardNumber") + "_" + emp)) && (currentTimestamp - storedTimestamp) < (24 * 60 * 60 * 1000)) {
 
                         updateCount = false;
                         break;
@@ -161,7 +163,7 @@ public class BoardController {
         }
 
         if (updateCount) {
-            Cookie newCookie = new Cookie("reviewDetail_count_cookie", req.getParameter("sitterBoardNumber") + "_" + new Date().getTime());
+            Cookie newCookie = new Cookie("reviewDetail_count_cookie", req.getParameter("sitterBoardNumber") + "_" + emp + "_" + new Date().getTime());
             newCookie.setMaxAge(24 * 60 * 60);
             resp.addCookie(newCookie);
 
@@ -169,9 +171,42 @@ public class BoardController {
         }
 
 
+        model.addAttribute("sitterReviewList", sitterBoardVoList);
+        model.addAttribute("serviceReviewDetail", sitterBoardVo);
+        model.addAttribute("getAvg", (Math.round(getAvg*100) / 100.0));
+
+        log.info(String.valueOf(getAvg));
         log.info(sitterBoardVo.toString());
+        log.info(sitterBoardVoList.toString());
         return "board/serviceReviewDetail";
     }
+    //돌봄 후기 수정창으로 이동
+    @GetMapping("/modifyServiceReview")
+    public String modifyServiceReview(@ModelAttribute("sitterBoardNumber") Long sitterBoardNumber,
+                                      Model model){
+
+
+        model.addAttribute("sitter",  reviewService.selectOne(sitterBoardNumber));
+        return "board/serviceReviewModify";
+    }
+
+    //돌봄 후기 수정 완료
+    @PostMapping("/modifySR")
+    public RedirectView modifySR(SitterBoardDto sitterBoardDto,
+                                 @RequestParam("sitterBoardNumber") Long sitterBoardNumber,
+                                 RedirectAttributes redirectAttributes)
+        {
+
+        sitterBoardDto.setSitterBoardNumber(sitterBoardNumber);
+        log.info(sitterBoardDto.toString()+"*******************===========================");
+        reviewService.modifyServiceReview(sitterBoardDto);
+
+            redirectAttributes.addAttribute("sitterBoardNumber", sitterBoardDto.getSitterBoardNumber());
+
+            return new RedirectView("/board/reviewDetail");
+    }
+
+
 
     //돌봄후기 삭제
     @GetMapping("/removeSReview")
@@ -199,12 +234,15 @@ public class BoardController {
     public String showEventReviewDetailPage(@RequestParam("eventBoardNumber")Long eventBoardNumber
             , Model model, HttpServletRequest req, HttpServletResponse resp){
 
+
         EventBoardVo eventBoardVo = reviewService.showEReviewDetail(eventBoardNumber);
+        List<EventBoardVo> eventBoardVoList = reviewService.findEventReviewTopCount(eventBoardVo.getEventNumber());
         double getAvgEventReview = reviewService.getAvgEventReviewRating(eventBoardVo.getEventNumber());
 
         log.info(String.valueOf(getAvgEventReview) +"===============================================");
         log.info(eventBoardVo.toString()+"====================******************");
 
+        model.addAttribute("eventReviewList", eventBoardVoList);
         model.addAttribute("eventReviewDetail", eventBoardVo);
         model.addAttribute("avgEventReview", (Math.round(getAvgEventReview*100) / 100.0));
 
@@ -248,8 +286,37 @@ public class BoardController {
         return "board/eventReviewDetail";
 
     }
-    //이벤트 후기 수정
+    //이벤트 후기 수정 페이지 이동
+    @GetMapping("/modifyEventReview")
+    public String modifyEventReview(@ModelAttribute("eventBoardNumber") Long eventBoardNumber,
+                                    Model model){
 
+        model.addAttribute("eventReview", reviewService.showEReviewDetail(eventBoardNumber));
+        return "/board/eventReviewModify";
+    }
+
+
+    //이벤트 후기 수정 등록
+    @PostMapping("/modifyER")
+    public RedirectView modifyER(@RequestParam("eventBoardNumber")Long eventBoardNumber,
+                                 @RequestParam("userNumber")Long userNumber,
+                                 @RequestParam("eventNumber")Long eventNumber,
+                                 EventBoardDto eventBoardDto,
+                                 RedirectAttributes redirectAttributes, @RequestParam("eventBoardImg") MultipartFile files){
+
+
+            eventBoardDto.setEventBoardNumber(eventBoardNumber);
+            eventBoardDto.setUserNumber(userNumber);
+            eventBoardDto.setEventNumber(eventNumber);
+
+        log.info(eventBoardDto.toString()+"*******************===========================");
+
+        reviewService.modifyEventReview(eventBoardDto, files);
+        redirectAttributes.addAttribute("eventBoardNumber", eventBoardDto.getEventBoardNumber());
+
+        return new RedirectView("/board/reviewEventDetail");
+
+    }
 
     //이벤트 후기 삭제
     @GetMapping("/removeEReview")

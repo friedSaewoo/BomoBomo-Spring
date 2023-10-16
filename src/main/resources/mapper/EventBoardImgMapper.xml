@@ -5,7 +5,7 @@
     <insert id="insert">
         insert into EVENT_BOARD_IMG (EVENT_BOARD_IMG_NUMBER, EVENT_BOARD_NUMBER, EVENT_BOARD_IMG_NAME,
                                      EVENT_BOARD_IMG_UPLOAD_PATH, EVENT_BOARD_IMG_UUID)
-        values (SEQ_EVENT_BOARD_IMG.NEXTVAL,#{eventBoardNumber},#{eventBoardImgName},#{evntBoardImgUploadPath},#{eventBoardImgUuid})
+        values (SEQ_EVENT_BOARD_IMG.NEXTVAL,#{eventBoardNumber},#{eventBoardImgName},#{eventBoardImgUploadPath},#{eventBoardImgUuid})
     </insert>
     <!---->
     <select id="selectList" resultType="eventBoardImgDto">
@@ -14,4 +14,16 @@
         from event_board_img
         where event_board_number = #{eventBoardNumber}
     </select>
+
+
+    <delete id="delete">
+
+        delete from event_board_img
+        where event_board_number = #{eventBoardNumber}
+
+    </delete>
+
+
+
+
 </mapper>

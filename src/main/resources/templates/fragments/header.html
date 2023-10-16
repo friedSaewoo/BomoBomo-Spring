@@ -21,13 +21,14 @@
                             <a href="#">회사소개</a>
                             <dl style="display: none" class="sub-menu" id="subMenu">
                                 <dt>회사 소개</dt>
-                                <dd><a href="#">직원 소개</a></dd>
-                                <dd><a href="#">이용 가이드</a></dd>
-                                <dd><a href="#">인재 채용</a></dd>
+                                <dd><a href="/event/empIntro">직원 소개</a></dd>
+                                <dd><a href="/event/guide">이용 가이드</a></dd>
+                                <dd><a href="/event/rec">인재 채용</a></dd>
                             </dl>
                         </li>
-                        <li><a href="/sitter/html/sitterFind.html">씨터찾기</a></li>
+                        <li><a href="/sitter/sitterFind">씨터찾기</a></li>
                         <li><a href="#">이벤트</a></li>
+                        <li><a href="/event/list">이벤트</a></li>
                         <li id="downMenu2"><a href="/board/faq">커뮤니티</a>
                             <dl style="display: none" class="sub-menu" id="subMenu2">
                                 <dt>회사 소개</dt>
@@ -47,8 +48,9 @@
                 <ul th:unless="${session.userNumber == null}">
                     <li>
                         <a href="/mypage/main">
-                            <h3 class="page_move" th:text="${session.userName} + 님"></h3></li>
+                            <h3 class="page_move" th:text="${session.userName} + '님'"></h3>
                         </a>
+                    </li>
                     <li><a href="/user/logout" class="nav-item login">로그아웃</a></li>
                 </ul>
             </div>

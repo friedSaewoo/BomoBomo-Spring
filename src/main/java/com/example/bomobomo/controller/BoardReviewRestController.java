@@ -67,7 +67,7 @@ public class BoardReviewRestController {
 
 
     //이벤트 서비스 후기 사진 저장경로
-    @Value("${file.eventImg}")
+    @Value("${file.dir}")
     String fileEventImg;
 
     //이벤트 서비스 후기 사진(검색포함)

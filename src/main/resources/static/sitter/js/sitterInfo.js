@@ -39,13 +39,30 @@ next.addEventListener('click', function () {
   }
 });
 
+$('.sitterInformation')
+
+
+$('.sitterSelBtn').click(function () {
+
+    let sitterNumber = $('#sitterNum').val();
+
+    if($("h3").hasClass("page_move") !== true) {
+        alert("로그인을 먼저 해주세요.");
+        location.href="/user/login";
+        return;
+
+    }
+    $('.sitterForm').submit();
+
+});
 
 $(function() {
-  $(".sitterSelBtn").click(function() {
-    $(".modal").fadeIn();
-    $(".container").css("pointer-events", "none")
-    $("body").css("background-color", "lightgray")
-  });
+
+  // $(".sitterSelBtn").click(function() {
+  //   $(".modal").fadeIn();
+  //   $(".container").css("pointer-events", "none")
+  //   $("body").css("background-color", "lightgray")
+  // });
   
   $(".modalX").click(function() {
     $(".modal").fadeOut();

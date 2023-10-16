@@ -8,12 +8,13 @@ import org.springframework.stereotype.Component;
 @Component
 @NoArgsConstructor
 public class EventBoardDto {
-    Long eventBoardNumber;
-    Long userNumber;
-    Long eventNumber;
-    String eventBoardContent;
-    String eventBoardRegisterDate;
-    String eventBoardModifyDate;
-    Integer rating;
-    Integer eventBoardCount;
+    private Long eventBoardNumber;
+    private Long userNumber;
+    private Long eventNumber;
+    private String eventBoardContent;
+    private String eventBoardRegisterDate;
+    private String eventBoardModifyDate;
+    private Integer rating;
+    private Integer eventBoardCount;
+    private Long eventPayNumber;
 }
