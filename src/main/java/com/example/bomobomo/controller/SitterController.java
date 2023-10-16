@@ -73,10 +73,6 @@ public class SitterController {
             sitterReview = 0.0;
         }
 
-//        double sum = 0;
-//        for (double num : sitterReview) {
-//            sum += num;
-//        }
 
         double sitterTotalReview = sitterReview;
         System.out.println("시터 평균 : " + sitterTotalReview);
@@ -110,14 +106,16 @@ public class SitterController {
 
 //    선택한 시터 신청 컨트롤러
     @PostMapping("/sitterRegister")
-    public String sitterRegister(HttpServletRequest req, Long sitterNumber,
+    public String sitterRegister(HttpServletRequest req, Model model,
+                                 @RequestParam("empName") String empName,
                                  @RequestParam("empNumber") Long empNumber) {
 
 //        req.getParameter("empNumber");
         Long userNumber = (Long) req.getSession().getAttribute("userNumber");
+        String sitterName = req.getParameter("empName");
 
-        System.out.println("시터번호" + empNumber);
-        System.out.println("유저번호" + userNumber);
+        model.addAttribute("empName",empName);
+        model.addAttribute("empNumber",empNumber);
         if (userNumber == null) {
             return "/user/login";
         }
@@ -127,20 +125,35 @@ public class SitterController {
 
     //신청서 데이터 저장후 이동
     @PostMapping("/sitterApplication")
-    public RedirectView applicationRegister(OrderDto orderDto, HttpServletRequest req, UserDto userDto) {
-
+    public RedirectView applicationRegister(SubmitOrderDto submitOrderDto, MatchDto matchDto, HttpServletRequest req,
+                                            @RequestParam("empNumber")Long empNumber) {
         // 저장 서비스 실행
         Long userNumber = (Long) req.getSession().getAttribute("userNumber");
-
-//        System.out.println("시터 번호" + empNumber);
+        System.out.println("시터 번호" + empNumber);
         System.out.println("유저번호 : " + userNumber);
 
-        orderDto.setUserNumber(userNumber);
-        orderService.register(orderDto);
+        System.out.println("서브밋오더 : " + submitOrderDto);
+        matchDto.setUserNumber(userNumber);
+        matchDto.setEmpNumber(empNumber);
+        System.out.println("매치 : " + matchDto);
 
-        log.info(orderDto.getUserNumber().toString());
+        sitterService.register(submitOrderDto);
+        sitterService.sitterMatching(matchDto);
+
         // 신청서 내용 입력 후 이동
         return new RedirectView("/common/index");
     }
 
+//    @PostMapping("/join")
+//    public String join(UserDto userDto, AddressDto addressDto, HttpServletRequest req) {
+//
+//        String detail = req.getParameter("addressDetails");
+//        String addressDetail = addressDto.getAddressDetail() +" "+ detail;
+//
+//        addressDto.setAddressDetail(addressDetail);
+//
+//        userService.register(userDto, addressDto);
+//
+//        return "user/login";
+//    }
 }

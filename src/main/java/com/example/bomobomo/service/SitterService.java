@@ -1,8 +1,6 @@
 package com.example.bomobomo.service;
 
-import com.example.bomobomo.domain.dto.EmpActItemDto;
-import com.example.bomobomo.domain.dto.EmpDto;
-import com.example.bomobomo.domain.dto.SitterBoardDto;
+import com.example.bomobomo.domain.dto.*;
 import com.example.bomobomo.domain.vo.*;
 import com.example.bomobomo.mapper.AdminMapper;
 import com.example.bomobomo.mapper.SitterMapper;
@@ -86,15 +84,18 @@ public class SitterService {
         System.out.println("서비스 확인 : " + sitterMapper.sitterPossibleList(empNumber));
         return  sitterMapper.sitterPossibleList(empNumber);
     }
-//    시터 평점
-//    public List<SitterBoardVo> selectSitterAvg() {
-//
-//        return sitterMapper.sitterAvg();
-//    }
-
 
     public List<EmpListVo> sitterActImg() {
         return  sitterMapper.sitterActImg();
     }
 
+    public void register(SubmitOrderDto submitOrderDto) {
+        System.out.println("register 서비스 오는지");
+        sitterMapper.register(submitOrderDto);
+
+    }
+    public void sitterMatching(MatchDto matchDto) {
+        System.out.println("sitterMatching 서비스 오는지");
+        sitterMapper.sitterMatching(matchDto);
+    }
 }

@@ -239,16 +239,19 @@
 }
 
 
+.none-search-img {
+    text-align: center;
+}
 .non-review-search-result {
     line-height: 2;
     width: 1024px;
     text-align: center;
 
 }
-
-.non-review-search-result a {
-    color: #FF7000;
+.non-review-search-result-btn {
+    text-align: center;
 }
+
 
 
 

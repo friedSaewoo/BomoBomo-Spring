@@ -675,6 +675,17 @@ input[type="checkbox"]:checked {
     font-size: 14px;
     line-height: 16px;
 
+.sitterActSelect {
+    width: 160px;
+    border-radius: 10px;
+    box-sizing: border-box;
+    padding: 12px 13px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
+
 }
 .sitterActSelect:focus{
     box-sizing: border-box;

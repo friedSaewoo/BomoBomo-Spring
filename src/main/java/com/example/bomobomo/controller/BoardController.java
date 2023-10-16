@@ -19,8 +19,8 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.net.http.HttpResponse;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 
 @Controller
@@ -130,7 +130,6 @@ public class BoardController {
         List<SitterBoardVo> sitterBoardVoList = reviewService.findReviewDetail(sitterBoardVo.getEmpNumber());
         double getAvg = reviewService.getAvgRating(sitterBoardVo.getEmpNumber());
 
-        Long emp = sitterBoardVo.getEmpNumber();
 
         Cookie[] cookies = req.getCookies();
         boolean updateCount = true;
@@ -140,30 +139,34 @@ public class BoardController {
                 if ("reviewDetail_count_cookie".equals(cookie.getName())) {
                     String cookieValue = cookie.getValue();
 
-                    String[] values = cookieValue.split("_");
-                    String sitterBoardNumbers = values[0] + "_" +values[1];
+                    String[] values = cookieValue.split("/");
+                    log.info("%%%%%%%%%% {}", Arrays.toString(values));
 
-                    System.out.println(sitterBoardNumbers);
+                    List<Long> valueList = Arrays.stream(values).mapToLong(Long::parseLong).boxed().collect(Collectors.toList());
 
-                    log.info(cookieValue+"=====================================================");
-                    log.info(values[0]+"=====================================================");
-                    log.info(values[1]+"=====================================================");
-                    log.info(values[2]+"=====================================================");
-
-                    long storedTimestamp = Long.parseLong(values[2]);
-                    long currentTimestamp = new Date().getTime();
-
-                    if ((sitterBoardNumbers.equals(req.getParameter("sitterBoardNumber") + "_" + emp)) && (currentTimestamp - storedTimestamp) < (24 * 60 * 60 * 1000)) {
-
+                    if(valueList.contains(sitterBoardNumber)){
                         updateCount = false;
                         break;
                     }
+
+                    valueList.add(sitterBoardNumber);
+                    log.info("##############3 {}", valueList);
+
+                    String result = String.join("/", valueList.stream().map(ele -> ele+"").collect(Collectors.toList()));
+
+                    log.info("**************************** {}", result);
+                    cookie.setValue(result);
+                    resp.addCookie(cookie);
+                    updateCount = false;
+                    reviewService.updateCount(sitterBoardNumber);
+
                 }
+
             }
         }
 
         if (updateCount) {
-            Cookie newCookie = new Cookie("reviewDetail_count_cookie", req.getParameter("sitterBoardNumber") + "_" + emp + "_" + new Date().getTime());
+            Cookie newCookie = new Cookie("reviewDetail_count_cookie", req.getParameter("sitterBoardNumber"));
             newCookie.setMaxAge(24 * 60 * 60);
             resp.addCookie(newCookie);
 
@@ -251,38 +254,44 @@ public class BoardController {
         Cookie[] cookies = req.getCookies();
         boolean updateCount = true;
 
-        if(cookies!=null){
-            for(Cookie cookie : cookies){
-                if("eventReviewDetail_count_cookie".equals(cookie.getName())){
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
+                if ("eventReviewDetail_count_cookie".equals(cookie.getName())) {
                     String cookieValue = cookie.getValue();
 
+                    String[] values = cookieValue.split("/");
+                    log.info("%%%%%%%%%% {}", Arrays.toString(values));
 
-                    String[] values = cookieValue.split("_");
-                    String eventBoardNumbers = values[0];
+                    List<Long> valueList = Arrays.stream(values).mapToLong(Long::parseLong).boxed().collect(Collectors.toList());
 
-                    Long storedTimestamp = Long.parseLong(values[1]);
-                    Long currentTimestamp = new Date().getTime();
-
-                    if(eventBoardNumbers.equals(req.getParameter("eventBoardNumber")) && (currentTimestamp - storedTimestamp) < (24 * 60 * 60 * 1000)){
-
-                            updateCount = false;
-                            break;
+                    if(valueList.contains(eventBoardNumber)){
+                        updateCount = false;
+                        break;
                     }
 
+                    valueList.add(eventBoardNumber);
+                    log.info("##############3 {}", valueList);
+
+                    String result = String.join("/", valueList.stream().map(ele -> ele+"").collect(Collectors.toList()));
+
+                    log.info("**************************** {}", result);
+                    cookie.setValue(result);
+                    resp.addCookie(cookie);
+                    updateCount = false;
+                    reviewService.updateEventReviewCount(eventBoardNumber);
 
                 }
-            }
 
+            }
         }
-        if(updateCount){
-            Cookie newCookie = new Cookie("eventReviewDetail_count_cookie", req.getParameter("eventBoardNumber")+ "_" + new Date().getTime());
-            newCookie.setMaxAge(24*60*60);
+
+        if (updateCount) {
+            Cookie newCookie = new Cookie("eventReviewDetail_count_cookie", req.getParameter("eventBoardNumber"));
+            newCookie.setMaxAge(24 * 60 * 60);
             resp.addCookie(newCookie);
 
             reviewService.updateEventReviewCount(eventBoardNumber);
-
         }
-
         return "board/eventReviewDetail";
 
     }

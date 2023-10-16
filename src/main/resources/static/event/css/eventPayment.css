@@ -10,11 +10,7 @@
     height: 750px;
     background-color: rgb(247, 247, 247);
     margin: 0 auto;
-    font-family: 'Black Han Sans', sans-serif;
-    font-family: 'Dongle', sans-serif !important;
-    font-family: 'Gamja Flower', cursive;
-    font-family: 'IBM Plex Sans KR', sans-serif;
-    font-family: 'Single Day', cursive;
+    font-family: GmarketSansMedium;
 }
 
 .payment-section-name {
@@ -22,7 +18,7 @@
     height: 100px;
     background-color: rgb(255, 255, 255);
     margin: 0 auto;
-    font-size: 55px;
+    font-size: 30px;
     text-align: center; /* 텍스트를 가운데 정렬합니다. */
     line-height: 100px; /* 수직 정렬을 위한 높이 설정 */
 }
@@ -32,11 +28,7 @@
     width: 55%;
     height: 700px;
     background-color: rgb(255, 255, 255);
-    font-family: 'Black Han Sans', sans-serif;
-    font-family: 'Dongle', sans-serif !important;
-    font-family: 'Gamja Flower', cursive;
-    font-family: 'IBM Plex Sans KR', sans-serif;
-    font-family: 'Single Day', cursive;
+    font-family: GmarketSansMedium;
     margin: 0 auto;
     display: flex;
 }
@@ -46,22 +38,10 @@
     width: 80%;
     height: 600px;
     background-color: rgb(255, 255, 255);
-    font-family: 'Black Han Sans', sans-serif;
-    font-family: 'Dongle', sans-serif !important;
-    font-family: 'Gamja Flower', cursive;
-    font-family: 'IBM Plex Sans KR', sans-serif;
-    font-family: 'Single Day', cursive;
-
-}
-
-
-.payment-application-write{
-    font-size: 30px;
+    font-family: GmarketSansMedium;
+    font-size: 20px;
     line-height: 30px;
 }
-
-
-
 
 /*이벤트 신청서 내용 부분 */
 
@@ -70,17 +50,17 @@
     text-align: center;
     margin-top: 30px;
     position: relative;
+    font-size: 10px;
 }
 
 .eventInfo{
     width: 400px;
     height: 40px;
     margin-top: 30px;
-
 }
 
 .info-date {line-height: 2.3;
-    top: -17px;
+    top: -1px;
 }
 
 .info-date,
@@ -90,19 +70,20 @@
     width:100px;
     position: absolute;
     left: 25px;
+    font-size: 15px;
 }
 
 .address-main {
-    font-size: 25px;
+    font-size: 15px;
     text-align: left;
     position: absolute;
-    left: 25px;
+    left: 27px;
     top : -30px;
 }
 
 .addressnum{
     /* float: left; */
-    margin-left: -168px;
+    margin-left: -177px;
     width: 150px;
     height: 40px;
     border-radius: 5px;
@@ -114,12 +95,11 @@
     border: 1px solid #FF7000;
     color: rgb(255, 255, 255);
     cursor: pointer;
-    font-size: 16px; /* 원하는 크기로 설정 */
-    font-family: 'Black Han Sans', sans-serif;
-    font-family: 'Dongle', sans-serif !important;
-    font-family: 'Gamja Flower', cursive;
-    font-family: 'IBM Plex Sans KR', sans-serif;
-    font-family: 'Single Day', cursive;
+    font-family: GmarketSansMedium;
+}
+
+.addressnumbtn button {
+    font-size: 15px;
 }
 
 .addressInput{
@@ -127,7 +107,7 @@
     width: 400px;
     height: 40px;
     border-radius: 5px;
-    margin-left: 5px;
+    margin-left: 0px;
 }
 
 #PostCodeSearch{
@@ -139,37 +119,31 @@
 }
 
 .addressplus{
-    margin-left: 5px;
-    width: 95px;
+    margin-left: 1px;
+    width: 110px;
     height: 40px;
     border-radius: 5px;
 }
 
 .addressdetail{
     margin-top: 20px;
-    width: 300px;
+    width: 285px;
     height: 40px;
     border-radius: 5px;
-
 }
 
 
 /*결제하기 부분*/
 
 .payment-application-button button{
-
     width: 100px;
     height: 60px;
     background-color: #FF7000;
     border: 1px solid #FF7000;
     color: rgb(255, 255, 255);
     cursor: pointer;
-    font-size: 30px; /* 원하는 크기로 설정 */
-    font-family: 'Black Han Sans', sans-serif;
-    font-family: 'Dongle', sans-serif !important;
-    font-family: 'Gamja Flower', cursive;
-    font-family: 'IBM Plex Sans KR', sans-serif;
-    font-family: 'Single Day', cursive;
+    font-size: 18px; /* 원하는 크기로 설정 */
+    font-family: GmarketSansMedium;
 }
 
 
@@ -181,8 +155,7 @@
     align-items: center;
     margin: 0 auto;
     text-align: center;
-    width: 100px
-    height: 150px;
+    height: 90px;
     background-color: rgb(255, 255, 255);
 }
 

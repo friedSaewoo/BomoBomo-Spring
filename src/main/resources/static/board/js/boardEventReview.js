@@ -132,9 +132,14 @@ function eventReviewList(result){
         })
     }else{
         text=`
-        <h3 class="non-review-search-result">검색 결과가 없습니다. 이벤트 정보를 다시 확인해주세요.<br>
-                            <button class="non-review-search-result-btn" type="button" data-pagenum="1">목록으로 돌아가기</button></h3>
-
+        <div>
+            
+                <div class="none-search-img"><img src="/common/img/non-search-result.png" alt="검색결과 없음"/></div>
+                <div class="non-review-search-result"><strong>검색 결과가 없습니다. 이벤트 정보를 다시 확인해주세요.</strong></div>
+                <div class="non-review-search-result-btn"><button  type="button" data-pagenum="1">목록으로 돌아가기</button></div>
+        
+        </div>
+      
         
         
         `

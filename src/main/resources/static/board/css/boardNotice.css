@@ -54,7 +54,15 @@
     width: 50px;
     height: 25px;
 }
+.cate {
+    width: 70px;
+    height: 25px;
 
+}
+.keyword {
+    padding-left: 10px;
+    height: 21px;
+}
 
 
 .active-page {
@@ -73,27 +81,27 @@
     height: 45px;
 }
 
-.notice-table tr td:first-child,
-.notice-table tr td:nth-child(5){
+.notice-number,
+.notice-count{
     width: 50px;
     font-size: 13px;
 }
 
-.notice-table tr td:nth-child(2){
+.notice-title{
     padding-left: 20px;
     width: 600px;
     font-size: 14px;
 }
-.notice-table tr td:nth-child(3){
+.notice-writer{
     width: 130px;
     font-size: 14px;
 }
-.notice-table tr td:nth-child(4){
+.notice-register-date{
     font-size: 14px;
     width: 194px;
 }
 
-.notice-table tr td{
+.notice-content td{
 
     height: 35px;
     border-bottom: 1px solid rgba(128, 128, 128, 0.336);
@@ -121,6 +129,24 @@
 .backBtn td:last-child a{
     border: 2px solid red;
     display: inline;
+}
+
+
+
+.non-notice-search-result td {
+    width: 1024px ;
+    text-align: center ;
+    border: none
+}
+
+.non-search-result {
+    line-height: 1.9;
+    font-size: 15px;
+}
+.back-to-notice-btn {
+
+    padding: 3px;
+    font-size: 14px;
 }
 
 

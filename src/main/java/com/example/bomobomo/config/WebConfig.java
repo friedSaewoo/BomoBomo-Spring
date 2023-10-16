@@ -26,5 +26,7 @@ public class WebConfig implements WebMvcConfigurer {
                 .addResourceLocations("file:" + empPics)
                 .addResourceLocations("file:"+ eventReview);
         //로컬 디스크 경로는 file: 을 반드시 사용해야한다.
+        registry.addResourceHandler("/common/**")
+                .addResourceLocations("classpath:/static/common/");
     }
 }
