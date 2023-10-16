@@ -8,7 +8,6 @@
   <link rel="stylesheet" href="/common/css/common.css"/>
   <!-- <link rel="stylesheet" href="/event/css/employeeintro.css"/> -->
   <link rel="stylesheet" href="/event/css/employeeIntro.css"/>
-  <script src="/common/js/common.js" defer></script>
   <!--common.js에서 제이쿼리 경로 수정하기!-->
 
 </head>
@@ -21,46 +20,35 @@
 <main style="height: 2000px;">
   <!--개인 작업 영역-->
   <div class="event-container">
-    <div class="event-banner" >
-      <img src="/event/img/12345.jpg" alt="이벤트메인배너"/>
-      <h1 class="event-banner-text"></h1>
+    <div class="banner1-container" >
+      <img src="/event/img/Recruitment.png" alt="매인배너"/>
+      <div class="banner1-letter-container"  >
+        <div class="main-letter">
+          <dl>
+            <dt><strong style="font-size: 22px; line-height: 3;">보모보모 직원들은</strong></dt>
+            <dd><span>각자의 분야에서 전문성을 지니며 항상 고객을 최우선에 두고 있습니다. </span></dd>
+            <dd><span>우리의 목표는 고객의 만족과 성공을 위해 최선을 다하는 것이며, </span></dd>
+            <dd><span>이를 위해 끊임없이 혁신과 변화를 추구하고 있습니다.</span></dd>
+          </dl>
+        </div>
+      </div>
     </div>
     <div class="service-content-container">
+      <div class="service-title">
       <h2>보모보모 직원 소개</h2>
+      </div>
       <div class = "board">
-        <div class="board-item" th:each=" empIntro : ${empIntro}" >
-          <div class="board-img-box">
-            <div class="board-item-image">
-              <img th:src="'/upload/' + ${empIntro.empImgUploadPath} + '/' + ${empIntro.empImgUuid} +'_' + ${empIntro.empImgName}"/>
-            </div>
-          </div>
-          <div class="board-item-text">
-            <h3 class="board-item-title" th:text="${empIntro.empName}"></h3>
-            <span class="board-item-author" th:text="${empIntro.empContent}"></span>
-          </div>
-        </div>
+
       </div>
       <!-- 페이징 처리-->
       <div class="page-container">
         <ul class="page-box">
-          <a th:href="@{/event/empIntro(page=${pageInfo.startPage-1})}" class="page-a" th:if="${pageInfo.prev}">
-            <li class="page-num prev">&lt</li>
-          </a>
 
-          <th:block th:each="i : ${#numbers.sequence(pageInfo.startPage, pageInfo.endPage)}">
-          <a th:href="@{/event/empIntro(page=${i})}" class="page-a">
-            <li class="page-num" th:text="${i}" th:if="${i != pageInfo.criteria.page}"></li>
-            <li class="page-num active" th:text="${i}" th:unless="${i != pageInfo.criteria.page}"></li>
-          </a>
-          </th:block>
-
-          <a th:href="@{/event/empIntro(page=${pageInfo.endPage+1})}" class="page-a" th:if="${pageInfo.next}">
-            <li class="page-num next">&gt</li>
-          </a>
         </ul>
 
       </div>
-      <input class="board-num" type="hidden" th:value="${boardNumber}">
+    </div>
+  </div>
 </main>
 
 

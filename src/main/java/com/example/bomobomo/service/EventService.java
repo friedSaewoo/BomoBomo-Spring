@@ -23,7 +23,7 @@ public class EventService {
         return eventMapper.selectAll();
     }
 
-////    디테일페이지 이동(조회)
+//    디테일페이지 이동(조회)
     public EventVo find(Long eventNumber){
         if (eventNumber == null) {
             throw new IllegalArgumentException("이벤트 번호 누락!!");
@@ -32,7 +32,7 @@ public class EventService {
                 .orElseThrow(() -> { throw new IllegalArgumentException("존재하지 않는 이벤트 번호!"); });
     }
 
-////    이벤트 결제페이지 이동
+//    이벤트 결제페이지 이동
     public EventVo payment(Long eventNumber){
         if (eventNumber == null) {
             throw new IllegalArgumentException("이벤트 번호 누락!!");
@@ -42,7 +42,7 @@ public class EventService {
     }
 
 
-//      전체 직원 조회
+//    전체 직원 조회
     public List<EmpVo> findEmpAll(Criteria criteria) {
         return eventMapper.selectEmpAll(criteria);
     }
@@ -54,7 +54,7 @@ public class EventService {
     }
 
 
-
+//    이벤트 결제 후 데이터 넘기기
     public void saveEvent(EventPayVo eventPayVo) {
         eventMapper.saveEvent(eventPayVo);
     }
