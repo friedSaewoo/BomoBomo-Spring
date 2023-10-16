@@ -50,30 +50,31 @@ function noticeList(result) {
         result.boardNoticeList.forEach(r => {
 
             text += `
-                <tr>
-                    <td>${r.noticeNumber}</td>
-                    <td><a href="/board/detail?noticeNumber=${r.noticeNumber}"><strong>${r.noticeTitle}</strong></a></td>
-                    <td>관리자</td>
-                    <td>${r.noticeRegisterDate}</td>
-                    <td>${r.noticeCount}</td>
+                <tr class="notice-content">
+                    <td class="notice-number">${r.noticeNumber}</td>
+                    <td class="notice-title"><a href="/board/detail?noticeNumber=${r.noticeNumber}"><strong>${r.noticeTitle}</strong></a></td>
+                    <td class="notice-writer">관리자</td>
+                    <td class="notice-register-date">${r.noticeRegisterDate}</td>
+                    <td class="notice-count">${r.noticeCount}</td>
                 </tr>
             `;
         });
 
     }else {
         text = `
-        
             <tr class="non-notice-search-result">
-                <td > 검색결과가 없습니다.</td>
-               
+                <td colspan="5" > 
+                    <img src="/common/img/non-search-result.png" alt="검색결과 없음"/>
+                </td>
             </tr>
-            <tr class="non-notice-search-result backBtn">
-                <td colspan="3" ><a href="/board/notice">목록으로 돌아가기</a></td >
-               <td></td>
-               <td></td>
-               <td></td>
-               <td></td>
-            </tr>
+            <tr class="non-notice-search-result">
+                <td colspan="5" class="non-search-result"> 
+                    <p><strong>검색 결과가 없습니다. 검색 정보를 다시 확인해주세요.</strong></p>
+                    <button class="back-to-notice-btn" data-pagenum="1">목록으로 돌아가기</button>
+                </td>
+            </tr>  
+          
+           
         `;
     }
 
