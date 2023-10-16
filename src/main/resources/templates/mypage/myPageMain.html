@@ -55,7 +55,7 @@
                             <!--상태 2 -> 내용 없음-->
                             <th:block th:if="${match == null}">
                                 <div class="siters-info" >
-                                    <h3>나의 매칭</h3>
+                                    <h3 class="h3">나의 매칭</h3>
                                     <div class="noneEmpArea">
                                     <img src="/mypage/img/qbz20exc.png" class="imgs"/>
                                     </div>
@@ -66,14 +66,17 @@
                             <th:block th:if="${#strings.equals(match.status,'0')}">
                                 <input type="hidden" th:value="${match.matchNumber}">
                                 <input type="hidden" th:data-statusnum="${match.status}" class="status">
-                                <h3>나의 매칭</h3>
+                                <h3 class="existH3">나의 매칭</h3>
                                 <div class="empArea">
 
                                     <ul class="siterarea">
                                         <li class="siterimg">
 
-                                            <!--데이터에서 이미지 받기-->
-                                            <img th:src="@{/myPages/empimg(fileFullPath=${empInfoImg.empImgUploadPath} + '/' + ${empInfoImg.empImgUuid} + '_' + ${empInfoImg.empImgName})}">
+                                          <div class="siterimg-line">
+                                              <div class="siterimg-img">
+                                                <img th:src="@{/myPages/empimg(fileFullPath=${empInfoImg.empImgUploadPath} + '/' + ${empInfoImg.empImgUuid} + '_' + ${empInfoImg.empImgName})}">
+                                              </div>
+                                          </div>
 
                                         </li>
                                         <li class="siter-info">
@@ -91,7 +94,13 @@
                                             </th:block>
                                         </li>
                                         <li class="siter-infos">
-                                            <span th:text="'평점 : '+${rating.avg}"></span>
+                                            <span th:if="${rating.avg >=0 && rating.avg <0.5}" class="avg">☆☆☆☆☆</span>
+                                            <span th:if="${rating.avg >=0.5 && rating.avg <1.5}" class="avg">★☆☆☆☆ </span>
+                                            <span th:if="${rating.avg >=1.5 && rating.avg <2.5}" class="avg">★★☆☆☆ </span>
+                                            <span th:if="${rating.avg >=2.5 && rating.avg <3.5}" class="avg" >★★★☆☆ </span>
+                                            <span th:if="${rating.avg >=3.5 && rating.avg <4.5}" class="avg">★★★★☆ </span>
+                                            <span th:if="${rating.avg >=4.5 && rating.avg ==5}" class="avg">★★★★★ </span>
+
                                         </li>
 
                                         <li class="siter-act" >
@@ -113,14 +122,17 @@
                             <th:block th:if="${#strings.equals(match.status,'1')}">
                                 <input type="hidden" th:value="${match.matchNumber}">
                                 <input type="hidden" th:data-statusnum="${match.status}" class="status">
-                                <h3>나의 매칭</h3>
+                                <h3 class="existH3">나의 매칭</h3>
                                 <div class="empArea">
 
                                     <ul class="siterarea">
                                         <li class="siterimg">
 
-                                            <!--데이터에서 이미지 받기-->
-                                            <img th:src="@{/myPages/empimg(fileFullPath=${empInfoImg.empImgUploadPath} + '/' + ${empInfoImg.empImgUuid} + '_' + ${empInfoImg.empImgName})}">
+                                            <div class="siterimg-line">
+                                                <div class="siterimg-img">
+                                                    <img th:src="@{/myPages/empimg(fileFullPath=${empInfoImg.empImgUploadPath} + '/' + ${empInfoImg.empImgUuid} + '_' + ${empInfoImg.empImgName})}">
+                                                </div>
+                                            </div>
 
                                         </li>
                                         <li class="siter-info">
@@ -138,7 +150,12 @@
                                             </th:block>
                                         </li>
                                         <li class="siter-infos">
-                                            <span th:text="'평점 : '+${rating.avg}+'점'"></span>
+                                            <span th:if="${rating.avg >=0 && rating.avg <0.5}" class="avg">☆☆☆☆☆</span>
+                                            <span th:if="${rating.avg >=0.5 && rating.avg <1.5}" class="avg">★☆☆☆☆ </span>
+                                            <span th:if="${rating.avg >=1.5 && rating.avg <2.5}" class="avg">★★☆☆☆ </span>
+                                            <span th:if="${rating.avg >=2.5 && rating.avg <3.5}" class="avg" >★★★☆☆ </span>
+                                            <span th:if="${rating.avg >=3.5 && rating.avg <4.5}" class="avg">★★★★☆ </span>
+                                            <span th:if="${rating.avg >=4.5 && rating.avg ==5}" class="avg">★★★★★ </span>
                                         </li>
 
                                         <li class="siter-act" >
@@ -192,7 +209,7 @@
                     </div>
                 </div>
                 <div class="review-area">
-                    <h3>나의 이용후기</h3>
+                    <h3 class="review-H3">나의 이용후기</h3>
                     <div class="reviewtab-area">
                         <span class="reviewtab1" style="background-color: rgb(255, 112, 0); color: white;">시터 이용 후기</span>
                         <span class="reviewtab2">이벤트 이용 후기</span>

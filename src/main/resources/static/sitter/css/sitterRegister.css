@@ -22,7 +22,7 @@ main{
 
 }
 .section{
-    margin: 0 auto;
+    margin: 10px 80px auto;
     /* border: 1px solid blue; */
     height: 100%;
     /* width: 1024px; */
@@ -30,17 +30,33 @@ main{
     /* background-color: #e6e6e6; */
 }
 .menu-bar{
-
+    /* display: flex;
+    flex-direction: column;
+    justify-content: center; */
+    /* border: 1px solid #bbb; */
+    /* background-color: red; */
     height: 900px;
     width: 180px;
     margin-left: 10px;
     margin-bottom: 15px;
 }
-
+/* .menu-bar>div:first-child{
+  width: 180px;
+  height: 100px;
+  margin: 0;
+  border: none;
+} */
+/* .logo-img>img{
+    height: 100px;
+    width: 170px;
+} */
 .menu-bar>div{
-
+    /* background-color: rgb(255, 255, 255); */
+    /* background-color: black; */
     margin: 30px auto;
+    /* border: 1px solid #bbb; */
     text-align: center;
+    /* border-radius: 10%; */
     width: 150px;
     height: 40px;
     color: black;
@@ -52,10 +68,7 @@ main{
 .menu-bar>div>a:hover{
     color: white;
     background-color: #FF7000;
-    font-size: 15px;
-    font-family: 'S-CoreDream-3Light';
 }
-
 
 .menu-bar>div>a{
     text-align: center;
@@ -63,17 +76,21 @@ main{
     text-decoration: none;
     line-height: 40px;
     color: black;
-    font-family: 'S-CoreDream-3Light';
-
-    width: 90px;
-    font-size: 15px;
+    font-family: 'IBM Plex Sans KR', sans-serif;
+    font-size: 25px;
+    width: 150px;
+    /* border-radius: 10%; */
 }
 
 .page-view{
-    width: 800px;
+    /* border: 1px solid black; */
+    width: 900px;
+    /* background-color: blue; */
+    /* margin-top: 5px; */
     margin-left: 20px;
 }
 .page-title{
+    /* border: 1px solid black; */
     height: 80px;
     border-bottom: 1px solid #bbb;
     padding-bottom: 5px;
@@ -81,14 +98,19 @@ main{
 .page-title>p{
     margin-left: 20px;
     height: 80px;
+    /* border: 1px solid black; */
     line-height: 100px;
-    font-size: 30px;
+    font-size: 85px;
     font-family: 'Black Han Sans', sans-serif;
     font-family: 'Dongle', sans-serif !important;
     font-family: 'Gamja Flower', cursive;
     font-family: 'IBM Plex Sans KR', sans-serif;
     font-family: 'Single Day', cursive;
+    /* font-family: 'IBM Plex Sans KR', sans-serif; */
     color: #FF7000;
+    /* padding: 100px; */
+    /* margin-bottom: 10px; */
+    /* border: 1px solid black; */
 }
 
 .page-title>p>a{
@@ -96,87 +118,123 @@ main{
     color: #FF7000;
 }
 .application-page{
-    margin-top: 10px;
+    /* border: 1px solid black; */
+    margin-top: 30px;
 
 
 }
 
 .logo-container-text {
+    /* border: 2px solid red; */
     width: 890px;
     height: 90px;
     display: flex;
     justify-content: center;
-    font-size: 20px;
-
+    align-items: center;
+    font-size: 1.15em;
 
 }
 
+/* 로고 설정 */
+.logo-container-text  h1:nth-child(1),
+.logo-container-text  h1:nth-child(2) {
+    color:#dfb015;
+    font-family: "Luckiest Guy", cursive;
+    position: relative;
+
+
+}
+/* 로고 첫번째 BOMO 설정 */
+.logo-container-text  h1:nth-child(1) {
+    /* border: 2px solid black; */
+    width: 200px;
+    top: 15px;
+    transform: rotateZ(-3deg);
+
+}
+/* 로고 두번째 BOMO 설정 */
+
+.logo-container-text  h1:nth-child(2)  {
+    /* border: 2px solid blue; */
+    right: -90px;
+    top:-20px;
+    transform: rotateZ(-8deg);
+}
 
 .logo-container-text h4{
     height: 60px;
     font-family: "Luckiest Guy", fantasy;
     line-height: 90px;
-    text-shadow: 0px 0px 1px;
+    /* border: 1px solid black; */
 }
 
 .check-area{
-    width: 650px;
-    margin: 0px auto;
-    box-shadow: 0px 0px 3px 3px rgba(163,174,184,0.3);
-    padding: 10px;
-    border-radius: 14px;
+    /* border: 1px solid red; */
+    /* margin-top: 10px; */
 }
 .childern-check{
     width: 600px;
-
-    margin: 15px auto;
+    /* border: 1px solid black;  */
+    /* margin-top: 30px; */
+    /* text-align: center; */
+    margin: 10px auto;
 }
 .childern-check p{
-    font-size: 16px;
-    color: black;
+    font-size: 18px;
+    color: #bbb;
     font-weight: bold;
 }
 .childern-check input{
     margin-top: 15px;
-    width: 20px;
+    width: 15px;
     height: 15px;
-    accent-color: orangered;
+    accent-color:darkgoldenrod;
+    /* color :darkgoldenrod */
 }
 .text-area{
-    margin-top: 20px;
+    /* border: 1px solid black; */
+    margin-top: 15px;
 }
 
-
+/* .gender-text{
+    border: 1px solid black;
+    width: 600px;
+    height: 40px;
+    margin: 10px auto;
+} */
 .gender-text p{
-    font-size: 22px;
+    /* border: 1px solid black; */
+    font-size: 18px;
     font-weight: bold;
-    color: black;
+    color: #bbb;
     width: 600px;
     height: 35px;
     margin: 0px auto;
 }
 .gender-wrap{
+    /* border: 1px solid black; */
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-around;
     width: 600px;
+    /* border: 1px solid black; */
     margin: 0 auto;
 }
 .gender-box{
     border: 1px solid #FF7000;
-    width: 250px;
+    width: 280px;
     height: 40px;
-    color: #FF7000;
+    color:  #FF7000;
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
     cursor: pointer;
     border-radius: 5px;
-    box-shadow: 0px 1px 0px 1px;
+    /* font-size: 20px; */
 }
 
 .gender-box>span{
-    font-size: 22px;}
+    font-size: 25px;}
 .gender-box:hover{
     color: white;
     background-color:#FF7000;
@@ -196,15 +254,19 @@ main{
 }
 
 .text-area-1{
-    margin-top: 20px;
-    display: none;
+    margin-top: 15px;
 }
-
+/* .gender-text-2{
+    width: 600px;
+    height: 40px;
+    margin: 10px auto;
+} */
 
 .gender-text-2 p{
-    font-size: 16px;
+    /* border: 1px solid black; */
+    font-size: 18px;
     font-weight: bold;
-    color: black;
+    color: #bbb;
     width: 600px;
     height: 35px;
     margin: 0px auto;
@@ -212,16 +274,18 @@ main{
 }
 
 .gender-wrap-second{
+    /* border: 1px solid black; */
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-around;
     width: 600px;
+    /* border: 1px solid black; */
     margin: 0 auto;
 }
 .gender-box-second{
     border: 1px solid #FF7000;
-    width: 250px;
+    width: 280px;
     height: 40px;
-    color: #FF7000;
+    color:  #FF7000;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -229,11 +293,10 @@ main{
     cursor: pointer;
     border-radius: 5px;
     /* font-size: 20px; */
-    box-shadow: 0px 1px 0px 1px;
 }
 
 .gender-box-second>span{
-    font-size: 22px;}
+    font-size: 25px;}
 .gender-box-second:hover{
     color: white;
     background-color:#FF7000;
@@ -255,13 +318,14 @@ main{
 
 .chilren-detil{
     width: 600px;
+    /* border: 1px solid black; */
     margin: 20px auto;
 }
 
 .chilren-detil p{
-    font-size: 16px;
+    font-size: 18px;
     font-weight: bold;
-    color: black;
+    color: #bbb;
 }
 .chilren-detil input{
     margin-top: 10px;
@@ -277,15 +341,12 @@ main{
 .children-text{
     width: 590px;
     height: 300px;
-    margin-top: 15px;
-    margin-left: 5px;
-    resize: none;
-    box-shadow: 0px 0px 3px 3px rgba(163,174,184,0.5);
+    margin-top: 10px;
 }
 
 
-
 .inputbtn{
+    /* border: 1px solid black; */
     width: 600px;
     margin: 0 auto;
     margin-top: 20px;

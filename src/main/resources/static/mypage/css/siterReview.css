@@ -58,8 +58,9 @@ main{
     color: white;
     background-color: #FF7000;
     font-size: 15px;
-    font-family: 'IBM Plex Sans KR', sans-serif;
+    font-family: 'S-CoreDream-3Light';
 }
+
 
 .menu-bar>div>a{
     text-align: center;
@@ -67,9 +68,9 @@ main{
     text-decoration: none;
     line-height: 40px;
     color: black;
-    font-family: 'IBM Plex Sans KR', sans-serif;
+    font-family: 'S-CoreDream-3Light';
 
-    width: 150px;
+    width: 90px;
     font-size: 15px;
 }
 
