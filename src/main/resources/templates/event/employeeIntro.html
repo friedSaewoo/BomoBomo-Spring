@@ -8,7 +8,6 @@
   <link rel="stylesheet" href="/common/css/common.css"/>
   <!-- <link rel="stylesheet" href="/event/css/employeeintro.css"/> -->
   <link rel="stylesheet" href="/event/css/employeeIntro.css"/>
-  <script src="/common/js/common.js" defer></script>
   <!--common.js에서 제이쿼리 경로 수정하기!-->
 
 </head>
@@ -39,39 +38,17 @@
       <h2>보모보모 직원 소개</h2>
       </div>
       <div class = "board">
-        <div class="board-item" th:each=" empIntro : ${empIntro}" >
-          <div class="board-img-box">
 
-              <img th:src="'/upload/' + ${empIntro.empImgUploadPath} + '/' + ${empIntro.empImgUuid} +'_' + ${empIntro.empImgName}"/>
-
-          </div>
-          <div class="board-item-text">
-            <h3 class="board-item-title" th:text="${empIntro.empName}"></h3>
-            <div class="board-item-author" th:text="${empIntro.empContent}"></div>
-          </div>
-        </div>
       </div>
       <!-- 페이징 처리-->
       <div class="page-container">
         <ul class="page-box">
-          <a th:href="@{/event/empIntro(page=${pageInfo.startPage-1})}" class="page-a" th:if="${pageInfo.prev}">
-            <li class="page-num prev">&lt</li>
-          </a>
 
-          <th:block th:each="i : ${#numbers.sequence(pageInfo.startPage, pageInfo.endPage)}">
-          <a th:href="@{/event/empIntro(page=${i})}" class="page-a">
-            <li class="page-num" th:text="${i}" th:if="${i != pageInfo.criteria.page}"></li>
-            <li class="page-num active" th:text="${i}" th:unless="${i != pageInfo.criteria.page}"></li>
-          </a>
-          </th:block>
-
-          <a th:href="@{/event/empIntro(page=${pageInfo.endPage+1})}" class="page-a" th:if="${pageInfo.next}">
-            <li class="page-num next">&gt</li>
-          </a>
         </ul>
 
       </div>
-      <input class="board-num" type="hidden" th:value="${boardNumber}">
+    </div>
+  </div>
 </main>
 
 

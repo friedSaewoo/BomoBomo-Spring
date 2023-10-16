@@ -67,28 +67,13 @@ public class EventController {
         return FileCopyUtils.copyToByteArray(new File(fileEventImg, fileFullPath));
     }
 
-//   직원 조회 이미지
-    @Value("${file.empImg}")
-    private String fileEmpImg;
-
-    @GetMapping("/empimg")
-    public byte[] getEmpImg(String fileFullPath) throws IOException {
-        return FileCopyUtils.copyToByteArray(new File(fileEmpImg, fileFullPath));
-    }
-
 //   직원 목록 전체 조회
     @GetMapping("/empIntro")
-    public String showEmpList(Criteria criteria, Model model){
-        log.info("> request : {}", criteria);
-        criteria.setPage(criteria.getPage());
-        criteria.setAmount(6);
+    public String showEmpList(){
 
-        List<EmpVo> empVoList = eventService.findEmpAll(criteria);
-        log.info("> List : {}", empVoList);
-        model.addAttribute("empIntro", empVoList);
-        model.addAttribute("pageInfo", new PageVo(eventService.getTotal(), criteria));
         return "event/employeeIntro" ;
     }
+
 //   인재 채용 페이지 이동
     @GetMapping("/rec")
     public String showRecruitmentPage(){
