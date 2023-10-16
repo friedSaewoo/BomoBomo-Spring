@@ -45,7 +45,9 @@
     line-height: 1.8;
     font-family: GmarketSansMedium;
 }
-
+.event-letter dd {
+    color: rgba(212, 212, 212, 0.8);
+}
 .event-title-tap {
     position: relative;
     margin: 0 auto;

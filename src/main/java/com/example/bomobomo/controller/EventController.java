@@ -30,7 +30,7 @@ public class EventController {
 
     private final EventService eventService;
 
-//    이벤트 메인페이지 리스트
+//   이벤트 메인페이지 리스트
     @GetMapping("/list")
     public String showEventListPage(Model model){
 
@@ -58,7 +58,7 @@ public class EventController {
         return "event/eventPayment";
     }
 
-//  이벤트 조회 이미지
+//   이벤트 조회 이미지
     @Value("${file.eventImg}")
     private String fileEventImg;
 

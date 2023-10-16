@@ -22,6 +22,7 @@ public class EventRestController {
 
     private EventMapper eventMapper;
 
+//  이벤트 결제 후 정보 넘기기
     @PostMapping(value = "complete")
     public String applyEvent(@RequestBody EventPayVo eventPayVo) throws Exception {
 
