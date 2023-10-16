@@ -13,7 +13,7 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css"/>
     <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
     <title>시터 찾기</title>
@@ -41,7 +41,7 @@
             <div class="sitterFindGreeting">
                 <label>&nbsp;대기중인 시터 리스트</label>
             </div>
-            <div class="sitterFindCount" ><strong th:text="${sitterTotal}"></strong><span> 명의 시터</span></div>
+            <div class="sitterFindCount"><strong th:text="${sitterTotal}"></strong><span> 명의 시터</span></div>
         </div>
         <!-- 지역 및 등록된 시터 수 -->
 
@@ -50,16 +50,14 @@
 
         <div id="wrap">
             <a href="javascript:void(0);" class="button modal-open">지역 검색하기▼</a>
-            <button class="button">
-            <select class="sitterActSelect">
-                <option value="">선택안함</option>
-                <th:block th:each=" act : ${actList}">
-                    <option th:value="${act.actNumber}" th:text="${act.actName}"></option>
-                </th:block>
-            </select>
-            </button>
+                <select class="sitterActSelect">
+                    <option value="">선택안함</option>
+                    <th:block th:each=" act : ${actList}">
+                        <option th:value="${act.actNumber}" th:text="${act.actName}"></option>
+                    </th:block>
+                </select>
 
-<!--            <a href="javascript:openModal('modal2');" class="button modal-open">카테고리 검색▼</a>-->
+            <!--            <a href="javascript:openModal('modal2');" class="button modal-open">카테고리 검색▼</a>-->
         </div>
 
         <div id="modal"></div>
@@ -73,15 +71,16 @@
             <div class="sitterInfoList">
 
                 <div class="sitterIndividual" th:each="sitterList : ${sitterList}">
-                        <a th:href="@{/sitter/sitterInfo(empNumber=${sitterList.empNumber})}" class="sitterInformation">
+                    <a th:href="@{/sitter/sitterInfo(empNumber=${sitterList.empNumber})}" class="sitterInformation">
                         <div>
                             <div class="sitterInfoAndImg test">
                                 <div class="sitterInfo">
-                                    <input type="hidden" th:value="${sitterList.empNumber}" class="empNumber" name="empNumber">
-                                        <div name="sitterName" class="sitterName">
-                                            <strong th:text="${sitterList.empName}"></strong>&nbsp;&nbsp;
-                                            <span th:text="'   ' + ${sitterList.empGender}"></span>
-                                        </div>
+                                    <input type="hidden" th:value="${sitterList.empNumber}" class="empNumber"
+                                           name="empNumber">
+                                    <div name="sitterName" class="sitterName">
+                                        <strong th:text="${sitterList.empName}"></strong>&nbsp;&nbsp;
+                                        <span th:text="'   ' + ${sitterList.empGender}"></span>
+                                    </div>
 
                                     <div class="sitterGrade" th:if="${sitterList.avg == null}">
                                         <img src="/common/img/star.png">
@@ -103,7 +102,7 @@
                                 </div>
 
                                 <div class="sitterImg">
-                                    <img  src="https://search.pstatic.net/common?type=b&amp;size=216&amp;expire=1&amp;refresh=true&amp;quality=100&amp;direct=true&amp;src=http%3A%2F%2Fsstatic.naver.net%2Fpeople%2Fportrait%2F202207%2F20220727155425320.jpg">
+                                    <img src="https://search.pstatic.net/common?type=b&amp;size=216&amp;expire=1&amp;refresh=true&amp;quality=100&amp;direct=true&amp;src=http%3A%2F%2Fsstatic.naver.net%2Fpeople%2Fportrait%2F202207%2F20220727155425320.jpg">
                                 </div>
                             </div>
                         </div>
@@ -122,26 +121,26 @@
         <!-- 시터 정보 리스트 -->
 
 
-<!-- 페이징 처리 -->
-       <div class="page-container">
-         <ul class="paging">
-<!--           <a th:href="@{/sitter/sitterFind(page=${pageInfo.startPage-1})}" class="page" th:if="${pageInfo.prev}">-->
-<!--             <li class="pageNum prev">&lt</li>-->
-<!--           </a>-->
+        <!-- 페이징 처리 -->
+        <div class="page-container">
+            <ul class="paging">
+                <!--           <a th:href="@{/sitter/sitterFind(page=${pageInfo.startPage-1})}" class="page" th:if="${pageInfo.prev}">-->
+                <!--             <li class="pageNum prev">&lt</li>-->
+                <!--           </a>-->
 
-<!--           <th:block th:each="i : ${#numbers.sequence(pageInfo.startPage, pageInfo.endPage)}">-->
-<!--             <a th:href="@{/sitter/sitterFind(page=${i})}" class="page">-->
-<!--               <li class="pageNum" th:text="${i}" th:if="${i != pageInfo.criteria.page}"></li>-->
-<!--               <li class="pageNum active" th:text="${i}" th:unless="${i != pageInfo.criteria.page}"></li>-->
-<!--             </a>-->
-<!--           </th:block>-->
+                <!--           <th:block th:each="i : ${#numbers.sequence(pageInfo.startPage, pageInfo.endPage)}">-->
+                <!--             <a th:href="@{/sitter/sitterFind(page=${i})}" class="page">-->
+                <!--               <li class="pageNum" th:text="${i}" th:if="${i != pageInfo.criteria.page}"></li>-->
+                <!--               <li class="pageNum active" th:text="${i}" th:unless="${i != pageInfo.criteria.page}"></li>-->
+                <!--             </a>-->
+                <!--           </th:block>-->
 
-<!--           <a th:href="@{/sitter/sitterFind(page=${pageInfo.endPage+1})}" class="page" th:if="${pageInfo.next}">-->
-<!--             <li class="pageNum next">&gt</li>-->
-<!--           </a>-->
-         </ul>
-       </div>
-       <!-- /페이징 처리 -->
+                <!--           <a th:href="@{/sitter/sitterFind(page=${pageInfo.endPage+1})}" class="page" th:if="${pageInfo.next}">-->
+                <!--             <li class="pageNum next">&gt</li>-->
+                <!--           </a>-->
+            </ul>
+        </div>
+        <!-- /페이징 처리 -->
 
 
     </div>
