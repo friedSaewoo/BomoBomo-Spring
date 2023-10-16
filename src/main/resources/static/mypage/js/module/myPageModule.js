@@ -1,7 +1,7 @@
 
 export function getSitterReviewList (page, callback){
     $.ajax({
-        url : `/myPages/sitterReviewList`,
+        url : `/myPages/sitterReviewList/${page}`,
         type : 'get',
         data : {page : page},
         dataType : 'json',
@@ -18,7 +18,7 @@ export function getSitterReviewList (page, callback){
 
 export function getEventReviewList (pages, callback){
     $.ajax({
-        url : `/myPages/eventReviewList`,
+        url : `/myPages/eventReviewList/${pages}`,
         type : 'get',
         data : {pages : pages},
         dataType : 'json',

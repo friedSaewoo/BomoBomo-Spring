@@ -9,9 +9,7 @@
   <link rel="stylesheet" href="/fragments/css/footer.css"/>
   <link rel="stylesheet" href="/fragments/css/header.css"/>
 
-  <script src="/common/js/index.js" defer></script>
-  <script src="/common/js/common.js" defer></script>
-  <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+
 </head>
 <body>
 <div th:replace="fragments/header.html :: header" >
@@ -65,7 +63,7 @@
                       for="rate3">★</label>
                 <input type="radio" name="rating" value="2" id="rate4"><label
                       for="rate4">★</label>
-                <input type="radio" name="rating" value="1" id="rate5">
+                <input type="radio" name="rating" value="1" id="rate5" required>
                 <label for="rate5">★</label>
 
                 <span class="text-bold">평점</span>
@@ -76,7 +74,7 @@
           <div class="form-group">
             <ul class="file-wrap">
               <li>
-                <input type="file" id="post-image" name="eventBoardImg" accept="image/*" multiple />
+                <input type="file" id="post-image" name="eventBoardImg" accept="image/*" multiple required/>
               </li>
               <li class="img-list"></li>
 
@@ -94,5 +92,8 @@
 <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.6.4.js"></script>
 <script src="/mypage/js/reviewWrite.js"></script>
+<script src="/common/js/common.js" defer></script>
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="/fragments/js/header.js"></script>
 </body>
 </html>
