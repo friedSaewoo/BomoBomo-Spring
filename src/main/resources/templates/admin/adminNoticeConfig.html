@@ -23,17 +23,29 @@
             <form action="/admin/noticeConfig" method="post" enctype="multipart/form-data">
                 <input type="hidden" th:value="${noticeDetail.noticeNumber}" name="noticeNumber"/>
                 <div class="announce-write-container">
-                    <div class="board-main">
-                        <div class="write-title">
-                            <input class="content-title" name="noticeTitle" type="text" th:value="${noticeDetail.noticeTitle}" placeholder="제목을 입력하세요" maxlength="50">
-                        </div>
-                        <div class="board-write">
-                            <div class="write-content">
-                                <textarea name="noticeContent">[[${noticeDetail.noticeContent}]]</textarea>
+                        <div class="board-main">
+                            <div class="write-title">
+                                <p class="sub">제목</p>
+                                <input class="content-title" name="noticeTitle" type="text" th:value="${noticeDetail.noticeTitle}" placeholder="제목을 입력하세요" maxlength="50">
+                            </div>
+                            <div class="board-write">
+                                <div class="write-content">
+                                    <p class="sub">내용</p>
+                                    <textarea name="noticeContent">[[${noticeDetail.noticeContent}]]</textarea>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
+<!--                    <div class="board-main">-->
+<!--                        <div class="write-title">-->
+<!--                            <input class="content-title" name="noticeTitle" type="text" th:value="${noticeDetail.noticeTitle}" placeholder="제목을 입력하세요" maxlength="50">-->
+<!--                        </div>-->
+<!--                        <div class="board-write">-->
+<!--                            <div class="write-content">-->
+<!--                                <textarea name="noticeContent">[[${noticeDetail.noticeContent}]]</textarea>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
                 <div class="write-bottom">
                     <a href="/admin/redirect/notice" class="write-btn list">목록으로</a>
                     <button type="submit" class="write-btn write">수정</button>

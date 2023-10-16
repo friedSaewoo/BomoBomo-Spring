@@ -28,7 +28,7 @@ body{
     flex-direction: column;
     margin :auto ;
     width: 1200px;
-    height:1000px;
+    height:1200px;
     border : 1px solid #f1f1f1;
     background-color: white;
     /* background-color: #e7e7e7; */
@@ -51,7 +51,7 @@ body{
     font-size: 18px;
     color: #4F4D8E;
     font-weight: 700;
-    margin-bottom: 29px;
+    margin-bottom: 9px;
 }
 
 .side-container li {
@@ -135,8 +135,8 @@ body{
     height:980px;
     margin: 20px auto 0px;
     background-color: white;
-    box-shadow: 5px 5px 5px 5px gray;
-    border-radius: 1%;
+    /*box-shadow: 5px 5px 5px 5px gray;*/
+    /*border-radius: 1%;*/
 }
 
 .event-main{
@@ -160,34 +160,28 @@ body{
 }
 
 .event-img{
-    width: 900px;
+    /*border: 1px solid black;*/
+    width: 800px;
+    height: 400px;
 }
 .event-img > img{
-    border-radius: 3%;
-    border: 5px solid #01b9ff;
-    width: 930px;
+    width: 800px;
+    height: 400px;
+}
+.event-detail-img{
+    /*border: 1px solid black;*/
+    width: 800px;
     height: 400px;
 }
 .event-detail-img > img{
-    border-radius: 3%;
-    border: 5px solid #01b9ff;
-    width: 930px;
+    /*border:1px solid black;*/
+    width: 800px;
     height: 400px;
 }
 .event-cost{
     font-size: 25px;
     font-weight: bold;
 }
-
-.bt-container{
-    display: flex;
-    align-items: center;
-    justify-content: right;
-    margin: 30px auto 0;
-    width: 100%
-
-}
-
 .board-home{
     display: flex;
     justify-content: center;
@@ -208,7 +202,7 @@ body{
     width: 44px;
     height: 25px;
     margin-right: 10px;
-    background-color:#01b9ff;
+    background-color:#4F4D8E;
     color: white;
     border-radius: 10%;
     padding: 5px;
@@ -225,6 +219,64 @@ body{
     padding: 5px;
 }
 
+/* 추가 */
+table{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td{
+    border:1px solid gray;
+    padding: 10px;
+    font-weight: 300;
+    font-size: 14px;
+    word-break: keep-all;
+}
+
+.emp-image-td{
+    height: 400px;
+    padding: 0px 10px 20px 10px!important;
+}
+.emp-image-td>p{
+    margin-bottom : 10px;
+}
+#emp-img-input{
+    margin : 10px 0;
+}
+.bt-container{
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    margin: 20px auto 0;
+    width: 98%
+
+}
+.board-home{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
+    height: 25px;
+    margin-right: auto;
+    background-color:#4F4D8E;
+    color: white;
+    border-radius: 10%;
+    padding: 5px;
+}
+.event-regist-btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 70px;
+    height: 35px;
+    /*margin-right: 10px;*/
+    background-color:#4F4D8E;
+    color: white;
+    border-radius: 10%;
+    padding: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
 .bt-container >a{
     text-align: center;
     text-decoration: none;

@@ -353,8 +353,18 @@ public EventImgDto saveEventImg(MultipartFile evenImg) throws IOException {
             updateEventDetail(eventDetailDto);
         }
     }
-    //경로설정
+    // 경로설정
     private String getUploadPath(){
         return new SimpleDateFormat("yyyy/MM/dd").format(new Date());
     }
+
+    // city 전체 조회
+    public List<CityDto> selectAllCity(){
+        return adminMapper.selectAllCity();
+    }
+    // country 조회
+    public List<CountryDto> selectCountry(Long cityNumber){
+        return adminMapper.selectCountry(cityNumber);
+    }
+
 }

@@ -54,3 +54,30 @@ checkboxes.forEach(checkbox => {
         }
     });
 });
+
+$(".city-select").change(function () {
+    let cityNumber = $(this).val();
+    $.ajax({
+        url: `/admin/rest/country`,
+        type: 'get',
+        data :{cityNumber:cityNumber} ,
+        dataType: 'json',
+        success: function (result) {
+            console.log(result);
+
+            loadCountry(result);
+        },
+        error: function (a, b, c) {
+            console.log("실패");
+            console.error(c);
+        }
+    });
+});
+function loadCountry(result) {
+    let select = $(".country-select");
+    select.empty();
+    select.append('<option value="0">----</option>');
+    $.each(result, function (index, country) {
+        select.append('<option value="' + country.countryNumber + '">' + country.countryName + '</option>');
+    });
+}

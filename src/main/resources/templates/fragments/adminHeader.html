@@ -7,12 +7,16 @@
 </head>
 <body>
 <div th:fragment="main-header" class="main-header">
-  <span class="main-header-title">BomoBomo</span>
+  <span class="main-header-title"><a href="/admin/main">BomoBomo</a></span>
   <span class="admin-name" th:text="${session.adminId} + '님 환영합니다.'"></span>
   <button class="main-header-exit">나가기</button>
 </div>
 </body>
+
 </html>
 
 
 
+
+
+}

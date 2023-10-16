@@ -23,25 +23,45 @@
                 <div class="event-detail-container">
                     <form action="/admin/eventRegist" method="post" enctype="multipart/form-data">
                         <div class="event-main">
-                            <div class="title-box">
-                                <label for="name">이벤트 명 : </label>
-                                <input type="text" id="name" name="eventName" required><br>
-                            </div>
-                            <div class="event-img">
-                                <canvas id="event-img-preview"></canvas>
-                                    <input type="file" name="eventImgFile" id="event-img-input" onchange="displayResizedEventImg()">
-                            </div>
+                            <table class="register-table">
+                                <colgroup>
+                                    <col style="width: 180px" />
+                                    <col style="width: auto" />
+                                </colgroup>
+                                <tr>
+                                    <th scope="row">이벤트 명</th>
+                                    <td>
+                                        <input type="text" class="text-input" placeholder="이벤트명을 입력하세요" name="eventName" required>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th >비용</th>
+                                    <td>
+                                        <input type="text" class="text-input" placeholder="이벤트 비용을 입력하세요" name="eventPrice" required>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>이벤트 이미지</th>
+                                    <td class="event-image-td">
+                                        <p>권장이미지  800px * 400px</p>
+                                        <div class="event-img">
+                                            <canvas id="event-img-preview"></canvas>
+                                            <input type="file" name="eventImgFile" id="event-img-input" onchange="displayResizedEventImg()">
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>이벤트 상세정보</th>
+                                    <td class="event-image-td">
+                                        <p>권장이미지 800px * 400px</p>
 
-                            <div class="detail">프로그램 상세설명</div>
-
-                            <div class="event-detail-img">
-                                <canvas id="event-detail-img-preview"></canvas>
-                                    <input type="file" name="eventDetailFile" id="event-detail-img-input" onchange="displayResizedEventDetailImg()">
-                            </div>
-                            <div class="cost-box">
-                                <label for="cost">비용 : </label>
-                                <input type="text" id="cost" name="eventPrice" required><br><br>
-                            </div>
+                                        <div class="event-detail-img">
+                                            <canvas id="event-detail-img-preview"></canvas>
+                                            <input type="file" name="eventDetailFile" id="event-detail-img-input" onchange="displayResizedEventDetailImg()">
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
                             <div class="bt-container">
                                 <a href="/admin/redirect/event" class="board-home">글 목록</a>
                                 <button type="submit" class="event-regist-btn">등록</button>
