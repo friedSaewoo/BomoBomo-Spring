@@ -111,7 +111,7 @@ public class BoardController {
 
     @GetMapping("/serviceReview")
     public String showServiceReviewPage(){
-        return "board/boardServiceReview";
+        return "board/serviceReview";
     }
 
     
@@ -224,7 +224,7 @@ public class BoardController {
     //이벤트 게시판 이동
     @GetMapping("/eventReview")
     public String showEventReviewPage(){
-        return "board/boardEventReview";
+        return "board/eventReview";
     }
 
 

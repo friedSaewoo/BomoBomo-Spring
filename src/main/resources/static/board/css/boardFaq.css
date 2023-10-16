@@ -8,7 +8,7 @@
 .FAQ-container {
     font-family: 'IBM Plex Sans KR', sans-serif;
 
-    padding-top: 30px;
+    padding-top: 26px;
     width: 1024px;
     margin: 0 auto;
 }
@@ -42,12 +42,10 @@
 .FAQ-tap-menu ul a {
     color:rgb(180, 180, 180);
     font-weight: bold;
-    font-size: 14px;
+    font-size: 13.5px;
 }
 .FAQ-tap-menu ul .on{
-    scale: 1.2;
     color: black;
-    border-bottom: 1px solid black
 }
 
 .tab_list {
@@ -65,7 +63,7 @@
 .faq_cont  dt {
     padding: 20px 20px 20px 0;
     font-weight: bold;
-    font-size: 15px;
+    font-size: 14px;
     cursor: pointer;
 }
 
@@ -73,6 +71,7 @@
     background-color: rgba(189, 186, 186, 0.151);
     padding: 20px;
     height: 100%;
+    font-size: 13px;
 
 }
 

@@ -10,7 +10,7 @@
 
 }
 /* 헤더 전체영역 컨테이너 */
-.header-contaier {
+.header-container {
     z-index:999999;
     margin: 0 auto;
     display: flex;
@@ -30,7 +30,7 @@
     width: 200px;
     height: 60px;
     display: flex;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
     font-size: 1.15em;
 

@@ -1,4 +1,4 @@
-import * as reply from './module/boardEventReply.js';
+import * as reply from './module/boardReply.js';
 import * as paging from './module/boardPagination.js'
 import * as commonReply from './module/Reply.js';
 
@@ -8,14 +8,14 @@ console.log(eventBoardNumber);
 
 
 let page = 1;
-reply.getListPage({eventBoardNumber,page:1}, showReply);
+reply.getListEventReviewPage({eventBoardNumber,page:1}, showReply);
 
 
 //페이징처리된 숫자 클릭 시 해당 데이터를 가져와서 비동기 페이징처리
 $(document).on('click', '.page-num a', function (e) {
     e.preventDefault();
     const page = $(this).data('pagenum');
-    reply.getListPage({eventBoardNumber, page}, showReply);
+    reply.getListEventReviewPage({eventBoardNumber, page}, showReply);
 
 
     $('.page-num a').removeClass('active-page');
@@ -53,8 +53,8 @@ $('.btn-reply').on('click', function (){
         userNumber : loginNumber
     };
 
-    reply.addReply(replyObj, function (){
-        reply.getListPage({eventBoardNumber:eventBoardNumber, page:1}, showReply)
+    reply.addEventReviewReply(replyObj, function (){
+        reply.getListEventReviewPage({eventBoardNumber:eventBoardNumber, page:1}, showReply)
     })
 
     $('#reply-content').val('');
@@ -113,10 +113,10 @@ $('.review-reply').on('click', '.reply-remove-btn', function () {
     $('.reply-btns__box').addClass('none');
 
     let eventCommentNumber = $(this).closest('.reply').find('.reply-remove-btn').data('deletenum');
-    reply.deleteReply(eventCommentNumber, function (){
+    reply.removeEventReviewReply(eventCommentNumber, function (){
 
         //댓글 삭제 시 페이징 1번으로 이동
-        reply.getListPage({eventBoardNumber,page:1}, showReply);
+        reply.getListEventReviewPage({eventBoardNumber,page:1}, showReply);
     });
 });
 
@@ -146,8 +146,8 @@ $('.review-reply').on('click', '.modify-content-btn', function () {
         eventCommentContent : replyContent
     };
 
-    reply.modifyEventReply(eventCommentNumber, replyObj, function (){
-        reply.getListPage({eventBoardNumber,page:page}, showReply);
+    reply.modifyEventReviewReply(eventCommentNumber, replyObj, function (){
+        reply.getListEventReviewPage({eventBoardNumber,page:page}, showReply);
     });
 });
 

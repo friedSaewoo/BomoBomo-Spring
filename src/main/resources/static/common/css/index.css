@@ -73,7 +73,7 @@
     width: 1024px;
     margin: 0px auto;
     padding: 90px 0px 90px 0;
-    font-family: 'GmarketSansMedium';
+    font-family: GmarketSansMedium;
 
 
 }
@@ -135,7 +135,7 @@
     width: 100%;
     height: 750px;
     padding-bottom: 50px;
-    border-bottom: 2px solid #FF7000;
+    border-bottom: 1px solid #FF7000;
 
 
 
@@ -161,15 +161,15 @@
 
 
 .review-title h2 span {
-    font-size: 1.1em;
+    font-size: 1em;
     color: white;
 }
 
 .review-title>h2{
     text-align: center;
-    font-family: 'GmarketSansMedium';
+    font-family: GmarketSansMedium;
     font-weight: bold;
-    font-size: 1.1em;
+    font-size: 1em;
 
 }
 
@@ -181,7 +181,7 @@
     width: 200px;
     height: 35px;
     color: white;
-    font-family: 'GmarketSansMedium';
+    font-family: GmarketSansMedium;
     font-size: 17px;
     margin-top: 15px;
     background-color: #e89f14d9;
@@ -268,7 +268,7 @@
     font-size: 1em;
     font-weight: bold;
     padding: 30px;
-    font-family: 'GmarketSansMedium';
+    font-family: GmarketSansMedium;
 
 }
 
@@ -288,7 +288,7 @@
     font-size: 1em;
 
 
-    font-family: 'IBM Plex Sans KR', sans-serif;
+    font-family: GmarketSansMedium;
 }
 
 

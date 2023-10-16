@@ -13,15 +13,15 @@ $(function () {
     $(".subMenu").hide();
 
     $(".main-menu").mouseenter(function () {
-        $(".header-contaier")
+        $(".header-container")
             .stop()
             .animate({ height: maxHeight }, 100, "linear", function () {
                 $(".sub-menu").fadeIn();
             });
     });
 
-    $(".header-contaier").mouseleave(function () {
-        $(".header-contaier")
+    $(".header-container").mouseleave(function () {
+        $(".header-container")
             .stop()
             .animate({ height: hh }, 300, "linear", function () {
                 $(".sub-menu").hide();
@@ -51,6 +51,6 @@ $(function () {
 
 
 $(window).scroll(function () {
-    $(".header-contaier").css("left", 0 - $(this).scrollLeft());
+    $(".header-container").css("left", 0 - $(this).scrollLeft());
 });
 
