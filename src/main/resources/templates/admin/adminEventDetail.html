@@ -18,21 +18,41 @@
             <!-- 메인 컨텐츠 -->
             <div class="main-contents">
                 <div class="contents-title">
-                    <span class="main-contents-title-text">이벤트관리</span>
+                    <span class="main-contents-title-text">이벤트조회</span>
                 </div>
                 <div class="event-detail-container">
                     <div class="event-main">
-                        <div class="event-title">
-                            <p>이벤트 명 : <span th:text="${eventDetail.eventName}">땅파기</span></p>
-                        </div>
-                        <div class="event-img">
-                        </div>
-                        <div class="detail">프로그램 상세설명</div>
-                        <div class="event-detail-img">
-                        </div>
-                        <div class="event-cost">
-                            <p>비용 : <span th:text="${eventDetail.eventPrice}"></span></p>
-                        </div>
+
+                        <table class="register-table">
+                            <colgroup>
+                                <col style="width: 180px" />
+                                <col style="width: auto" />
+                            </colgroup>
+                            <tr>
+                                <th scope="row">이벤트 명</th>
+                                <td>
+                                    <input type="text" class="text-input" th:value="${eventDetail.eventName}" name="eventName" readonly>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th >비용</th>
+                                <td>
+                                    <input type="text" class="text-input" th:value="${eventDetail.eventPrice}"  name="eventPrice" readonly>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>이벤트 이미지</th>
+                                <td class="event-image-td">
+                                    <div class="event-img"></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>이벤트 상세정보</th>
+                                <td class="event-image-td">
+                                    <div class="event-detail-img"></div>
+                                </td>
+                            </tr>
+                        </table>
                     </div>
                     <div class="bt-container">
                         <a href="/admin/redirect/event" class="board-home">글 목록</a>

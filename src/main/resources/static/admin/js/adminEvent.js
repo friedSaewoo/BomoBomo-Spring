@@ -28,7 +28,7 @@ function getSearchVo(){
     let keyword = $('.keyword').val();
     return {
         cate : cate,
-        keyword : searchKeyword
+        keyword : searchKeywor
     };
 }
 // ajax
@@ -65,6 +65,8 @@ function loadEventList(result){
                 `<img class = "thumbnail" src="/admin/rest/displayEventImg?fileName=${imagePath}" alt="썸네일"/>`+
                 '</div>');
             eventDiv.append('<div class ="event-title">' + event.eventName+'</div>');
+            eventDiv.append('<span class="event-price">'+ event.eventPrice+'<span class="won">원</span></span>');
+            eventDiv.append('<div class="event-rating">★4.5/5</div>');
             eventDiv.on('click', function(){
                let url = `/admin/adminEventDetail?eventNumber=${event.eventNumber}`
                 window.location.href=url;
