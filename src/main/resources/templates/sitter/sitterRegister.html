@@ -32,13 +32,14 @@
         <div class="application-page">
 
           <div class="logo-container-text">
-            <a href="#">
-              <h1>Bomo</h1><h1>Bomo</h1>
-            </a>
-            <h4>님께 알려주세요.</h4>
+            <h1 th:text="${empName}"></h1>
+            <h4>시터에게 알려주세요.</h4>
           </div>
 
           <form class="check-area" action="/sitter/sitterApplication" method="post">
+            <input type="hidden" th:value="${empName}" id="empName" name="empName">
+            <input type="hidden" th:value="${empNumber}" id="empNumber" name="empNumber">
+
             <div class="childern-check">
               <p>돌봄이 필요한 아이</p>
               <input class="one-check" type="radio" name="one" checked/> 1명
@@ -71,26 +72,19 @@
             <div class="text-area-1">
               <div class="gender-text-2">
                 <p>두번째 아이 성별</p>
-                <!-- <input type="checkbox" class="firstbtn" value="남자">남자</button>
-                <input type="checkbox" class="firstbtn-ck" value="여자">여자</button> -->
               </div>
               <div class="gender-wrap-second">
-
-                <!-- <input class="input-m" type="checkbox" value="남자"> -->
                 <label for="gender-men" class="gender-box-second">
                   <span>남자</span>
                   <input id="gender-men" type="radio" name="genderSecond" value="M"/>
                 </label>
-
-
-                <!-- <input class="input-w" type="checkbox" value="여자" > -->
                 <label for="gender-women" class="gender-box-second" required>
                   <span>여자</span>
                   <input id="gender-women" type="radio" name="genderSecond" value="F"/>
                 </label>
-
               </div>
             </div>
+
             <!--아이상세 정보 작성-->
             <div class="chilren-detil">
               <p>아이 성격</p>
@@ -98,7 +92,7 @@
               </textarea>
             </div>
             <div class="inputbtn">
-              <button type="button" class="btn">저장하기</button>
+              <button type="button" class="btn">신청하기</button>
             </div>
           </form>
         </div>

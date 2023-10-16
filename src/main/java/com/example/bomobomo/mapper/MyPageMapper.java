@@ -34,7 +34,7 @@ public interface MyPageMapper {
     public List<EmpActItemImgVo> selectEmpActItemImg(Long empNumber);
 
     //매칭된 직원의 평점을 구하는 쿼리
-    public MatchEmpRatingAvgVo selectMatchEmpRating(Long empNumber);
+    public double selectMatchEmpRating(Long empNumber);
 
     //매칭 단건 조회
 //    public MatchDto selectOne(Long userNumber);

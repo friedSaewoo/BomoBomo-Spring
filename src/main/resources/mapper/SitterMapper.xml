@@ -8,75 +8,78 @@
         join CITY c2 on c.CITY_NUMBER = c2.CITY_NUMBER
         left join EMP_ACT_ITEM eai on e.EMP_NUMBER = eai.EMP_NUMBER
         <trim prefix="where" prefixOverrides="and">
-          <if test="countryName != null and !countryName.equals('상세 선택')">
-            c.COUNTRY_NAME like '%' || #{countryName} || '%' AND c2.CITY_NAME like '%' || #{cityName} || '%'
-          </if>
-          <if test="actNumber != null and actNumber != 0">
-            AND eai.ACT_NUMBER = #{actNumber}
-          </if>
-      </trim>
+            <if test="countryName != null and !countryName.equals('상세 선택')">
+                c.COUNTRY_NAME like '%' || #{countryName} || '%' AND c2.CITY_NAME like '%' || #{cityName} || '%'
+            </if>
+            <if test="actNumber != null and actNumber != 0">
+                AND eai.ACT_NUMBER = #{actNumber}
+            </if>
+        </trim>
     </select>
 
     <select id="sitterList" resultType="EmpListVo">
-        SELECT  RNUM, EMP_NUMBER, EMP_NAME, EMP_AGE, EMP_GENDER, EMP_PHONE, EMP_EMAIL, EMP_DATE, EMP_CONTENT, avg,EMP_IMG_UPLOAD_PATH, EMP_IMG_UUID, EMP_IMG_NAME
-      FROM (
-        SELECT ROWNUM AS RNUM, EMP_NUMBER, EMP_NAME, EMP_AGE, EMP_GENDER, EMP_PHONE, EMP_EMAIL, EMP_DATE, EMP_CONTENT, avg
-                      ,EMP_IMG_UPLOAD_PATH, EMP_IMG_UUID, EMP_IMG_NAME
-          FROM(
-        SELECT distinct e.EMP_NUMBER, e.EMP_NAME, e.EMP_AGE, e.EMP_GENDER, e.EMP_PHONE, e.EMP_EMAIL, e.EMP_DATE, e.EMP_CONTENT, s1.avg
-                                    , c.COUNTRY_NAME, c2.CITY_NAME , ei.EMP_IMG_UPLOAD_PATH, ei.EMP_IMG_UUID, ei.EMP_IMG_NAME
-                  FROM EMP e left join(
-                    select EMP_NUMBER, avg(RATING) avg from SITTER_BOARD sb
-                    group by EMP_NUMBER
-                    )s1 on e.EMP_NUMBER = s1.EMP_NUMBER
-                  join COUNTRY c on e.COUNTRY_NUMBER = c. COUNTRY_NUMBER
-                  join CITY c2 on c.CITY_NUMBER = c2.CITY_NUMBER
-                  left join EMP_ACT_ITEM eai on e.EMP_NUMBER = eai.EMP_NUMBER
-                  left join EMP_IMG ei on e.EMP_NUMBER = ei.EMP_NUMBER
-                  <trim prefix="where" prefixOverrides="and">
-                      <if test="countryName != null and !countryName.equals('상세 선택')">
-                        c.COUNTRY_NAME like '%' || #{countryName} || '%' AND c2.CITY_NAME like '%' || #{cityName} || '%'
-                      </if>
-                      <if test="actNumber != null and actNumber != 0">
-                        AND eai.ACT_NUMBER = #{actNumber}
-                      </if>
-                  </trim>
-                  ORDER BY EMP_NUMBER DESC
-                  ) X
-              <![CDATA[
+        SELECT RNUM, EMP_NUMBER, EMP_NAME, EMP_AGE, EMP_GENDER, EMP_PHONE, EMP_EMAIL, EMP_DATE, EMP_CONTENT,
+        avg,EMP_IMG_UPLOAD_PATH, EMP_IMG_UUID, EMP_IMG_NAME
+        FROM (
+        SELECT ROWNUM AS RNUM, EMP_NUMBER, EMP_NAME, EMP_AGE, EMP_GENDER, EMP_PHONE, EMP_EMAIL, EMP_DATE, EMP_CONTENT,
+        avg
+        ,EMP_IMG_UPLOAD_PATH, EMP_IMG_UUID, EMP_IMG_NAME
+        FROM(
+        SELECT distinct e.EMP_NUMBER, e.EMP_NAME, e.EMP_AGE, e.EMP_GENDER, e.EMP_PHONE, e.EMP_EMAIL, e.EMP_DATE,
+        e.EMP_CONTENT, s1.avg
+        , c.COUNTRY_NAME, c2.CITY_NAME , ei.EMP_IMG_UPLOAD_PATH, ei.EMP_IMG_UUID, ei.EMP_IMG_NAME
+        FROM EMP e left join(
+        select EMP_NUMBER, avg(RATING) avg from SITTER_BOARD sb
+        group by EMP_NUMBER
+        )s1 on e.EMP_NUMBER = s1.EMP_NUMBER
+        join COUNTRY c on e.COUNTRY_NUMBER = c. COUNTRY_NUMBER
+        join CITY c2 on c.CITY_NUMBER = c2.CITY_NUMBER
+        left join EMP_ACT_ITEM eai on e.EMP_NUMBER = eai.EMP_NUMBER
+        left join EMP_IMG ei on e.EMP_NUMBER = ei.EMP_NUMBER
+        <trim prefix="where" prefixOverrides="and">
+            <if test="countryName != null and !countryName.equals('상세 선택')">
+                c.COUNTRY_NAME like '%' || #{countryName} || '%' AND c2.CITY_NAME like '%' || #{cityName} || '%'
+            </if>
+            <if test="actNumber != null and actNumber != 0">
+                AND eai.ACT_NUMBER = #{actNumber}
+            </if>
+        </trim>
+        ORDER BY EMP_NUMBER DESC
+        ) X
+        <![CDATA[
               WHERE ROWNUM <= #{criteria.page} * #{criteria.amount}
               ]]>
-      ) Y
-      WHERE RNUM > (#{criteria.page} - 1) * #{criteria.amount}
-     </select>
+        ) Y
+        WHERE RNUM > (#{criteria.page} - 1) * #{criteria.amount}
+    </select>
 
     <select id="selectTotal" resultType="_int">
         SELECT COUNT(EMP_NUMBER)
         FROM EMP
     </select>
 
-<!--    <select id="sitterInfo" resultType="empVo">-->
-<!--        SELECT *-->
-<!--        FROM EMP-->
-<!--        WHERE EMP_NUMBER = ${empNumber}-->
-<!--    </select>-->
+    <!--    <select id="sitterInfo" resultType="empVo">-->
+    <!--        SELECT *-->
+    <!--        FROM EMP-->
+    <!--        WHERE EMP_NUMBER = ${empNumber}-->
+    <!--    </select>-->
 
-<!--    시터 조회 -->
+    <!--    시터 조회 -->
     <select id="sitterInfo" resultType="empVo">
-        SELECT
-            e.EMP_NUMBER,
-           	e.EMP_NAME,
-           	e.EMP_AGE,
-           	e.EMP_GENDER,
-           	e.EMP_PHONE,
-           	e.EMP_EMAIL,
-           	e.EMP_DATE,
-           	e.EMP_CONTENT,
-           	ei.EMP_IMG_NUMBER,
-           	ei.EMP_IMG_NAME,
-           	ei.EMP_IMG_UPLOAD_PATH,
-           	ei.EMP_IMG_UUID
-        FROM EMP e LEFT JOIN EMP_IMG ei on e.EMP_NUMBER = ei.EMP_NUMBER
+        SELECT e.EMP_NUMBER,
+               e.EMP_NAME,
+               e.EMP_AGE,
+               e.EMP_GENDER,
+               e.EMP_PHONE,
+               e.EMP_EMAIL,
+               e.EMP_DATE,
+               e.EMP_CONTENT,
+               ei.EMP_IMG_NUMBER,
+               ei.EMP_IMG_NAME,
+               ei.EMP_IMG_UPLOAD_PATH,
+               ei.EMP_IMG_UUID
+        FROM EMP e
+                 LEFT JOIN EMP_IMG ei on e.EMP_NUMBER = ei.EMP_NUMBER
         WHERE e.EMP_NUMBER = ${empNumber}
     </select>
 
@@ -84,28 +87,52 @@
         SELECT *
         FROM SITTER_BOARD
                     <![CDATA[
-        WHERE EMP_NUMBER = ${empNumber} AND ROWNUM <= 10
+        WHERE EMP_NUMBER = ${empNumber}
+          AND ROWNUM <= 10
         ]]>
     </select>
 
     <select id="addrCheck" resultType="empListVo">
-        SELECT  RNUM, EMP_NUMBER, EMP_NAME, EMP_AGE, EMP_GENDER, EMP_PHONE, EMP_EMAIL, EMP_DATE, EMP_CONTENT, avg
+        SELECT RNUM,
+               EMP_NUMBER,
+               EMP_NAME,
+               EMP_AGE,
+               EMP_GENDER,
+               EMP_PHONE,
+               EMP_EMAIL,
+               EMP_DATE,
+               EMP_CONTENT,
+               avg
         FROM (
-            SELECT ROWNUM AS RNUM, e.EMP_NUMBER, e.EMP_NAME, e.EMP_AGE, e.EMP_GENDER, e.EMP_PHONE, e.EMP_EMAIL, e.EMP_DATE, e.EMP_CONTENT, s1.avg
-            FROM EMP e left join(
-                select EMP_NUMBER, avg(RATING) avg from SITTER_BOARD sb
-                group by EMP_NUMBER
-                )s1 on e.EMP_NUMBER = s1.EMP_NUMBER
+                 SELECT ROWNUM AS RNUM,
+                        e.EMP_NUMBER,
+                        e.EMP_NAME,
+                        e.EMP_AGE,
+                        e.EMP_GENDER,
+                        e.EMP_PHONE,
+                        e.EMP_EMAIL,
+                        e.EMP_DATE,
+                        e.EMP_CONTENT,
+                        s1.avg
+                 FROM EMP e
+                          left join(
+                     select EMP_NUMBER, avg(RATING) avg
+                     from SITTER_BOARD sb
+                     group by EMP_NUMBER
+                 ) s1 on e.EMP_NUMBER = s1.EMP_NUMBER
                 <![CDATA[
-                WHERE ROWNUM <= #{page} * #{amount} AND EMP_GENDER = 'F'
+                 WHERE ROWNUM <= #{page} * #{amount}
+                   AND EMP_GENDER = 'F'
                 ]]>
             ORDER BY EMP_NUMBER DESC
-        )
+             )
         WHERE RNUM > (#{page} - 1) * #{amount}
     </select>
 
     <select id="sitterAddrTotal" resultType="_int">
-        SELECT COUNT(*) FROM EMP WHERE EMP_GENDER = 'F'
+        SELECT COUNT(*)
+        FROM EMP
+        WHERE EMP_GENDER = 'F'
     </select>
 
     <select id="sitterReview" resultType="double">
@@ -120,36 +147,88 @@
 
     </select>
     <!--    <select id="addrCheck" resultType="int">-->
-<!--        select *-->
-<!--        from EMP-->
-<!--        WHERE EMP_시터시도 = 시터가 업무 가능한 시도 AND EMP_시터구군 = 시터가 업무 가능한 구군-->
-<!--    </select>-->
+    <!--        select *-->
+    <!--        from EMP-->
+    <!--        WHERE EMP_시터시도 = 시터가 업무 가능한 시도 AND EMP_시터구군 = 시터가 업무 가능한 구군-->
+    <!--    </select>-->
 
     <select id="sitterPossibleList" resultType="actVo">
-        select
-            ai.ACT_IMG_NUMBER,
-            ai.ACT_NUMBER,
-            ai.ACT_IMG_NAME,
-            ai.ACT_IMG_UPLOAD_PATH,
-           	ai.ACT_IMG_UUID,
-            a.ACT_NAME
-        from
-        	act a JOIN ACT_IMG ai on a.ACT_NUMBER = ai.ACT_NUMBER
-        where ai.ACT_NUMBER IN(
+        select ai.ACT_IMG_NUMBER,
+               ai.ACT_NUMBER,
+               ai.ACT_IMG_NAME,
+               ai.ACT_IMG_UPLOAD_PATH,
+               ai.ACT_IMG_UUID,
+               a.ACT_NAME
+        from act a
+                 JOIN ACT_IMG ai on a.ACT_NUMBER = ai.ACT_NUMBER
+        where ai.ACT_NUMBER IN (
             select ACT_NUMBER
             from EMP_ACT_ITEM
-            where EMP_NUMBER= ${empNumber}
+            where EMP_NUMBER = ${empNumber}
         )
     </select>
 
     <select id="sitterActImg" resultType="empListVo">
-        SELECT * FROM
-                      EMP e LEFT JOIN EMP_ACT_ITEM eai ON e.EMP_NUMBER = eai.EMP_NUMBER
-                            LEFT JOIN ACT_IMG ai ON eai.ACT_NUMBER = ai.ACT_NUMBER
-                            LEFT JOIN ACT a ON eai.ACT_NUMBER = a.ACT_NUMBER
+        SELECT *
+        FROM EMP e
+                 LEFT JOIN EMP_ACT_ITEM eai ON e.EMP_NUMBER = eai.EMP_NUMBER
+                 LEFT JOIN ACT_IMG ai ON eai.ACT_NUMBER = ai.ACT_NUMBER
+                 LEFT JOIN ACT a ON eai.ACT_NUMBER = a.ACT_NUMBER
     </select>
 
-    <select id="">
+    <insert id="register" parameterType="submitOrderDto">
+        <selectKey keyProperty="submitOrderNumber" order="BEFORE" resultType="long">
+            select SEQ_SUBMIT_ORDER.NEXTVAL from dual
+        </selectKey>
 
-    </select>
+        <if test="genderSecond == null">
+            INSERT INTO
+                SUBMIT_ORDER (
+                    SUBMIT_ORDER_NUMBER,
+                    GENDER_FIRST,
+                    KIDS_CONTENT
+                    )
+            values (
+                    #{submitOrderNumber},
+                    #{genderFirst},
+                    #{kidsContent}
+                   )
+        </if>
+        <if test="genderSecond != null">
+        INSERT INTO
+            SUBMIT_ORDER (
+                SUBMIT_ORDER_NUMBER,
+                GENDER_FIRST,
+                GENDER_SECOND,
+                KIDS_CONTENT
+                )
+        values (
+                #{submitOrderNumber},
+                #{genderFirst},
+                #{genderSecond},
+                #{kidsContent}
+               )
+        </if>
+
+    </insert>
+
+    <insert id="sitterMatching" parameterType="matchDto">
+        <selectKey keyProperty="matchNumber" order="BEFORE" resultType="long">
+            select SEQ_MATCH.NEXTVAL from dual
+        </selectKey>
+            INSERT INTO
+                MATCHS (
+                        MATCH_NUMBER,
+                        USER_NUMBER,
+                        SUBMIT_ORDER_NUMBER,
+                        EMP_NUMBER,
+                        STATUS)
+                values (
+                       #{matchNumber},
+                       #{userNumber},
+                       SEQ_SUBMIT_ORDER.CURRVAL,
+                        #{empNumber},
+                        0
+                       )
+    </insert>
 </mapper>
