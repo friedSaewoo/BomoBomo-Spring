@@ -136,9 +136,6 @@ $('.sitterTerBtn').on('click', function (){
 function showListAndPage(sitter) {
     let str = "";
     cityName = $("select[name=sido1] option:selected").text();
-    // if(city == "주소 선택") {
-    //     city = null;
-    // }
     countryName = $("select[name=gugun1] option:selected").text();
 
     $('.sitterInfoList').empty();
@@ -149,40 +146,38 @@ function showListAndPage(sitter) {
     console.log(sitter);
     console.log(sitter.sitterList.actImgList);
 
-    $('.sitterFindCount > strong').append(sitter.sitterTotal);
-    sitter.sitterList.forEach(function (sitterList) {
-        str = "<div class='sitterIndividual'>" +
-            "<a href='/sitter/sitterInfo?empNumber=" + sitterList.empNumber + "' class='sitterInformation'><div><div class='sitterInfoAndImg test'> <div class='sitterInfo'>";
-        str += "<input type='hidden' value='" + sitterList.empNumber + "' class='empNumber' name='empNumber'> <div name='sitterName' class='sitterName'>";
-        str += "<strong>" + sitterList.empName + "</strong>&nbsp;&nbsp;"
-        str += "<span>" + sitterList.empGender + "</span></div>"
-        if (sitterList.avg == null) {
-            str += "<div class='sitterGrade'><img src='/common/img/star.png'> <span>" + 0.0 + "/ 5" + "</span></div>";
-        } else {
-            str += "<div class='sitterGrade'><img src='/common/img/star.png'> <span>" + sitterList.avg + "/ 5" + "</span></div>";
-        }
+    if(sitter.sitterTotal != 0) {
+        $('.sitterFindCount > strong').append(sitter.sitterTotal);
+        sitter.sitterList.forEach(function (sitterList) {
 
-        str += `<div class="sitterAbility">`;
-        str += `<div class="sitterPossible">`;
-        sitterList.actImgList.forEach(function (actImgList) {
-            str += "<img src='/admin/rest/displayActImg?fileName=" + actImgList.actImgUploadPath + "/" + actImgList.actImgUuid  + "_" + actImgList.actImgName + "'>";
-            // str += "<div class='possibleName'>" + actImgList.actName + "</div>";
-        })
-        str += `</div></div>`;
-        str += `</div>`;
+            str = "<div class='sitterIndividual'>" +
+                "<a href='/sitter/sitterInfo?empNumber=" + sitterList.empNumber + "' class='sitterInformation'><div><div class='sitterInfoAndImg test'> <div class='sitterInfo'>";
+            str += "<input type='hidden' value='" + sitterList.empNumber + "' class='empNumber' name='empNumber'> <div name='sitterName' class='sitterName'>";
+            str += "<strong>" + sitterList.empName + "</strong>&nbsp;&nbsp;"
+            str += "<span>" + sitterList.empGender + "</span></div>"
+            if (sitterList.avg == null) {
+                str += "<div class='sitterGrade'><img src='/common/img/star.png'> <span>" + 0.0 + "/ 5" + "</span></div>";
+            } else {
+                str += "<div class='sitterGrade'><img src='/common/img/star.png'> <span>" + sitterList.avg + "/ 5" + "</span></div>";
+            }
 
+            str += `<div class="sitterAbility">`;
+            str += `<div class="sitterPossible">`;
+            sitterList.actImgList.forEach(function (actImgList) {
+                str += "<img src='/admin/rest/displayActImg?fileName=" + actImgList.actImgUploadPath + "/" + actImgList.actImgUuid  + "_" + actImgList.actImgName + "'>";
+                // str += "<div class='possibleName'>" + actImgList.actName + "</div>";
+            })
+            str += `</div></div>`;
+            str += `</div>`;
 
+        str += "<div class='sitterImg'>"
+            str += "<img  src='/admin/rest/displayEmpImg?fileName=" + sitterList.empImgUploadPath + "/" + sitterList.empImgUuid + "_" + sitterList.empImgName + "'>";
+            str += "</div></div></div>";
+            str += "<div class='sitterContext'>"
+            str += "<span>" + sitterList.empContent + "</span></div></a></div>";
 
-
-    str += "<div class='sitterImg'>"
-        str += "<img  src='/admin/rest/displayEmpImg?fileName=" + sitterList.empImgUploadPath + "/" + sitterList.empImgUuid + "_" + sitterList.empImgName + "'>";
-        str += "</div></div></div>";
-        str += "<div class='sitterContext'>"
-        str += "<span>" + sitterList.empContent + "</span></div></a></div>";
-
-        $('.sitterInfoList').append(str);
-    });
-
+            $('.sitterInfoList').append(str);
+        });
 
     //=================페이징======================================
     let start = sitter.pageInfo.startPage;
@@ -208,7 +203,20 @@ function showListAndPage(sitter) {
     }
 
     $('.paging').html(pageStr);
+    } else {
+        $('.sitterFindCount > strong').append(sitter.sitterTotal);
+        str = `<div class='sitterFilter'> 검색 결과가 없습니다. 시터님 정보를 다시 확인해주세요.` ;
+        str = `</div>`;
+
+
+    }
+
 }
+
+
+
+
+
 
 
 $('.paging').on('click', '.pageNum', function (){
