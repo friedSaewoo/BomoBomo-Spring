@@ -30,7 +30,7 @@ public class EventController {
 
     private final EventService eventService;
 
-//    이벤트 메인페이지 리스트
+//   이벤트 메인페이지 리스트
     @GetMapping("/list")
     public String showEventListPage(Model model){
 
@@ -45,7 +45,7 @@ public class EventController {
 
         EventVo eventVo = eventService.find(eventNumber);
         model.addAttribute("detail", eventVo);
-        return "event/eventdetail";
+        return "event/eventDetail";
     }
     //이벤트 컨트롤러 (신청페이지 이동)
 
@@ -58,8 +58,7 @@ public class EventController {
         return "event/eventPayment";
     }
 
-
-    //    이벤트 조회 이미지
+//   이벤트 조회 이미지
     @Value("${file.eventImg}")
     private String fileEventImg;
 
@@ -68,28 +67,13 @@ public class EventController {
         return FileCopyUtils.copyToByteArray(new File(fileEventImg, fileFullPath));
     }
 
-//   직원 조회 이미지
-    @Value("${file.empImg}")
-    private String fileEmpImg;
-
-    @GetMapping("/empimg")
-    public byte[] getEmpImg(String fileFullPath) throws IOException {
-        return FileCopyUtils.copyToByteArray(new File(fileEmpImg, fileFullPath));
-    }
-
 //   직원 목록 전체 조회
     @GetMapping("/empIntro")
-    public String showEmpList(Criteria criteria, Model model){
-        log.info("> request : {}", criteria);
-        criteria.setPage(criteria.getPage());
-        criteria.setAmount(3);
+    public String showEmpList(){
 
-        List<EmpVo> empVoList = eventService.findEmpAll(criteria);
-        log.info("> List : {}", empVoList);
-        model.addAttribute("empIntro", empVoList);
-        model.addAttribute("pageInfo", new PageVo(eventService.getTotal(), criteria));
         return "event/employeeIntro" ;
     }
+
 //   인재 채용 페이지 이동
     @GetMapping("/rec")
     public String showRecruitmentPage(){
