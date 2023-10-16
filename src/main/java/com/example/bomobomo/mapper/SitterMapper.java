@@ -1,7 +1,9 @@
 package com.example.bomobomo.mapper;
 
 import com.example.bomobomo.domain.dto.EmpDto;
+import com.example.bomobomo.domain.dto.MatchDto;
 import com.example.bomobomo.domain.dto.SitterBoardDto;
+import com.example.bomobomo.domain.dto.SubmitOrderDto;
 import com.example.bomobomo.domain.vo.*;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -51,4 +53,7 @@ public interface SitterMapper {
     public List<ActVo> sitterPossibleList(Long empNumber);
 
     public List<EmpListVo> sitterActImg();
+
+    public void register(SubmitOrderDto submitOrderDto);
+    public void sitterMatching(MatchDto matchDto);
 }
