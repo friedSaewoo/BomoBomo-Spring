@@ -20,5 +20,4 @@ public class EmpActItemImgVo {
     private String actImgUuid;
     private String actName;
 
-
 }
