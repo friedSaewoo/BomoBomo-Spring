@@ -77,11 +77,13 @@ public class AdminController {
     public String Emp(){
         return "admin/adminEmp";
     }
+
     @GetMapping("/emp/regist")
     public String empRegist(Model model){
         List<ActDto> actList = adminService.selectAct();
+        List<CityDto> cityList = adminService.selectAllCity();
         model.addAttribute("actList",actList);
-        log.info("========================================={}",actList);
+        model.addAttribute("cityList",cityList);
         return "admin/adminEmpRegist";
     }
     @PostMapping("/emp/regist")

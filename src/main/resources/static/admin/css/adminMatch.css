@@ -47,7 +47,7 @@ select:focus{
     font-size: 18px;
     color: #4F4D8E;
     font-weight: 700;
-    margin-bottom: 29px;
+    margin-bottom: 9px;
 }
 
 .side-container li {
@@ -92,7 +92,7 @@ select:focus{
 .main-contents{
     margin-top: 5px;
     width: 100%;
-    height: 1000px;
+    height: 100%;
 }
 .contents-title{
     display: flex;
@@ -145,13 +145,11 @@ select:focus{
     height: 85%;
     margin: 20px auto 0px;
     background-color: white;
-    box-shadow: 5px 5px 5px 5px gray;
 }
 
 .match-container .post{
     margin: 10px;
     border: 1px solid #ddd;
-
     width: 97%;
     height: 130px;
     display: flex;
@@ -163,10 +161,13 @@ select:focus{
     flex-direction: column;
     justify-content: center;
     width: 23%;
-    font-size: 28px;
+    font-size: 22px;
 }
 .post .user{
-    font-size: 22px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 16px;
     width: 30%;
 }
 .post .emp{
@@ -174,7 +175,7 @@ select:focus{
     flex-direction: column;
     justify-content: center;
     width: 40%;
-    font-size: 22px;
+    font-size: 16px;
 }
 .post .box{
     display: flex;
@@ -186,7 +187,7 @@ select:focus{
     width: 70px;
     font-size: 20px;
     color: white;
-    background-color: #01b9ff;
+    background-color: #4F4D8E;
     border-radius: 10%;
     border: 1px solid #e7e7e7;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
@@ -197,7 +198,7 @@ select:focus{
 
 
 .on{
-    background-color:#01b9ff !important;
+    background-color:#4F4D8E !important;
     color: white;
 }
 

@@ -50,7 +50,7 @@ body{
     font-size: 18px;
     color: #4F4D8E;
     font-weight: 700;
-    margin-bottom: 29px;
+    margin-bottom: 9px;
 }
 
 .side-container li {
@@ -131,12 +131,12 @@ body{
 .announce-list-container{
     display: flex;
     flex-direction: column;
-    width: 90%;
+    width: 96%;
     height: 80%;
     margin: 30px auto 0px;
     background-color: white;
-    box-shadow: 5px 5px 5px 5px gray;
-    border-radius: 3%;
+    /*box-shadow: 5px 5px 5px 5px gray;*/
+    /*border-radius: 3%;*/
 }
 
 .announce-list-bottom{
@@ -189,22 +189,20 @@ body{
 }
 
 .top{
-    width: 100%;
+    width: 98%;
     /* margin: 0 auto; */
     /* padding-top: 10px 10px; */
     padding: 10px;
     display: flex;
     font-size: 20px;
-    width: 96%;
     margin: 0 auto;
-    border-bottom: 3px solid #01b9ff;
-    margin-right:auto;
-    text-align: center;
+    /*border-bottom: 3px solid #01b9ff;*/
+    background-color: #4F4D8E;
 }
 .top>div{
-    font-weight: bold;
+    /*font-weight: bold;*/
     font-size: 21px;
-    color: #353535;
+    color: white;
 }
 .top .announce-num{
     text-align: center;
