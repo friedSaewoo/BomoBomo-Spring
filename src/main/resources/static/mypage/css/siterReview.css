@@ -219,6 +219,8 @@ input[type='file'] {
 }
 .grade legend{
     text-align: right;
+    direction: rtl;
+    display: flex;
 }
 .grade input[type=radio]{
     display: none;

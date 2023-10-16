@@ -209,52 +209,62 @@ function showSitterReviewList(result) {
         let pageVo = result.pageVo;
         if (pageVo.prev) {
             pageInfo += `
-            <a href="javascript:void(0)" class="page-a">
-                <li class="page-num prev" data-page="${pageVo.startPage - 1}">&lt</li>
-            </a>
+            
+                <li class="page-num prev">
+                    <a href="#"  data-page="${pageVo.startPage - 1}">&lt;</a>
+                </li>
+           
         `;
         }
         if (pageVo.realEnd != 0) {
             for (let i = pageVo.startPage; i <= pageVo.endPage; i++) {
                 if (i == pageVo.criteria.page) {
                     pageInfo += `
-            <a href="javascript:void(0)">
-                <li class="page-num active-num1" data-page="${i}">${i}</li>
-            </a>
+                <li class="page-num active-num" >
+                    <a href="#" data-page="${i}" >${i}</a>
+                 </li>
+            
         `;
                 } else {
                     pageInfo += `
-            <a href="javascript:void(0)">
-                <li class="page-num " data-page="${i}">${i}</li>
-            </a>
+            
+                <li class="page-num">
+                    <a href="#" data-page="${i}">${i}</a>
+                    </li>
         `;
                 }
             }
-        } else {
-            `<li></li>`
         }
 
         if (pageVo.next) {
             pageInfo += `
-            <a href="javascript:void(0)" class="page-b">
-                <li class="page-num next" data-page="${pageVo.endPage + 1}">&gt</li>
-            </a>
+            
+                <li class="page-num next">
+                    <a href="#"  data-page="${pageVo.endPage + 1}">&gt;</a>
+                </li>
+            
         `;
         }
-
+        console.log(pageInfo)
         $('.page').html(pageInfo);
     }
 }
 
-$('.page').on('click', '.page-num', function (){
+$('.page').on('click', '.page-num a', function (e){
+    e.preventDefault();
     page = $(this).data('page');
     myPage.getSitterReviewList(page, showSitterReviewList);
 });
+
+
+
+
 
 //이벤트 리뷰를 작성한 내용을 게시판으로 뿌려주는 코드
 
 let pages =1;
 myPage.getEventReviewList(pages,showEventReviewList);
+
 function showEventReviewList(result){
 
     if(result.eventlist.length == 0){
@@ -290,54 +300,59 @@ function showEventReviewList(result){
 
         let pagesVo = result.pageVO;
 
+
         if (pagesVo.prev) {
             pagesInfo += `
-         <a href="javascript:void(0)" class="page-a1">
-              <li class="page-num1 prev" data-pages="${pagesVo.startPage - 1}">&lt</li>
-         </a>
+              <li class="page-num1 prev1" >
+                <a href="#" class="page-a1" data-pages="${pagesVo.startPage - 1}">&lt</a>
+              </li>
         `;
         }
         if (pagesVo.realEnd != 0) {
             for (let i = pagesVo.startPage; i <= pagesVo.endPage; i++) {
                 if (i == pagesVo.criteria.page) {
                     pagesInfo += `
-            <a href="javascript:void(0)" >
-                <li class="page-num1 active-num"  data-pages="${i}">${i}</li>
-            </a>
+                <li class="page-num1 active-num1">
+                    <a href="#" data-pages="${i}" >${i}</a>
+                </li>
         `;
                 } else {
                     pagesInfo += `
-            <a href="javascript:void(0)">
-                <li class="page-num1" data-pages="${i}">${i}</li>
-            </a>
+                <li class="page-num1" >
+                    <a href="#" data-pages="${i}">${i}</a>
+                </li>
         `;
                 }
             }
-        } else {
-            `<li></li>`
         }
 
         if (pagesVo.next) {
             pagesInfo += `
-            <a href="javascript:void(0)" class="page-b1">
-                <li class="page-num1 next" data-pages="${pagesVo.endPage + 1}">&gt</li>
-            </a>
+     
+                <li class="page-num1 next1" >
+                    <a href="#" class="page-b1" data-pages="${pagesVo.endPage + 1}">&gt</a>
+                </li>
+         
         `;
         }
-
+        console.log(pagesInfo)
         $('.page1').html(pagesInfo);
+        console.log(pagesVo.prev);
+        console.log(pagesVo.next);
     }
 }
 
-$('.page1').on('click', '.page-num1', function (){
-    pages = $(this).data('page1');
+$('.page1').on('click', '.page-num1 a', function (e){
+    e.preventDefault();
+    pages = $(this).data('pages');
+    console.log(pages);
     myPage.getEventReviewList(pages,showEventReviewList);
 });
 
 
 
 // 결제 정보를 출력
-// myPage.buyInfo(purchasePage);
+myPage.buyInfo(purchasePage);
 function purchasePage(result){
     console.log("----------------");
     console.log(result);

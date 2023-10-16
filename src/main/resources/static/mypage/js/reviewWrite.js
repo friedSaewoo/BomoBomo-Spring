@@ -68,3 +68,9 @@ function appendImg(files) {
 }
 
 
+
+$('.grade input').on('click',function (){
+    console.log($(this).val());
+})
+
+

@@ -9,9 +9,7 @@
   <link rel="stylesheet" href="/fragments/css/footer.css"/>
   <link rel="stylesheet" href="/fragments/css/header.css"/>
 
-  <script src="/common/js/index.js" defer></script>
-  <script src="/common/js/common.js" defer></script>
-  <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+
 </head>
 <body>
 <div th:replace="fragments/header.html :: header" >
@@ -53,18 +51,20 @@
             <textarea id="post-content" name="sitterBoardContent" rows="10" required></textarea>
             <div class="grade-group">
               <fieldset class="grade" required>
+                <legend>
                 <!-- <span class="text-bold">평점</span> -->
-                <input type="radio" name="rating" value="1" id="rate1"><label
+                <input type="radio" name="rating" value="5" id="rate1"><label
                       for="rate1">★</label>
-                <input type="radio" name="rating" value="2" id="rate2"><label
+                <input type="radio" name="rating" value="4" id="rate2"><label
                       for="rate2">★</label>
                 <input type="radio" name="rating" value="3" id="rate3"><label
                       for="rate3">★</label>
-                <input type="radio" name="rating" value="4" id="rate4"><label
+                <input type="radio" name="rating" value="2" id="rate4"><label
                       for="rate4">★</label>
-                <input type="radio" name="rating" value="5" id="rate5"><label
-                      for="rate5">★</label>
+                <input type="radio" name="rating" value="1" id="rate5" required ><label
+                      for="rate5" >★</label>
                 <span class="text-bold">평점</span>
+                </legend>
               </fieldset>
             </div>
           </div>
@@ -80,6 +80,10 @@
 </div>
 <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.6.4.js"></script>
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="/fragments/js/header.js"></script>
+<script src="/common/js/index.js" defer></script>
+<script src="/common/js/common.js" defer></script>
 
 </body>
 </html>

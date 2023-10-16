@@ -40,7 +40,7 @@ public interface MyPageMapper {
 //    public MatchDto selectOne(Long userNumber);
 
     // 매치된 회원의 정보
-    public MatchUserInfoVo selectMatchUserInfo(Long userNunmber);
+    public MatchUserInfoVo selectMatchUserInfo(Long userNumber);
 
     //결제 정보
     public MatchBuyInfoVo selectMatchBuyInfo(Long userNumber);

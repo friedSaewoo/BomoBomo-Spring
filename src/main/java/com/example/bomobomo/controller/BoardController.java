@@ -238,6 +238,7 @@ public class BoardController {
             , Model model, HttpServletRequest req, HttpServletResponse resp){
 
 
+
         EventBoardVo eventBoardVo = reviewService.showEReviewDetail(eventBoardNumber);
         List<EventBoardVo> eventBoardVoList = reviewService.findEventReviewTopCount(eventBoardVo.getEventNumber());
         double getAvgEventReview = reviewService.getAvgEventReviewRating(eventBoardVo.getEventNumber());
