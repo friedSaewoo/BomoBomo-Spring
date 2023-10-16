@@ -43,11 +43,15 @@ public class myPageController {
         } catch (NullPointerException e) {
             return "mypage/myPageMain";
         }
+        log.info("============================1번");
         myPageService.findEmpInfoImg(myPageService.findMatch(userNumber).getEmpNumber());
         model.addAttribute("empInfoImg",myPageService.findEmpInfoImg(myPageService.findMatch(userNumber).getEmpNumber()));
+        log.info("============================1.5번");
         log.info(myPageService.findEmpInfoImg(myPageService.findMatch(userNumber).getEmpNumber()).toString());
+        log.info("============================2번");
         myPageService.findEmpActItemImg(myPageService.findMatch(userNumber).getEmpNumber());
         model.addAttribute("empActItemImgList",myPageService.findEmpActItemImg(myPageService.findMatch(userNumber).getEmpNumber()));
+        log.info("============================3번");
         myPageService.findMatchEmpRating(myPageService.findMatch(userNumber).getEmpNumber());
         model.addAttribute("rating",myPageService.findMatchEmpRating(myPageService.findMatch(userNumber).getEmpNumber()));
         return "mypage/myPageMain";
