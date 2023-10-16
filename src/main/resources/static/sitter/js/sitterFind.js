@@ -136,9 +136,6 @@ $('.sitterTerBtn').on('click', function (){
 function showListAndPage(sitter) {
     let str = "";
     cityName = $("select[name=sido1] option:selected").text();
-    // if(city == "주소 선택") {
-    //     city = null;
-    // }
     countryName = $("select[name=gugun1] option:selected").text();
 
     $('.sitterInfoList').empty();
@@ -173,9 +170,6 @@ function showListAndPage(sitter) {
             str += `</div></div>`;
             str += `</div>`;
 
-
-
-
         str += "<div class='sitterImg'>"
             str += "<img  src='/admin/rest/displayEmpImg?fileName=" + sitterList.empImgUploadPath + "/" + sitterList.empImgUuid + "_" + sitterList.empImgName + "'>";
             str += "</div></div></div>";
@@ -185,7 +179,11 @@ function showListAndPage(sitter) {
             $('.sitterInfoList').append(str);
         });
 
+
+
+
     }
+
 
 
     //=================페이징======================================
