@@ -598,12 +598,12 @@ main{
 }
 
 
-/*.active-num>a{*/
-/*    color: white;*/
-/*    background-color: #ff7000;*/
-/*    border: 1px solid #ff7000;*/
+.active-num>a{
+    color: white;
+    background-color: #ff7000;
+    border: 1px solid #ff7000;
 
-/*}*/
+}
 .payment-wrap{
 
     margin-top: 5px;
