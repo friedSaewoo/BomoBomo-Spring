@@ -145,9 +145,9 @@ function showListAndPage(sitter) {
     console.log("sitter : " + sitter);
     console.log(sitter);
     console.log(sitter.sitterList.actImgList);
-    $('.sitterFindCount > strong').append(sitter.sitterTotal);
 
-    if(sitter.sitterList.length != 0) {
+    if(sitter.sitterTotal != 0) {
+        $('.sitterFindCount > strong').append(sitter.sitterTotal);
         sitter.sitterList.forEach(function (sitterList) {
 
             str = "<div class='sitterIndividual'>" +
@@ -204,7 +204,8 @@ function showListAndPage(sitter) {
 
     $('.paging').html(pageStr);
     } else {
-        str = `<div class='sitterIndividual'> 검색 결과가 없습니다. 시터님 정보를 다시 확인해주세요.` ;
+        $('.sitterFindCount > strong').append(sitter.sitterTotal);
+        str = `<div class='sitterFilter'> 검색 결과가 없습니다. 시터님 정보를 다시 확인해주세요.` ;
         str = `</div>`;
 
 
