@@ -92,4 +92,9 @@ public interface AdminMapper {
     public void updateEventImg(EventImgDto eventImgDto);
 //    이벤트 상세정보 업데이트
     public void updateEventDetail(EventDetailDto eventDetailDto);
+
+//    city 전체조회
+    public List<CityDto> selectAllCity();
+//    country 조회
+    public List<CountryDto> selectCountry(Long cityNumber);
 }
