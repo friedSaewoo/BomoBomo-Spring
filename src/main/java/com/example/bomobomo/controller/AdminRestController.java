@@ -1,5 +1,6 @@
 package com.example.bomobomo.controller;
 
+import com.example.bomobomo.domain.dto.CountryDto;
 import com.example.bomobomo.domain.dto.EmpDto;
 import com.example.bomobomo.domain.dto.NoticeDto;
 import com.example.bomobomo.domain.vo.UserListVo;
@@ -112,6 +113,14 @@ public class AdminRestController {
         log.info("============================status={}",status);
         return status;
     }
+//    country 조회
+    @GetMapping("/country")
+    public List<CountryDto> selectCountry(@RequestParam(name="cityNumber")Long cityNumber){
+        List<CountryDto> countryList = adminService.selectCountry(cityNumber);
+        return countryList;
+    }
+
+
     @GetMapping("/displayEventImg")
     public byte[] display(String fileName) throws IOException {
         return FileCopyUtils.copyToByteArray(new File(eventImgPath, fileName));

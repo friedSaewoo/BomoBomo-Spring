@@ -16,4 +16,5 @@ public class EmpDto {
     private String empEmail;
     private String empDate;
     private String empContent;
+    private Long countryNumber;
 }

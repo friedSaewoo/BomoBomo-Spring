@@ -9,6 +9,7 @@ import com.example.bomobomo.mapper.MyPageMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.binding.BindingException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -60,7 +61,7 @@ public class MyPageService {
         if (userNumber == null) {
             throw new IllegalArgumentException("회원정보 누락!");
         }
-
+        System.out.println("유저번호 : " + userNumber);
         return myPageMapper.selectMatch(userNumber);
     }
 
@@ -79,20 +80,31 @@ public class MyPageService {
         if (empNumber == null) {
             throw new IllegalArgumentException("직원번호누락!");
         }
-
         return myPageMapper.selectEmpActItemImg(empNumber);
 
 
     }
 
     //매칭된 직원의 평점을 구하는 쿼리
-    public MatchEmpRatingAvgVo findMatchEmpRating(Long empNumber){
+    public double findMatchEmpRating(Long empNumber){
         if (empNumber == null) {
             throw new IllegalArgumentException("회원정보 없음!");
         }
+        log.info("=========================전");
 
-        return Optional.ofNullable(myPageMapper.selectMatchEmpRating(empNumber))
-                .orElseThrow(()->{throw new IllegalArgumentException("평균점수 조회 없음!");});
+        double avg = 0;
+        try {
+            avg = myPageMapper.selectMatchEmpRating(empNumber);
+        } catch (BindingException e) {
+            avg=0.0;
+        }
+
+        log.info("===================바보놈{}",avg);
+        log.info("=========================후");
+        log.info("===================바보놈{}",avg);
+        return avg;
+//        return Optional.ofNullable(myPageMapper.selectMatchEmpRating(empNumber))
+//                .orElseThrow(()->{throw new IllegalArgumentException("평균점수 조회 없음!");});
     }
 
      // 매치된 회원의 정보

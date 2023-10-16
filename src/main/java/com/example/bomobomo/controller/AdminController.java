@@ -77,11 +77,13 @@ public class AdminController {
     public String Emp(){
         return "admin/adminEmp";
     }
+
     @GetMapping("/emp/regist")
     public String empRegist(Model model){
         List<ActDto> actList = adminService.selectAct();
+        List<CityDto> cityList = adminService.selectAllCity();
         model.addAttribute("actList",actList);
-        log.info("========================================={}",actList);
+        model.addAttribute("cityList",cityList);
         return "admin/adminEmpRegist";
     }
     @PostMapping("/emp/regist")
@@ -149,11 +151,7 @@ public class AdminController {
     public void empUpdate(@RequestParam(name="empNumber")Long empNumber, Model model){
         EmpVo empDetail= adminService.selectEmpDetail(empNumber);
         List<ActDto> actList = adminService.selectAct();
-        log.info("==============================서비스체크");
         List<EmpActItemDto> empActList = adminService.selectEmpActItem(empNumber);
-        log.info("============================체크1{}",actList);
-        log.info("============================체크2{}",empActList);
-        log.info("============================체크2끝");
 
         model.addAttribute("empDetail",empDetail);
         model.addAttribute("actList",actList);
