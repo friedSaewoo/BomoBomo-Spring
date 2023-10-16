@@ -91,6 +91,7 @@ select:focus{
 
 .main-contents{
     margin-top: 5px;
+    width: 100%;
     height: 1000px;
 }
 .contents-title{

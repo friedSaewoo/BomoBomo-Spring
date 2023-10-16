@@ -61,10 +61,6 @@ body{
     color: black;
 }
 
-/* .on{
-    background-color:#01b9ff;
-} */
-
 .main-container{
     display: flex;
     flex-direction: row;
@@ -91,6 +87,7 @@ body{
 
 .main-contents{
     margin-top: 5px;
+    width: 100%;
     height: 100%;
 }
 .admin-name{
@@ -212,7 +209,7 @@ body{
 
 
 .on{
-    background-color:#01b9ff !important;
+    background-color:#4F4D8E !important;
     color: white;
 }
 .event-list-bottom > a{
