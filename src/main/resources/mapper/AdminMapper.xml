@@ -138,8 +138,8 @@
         <selectKey keyProperty="empNumber" order="BEFORE" resultType="Long">
             select SEQ_EMP.NEXTVAL FROM DUAL
         </selectKey>
-        insert into EMP (EMP_NUMBER, EMP_NAME, EMP_AGE, EMP_GENDER, EMP_PHONE, EMP_EMAIL, EMP_CONTENT)
-        values (#{empNumber},#{empName},#{empAge},#{empGender},#{empPhone},#{empEmail},#{empContent})
+        insert into EMP (EMP_NUMBER, EMP_NAME, EMP_AGE, EMP_GENDER, EMP_PHONE, EMP_EMAIL, EMP_CONTENT,COUNTRY_NUMBER)
+        values (#{empNumber},#{empName},#{empAge},#{empGender},#{empPhone},#{empEmail},#{empContent},#{countryNumber})
     </insert>
 
 <!--    &lt;!&ndash; 이벤트 수정 &ndash;&gt;-->
@@ -433,4 +433,15 @@
         set event_detail_name = #{eventDetailName}, event_detail_uuid = #{eventDetailUuid}, event_detail_upload_path = #{eventDetailUploadPath}
         where event_number = #{eventNumber}
     </update>
+<!-- city 전체 조회 -->
+    <select id="selectAllCity" parameterType="cityDto">
+        select city_number,city_name
+        from city
+    </select>
+<!-- country 조회 -->
+    <select id="selectCountry" parameterType="countryDto">
+        select country_number,country_name,city_number
+        from country
+        where city_number = #{cityNumber}
+    </select>
 </mapper>

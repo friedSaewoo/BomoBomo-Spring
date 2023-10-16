@@ -125,7 +125,6 @@ main{
 }
 
 .logo-container-text {
-    /* border: 2px solid red; */
     width: 890px;
     height: 90px;
     display: flex;
@@ -138,7 +137,7 @@ main{
 /* 로고 설정 */
 .logo-container-text  h1:nth-child(1),
 .logo-container-text  h1:nth-child(2) {
-    color:#dfb015;
+    color:#FF7000;
     font-family: "Luckiest Guy", cursive;
     position: relative;
 
@@ -146,14 +145,13 @@ main{
 }
 /* 로고 첫번째 BOMO 설정 */
 .logo-container-text  h1:nth-child(1) {
-    /* border: 2px solid black; */
-    width: 200px;
+    width: 130px;
     top: 15px;
-    transform: rotateZ(-3deg);
+    transform: rotateZ(-1deg);
 
 }
-/* 로고 두번째 BOMO 설정 */
 
+/* 로고 두번째 BOMO 설정 */
 .logo-container-text  h1:nth-child(2)  {
     /* border: 2px solid blue; */
     right: -90px;
@@ -361,4 +359,5 @@ main{
     color: #FF7000;
     border: 1px solid#FF7000;
     border-radius: 5px;
+    cursor: pointer;
 }

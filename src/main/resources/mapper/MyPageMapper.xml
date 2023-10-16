@@ -130,7 +130,7 @@
 
     </select>
     <!--매칭된 직원의 평점을 구하는 쿼리-->
-    <select id="selectMatchEmpRating" resultType="matchEmpRatingAvgVo">
+    <select id="selectMatchEmpRating" resultType="double">
         select distinct (select avg(RATING) from SITTER_BOARD) as avg
         from SITTER_BOARD
         where EMP_NUMBER=#{empNumber}
