@@ -97,7 +97,7 @@ main{
     /* border: 1px solid black; */
     display: flex;
     margin-top: 15PX;
-    height: 50px;
+    height: 40px;
     line-height: 40px;
 }
 .sitter-area{
@@ -105,7 +105,7 @@ main{
     width: 400px;
     border: 1px solid #bbb;
     font-family: 'S-CoreDream-3Light';
-    font-size: 30px;
+    font-size: 15px;
     text-align: center;
     cursor: pointer;
 }
@@ -116,7 +116,7 @@ main{
     width: 400px;
     border: 1px solid #bbb;
     font-family: 'S-CoreDream-3Light';
-    font-size: 30px;
+    font-size: 15px;
     text-align: center;
     cursor: pointer;
 }
@@ -249,7 +249,7 @@ main{
 .buy-text-area-2{
     /* border: 1px solid black; */
     width: 600px;
-    padding-top: 20px;
+
     height: 80px;
     font-size: 18px;
 
@@ -257,7 +257,8 @@ main{
 .buy-text-area-2 p{
     text-decoration: none;
     color: black;
-
+    padding-left: 10px;
+    font-size: 17px;
 }
 
 .price-2{
@@ -306,6 +307,7 @@ a{
     font-weight: bold;
     /* background-color: #e6e6e6; */
     border: 1px solid #e6e6e6;
+    border-radius: 5px;
 }
 .pageVObox{
     background-color: #FF7000;
@@ -341,3 +343,14 @@ a{
     flex-direction: column;
     justify-content: center;
     align-items: center;}
+
+.next:hover{
+    background-color: #ff7000;
+    color: white;
+    border: 1px solid #ff7000;
+}
+.prev:hover{
+    background-color: #ff7000;
+    color: white;
+    border: 1px solid #ff7000;
+}

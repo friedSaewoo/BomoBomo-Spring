@@ -163,7 +163,7 @@ main{
 }
 .gender-box{
     border: 1px solid #FF7000;
-    width: 250px;
+    width: 230px;
     height: 40px;
     color: #FF7000;
     display: flex;
@@ -176,7 +176,7 @@ main{
 }
 
 .gender-box>span{
-    font-size: 22px;}
+    font-size: 20px;}
 .gender-box:hover{
     color: white;
     background-color:#FF7000;
@@ -219,7 +219,7 @@ main{
 }
 .gender-box-second{
     border: 1px solid #FF7000;
-    width: 250px;
+    width: 230px;
     height: 40px;
     color: #FF7000;
     display: flex;
@@ -233,7 +233,8 @@ main{
 }
 
 .gender-box-second>span{
-    font-size: 22px;}
+    font-size: 20px;
+}
 .gender-box-second:hover{
     color: white;
     background-color:#FF7000;
@@ -300,4 +301,5 @@ main{
     color: #FF7000;
     border: 1px solid#FF7000;
     border-radius: 5px;
+    margin-bottom: 15px;
 }

@@ -5,16 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>마이페이지</title>
     <link rel="stylesheet" href="/mypage/css/myPageMain.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"/>
     <link rel="stylesheet" href="/common/css/common.css"/>
     <link rel="stylesheet" href="/fragments/css/footer.css"/>
     <link rel="stylesheet" href="/fragments/css/header.css"/>
+    <script src="../../static/mypage/js/myPageMain.js"></script>
 
 
 </head>
 <body>
-<div class="header" th:replace="fragments/header.html :: header" >
+<div class="header" th:replace="fragments/header.html :: header">
 </div>
 <!-- <div class="header-img">
     <img src="/Mypage/img/images.jpeg"/>
@@ -49,17 +52,17 @@
                 <div class="siterinfo-area">
                     <div class="siterinfo-area-container">
 
-                            <!--상태 2 -> 내용 없음-->
-                            <th:block th:if="${match == null}">
-                                <div class="siters-info" >
-                                    <h3 class="h3">나의 매칭</h3>
-                                    <div class="noneEmpArea">
+                        <!--상태 2 -> 내용 없음-->
+                        <th:block th:if="${match == null}">
+                            <div class="siters-info">
+                                <h3 class="h3">나의 매칭</h3>
+                                <div class="noneEmpArea">
                                     <img src="/mypage/img/qbz20exc.png" class="imgs"/>
-                                    </div>
                                 </div>
+                            </div>
 
-                            </th:block>
-                            <th:block th:unless="${match == null}">
+                        </th:block>
+                        <th:block th:unless="${match == null}">
                             <th:block th:if="${#strings.equals(match.status,'0')}">
                                 <input type="hidden" th:value="${match.matchNumber}">
                                 <input type="hidden" th:data-statusnum="${match.status}" class="status">
@@ -69,11 +72,11 @@
                                     <ul class="siterarea">
                                         <li class="siterimg">
 
-                                          <div class="siterimg-line">
-                                              <div class="siterimg-img">
-                                                <img th:src="@{/myPages/empimg(fileFullPath=${empInfoImg.empImgUploadPath} + '/' + ${empInfoImg.empImgUuid} + '_' + ${empInfoImg.empImgName})}">
-                                              </div>
-                                          </div>
+                                            <div class="siterimg-line">
+                                                <div class="siterimg-img">
+                                                    <img th:src="@{/myPages/empimg(fileFullPath=${empInfoImg.empImgUploadPath} + '/' + ${empInfoImg.empImgUuid} + '_' + ${empInfoImg.empImgName})}">
+                                                </div>
+                                            </div>
 
                                         </li>
                                         <li class="siter-info">
@@ -83,25 +86,30 @@
                                             <span th:text="${empInfoImg.empAge}+'세'"></span>
                                         </li>
                                         <li class="siter-info">
-                                            <th:block th:if= "${empInfoImg.empGender == 'M'}">
-                                                <span >남자</span>
+                                            <th:block th:if="${empInfoImg.empGender == 'M'}">
+                                                <span>남자</span>
                                             </th:block>
-                                            <th:block th:if= "${empInfoImg.empGender == 'F'}">
+                                            <th:block th:if="${empInfoImg.empGender == 'F'}">
                                                 <span th:text="${empInfoImg.empGender}">여자</span>
                                             </th:block>
                                         </li>
                                         <li class="siter-infos">
                                             <span th:if="${rating.avg >=0 && rating.avg <0.5}" class="avg">☆☆☆☆☆</span>
-                                            <span th:if="${rating.avg >=0.5 && rating.avg <1.5}" class="avg">★☆☆☆☆ </span>
-                                            <span th:if="${rating.avg >=1.5 && rating.avg <2.5}" class="avg">★★☆☆☆ </span>
-                                            <span th:if="${rating.avg >=2.5 && rating.avg <3.5}" class="avg" >★★★☆☆ </span>
-                                            <span th:if="${rating.avg >=3.5 && rating.avg <4.5}" class="avg">★★★★☆ </span>
-                                            <span th:if="${rating.avg >=4.5 && rating.avg ==5}" class="avg">★★★★★ </span>
+                                            <span th:if="${rating.avg >=0.5 && rating.avg <1.5}"
+                                                  class="avg">★☆☆☆☆ </span>
+                                            <span th:if="${rating.avg >=1.5 && rating.avg <2.5}"
+                                                  class="avg">★★☆☆☆ </span>
+                                            <span th:if="${rating.avg >=2.5 && rating.avg <3.5}"
+                                                  class="avg">★★★☆☆ </span>
+                                            <span th:if="${rating.avg >=3.5 && rating.avg <4.5}"
+                                                  class="avg">★★★★☆ </span>
+                                            <span th:if="${rating.avg >=4.5 && rating.avg ==5}"
+                                                  class="avg">★★★★★ </span>
 
                                         </li>
 
-                                        <li class="siter-act" >
-                                            <ul class="siter-act-detail" >
+                                        <li class="siter-act">
+                                            <ul class="siter-act-detail">
                                                 <li th:each="empActItemImg :${empActItemImgList}">
                                                     <img th:src="@{/myPages/empActimg(fileFullPath=${empActItemImg.actImgUploadPath} + '/' + ${empActItemImg.actImgUuid} + '_' + ${empActItemImg.actImgName})}">
                                                     <span th:text="${empActItemImg.actName}" class="empActName"></span>
@@ -109,7 +117,7 @@
 
                                             </ul>
                                         </li>
-                                        <li class="siter-situation" >
+                                        <li class="siter-situation">
                                             <span onclick="javascript:void(0)">면접대기중</span>
                                         </li>
                                     </ul>
@@ -139,24 +147,29 @@
                                             <span th:text="${empInfoImg.empAge}+'세'"></span>
                                         </li>
                                         <li class="siter-info">
-                                            <th:block th:if= "${empInfoImg.empGender == 'M'}">
-                                                <span >남자</span>
+                                            <th:block th:if="${empInfoImg.empGender == 'M'}">
+                                                <span>남자</span>
                                             </th:block>
-                                            <th:block th:if= "${empInfoImg.empGender == 'F'}">
+                                            <th:block th:if="${empInfoImg.empGender == 'F'}">
                                                 <span th:text="${empInfoImg.empGender}">여자</span>
                                             </th:block>
                                         </li>
                                         <li class="siter-infos">
                                             <span th:if="${rating.avg >=0 && rating.avg <0.5}" class="avg">☆☆☆☆☆</span>
-                                            <span th:if="${rating.avg >=0.5 && rating.avg <1.5}" class="avg">★☆☆☆☆ </span>
-                                            <span th:if="${rating.avg >=1.5 && rating.avg <2.5}" class="avg">★★☆☆☆ </span>
-                                            <span th:if="${rating.avg >=2.5 && rating.avg <3.5}" class="avg" >★★★☆☆ </span>
-                                            <span th:if="${rating.avg >=3.5 && rating.avg <4.5}" class="avg">★★★★☆ </span>
-                                            <span th:if="${rating.avg >=4.5 && rating.avg ==5}" class="avg">★★★★★ </span>
+                                            <span th:if="${rating.avg >=0.5 && rating.avg <1.5}"
+                                                  class="avg">★☆☆☆☆ </span>
+                                            <span th:if="${rating.avg >=1.5 && rating.avg <2.5}"
+                                                  class="avg">★★☆☆☆ </span>
+                                            <span th:if="${rating.avg >=2.5 && rating.avg <3.5}"
+                                                  class="avg">★★★☆☆ </span>
+                                            <span th:if="${rating.avg >=3.5 && rating.avg <4.5}"
+                                                  class="avg">★★★★☆ </span>
+                                            <span th:if="${rating.avg >=4.5 && rating.avg ==5}"
+                                                  class="avg">★★★★★ </span>
                                         </li>
 
-                                        <li class="siter-act" >
-                                            <ul class="siter-act-detail" >
+                                        <li class="siter-act">
+                                            <ul class="siter-act-detail">
                                                 <li th:each="empActItemImg :${empActItemImgList}">
                                                     <img th:src="@{/myPages/empActimg(fileFullPath=${empActItemImg.actImgUploadPath} + '/' + ${empActItemImg.actImgUuid} + '_' + ${empActItemImg.actImgName})}">
                                                     <span th:text="${empActItemImg.actName}" class="empActName"></span>
@@ -171,56 +184,50 @@
 
                                 </div>
                             </th:block>
-                            </th:block>
+                        </th:block>
                         <!--비동기 처리 필요 -->
-                            <div class="modal-pay">
-                                <div class="pay-heard">
-                                    <h1 class="pay-name">결제하기</h1>
-                                    <span class="page-remove">x</span>
-                                </div>
-                                <div class="payment-wrap">
+                        <div class="modal-pay">
+                            <div class="pay-heard">
+                                <h1 class="pay-name">결제하기</h1>
+                                <span class="page-remove">x</span>
+                            </div>
+                            <div class="payment-wrap">
 
-                                    <div class="payment-wrap-left">
-                                        <div class="user-info-area">
-                                            <p class="user-info">주문자 정보</p>
-                                            <ul class="user-detail">
+                                <div class="payment-wrap-left">
+                                    <div class="user-info-area">
+                                        <p class="user-info">주문자 정보</p>
+                                        <ul class="user-detail">
 
-                                            </ul>
-                                        </div>
+                                        </ul>
                                     </div>
-                                    <div class="payment-wrap-right">
-                                        <div class="product-area">
-                                            <ul class="product-info">
+                                </div>
+                                <div class="payment-wrap-right">
+                                    <div class="product-area">
+                                        <ul class="product-info">
 
-                                            </ul>
-                                        </div>
-                                        <div class="total-area">
+                                        </ul>
+                                    </div>
+                                    <div class="total-area">
 
-                                        </div>
-                                        <div class="check-area">
-                                            <button type="button" class="btn" id="check_module">결제하기</button>
-                                        </div>
+                                    </div>
+                                    <div class="check-area">
+                                        <button type="button" class="btn" id="check_module">결제하기</button>
                                     </div>
                                 </div>
                             </div>
+                        </div>
                     </div>
                 </div>
                 <div class="review-area">
                     <h3 class="review-H3">나의 이용후기</h3>
                     <div class="reviewtab-area">
-                        <span class="reviewtab1" style="background-color: rgb(255, 112, 0); color: white;">시터 이용 후기</span>
+                        <span class="reviewtab1"
+                              style="background-color: rgb(255, 112, 0); color: white;">시터 이용 후기</span>
                         <span class="reviewtab2">이벤트 이용 후기</span>
                     </div>
                     <!--데이터로 게시판 넘겨받을 영역-->
                     <div class="review-list-area">
                         <table class="table">
-<!--                            <tr class="review-text top">-->
-<!--                                <td class="review-num">번호</td>-->
-<!--                                <td class="review-title">제목</td>-->
-<!--                                <td class="review-data">날짜</td>-->
-<!--                            </tr>-->
-
-
                         </table>
                         <div class="paging">
                             <ul class="page">
@@ -231,14 +238,6 @@
                     <!--===-->
                     <div class="review-list-area1">
                         <table class="table1">
-<!--                            <tr class="review-text1 top1">-->
-<!--                                <td class="review-num1">번호</td>-->
-<!--                                <td class="review-title1">제목</td>-->
-<!--                                <td class="review-data1">날짜</td>-->
-<!--                            </tr>-->
-                            <!--                            ========     -->
-
-
                         </table>
                         <div class="paging1">
                             <ul class="page1">
@@ -252,11 +251,11 @@
 
         </div>
     </div>
-
 </main>
 <div class="footer" th:replace="fragments/footer.html :: footer">
 </div>
-<script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
+        crossorigin="anonymous"></script>
 <script src="/common/js/index.js" defer></script>
 <script src="/common/js/common.js" defer></script>
 <script src="/mypage/js/myPageMain.js" type="module" defer></script>
