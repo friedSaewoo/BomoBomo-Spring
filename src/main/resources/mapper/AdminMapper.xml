@@ -159,7 +159,7 @@
     <update id="empUpdate" parameterType="empDto">
         update emp
         set emp_name = #{empName}, emp_Age = #{empAge}, emp_gender = #{empGender}
-            ,emp_phone = #{empPhone}, emp_Email = #{empEmail}, emp_content = #{empContent}
+            ,emp_phone = #{empPhone}, emp_Email = #{empEmail}, emp_content = #{empContent},country_number = #{countryNumber}
         where emp_number = #{empNumber}
     </update>
 <!-- 직원 이미지 수정 -->
@@ -186,9 +186,11 @@
 
 <!-- 직원 상세 -->
     <select id="selectEmpDetail" resultType="empVo">
-        SELECT E.EMP_NUMBER, E.EMP_NAME, E.EMP_AGE, E.EMP_GENDER, E.EMP_PHONE, E.EMP_EMAIL, E.EMP_DATE, E.EMP_CONTENT,
-               EI.EMP_IMG_NUMBER, EI.EMP_IMG_NAME, EI.EMP_IMG_UPLOAD_PATH, EI.EMP_IMG_UUID
+        SELECT E.EMP_NUMBER, E.EMP_NAME, E.EMP_AGE, E.EMP_GENDER, E.EMP_PHONE, E.EMP_EMAIL, E.EMP_DATE, E.EMP_CONTENT,E.COUNTRY_NUMBER,
+               EI.EMP_IMG_NUMBER, EI.EMP_IMG_NAME, EI.EMP_IMG_UPLOAD_PATH, EI.EMP_IMG_UUID, X.CITY_NAME,X.COUNTRY_NAME
         FROM EMP E LEFT JOIN EMP_IMG EI on E.EMP_NUMBER = EI.EMP_NUMBER
+                   LEFT JOIN (select c.city_number,country_number, city_name, country_name from city c join country ct on c.CITY_NUMBER = ct.CITY_NUMBER) X
+                             ON E.COUNTRY_NUMBER = X.COUNTRY_NUMBER
         WHERE E.EMP_NUMBER = #{empNumber}
     </select>
 <!--직원 활동조회 -->
@@ -443,5 +445,18 @@
         select country_number,country_name,city_number
         from country
         where city_number = #{cityNumber}
+    </select>
+<!-- 직원 지역검색 -->
+    <select id="selectEmpRegion" parameterType="regionVo">
+        select c.city_number, city_name, country_number, country_name
+        from city c join country ct on c.city_number = ct.city_number
+        where country_number = #{countryNumber}
+    </select>
+<!-- 제출 신청서 조회 -->
+    <select id="selectSubmitOrder" parameterType="submitOrderDto">
+        select S.SUBMIT_ORDER_NUMBER,GENDER_FIRST,GENDER_SECOND,KIDS_CONTENT
+        from matchs m join SUBMIT_ORDER s
+                           on m.SUBMIT_ORDER_NUMBER = s.SUBMIT_ORDER_NUMBER
+        where MATCH_NUMBER = #{matchNumber}
     </select>
 </mapper>

@@ -22,6 +22,6 @@ public class EmpVo {
     private String empImgUploadPath;
     private String empImgUuid;
 
-
-
+    private String cityName;
+    private String countryName;
 }
