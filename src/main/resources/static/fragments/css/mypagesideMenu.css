@@ -1,0 +1,43 @@
+.menu-bar{
+    /* display: flex;
+    flex-direction: column;
+    justify-content: center; */
+    /* border: 1px solid #bbb; */
+    /* background-color: red; */
+    height: 900px;
+    width: 180px;
+    margin-left: 10px;
+    margin-bottom: 15px;
+}
+
+.menu-bar>div{
+
+    margin: 30px auto;
+
+    text-align: center;
+
+    width: 150px;
+    height: 40px;
+    color: black;
+}
+
+
+
+.menu-bar>div>a:hover{
+    color: white;
+    background-color: #FF7000;
+    font-size: 15px;
+    font-family: 'S-CoreDream-3Light';
+}
+
+.menu-bar>div>a{
+    text-align: center;
+    display: block;
+    text-decoration: none;
+    line-height: 40px;
+    color: black;
+    font-family: 'S-CoreDream-3Light';
+
+    width: 90px;
+    font-size: 15px;
+}

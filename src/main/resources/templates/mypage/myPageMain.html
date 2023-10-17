@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="/common/css/common.css"/>
     <link rel="stylesheet" href="/fragments/css/footer.css"/>
     <link rel="stylesheet" href="/fragments/css/header.css"/>
+    <link rel="stylesheet" href="/fragments/css/mypagesideMenu.css"/>
+
     <script src="../../static/mypage/js/myPageMain.js"></script>
 
 
@@ -26,22 +28,7 @@
 
     <div class="mypage-container">
         <div class="section">
-            <aside class="menu-bar">
-
-                <!-- <a href="/Mypage/html/mypage_main.html" class="logo-img">
-                    <img src="/Mypage/img/logo.png">
-                </a> -->
-
-
-                <div class="pay">
-                    <a href="/mypage/buy">결제내역</a>
-                </div>
-                <div class="account-mg">
-                    <a href="/mypage/userManage">계정관리</a>
-                </div>
-                <div class="applicationPage">
-                    <a href="/mypage/application">신청서관리</a>
-                </div>
+            <aside class="menu-bar" th:replace="fragments/mypagesideMenu.html :: menu-bar">
             </aside>
             <div class="page-view">
                 <div class="page-title">

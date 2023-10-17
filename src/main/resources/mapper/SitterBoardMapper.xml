@@ -21,6 +21,7 @@
                                  SITTER_BOARD_MODIFY_DATE, RATING, SITTER_BOARD_COUNT, USER_NUMBER, EMP_NUMBER, MATCH_NUMBER
                           from SITTER_BOARD
                           where USER_NUMBER=#{userNumber}
+                          order by SITTER_BOARD_REGISTER_DATE desc
                       )
             <![CDATA[
                  WHERE ROWNUM <= #{criteria.page} * #{criteria.amount}
