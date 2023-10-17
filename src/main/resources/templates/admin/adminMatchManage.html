@@ -21,41 +21,116 @@
                     <span class="main-contents-title-text">매칭관리</span>
                 </div>
                 <div class="match-manage-container">
-                    <div class="info-container">
-                        <div class="user-info">
-                            <p>회원번호 : <span th:text="${matchDetail.userNumber}"></span></p>
-                            <p>이름 : <span th:text="${matchDetail.userName}"></span></p>
-                            <p>아이디 : <span th:text="${matchDetail.userId}"></span></p>
-                            <p>연락처 : <span th:text="${matchDetail.userPhone}"></span></p>
-                            <a><button>신청서 열람</button></a>
-                        </div>
-                        <div class="emp-info">
-                            <p>직원번호 : <span th:text="${matchDetail.empNumber}"></span></p>
-                            <p>이름 : <span th:text="${matchDetail.empName}"></span></p>
-                            <p>이메일 : <span th:text="${matchDetail.empEmail}"></span></p>
-                            <p>연락처 : <span th:text="${matchDetail.empPhone}"></span></p>
-                        
-                        </div>
-                    </div>
-                    <div class="management">
-                        <div class="match-info">
-                            <p>매칭 번호 : <span th:text="${matchDetail.matchNumber}"></span></p>
-                            <th:block th:if="${matchDetail.status == '0'}">
-                                <p>현재 상태 : <span class="current-status">면접대기</span></p>
-                            </th:block>
-                            <th:block th:if="${matchDetail.status == '1'}">
-                                <p>현재 상태 : <span class="current-status">결제완료</span></p>
-                            </th:block>
-                            <a><button>결제 내역 작성</button></a>
-                        </div>
-                        <div class="status-manage">
-                                <select id="status" name="status">
-                                    <option value="0">면접대기</option>
-                                    <option value="1">결제대기</option>
-                                </select>
-                                <a class="update-status"><button>상태변경</button></a>
-                            <div>
-                                <a href="/admin/match"><button>뒤로가기</button></a>
+                    <table class="register-table">
+                        <colgroup>
+                            <col style="width: 180px" />
+                            <col style="width: auto" />
+                        </colgroup>
+                        <tr>
+                            <th scope="row">회원번호</th>
+                            <td class="td-info">
+                                <span th:text="${matchDetail.userNumber}"></span>
+                            </td>
+                            <th scope="row">직원번호</th>
+                            <td class="td-info">
+                                <span th:text="${matchDetail.empNumber}"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>이름</th>
+                            <td><span th:text="${matchDetail.userName}"></span></td>
+                            <th>이름</th>
+                            <td><span th:text="${matchDetail.empName}"></span></td>
+                        </tr>
+                        <tr>
+                            <th>아이디</th>
+                            <td><span th:text="${matchDetail.userId}"></span></td>
+                            <th>이메일</th>
+                            <td><span th:text="${matchDetail.empEmail}"></span></td>
+                        </tr>
+                        <tr>
+                            <th>연락처</th>
+                            <td><span th:text="${matchDetail.userPhone}"></span></td>
+                            <th>연락처</th>
+                            <td><span th:text="${matchDetail.empPhone}"></span></td>
+                        </tr>
+                        <tr>
+                            <th>매칭번호</th>
+                            <td colspan="3"><span th:text="${matchDetail.matchNumber}"></span></td>
+                        </tr>
+                        <tr>
+                            <th>현재상태</th>
+                            <td colspan="3">
+                                <th:block th:if="${matchDetail.status == '0'}">
+                                    <p><span class="current-status">면접대기</span></p>
+                                </th:block>
+                                <th:block th:if="${matchDetail.status == '1'}">
+                                    <p><span class="current-status">결제완료</span></p>
+                                </th:block>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>매칭상태</th>
+                            <td colspan="3">
+                                <div class="status-manage">
+                                    <select id="status" name="status">
+                                        <option value="0">면접대기</option>
+                                        <option value="1">결제대기</option>
+                                    </select>
+                                    <a class="update-status"><button>상태변경</button></a>
+                                    <a><button class="submit-order">신청서 열람</button></a>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>견적서</th>
+                            <td colspan="3"></td>
+                        </tr>
+                    </table>
+
+                    <!-- 제출 신청서 모달창 -->
+                    <div class="modal" id="modal">
+                        <div class="modal-contents">
+                                <p>돌봄이 필요한 아이</p>
+                                <input class="one-check" type="radio" name="one" th:checked="${submitOrder.genderSecond == 'n'}" disabled/> 1명
+                                <input class="two-check" type="radio" name="one" th:checked="${submitOrder.genderSecond != 'n'}" disabled/> 2명
+                                <input type="hidden" th:value="${submitOrder.genderSecond}" id="genderSecond">
+                            <div class="text-area" >
+                                    <div class="gender-text">
+                                        <p>첫째 아이 성별</p>
+                                    </div>
+                                    <div class="gender-wrap">
+                                        <label for="gender-m" class="gender-box">
+                                            <span>남자</span>
+                                            <input id="gender-m" type="radio" name="genderFirst" th:checked="${submitOrder.genderFirst == 'M'}" value="M"disabled />
+                                        </label>
+                                        <label for="gender-w" class="gender-box">
+                                            <span>여자</span>
+                                            <input id="gender-w" type="radio" name="genderFirst" th:checked="${submitOrder.genderFirst == 'F'}" value="F" disabled/>
+                                        </label>
+
+                                    </div>
+                                </div>
+                                <div id="text-area-1" class="text-area-1">
+                                    <div class="gender-text-2">
+                                        <p>두번째 아이 성별</p>
+                                    </div>
+                                    <div class="gender-wrap-second">
+                                        <label for="gender-men" class="gender-box-second">
+                                            <span>남자</span>
+                                            <input id="gender-men" type="radio" name="genderSecond" th:checked="${submitOrder.genderSecond == 'M'}" value="M" disabled/>
+                                        </label>
+                                        <label for="gender-women" class="gender-box-second" required>
+                                            <span>여자</span>
+                                            <input id="gender-women" type="radio" name="genderSecond" th:checked="${submitOrder.genderSecond == 'F'}" value="F" disabled/>
+                                        </label>
+
+                                    </div>
+                                </div>
+                                <!--아이상세 정보 작성-->
+                                <div class="children-detail">
+                                    <p>아이 성격</p>
+                                    <textarea class="children-text"  name="kidsContent" placeholder="예시) 보노보노보다 뽀로로를 더 좋아해요.">[[${submitOrder.kidsContent}]]</textarea>
                             </div>
                         </div>
                     </div>

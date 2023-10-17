@@ -28,7 +28,7 @@ function getSearchVo(){
     let keyword = $('.keyword').val();
     return {
         cate : cate,
-        keyword : searchKeywor
+        keyword : searchKeyword
     };
 }
 // ajax
@@ -54,10 +54,6 @@ function loadEventList(result){
     if(result.eventList!=0){
         let list = $('.event-list');
         list.empty();
-        // noticeDiv.on('click', function() {
-        //     let url = `/admin/adminNoticeDetail?noticeNumber=${notice.noticeNumber}`;
-        //     window.location.href = url;
-        // });
         $.each(result.eventList, function (index, event) {
             let eventDiv = $('<div class="event-item">');
             let imagePath =event.eventImgUploadPath + '/th_' + event.eventImgUuid + '_' + event.eventImgName;
