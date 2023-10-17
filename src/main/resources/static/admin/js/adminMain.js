@@ -1,30 +1,64 @@
 // *************************주간 회원가입 차트
-var joinCanvas = document.getElementById('join-chart');
-joinCanvas.height=235;
-var signupEx = [5, 8, 12, 15, 50, 18, 14];
+let dayList=[];
+let countList=[];
+$(document).ready(function () {
+    loadWeeklyRegister();
+});
+function loadWeeklyRegister(){
+    $.ajax({
+        url: `/admin/rest/weeklyRegister`,
+        type: 'get',
+        dataType: 'json',
+        success: function (result) {
+            let joinCanvas = document.getElementById('join-chart');
+            joinCanvas.height=235;
+            for (let i = 0; i < result.length; i++) {
 
-// 레이블 생성
-var labels = [];
-for (var i = 1; i <=7; i++) {
-    labels.push("09-" + (i < 10 ? '0' + i : i));
+                let day = result[i].monthDay;
+                console.log("day: " + day);
+                dayList.push(day);
+
+                let count = result[i].dailyUserCount;
+                countList.push(count);
+                console.log("count: " + count);
+
+            }
+            var data = {
+                labels: dayList,
+                datasets: [{
+                    label: '일별 회원가입',
+                    data: countList,
+                    fill: false,
+                    borderColor: 'rgb(75, 192, 192)',
+                    borderWidth: 2
+                }]
+            };
+
+            // 그래프 생성
+            var myLineChart = new Chart(joinCanvas.getContext('2d'), {
+                type: 'line',
+                data: data
+            });
+        },
+        error: function (a, b, c) {
+            console.log("실패");
+            console.error(c);
+        }
+    });
 }
 
-var data = {
-    labels: labels,
-    datasets: [{
-        label: '일별 회원가입',
-        data: signupEx,
-        fill: false,
-        borderColor: 'rgb(75, 192, 192)',
-        borderWidth: 2
-    }]
-};
 
-// 그래프 생성
-var myLineChart = new Chart(joinCanvas.getContext('2d'), {
-    type: 'line',
-    data: data
-});
+// console.log(dayList);
+// console.log(countList);
+// var signupEx = [5, 8, 12, 15, 50, 18, 14];
+
+// // 레이블 생성
+// var labels = [];
+// for (var i = 1; i <=7; i++) {
+//     labels.push("09-" + (i < 10 ? '0' + i : i));
+// }
+
+
 
 
 
