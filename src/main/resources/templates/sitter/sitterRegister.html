@@ -57,14 +57,14 @@
                 <!-- <input class="input-m" type="checkbox" value="남자"> -->
                 <label for="gender-m" class="gender-box">
                   <span>남자</span>
-                  <input id="gender-m" type="radio" name="genderFirst" value="M"/>
+                  <input id="gender-m" type="radio" name="genderFirst" th:checked="${order.genderFirst == 'M'}" value="M"/>
                 </label>
 
 
                 <!-- <input class="input-w" type="checkbox" value="여자" > -->
                 <label for="gender-w" class="gender-box">
                   <span>여자</span>
-                  <input id="gender-w" type="radio" name="genderFirst" value="F"/>
+                  <input id="gender-w" type="radio" name="genderFirst" th:checked="${order.genderFirst == 'F'}" value="F"/>
                 </label>
 
               </div>
@@ -76,11 +76,12 @@
               <div class="gender-wrap-second">
                 <label for="gender-men" class="gender-box-second">
                   <span>남자</span>
-                  <input id="gender-men" type="radio" name="genderSecond" value="M"/>
+                  <input id="gender-men" type="radio" name="genderSecond" th:checked="${order.genderSecond == 'M'}" value="M"/>
                 </label>
+
                 <label for="gender-women" class="gender-box-second" required>
                   <span>여자</span>
-                  <input id="gender-women" type="radio" name="genderSecond" value="F"/>
+                  <input id="gender-women" type="radio" name="genderSecond" th:checked="${order.genderSecond == 'F'}" value="F"/>
                 </label>
               </div>
             </div>
@@ -88,7 +89,8 @@
             <!--아이상세 정보 작성-->
             <div class="chilren-detil">
               <p>아이 성격</p>
-              <textarea class="children-text"  name="kidsContent" placeholder="예시) 보노보노보다 뽀로로를 더 좋아해요."></textarea>
+              <textarea class="children-text"  name="kidsContent" placeholder="예시) 보노보노보다 뽀로로를 더 좋아해요.">
+[[${order.kidsContent}]]</textarea>
             </div>
             <div class="inputbtn">
               <button type="button" class="btn">신청하기</button>
