@@ -43,13 +43,13 @@ public interface MyPageMapper {
     public MatchUserInfoVo selectMatchUserInfo(Long userNumber);
 
     //결제 정보
-    public MatchBuyInfoVo selectMatchBuyInfo(Long userNumber);
+    public List<MatchBuyInfoVo> selectMatchBuyInfo(Long userNumber);
 
     //결제후 매칭되었던 데이터 상태 수정
-    public MatchDto update(Long matchNumber);
+    public void update(Long matchNumber);
 
 
-    //회원정보수정 디폴트 값 조회(아이디 ,휴대전화)
+    //회원정보수정 디폴MatchDto트 값 조회(아이디 ,휴대전화)
     public UserDto selectUser(Long userNumber);
 
     //회원정보수정 디폴트 값 조회(주솟)

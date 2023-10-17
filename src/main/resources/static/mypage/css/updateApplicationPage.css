@@ -62,7 +62,6 @@ main{
 }
 
 .container-text {
-    /* border: 2px solid red; */
     width: 800px;
     height: 90px;
     display: flex;

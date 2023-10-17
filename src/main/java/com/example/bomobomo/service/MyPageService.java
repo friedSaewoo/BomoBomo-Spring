@@ -115,23 +115,21 @@ public class MyPageService {
         }
     //
     //    //결제 정보
-        public MatchBuyInfoVo findMatchBuyInfo(Long userNumber){
+        public List<MatchBuyInfoVo> findMatchBuyInfo(Long userNumber){
             if (userNumber == null) {
                 throw new IllegalArgumentException("정보없음!");
 
             }
 
-            return Optional.ofNullable(myPageMapper.selectMatchBuyInfo(userNumber))
-                    .orElseThrow(()->{throw new IllegalArgumentException("없음");});
+            return myPageMapper.selectMatchBuyInfo(userNumber);
+
         }
         // 결제후 상태 수정
-        public MatchDto statusUpdate(Long matchNumber){
+        public void statusUpdate(Long matchNumber){
             if ( matchNumber == null) {
                 throw new IllegalArgumentException("회원 정보 없음!");
             }
-
-            return Optional.ofNullable(myPageMapper.update(matchNumber))
-                    .orElseThrow(()->{throw new IllegalArgumentException("일치하는 정보가 없습니다");});
+             myPageMapper.update(matchNumber);
         }
 
         // 마이페이지 회원정보 수정 회원 디폴트값 조회

@@ -92,11 +92,10 @@ main{
     border-right: 1px solid #bbb;
 
 }
-.siterimg-line{
 
-}
 .siterimg-img{
     width: 70px;
+    height: 60px;
 }
 
 .siterimg-img>img{
@@ -156,8 +155,9 @@ main{
     width: 40px;
     text-align: center;
 }
-.siter-act-detail>li>img{
-    width: 30px;
+.siter-act-detail>li>div{
+    width: 40px;
+    height: 40px;
     background-color: #c0fff5;
     border-radius: 10px;
 }
@@ -169,7 +169,7 @@ main{
     font-size: 8px;
     font-weight: bold;
 }
-.siter-act>img{
+.siter-act>div>img{
     margin-left: 10px;
     margin-top: 5px;
     width: 50px;
@@ -596,6 +596,8 @@ main{
 
 .product-info{
     list-style: none;
+    overflow-y: scroll;
+    height: 300px;
 }
 
 .product-info li{
@@ -641,9 +643,9 @@ main{
 }
 
 .total-area{
-    /* border: 1px solid black; */
+    border-top: 1px solid #bbb;
     height: 40px;
-    margin-top: 180px;
+    margin-top: 20px;
 }
 
 .check-area{
