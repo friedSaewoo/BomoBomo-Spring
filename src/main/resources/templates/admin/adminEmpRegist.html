@@ -18,9 +18,8 @@
             <!-- 메인 컨텐츠 -->
             <div class="main-contents">
                 <div class="contents-title">
-                    <span class="main-contents-title-text">직원관리</span>
+                    <span class="main-contents-title-text">직원등록</span>
                 </div>
-
                 <div class="emp-detail-container">
                     <form action="/admin/emp/regist" method="post" enctype="multipart/form-data">
 
@@ -89,6 +88,12 @@
                             </td>
                         </tr>
                         <tr>
+                            <th>간단 자기소개</th>
+                            <td>
+                                <textarea id="selfint" name="empContent" required></textarea>
+                            </td>
+                        </tr>
+                        <tr>
                             <th>직원 이미지</th>
                             <td class="emp-image-td">
                                 <p>권장이미지  300px * 300px</p>
@@ -103,8 +108,6 @@
                     <div class="submit-button">
                         <button>제출</button>
                     </div>
-<!--                    </div>-->
-                <input type="hidden" value="아오" name="empContent">
                 </form>
                 </div>
             </div>

@@ -23,7 +23,6 @@
                 <div class="emp-detail-container">
                     <div class="emp-info-container1">
                         <div class="img">
-<!--                            <img class="self" src="../img/logo.png">-->
                         </div>
                         <div class="info">
                             <span class="emp-num">no.<span th:text="${empDetail.empNumber}">1</span></span>
@@ -39,14 +38,6 @@
                             <fieldset class="tag">
                                 <legend>활동</legend>
                                     <ul class="act-item-container">
-<!--                                        <li class="act-item">-->
-<!--                                            <img src="../img/0002.png" class="act-img">-->
-<!--                                            <p>영어놀이다</p>-->
-<!--                                        </li>-->
-<!--                                        <li class="act-item">-->
-<!--                                            <img src="../img/0002.png" class="act-img">-->
-<!--                                            <p>수학</p>-->
-<!--                                        </li>-->
                                     </ul>
                             </fieldset>
 
@@ -63,7 +54,7 @@
 
                 </div>
                 <div class="bt-container">
-                    <a href="/admin/emp" class="board-home">목록으로</a>
+<!--                    <a href="/admin/emp" class="board-home">목록으로</a>-->
                     <a th:href="@{/admin/adminEmpConfig( empNumber=${empDetail.empNumber} )}" class="board-fix">수정</a>
                     <a th:href="@{/admin/adminEmpDelete( empNumber=${empDetail.empNumber} )}" class="board-delete">삭제</a>
                 </div>

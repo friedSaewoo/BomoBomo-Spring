@@ -212,8 +212,6 @@ canvas{
 }
 
 .event-regist-btn{
-    display: flex;
-    justify-content: center;
     align-items: center;
     width: 70px;
     height: 35px;
@@ -224,6 +222,7 @@ canvas{
     padding: 5px;
     cursor: pointer;
     font-size: 16px;
+    border:none;
 }
 
 .bt-container >a{

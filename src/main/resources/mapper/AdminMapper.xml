@@ -159,7 +159,7 @@
     <update id="empUpdate" parameterType="empDto">
         update emp
         set emp_name = #{empName}, emp_Age = #{empAge}, emp_gender = #{empGender}
-            ,emp_phone = #{empPhone}, emp_Email = #{empEmail}, emp_content = #{empContent}
+            ,emp_phone = #{empPhone}, emp_Email = #{empEmail}, emp_content = #{empContent},country_number = #{countryNumber}
         where emp_number = #{empNumber}
     </update>
 <!-- 직원 이미지 수정 -->

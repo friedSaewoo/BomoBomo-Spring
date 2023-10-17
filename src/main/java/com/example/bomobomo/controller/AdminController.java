@@ -152,7 +152,8 @@ public class AdminController {
         EmpVo empDetail= adminService.selectEmpDetail(empNumber);
         List<ActDto> actList = adminService.selectAct();
         List<EmpActItemDto> empActList = adminService.selectEmpActItem(empNumber);
-
+        List<CityDto> cityList = adminService.selectAllCity();
+        model.addAttribute("cityList", cityList);
         model.addAttribute("empDetail",empDetail);
         model.addAttribute("actList",actList);
         model.addAttribute("empActList",empActList);
