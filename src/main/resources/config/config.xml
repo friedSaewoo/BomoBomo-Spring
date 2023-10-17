@@ -70,5 +70,6 @@
         <!-- 지역 -->
         <typeAlias type="com.example.bomobomo.domain.dto.CityDto" alias="cityDto"/>
         <typeAlias type="com.example.bomobomo.domain.dto.CountryDto" alias="countryDto"/>
+        <typeAlias type="com.example.bomobomo.domain.vo.RegionVo" alias="regionVo"/>
     </typeAliases>
 </configuration>

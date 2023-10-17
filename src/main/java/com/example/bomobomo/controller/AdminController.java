@@ -1,10 +1,7 @@
 package com.example.bomobomo.controller;
 
 import com.example.bomobomo.domain.dto.*;
-import com.example.bomobomo.domain.vo.EmpVo;
-import com.example.bomobomo.domain.vo.EventVo;
-import com.example.bomobomo.domain.vo.MatchListVo;
-import com.example.bomobomo.domain.vo.UserDetailVo;
+import com.example.bomobomo.domain.vo.*;
 import com.example.bomobomo.service.AdminService;
 import jdk.jfr.Event;
 import lombok.RequiredArgsConstructor;
@@ -143,9 +140,13 @@ public class AdminController {
         return new RedirectView("/admin/emp");
     }
     @GetMapping(value={"/admin/adminEmpDetail"})
-    public void selectEmpDetail(@RequestParam(name="empNumber")Long empNumber, Model model){
+    public void selectEmpDetail(@RequestParam(name="empNumber")Long empNumber,
+                                Model model){
         EmpVo empDetail= adminService.selectEmpDetail(empNumber);
+        log.info("=======================지역 = {},{}",empDetail.getCityName(),empDetail.getCountryName());
+//        RegionVo region = adminService.selectEmpRegion(empNumber);
         model.addAttribute("empDetail",empDetail);
+//        model.addAttribute("region", region);
     }
     @GetMapping("/admin/adminEmpConfig")
     public void empUpdate(@RequestParam(name="empNumber")Long empNumber, Model model){
@@ -167,7 +168,13 @@ public class AdminController {
     @GetMapping("/match/detail")
     public String selectMatchDetail(@RequestParam(name="matchNumber")Long matchNumber,Model model){
         MatchListVo matchDetail =  adminService.selectMatchDetail(matchNumber);
+        SubmitOrderDto submitOrder = adminService.selectSubmitOrder(matchNumber);
+        if(submitOrder.getGenderSecond() == null){
+            submitOrder.setGenderSecond("n");
+        }
         model.addAttribute("matchDetail",matchDetail);
+        model.addAttribute("submitOrder",submitOrder);
+        log.info("==============================={}",submitOrder);
         return "/admin/adminMatchManage";
     }
 
