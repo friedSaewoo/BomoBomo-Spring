@@ -24,7 +24,7 @@
             <!-- 시터 상세 -->
                         <div class="sitterInfoList">
                             <div>
-                                <img
+                                <img class="sitterFaceImg"
                                         src="https://search.pstatic.net/common?type=b&amp;size=216&amp;expire=1&amp;refresh=true&amp;quality=100&amp;direct=true&amp;src=http%3A%2F%2Fsstatic.naver.net%2Fpeople%2Fportrait%2F202207%2F20220727155425320.jpg">
                             </div>
 
@@ -35,13 +35,26 @@
                                         <span th:text="${emp.empAge} + '세  ' + ${emp.empGender}"></span>
                                     </div>
                                     <br>
-                                    <div class="sitterGrade" th:if="${sitterTotalReview == null}">
-                                        <img src="/common/img/star.png">
-                                        <span class="sitterTotalReview">0/ 5</span>
+
+                                    <div class="sitterGrade" th:if="${sitterTotalReview == null || sitterTotalReview < 0.5}">
+                                        <div class='sitterGrade'>☆☆☆☆☆</div>
+<!--                                        <img src="/common/img/star.png">-->
+<!--                                        <span class="sitterTotalReview">0/ 5</span>-->
                                     </div>
-                                    <div class="sitterGrade" th:unless="${sitterTotalReview == null}">
-                                        <img src="/common/img/star.png">
-                                        <span th:text="${sitterTotalReview} + '/ 5'" class="sitterTotalReview"></span>
+                                    <div class="sitterGrade" th:if="${sitterTotalReview >= 0.5 && sitterTotalReview < 1.5}">
+                                        <div class='sitterGrade'>★☆☆☆☆</div>
+                                    </div>
+                                    <div class="sitterGrade" th:if="${sitterTotalReview >= 1.5 && sitterTotalReview < 2.5}">
+                                        <div class='sitterGrade'>★★☆☆☆</div>
+                                    </div>
+                                    <div class="sitterGrade" th:if="${sitterTotalReview >= 2.5 && sitterTotalReview < 3.5}">
+                                        <div class='sitterGrade'>★★★☆☆</div>
+                                    </div>
+                                    <div class="sitterGrade" th:if="${sitterTotalReview >= 3.5 && sitterTotalReview < 4.5}">
+                                        <div class='sitterGrade'>★★★★☆</div>
+                                    </div>
+                                    <div class="sitterGrade" th:if="${sitterTotalReview >= 4.5 && sitterTotalReview < 5}">
+                                        <div class='sitterGrade'>★★★★★</div>
                                     </div>
 
 
@@ -59,7 +72,7 @@
                                         <div class="possibleImg" th:each="actVoList : ${actVoList}"
                                              th:unless="${actVoList.actName} == null ">
                                             <!--                                <img src="/sitter/img/filter.png">-->
-                                            <img th:src="'/admin/rest/displayActImg?fileName=' + ${actVoList.actImgUploadPath} + '/' + ${actVoList.actImgUuid} + '_' + ${actVoList.actImgName}">
+                                            <img class="sitterPossibleImg" th:src="'/admin/rest/displayActImg?fileName=' + ${actVoList.actImgUploadPath} + '/' + ${actVoList.actImgUuid} + '_' + ${actVoList.actImgName}">
                                             <div class="possibleName" th:text="${actVoList.actName}"></div>
                                         </div>
 
@@ -78,11 +91,14 @@
         <div class="sitterInfoType">
             <div class="possible"><strong>자기소개</strong></div>
             <div class="selfIntroduction">
-                <div class="sitterContent" th:text="${emp.empContent}"></div>
+                <div class="sitterContent" th:text="${emp.empContent}" ></div>
             </div>
         </div>
 
-        <div>
+
+
+        <div class="sitterHugi">
+            <hr><br>
             <div class="possible"><strong>시터 후기</strong></div>
             <div id="slideShow">
                 <ul class="slides">
@@ -102,7 +118,6 @@
             </div>
         </div>
 
-
         <div class="theBtn">
             <div class="sitterSel">
                 <button class="sitterSelBtn" type="button">신청하기</button>
@@ -115,6 +130,17 @@
     </div>
 </form>
 
+<div class="star-ratings">
+	<div
+    class="star-ratings-fill space-x-2 text-lg"
+    :style="{ width: ratingToPercent + '%' }"
+	>
+		<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+	</div>
+	<div class="star-ratings-base space-x-2 text-lg">
+		<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+	</div>
+</div>
 
 <script src="https://code.jquery.com/jquery-3.6.4.js"></script>
 <script src="/sitter/js/sitterInfo.js"></script>

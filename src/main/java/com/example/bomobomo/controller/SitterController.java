@@ -50,24 +50,12 @@ public class SitterController {
         List<ActVo> actVo = sitterService.sitterPossibleList(empNumber);
         System.out.println("VO 확인 : " + actVo);
 
-//        for(int i=0; i<actVo.size(); i++) {
-//            String imgUploadPath = actVo.get(i).getActImgUploadPath();
-//            String imgUuid = actVo.get(i).getActImgUuid();
-//            String imgName = actVo.get(i).getActImgName();
-//            String actName = actVo.get(i).getActName();
-//
-//            String imgPath = imgUploadPath + '/' + imgUuid +'_' + imgName;
-//            System.out.println("이미지 패스 --> : " + imgPath);
-//            System.out.println("이미지 이름 : " + imgName);
-//
-//            model.addAttribute("imgPath", imgPath);
-//            model.addAttribute("actName", actName);
-//        }
         model.addAttribute("actVoList", actVo);
 
 //        System.out.println("이미지 경로 : " + imgPath);
 
 //        String imagePath = actImg.actImgUploadPath + '/' + actImg.actImgUuid +'_' + actImg.actImgName;
+
 
         if(sitterReview == null) {
             sitterReview = 0.0;
@@ -82,6 +70,9 @@ public class SitterController {
         } else if(empVo.getEmpGender().equals('M')) {
             empVo.setEmpGender("남");
         }
+
+        empVo.setEmpContent(empVo.getEmpContent().replace("\r\n","<br>"));
+        System.out.println("자기소개 : " + empVo.getEmpContent());
 
         String empDate = empVo.getEmpDate().substring(0, 10);
         empVo.setEmpDate(empDate);
@@ -114,6 +105,10 @@ public class SitterController {
         Long userNumber = (Long) req.getSession().getAttribute("userNumber");
         String sitterName = req.getParameter("empName");
 
+        orderService.findOrder(userNumber);
+        System.out.println(orderService.findOrder(userNumber).toString());
+        model.addAttribute("order",orderService.findOrder(userNumber));
+
         model.addAttribute("empName",empName);
         model.addAttribute("empNumber",empNumber);
         if (userNumber == null) {
@@ -123,10 +118,11 @@ public class SitterController {
         return "/sitter/sitterRegister";
     }
 
+
     //신청서 데이터 저장후 이동
     @PostMapping("/sitterApplication")
     public RedirectView applicationRegister(SubmitOrderDto submitOrderDto, MatchDto matchDto, HttpServletRequest req,
-                                            @RequestParam("empNumber")Long empNumber) {
+                                            @RequestParam("empNumber")Long empNumber, Model model) {
         // 저장 서비스 실행
         Long userNumber = (Long) req.getSession().getAttribute("userNumber");
         System.out.println("시터 번호" + empNumber);
@@ -139,6 +135,7 @@ public class SitterController {
 
         sitterService.register(submitOrderDto);
         sitterService.sitterMatching(matchDto);
+
 
         // 신청서 내용 입력 후 이동
         return new RedirectView("/common/index");

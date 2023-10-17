@@ -72,4 +72,10 @@ $(function() {
   
 });
 
+    let ReviewInfo = $('.ReviewInfo').text();
 
+if(ReviewInfo == "") {
+    // alert("if : " + ReviewInfo);
+    // console.log("테스트1 : " + $('.ReviewInfo').text());
+    $('.sitterHugi').css("display", "none");
+}

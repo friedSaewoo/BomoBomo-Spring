@@ -11,7 +11,7 @@
 
   <link rel="stylesheet" href="/myPage/css/updateApplicationPage.css"/>
   <script src="/common/js/index.js" defer></script>
-  <script src="/common/js/common.js" defer></script>
+  <script src="/common/js/common.js${" defer></script>
 </head>
 <body>
 <div class="header" th:replace="fragments/header.html :: header" >
@@ -74,7 +74,6 @@
                   <span>남자</span>
                   <input id="gender-m" type="radio" name="genderFirst" th:checked="${order.genderFirst == 'M'}" value="M"/>
                 </label>
-
 
                 <!-- <input class="input-w" type="checkbox" value="여자" > -->
                 <label for="gender-w" class="gender-box">

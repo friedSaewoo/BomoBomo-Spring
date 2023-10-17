@@ -26,7 +26,7 @@ li {
     margin: 50px auto;
     padding: 40px 0;
     min-height: 1000px;
-    border: 1px solid #FF7000;;
+    /*border: 1px solid #FF7000;*/
     border-radius: 10px;
 
 }
@@ -46,9 +46,11 @@ li {
     margin-left: 10px;
     width: 500px;
     height: 360px;
-    border: 1px solid #FF7000;
     border-radius: 5px;
     margin-top: 30px;
+}
+.sitterFaceImg {
+    /*border: 1px solid #FF7000;*/
 }
 
 .sitterInfo {
@@ -68,34 +70,35 @@ li {
   padding: 10px 20px;
   width: 500px;
   height: 150px;
-  border: 1px solid #FF7000;
+  /*border: 1px solid #FF7000;*/
   border-radius: 10px;  
 }
 
 .selfIntroduction {
     margin: 10px auto;
     width: 95%;
-    height: 300px;
-    background-color: white;
-    border: 1px solid #FF7000;
+    height: 100%;
+    /*background-color: white;*/
+    /*border: 1px solid #FF7000;*/
     border-radius: 5px;
 }
 
 .sitterContent {
     margin: 10px 0px 0px 10px;
     width: 900px;
-    height: 280px;
+    height: 100%;
     padding: 25px 130px;
-
+    white-space: pre-line;
 }
 
 .sitterInfoType {
     width: 95%;
     margin: 10px auto;
-    height: 400px;
-    border: 1px solid orange;
-    background-color: #FF7000;
+    height: 100%;
+    /*border: 1px solid orange;*/
+    background-color: #F6F6F6;
     border-radius: 10px;
+
 }
 
 
@@ -122,6 +125,10 @@ li {
     height: 50px;
     /*background-color: #FF7000;*/
     /*border-radius: 50%;*/
+}
+
+.possibleImg img{
+
 }
 
 .possibleName {
@@ -180,11 +187,10 @@ li {
 }
 
 .ReviewInfo {
-    border: 1px solid black;
+    border: 1px solid lightgray;
     width: 250px; 
     height: 58px;
 
-    background-color: #FF7000;
     padding: 10px;
 
     overflow: hidden;
@@ -231,7 +237,7 @@ li {
     position: relative;
     margin: 50px auto;
     overflow: hidden;   
-    border: 3px solid blueviolet;
+    /*border: 3px solid blueviolet;*/
     border-radius: 10px;
     /*리스트 형식으로 이미지를 일렬로 
     정렬할 것이기 때문에, 500px 밖으로 튀어 나간 이미지들은
@@ -305,7 +311,7 @@ li {
   }
 
   li img {
-    border: 1px solid green;
+    border: 1px solid lightgray;
     border-radius: 5px;
     width: 250px;
     height: 220px;
@@ -339,17 +345,6 @@ li {
   }
 
   .modalX {
-    /* margin-top: 2px 2px auto;
-    font-size: 30px;
-    width: 30px;
-    height: 30px;
-    border-radius: 2px;
-    float: right;
-    text-align: center; */
-    /* background-color: red; */
-
-  }
-  .modalX {
     /* display:block; */
     position:absolute;
     width:30px; 
@@ -379,6 +374,8 @@ li {
     /*margin-top: 5px;*/
     width: 180px;
     height: 40px;
+    color: #e89f14d9;
+    font-size: 20px;
 }
 
 .sitterGrade img{
@@ -388,4 +385,45 @@ li {
     height: 20px;
     border: none;
 
+}
+
+.sitterPossibleImg {
+    margin-top: -10px;
+    margin-left: 10px;
+    width: 35px;
+    height: 35px;
+}
+
+
+.star-ratings {
+  color: #aaa9a9;
+  position: relative;
+  unicode-bidi: bidi-override;
+  width: max-content;
+  -webkit-text-fill-color: transparent; /* Will override color (regardless of order) */
+  -webkit-text-stroke-width: 1.3px;
+  -webkit-text-stroke-color: #2b2a29;
+}
+
+.star-ratings-fill {
+  color: #fff58c;
+  padding: 0;
+  position: absolute;
+  z-index: 1;
+  display: flex;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  -webkit-text-fill-color: gold;
+}
+
+.star-ratings-base {
+  z-index: 0;
+  padding: 0;
+}
+
+.sitterHugi {
+    /*display: none;*/
+    border-radius: 10px;
+    background: #F1F4F4;
 }
