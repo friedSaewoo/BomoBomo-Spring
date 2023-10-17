@@ -136,13 +136,13 @@
 /*결제하기 부분*/
 
 .payment-application-button button{
-    width: 100px;
-    height: 60px;
+    width: 400px;
+    height: 35px;
     background-color: #FF7000;
     border: 1px solid #FF7000;
     color: rgb(255, 255, 255);
     cursor: pointer;
-    font-size: 18px; /* 원하는 크기로 설정 */
+    font-size: 16px; /* 원하는 크기로 설정 */
     font-family: GmarketSansMedium;
 }
 

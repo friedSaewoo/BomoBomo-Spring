@@ -78,10 +78,10 @@
 }
 
 .event-apply a {
-    padding: 20px 20px 20px 20px;
+    padding: 10px 450px;
     position: relative;
     top: 50px;
-    font-size: 25px;
+    font-size: 20px;
     font-weight: 750;
     border: 0px;
     cursor: pointer;
