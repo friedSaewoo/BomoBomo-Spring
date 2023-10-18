@@ -1,9 +1,6 @@
 package com.example.bomobomo.mapper;
 
-import com.example.bomobomo.domain.dto.EmpDto;
-import com.example.bomobomo.domain.dto.MatchDto;
-import com.example.bomobomo.domain.dto.SitterBoardDto;
-import com.example.bomobomo.domain.dto.SubmitOrderDto;
+import com.example.bomobomo.domain.dto.*;
 import com.example.bomobomo.domain.vo.*;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -55,6 +52,9 @@ public interface SitterMapper {
 
     //시터 정보 + 이미지 리스트
     public List<EmpListVo> sitterActImg();
+
+    //시터 이미지 출력
+    public EmpImgDto sitterImg(Long empNumber);
 
     //고객이 선택한 시터 신청서 제출
     public void register(SubmitOrderDto submitOrderDto);

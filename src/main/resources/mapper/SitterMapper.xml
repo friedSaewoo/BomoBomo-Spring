@@ -237,4 +237,10 @@
         FROM MATCHS
         WHERE USER_NUMBER = #{userNumber} AND (STATUS = 0 or STATUS = 1)
     </select>
+
+    <select id="sitterImg" resultType="empImgDto">
+        SELECT *
+        FROM EMP_IMG
+        WHERE EMP_NUMBER = #{empNUmber}
+    </select>
 </mapper>

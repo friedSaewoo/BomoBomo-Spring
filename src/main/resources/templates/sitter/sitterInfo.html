@@ -24,8 +24,8 @@
             <!-- 시터 상세 -->
             <div class="sitterInfoList">
                 <div>
-                    <img class="sitterFaceImg"
-                         src="https://search.pstatic.net/common?type=b&amp;size=216&amp;expire=1&amp;refresh=true&amp;quality=100&amp;direct=true&amp;src=http%3A%2F%2Fsstatic.naver.net%2Fpeople%2Fportrait%2F202207%2F20220727155425320.jpg">
+                    <img th:src="'/admin/rest/displayEmpImg?fileName=' + ${empImg}">
+<!--                    <img  src='/admin/rest/displayEmpImg?fileName=" + sitterList.empImgUploadPath + "/" + sitterList.empImgUuid + "_" + sitterList.empImgName + "'>";-->
                 </div>
 
                 <div class="sitterInfo">
