@@ -196,8 +196,9 @@ function showSitterReviewList(result) {
             <tr class="review-text">
                 <td class="review-num">${review.rnum}</td>
                 <td class="review-title">
-                    <a href="/board/reviewDetail?sitterBoardNumber=${review.sitterBoardNumber}">${review.sitterBoardContent}</a>
-               
+                    <div class="title-area">
+                        <a href="/board/reviewDetail?sitterBoardNumber=${review.sitterBoardNumber}">${review.sitterBoardContent}</a>
+                    </div>
                 </td>
                 <td class="review-data">${review.sitterBoardRegisterDate}</td>
             </tr>
@@ -290,7 +291,9 @@ function showEventReviewList(result){
         <tr class="review-text1">
             <td class="review-num1">${eventreview.rnum}</td>
             <td class="review-title1">
-                <a href="/board/reviewEventDetail?eventBoardNumber=${eventreview.eventBoardNumber}">${eventreview.eventBoardContent}</a>
+                <div class="title1-area">
+                    <a href="/board/reviewEventDetail?eventBoardNumber=${eventreview.eventBoardNumber}">${eventreview.eventBoardContent}</a>
+                </div>    
             </td>
             <td class="review-data1">${eventreview.eventBoardRegisterDate}</td>
         </tr>
