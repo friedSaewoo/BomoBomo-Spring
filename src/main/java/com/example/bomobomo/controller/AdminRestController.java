@@ -2,6 +2,7 @@ package com.example.bomobomo.controller;
 
 import com.example.bomobomo.domain.dto.CountryDto;
 import com.example.bomobomo.domain.dto.EmpDto;
+import com.example.bomobomo.domain.dto.EstContentDto;
 import com.example.bomobomo.domain.dto.NoticeDto;
 import com.example.bomobomo.domain.vo.UserListVo;
 import com.example.bomobomo.domain.vo.*;
@@ -152,5 +153,15 @@ public class AdminRestController {
     public byte[] displayActImg(@RequestParam("fileName")String fileName) throws IOException {
         log.info("==================================여기야fileName{}",fileName);
         return FileCopyUtils.copyToByteArray(new File(actImgPath, fileName));
+    }
+
+    @PostMapping("/est")
+    public void insertEst(@RequestBody List<EstContentDto> list){
+        System.out.println("****************");
+        list.forEach(ele -> System.out.println(ele));
+        for(EstContentDto estContentDto : list){
+            adminService.insertEst(estContentDto);
+            log.info("=========================추가한거{}",estContentDto);
+        }
     }
 }

@@ -84,10 +84,63 @@
                         </tr>
                         <tr>
                             <th>견적서</th>
-                            <td colspan="3"></td>
+                            <td colspan="3">
+                                <div class="payment-wrap">
+                                    <div class="payment-wrap-left">
+                                        <div class="user-info-area">
+                                            <p class="pay-user-info">주문자 정보</p>
+                                            <ul class="user-detail">
+                                                <p>주문자</p>
+                                                <input type="hidden" th:value="${userInfo.userNumber}" class="userinfo-userNumber" readonly>
+                                                <input type="hidden" th:value="${userInfo.matchNumber}" class="userinfo-matchNumber" readonly>
+                                                <p class="user-private-area">
+                                                    <span class="user-name" th:text="${userInfo.userName}" ></span>
+                                                    <span class="user-phone" th:text="${userInfo.userPhone}"></span>
+                                                </p>
+
+                                                <p class="user-email" th:text="${userInfo.userEmail}"></p>
+                                                </li>
+                                                <li class="user-address">
+                                                    <p>배송자 주소</p>
+                                                    <p class="address-info" th:text="${userInfo.address}"></p>
+                                                    <p class="address-detail" th:text="${userInfo.addressDetail}"></p>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <form action="" method="post">
+                                        <div class="payment-wrap-right">
+                                            <div class="product-area">
+                                                <ul class="product-info">
+                                                </ul>
+                                            </div>
+                                            <div class="total-area">
+                                                <p class="total-payment">
+                                                    <span>최종 결제 금액 : </span>
+                                                    <span th:value="0" class="totalMoney">0원</span>
+                                                </p>
+                                            </div>
+                                            <div class="check-area">
+                                                <button type="button" class="btn" id="submitEst">제출</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>결제내용</th>
+                            <td colspan="3">
+                                <div class="est-submit">
+                                    제목<input type="text" id = "est-title">
+                                    내용<input type="text" id = "est-content">
+                                    비용<input type="text" id = "est-price">
+                                    <button id="addEst">추가</button>
+                                </div>
+                            </td>
                         </tr>
                     </table>
-
                     <!-- 제출 신청서 모달창 -->
                     <div class="modal" id="modal">
                         <div class="modal-contents">

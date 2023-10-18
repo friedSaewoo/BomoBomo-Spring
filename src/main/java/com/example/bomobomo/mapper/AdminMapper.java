@@ -101,4 +101,8 @@ public interface AdminMapper {
     public RegionVo selectEmpRegion(Long empNumber);
 //    제출 신청서 조회
     public SubmitOrderDto selectSubmitOrder(Long matchNumber);
+//    매칭관리 유저주소조회
+    public UserAddressVo selectUserAddress(Long matchNumber);
+//    견적서 내용추가
+    public void insertEst(EstContentDto estContentDto);
 }

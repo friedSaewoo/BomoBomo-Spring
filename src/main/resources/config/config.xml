@@ -22,6 +22,7 @@
         <typeAlias type="com.example.bomobomo.domain.dto.EstContentDto" alias="estContentDto"/>
         <typeAlias type="com.example.bomobomo.domain.vo.UserListVo" alias="userListVo"/>
         <typeAlias type="com.example.bomobomo.domain.vo.UserDetailVo" alias="userDetailVo"/>
+        <typeAlias type="com.example.bomobomo.domain.vo.UserAddressVo" alias="userAddressVo"/>
         <!--======================== 매칭 ========================-->
         <typeAlias type="com.example.bomobomo.domain.dto.MatchDto" alias="matchDto"/>
         <typeAlias type="com.example.bomobomo.domain.dto.SubmitOrderDto" alias="submitOrderDto"/>
