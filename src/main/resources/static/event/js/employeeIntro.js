@@ -116,15 +116,12 @@ function empViewList(result){
        
         `;
     })
-<<<<<<< HEAD
 
 
 
-=======
     $('.board').html(text);
     let page = $('.page-box')
     updatePagination(result.pageInfo,page )
->>>>>>> a6f3b9d824f34d6331af4520ce5081d22b60f1ad
 }
 
 
