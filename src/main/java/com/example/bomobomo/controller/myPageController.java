@@ -186,7 +186,7 @@ public class myPageController {
                                          @RequestParam("eventBoardImg")MultipartFile file){
         Long userNumber=(Long) req.getSession().getAttribute("userNumber");
         eventBoardDto.setUserNumber(userNumber);
-
+        System.out.println("-------"+eventBoardDto);
         System.out.println(eventBoardDto);
         eventBoardService.registerAndFileproc(eventBoardDto,file);
 
@@ -210,7 +210,7 @@ public class myPageController {
         Long userNumber = (Long)req.getSession().getAttribute("userNumber");
         sitterBoardDto.setUserNumber(userNumber);
         sitterBoardService.register(sitterBoardDto);
-
+        System.out.println("-------"+sitterBoardDto);
         return new RedirectView("/mypage/main");
     }
 

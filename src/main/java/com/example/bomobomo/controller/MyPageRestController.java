@@ -59,9 +59,11 @@ public class MyPageRestController {
         return FileCopyUtils.copyToByteArray(new File(fileEmpActImg, fileFullPath));
     }
     // 마이페이지 시터 이용후기 사용자가 작성한 내용만 출력
-    @GetMapping("/sitterReviewList")
-    public Map<String, Object> showEventReviewList(HttpServletRequest req, Criteria criteria){
+    @GetMapping("/sitterReviewList/{page}")
+    public Map<String, Object> showEventReviewList(@PathVariable("page") int page,HttpServletRequest req, Criteria criteria){
         Long userNumber = (Long)req.getSession().getAttribute("userNumber");
+        criteria.setPage(page);
+        criteria.setAmount(1);
         PageVo pageVo = new PageVo(sitterBoardService.findSitterReviewTotal(userNumber), criteria);
         List<SitterBoardVo> sitterBoardVoList = sitterBoardService.findAll(criteria,userNumber);
 
@@ -72,9 +74,11 @@ public class MyPageRestController {
     }
 
     // 마이페이지 이벤트 이용후기 사용자가 작성한 내용만 출력
-    @GetMapping("/eventReviewList")
-    public Map<String, Object> showSitterReviewList(HttpServletRequest req, Criteria criteria){
+    @GetMapping("/eventReviewList/{pages}")
+    public Map<String, Object> showSitterReviewList(@PathVariable("pages") int pages,HttpServletRequest req, Criteria criteria){
         Long userNumber = (Long)req.getSession().getAttribute("userNumber");
+        criteria.setPage(pages);
+        criteria.setAmount(1);
         PageVo pageVO = new PageVo(eventBoardService.findEventReviewTotal(userNumber), criteria);
         List<EventBoardVo> eventBoardVoList = eventBoardService.findEventAll(criteria,userNumber);
 
