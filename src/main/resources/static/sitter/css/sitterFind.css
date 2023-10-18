@@ -626,6 +626,9 @@ input[type="checkbox"]:checked {
     margin: 20px 0px 0px 20px;
 }
 
+.addrSelList {
+
+}
 .addrList:focus{
     border: 1px solid orange;
     box-sizing: border-box;

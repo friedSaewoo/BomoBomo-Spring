@@ -121,6 +121,7 @@ main{
     display: flex;
     justify-content: center;
     align-items: center;
+    text-align: right;
     font-size: 1.15em;
     float: right;
 }

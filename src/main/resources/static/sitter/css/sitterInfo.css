@@ -95,6 +95,7 @@ li {
     width: 95%;
     margin: 10px auto;
     height: 100%;
+    min-height: 300px;
     /*border: 1px solid orange;*/
     background-color: #F6F6F6;
     border-radius: 10px;
@@ -183,14 +184,14 @@ li {
 }
 .possible {
     text-align: center;
-    font-size: 30px;
+    font-size: 20px;
 }
 
 .ReviewInfo {
     border: 1px solid lightgray;
     width: 250px; 
     height: 58px;
-
+    color: black;
     padding: 10px;
 
     overflow: hidden;
@@ -280,25 +281,21 @@ li {
     top: 40%;
     font-size: 1.3em;
     cursor: pointer;
-    background-color: lightgray;
+    background-color: white;
+      box-shadow: #777777 0px 1px 1px 1px;
 
   }
   
-  /* 이전, 다음 화살표에 마우스 커서가 올라가 있을때 */
-  .controller span:hover{
-    /* background-color: rgba(128, 128, 128, 0.11); */
-    background-color: #FF7000;
-  }
-  
+
   .prev{
     left: 10px;
   }
   
   /* 이전 화살표에 마우스 커서가 올라가 있을때 
   이전 화살표가 살짝 왼쪽으로 이동하는 효과*/
-  .prev:hover{
-    transform: translateX(-10px);
-  }
+  /*.prev:hover{*/
+  /*  transform: translateX(-10px);*/
+  /*}*/
   
   .next{
     right: 10px;
@@ -306,9 +303,9 @@ li {
   
   /* 다음 화살표에 마우스 커서가 올라가 있을때 
   이전 화살표가 살짝 오른쪽으로 이동하는 효과*/
-  .next:hover{
-    transform: translateX(10px);
-  }
+  /*.next:hover{*/
+  /*  transform: translateX(10px);*/
+  /*}*/
 
   li img {
     border: 1px solid lightgray;
@@ -425,5 +422,5 @@ li {
 .sitterHugi {
     /*display: none;*/
     border-radius: 10px;
-    background: #F1F4F4;
+    /*background: #F1F4F4;*/
 }

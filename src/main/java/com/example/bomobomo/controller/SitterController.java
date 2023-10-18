@@ -41,16 +41,25 @@ public class SitterController {
 
     // 선택한 시터 정보 컨트롤러
     @GetMapping("/sitterInfo")
-    public String sitterInfo(Long empNumber, Model model) {
+    public String sitterInfo(Long empNumber, Model model, HttpServletRequest req) {
         System.out.println("시터 번호 : " + empNumber);
+        Long userNumber = (Long) req.getSession().getAttribute("userNumber");
+        System.out.println("유저 번호 : " + userNumber);
+
         EmpVo empVo = sitterService.sitterInfo(empNumber);
         List<SitterBoardDto> sitterBoardList = sitterService.selectSitterBoardList(empNumber);
+        if(userNumber != null) {
+            Long cnt = sitterService.userMatchCheck(userNumber);
+            model.addAttribute("cnt", cnt);
+        }
 
         Double sitterReview = sitterService.sitterReview(empNumber);
         List<ActVo> actVo = sitterService.sitterPossibleList(empNumber);
         System.out.println("VO 확인 : " + actVo);
 
+
         model.addAttribute("actVoList", actVo);
+//        model.addAttribute("matchDto", matchDto);
 
 //        System.out.println("이미지 경로 : " + imgPath);
 
@@ -71,12 +80,13 @@ public class SitterController {
             empVo.setEmpGender("남");
         }
 
-        empVo.setEmpContent(empVo.getEmpContent().replace("\r\n","<br>"));
+//        empVo.setEmpContent(empVo.getEmpContent().replace("\r\n","<br>"));
         System.out.println("자기소개 : " + empVo.getEmpContent());
 
         String empDate = empVo.getEmpDate().substring(0, 10);
         empVo.setEmpDate(empDate);
 
+        model.addAttribute("userNumber", userNumber);
         model.addAttribute("emp", empVo);
         model.addAttribute("sitterBoardList", sitterBoardList);
         model.addAttribute("sitterTotalReview", sitterTotalReview);
@@ -106,7 +116,7 @@ public class SitterController {
         String sitterName = req.getParameter("empName");
 
         orderService.findOrder(userNumber);
-        System.out.println(orderService.findOrder(userNumber).toString());
+        System.out.println("테스트입미다 : " + orderService.findOrder(userNumber).toString());
         model.addAttribute("order",orderService.findOrder(userNumber));
 
         model.addAttribute("empName",empName);
