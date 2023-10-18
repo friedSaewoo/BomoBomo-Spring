@@ -90,6 +90,12 @@ public class SitterService {
         return  sitterMapper.sitterActImg();
     }
 
+//    시터 이미지
+    public EmpImgDto sitterImg(Long empNumber) {
+
+        return sitterMapper.sitterImg(empNumber);
+    }
+
     //고객이 선택한 시터 신청서 제출
     public void register(SubmitOrderDto submitOrderDto) {
         System.out.println("register 서비스 오는지");
