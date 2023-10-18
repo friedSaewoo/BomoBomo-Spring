@@ -374,4 +374,11 @@ public EventImgDto saveEventImg(MultipartFile evenImg) throws IOException {
     public SubmitOrderDto selectSubmitOrder(Long matchNumber){
         return adminMapper.selectSubmitOrder(matchNumber);
     }
+    // 매칭관리 유저 주소 조회
+    public UserAddressVo selectUserAddress(Long matchNumber){
+        return adminMapper.selectUserAddress(matchNumber);
+    }
+    public void insertEst(EstContentDto estContentDto){
+        adminMapper.insertEst(estContentDto);
+    }
 }

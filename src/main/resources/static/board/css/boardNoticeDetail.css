@@ -34,14 +34,22 @@
     /* border: 2px solid red; */
     font-weight: bold;
     width: 724px;
+    font-size: 14px;
+    font-family: GmarketSansMedium;
+
 }
-.notice-detail-title p:last-child{
+.notice-register-date,
+.notice-modify-date
+{
     text-align: end;
     width:300px;
+    font-family: GmarketSansMedium;
+    font-size: 13px;
+
 }
 
 .notice-detail-content {
-    /* border: 2px solid blue; */
+    font-family: 'IBM Plex Sans KR', sans-serif;
     padding: 20px;
     line-height: 2.7;
     height: 100%;
@@ -59,5 +67,6 @@
     cursor: pointer;
     width: 80px;
     height: 35px;
-    font-size: 16px;
+    font-size: 15px;
+    font-weight: 200;
 }
