@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BOMOBOMO</title>
 
-  <link rel="stylesheet" href="/common/css/common.css"/>
-  <link rel="stylesheet" href="/fragments/css/footer.css"/>
-  <link rel="stylesheet" href="/fragments/css/header.css"/>
-  <link rel="stylesheet" href="/fragments/css/mypagesideMenu.css"/>
-  <link rel="stylesheet" href="/myPage/css/updateApplicationPage.css"/>
-  <script src="/common/js/index.js" defer></script>
-  <script src="/common/js/common.js${" defer></script>
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="/fragments/css/header.css"/>
+    <link rel="stylesheet" href="/fragments/css/footer.css"/>
+    <link rel="stylesheet" href="/common/css/common.css"/>
+
+    <link rel="stylesheet" href="/sitter/css/sitterRegister.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css"/>
+    <title>BOMOBOMO</title>
 </head>
+
 <body>
 <div class="header" th:replace="fragments/header.html :: header" >
 </div>
@@ -20,25 +20,25 @@
 <main>
   <div class="user-container">
     <div class="section">
-      <aside class="menu-bar" th:replace="fragments/mypagesideMenu.html :: menu-bar">
-      </aside>
       <div class="page-view">
         <div class="page-title">
 
-          <p>
-            <a href="/mypage/main">신청관리</a>
-          </p>
+          <p>신청관리</p>
 
         </div>
 
         <div class="application-page">
 
-          <div class="container-text">
-            <h4>신청서를 입력해주세요.</h4>
+          <div class="logo-container-text">
+            <div class="sitterName"><h1 th:text="${empName}" ></h1></div>
+            <h4>시터에게 알려주세요.</h4>
           </div>
 
-          <form class="check-area" action="/mypage/updateApplication" method="post">
-            <div class="childern-check">
+          <form class="check-area" action="/sitter/sitterApplication" method="post">
+            <input type="hidden" th:value="${empName}" id="empName" name="empName">
+            <input type="hidden" th:value="${empNumber}" id="empNumber" name="empNumber">
+
+            <div class="childern-check"><br>
               <p>돌봄이 필요한 아이</p>
               <input class="one-check" type="radio" name="one" th:checked="${order.genderSecond == 'n'}"/> 1명
               <input class="two-check" type="radio" name="one" th:checked="${order.genderSecond != 'n'}"/> 2명
@@ -46,24 +46,23 @@
               <input type="hidden" name="orderNumber" th:value="${order.orderNumber}">
             </div>
             <!--버튼 클릿 js 필요-->
-            <div class="text-area" >
+            <div class="text-area">
               <div class="gender-text">
                 <p>첫째 아이 성별</p>
               </div>
               <div class="gender-wrap">
+
+                <!-- <input class="input-m" type="checkbox" value="남자"> -->
                 <label for="gender-m" class="gender-box">
                   <span>남자</span>
-                  <input id="gender-m" type="radio" name="genderFirst" th:checked="${order.genderFirst == 'M'}" value="M"/>
+                  <input id="gender-m" type="radio" name="genderFirst" value="M"/>
                 </label>
 
-<<<<<<< HEAD
-                <!-- <input class="input-w" type="checkbox" value="여자" > -->
-=======
 
->>>>>>> 1d5157f5ac4575d2b93dfc554a71d5f1f2f9bed9
+                <!-- <input class="input-w" type="checkbox" value="여자" > -->
                 <label for="gender-w" class="gender-box">
                   <span>여자</span>
-                  <input id="gender-w" type="radio" name="genderFirst" th:checked="${order.genderFirst == 'F'}" value="F"/>
+                  <input id="gender-w" type="radio" name="genderFirst" value="F"/>
                 </label>
 
               </div>
@@ -71,31 +70,26 @@
             <div class="text-area-1">
               <div class="gender-text-2">
                 <p>두번째 아이 성별</p>
-
               </div>
               <div class="gender-wrap-second">
-
                 <label for="gender-men" class="gender-box-second">
                   <span>남자</span>
-                  <input id="gender-men" type="radio" name="genderSecond" th:checked="${order.genderSecond == 'M'}" value="M"/>
+                  <input id="gender-men" type="radio" name="genderSecond" value="M"/>
                 </label>
-
-
                 <label for="gender-women" class="gender-box-second" required>
                   <span>여자</span>
-                  <input id="gender-women" type="radio" name="genderSecond" th:checked="${order.genderSecond == 'F'}" value="F"/>
+                  <input id="gender-women" type="radio" name="genderSecond" value="F"/>
                 </label>
-
               </div>
             </div>
+
             <!--아이상세 정보 작성-->
             <div class="chilren-detil">
               <p>아이 성격</p>
-              <textarea class="children-text"  name="kidsContent" placeholder="예시) 보노보노보다 뽀로로를 더 좋아해요.">
-[[${order.kidsContent}]]</textarea>
+              <textarea class="children-text"  name="kidsContent" placeholder="예시) 보노보노보다 뽀로로를 더 좋아해요."></textarea>
             </div>
             <div class="inputbtn">
-              <button type="button" class="btn">수정하기</button>
+              <button type="button" class="btn">신청하기</button>
             </div>
           </form>
         </div>
@@ -105,10 +99,15 @@
 </main>
 <div class="footer" th:replace="fragments/footer.html :: footer">
 </div>
+
+
+
+
 <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-<script src="/myPage/js/updateApplicationPage.js"></script>
-<script src="/common/js/common.js" defer></script>
+
+<script src="/sitter/js/sitterRegister.js"></script>
 <script src="/fragments/js/header.js"></script>
 </body>
+
 </html>

@@ -155,10 +155,19 @@ function showListAndPage(sitter) {
             str += "<input type='hidden' value='" + sitterList.empNumber + "' class='empNumber' name='empNumber'> <div name='sitterName' class='sitterName'>";
             str += "<strong>" + sitterList.empName + "</strong>&nbsp;&nbsp;"
             str += "<span>" + sitterList.empGender + "</span></div>"
-            if (sitterList.avg == null) {
-                str += "<div class='sitterGrade'><img src='/common/img/star.png'> <span>" + 0.0 + "/ 5" + "</span></div>";
-            } else {
-                str += "<div class='sitterGrade'><img src='/common/img/star.png'> <span>" + sitterList.avg + "/ 5" + "</span></div>";
+            if (sitterList.avg == null || sitterList.avg < 0.5) {
+                str += "<div class='sitterGrade'>☆☆☆☆☆</div>";
+
+            } else if(sitterList.avg >= 0.5 && sitterList.avg < 1.5){
+                str += "<div class='sitterGrade'>★☆☆☆☆</div>";
+            } else if(sitterList.avg >= 1.5 && sitterList.avg < 2.5) {
+                str += "<div class='sitterGrade'>★★☆☆☆</div>";
+            } else if(sitterList.avg >= 2.5 && sitterList.avg < 3.5) {
+                str += "<div class='sitterGrade'>★★★☆☆</div>";
+            } else if(sitterList.avg >= 3.5 && sitterList.avg < 4.5) {
+                str += "<div class='sitterGrade'>★★★★☆</div>";
+            } else if(sitterList.avg >= 4.5 && sitterList.avg < 5) {
+                str += "<div class='sitterGrade'>★★★★★</div>";
             }
 
             str += `<div class="sitterAbility">`;

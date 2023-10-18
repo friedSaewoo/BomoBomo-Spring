@@ -78,24 +78,32 @@ public class SitterService {
         return sitterMapper.sitterAddrTotal();
     }
 
-//
+    //시터 활동 리스트
     public List<ActVo> sitterPossibleList(Long empNumber) {
         System.out.println("서비스 진입 확인");
         System.out.println("서비스 확인 : " + sitterMapper.sitterPossibleList(empNumber));
         return  sitterMapper.sitterPossibleList(empNumber);
     }
 
+    //시터 정보 + 이미지 리스트
     public List<EmpListVo> sitterActImg() {
         return  sitterMapper.sitterActImg();
     }
 
+    //고객이 선택한 시터 신청서 제출
     public void register(SubmitOrderDto submitOrderDto) {
         System.out.println("register 서비스 오는지");
         sitterMapper.register(submitOrderDto);
-
     }
+
+//       신청서 제출 시터와 매칭
     public void sitterMatching(MatchDto matchDto) {
         System.out.println("sitterMatching 서비스 오는지");
         sitterMapper.sitterMatching(matchDto);
+    }
+
+    //고객이 매칭중인 시터가 있는지 확인
+    public Long userMatchCheck(Long userNumber) {
+        return sitterMapper.userMatchCheck(userNumber);
     }
 }
