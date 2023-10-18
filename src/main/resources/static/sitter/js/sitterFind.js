@@ -143,8 +143,7 @@ function showListAndPage(sitter) {
     $('.paging').empty();
 
     console.log("sitter : " + sitter);
-    console.log(sitter);
-    console.log(sitter.sitterList.actImgList);
+    console.log("3" + sitter.sitterList.actImgList);
 
     if(sitter.sitterTotal != 0) {
         $('.sitterFindCount > strong').append(sitter.sitterTotal);
