@@ -23,10 +23,17 @@
         <div class="sitterImg">
             <!-- 시터 상세 -->
             <div class="sitterInfoList">
+                <th:block th:if="${empImg == null}">
+                <div>
+                    <img src="/sitter/img/slmg.png">
+                </div>
+                </th:block >
+
+                <th:block th:unless="${empImg == null}">
                 <div>
                     <img th:src="'/admin/rest/displayEmpImg?fileName=' + ${empImg}">
-<!--                    <img  src='/admin/rest/displayEmpImg?fileName=" + sitterList.empImgUploadPath + "/" + sitterList.empImgUuid + "_" + sitterList.empImgName + "'>";-->
                 </div>
+                </th:block>
 
                 <div class="sitterInfo">
                     <div class="sitterCon">
