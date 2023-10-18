@@ -4,19 +4,15 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
-@Component
 @Data
+@Component
 @NoArgsConstructor
-public class MatchUserInfoVo {
-    private Long matchNumber;
+public class UserAddressVo {
     private Long userNumber;
-    private Long submitOrderNumber;
-    private Long empNumber;
-    private String status;
+    private Long matchNumber;
     private String userName;
     private String userPhone;
     private String userEmail;
     private String address;
     private String addressDetail;
-
 }

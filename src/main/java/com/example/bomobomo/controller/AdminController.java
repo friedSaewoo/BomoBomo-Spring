@@ -169,9 +169,13 @@ public class AdminController {
     public String selectMatchDetail(@RequestParam(name="matchNumber")Long matchNumber,Model model){
         MatchListVo matchDetail =  adminService.selectMatchDetail(matchNumber);
         SubmitOrderDto submitOrder = adminService.selectSubmitOrder(matchNumber);
+        log.info("===============================체크1");
+        UserAddressVo userAddressVo = adminService.selectUserAddress(matchNumber);
+        log.info("===============================체크2");
         if(submitOrder.getGenderSecond() == null){
             submitOrder.setGenderSecond("n");
         }
+        model.addAttribute("userInfo",userAddressVo);
         model.addAttribute("matchDetail",matchDetail);
         model.addAttribute("submitOrder",submitOrder);
         log.info("==============================={}",submitOrder);

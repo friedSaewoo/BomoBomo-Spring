@@ -462,4 +462,16 @@
                            on m.SUBMIT_ORDER_NUMBER = s.SUBMIT_ORDER_NUMBER
         where MATCH_NUMBER = #{matchNumber}
     </select>
+<!-- 매칭관리 회원정보,주소-->
+    <select id="selectUserAddress" parameterType = "userAddressVo">
+        select user_name,user_phone,user_email,address,ADDRESS_DETAIL,u.user_number,match_number
+        from users u join ADDRESS a on u.user_number = a.USER_NUMBER
+                     join MATCHS m on m.USER_NUMBER = u.USER_NUMBER
+        where MATCH_NUMBER =  #{matchNumber}
+    </select>
+<!-- 견적서 내용 추가 -->
+    <insert id="insertEst">
+        insert into est_content (EST_CONTENT_NUMBER,MATCH_NUMBER,EST_CONTENT,EST_PRICE,EST_TITLE)
+                    VALUES(SEQ_EST.NEXTVAL,#{matchNumber},#{estContent},#{estPrice},#{estTitle})
+    </insert>
 </mapper>
