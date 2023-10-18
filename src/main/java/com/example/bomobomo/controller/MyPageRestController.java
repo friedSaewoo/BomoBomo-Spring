@@ -63,7 +63,7 @@ public class MyPageRestController {
     public Map<String, Object> showEventReviewList(@PathVariable("page") int page,HttpServletRequest req, Criteria criteria){
         Long userNumber = (Long)req.getSession().getAttribute("userNumber");
         criteria.setPage(page);
-        criteria.setAmount(1);
+
         PageVo pageVo = new PageVo(sitterBoardService.findSitterReviewTotal(userNumber), criteria);
         List<SitterBoardVo> sitterBoardVoList = sitterBoardService.findAll(criteria,userNumber);
 
@@ -78,7 +78,7 @@ public class MyPageRestController {
     public Map<String, Object> showSitterReviewList(@PathVariable("pages") int pages,HttpServletRequest req, Criteria criteria){
         Long userNumber = (Long)req.getSession().getAttribute("userNumber");
         criteria.setPage(pages);
-        criteria.setAmount(1);
+
         PageVo pageVO = new PageVo(eventBoardService.findEventReviewTotal(userNumber), criteria);
         List<EventBoardVo> eventBoardVoList = eventBoardService.findEventAll(criteria,userNumber);
 
@@ -94,7 +94,7 @@ public class MyPageRestController {
         Long userNumber = (Long)req.getSession().getAttribute("userNumber");
         System.out.println(userNumber);
         MatchUserInfoVo matchUserInfoVo=myPageService.findMatchUserInfo(userNumber);
-        MatchBuyInfoVo matchBuyInfoVo=myPageService.findMatchBuyInfo(userNumber);
+        List<MatchBuyInfoVo> matchBuyInfoVo=myPageService.findMatchBuyInfo(userNumber);
 
         Map<String, Object> map =new HashMap<>();
         map.put("userInfo",matchUserInfoVo);
@@ -107,10 +107,12 @@ public class MyPageRestController {
     public void modify(@PathVariable("matchNumber") Long matchNumber,
                        @RequestBody MatchDto matchDto){
         //json형식으로 받을거야
+        System.out.println(matchNumber);
 
-        matchDto.setMatchNumber(matchNumber);
 
-        myPageService.statusUpdate(matchNumber);
+        myPageService.statusUpdate(matchDto.getMatchNumber());
+
+
     }
 
 }

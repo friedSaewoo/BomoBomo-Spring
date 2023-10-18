@@ -43,7 +43,7 @@ public class AdminService {
     
 // 주간 회원가입수
     public List<WeeklyRegisterVo> weeklyRegister(){
-        return adminMapper.weeklyRegisterSelect();
+        return adminMapper.weeklyRegister();
     }
 
 // 회원조회

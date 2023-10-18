@@ -128,7 +128,7 @@ canvas{
 .contents-title{
     margin: 0px 20px;
     width: 96%;
-    /* border-bottom: 1px solid #353535; */
+     border-bottom: 1px solid #353535;
     padding-bottom: 10px;
 }
 

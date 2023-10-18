@@ -88,33 +88,22 @@ function checkPassword() {
 
         if (up == pw || !up) {
             $('.checkPws').css("display", "none");
-            console.log("맞다!");
         } else {
             $('.checkPws').css("display", "block");
-            console.log("틀리다!")
         }
 
     });
 }
 
-$('.addressnumbtn').on('mouseover',function (){
-    $(this).css('backgroundColor','#FF7000');
-    $(this).css('color','white');
-    $(this).css('border','1.5px solid #FF7000');
 
-});
 
-$('.addressnumbtn').on('mouseout',function (){
-    $(this).css('backgroundColor','white');
-    $(this).css('color','black');
-    $(this).css('border','1.5px solid black');
+$('.removebtn').on('click',function (){
+    let userRemoveBtn=$(this).data('number');
+    console.log(userRemoveBtn);
+    if(confirm("정말로 삭제하시겠습니까?")){
+        console.log(userRemoveBtn);
+        window.location.href='/mypage/userInfoDelete?userNumber=' + userRemoveBtn;
+    }else{
 
-});
-
-$('.buttonJoin button').on('mouseover',function (){
-    $(this).css('fontWeight','bold');
-})
-
-$('.buttonJoin button').on('mouseout',function (){
-    $(this).css('fontWeight','none');
+    }
 })
