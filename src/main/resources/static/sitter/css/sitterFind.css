@@ -6,8 +6,8 @@
 }
 
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f7f7f7;
+    font-family: 'GmarketSansMedium';
+    /*background-color: #f7f7f7;*/
 }
 
 a{
@@ -29,9 +29,8 @@ a{
 
 .sitterFindGreeting {
     width: 50%;
-    font-size: 25px;
+    font-size: 22px;
     font-weight: 700;
-    margin: 0px 0px 20px 20px;
 }
 
 .sitterFindCount {
@@ -60,6 +59,11 @@ a{
 
 }
 
+#id {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
 .sitterInfoList {
     margin-top: 50px;
     display: grid;
@@ -85,35 +89,38 @@ a{
     transition: 0.5s;
     position: relative;
     display: flex;
-}
-
-.sitterInfo {
-    width: 65%;
-    margin: 20px auto;
-}
-.sitterImg {
-    width: 35%;
     overflow: hidden;
 }
 
-.sitterImg img {
-    margin-left: 10px;
-    width: 80px;
-    height: 100px;
-    border-radius: 5px;
-    margin-top: 30px;
-    transition: all 0.5s linear;
+.sitter-info-section {
+    border-bottom: 1px solid gray;
+}
+.sitterInfo {
+    width: 150px;
+}
+.sitterImg {
+    width: 100%;
+    height: 100%;
 }
 
-.sitterImg img:hover  {
+.sitterImg img {
+    width: 80px;
+    height: 100px;
+
+    transition: all 0.5s linear;
+    overflow: hidden;
+     display: flex;
+    justify-content: start;
+    align-items: center;
+
+}
+
+.sitterIndividual:hover .sitterImg img  {
     transform: scale(1.2);
     border-radius: 5px;
     overflow: hidden;
 }
 
-.sitterInfo div:not(.possibleName){
-    margin: 10px 0px 0px 10px;
-}
 
 .board-img-box {
     position: relative;
@@ -148,20 +155,11 @@ a{
 
 .sitterFilter {
     width: 100%;
-    margin-top: 10px;
+    overflow: hidden;
     display: flex;
 }
 
-/* .sitterFilter span{
-    padding: 5px 10px 5px 10px;
-    margin: 5px 10px 5px 10px;
-    background-color: violet;
-    border: 1px solid black;
-    border-radius: 3px;
-    font-size: 20px;
-    text-align: center;
-    align-items: center;
-} */
+
 
 .sitterFilter button{
     padding: 5px 10px 5px 10px;
@@ -180,8 +178,8 @@ a{
 
 
 .sitterFilter img{
-    width: 90px;
-    height: 100px;
+    width: 100%;
+    height: 100%;
 
 }
 
@@ -191,13 +189,13 @@ a{
 
 
 .sitterContext {
-    padding: 5px;
-    height: 55px;
+    height: 65px;
     line-height: 1.4;
-    border: 1px solid lightgray;
+    /* border: 1px solid lightgray; */
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
+    padding: 16px;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     -webkit-text-fill-color: darkgray;}
@@ -289,16 +287,18 @@ a{
 
 
 a.button{
-    display:inline-block; 
-    padding: 10px 20px; 
-    text-decoration:none; 
-    color:#fff; 
-    background-color: #FF7000;
-    border: 2px solid #FF7000;
-    margin:20px;
+    display: inline-block;
+    padding: 10px;
+    text-decoration: none;
+    color: black;
+    /* background-color: #FF7000; */
+    border: 1px solid gray;
+    /* margin: 20px; */
+    font-family: 'GmarketSansMedium';
     border-radius: 10px;
-
+    font-size: 13px;
 }
+
 a.button:hover {
     background: orange;
 }
@@ -327,18 +327,21 @@ a.button:hover {
   }   */
 
 .modal-con{
-  display:none;
-  position:fixed;
-  top:50%; left:50%;
-  transform: translate(-50%,-50%);
-  margin-top: 40px;
-  width: 510px;
-  max-width: 1000px;
-  height: 590px;
-  /* min-height: 30%; */
-  background:#fff;
-  border: 2px solid black;
-  border-radius: 10px;
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    margin-top: 40px;
+    width: 510px;
+    height: 350px;
+    height: 350px;
+    /* height: 590px; */
+    /* min-height: 30%; */
+    background: #fff;
+    border: 2px solid black;
+    border-radius: 10px;
+    z-index: 999;
 
 }
 .modal-con .title{
@@ -365,15 +368,18 @@ a.button:hover {
 }
 
 .addrModal {
-    display:block;
-    position:absolute;
-    width:30px; height:30px;
-    border-radius:50%; 
-    border: 1px solid black;
-    text-align:center; line-height: 30px;
-    text-decoration:none;
-    color:#000; font-size:20px; font-weight: bold;
-    margin: -27px 460px;
+    display: block;
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 30px;
+    text-decoration: none;
+    color: #000;
+    font-size: 15px;
+    right: 0;
+    font-weight: bold;
   
 }
 /*.close:hover {*/
@@ -545,10 +551,9 @@ input[type="checkbox"]:checked {
 
 
 .sitterInfoType {
-    width: 500px;
-    margin: 20px auto;
-    height: 560px;
-    /*border: 1px solid #FF7000;*/
+    width: 100%;
+    /* height: 560px; */
+    /* border: 1px solid #FF7000; */
     border-radius: 10px;
 }
 
@@ -588,7 +593,6 @@ input[type="checkbox"]:checked {
     background-color: yellow;
 }
 
-
 .possibleName {
     width: 70px;
 }
@@ -608,7 +612,7 @@ input[type="checkbox"]:checked {
     text-align: center;
     margin: -50px auto;
     width: 500px;
-    height: 350px;
+    height: 150px;
 
 }
 
@@ -642,7 +646,7 @@ input[type="checkbox"]:checked {
 }
 
 .sitterGrade {
-    margin-top: 10px;
+    padding-left: 10px;
     width: 180px;
     height: 40px;
     color: #e89f14d9;
@@ -653,6 +657,11 @@ input[type="checkbox"]:checked {
     height: 20px;
 }
 
+.sitterName{
+    padding:10px;
+    width: 180px;
+}
+
 .sitterName span {
     font-size: 13px;
     color: darkgray;
@@ -660,42 +669,43 @@ input[type="checkbox"]:checked {
 
 
 .sitterAbility {
-    height: 40px;
-    text-align: center;
-    align-items: center;
-    display: grid;
-    grid-template-columns: repeat(3, minmax(50px, 50px));
-    border-radius: 5px;
+    width: 100%;
+    /* height: 100%; */
+    /* margin: 10px 0px 0px 10px; */
+    padding: 8px;
+    display: flex;
+    justify-content: start;
+    position: absolute;
+    bottom: 0px;
 }
-.sitterPossible img{
-    margin-top: -10px;
-    margin-left: 10px;
-    width: 35px;
-    height: 35px;
+.sitterPossible >img{
+    width: 48px;
+    z-index: 999;
 }
 
 .sitterPossible {
-    display: flex;
-    width: 50px;
+    width: 200px;
     height: 50px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
 }
 
 .sitterActSelect {
     width: 160px;
+    height: 40.67px;
     border-radius: 10px;
-    box-sizing: border-box;
-    padding: 12px 13px;
-    font-family: 'Roboto';
-    /*font-family: 'GmarketSansMedium';*/
-    font-style: normal;
+    /* box-sizing: border-box; */
+    /* padding: 10px 13px; */
+    font-family: 'GmarketSansMedium';
+    /* font-style: normal; */
     font-weight: 400;
     font-size: 14px;
     line-height: 16px;
 
 }
-.sitterActSelect:focus{
-    box-sizing: border-box;
-    border-radius: 10px;
-    outline: 3px solid #FF7000;
-    border-radius: 10px;
-}
+/*.sitterActSelect:focus{*/
+/*    box-sizing: border-box;*/
+/*    border-radius: 10px;*/
+/*    outline: 3px solid #FF7000;*/
+/*    border-radius: 10px;*/
+/*}*/
