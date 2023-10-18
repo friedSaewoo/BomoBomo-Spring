@@ -14,7 +14,7 @@ function loadImage() {
     let img = new Image();
     img.onload = function() {
         img.className = "self";
-        let empImgDiv = $('<div class=".emp-info-container1">');
+        let empImgDiv = $('<div class=".img">');
         empImgDiv.append(img);
 
         document.querySelector('.img').appendChild(empImgDiv[0]);

@@ -97,4 +97,8 @@ public interface AdminMapper {
     public List<CityDto> selectAllCity();
 //    country 조회
     public List<CountryDto> selectCountry(Long cityNumber);
+//    직원 region 조회
+    public RegionVo selectEmpRegion(Long empNumber);
+//    제출 신청서 조회
+    public SubmitOrderDto selectSubmitOrder(Long matchNumber);
 }
