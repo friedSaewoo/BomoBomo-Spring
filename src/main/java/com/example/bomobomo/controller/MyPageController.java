@@ -110,7 +110,10 @@ public class MyPageController {
 //        Criteria criteria = new Criteria();
 
 
-        model.addAttribute("buyList",myPageService.findSitterList(criteria, userNumber));
+        List<MyPageSitterVo> myPageSitterVos=myPageService.findSitterList(criteria, userNumber);
+
+        log.info("제발~~"+myPageSitterVos);
+        model.addAttribute("buyList",myPageSitterVos);
         model.addAttribute("pageVo", pageVo);
 
         return "mypage/buyPage";
@@ -203,11 +206,13 @@ public class MyPageController {
    // buy페이지에서 시터 리뷰로 이동하는 컨트롤러
     @GetMapping("/siterreview")
     public String showsiterreviewPage(HttpServletRequest req,
+                                      @RequestParam(name="empName") String empName,
                                       @ModelAttribute("matchNumber") Long matchNumber,
-                                      @ModelAttribute("empNumber") Long empNumber ,
+                                      @ModelAttribute("empNumber") Long empNumber,
                                       Model model){
-
-        model.addAttribute("title", sitterBoardService.findTitle(matchNumber));
+        log.info("=======================직원이름{}",empName);
+        log.info("~~~~~~~직원번호{}",empNumber);
+        model.addAttribute("empName",empName);
         return "myPage/siterReview";
     }
     //게시물 작성후 이동하는 컨트롤러
