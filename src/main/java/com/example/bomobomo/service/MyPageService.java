@@ -153,6 +153,15 @@ public class MyPageService {
 
         }
 
+        // 유저정보 삭제
+        public void removeUser(Long userNumber){
+            if (userNumber == null) {
+                throw new IllegalArgumentException("회원 정보 없음!!");
+            }
+
+            myPageMapper.deleteUser(userNumber);
+
+        }
 
 
 }

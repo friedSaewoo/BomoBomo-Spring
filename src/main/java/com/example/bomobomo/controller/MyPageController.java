@@ -165,7 +165,14 @@ public class MyPageController {
         return new RedirectView("/mypage/main");
     }
 
+    @GetMapping("/userInfoDelete")
+    public String removeUserInfo(@RequestParam(name = "userNumber") Long userNumber){
 
+        myPageService.removeUser(userNumber);
+
+        return "user/login";
+
+    }
 
 
     @GetMapping("/reviewwrite")

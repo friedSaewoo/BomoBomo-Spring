@@ -149,7 +149,7 @@ $("#check_module").click(function () {
                 contentType : 'application/json; charset=utf-8'
             });
 
-            window.location.href='/mypage/main';
+            window.location.href='/mypage/buy';
             // success.submit();
             // 결제 성공 시 정보를 넘겨줘야한다면 body에 form을 만든 뒤 위의 코드를 사용하는 방법이 있습니다.
             // 자세한 설명은 구글링으로 보시는게 좋습니다.

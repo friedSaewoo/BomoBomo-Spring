@@ -49,10 +49,12 @@ public interface MyPageMapper {
     public void update(Long matchNumber);
 
 
-    //회원정보수정 디폴MatchDto트 값 조회(아이디 ,휴대전화)
+    //회원정보수정 디폴트 값 조회(아이디 ,휴대전화)
     public UserDto selectUser(Long userNumber);
 
     //회원정보수정 디폴트 값 조회(주솟)
     public AddressDto selectUserAddress(Long userNumber);
+    //회원정보 삭제
+    public void deleteUser(Long userNumber);
 
 }
