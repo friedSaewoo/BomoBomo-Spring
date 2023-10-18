@@ -114,7 +114,8 @@ public class SitterController {
         String sitterName = req.getParameter("empName");
 
         orderService.findOrder(userNumber);
-        System.out.println("테스트입미다 : " + orderService.findOrder(userNumber).toString());
+//        System.out.println("테스트입미다 : " + orderService.findOrder(userNumber).toString());
+        System.out.println("테스트 : " + orderService.findOrder(userNumber));
         model.addAttribute("order",orderService.findOrder(userNumber));
 
         model.addAttribute("empName",empName);
