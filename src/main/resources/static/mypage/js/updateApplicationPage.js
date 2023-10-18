@@ -28,6 +28,7 @@ $(document).ready(function() {
 //남자, 여자 선택시 색상 변화
 $(document).ready(function(){
 
+
     let $genderbox = $('.gender-box');
 // console.log("안ㄴ여!");
     $genderbox.on('click',function(e){
@@ -134,10 +135,21 @@ $(document).ready(function(){
                 return;
             }
         }else {
+<<<<<<< HEAD
             $genderSecond.val('n');
             console.log(  $genderSecond.val());
 
         }          alert("저장이 완료되었습니다.");
+=======
+           $genderSecond.val('n');
+            console.log($genderSecond.val());
+        }
+
+
+
+
+          alert("저장이 완료되었습니다.");
+>>>>>>> 1d5157f5ac4575d2b93dfc554a71d5f1f2f9bed9
          $('.check-area').submit();
     })
 });

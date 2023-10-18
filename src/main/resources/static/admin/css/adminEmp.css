@@ -144,7 +144,7 @@ select:focus{
     background-color: #4F4D8E;
 }
 .top>div{
-    font-size: 18px;
+    font-size: 16px;
     color: white;
 }
 .top .emp-num{
@@ -160,7 +160,7 @@ select:focus{
     margin-left: 80px;
 }
 .top .emp-phone{
-    margin-left: 130px;
+    margin-left: 140px;
 }
 .top .emp-email{
     margin-left: 190px;
@@ -180,8 +180,8 @@ select:focus{
     display: flex;
     align-items: center;
     text-align: center;
-    height: 67px;
-    font-size: 16px;
+    height: 50px;
+    font-size: 14px;
 }
 
 .post>div{
@@ -205,7 +205,7 @@ select:focus{
 }
 
 .emp-list-bottom{
-    margin: 50px auto 0;
+    margin: 60px auto 0;
     display: flex;
     width: 900px;
 }

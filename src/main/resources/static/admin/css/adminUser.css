@@ -143,13 +143,13 @@ select:focus{
     width: 98%;
     padding: 10px;
     display: flex;
-    font-size: 18px;
+    font-size: 16px;
     margin: 0 auto;
     background-color: #4F4D8E;
 }
 .top>div{
     /*font-weight: bold;*/
-    font-size: 18px;
+    font-size: 16px;
     color: white;
 }
 
@@ -189,8 +189,8 @@ select:focus{
     display: flex;
     align-items: center;
     /* text-align: center; */
-    height: 67px;
-    font-size: 16px;
+    height: 50px;
+    font-size: 14px;
 }
 
 .post{
@@ -216,7 +216,7 @@ select:focus{
 }
 
 .user-list-bottom{
-    margin: 50px auto 0;
+    margin: 60px auto 0;
     display: flex;
     width: 900px;
 }

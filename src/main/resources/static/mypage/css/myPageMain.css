@@ -7,70 +7,22 @@
 }
 
 main{
-
     margin-top: 45px;
-
 }
 
 
 .mypage-container{
     width: 1024px;
     height: 100%;
-    /* border: 1px solid black;   */
     margin: 30px auto;
 
 }
 .section{
     margin: 0 auto;
-    /* border: 1px solid blue; */
     height: 100%;
-    /* width: 1024px; */
     display: flex;
-    /* background-color: #e6e6e6; */
-}
-.menu-bar{
-    /* display: flex;
-    flex-direction: column;
-    justify-content: center; */
-    /* border: 1px solid #bbb; */
-    /* background-color: red; */
-    height: 900px;
-    width: 180px;
-    margin-left: 10px;
-    margin-bottom: 15px;
 }
 
-.menu-bar>div{
-
-    margin: 30px auto;
-
-    text-align: center;
-
-    width: 150px;
-    height: 40px;
-    color: black;
-}
-
-
-
-.menu-bar>div>a:hover{
-    color: white;
-    background-color: #FF7000;
-    font-size: 15px;
-    font-family: 'S-CoreDream-3Light';
-}
-
-.menu-bar>div>a{
-    text-align: center;
-    display: block;
-    text-decoration: none;
-    line-height: 40px;
-    color: black;
-    font-family: 'S-CoreDream-3Light';
-
-    width: 90px;
-    font-size: 15px;
-}
 
 .page-view{
 
@@ -84,101 +36,27 @@ main{
     margin-left: 20px;
     height: 80px;
     line-height: 100px;
-    font-size: 35px;
-    font-family: 'Black Han Sans', sans-serif;
-    font-family: 'Dongle', sans-serif !important;
-    font-family: 'Gamja Flower', cursive;
-    font-family: 'IBM Plex Sans KR', sans-serif;
-    font-family: 'Single Day', cursive;
+    font-size: 25px;
+    font-family: 'S-CoreDream-3Light';
+
     color: #FF7000;
 }
-.user-area{
-    height: 100px;
-    border-bottom: 1px solid#bbb;
-    margin-top: 20px;
-
-}
-.user-area-container{
-    display: flex;
-    border-radius: 10%;
-    height: 50px;
-    margin-top: 5px;
-    width: 800px;
 
 
-}
-.userimg{
-    width: 60px;
-    margin-left: 100px;
-}
-.userimg>img{
-    border: 1px solid #bbb;
-    margin-top: 10px;
-    width: 70px;
-    border-radius: 10%;
 
-}
-.username{
-    margin-left: 30px;
-}
-.username>p:first-child{
-    margin-top: 10px;
-    font-family: 'Black Han Sans', sans-serif;
-    font-family: 'Dongle', sans-serif !important;
-    font-family: 'Gamja Flower', cursive;
-    font-family: 'IBM Plex Sans KR', sans-serif;
-    font-family: 'Single Day', cursive;
-    font-size: 30px;
-}
-.username>p:last-child{
-    margin-top: -10px;
-    font-family: 'Black Han Sans', sans-serif;
-    font-family: 'Dongle', sans-serif !important;
-    font-family: 'Gamja Flower', cursive;
-    font-family: 'IBM Plex Sans KR', sans-serif;
-    font-family: 'Single Day', cursive;
-    font-size: 20px;
-}
 
-.application{
-    margin-left: 400px;
-}
-.pagemove>span{
-    margin-top: 30px;
 
-}
-.material-symbols-outlined {
-    font-variation-settings:
-            'FILL' 0,
-            'wght' 400,
-            'GRAD' 0,
-            'opsz' 24;
-    cursor: pointer;
-    color: black;
-}
-.material-symbols-outlined:hover {
-    font-variation-settings:
-            'FILL' 0,
-            'wght' 400,
-            'GRAD' 0,
-            'opsz' 24;
-    cursor: pointer;
-    color: #FF7000;
-}
 .siterinfo-area{
     height: 250px;
     position: relative;
 }
 .siterinfo-area-container{
-    /*border: 1px solid #bbb;*/
     width: 800px;
     margin: 30px auto;
     height: 250px;
 
 }
-.siters-info{
 
-}
 .noneEmpArea{
     margin-top: 10px;
     width: 800px;
@@ -188,7 +66,7 @@ main{
     width: 300px;
     height: 250px;
 }
-/*수정 css*/
+/*나의 매칭 css*/
 .empArea{
     margin-top: 10px;
     border: 1px solid #bbb;
@@ -200,12 +78,10 @@ main{
 }
 .siterarea{
     display: flex;
-    /* width: 100px; */
 }
 
 .siterarea>li{
-    /* border-right: 1px solid black; */
-    /* width: 110px; */
+
     height: 60px;
 
 }
@@ -216,11 +92,10 @@ main{
     border-right: 1px solid #bbb;
 
 }
-.siterimg-line{
 
-}
 .siterimg-img{
     width: 70px;
+    height: 60px;
 }
 
 .siterimg-img>img{
@@ -233,23 +108,19 @@ main{
 
 .siter-info{
     width: 80px;
-    /* line-height: 85px; */
     border-right: 1px solid #bbb;
 
     text-align: center;
 }
 .siter-info>span{
     display: inline-block;
-    /* border: 1px solid black; */
     width: 70px;
-    /* line-height: 85px; */
     margin-top: 20px;
     font-size: 15px;
 
 }
 .siter-infos{
     width: 100px;
-    /* line-height: 85px; */
     text-align: center;
     border-right: 1px solid #bbb;
 
@@ -269,19 +140,14 @@ main{
 }
 .siter-infos>span{
     display: inline-block;
-    /* border: 1px solid black; */
     width: 100px;
-    /* line-height: 85px; */
     margin-top: 20px;
     font-size: 15px;
 
 }
 .siter-act{
     width: 230px;
-    /* text-align: center; */
     border-right: 1px solid #bbb;
-
-
 }
 
 .siter-act-detail>li{
@@ -289,8 +155,9 @@ main{
     width: 40px;
     text-align: center;
 }
-.siter-act-detail>li>img{
-    width: 30px;
+.siter-act-detail>li>div{
+    width: 40px;
+    height: 40px;
     background-color: #c0fff5;
     border-radius: 10px;
 }
@@ -302,11 +169,10 @@ main{
     font-size: 8px;
     font-weight: bold;
 }
-.siter-act>img{
+.siter-act>div>img{
     margin-left: 10px;
     margin-top: 5px;
     width: 50px;
-    /* border: 1px solid black; */
 }
 .siter-situation{
     width: 140px;
@@ -316,23 +182,18 @@ main{
 
 .siter-situation>span{
     display: inline-block;
-
     border-radius: 5px;
     margin-top: 10px;
     width: 110px;
     height: 40px;
     line-height: 40px;
     font-size: 25px;
-        border: 1px solid #FF7000;
-        text-align: center;
-        font-family: 'Black Han Sans', sans-serif;
-        font-family: 'Dongle', sans-serif !important;
-        font-family: 'Gamja Flower', cursive;
-        font-family: 'IBM Plex Sans KR', sans-serif;
-        font-family: 'Single Day', cursive;
-        color: #FF7000;
-        background-color:white;
-        cursor: pointer;
+    border: 1px solid #FF7000;
+    text-align: center;
+    font-family: 'Dongle', sans-serif !important;
+    color: #FF7000;
+    background-color:white;
+    cursor: pointer;
 }
 
 .review-area{
@@ -341,7 +202,6 @@ main{
     margin-top: 40px;
 }
 .reviewtab-area{
-    /*margin-top: 20px;*/
     padding: 10px;
     display: flex;
     padding-bottom: 20px;
@@ -358,31 +218,24 @@ main{
     margin: 5px;
     padding: 5px;
 }
+/*시터 이용 후기 css*/
 .review-list-area{
     height: 300px;
     width: 800px;
-
-
 }
 
 .table{
     width: 800px;
     border-collapse: collapse;
-
-
 }
 
 .top{
     border-bottom: 1px solid black;
-
 }
-
-
 
 .review-text>td{
     border-collapse: collapse;
     font-size: 13px;
-
     border-left: none;
     border-right: none;
     border-bottom: 1px solid #bbb;
@@ -396,7 +249,6 @@ main{
     width: 500px;
     font-weight: bold;
     text-align: start;
-
 }
 .review-title>a{
     color: black;
@@ -426,30 +278,43 @@ main{
     justify-content: center;
 }
 
+.page-num>a{
+    border: 1px solid black;
+    margin: 3px;
+    width: 15px;
+    border-radius: 5px;
+    font-size: 12px;
+    color: black;
+    display: inline-block;
+}
+.page-num>a:hover{
+    color: white;
+    border: 1px solid #ff7000;
+    background-color: #ff7000;
+}
 
-/*.next>a:hover{*/
-/*    background-color: #ff7000;*/
-/*    color: white;*/
-/*    border: 1px solid #ff7000;*/
-/*}*/
-.next1>a:hover{
+
+.active-num>a{
+    color: white;
+    background-color: #ff7000;
+    border: 1px solid #ff7000;
+
+}
+
+.next>a:hover{
     background-color: #ff7000;
     color: white;
     border: 1px solid #ff7000;
 }
-/*.prev>a:hover{*/
-/*    background-color: #ff7000;*/
-/*    color: white;*/
-/*    border: 1px solid #ff7000;*/
-/*}*/
-.prev1>a:hover{
+
+.prev>a:hover{
     background-color: #ff7000;
     color: white;
     border: 1px solid #ff7000;
 }
 
 
-
+/*이벤트 이용 후기 css*/
 .review-list-area1{
     height: 300px;
     width: 800px;
@@ -512,10 +377,8 @@ main{
 .page1{
     display: flex;
     margin: auto;
-    /* border: 1px solid rebeccapurple; */
     text-align: center;
     justify-content: center;
-    /* padding: 10px; */
     text-decoration: none;
 
 }
@@ -543,7 +406,19 @@ main{
 
 }
 
-/*모달 css*/
+.next1>a:hover{
+    background-color: #ff7000;
+    color: white;
+    border: 1px solid #ff7000;
+}
+
+.prev1>a:hover{
+    background-color: #ff7000;
+    color: white;
+    border: 1px solid #ff7000;
+}
+
+/*결제창 css*/
 .modal-pay{
     display: none;
     position: absolute;
@@ -582,28 +457,7 @@ main{
 }
 
 
-.page-num>a{
-    border: 1px solid black;
-    margin: 3px;
-    width: 15px;
-    border-radius: 5px;
-    font-size: 12px;
-    color: black;
-    display: inline-block;
-}
-.page-num>a:hover{
-    color: white;
-    border: 1px solid #ff7000;
-    background-color: #ff7000;
-}
 
-
-.active-num>a{
-    color: white;
-    background-color: #ff7000;
-    border: 1px solid #ff7000;
-
-}
 .payment-wrap{
 
     margin-top: 5px;
@@ -742,10 +596,11 @@ main{
 
 .product-info{
     list-style: none;
+    overflow-y: scroll;
+    height: 300px;
 }
 
 .product-info li{
-    /* border-left: 1px solid black; */
     margin-bottom: 8px;
 }
 
@@ -757,21 +612,15 @@ main{
 
 .product-detail p{
     margin-top: 5px;
-
 }
 
 .product-title{
     font-weight: bold;
-
 }
 
 .pay{
-    /* border: 1px solid black; */
-    /* width: 170px; */
-    /* float: right; */
     text-align: right;
 }
-
 .pay span:first-child{
     font-weight: bold;
     font-size: 16px;
@@ -794,9 +643,9 @@ main{
 }
 
 .total-area{
-    /* border: 1px solid black; */
+    border-top: 1px solid #bbb;
     height: 40px;
-    margin-top: 180px;
+    margin-top: 20px;
 }
 
 .check-area{
@@ -815,35 +664,5 @@ main{
     border: 1px solid #FF7000;
     border-radius: 10px;
 }
-.page-number>a{
-    border: 1px solid black;
-    margin: 3px;
-    width: 15px;
-    border-radius: 5px;
-    font-size: 12px;
-    color: black;
-    display: inline-block;
-}
 
-
-
-.pages-num>a{
-    border: 1px solid black;
-    margin: 3px;
-    width: 15px;
-    border-radius: 5px;
-    font-size: 12px;
-    color: black;
-    display: inline-block;
-}
-
-.pages-nums>s{
-    border: 1px solid black;
-    margin: 3px;
-    width: 15px;
-    border-radius: 5px;
-    font-size: 12px;
-    color: black;
-    display: inline-block;
-}
 

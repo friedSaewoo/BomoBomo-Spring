@@ -2,6 +2,7 @@ package com.example.bomobomo.service;
 
 
 import com.example.bomobomo.domain.dto.AddressDto;
+import com.example.bomobomo.domain.dto.EstContentDto;
 import com.example.bomobomo.domain.dto.MatchDto;
 import com.example.bomobomo.domain.dto.UserDto;
 import com.example.bomobomo.domain.vo.*;
@@ -22,14 +23,26 @@ public class MyPageService {
     private final MyPageMapper myPageMapper;
 
     // 시터이용 결제 전체 리스트 조회
-    public List<MyPageSitterVo> findSitterList(Criteria criteria, Long userNumer){
-        if (userNumer == null) {
+    public List<MyPageSitterVo> findSitterList(Criteria criteria, Long userNumber){
+        if (userNumber == null) {
             throw new IllegalArgumentException("회원정보 없음!");
         }
 
-        return myPageMapper.selectSitterList(criteria,userNumer);
+        List<MyPageSitterVo> myPageSitterVos=myPageMapper.selectSitterList(criteria,userNumber);
 
-    };
+        for(MyPageSitterVo myPageSitterVo : myPageSitterVos){
+            Long matchNum= myPageSitterVo.getMatchNumber();
+            List<EstContentDto> estContentDtos = myPageMapper.selectEst(matchNum);
+            myPageSitterVo.setEstList(estContentDtos);
+            int total=0;
+            for(EstContentDto estContentDto : myPageSitterVo.getEstList()){
+                total+=estContentDto.getEstPrice();
+            }
+            myPageSitterVo.setTotalPrice(total);
+        }
+        log.info("===========================토탈{}",myPageSitterVos);
+        return myPageSitterVos;
+    }
     //시터 결제 리스트 토탈 조회
     public int getTotal(Long userNumber){
         if (userNumber == null) {
@@ -115,23 +128,21 @@ public class MyPageService {
         }
     //
     //    //결제 정보
-        public MatchBuyInfoVo findMatchBuyInfo(Long userNumber){
+        public List<MatchBuyInfoVo> findMatchBuyInfo(Long userNumber){
             if (userNumber == null) {
                 throw new IllegalArgumentException("정보없음!");
 
             }
 
-            return Optional.ofNullable(myPageMapper.selectMatchBuyInfo(userNumber))
-                    .orElseThrow(()->{throw new IllegalArgumentException("없음");});
+            return myPageMapper.selectMatchBuyInfo(userNumber);
+
         }
         // 결제후 상태 수정
-        public MatchDto statusUpdate(Long matchNumber){
+        public void statusUpdate(Long matchNumber){
             if ( matchNumber == null) {
                 throw new IllegalArgumentException("회원 정보 없음!");
             }
-
-            return Optional.ofNullable(myPageMapper.update(matchNumber))
-                    .orElseThrow(()->{throw new IllegalArgumentException("일치하는 정보가 없습니다");});
+             myPageMapper.update(matchNumber);
         }
 
         // 마이페이지 회원정보 수정 회원 디폴트값 조회
@@ -155,6 +166,15 @@ public class MyPageService {
 
         }
 
+        // 유저정보 삭제
+        public void removeUser(Long userNumber){
+            if (userNumber == null) {
+                throw new IllegalArgumentException("회원 정보 없음!!");
+            }
+
+            myPageMapper.deleteUser(userNumber);
+
+        }
 
 
 }

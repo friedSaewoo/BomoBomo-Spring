@@ -87,12 +87,9 @@ main{
     margin-left: 20px;
     height: 80px;
     line-height: 100px;
-    font-size: 30px;
-    font-family: 'Black Han Sans', sans-serif;
-    font-family: 'Dongle', sans-serif !important;
-    font-family: 'Gamja Flower', cursive;
-    font-family: 'IBM Plex Sans KR', sans-serif;
-    font-family: 'Single Day', cursive;
+    font-size: 25px;
+    font-family: 'S-CoreDream-3Light';
+
     color: #FF7000;
 }
 .page-title>p>a{
@@ -183,20 +180,7 @@ input[type='file'] {
 
 
 
-.x-box::after {
-    content: 'x';
-    background-color: #FF7000;
-    color: white;
-    display: block;
-    position: absolute;
-    width: 15px;
-    height: 15px;
-    border-radius: 50%;
-    top: -5px;
-    right: -5px;
-    text-align: center;
-    line-height: 13px;
-}
+
 
 .grade-group{
 

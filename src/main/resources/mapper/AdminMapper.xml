@@ -9,6 +9,7 @@
     </select>
 <!--주간 가입수-->
     <select id="weeklyRegister" resultType="weeklyRegisterVo">
+-- 날짜범위생성
         WITH DateRange AS (
         SELECT TRUNC(SYSDATE) - LEVEL + 1 AS registration_date
         FROM DUAL
@@ -16,8 +17,10 @@
         CONNECT BY LEVEL <= 7
         ]]>
         )
+-- 생성한 날짜를 MM-DD형식으로 변환
         SELECT
         TO_CHAR(DateRange.registration_date, 'MM-DD') AS month_day,
+-- 일일유저등록수 반환, 없으면 0
         NVL(user_counts.daily_user_count, 0) AS daily_user_count
         FROM DateRange
         LEFT JOIN (

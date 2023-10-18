@@ -1,6 +1,7 @@
 package com.example.bomobomo.mapper;
 
 import com.example.bomobomo.domain.dto.AddressDto;
+import com.example.bomobomo.domain.dto.EstContentDto;
 import com.example.bomobomo.domain.dto.MatchDto;
 import com.example.bomobomo.domain.dto.UserDto;
 import com.example.bomobomo.domain.vo.*;
@@ -14,6 +15,9 @@ public interface MyPageMapper {
 
     // 시터 결제 내역 조회
     public List<MyPageSitterVo> selectSitterList(@Param("criteria")Criteria criteria,@Param("userNumber")Long userNumber);
+
+    // 시터 결제 내용 조회
+    public  List<EstContentDto> selectEst(Long matchNumber);
 
     // 시터 결제 내역 전체 페이지 구하기
     public int selectTotal(Long userNumber);
@@ -43,10 +47,10 @@ public interface MyPageMapper {
     public MatchUserInfoVo selectMatchUserInfo(Long userNumber);
 
     //결제 정보
-    public MatchBuyInfoVo selectMatchBuyInfo(Long userNumber);
+    public List<MatchBuyInfoVo> selectMatchBuyInfo(Long userNumber);
 
     //결제후 매칭되었던 데이터 상태 수정
-    public MatchDto update(Long matchNumber);
+    public void update(Long matchNumber);
 
 
     //회원정보수정 디폴트 값 조회(아이디 ,휴대전화)
@@ -54,5 +58,8 @@ public interface MyPageMapper {
 
     //회원정보수정 디폴트 값 조회(주솟)
     public AddressDto selectUserAddress(Long userNumber);
+    //회원정보 삭제
+    public void deleteUser(Long userNumber);
+
 
 }
