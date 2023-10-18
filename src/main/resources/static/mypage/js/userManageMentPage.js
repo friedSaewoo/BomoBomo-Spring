@@ -50,11 +50,7 @@ function addressFind() {
 
 //수정후 버튼 클릭시 이동
 
-    $('.updatebtn').on('click',function(){
 
-        //수정 완료가 두번 동작하고 페이지가 이동이 되는 이유 확인 필요
-
-    });
 
 
 //비밀번호 특수 문자 및 비밀번호 확인
@@ -68,11 +64,9 @@ function checkPw() {
     $('#userPassword').on('keyup',function () {
 
         if(pwCheck) {
-            // $('.labelPwOk').css("display", "block");
             $('.checkPw').css("display", "none");
             console.log("실행!");
         } else {
-            // $('.labelPwOk').css("display", "none");
             $('.checkPw').css("display", "block");
             console.log("altlfgod!")
         }

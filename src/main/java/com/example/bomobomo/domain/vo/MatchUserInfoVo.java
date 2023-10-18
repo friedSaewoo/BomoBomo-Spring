@@ -14,7 +14,7 @@ public class MatchUserInfoVo {
     private Long empNumber;
     private String status;
     private String userName;
-    private String userphone;
+    private String userPhone;
     private String userEmail;
     private String address;
     private String addressDetail;
