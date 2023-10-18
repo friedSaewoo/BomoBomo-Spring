@@ -35,12 +35,20 @@ public class AdminRestController {
     @Value("${actImg.dir}")
     private String actImgPath;
 
+    @GetMapping("/weeklyRegister")
+    public List<WeeklyRegisterVo> weeklyRegister(){
+        log.info("================컨트롤러도착");
+        List<WeeklyRegisterVo> weeklyList = adminService.weeklyRegister();
+        log.info("===============주간가입수 시기{}",weeklyList);
+        return weeklyList;
+    }
+
 
     @GetMapping("/user/list/{page}")
     public Map<String, Object> selectAllUsers(@PathVariable("page")int page, SearchVo searchVo) {
         Criteria criteria = new Criteria();
         criteria.setPage(page);
-        criteria.setAmount(10);
+        criteria.setAmount(15);
         PageVo pageVo = new PageVo(adminService.getTotalUsers(searchVo), criteria);
         List<UserListVo> adminUserList = adminService.selectAllUsers(criteria, searchVo);
 
@@ -55,7 +63,7 @@ public class AdminRestController {
     public Map<String, Object> selectAllEmp(@PathVariable("page")int page, SearchVo searchVo) {
         Criteria criteria = new Criteria();
         criteria.setPage(page);
-        criteria.setAmount(10);
+        criteria.setAmount(15);
         PageVo pageVo = new PageVo(adminService.getTotalEmp(searchVo), criteria);
         List<EmpDto> adminEmpList = adminService.selectAllEmp(criteria, searchVo);
 
@@ -70,7 +78,7 @@ public class AdminRestController {
     public Map<String, Object> selectAllNotice(@PathVariable("page")int page, SearchVo searchVo){
         Criteria criteria = new Criteria();
         criteria.setPage(page);
-        criteria.setAmount(10);
+        criteria.setAmount(15);
         PageVo pageVo = new PageVo(adminService.getTotalNotice(searchVo), criteria);
         List<NoticeDto> adminNoticeList = adminService.selectAllNotice(criteria, searchVo);
 
