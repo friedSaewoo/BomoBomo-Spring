@@ -161,6 +161,11 @@ main{
     background-color: #c0fff5;
     border-radius: 10px;
 }
+.siter-act-detail>li>div>img{
+    width: 100%;
+    height: 100%;
+
+}
 .siter-act-detail{
     display: flex;
     margin-top: 5px;
@@ -187,12 +192,27 @@ main{
     width: 110px;
     height: 40px;
     line-height: 40px;
-    font-size: 25px;
+    font-size: 13px;
     border: 1px solid #FF7000;
     text-align: center;
-    font-family: 'Dongle', sans-serif !important;
+    font-family: 'S-CoreDream-3Light';
     color: #FF7000;
     background-color:white;
+    cursor: pointer;
+}
+.siter-situation>span:hover{
+    display: inline-block;
+    border-radius: 5px;
+    margin-top: 10px;
+    width: 110px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 13px;
+    border: 1px solid #FF7000;
+    text-align: center;
+    font-family: 'S-CoreDream-3Light';
+    color: white;
+    background-color:#ff7000;
     cursor: pointer;
 }
 
@@ -227,12 +247,23 @@ main{
 .table{
     width: 800px;
     border-collapse: collapse;
+    padding: 25px;
 }
-
+.title-area{
+    width: 300px;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    text-align: left;
+}
 .top{
     border-bottom: 1px solid black;
 }
-
+.title-area>a{
+    color: black;
+}
 .review-text>td{
     border-collapse: collapse;
     font-size: 13px;
@@ -246,7 +277,8 @@ main{
     text-align: center;
 }
 .review-title{
-    width: 500px;
+    width: 550px;
+    border: none;
     font-weight: bold;
     text-align: start;
 }
@@ -264,6 +296,7 @@ main{
 }
 .review-data{
     width: 100px;
+    border: none;
     text-align: center;
 }
 
@@ -323,16 +356,25 @@ main{
 }
 
 .table1{
-
     width: 800px;
     border-collapse: collapse;
-
-
+    padding: 25px;
 }
 
-.review-text1>td{
+.title1-area{
+    width: 300px;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
 
-    border-collapse: collapse;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    text-align: left;
+}
+.title1-area>a{
+    color: black;
+}
+.review-text1>td{
     font-size: 13px;
     border-left: none;
     border-right: none;
@@ -345,32 +387,29 @@ main{
     text-align: center;
 }
 .review-title1{
-    width: 500px;
+    width: 550px;
     border: none;
     font-weight: bold;
     text-align: start;
+
 }
 
 .review-title1>a{
     color: black;
     font-weight: bold;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: normal;
-    text-align: left;
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;
-    display: -webkit-box;
+
     font-size: 13px;
 }
+
 .review-data1{
     width: 100px;
     border: none;
     text-align: center;
 }
-
+.top1{
+    border-bottom: 1px solid black;
+}
 .paging1{
-    /* border: 1px solid black; */
     margin-top: 10px;
 
 }
@@ -451,6 +490,7 @@ main{
     margin-top: 5px;
     height: 20px;
     line-height: 15px;
+    cursor: pointer;
 }
 .page-remove:hover{
     color: red;
@@ -658,11 +698,23 @@ main{
 .check-area button{
     height: 40px;
     width: 200px;
-    font-size: 20px;
+    font-size: 19px;
     background-color: white;
     color: #FF7000;
     border: 1px solid #FF7000;
     border-radius: 10px;
+    font-family: 'S-CoreDream-3Light';
 }
 
+
+.check-area button:hover{
+    height: 40px;
+    width: 200px;
+    font-size: 19px;
+    background-color: #ff7000;
+    color: white;
+    border: 1px solid #FF7000;
+    border-radius: 10px;
+    font-family: 'S-CoreDream-3Light';
+}
 
