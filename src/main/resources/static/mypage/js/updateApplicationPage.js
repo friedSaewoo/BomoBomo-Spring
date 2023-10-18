@@ -135,6 +135,12 @@ $(document).ready(function(){
                 return;
             }
         }else {
+<<<<<<< HEAD
+            $genderSecond.val('n');
+            console.log(  $genderSecond.val());
+
+        }          alert("저장이 완료되었습니다.");
+=======
            $genderSecond.val('n');
             console.log($genderSecond.val());
         }
@@ -143,6 +149,7 @@ $(document).ready(function(){
 
 
           alert("저장이 완료되었습니다.");
+>>>>>>> 1d5157f5ac4575d2b93dfc554a71d5f1f2f9bed9
          $('.check-area').submit();
     })
 });

@@ -195,14 +195,29 @@ main{
     font-weight: bold;
 }
 .userRemove{
-    border: 1px solid;
+    border: 1px solid #ff7000;
     float: right;
     margin-right: 95px;
     margin-top: 15px;
     padding: 8px;
     border-radius: 5px;
-}
-
-.removebtn{
+    color: #ff7000;
+    cursor: pointer;
     font-size: 15px;
 }
+
+.userRemove:hover{
+    border: 1px solid #ff7000;
+    float: right;
+    margin-right: 95px;
+    margin-top: 15px;
+    padding: 8px;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    background-color: #ff7000;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+

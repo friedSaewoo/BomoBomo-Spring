@@ -50,10 +50,18 @@ public interface SitterMapper {
 //    시터 평점
     public List<SitterBoardVo> sitterAvg();
 
+    //시터 활동 리스트
     public List<ActVo> sitterPossibleList(Long empNumber);
 
+    //시터 정보 + 이미지 리스트
     public List<EmpListVo> sitterActImg();
 
+    //고객이 선택한 시터 신청서 제출
     public void register(SubmitOrderDto submitOrderDto);
+
+    //신청서 제출 시터와 매칭
     public void sitterMatching(MatchDto matchDto);
+
+    //고객이 매칭중인 시터가 있는지 확인
+    public Long userMatchCheck(Long userNumber);
 }

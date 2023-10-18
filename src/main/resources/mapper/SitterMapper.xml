@@ -231,4 +231,10 @@
                         0
                        )
     </insert>
+
+    <select id="userMatchCheck" resultType="long">
+        SELECT COUNT(STATUS) CNT
+        FROM MATCHS
+        WHERE USER_NUMBER = #{userNumber} AND (STATUS = 0 or STATUS = 1)
+    </select>
 </mapper>

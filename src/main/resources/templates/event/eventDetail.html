@@ -18,13 +18,13 @@
 <!--헤더영역-->
 <div class="header" th:replace="fragments/header :: header">
 </div>
-    <div class="main" style="height: 1300px;" th:each="event:${detail}">
+    <div class="main" style="height: 100%;" th:each="event:${detail}">
         <div class="event-detail"  >
             <div class="event-detail-banner">
                 <img th:src="'/upload/' + ${event.eventImgUploadPath} + '/' + ${event.eventImgUuid} +'_' + ${event.eventImgName}">
             </div>
         </div>
-        <div class="event-detail-main">`
+        <div class="event-detail-main">
             <div class="event-detail-line">
                 프로그램 상세설명
             </div>

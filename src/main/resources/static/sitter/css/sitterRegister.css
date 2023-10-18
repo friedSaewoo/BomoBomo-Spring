@@ -91,26 +91,17 @@ main{
 }
 .page-title{
     /* border: 1px solid black; */
-    height: 80px;
+    height: 60px;
     border-bottom: 1px solid #bbb;
     padding-bottom: 5px;
 }
 .page-title>p{
     margin-left: 20px;
-    height: 80px;
-    /* border: 1px solid black; */
+    height: 60px;
     line-height: 100px;
-    font-size: 85px;
-    font-family: 'Black Han Sans', sans-serif;
-    font-family: 'Dongle', sans-serif !important;
-    font-family: 'Gamja Flower', cursive;
-    font-family: 'IBM Plex Sans KR', sans-serif;
-    font-family: 'Single Day', cursive;
-    /* font-family: 'IBM Plex Sans KR', sans-serif; */
+    font-size: 25px;
+    font-family: 'GmarketSansMedium';
     color: #FF7000;
-    /* padding: 100px; */
-    /* margin-bottom: 10px; */
-    /* border: 1px solid black; */
 }
 
 .page-title>p>a{
@@ -130,41 +121,44 @@ main{
     display: flex;
     justify-content: center;
     align-items: center;
+    text-align: right;
     font-size: 1.15em;
-
+    float: right;
 }
 
 /* 로고 설정 */
 .logo-container-text  h1:nth-child(1),
 .logo-container-text  h1:nth-child(2) {
-    color:#FF7000;
-    font-family: "Luckiest Guy", cursive;
+    /*color:#FF7000;*/
+    font-family: 'GmarketSansMedium';
     position: relative;
 
 
 }
 /* 로고 첫번째 BOMO 설정 */
-.logo-container-text  h1:nth-child(1) {
-    width: 130px;
+.logo-container-text h1:nth-child(1) {
+    width: 250px;
     top: 15px;
-    transform: rotateZ(-1deg);
+    /*transform: rotateZ(-1deg);*/
 
 }
 
 /* 로고 두번째 BOMO 설정 */
-.logo-container-text  h1:nth-child(2)  {
+.logo-container-text h1:nth-child(2)  {
     /* border: 2px solid blue; */
     right: -90px;
     top:-20px;
     transform: rotateZ(-8deg);
 }
-
+.sitterName {
+    text-align: right;
+}
 .logo-container-text h4{
     height: 60px;
+    margin-left: 5px;
     font-family: "Luckiest Guy", fantasy;
     line-height: 90px;
-    /* border: 1px solid black; */
-}
+    color: #bbb;}
 
 .check-area{
     /* border: 1px solid red; */
@@ -340,6 +334,9 @@ main{
     width: 590px;
     height: 300px;
     margin-top: 10px;
+    padding: 10px;
+    resize: none;
+    box-shadow: 0px 0px 3px 3px rgba(163,174,184,0.5);
 }
 
 
