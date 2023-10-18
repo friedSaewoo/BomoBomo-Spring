@@ -26,36 +26,36 @@ import java.util.List;
 public class SampleController {
 
 
-        private final ActImgService actImgService;
+    private final ActImgService actImgService;
 
-        @GetMapping("/checkbox")
-        public String move(){
-            return "/board/sample";
-        }
+    @GetMapping("/checkbox")
+    public String move(){
+        return "/board/sample";
+    }
 
-        @PostMapping("/choices")
-        public String sample(ActImgDto actImgDto, ActDto actDto, 
-                             @RequestParam("actType") String act,
-                             @RequestParam("actImg") List<MultipartFile> files){
+    @PostMapping("/choices")
+    public String sample(ActImgDto actImgDto, ActDto actDto,
+                         @RequestParam("actType") String act,
+                         @RequestParam("actImg") List<MultipartFile> files){
 
-            //활동명 가져와서 넣기
-            actDto.setActName(act);
-            log.info(act.toString());
-            //활동 테이블에 등록
-            actImgService.registerAct(actDto);
-
-
-            //활동 이미지 테이블에 넣을 actNumber 가져오기
-            actImgDto.setActNumber(actDto.getActNumber());
+        //활동명 가져와서 넣기
+        actDto.setActName(act);
+        log.info(act.toString());
+        //활동 테이블에 등록
+        actImgService.registerAct(actDto);
 
 
-            //활동이미지 테이블에 등록
-            actImgService.registerAndFileProc(actImgDto, files);
+        //활동 이미지 테이블에 넣을 actNumber 가져오기
+        actImgDto.setActNumber(actDto.getActNumber());
+
+
+        //활동이미지 테이블에 등록
+        actImgService.registerAndFileProc(actImgDto, files);
 
 
 
-            return "common/index";
-        }
+        return "common/index";
+    }
 
 
 }

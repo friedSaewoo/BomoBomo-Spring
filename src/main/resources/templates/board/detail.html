@@ -29,8 +29,14 @@
     </div>
     <div class="notice-detail-section">
       <div class="notice-detail-title">
-        <p th:text="${noticeDetail.noticeTitle}"></p>
-        <p th:text="${noticeDetail.noticeRegisterDate}"></p>
+        <p class="notice-title" th:text="${noticeDetail.noticeTitle}"></p>
+        <th:block th:if="${noticeDetail.noticeRegisterDate == noticeDetail.noticeModifyDate}">
+        <p class="notice-register-date" th:text="'작성일자 ' + ${noticeDetail.noticeRegisterDate}"></p>
+        </th:block>
+        <th:block th:if="${noticeDetail.noticeRegisterDate != noticeDetail.noticeModifyDate}">
+          <p class="notice-modify-date" th:text="'수정일자 ' + ${noticeDetail.noticeModifyDate}"></p>
+          <p class="notice-register-date" th:text="'작성일자 ' + ${noticeDetail.noticeRegisterDate}"></p>
+        </th:block>
       </div>
       <!-- 공지사항 내용 -->
       <div class="notice-detail-content">
