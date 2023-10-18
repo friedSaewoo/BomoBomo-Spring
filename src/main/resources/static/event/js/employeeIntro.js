@@ -104,11 +104,11 @@ function empViewList(result){
 
         <img
             src = "/events/empImg?fileFullPath=${r.empImgUploadPath + '/' + r.empImgUuid + '_' + r.empImgName}">
-
-    </div>
-    <div class="board-item-text">
         <h3 class="board-item-title" >${r.empName}</h3>
 <!--        <div class="board-item-author" >${r.empContent}</div>-->
+    </div>
+    <div class="board-item-text">
+
     </div>
 </div>
         
