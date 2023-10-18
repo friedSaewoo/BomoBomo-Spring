@@ -1,4 +1,4 @@
-import * as reply from './module/boardServiceReply.js';
+import * as reply from './module/boardReply.js';
 import * as commonReply from './module/Reply.js';
 import * as paging from './module/boardPagination.js';
 import {getTextLength} from "./module/Reply.js";
@@ -9,7 +9,7 @@ console.log(sitterBoardNumber);
 
 //댓글 첫화면 1페이지로 불러오기
 let page = 1;
-reply.getListPage({sitterBoardNumber,page:1}, showReply);
+reply.getListServiceReviewPage({sitterBoardNumber,page:1}, showReply);
 
 
 
@@ -17,7 +17,7 @@ reply.getListPage({sitterBoardNumber,page:1}, showReply);
 $(document).on('click', '.page-num a', function (e) {
     e.preventDefault();
     const page = $(this).data('pagenum');
-    reply.getListPage({sitterBoardNumber, page}, showReply);
+    reply.getListServiceReviewPage({sitterBoardNumber, page}, showReply);
 
 
     $('.page-num a').removeClass('active-page');
@@ -46,8 +46,8 @@ $('.btn-reply').on('click', function () {
         userNumber : loginNumber
     };
 
-    reply.addReply(replyObj, function(){
-        reply.getListPage({sitterBoardNumber,page:1}, showReply);
+    reply.addServiceReviewReply(replyObj, function(){
+        reply.getListServiceReviewPage({sitterBoardNumber,page:1}, showReply);
     });
     
     //등록버튼 누르면 글자수 카운팅 초기화 및 입력내용도 초기화
@@ -117,10 +117,10 @@ $('.review-reply').on('click', '.reply-remove-btn', function () {
     $('.reply-btns__box').addClass('none');
 
     let sitterCommentNumber = $(this).closest('.reply').find('.reply-remove-btn').data('deletenum');
-    reply.remove(sitterCommentNumber, function (){
+    reply.removeServiceReviewReply(sitterCommentNumber, function (){
         
         //댓글 삭제 시 페이징 1번으로 이동
-        reply.getListPage({sitterBoardNumber,page:1}, showReply);
+        reply.getListServiceReviewPage({sitterBoardNumber,page:1}, showReply);
     });
 });
 
@@ -150,8 +150,8 @@ $('.review-reply').on('click', '.reply-remove-btn', function () {
             sitterCommentContent : replyContent
         };
 
-        reply.modify(sitterCommentNumber, replyObj, function (){
-            reply.getListPage({sitterBoardNumber,page:page}, showReply);
+        reply.modifyServiceReviewReply(sitterCommentNumber, replyObj, function (){
+            reply.getListServiceReviewPage({sitterBoardNumber,page:page}, showReply);
         });
     });
 

@@ -5,6 +5,7 @@
 }
 
 .event-container {
+    min-width: 1024px;
     height: 100%;
     background-color: rgb(255, 255, 255);
     border: 2px solid black;
@@ -127,7 +128,7 @@
 .board-item-title {           /* 직원 이름 */
     font-size: 15px;
     margin-bottom: 9px;
-    text-align: center;
+    text-align: right;
 }
 
 .board-item-author {        /* 직원 소개 글 */

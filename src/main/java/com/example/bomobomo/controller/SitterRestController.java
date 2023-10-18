@@ -55,23 +55,6 @@ public class SitterRestController {
             //페이지
             sitterFindMap.put("pageInfo", new PageVo(sitterService.sitterTotalPeople(cityName, countryName, actNumber), criteria));
 
-//        if(city != null && cityAddr != null) {
-//
-//            System.out.println("주소 정보가 있음 : " + city + " --> " + cityAddr);
-//            //현재 출력된 시터 수
-//            int sitterAddrTotal = sitterService.sitterAddrTotal();
-//            criteria.setAmount(6);
-//            Map<String, Object> sitterAddrFindMap = new HashMap<>();
-////            model.addAttribute("sitterList", sitterService.addrCheck(criteria));
-////            model.addAttribute("pageInfo", new PageVo(sitterService.sitterTotalPeople(), criteria));
-//            sitterAddrFindMap.put("sitterTotal", sitterAddrTotal);
-//            //시터 정보 리스트
-//            sitterAddrFindMap.put("sitterList", sitterService.addrCheck(criteria));
-//            //페이지
-//            sitterAddrFindMap.put("pageInfo", new PageVo(sitterService.sitterAddrTotal(), criteria));
-//            return sitterAddrFindMap;
-//        }
-
             return sitterFindMap;
     }
 

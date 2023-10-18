@@ -10,7 +10,7 @@
 
 }
 /* 헤더 전체영역 컨테이너 */
-.header-contaier {
+.header-container {
     z-index:999999;
     margin: 0 auto;
     display: flex;
@@ -24,25 +24,43 @@
 }
 
 /* 로고 영역 */
+/* 로고 설정 */
 .logo-container {
 
     /* border: 2px solid red; */
     width: 200px;
     height: 60px;
     display: flex;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
     font-size: 1.15em;
 
 }
 
-/* 로고 설정 */
-.logo-container  h1 {
-    font-size: 1.3em;
+.logo-container ul {
+    display: flex;
+    align-items: center;
+    width: 180px;
+}
+.logo-container ul li {
+    width: 60px;
+}
+
+.logo {
+    width: 60px;
+}
+
+.logo img {
+    width: 70px;
+    height: 60px;
+}
+
+.logo-title h1{
+    font-size: 1.15em;
     letter-spacing: -2px;
-    color:#FF7000;
-    font-weight: bold;
-    font-family: GmarketSansMedium;
+    color: #000;
+    /*font-weight: bold;*/
+    font-family: 'KIMM_Bold';
     position: relative;
 
 
@@ -86,7 +104,7 @@
 .sub-menu dd> a {
     display: inline;
     height: 35px;
-    font-size: 0.8em;
+    font-size: 0.85em;
     color: rgb(122, 122, 122);
     font-weight: normal;
     font-family: GmarketSansMedium;
@@ -140,9 +158,9 @@
 
 .nav-container nav ul li> a,
 .right-menu-container ul li a {
-    font-size: 0.84em;
+    font-size: 0.9em;
     color: black;
     font-weight: bold;
-    font-family: S-CoreDream-3Light;
+    font-family: 'GmarketSansMedium';
 
 }

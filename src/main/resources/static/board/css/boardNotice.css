@@ -5,7 +5,7 @@
 
 /* 공지사항 영역  */
 .Notice-container {
-    font-family: 'IBM Plex Sans KR', sans-serif;
+    font-family: GmarketSansMedium;
     padding-top: 30px;
     width: 1024px;
 
@@ -84,20 +84,20 @@
 .notice-number,
 .notice-count{
     width: 50px;
-    font-size: 13px;
+    font-size: 12px;
 }
 
 .notice-title{
     padding-left: 20px;
     width: 600px;
-    font-size: 14px;
+    font-size: 13.5px;
 }
 .notice-writer{
     width: 130px;
-    font-size: 14px;
+    font-size: 13px;
 }
 .notice-register-date{
-    font-size: 14px;
+    font-size: 13px;
     width: 194px;
 }
 
@@ -152,21 +152,21 @@
 
 
 /*페이징처리*/
-.notice-pagenation-container {
+.notice-pagination-container {
     padding-top: 30px;
 }
-.notice-pagenation-container ul {
+.notice-pagination-container ul {
     display: flex;
     justify-content: center;
 }
 
-.notice-pagenation-container ul li {
+.notice-pagination-container ul li {
     text-align: center;
     width: 30px;
 
 }
 
-.notice-pagenation-container ul li a {
+.notice-pagination-container ul li a {
     color: black;
     display: block;
     font-size: 17px;

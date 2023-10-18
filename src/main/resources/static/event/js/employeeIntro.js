@@ -108,7 +108,7 @@ function empViewList(result){
     </div>
     <div class="board-item-text">
         <h3 class="board-item-title" >${r.empName}</h3>
-        <div class="board-item-author" >${r.empContent}</div>
+<!--        <div class="board-item-author" >${r.empContent}</div>-->
     </div>
 </div>
         
@@ -117,6 +117,11 @@ function empViewList(result){
         `;
     })
 
+
+
+    $('.board').html(text);
+    let page = $('.page-box')
+    updatePagination(result.pageInfo,page )
 }
 
 
