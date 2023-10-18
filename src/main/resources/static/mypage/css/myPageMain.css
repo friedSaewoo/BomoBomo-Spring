@@ -227,12 +227,23 @@ main{
 .table{
     width: 800px;
     border-collapse: collapse;
+    padding: 25px;
 }
-
+.title-area{
+    width: 300px;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    text-align: left;
+}
 .top{
     border-bottom: 1px solid black;
 }
-
+.title-area>a{
+    color: black;
+}
 .review-text>td{
     border-collapse: collapse;
     font-size: 13px;
@@ -246,7 +257,8 @@ main{
     text-align: center;
 }
 .review-title{
-    width: 500px;
+    width: 550px;
+    border: none;
     font-weight: bold;
     text-align: start;
 }
@@ -264,6 +276,7 @@ main{
 }
 .review-data{
     width: 100px;
+    border: none;
     text-align: center;
 }
 
@@ -323,16 +336,25 @@ main{
 }
 
 .table1{
-
     width: 800px;
     border-collapse: collapse;
-
-
+    padding: 25px;
 }
 
-.review-text1>td{
+.title1-area{
+    width: 300px;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
 
-    border-collapse: collapse;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    text-align: left;
+}
+.title1-area>a{
+    color: black;
+}
+.review-text1>td{
     font-size: 13px;
     border-left: none;
     border-right: none;
@@ -345,32 +367,29 @@ main{
     text-align: center;
 }
 .review-title1{
-    width: 500px;
+    width: 550px;
     border: none;
     font-weight: bold;
     text-align: start;
+
 }
 
 .review-title1>a{
     color: black;
     font-weight: bold;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: normal;
-    text-align: left;
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;
-    display: -webkit-box;
+
     font-size: 13px;
 }
+
 .review-data1{
     width: 100px;
     border: none;
     text-align: center;
 }
-
+.top1{
+    border-bottom: 1px solid black;
+}
 .paging1{
-    /* border: 1px solid black; */
     margin-top: 10px;
 
 }
@@ -451,6 +470,7 @@ main{
     margin-top: 5px;
     height: 20px;
     line-height: 15px;
+    cursor: pointer;
 }
 .page-remove:hover{
     color: red;
