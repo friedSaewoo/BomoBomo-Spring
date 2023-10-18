@@ -10,7 +10,7 @@
 .review-banner {
     position: relative;
     width: 1024px;
-    height: 220px;
+    height: 350px;
     margin: 0 auto;
     font-family: GmarketSansMedium;
 
@@ -60,7 +60,7 @@
 .review-container {
     width: 1024px;
     margin: 0 auto;
-    padding-top: 0px;
+    padding-top: 60px;
 }
 
 .review-title-container {
@@ -78,24 +78,27 @@
     font-family: GmarketSansMedium;
     font-size: 13px;
     width: 600px;
+    padding-top: 8px;
 }
 
 .review-section-title ul {
     width: 1024px;
     display: flex;
+    padding:5px 0px 5px 0px;
 }
 
 .review-section-title ul li {
     font-family: GmarketSansMedium;
-    width: 512px;
+    width: 100%;
     font-size: 0.9em;
     height: 35px;
+    border: 1px solid gray;
 
 
 }
 .review-section-title ul li a {
     /*letter-spacing: 0px;*/
-    width: 512px;
+    width: 100%;
     height: 35px;
     display: flex;
     justify-content: center;

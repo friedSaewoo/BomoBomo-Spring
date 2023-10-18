@@ -24,6 +24,7 @@
 }
 
 /* 로고 영역 */
+/* 로고 설정 */
 .logo-container {
 
     /* border: 2px solid red; */
@@ -36,13 +37,30 @@
 
 }
 
-/* 로고 설정 */
-.logo-container  h1 {
-    font-size: 1.3em;
+.logo-container ul {
+    display: flex;
+    align-items: center;
+    width: 180px;
+}
+.logo-container ul li {
+    width: 60px;
+}
+
+.logo {
+    width: 60px;
+}
+
+.logo img {
+    width: 70px;
+    height: 60px;
+}
+
+.logo-title h1{
+    font-size: 1.15em;
     letter-spacing: -2px;
-    color:#FF7000;
-    font-weight: bold;
-    font-family: GmarketSansMedium;
+    color: #000;
+    /*font-weight: bold;*/
+    font-family: 'KIMM_Bold';
     position: relative;
 
 
@@ -143,6 +161,6 @@
     font-size: 0.9em;
     color: black;
     font-weight: bold;
-    font-family: S-CoreDream-3Light;
+    font-family: 'GmarketSansMedium';
 
 }
