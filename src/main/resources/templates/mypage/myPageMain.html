@@ -95,8 +95,10 @@
                                         <li class="siter-act">
                                             <ul class="siter-act-detail">
                                                 <li th:each="empActItemImg :${empActItemImgList}">
-                                                    <img th:src="@{/myPages/empActimg(fileFullPath=${empActItemImg.actImgUploadPath} + '/' + ${empActItemImg.actImgUuid} + '_' + ${empActItemImg.actImgName})}">
-                                                    <span th:text="${empActItemImg.actName}" class="empActName"></span>
+                                                    <div class="empActarea">
+                                                        <img th:src="@{/myPages/empActimg(fileFullPath=${empActItemImg.actImgUploadPath} + '/' + ${empActItemImg.actImgUuid} + '_' + ${empActItemImg.actImgName})}">
+                                                    </div>
+                                                        <span th:text="${empActItemImg.actName}" class="empActName"></span>
                                                 </li>
 
                                             </ul>

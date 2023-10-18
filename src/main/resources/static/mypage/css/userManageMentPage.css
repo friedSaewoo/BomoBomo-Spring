@@ -124,6 +124,18 @@ main{
     font-weight: bold;
     border-radius: 5px;
 }
+
+.addressnumbtn:hover{
+    width: 70px;
+    height: 40px;
+    background-color: #ff7000;
+    border: 1.5px solid #ff7000;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
 .addressInput{
     margin-top: 25px;
     width: 400px;
@@ -181,4 +193,16 @@ main{
     background-color: #ff7000;
     color: white;
     font-weight: bold;
+}
+.userRemove{
+    border: 1px solid;
+    float: right;
+    margin-right: 95px;
+    margin-top: 15px;
+    padding: 8px;
+    border-radius: 5px;
+}
+
+.removebtn{
+    font-size: 15px;
 }

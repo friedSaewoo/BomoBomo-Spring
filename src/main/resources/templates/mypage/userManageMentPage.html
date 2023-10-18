@@ -22,7 +22,7 @@
       <div class="page-view">
         <div class="page-title">
           <p>
-            <a href="/mypage/main">회원정보수정</a>
+            <a href="/mypage/main">계정관리</a>
           </p>
         </div>
         <form action="/mypage/userManage" method="post" class="udateArea">
@@ -31,12 +31,7 @@
             <div class="manageGroup">
               <div class="updateText">
                 <div class="userInfo-area">
-                  <!-- <img src="/user/img/userId.png"> -->
-
                   <input class="userInfo" type="text" th:value="${user.userId}" disabled>
-                  <!-- <label>로그인 X</label> -->
-
-                  <!--아이디 수정-->
                 </div>
                 <div class="userInfo-area">
 
@@ -79,10 +74,13 @@
 
             <div class="buttonJoin">
               <button  class="updatebtn">수정완료</button>
+
             </div>
           </div>
         </form>
-      </div>
+        <div class="userRemove">
+          <a class="removebtn" th:data-number="${user.userNumber}">회원탈퇴</a>
+        </div>
     </div>
   </div>
 </main>
