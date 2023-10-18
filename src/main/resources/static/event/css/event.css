@@ -9,6 +9,7 @@
     height: 400px;
     max-height: 650px;
     position: relative;
+    min-width: 1024px;
 }
 
 .event-banner-container img {
@@ -20,6 +21,7 @@
 }
 
 .event-letter-container {
+
     width: 100%;
     height: 100%;
     box-sizing: border-box; /* 패딩 처리된 부분 영역이 안커지게 만듬*/
@@ -32,16 +34,17 @@
     padding: 20px; /* 텍스트 주위에 여백 추가 (원하는 크기로 변경) */
     color: white; /* 텍스트 색상 설정 (원하는 색상으로 변경) */
     font-size: 24px;
+
 }
 
 .event-letter {
     margin: 0 auto;
-    width: 1024px;
+    width: 950px;
     height: 100%;
 }
 
 .event-letter dl{
-    font-size: 19px;
+    font-size: 18px;
     line-height: 1.8;
     font-family: GmarketSansMedium;
 }
@@ -58,6 +61,7 @@
     width: 1024px;
     top: 35px;
     font-size: 40px;
+    min-width: 1024px;
 }
 
 .event-goods-contents {
@@ -72,6 +76,7 @@
 }
 
 .swiper-container {
+    min-width: 1024px;
     width: 1024px;
     min-width: 1024px;
     height: 350px;
@@ -96,7 +101,7 @@
 .event-title-tap h2 {
     text-align: center;
     font-family: GmarketSansMedium;
-    font-size: 28px;
+    font-size: 26px;
 
 }
 
