@@ -161,6 +161,11 @@ main{
     background-color: #c0fff5;
     border-radius: 10px;
 }
+.siter-act-detail>li>div>img{
+    width: 100%;
+    height: 100%;
+
+}
 .siter-act-detail{
     display: flex;
     margin-top: 5px;
@@ -187,12 +192,27 @@ main{
     width: 110px;
     height: 40px;
     line-height: 40px;
-    font-size: 25px;
+    font-size: 13px;
     border: 1px solid #FF7000;
     text-align: center;
-    font-family: 'Dongle', sans-serif !important;
+    font-family: 'S-CoreDream-3Light';
     color: #FF7000;
     background-color:white;
+    cursor: pointer;
+}
+.siter-situation>span:hover{
+    display: inline-block;
+    border-radius: 5px;
+    margin-top: 10px;
+    width: 110px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 13px;
+    border: 1px solid #FF7000;
+    text-align: center;
+    font-family: 'S-CoreDream-3Light';
+    color: white;
+    background-color:#ff7000;
     cursor: pointer;
 }
 
@@ -678,11 +698,23 @@ main{
 .check-area button{
     height: 40px;
     width: 200px;
-    font-size: 20px;
+    font-size: 19px;
     background-color: white;
     color: #FF7000;
     border: 1px solid #FF7000;
     border-radius: 10px;
+    font-family: 'S-CoreDream-3Light';
 }
 
+
+.check-area button:hover{
+    height: 40px;
+    width: 200px;
+    font-size: 19px;
+    background-color: #ff7000;
+    color: white;
+    border: 1px solid #FF7000;
+    border-radius: 10px;
+    font-family: 'S-CoreDream-3Light';
+}
 

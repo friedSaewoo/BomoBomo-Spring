@@ -56,46 +56,9 @@ $('.reviewtab2').on('click',function(){
     console.log(2);
 })
 
-// 결제대기중 버튼 클릭이벤트
-$('.siter-situation span').on('mouseover',function(){
-    $(this).css('backgroundColor','#FF7000');
-    $(this).css('color','white');
-})
-
-$('.siter-situation span').on('mouseout',function(){
-    $(this).css('backgroundColor','white');
-    $(this).css('color','#FF7000');
-})
-
-// 결제 페이지 클릭 버튼 이벤트
-$('.btn').on('mouseover',function(){
-    $(this).css('backgroundColor','#FF7000');
-    $(this).css('color','white');
-})
-
-$('.btn').on('mouseout',function(){
-    $(this).css('backgroundColor','white');
-    $(this).css('color','#FF7000');
-})
-
-//결제 대기 클릭시 결제 페이지 작동
-
-$('.siter-situation span').on('click',function(){
-    let datastatus=$('.status').data('statusnum');
-    // console.log(datastatus);
-    if(datastatus == 0){
-        console.log(datastatus);
-        return;
-    }
-    $('.modal-pay').css('display','block');
-    $('body').css('backgroundColor','rgba(0,0,0,0.5)');
 
 
 
-
-
-
-})
 
 
 //결제하기 결제하기 클릭시 카카오페이로 이동하는 js
@@ -452,12 +415,28 @@ function numberWithCommas(price) {
     return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
+//x버튼 클릭시 모달창 없애기
 $('.page-remove').on('click',function (){
-    $('.modal-pay').css('display','none');
+    $('.modal-pay').fadeOut(300);
+    // $('.modal-pay').css('display','none');
+
     console.log("실행!!!");
     $('body').css('backgroundColor','white');
     console.log("실행!!!");
 })
 
+//결제 대기 클릭시 결제 페이지 작동
 
+$('.siter-situation span').on('click',function(){
+    let datastatus=$('.status').data('statusnum');
+    // console.log(datastatus);
+    if(datastatus == 0){
+        console.log(datastatus);
+        return;
+    }
+    $('.modal-pay').fadeIn(300);
+    // $('.modal-pay').css('display','block');
+    $('body').css('backgroundColor','lightgray');
+
+})
 
