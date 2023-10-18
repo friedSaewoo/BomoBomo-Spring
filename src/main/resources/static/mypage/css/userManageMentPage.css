@@ -8,91 +8,27 @@
 
 
 main{
-    /* border-top: 1px solid #bbb; */
-    /* background-color: aquamarine; */
     margin-top: 45px;
-    /* background-color: #f3eeee; */
 }
 
 .user-container{
     width: 1024px;
     height: 100%;
-    /* border: 1px solid black;   */
     margin: 30px auto;
 
 }
 .section{
     margin: 0 auto;
-    /* border: 1px solid blue; */
     height: 100%;
-    /* width: 1024px; */
     display: flex;
-    /* background-color: #e6e6e6; */
-}
-.menu-bar{
-    /* display: flex;
-    flex-direction: column;
-    justify-content: center; */
-    /* border: 1px solid #bbb; */
-    /* background-color: red; */
-    height: 900px;
-    width: 180px;
-    margin-left: 10px;
-    margin-bottom: 15px;
-}
-/* .menu-bar>div:first-child{
-  width: 180px;
-  height: 100px;
-  margin: 0;
-  border: none;
-} */
-/* .logo-img>img{
-    height: 100px;
-    width: 170px;
-} */
-.menu-bar>div{
-    /* background-color: rgb(255, 255, 255); */
-    /* background-color: black; */
-    margin: 30px auto;
-    /* border: 1px solid #bbb; */
-    text-align: center;
-    /* border-radius: 10%; */
-    width: 150px;
-    height: 40px;
-    color: black;
 }
 
-
-
-.menu-bar>div>a:hover{
-    color: white;
-    background-color: #FF7000;
-    font-size: 15px;
-    font-family: 'S-CoreDream-3Light';
-}
-
-
-.menu-bar>div>a{
-    text-align: center;
-    display: block;
-    text-decoration: none;
-    line-height: 40px;
-    color: black;
-    font-family: 'S-CoreDream-3Light';
-
-    width: 90px;
-    font-size: 15px;
-}
 
 .page-view{
-    /* border: 1px solid black; */
     width: 800px;
-    /* background-color: blue; */
-    /* margin-top: 5px; */
     margin-left: 20px;
 }
 .page-title{
-    /* border: 1px solid black; */
     height: 80px;
     border-bottom: 1px solid #bbb;
     padding-bottom: 5px;
@@ -101,25 +37,17 @@ main{
     margin-left: 20px;
     height: 80px;
     line-height: 100px;
-    font-size: 50px;
-    font-family: 'Black Han Sans', sans-serif;
-    font-family: 'Dongle', sans-serif !important;
-    font-family: 'Gamja Flower', cursive;
-    font-family: 'IBM Plex Sans KR', sans-serif;
-    font-family: 'Single Day', cursive;
-    color: #FF7000;
+    font-size: 25px;
+    font-family: 'S-CoreDream-3Light';
 
+    color: #FF7000;
 }
 
 .page-title>p>a{
     text-decoration: none;
     color: #FF7000;
-    font-size: 35px;
 }
 
-.manageGroup{
-
-}
 
 .user{
     box-shadow: 0px 0px 3px 3px rgba(163,174,184,0.5);
@@ -130,13 +58,11 @@ main{
 
 .updateText{
     margin-top: 40px;
-    /* border: 1px solid black; */
     height: 550px;
     border-collapse: collapse ;
 }
 
 .checkPw{
-    /* border: 1px solid black; */
     width: 300px;
     margin-top: 5px;
     margin-left: 100px;
@@ -147,7 +73,6 @@ main{
     display: none;
 }
 .checkPws{
-    /* border: 1px solid black; */
     display: none;
     width: 300px;
     margin-top: 5px;
@@ -158,13 +83,10 @@ main{
     font-style: italic;
 }
 .userInfo-area{
-    /* border: 1px solid black; */
     height: 50px;
     text-align: center;
-    /* width: 80px; */
     margin-top: 20px;
     position: relative;
-    /* border-collapse: collapse ; */
 }
 .userInfo{
     width: 400px;
@@ -177,7 +99,6 @@ main{
 .userInfo-area img{
     position : absolute;
     width: 20px;
-    /* width: 50px; */
     top: 30px;
     left: 190px;
     margin: 0;
@@ -185,7 +106,6 @@ main{
 }
 
 .addressnum{
-    /* float: left; */
     margin-left: -175px;
     margin-top: 45px;
     width: 150px;
@@ -204,6 +124,18 @@ main{
     font-weight: bold;
     border-radius: 5px;
 }
+
+.addressnumbtn:hover{
+    width: 70px;
+    height: 40px;
+    background-color: #ff7000;
+    border: 1.5px solid #ff7000;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
 .addressInput{
     margin-top: 25px;
     width: 400px;
@@ -261,4 +193,16 @@ main{
     background-color: #ff7000;
     color: white;
     font-weight: bold;
+}
+.userRemove{
+    border: 1px solid;
+    float: right;
+    margin-right: 95px;
+    margin-top: 15px;
+    padding: 8px;
+    border-radius: 5px;
+}
+
+.removebtn{
+    font-size: 15px;
 }

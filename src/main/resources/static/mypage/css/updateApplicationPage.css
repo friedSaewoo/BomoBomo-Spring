@@ -29,61 +29,6 @@ main{
     display: flex;
     /* background-color: #e6e6e6; */
 }
-.menu-bar{
-    /* display: flex;
-    flex-direction: column;
-    justify-content: center; */
-    /* border: 1px solid #bbb; */
-    /* background-color: red; */
-    height: 900px;
-    width: 180px;
-    margin-left: 10px;
-    margin-bottom: 15px;
-}
-/* .menu-bar>div:first-child{
-  width: 180px;
-  height: 100px;
-  margin: 0;
-  border: none;
-} */
-/* .logo-img>img{
-    height: 100px;
-    width: 170px;
-} */
-.menu-bar>div{
-    /* background-color: rgb(255, 255, 255); */
-    /* background-color: black; */
-    margin: 30px auto;
-    /* border: 1px solid #bbb; */
-    text-align: center;
-    /* border-radius: 10%; */
-    width: 150px;
-    height: 40px;
-    color: black;
-
-}
-
-
-
-.menu-bar>div>a:hover{
-    color: white;
-    background-color: #FF7000;
-    font-size: 15px;
-    font-family: 'S-CoreDream-3Light';
-}
-
-
-.menu-bar>div>a{
-    text-align: center;
-    display: block;
-    text-decoration: none;
-    line-height: 40px;
-    color: black;
-    font-family: 'S-CoreDream-3Light';
-
-    width: 90px;
-    font-size: 15px;
-}
 
 .page-view{
     width: 800px;
@@ -99,14 +44,10 @@ main{
     margin-left: 20px;
     height: 80px;
     line-height: 100px;
-    font-size: 30px;
-    font-family: 'Black Han Sans', sans-serif;
-    font-family: 'Dongle', sans-serif !important;
-    font-family: 'Gamja Flower', cursive;
-    font-family: 'IBM Plex Sans KR', sans-serif;
-    font-family: 'Single Day', cursive;
-    color: #FF7000;
+    font-size: 25px;
+    font-family: 'S-CoreDream-3Light';
 
+    color: #FF7000;
 }
 
 .page-title>p>a{
@@ -120,9 +61,8 @@ main{
 
 }
 
-.logo-container-text {
-    /* border: 2px solid red; */
-    width: 890px;
+.container-text {
+    width: 800px;
     height: 90px;
     display: flex;
     justify-content: center;
@@ -130,7 +70,7 @@ main{
 
 }
 
-.logo-container-text h4{
+.container-text h4{
     height: 60px;
     font-family: "Luckiest Guy", fantasy;
     line-height: 90px;
@@ -301,6 +241,8 @@ main{
     margin-left: 5px;
     resize: none;
     box-shadow: 0px 0px 3px 3px rgba(163,174,184,0.5);
+    padding: 10px;
+    box-sizing: border-box;
 }
 
 

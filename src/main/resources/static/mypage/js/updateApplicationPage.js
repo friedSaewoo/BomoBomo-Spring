@@ -28,6 +28,7 @@ $(document).ready(function() {
 //남자, 여자 선택시 색상 변화
 $(document).ready(function(){
 
+
     let $genderbox = $('.gender-box');
 // console.log("안ㄴ여!");
     $genderbox.on('click',function(e){
@@ -133,7 +134,14 @@ $(document).ready(function(){
                 alert("성별을 선택하세요!");
                 return;
             }
+        }else {
+           $genderSecond.val('n');
+            console.log($genderSecond.val());
         }
+
+
+
+
           alert("저장이 완료되었습니다.");
          $('.check-area').submit();
     })

@@ -107,7 +107,7 @@ $("#check_module").click(function () {
 
     // DOM객체를 가져온다
         let estTitles = $('.estTitle').text();
-        let money = $('.totalMoney').text();
+        let amount = $('.totalMoney').text();
         let usernames =$('.user-name').text();
         let addressinfo = $('.address-info').text();
         let userNumber =$('.userinfo-userNumber').val();
@@ -126,11 +126,11 @@ $("#check_module").click(function () {
          *  https://docs.iamport.kr/implementation/payment
          *  위에 url에 따라가시면 넣을 수 있는 방법이 있습니다.
          */
-        name: '주문명 : ' + estTitles,
+        name: '서비스 이용료  ',
         // 결제창에서 보여질 이름
         // name: '주문명 : ${auction.a_title}',
         // 위와같이 model에 담은 정보를 넣어 쓸수도 있습니다.
-        amount: money,
+        amount: amount,
         // amount: ${bid.b_bid},
         // 가격
         buyer_name: usernames,
@@ -149,7 +149,7 @@ $("#check_module").click(function () {
                 contentType : 'application/json; charset=utf-8'
             });
 
-
+            window.location.href='/mypage/buy';
             // success.submit();
             // 결제 성공 시 정보를 넘겨줘야한다면 body에 form을 만든 뒤 위의 코드를 사용하는 방법이 있습니다.
             // 자세한 설명은 구글링으로 보시는게 좋습니다.
@@ -381,35 +381,52 @@ function purchasePage(result){
 
     $('.user-detail').html(text);
 
-    let texts = ``;
 
     let buyInfos =result.buyInfo;
+    let texts = ``;
+    buyInfos.forEach( buy => {
 
-    texts = `    <li class="product-detail">
+    texts += `    <li class="product-detail">
                                                     <p class="product-title">
                                                         <span>[보모보모]</span>
-                                                        <span class="estTitle">${buyInfos.estTitle}</span>
+                                                        <span class="estTitle">${buy.estTitle}</span>
                                                     </p>
                                                     <p class="usetime">
                                                         <span>활동 :</span>
-                                                        <span>${buyInfos.estContent}</span>
+                                                        <span>${buy.estContent}</span>
                                                     </p>
                                                     <p class="pay">
                                                         <span>결제 금액</span>
-                                                        <span class="money">${buyInfos.estPrice}원</span>
+                                                        <span class="money" data-price="${buy.estPrice}">${numberWithCommas(buy.estPrice)}원</span>
                                                     </p>
-                                                </li>
+                   </li>
             
             
                 `;
 
-    $('.product-info').html(texts);
 
+            $('.product-info').html(texts);
+
+
+        })
+
+    let prices = $('.money');
+    let total=0;
+    for (let i = 0; i < prices.length; i++) {
+
+        let price = $(prices[i]).data("price");
+        console.log(price);
+        total += price;
+
+    }
+    console.log(total);
+    let totalText=numberWithCommas(total);
+    console.log(totalText);
     let texTs =``;
     texTs=`
               <p class="total-payment">
                                                 <span>최종 결제 금액 : </span>
-                                                <span class="totalMoney">${buyInfos.estPrice}원</span>
+                                                <span class="totalMoney">${totalText}원</span>
                                             </p>
     
     `;
@@ -418,17 +435,6 @@ function purchasePage(result){
 
 
 
-    let priceElement = $('.money');
-    let priceText = priceElement.text().replace(/\D/g, ''); // 가격에서 숫자만 추출합니다.
-
-    // 쉼표(,)를 추가한 형식으로 가격을 변경합니다.
-    let formattedPrice = numberWithCommas(priceText);
-    priceElement.text(formattedPrice+'원');
-
-    let totalPrice =$('.totalMoney');
-    let totalPrices =$('.totalMoney').text().replace(/\D/g, '');
-    let formattedtotal = numberWithCommas(totalPrices);
-    totalPrice.text(formattedtotal+'원');
 }
 $('.check-btn').on('click',  function (){
     myPage.buyInfo(purchasePage);
