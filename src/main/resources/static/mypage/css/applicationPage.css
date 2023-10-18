@@ -8,66 +8,21 @@
 
 
 main{
-    /* border-top: 1px solid #bbb; */
-    /* background-color: aquamarine; */
     margin-top: 45px;
-    /* background-color: #f3eeee; */
 }
 
 .user-container{
     width: 1024px;
     height: 100%;
-    /* border: 1px solid black;   */
     margin: 30px auto;
 
 }
 .section{
     margin: 0 auto;
-    /* border: 1px solid blue; */
     height: 100%;
-    /* width: 1024px; */
     display: flex;
-    /* background-color: #e6e6e6; */
-}
-.menu-bar{
-
-    height: 900px;
-    width: 180px;
-    margin-left: 10px;
-    margin-bottom: 15px;
 }
 
-.menu-bar>div{
-
-    margin: 30px auto;
-    text-align: center;
-    width: 150px;
-    height: 40px;
-    color: black;
-
-}
-
-
-
-.menu-bar>div>a:hover{
-    color: white;
-    background-color: #FF7000;
-    font-size: 15px;
-    font-family: 'S-CoreDream-3Light';
-}
-
-
-.menu-bar>div>a{
-    text-align: center;
-    display: block;
-    text-decoration: none;
-    line-height: 40px;
-    color: black;
-    font-family: 'S-CoreDream-3Light';
-
-    width: 90px;
-    font-size: 15px;
-}
 
 .page-view{
     width: 800px;
@@ -82,12 +37,9 @@ main{
     margin-left: 20px;
     height: 80px;
     line-height: 100px;
-    font-size: 30px;
-    font-family: 'Black Han Sans', sans-serif;
-    font-family: 'Dongle', sans-serif !important;
-    font-family: 'Gamja Flower', cursive;
-    font-family: 'IBM Plex Sans KR', sans-serif;
-    font-family: 'Single Day', cursive;
+    font-size: 25px;
+    font-family: 'S-CoreDream-3Light';
+
     color: #FF7000;
 }
 
@@ -97,12 +49,10 @@ main{
 }
 .application-page{
     margin-top: 10px;
-
-
 }
 
-.logo-container-text {
-    width: 890px;
+.container-text {
+    width: 800px;
     height: 90px;
     display: flex;
     justify-content: center;
@@ -112,7 +62,7 @@ main{
 }
 
 
-.logo-container-text h4{
+.container-text h4{
     height: 60px;
     font-family: "Luckiest Guy", fantasy;
     line-height: 90px;
@@ -148,7 +98,7 @@ main{
 
 
 .gender-text p{
-    font-size: 22px;
+    font-size: 16px;
     font-weight: bold;
     color: black;
     width: 600px;
@@ -282,6 +232,8 @@ main{
     margin-left: 5px;
     resize: none;
     box-shadow: 0px 0px 3px 3px rgba(163,174,184,0.5);
+    padding: 10px;
+    box-sizing: border-box;
 }
 
 

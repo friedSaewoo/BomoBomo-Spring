@@ -228,8 +228,10 @@ input:focus{
 
 .write-bottom{
     display: flex;
+    align-items: center;
+    height: 50px;
     width: 91%;
-    margin: 20px auto 0;
+    margin: 0px auto 0;
 }
 
 .write-btn{
@@ -248,7 +250,7 @@ input:focus{
     border-radius: 10%;
 }
 .write-btn.write{
-    margin-left: 30px;
+    margin-left: auto;
     width: 70px;
     height: 35px;
     background-color:#4F4D8E;

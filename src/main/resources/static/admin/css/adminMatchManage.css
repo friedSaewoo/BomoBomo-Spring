@@ -97,6 +97,7 @@ body{
 
 .main-contents{
     margin-top: 5px;
+    width: 100%;
     height: 100%;
 }
 .admin-name{
@@ -132,11 +133,11 @@ body{
 .match-manage-container{
     display: flex;
     flex-direction: column;
-    width: 90%;
+    width: 96%;
     height: 85%;
     margin: 30px auto 0px;
     background-color: white;
-    box-shadow: 3px 3px 3px 3px gray;
+    /*box-shadow: 3px 3px 3px 3px gray;*/
     border:3px solid white;
 }
 .info-container{
@@ -201,14 +202,16 @@ body{
     cursor: pointer;
     font-size: 15px;
 }
-.status-manage{
-    padding-top: 10px;
-    margin-left: 40px;
+.match-status{
+    display: flex;
 }
+.status-manage{
+}
+
 #status{
-    font-size: 20px;
-    width: 120px;
-    height: 30px;
+    font-size: 14px;
+    width: 100px;
+    height: 20px;
 }
 #status:focus{
     outline: none;
@@ -242,4 +245,84 @@ body{
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     cursor: pointer;
     font-size: 15px;
+}
+table{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td{
+    border:1px solid gray;
+    padding: 10px;
+    font-weight: 300;
+    font-size: 14px;
+    word-break: keep-all;
+}
+th{
+    width:140px;
+    background-color:#4F4D8E;
+    color: white;
+}
+.td-info{
+    width: 320px;
+}
+
+/*모달 css*/
+.modal{
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+.modal-contents{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #ccc;
+    width: 600px;
+    height: 500px;
+    margin: 15px auto;
+    border-radius:14px;
+    box-shadow: 0px 0px 3px 3px rgba(163,174,184,0.3);
+}
+
+.modal-contents > p{
+    font-size: 16px;
+    color: black;
+    font-weight: bold;
+}
+.gender-text{
+    font-size: 16px;
+    color: black;
+    font-weight: bold;
+    margin-top: 10px;
+}
+.gender-text-2{
+    font-size: 16px;
+    color: black;
+    font-weight: bold;
+    margin-top: 10px;
+}
+.children-detail{
+    font-size: 16px;
+    color: black;
+    font-weight: bold;
+    margin-top: 10px;
+}
+.children-text{
+    width: 590px;
+    height: 300px;
+    margin-top: 15px;
+    margin-left: 5px;
+    resize: none;
+    box-shadow: 0px 0px 3px 3px rgba(163,174,184,0.5);
+}
+input[type="radio"]:disabled {
+
 }

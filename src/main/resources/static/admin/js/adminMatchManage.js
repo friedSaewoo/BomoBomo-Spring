@@ -20,7 +20,7 @@ function updateStatus(matchNumber, status) {
             if(result == '0'){
                 currentStatus.text('면접대기');
             }else if (result == '1'){
-                currentStatus.text('결제완료');
+                currentStatus.text('결제대기');
             }
         },
         error: function (a, b, c) {
@@ -30,12 +30,26 @@ function updateStatus(matchNumber, status) {
     });
 }
 
-function loadStatus(status){
-    // let empDiv = $('<div class="post">');
-    // empDiv.append('<div class="emp-num">' + emp.empNumber + '</div>');
-    // empDiv.append('<div class="emp-name">' + emp.empName + '</div>');
-    // empDiv.append('<div class="date">' + emp.empDate + '</div>');
-    // empDiv.append('<div class="emp-phone">' + emp.empPhone + '</div>');
-    // empDiv.append('<div class="emp-email">'+ emp.empEmail + '</div>');
-    // empList.append(empDiv);
+$('.submit-order').on('click',  function (){
+    purchasePage();
+});
+function purchasePage(){
+    let modal = document.getElementById("modal");
+    modal.style.display = "block";
+    // genderSecond 요소를 가져옴
+    let genderSecondElement = document.getElementById("genderSecond");
+// genderSecond 요소의 값 가져오기
+    let genderSecondValue = genderSecondElement.value;
+
+    if (genderSecondValue == 'n') {
+        let textArea1 = document.getElementById("text-area-1");
+        textArea1.style.display = "none";
+    }
+}
+
+window.onclick = function(event) {
+    let modal = document.getElementById("modal");
+    if (event.target === modal) {
+        modal.style.display = "none";
+    }
 }

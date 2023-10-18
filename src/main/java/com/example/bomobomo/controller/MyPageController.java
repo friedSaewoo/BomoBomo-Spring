@@ -2,9 +2,7 @@ package com.example.bomobomo.controller;
 
 
 import com.example.bomobomo.domain.dto.*;
-import com.example.bomobomo.domain.vo.Criteria;
-import com.example.bomobomo.domain.vo.MyPageSitterVo;
-import com.example.bomobomo.domain.vo.PageVo;
+import com.example.bomobomo.domain.vo.*;
 import com.example.bomobomo.service.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -21,7 +19,7 @@ import java.util.List;
 @Controller
 @RequestMapping("/mypage/*")
 @RequiredArgsConstructor
-public class myPageController {
+public class MyPageController {
     private final OrderService orderService;
     private final AdressService adressService;
     private final UserService userService;
@@ -32,29 +30,30 @@ public class myPageController {
 
     //mypage 메인 으로 이동
     @GetMapping("/main")
-    public String showMainPage(HttpServletRequest req,Model model){
+    public String showMainPage(HttpServletRequest req, Model model){
         Long userNumber=(Long)req.getSession().getAttribute("userNumber");
-
+            MatchDto findMatch=myPageService.findMatch(userNumber);
         try {
-            myPageService.findMatch(userNumber);
-            model.addAttribute("match",myPageService.findMatch(userNumber));
-            log.info("예외처리"+myPageService.findMatch(userNumber).toString());
+            model.addAttribute("match",findMatch);
+            log.info("예외처리"+findMatch.toString());
 
         } catch (NullPointerException e) {
             return "mypage/myPageMain";
         }
-        log.info("============================1번");
-        myPageService.findEmpInfoImg(myPageService.findMatch(userNumber).getEmpNumber());
-        model.addAttribute("empInfoImg",myPageService.findEmpInfoImg(myPageService.findMatch(userNumber).getEmpNumber()));
-        log.info("============================1.5번");
-        log.info(myPageService.findEmpInfoImg(myPageService.findMatch(userNumber).getEmpNumber()).toString());
-        log.info("============================2번");
-        myPageService.findEmpActItemImg(myPageService.findMatch(userNumber).getEmpNumber());
-        model.addAttribute("empActItemImgList",myPageService.findEmpActItemImg(myPageService.findMatch(userNumber).getEmpNumber()));
-        log.info("============================3번");
-        myPageService.findMatchEmpRating(myPageService.findMatch(userNumber).getEmpNumber());
-        model.addAttribute("rating",myPageService.findMatchEmpRating(myPageService.findMatch(userNumber).getEmpNumber()));
+
+        MatchEmpInfoVo matchEmpInfoVo =  myPageService.findEmpInfoImg(findMatch.getEmpNumber());
+        model.addAttribute("empInfoImg",matchEmpInfoVo);
+        log.info(matchEmpInfoVo.toString());
+
+        List<EmpActItemImgVo> empActItemImgVos=myPageService.findEmpActItemImg(findMatch.getEmpNumber());
+        model.addAttribute("empActItemImgList",empActItemImgVos);
+        log.info(empActItemImgVos.toString());
+
+        double rating = myPageService.findMatchEmpRating(findMatch.getEmpNumber());
+        model.addAttribute("rating",rating);
+
         return "mypage/myPageMain";
+
     }
     // 신청서 페이지 이동
     @GetMapping("/application")
@@ -66,9 +65,9 @@ public class myPageController {
         // 수정 페이지
         //(model에 값을 넣어서 뿌려준다)
         try {
-            orderService.findOrder(userNumber);
-            System.out.println(orderService.findOrder(userNumber).toString());
-            model.addAttribute("order",orderService.findOrder(userNumber));
+            OrderDto orderDto=orderService.findOrder(userNumber);
+            System.out.println(orderDto.toString());
+            model.addAttribute("order",orderDto);
         } catch (NullPointerException e) {
             return "mypage/applicationPage";
         }
@@ -96,7 +95,7 @@ public class myPageController {
         Long userNumber =(Long)req.getSession().getAttribute("userNumber");
         log.info("=============================오더{}",orderDto);
         orderDto.setUserNumber(userNumber);
-        orderService.orderUpdate(orderDto);
+      orderService.orderUpdate(orderDto);
         log.info("=============================오더{}",orderDto);
 
         return new RedirectView("/mypage/main");
@@ -111,7 +110,10 @@ public class myPageController {
 //        Criteria criteria = new Criteria();
 
 
-        model.addAttribute("buyList",myPageService.findSitterList(criteria, userNumber));
+        List<MyPageSitterVo> myPageSitterVos=myPageService.findSitterList(criteria, userNumber);
+
+        log.info("제발~~"+myPageSitterVos);
+        model.addAttribute("buyList",myPageSitterVos);
         model.addAttribute("pageVo", pageVo);
 
         return "mypage/buyPage";
@@ -166,7 +168,14 @@ public class myPageController {
         return new RedirectView("/mypage/main");
     }
 
+    @GetMapping("/userInfoDelete")
+    public String removeUserInfo(@RequestParam(name = "userNumber") Long userNumber){
 
+        myPageService.removeUser(userNumber);
+
+        return "user/login";
+
+    }
 
 
     @GetMapping("/reviewwrite")
@@ -197,11 +206,13 @@ public class myPageController {
    // buy페이지에서 시터 리뷰로 이동하는 컨트롤러
     @GetMapping("/siterreview")
     public String showsiterreviewPage(HttpServletRequest req,
+                                      @RequestParam(name="empName") String empName,
                                       @ModelAttribute("matchNumber") Long matchNumber,
-                                      @ModelAttribute("empNumber") Long empNumber ,
+                                      @ModelAttribute("empNumber") Long empNumber,
                                       Model model){
-
-        model.addAttribute("title", sitterBoardService.findTitle(matchNumber));
+        log.info("=======================직원이름{}",empName);
+        log.info("~~~~~~~직원번호{}",empNumber);
+        model.addAttribute("empName",empName);
         return "myPage/siterReview";
     }
     //게시물 작성후 이동하는 컨트롤러

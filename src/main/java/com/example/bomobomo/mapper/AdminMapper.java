@@ -14,7 +14,7 @@ public interface AdminMapper {
 //    관리자 로그인
     public AdminDto login(@Param("adminId")String adminId, @Param("adminPassword")String adminPassword);
 //    주간 가입수
-    public List<WeeklyRegisterVo> weeklyRegisterSelect();
+    public List<WeeklyRegisterVo> weeklyRegister();
 
 //    유저 리스트
     public List<UserListVo> selectAllUsers(@Param("criteria") Criteria criteria, @Param("searchVo")SearchVo searchVo);
@@ -97,4 +97,8 @@ public interface AdminMapper {
     public List<CityDto> selectAllCity();
 //    country 조회
     public List<CountryDto> selectCountry(Long cityNumber);
+//    직원 region 조회
+    public RegionVo selectEmpRegion(Long empNumber);
+//    제출 신청서 조회
+    public SubmitOrderDto selectSubmitOrder(Long matchNumber);
 }

@@ -29,42 +29,7 @@ main{
     display: flex;
     /* background-color: #e6e6e6; */
 }
-.menu-bar{
-    height: 900px;
-    width: 180px;
-    margin-left: 10px;
-    margin-bottom: 15px;
-}
 
-.menu-bar>div{
-    margin: 30px auto;
-    text-align: center;
-    width: 150px;
-    height: 40px;
-    color: black;
-}
-
-
-
-.menu-bar>div>a:hover{
-    color: white;
-    background-color: #FF7000;
-    font-size: 15px;
-    font-family: 'S-CoreDream-3Light';
-}
-
-
-.menu-bar>div>a{
-    text-align: center;
-    display: block;
-    text-decoration: none;
-    line-height: 40px;
-    color: black;
-    font-family: 'S-CoreDream-3Light';
-
-    width: 90px;
-    font-size: 15px;
-}
 
 .page-view{
 
@@ -80,14 +45,11 @@ main{
     margin-left: 20px;
     height: 80px;
     line-height: 100px;
-    font-size: 30px;
-    font-family: 'Black Han Sans', sans-serif;
-    font-family: 'Dongle', sans-serif !important;
-    font-family: 'Gamja Flower', cursive;
-    font-family: 'IBM Plex Sans KR', sans-serif;
-    font-family: 'Single Day', cursive;
+    font-size: 25px;
+    font-family: 'S-CoreDream-3Light';
     color: #FF7000;
 }
+
 .page-title>p>a{
     text-decoration: none;
     color: #FF7000;
@@ -123,90 +85,7 @@ main{
 
 
 
-.buy-area{
 
-    height: 80px;
-
-}
-
-.buy-text{
-    border: 1px solid black;
-    width: 800px;
-    height: 130px;
-    display: flex;
-    justify-content: space-around;
-    margin-top: 10px;
-
-}
-.buy-text div{
-    margin-top: 12px;
-}
-
-.img-area{
-    width: 100px;
-    height: 100px;
-    border: 1px solid black;
-}
-.img-area img{
-    width: 100px;
-    height: 100px;
-}
-.buy-text-area{
-    /* border: 1px solid black; */
-    width: 600px;
-    padding-top: 20px;
-    height: 80px;
-    font-size: 18px;
-
-}
-.buy-text-area p{
-    text-decoration: none;
-    color: black;
-
-}
-
-.price{
-    /* border: 1px solid black; */
-    /* line-height: 0px; */
-    height: 100px;
-    text-decoration: none;
-}
-
-.text-page p{
-    /* border: 1px solid black; */
-    font-weight: bold;
-    font-size:13px;
-    text-decoration: none;
-    text-align: right;
-}
-
-.price span{
-    /* border: 1px solid black; */
-    line-height: 120px;
-}
-
-.paging{
-    /* border: 1px solid black; */
-    /*margin-top: 530px;*/
-
-}
-.page{
-    display: flex;
-    margin: auto;
-    /* border: 1px solid rebeccapurple; */
-    text-align: center;
-    justify-content: center;
-    /* padding: 10px; */
-}
-.page>a{
-    border: 1px solid black;
-    margin: 5px;
-    width: 20px;
-    text-align: center;
-    font-weight: bold;
-    /* background-color: #e6e6e6; */
-    border: 1px solid #e6e6e6;
-}
 
 /*이벤트 ㄹ뷰 작성 공간*/
 .buyboxp{

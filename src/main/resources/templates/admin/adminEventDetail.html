@@ -18,7 +18,7 @@
             <!-- 메인 컨텐츠 -->
             <div class="main-contents">
                 <div class="contents-title">
-                    <span class="main-contents-title-text">이벤트조회</span>
+                    <span class="main-contents-title-text">이벤트정보</span>
                 </div>
                 <div class="event-detail-container">
                     <div class="event-main">
@@ -55,7 +55,7 @@
                         </table>
                     </div>
                     <div class="bt-container">
-                        <a href="/admin/redirect/event" class="board-home">글 목록</a>
+<!--                        <a href="/admin/redirect/event" class="board-home">글 목록</a>-->
                         <a th:href="@{/admin/adminEventConfig( eventNumber=${eventDetail.eventNumber} )}" class="board-fix">수정</a>
                         <a th:href="@{/admin/adminEventDelete( eventNumber=${eventDetail.eventNumber} )}" class="board-delete">삭제</a>
                       </div>

@@ -80,12 +80,9 @@ main{
     margin-left: 20px;
     height: 80px;
     line-height: 100px;
-    font-size: 30px;
-    font-family: 'Black Han Sans', sans-serif;
-    font-family: 'Dongle', sans-serif !important;
-    font-family: 'Gamja Flower', cursive;
-    font-family: 'IBM Plex Sans KR', sans-serif;
-    font-family: 'Single Day', cursive;
+    font-size: 25px;
+    font-family: 'S-CoreDream-3Light';
+
     color: #FF7000;
 }
 .page-title>p>a{
@@ -222,96 +219,6 @@ main{
 
 
 
-.buy-area-2{
-    /* border: 1px solid black; */
-    /* margin-top: 0px; */
-    /*height: 80px;*/
-
-}
-
-.buy-text-2{
-    border: 1px solid black;
-    width: 810px;
-    height: 130px;
-    display: flex;
-    justify-content: space-around;
-    margin-top: 10px;
-
-}
-.buy-text-2 div{
-    margin-top: 12px;
-}
-
-.img-area-2{
-    width: 100px;
-    height: 100px;
-    border: 1px solid black;
-}
-.img-area-2 img{
-    width: 100px;
-    height: 100px;
-}
-.buy-text-area-2{
-    /* border: 1px solid black; */
-    width: 600px;
-    padding-top: 20px;
-    height: 80px;
-    font-size: 18px;
-
-}
-.buy-text-area-2 p{
-    text-decoration: none;
-    color: black;
-
-}
-
-.price-2{
-    /* border: 1px solid black; */
-    /* line-height: 0px; */
-    height: 100px;
-    text-decoration: none;
-}
-
-a{
-    color: black;
-    text-decoration: none;
-}
-
-.text-page-2 p{
-    /* border: 1px solid black; */
-    font-weight: bold;
-    font-size:13px;
-    text-decoration: none;
-    text-align: right;
-}
-
-.price-2 span{
-    /* border: 1px solid black; */
-    line-height: 120px;
-}
-
-.paging1{
-    /* border: 1px solid black; */
-    /*margin-top: 530px;*/
-
-}
-.page1{
-    display: flex;
-    margin: auto;
-    /* border: 1px solid rebeccapurple; */
-    text-align: center;
-    justify-content: center;
-    /* padding: 10px; */
-}
-.page1>a{
-    border: 1px solid black;
-    margin: 5px;
-    width: 20px;
-    text-align: center;
-    font-weight: bold;
-    /* background-color: #e6e6e6; */
-    border: 1px solid #e6e6e6;
-}
 
 
  .material-symbols-outlined {
@@ -349,4 +256,8 @@ a{
     background-color: #ff7000;
     color: white;
     border: 1px solid #ff7000;
+}
+a{
+    color: black;
+    background-color: white;
 }

@@ -124,9 +124,7 @@ select:focus{
     cursor: pointer;
     color: white;
     background-color: rgb(172, 185, 202);
-    /* margin-left: 10px; */
     margin-right: 10px;
-    /* box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); */
 }
 
 .admin-main-container{
@@ -136,40 +134,36 @@ select:focus{
     height: 80%;
     margin: 30px auto;
     background-color: white;
-    /*box-shadow: 5px 5px 5px 5px gray;*/
-    /*border-radius: 3%;*/
 }
 .top{
     width: 98%;
-    /* margin: 0 auto; */
-    /* padding-top: 10px 10px; */
     padding: 10px;
     display: flex;
-    font-size: 20px;
+    font-size: 18px;
     margin: 0 auto;
-    /*border-bottom: 3px solid #01b9ff;*/
     background-color: #4F4D8E;
 }
 .top>div{
-    /*font-weight: bold;*/
-    font-size: 21px;
+    font-size: 16px;
     color: white;
 }
 .top .emp-num{
     width: 100px;
+    margin-left:20px;
 }
 .top .emp-name{
     text-align: center;
     width: 120px;
+    margin-left: 5px;
 }
 .top .date{
-    margin-left: 60px;
+    margin-left: 80px;
 }
 .top .emp-phone{
-    margin-left: 100px;
+    margin-left: 140px;
 }
 .top .emp-email{
-    margin-left: 170px;
+    margin-left: 190px;
 }
 
 .emp-list{
@@ -186,8 +180,8 @@ select:focus{
     display: flex;
     align-items: center;
     text-align: center;
-    height: 67px;
-    font-size: 18px;
+    height: 50px;
+    font-size: 14px;
 }
 
 .post>div{
@@ -211,7 +205,7 @@ select:focus{
 }
 
 .emp-list-bottom{
-    margin: 50px auto 0;
+    margin: 60px auto 0;
     display: flex;
     width: 900px;
 }

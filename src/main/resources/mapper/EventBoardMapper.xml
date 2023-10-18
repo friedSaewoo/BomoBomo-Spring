@@ -22,6 +22,7 @@
                                  EVENT_BOARD_MODIFY_DATE, RATING, EVENT_BOARD_COUNT
                           from event_board
                           where USER_NUMBER=#{userNumber}
+                          order by EVENT_BOARD_REGISTER_DATE desc
                       )
             <![CDATA[
                  WHERE ROWNUM <= #{criteria.page} * #{criteria.amount}

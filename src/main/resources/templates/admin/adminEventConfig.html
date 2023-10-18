@@ -18,7 +18,7 @@
         <!-- 메인 컨텐츠 -->
         <div class="main-contents">
             <div class="contents-title">
-                <span class="main-contents-title-text">이벤트관리</span>
+                <span class="main-contents-title-text">이벤트수정</span>
             </div>
             <div class="event-detail-container">
                 <form action="/admin/adminEventConfig" method="post" enctype="multipart/form-data">
@@ -63,28 +63,8 @@
                             </tr>
                         </table>
                         <div class="bt-container">
-                            <a href="/admin/redirect/event" class="board-home">글 목록</a>
                             <button type="submit" class="event-regist-btn">수정</button>
                         </div>
-<!--                        <div class="title-box">-->
-<!--                            <label for="name">이벤트 명 : </label>-->
-<!--                            <input type="text" id="name" name="eventName" th:value="${eventDetail.eventName}" required><br>-->
-<!--                        </div>-->
-<!--                        <div class="event-img">-->
-<!--                            <canvas id="event-img-preview"></canvas>-->
-<!--                            <input type="file" name="eventImgFile" id="event-img-input"  onchange="displayResizedEventImg()">-->
-<!--                        </div>-->
-
-<!--                        <div class="detail">프로그램 상세설명</div>-->
-
-<!--                        <div class="event-detail-img">-->
-<!--                            <canvas id="event-detail-img-preview"></canvas>-->
-<!--                            <input type="file" name="eventDetailFile" id="event-detail-img-input" onchange="displayResizedEventDetailImg()">-->
-<!--                        </div>-->
-<!--                        <div class="cost-box">-->
-<!--                            <label for="cost">비용 : </label>-->
-<!--                            <input type="text" id="cost" name="eventPrice" th:value="${eventDetail.eventPrice}" required><br><br>-->
-<!--                        </div>-->
                     </div>
                 </form>
             </div>

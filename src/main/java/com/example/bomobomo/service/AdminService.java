@@ -43,7 +43,7 @@ public class AdminService {
     
 // 주간 회원가입수
     public List<WeeklyRegisterVo> weeklyRegister(){
-        return adminMapper.weeklyRegisterSelect();
+        return adminMapper.weeklyRegister();
     }
 
 // 회원조회
@@ -366,5 +366,12 @@ public EventImgDto saveEventImg(MultipartFile evenImg) throws IOException {
     public List<CountryDto> selectCountry(Long cityNumber){
         return adminMapper.selectCountry(cityNumber);
     }
-
+    // 직원 region 조회
+    public RegionVo selectEmpRegion(Long empNumber){
+        return adminMapper.selectEmpRegion(empNumber);
+    }
+    // 제출 신청서 조회
+    public SubmitOrderDto selectSubmitOrder(Long matchNumber){
+        return adminMapper.selectSubmitOrder(matchNumber);
+    }
 }

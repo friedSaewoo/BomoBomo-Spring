@@ -18,7 +18,7 @@
         <!-- 메인 컨텐츠 -->
         <div class="main-contents">
             <div class="contents-title">
-                <span class="main-contents-title-text">공지사항</span>
+                <span class="main-contents-title-text">공지수정</span>
             </div>
             <form action="/admin/noticeConfig" method="post" enctype="multipart/form-data">
                 <input type="hidden" th:value="${noticeDetail.noticeNumber}" name="noticeNumber"/>
@@ -47,7 +47,7 @@
 <!--                    </div>-->
 <!--                </div>-->
                 <div class="write-bottom">
-                    <a href="/admin/redirect/notice" class="write-btn list">목록으로</a>
+<!--                    <a href="/admin/redirect/notice" class="write-btn list">목록으로</a>-->
                     <button type="submit" class="write-btn write">수정</button>
                 </div>
             </form>
