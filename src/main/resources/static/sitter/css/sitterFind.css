@@ -191,21 +191,20 @@ a{
 
 
 .sitterContext {
-    background-color: #FF7000;
-    padding: 10px;
-    height: 50px;
-
+    padding: 5px;
+    height: 55px;
+    line-height: 1.4;
+    border: 1px solid lightgray;
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
-     -webkit-line-clamp: 2;
+    -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
-    -webkit-text-fill-color: white;
-}
+    -webkit-text-fill-color: darkgray;}
 
 .sitterContext span {
     font-size: 14px;
-    color: white;
+    /*color: darkgray;*/
 }
 
 .board-img-box:hover .board-item-image {
@@ -370,18 +369,18 @@ a.button:hover {
     position:absolute;
     width:30px; height:30px;
     border-radius:50%; 
-    border: 3px solid #000;
+    border: 1px solid black;
     text-align:center; line-height: 30px;
     text-decoration:none;
     color:#000; font-size:20px; font-weight: bold;
     margin: -27px 460px;
   
 }
-.close:hover {
-    background-color: red;
-    border: 1px solid black;
+/*.close:hover {*/
+    /*background-color: red;*/
+    /*border: 1px solid black;*/
 
-  }
+  /*}*/
 
 
 input[type="checkbox"] {
@@ -474,8 +473,20 @@ input[type="checkbox"]:checked {
 .sitterSel {
     text-align: center;
 }
+.sitterSel .sitterTerBtn{
+    width : 355px;
+    height: 40px;
+    cursor: pointer;
+    color: white;
+    background-color: #FF7000;
+    border: 0px solid black;
+    border-radius: 5px;
+    font-weight: 500;
+    font-size: 20px;
+    margin: 20px auto;
+}
 
-.sitterSelBtn, .sitterTerBtn{
+.sitterSelBtn {
     width : 355px;
     height: 40px;
     cursor: pointer;
@@ -594,6 +605,7 @@ input[type="checkbox"]:checked {
 }
 
 .areaSelList {
+    text-align: center;
     margin: -50px auto;
     width: 500px;
     height: 350px;
@@ -602,7 +614,6 @@ input[type="checkbox"]:checked {
 
 .addrSelList {
     width: 200px;
-    border: 1px solid #C4C4C4;
     box-sizing: border-box;
     border-radius: 10px;
     padding: 12px 13px;
@@ -611,10 +622,13 @@ input[type="checkbox"]:checked {
     font-weight: 400;
     font-size: 14px;
     line-height: 16px;
-    border: 1px solid #FF7000;
+    border: 1px solid lightgray;
     margin: 20px 0px 0px 20px;
 }
 
+.addrSelList {
+
+}
 .addrList:focus{
     border: 1px solid orange;
     box-sizing: border-box;
@@ -631,6 +645,8 @@ input[type="checkbox"]:checked {
     margin-top: 10px;
     width: 180px;
     height: 40px;
+    color: #e89f14d9;
+    font-size: 20px;
 }
 .sitterGrade img{
     width: 25px;
@@ -670,6 +686,7 @@ input[type="checkbox"]:checked {
     box-sizing: border-box;
     padding: 12px 13px;
     font-family: 'Roboto';
+    /*font-family: 'GmarketSansMedium';*/
     font-style: normal;
     font-weight: 400;
     font-size: 14px;

@@ -22,52 +22,67 @@
 
         <div class="sitterImg">
             <!-- 시터 상세 -->
-                        <div class="sitterInfoList">
-                            <div>
-                                <img
-                                        src="https://search.pstatic.net/common?type=b&amp;size=216&amp;expire=1&amp;refresh=true&amp;quality=100&amp;direct=true&amp;src=http%3A%2F%2Fsstatic.naver.net%2Fpeople%2Fportrait%2F202207%2F20220727155425320.jpg">
-                            </div>
+            <div class="sitterInfoList">
+                <div>
+                    <img class="sitterFaceImg"
+                         src="https://search.pstatic.net/common?type=b&amp;size=216&amp;expire=1&amp;refresh=true&amp;quality=100&amp;direct=true&amp;src=http%3A%2F%2Fsstatic.naver.net%2Fpeople%2Fportrait%2F202207%2F20220727155425320.jpg">
+                </div>
 
-                            <div class="sitterInfo">
-                                <div class="sitterCon">
-                                    <div>
-                                        <strong th:text="${emp.empName}"></strong>
-                                        <span th:text="${emp.empAge} + '세  ' + ${emp.empGender}"></span>
-                                    </div>
-                                    <br>
-                                    <div class="sitterGrade" th:if="${sitterTotalReview == null}">
-                                        <img src="/common/img/star.png">
-                                        <span class="sitterTotalReview">0/ 5</span>
-                                    </div>
-                                    <div class="sitterGrade" th:unless="${sitterTotalReview == null}">
-                                        <img src="/common/img/star.png">
-                                        <span th:text="${sitterTotalReview} + '/ 5'" class="sitterTotalReview"></span>
-                                    </div>
-
-
-                                    <div th:text="'시터 시작일 : ' + ${emp.empDate}"></div>
-                                    <br>
-                                </div>
-                                <div>
-
-                                    <div class="sitterAbility">
-                                        <div class="possibleImg" th:each="actVoList : ${actVoList}" th:if="${actVoList.actName} == null ">
-                                            <img src="">
-                                            <div class="possibleName"></div>
-                                        </div>
-
-                                        <div class="possibleImg" th:each="actVoList : ${actVoList}"
-                                             th:unless="${actVoList.actName} == null ">
-                                            <!--                                <img src="/sitter/img/filter.png">-->
-                                            <img th:src="'/admin/rest/displayActImg?fileName=' + ${actVoList.actImgUploadPath} + '/' + ${actVoList.actImgUuid} + '_' + ${actVoList.actImgName}">
-                                            <div class="possibleName" th:text="${actVoList.actName}"></div>
-                                        </div>
-
-                                    </div>
-
-                                </div>
-                            </div>
+                <div class="sitterInfo">
+                    <div class="sitterCon">
+                        <div>
+                            <strong th:text="${emp.empName}"></strong>
+                            <span th:text="${emp.empAge} + '세  ' + ${emp.empGender}"></span>
                         </div>
+                        <br>
+
+                        <div class="sitterGrade" th:if="${sitterTotalReview == null || sitterTotalReview < 0.5}">
+                            <div class='sitterGrade'>☆☆☆☆☆</div>
+                            <!--                                        <img src="/common/img/star.png">-->
+                            <!--                                        <span class="sitterTotalReview">0/ 5</span>-->
+                        </div>
+                        <div class="sitterGrade" th:if="${sitterTotalReview >= 0.5 && sitterTotalReview < 1.5}">
+                            <div class='sitterGrade'>★☆☆☆☆</div>
+                        </div>
+                        <div class="sitterGrade" th:if="${sitterTotalReview >= 1.5 && sitterTotalReview < 2.5}">
+                            <div class='sitterGrade'>★★☆☆☆</div>
+                        </div>
+                        <div class="sitterGrade" th:if="${sitterTotalReview >= 2.5 && sitterTotalReview < 3.5}">
+                            <div class='sitterGrade'>★★★☆☆</div>
+                        </div>
+                        <div class="sitterGrade" th:if="${sitterTotalReview >= 3.5 && sitterTotalReview < 4.5}">
+                            <div class='sitterGrade'>★★★★☆</div>
+                        </div>
+                        <div class="sitterGrade" th:if="${sitterTotalReview >= 4.5 && sitterTotalReview < 5}">
+                            <div class='sitterGrade'>★★★★★</div>
+                        </div>
+
+
+                        <div th:text="'시터 시작일 : ' + ${emp.empDate}"></div>
+                        <br>
+                    </div>
+                    <div>
+
+                        <div class="sitterAbility">
+                            <div class="possibleImg" th:each="actVoList : ${actVoList}"
+                                 th:if="${actVoList.actName} == null ">
+                                <img src="">
+                                <div class="possibleName"></div>
+                            </div>
+
+                            <div class="possibleImg" th:each="actVoList : ${actVoList}"
+                                 th:unless="${actVoList.actName} == null ">
+                                <!--                                <img src="/sitter/img/filter.png">-->
+                                <img class="sitterPossibleImg"
+                                     th:src="'/admin/rest/displayActImg?fileName=' + ${actVoList.actImgUploadPath} + '/' + ${actVoList.actImgUuid} + '_' + ${actVoList.actImgName}">
+                                <div class="possibleName" th:text="${actVoList.actName}"></div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
         </div>
 
         <input type="hidden" th:value="${emp.empName}" id="empName" name="empName">
@@ -82,7 +97,10 @@
             </div>
         </div>
 
-        <div>
+
+        <div class="sitterHugi">
+            <hr>
+            <br>
             <div class="possible"><strong>시터 후기</strong></div>
             <div id="slideShow">
                 <ul class="slides">
@@ -102,14 +120,22 @@
             </div>
         </div>
 
-
         <div class="theBtn">
-            <div class="sitterSel">
-                <button class="sitterSelBtn" type="button">신청하기</button>
-            </div>
-
+            <th:block th:unless="${userNumber == null}">
+                <div class="sitterSel" th:if="${cnt == 0}">
+                    <button class="sitterSelBtn" type="button">신청하기</button>
+                </div>
+                <div class="sitterSel" th:unless="${cnt == 0} ">
+                    <div><h3>현재 신청한 시터가 존재합니다. </h3><span><a href="/mypage/main">마이페이지</a>를 확인하세요.</span></div>
+                </div>
+            </th:block>
+            <th:block th:if="${userNumber == null}">
+                <div class="sitterSel">
+                    <button class="sitterSelBtn" type="button">신청하기</button>
+                </div>
+            </th:block>
             <div>
-                <button class="sitterF" type="button" onclick="location='/sitter/sitterFind'">시터찾기</button>
+                <button class="sitterF" type="button" onclick="location='/sitter/sitterFind'">시터목록</button>
             </div>
         </div>
     </div>
