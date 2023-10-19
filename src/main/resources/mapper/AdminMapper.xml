@@ -34,6 +34,19 @@
         ON TO_CHAR(DateRange.registration_date, 'MM-DD') = user_counts.registration_date
         ORDER BY DateRange.registration_date
     </select>
+
+<!-- 시터 매출 -->
+    <select id="sitterTotal" resultType="_int">
+        select sum(est_price) as sitterTotalPrice
+        from est_content
+        where match_number in((select MATCHS.MATCH_NUMBER from MATCHS where status=2))
+    </select>
+<!-- 이벤트 매출 -->
+    <select id="eventTotal" resultType="_int">
+        select sum(EVENT_PRICE) as eventTotalPrice
+        from event_pay ep join EVENT_APPLY ea on ep.APPLY_NUMBER = ea.APPLY_NUMBER
+                          join event e on ea.EVENT_NUMBER = e.EVENT_NUMBER
+    </select>
 <!-- 회원 리스트 -->
     <select id="selectAllUsers" resultType="userListVo">
         SELECT

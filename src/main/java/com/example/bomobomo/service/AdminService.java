@@ -378,7 +378,16 @@ public EventImgDto saveEventImg(MultipartFile evenImg) throws IOException {
     public UserAddressVo selectUserAddress(Long matchNumber){
         return adminMapper.selectUserAddress(matchNumber);
     }
+    // 견적서 내용 작성
     public void insertEst(EstContentDto estContentDto){
         adminMapper.insertEst(estContentDto);
+    }
+    // 시터 전체 매출
+    public Integer sitterTotal(){
+        return adminMapper.sitterTotal();
+    }
+    // 이벤트 전체 매출
+    public Integer eventTotal(){
+        return adminMapper.eventTotal();
     }
 }

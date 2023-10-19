@@ -44,6 +44,16 @@ public class AdminRestController {
         return weeklyList;
     }
 
+    @GetMapping("/sitterTotal")
+    public Map<String,Integer> total(){
+        Map<String,Integer> data = new HashMap<>();
+
+        log.info("============{}",adminService.sitterTotal());
+        log.info("============{}",adminService.eventTotal());
+        data.put("sitterTotal", adminService.sitterTotal());
+        data.put("eventTotal", adminService.eventTotal());
+        return data;
+    }
 
     @GetMapping("/user/list/{page}")
     public Map<String, Object> selectAllUsers(@PathVariable("page")int page, SearchVo searchVo) {
@@ -164,4 +174,6 @@ public class AdminRestController {
             log.info("=========================추가한거{}",estContentDto);
         }
     }
+
+
 }

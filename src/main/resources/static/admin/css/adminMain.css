@@ -149,7 +149,7 @@ body{
 .grid-item.sales-chart{
     border: 1px solid #ebebeb;
 }
-.grid-item.sales-chart > div{
+.sales-chart-title{
     display: flex;
     font-size: 25px;
     align-items: center;
@@ -191,4 +191,8 @@ body{
     margin: 10px;
     width: 98%;
     height: 315px;
+}
+.sales-container{
+    width: 440px;
+    height: 350px;
 }
