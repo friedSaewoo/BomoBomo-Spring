@@ -135,10 +135,13 @@ $(document).ready(function(){
                 return;
             }
         }else {
+
             $genderSecond.val('n');
-            console.log(  $genderSecond.val());
+            console.log( $genderSecond.val());
+
         }
         alert("저장이 완료되었습니다.");
+
          $('.check-area').submit();
     })
 });

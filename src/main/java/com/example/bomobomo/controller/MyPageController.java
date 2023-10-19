@@ -169,10 +169,10 @@ public class MyPageController {
     }
 
     @GetMapping("/userInfoDelete")
-    public String removeUserInfo(@RequestParam(name = "userNumber") Long userNumber){
+    public String removeUserInfo(@RequestParam(name = "userNumber") Long userNumber,HttpServletRequest req){
 
         myPageService.removeUser(userNumber);
-
+        req.getSession().invalidate();
         return "user/login";
 
     }
