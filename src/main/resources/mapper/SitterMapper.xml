@@ -83,7 +83,7 @@
         WHERE e.EMP_NUMBER = ${empNumber}
     </select>
 
-    <select id="sitterBoardList" resultType="sitterBoardDto">
+    <select id="sitterBoardList" resultType="sitterBoardVo">
         select rnum, SITTER_BOARD_NUMBER, user_number, user_id, EMP_NUMBER,SITTER_BOARD_CONTENT, SITTER_BOARD_REGISTER_DATE,
         SITTER_BOARD_MODIFY_DATE, RATING, SITTER_BOARD_COUNT, EMP_NAME
         from(

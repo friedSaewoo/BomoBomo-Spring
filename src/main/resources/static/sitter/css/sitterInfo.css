@@ -1,8 +1,4 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+
 body {
     font-family: 'GmarketSansMedium';
     background-color: white;
@@ -25,7 +21,7 @@ hr {
     width: 1024px;
     margin: 50px auto;
     padding: 40px 0;
-    min-height: 1000px;
+    min-height: 750px;
     /*border: 1px solid #FF7000;*/
     border-radius: 10px;
 
@@ -144,10 +140,17 @@ hr {
 }
 
 .theBtn {
-    height:200px;
+position: relative;
+    display: flex;
+    width: 1024px;
+    justify-content: center;
+    align-items: center;
+
 }
 .back-to-sitter-search {
-
+    position: absolute;
+    right: 30px;
+    bottom: 0;
 }
 
 .sitterSel {
@@ -155,32 +158,34 @@ hr {
 }
 
 .sitterSelBtn{
-    width : 355px;
-    height: 40px;
+    font-family: 'KIMM_Bold';
+
+    width : 350px;
+    height: 31px;
     margin-top: 50px;  
     color: white;
     background-color: #FF7000;
     border: 2px solid #FF7000;
     border-radius: 5px;
     font-weight: 500;
-    font-size: 20px;
+    font-size: 16px;
 }
 
-.sitterSelBtn:hover {
-  cursor: pointer;
-  background-color: orange;
 
-}
 
 .sitterF {
-    float: right;
-    width : 80px;
-    height: 40px;
+    /* float: right; */
+    width: 73px;
+    height: 35px;
     border-radius: 5px;
     font-weight: 500;
+    position: absolute;
     font-size: 14px;
-
+    right: 0;
+    bottom: -250px;
 }
+
+
 
 .sitterF:hover {
   cursor: pointer;
@@ -191,18 +196,30 @@ hr {
     padding-top: 40px
 }
 
+.review-user-id {
+    width: 120px;
+    font-size: 13px;
+}
+
 .ReviewInfo {
-    border: 1px solid lightgray;
     height: 58px;
     color: black;
-    width: 250px;
-    height: 150px;
-    padding: 25px 15px 25px 15px;
+    width: 680px;
+    height: 25px;
+    display: flex;
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
-    -webkit-line-clamp: 4;
+    -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
+    line-height: 2;
+    font-size: 13px;
+}
+
+.review-rating {
+    width: 150px;
+    text-align: end;
+    color: #e89f14d9
 }
 
 .arrow-next::after {
@@ -238,14 +255,15 @@ hr {
   /* 보여줄 구간의 높이와 넓이 설정 */
   #slideShow{
       /* width: 800px; */
-      height: 300px;
+      height: 150px;
       /* position: relative; */
-      margin: 50px auto;
+      margin: 15px auto;
       /* overflow: hidden; */
       /* border: 3px solid blueviolet; */
       box-sizing: border-box;
       border-radius: 10px;
       padding:0px 60px 0px 60px;
+      position: relative;
   }
   
 
@@ -397,7 +415,12 @@ hr {
 }
 
 .slides {
-    width: 1024px;
-    display: flex
+    width: 910px;
+    /* justify-content: center; */
+    display: flex;
+    align-items: center;
+    margin-bottom: 13px;
+    border-bottom: 1px solid gray
+
 }
 

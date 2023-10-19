@@ -107,17 +107,23 @@
             <br>
             <div class="possible"><strong th:text="${emp.empName +'시터님 관련 후기'}"> </strong></div>
             <div id="slideShow">
-                <ul class="slides">
-                    <th:block th:each="sitterBoardList : ${sitterBoardList}">
-<!--                    <li th:text="${sitterBoardList.userId}">-->
+                <ul class="slides" th:each="sitterBoardList : ${sitterBoardList}">
+                    <li class="review-user-id" th:text="${sitterBoardList.userId}">
 
-<!--                    </li>-->
+                    </li>
                     <a th:href="@{/board/reviewDetail(sitterBoardNumber=${sitterBoardList.sitterBoardNumber})}">
-                        <li>
+                        <li class="review-content">
                             <div class="ReviewInfo" th:text="${sitterBoardList.sitterBoardContent}"></div>
                         </li>
                     </a>
-                   </th:block>
+                    <li class="review-rating">
+                        <span th:if="${sitterBoardList.rating==1}">★☆☆☆☆</span>
+                        <span th:if="${sitterBoardList.rating==2}">★★☆☆☆</span>
+                        <span th:if="${sitterBoardList.rating==3}">★★★☆☆</span>
+                        <span th:if="${sitterBoardList.rating==4}">★★★★☆</span>
+                        <span th:if="${sitterBoardList.rating==5}">★★★★★</span>
+
+                    </li>
                 </ul>
             </div>
         </div>
