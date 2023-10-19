@@ -55,7 +55,8 @@ public class OrderService {
         }
 
 
-        return orderMapper.selectOrder(userNumber);
+        return Optional.ofNullable(orderMapper.selectOrder(userNumber))
+                .orElseThrow( () -> {throw new NullPointerException("조회 결과 없음"); });
 
     }
 
