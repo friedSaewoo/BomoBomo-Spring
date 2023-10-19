@@ -26,14 +26,36 @@
                         <canvas id="join-chart" class="jc"></canvas>
                     </div>
                     <div class="grid-item sales-chart">
-                        <div><span>주간 매출현황</span></div>
-                        <canvas id="sales"></canvas>
+                        <div class="sales-chart-title"><span>전체 매출현황</span></div>
+                        <div class="sales-container">
+                            <canvas id="sales"></canvas>
+                        </div>
                     </div>
                 </div>
                 <div class="bottom-container">
                     <div class="bottom-contents">
-                        <div class="bottom-title"><span>미정</span></div>
-                        <div class="bottom-main"></div>
+                        <div class="bottom-title"><span>대기중인 매칭</span></div>
+                        <div class="bottom-main">
+
+                            <div class="wait-item">
+                                <div class="match-status">
+                                    <p>매칭번호 : <span>32</span></p>
+                                    <p>면접대기</p>
+                                </div>
+                                <div class="user-info">
+                                    <p>회원번호 : <span>1</span></p>
+                                    <p>회원이름 : <span>김성찬</span></p>
+                                </div>
+                                <div class="emp-info">
+                                    <p>직원번호 : <span>2</span></p>
+                                    <p>직원이름 : <span>복영헌</span></p>
+                                </div>
+                                <div class="manage-btn-container">
+                                    <button>관리</button>
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
                 </div>
             </div>
@@ -45,6 +67,7 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/emn178/chartjs-plugin-labels/src/chartjs-plugin-labels.js"></script>
 <script src="/admin/js/adminMain.js"></script>
 <script src="/admin/js/adminHeader.js"></script>
 </html>
