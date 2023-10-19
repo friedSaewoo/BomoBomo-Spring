@@ -55,7 +55,9 @@ public class SitterController {
 
         Double sitterReview = sitterService.sitterReview(empNumber);
         List<ActVo> actVo = sitterService.sitterPossibleList(empNumber);
+        System.out.println("머인지 : " + empNumber);
         EmpImgDto empImgDto = sitterService.sitterImg(empNumber);
+
         String empImg = empImgDto.getEmpImgUploadPath() + "/" + empImgDto.getEmpImgUuid() + "_" + empImgDto.getEmpImgName();
         System.out.println("empImg 확인 : " + empImg);
         System.out.println("VO 확인 : " + actVo);
