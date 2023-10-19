@@ -28,7 +28,6 @@
                     <img src="/sitter/img/slmg.png">
                 </div>
                 </th:block >
-
                 <th:block th:unless="${empImg == null}">
                 <div>
                     <img th:src="'/admin/rest/displayEmpImg?fileName=' + ${empImg}">
@@ -60,7 +59,7 @@
                         <div class="sitterGrade" th:if="${sitterTotalReview >= 3.5 && sitterTotalReview < 4.5}">
                             <div class='sitterGrade'>★★★★☆</div>
                         </div>
-                        <div class="sitterGrade" th:if="${sitterTotalReview >= 4.5 && sitterTotalReview < 5}">
+                        <div class="sitterGrade" th:if="${sitterTotalReview >= 4.5 && sitterTotalReview <= 5}">
                             <div class='sitterGrade'>★★★★★</div>
                         </div>
 
