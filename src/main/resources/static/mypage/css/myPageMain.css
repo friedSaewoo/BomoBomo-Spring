@@ -257,6 +257,7 @@ main{
     text-overflow: ellipsis;
     white-space: normal;
     text-align: left;
+    display: -webkit-box;
 }
 .top{
     border-bottom: 1px solid black;
@@ -365,7 +366,7 @@ main{
     width: 300px;
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
-
+    display: -webkit-box;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: normal;
