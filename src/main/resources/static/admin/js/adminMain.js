@@ -130,7 +130,7 @@ function createNewMatch(result){
                    '<a href="/admin/match/detail?matchNumber='+match.matchNumber+'"><button>관리</button></a>'+
                '</div>'+
            '</div>'
-           )
+           );
         });
     }
 }
