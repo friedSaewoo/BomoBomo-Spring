@@ -9,13 +9,15 @@ li {
     
 
 .main{
+    font-family: 'KIMM_Bold';
     background-color: rgb(255, 255, 255);
     display: flex;
     justify-content: center;
-
     width: 100%;    
     height: 100%;
     min-height: 100vm;
+    min-width: 1024px;
+
 }
 
 .joinContainer {
@@ -31,24 +33,71 @@ li {
     border: 0px solid black;
 }
 
-.joinGreeting {
-    padding-top: 100px;
-    font-size: 25px;
-    color: #FF7000;
+
+
+.loginGreeting {
+    padding-top: 180px;
+    font-size: 32px;
+    color: #000;
     font-weight: 500;
-    margin-bottom: 50px;
     text-align: center;
 }
 
-.joinGreeting h6 {
+.login-title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo-set {
+
+    display: flex;
+    justify-content: center;
+}
+
+.logo-set ul {
+    width: 350px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo-img {
+    width: 70px;
+}
+
+.logo-img img {
+    width: 100%;
+    height: 100%;
+}
+
+.conpanyName {
+    font-family: 'KIMM_Bold';
+    font-size: 22px;
+    letter-spacing: -2px;
+
+
+}
+
+
+.findPw-detail {
+    padding-bottom: 50px;
+    width: 350px;
+    text-align: center;
+}
+.findPw-detail h6 {
+    font-family: 'GmarketSansMedium';
+    color: darkgray;
     height: 10px;
+    font-size: 15px;
 }
 
 
 .inputText input{
-    width : 200px;
-    height: 20px;
-    margin-bottom: 10px;
+    width : 350px;
+    height: 40px;
+    margin-bottom: 20px;
     /*margin: 10px 0px 10px 50px;*/
 }
 .buttonJoin {
@@ -58,16 +107,16 @@ li {
 }
 
 .buttonJoin button{
-    width : 225px;
-    height: 40px;
+    font-family: 'KIMM_Bold';
+    width: 350px;
+    height: 31px;
     cursor: pointer;
     color: white;
     background-color: #FF7000;
     border: 0px solid black;
     border-radius: 5px;
     font-weight: 500;
-    font-size: 20px;
-    text-align: center;
+    font-size: 16px;
 }
 
 .inputGroup{
@@ -86,10 +135,9 @@ li {
 .userInfo {
     width: 350px;
     border-radius: 5px;
-    border: 1px solid #FF7000;
-    text-indent: 25px;
-    padding: 10px 12px;
-    font-size: 10px;
+    text-indent: 50px;
+    font-size: 14px;
+    border: 1px solid #75716e7a;
 }
 
 .userInfoText {
@@ -102,10 +150,10 @@ li {
 
 .userInfoText img {
     position: absolute;
-        width: 20px;
-        top: 10px;
-        left: 70px;
-        margin: 0;
+    width: 20px;
+    top: 10px;
+    left: 18px;
+    margin: 0;
 }
 
 .infoLabel {
@@ -129,14 +177,14 @@ li {
     height: 20px;
     cursor: pointer;
     color: black;
-    border: 1px solid black;
+    border: 1px solid gray;
     border-radius: 5px;
-    font-size: 10px;
+    font-size: 13px;
     padding: 5px;
     font-weight: bold;
     position: relative;
-    top: 0px;
-    left: 72px;
+    top: -13px;
+    left: 135px;
     display: flex;
     align-items: center;
     margin-bottom: 10px;
@@ -151,38 +199,48 @@ li {
 }
 
 .nameAlready{
-    color:red;
+    position: absolute;
+    color: red;
+    left: 0;
     display: none;
     font-size: 12px;
+    top: 45px;
 }
 
-.nameAlready, .nameOk {
-    margin-left: 55px;
-}
 
 .nameOk, .PwChOk, emailOk{
-    color:greenyellow;
+    position: absolute;
+    left: 0;
+    top: 45px;
+    color: #2f74ff;
     display: none;
     font-size: 13px;
 }
 
 .infoLabel, .labelPwNo {
-    display: none;
+    position: absolute;
+    left: 0;
+    top: 45px;
     color: red;
+    display: none;
     font-size: 13px;
 
 }
 
 .idOk, .PwChOk{
-    margin-left: 50px;
-    color:greenyellow;
+    position: absolute;
+    left: 0;
+    top: 45px;
+    color: #2f74ff;
     display: none;
     font-size: 13px;
 }
 
 .id_already{
-    margin-left: 50px;
-    color:red;
+    color: red;
     display: none;
     font-size: 12px;
+    position: absolute;
+    left: 0;
+    top: 45px;
 }

@@ -1,158 +1,144 @@
-a {
-    text-decoration: none;
-}
 
-li {
-    margin: 15px auto;
-    list-style-type: none;
-    float: left;
-}
 
-.ul {
-    position: absolute;
-    margin-left: -10px;
-    justify-content: center;
 
-}
 
 .main{
     background-color: rgb(255, 255, 255);
     display: flex;
     justify-content: center;
+    min-height: 900px;
 }
 
-.header, .footer {
-    background-color: #fff;
-    padding: 20px 0;
-}
+
 
 .loginContainer {
     width: 1024px;
     height: 500px;
+    margin: 0 auto;
     background-color: rgb(255, 255, 255);
 }
 
-.contentSummary {
-    width: 630px;
-    height: 50px;
-    margin: 10px auto;
-}
 
-.contentSummary div{
-    margin-top: 10px;
-}
-
-.loginArea {
-    width: 630px;
-    height: 300px;
-    margin: 0 auto;
-    border: 2px solid #FF7000;
-    border-radius: 5px;
-}
 
 .loginGreeting {
-    padding-top: 100px;
+    padding-top: 180px;
     font-size: 32px;
     color: #000;
     font-weight: 500;
-    margin-bottom: 20px;
     text-align: center;
+}
+
+.login-title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo-set {
+
+    display: flex;
+    justify-content: center;
+}
+
+.logo-set ul {
+    width: 350px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo-img {
+    width: 70px;
+}
+
+.logo-img img {
+    width: 100%;
+    height: 100%;
 }
 
 .conpanyName {
-    color: #FF7000;
-    font-size: 50px;
+    font-family: 'KIMM_Bold';
+    font-size: 22px;
+    letter-spacing: -2px;
+
 
 }
 
-.inputGroup{
-    width: 350px;
-    height: 100px;
-    display: table;
-    border-collapse: collapse;
-}
 
-.inputText input{
-    width : 330px;
-    height: 30px;
-    margin-bottom: 10px;
-}
 
-.buttonLogin button{
-    width : 355px;
-    height: 40px;
-    margin-top: 30px;
-    cursor: pointer;
-    color: white;
-    background-color: #FF7000;
-    border: 0px solid black;
-    border-radius: 5px;
-    font-weight: 500;
-    font-size: 20px;
-}
 
-.userInfo {
-    width: 350px;
-    border-radius: 4px;
-    border: 1px solid #FF7000;
-    text-indent: 25px;
-    padding: 10px 12px;
-    font-size: 14px;
-}
-
-.userInfoText {
-    position: relative;
-    width: 300px;
-  }
-
-.userInfoText img {
-    position : absolute;
-    width: 20px;
-    /* width: 50px; */
-    top: 15px;
-    left: 12px;
-    margin: 0;
-}
-.userInfoObt {
+.contentSummary {
     display: flex;
     justify-content: center;
-    margin-bottom: 50px;
-}
-.userInfoObt a {
-    font-size: medium;
-    color: #FF7000;
-}
-.userInfoObt a:hover {
-    font-size: medium;
-    color: orange;
+    width: 1024px;
+    margin: 0 auto;
 }
 
-
-.labelId, .labelPw {
-    display: none;
-    color: red;
-}
-
-.idCheck {
-    color: red;
+.contentSummary h6{
+    font-family: 'GmarketSansMedium';
+    margin-top: 10px;
     font-size: 15px;
+    padding-bottom: 30px;
 }
+
+.loginArea {
+    width: 350px;
+    margin: 0 auto;
+    border-radius: 5px;
+}
+
+
+.findId-result{
+
+}
+
+.id-section, .register-section {
+    color: darkgray;
+    width: 350px;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    height: 40px;
+    text-indent: 25px;
+    border-radius: 5px;
+    border: 1px solid #75716e7a;
+    margin-bottom: 15px;
+
+
+}
+.id-section span, .register-section span {
+    color: black;
+    padding-left: 30px;}
 
 .idFindOk {
-    text-align: center;
-    width: 600px;
+    font-family: 'GmarketSansMedium';
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 350px;
     font-size: 15px;
+    height: 120px;
 }
 
-.idFindOk label {
-    width: 50%;
-}
-.idFindOk span{
-    color: blue;
-
+.userInfoObt {
+    width: 1024px;
+    margin: 0 auto;
 }
 
+.userInfoObt ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
+.userInfoObt ul a {
+    font-family: 'KIMM_Bold';
+    font-weight: bold;
+    color : black;
+    font-size: 13px;
+}
 
 
 
