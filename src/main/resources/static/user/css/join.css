@@ -1,8 +1,3 @@
-
-a {
-    text-decoration: none;
-}
-
 li {
     list-style-type: none;
 }
@@ -12,10 +7,10 @@ li {
     background-color: rgb(255, 255, 255);
     display: flex;
     justify-content: center;
-
+    min-width: 1024px;
     width: 100%;    
     height: 100%;
-    min-height: 100vm;
+    min-height: 1100px;
 }
 
 .joinContainer {
@@ -23,12 +18,59 @@ li {
 }
 
 .joinGreeting {
-    padding-top: 50px;
-    font-size: 25px;
-    color: #FF7000;
-    margin-bottom: 50px;
+    font-family: 'GmarketSansMedium';
+    font-size: 21px;
+    margin-bottom: 30px;
+    text-align: center;
+    color: rgba(128, 128, 128, 0.93); }
+
+
+.loginGreeting {
+    padding-top: 180px;
+    font-size: 32px;
+    color: #000;
+    font-weight: 500;
     text-align: center;
 }
+
+.login-title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo-set {
+
+    display: flex;
+    justify-content: center;
+}
+
+.logo-set ul {
+    width: 350px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo-img {
+    width: 70px;
+}
+
+.logo-img img {
+    width: 100%;
+    height: 100%;
+}
+
+.conpanyName {
+    font-family: 'KIMM_Bold';
+    font-size: 22px;
+    letter-spacing: -2px;
+
+
+
+}
+
 
 .inputGroup{
     display: table;
@@ -40,81 +82,106 @@ li {
 
 .userInfoText img:not(.detailImg)  {
     position : absolute;
-    width: 20px; 
-    top: 15px;
+    width: 20px;
+    top: 11px;
     left: 12px;
     margin: 0; 
 }
 
 .userInfo {
-    margin-bottom: 10px;
-    width: 330px;
-    height: 30px;
+    margin-bottom: 21px;
+    width: 350px;
+    height: 40px;
     border-radius: 5px;
-    border: 1px solid #FF7000;
-    /* border: 1px solid #bbb; */
-    text-indent: 25px;
-    padding: 10px 12px;
+    border: 1px solid #75716e7a;
+    text-indent: 55px;
     font-size: 14px;
 }
 
 .infoLabel, .labelPwNo {
+    position: absolute;
     display: none;
+    left: 0;
     color: red;
     font-size: 13px;
+    top: 43px;
+    font-family: 'KIMM_Bold';
+
 
 }
 
 .idOk, .PwChOk{
-    color:greenyellow;
+    font-family: 'KIMM_Bold';
+    color: #2f74ff;
     display: none;
     font-size: 13px;
+    position: absolute;
+    left: 0;
 }
+.idOk {
+    top: 43px;
+
+}
+.PwChOk {
+    top: -17px;
+}
+
+
+
+
+
+
+
 
 .postalCode, .userId {
     margin-bottom: 10px;
     width: 200px;
-    height: 30px;
+    height: 40px;
     border-radius: 5px;
-    border: 1px solid #FF7000;
-    text-indent: 25px;
-    padding: 10px 12px;
+    border: 1px solid #75716e7a;
+    text-indent:55px;
     font-size: 14px;
 }
 
 .addrBtn, .userCheckBtn {
-    margin-left: 20px;
-    width: 100px;
-    height: 50px;
-    border: 2px solid orange;
-    color: white;
+    font-family: 'KIMM_Bold';
+
+    /* margin-left: 20px; */
+    width: 140px;
+    height: 40px;
+    border: none;
+    color: black;
     cursor: pointer;
     border-radius: 5px;
-    background-color: #FF7000;
+    /* background-color: #FF7000; */
+    position: absolute;
+    right: 0;
+}
+
+#address {
+    margin-bottom: 10px;
 }
 
 .referAddr {
     margin-bottom: 10px;
     width: 100px;
-    height: 30px;
+    height: 40px;
     border-radius: 5px;
-    border: 1px solid #FF7000;
+    border: 1px solid #75716e7a;
     /* border: 1px solid #bbb; */
     text-indent: 25px;
-    padding: 10px 12px;
-    font-size: 14px;    
+    font-size: 14px;
 }
 
 .detailAddr {
-    margin-left: 15px;
+    position: absolute;
+    right: 0;
     margin-bottom: 10px;
-    width: 190px;
-    height: 30px;
+    width: 229px;
+    height: 40px;
     border-radius: 5px;
-    border: 1px solid #FF7000;
-    /* border: 1px solid #bbb; */
+    border: 1px solid #75716e7a;
     text-indent: 25px;
-    padding: 10px 12px;
     font-size: 14px;
 }
 
@@ -127,22 +194,28 @@ li {
 }
 
 .buttonJoin button{
+    font-family: 'KIMM_Bold';
+
     width : 355px;
     height: 40px;
-    margin-top: 30px;  
+    margin-top: 15px;
     cursor: pointer;
     color: white;
     background-color: #FF7000;
     border: 0px solid black;
     border-radius: 5px;
     font-weight: 500;
-    font-size: 20px;
+    font-size: 16px;
 }
 
 .id_already{
-    color:red;
+    position: absolute;
     display: none;
-    font-size: 12px;
+    left: 0;
+    color: red;
+    font-size: 13px;
+    top: 43px;
+    font-family: 'KIMM_Bold';
 }
 
 
