@@ -19,7 +19,7 @@
 
 <form action="/sitter/sitterRegister" method="post" class="sitterForm">
     <div class="container">
-
+        <div class="sitter-wrap">
         <div class="sitterImg">
             <!-- 시터 상세 -->
             <div class="sitterInfoList">
@@ -64,7 +64,7 @@
                         </div>
 
 
-                        <div th:text="'시터 시작일 : ' + ${emp.empDate}"></div>
+                        <div class="start-date" th:text="'시터 시작일 : ' + ${emp.empDate}"></div>
                         <br>
                     </div>
                     <div>
@@ -102,7 +102,7 @@
                 <div class="sitterContent" th:text="${emp.empContent}"></div>
             </div>
         </div>
-
+        </div>
 
         <div class="sitterHugi">
             <hr>
@@ -127,6 +127,9 @@
         </div>
 
         <div class="theBtn">
+            <div class="back-to-sitter-search">
+                <button class="sitterF" type="button" onclick="location='/sitter/sitterFind'">시터목록</button>
+            </div>
             <th:block th:unless="${userNumber == null}">
                 <div class="sitterSel" th:if="${cnt == 0}">
                     <button class="sitterSelBtn" type="button">신청하기</button>
@@ -140,9 +143,7 @@
                     <button class="sitterSelBtn" type="button">신청하기</button>
                 </div>
             </th:block>
-            <div>
-                <button class="sitterF" type="button" onclick="location='/sitter/sitterFind'">시터목록</button>
-            </div>
+
         </div>
     </div>
 </form>
