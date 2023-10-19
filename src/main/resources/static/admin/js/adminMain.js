@@ -1,8 +1,11 @@
 // *************************주간 회원가입 차트
 let dayList=[];
 let countList=[];
+let sitterTotal=0;
+let eventTotal=0;
 $(document).ready(function () {
     loadWeeklyRegister();
+    loadTotalSales();
 });
 function loadWeeklyRegister(){
     $.ajax({
@@ -42,6 +45,52 @@ function loadWeeklyRegister(){
     });
 }
 
+function loadTotalSales(){
+    $.ajax({
+        url: '/admin/rest/sitterTotal',
+        method: 'GET',
+        dataType: 'json',
+        success: function (data) {
+            let sitterTotal = data.sitterTotal;
+            let eventTotal = data.eventTotal;
+
+            console.log('Sitter Total: ' + sitterTotal);
+            console.log('Event Total: ' + eventTotal);
+
+            var data = {
+                labels: ['시터 매칭', '이벤트'],
+                datasets: [{
+                    data: [sitterTotal, eventTotal], // 각 섹션의 비율
+                    backgroundColor: ['rgba(75, 192, 192, 0.5)', 'rgba(255, 99, 132, 0.5)'], // 섹션의 배경색
+                }]
+            };
+
+
+            var options = {
+                responsive: true,
+                maintainAspectRatio: false,
+            };
+
+            // 파이 차트 그리기
+            var ctx = document.getElementById('sales').getContext('2d');
+            var myPieChart = new Chart(ctx, {
+                type: 'pie',
+                data: data,
+                options: options
+            });
+
+
+            var exit = document.querySelector('.main-header-exit');
+
+            exit.addEventListener('click', function() {
+                window.location.href = '/admin/logout';
+            });
+        },
+        error: function (error) {
+            console.error('오류 발생: ' + error);
+        }
+    });
+}
 
 // console.log(dayList);
 // console.log(countList);
@@ -99,31 +148,4 @@ function loadWeeklyRegister(){
 //         }
 //     }
 // });
-var data = {
-    labels: ['시터 매칭', '이벤트'],
-    datasets: [{
-        data: [70, 30], // 각 섹션의 비율
-        backgroundColor: ['rgba(75, 192, 192, 0.5)', 'rgba(255, 99, 132, 0.5)'], // 섹션의 배경색
-    }]
-};
 
-
-var options = {
-    responsive: true,
-    maintainAspectRatio: false,
-};
-
-// 파이 차트 그리기
-var ctx = document.getElementById('sales').getContext('2d');
-var myPieChart = new Chart(ctx, {
-    type: 'pie',
-    data: data,
-    options: options
-});
-
-
-var exit = document.querySelector('.main-header-exit');
-
-exit.addEventListener('click', function() {
-    window.location.href = '/admin/logout';
-});

@@ -106,5 +106,7 @@ public interface AdminMapper {
 //    견적서 내용추가
     public void insertEst(EstContentDto estContentDto);
 //    시터 매출
-//    public int
+    public Integer sitterTotal();
+//    이벤트 매출
+    public Integer eventTotal();
 }
