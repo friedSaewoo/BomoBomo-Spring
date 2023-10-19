@@ -139,8 +139,11 @@ $(document).ready(function(){
             $genderSecond.val('n');
             console.log( $genderSecond.val());
 
-        }
-        alert("저장이 완료되었습니다.");
+
+        }          alert("저장이 완료되었습니다.");
+
+
+
 
          $('.check-area').submit();
     })
