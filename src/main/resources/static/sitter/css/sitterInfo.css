@@ -32,8 +32,8 @@ hr {
 }
 
 .sitterImg {
-    width: 100%;
-    height: 400px;
+    width: 550px;
+    height: 264px;
     text-align: left;
 }
 
@@ -43,8 +43,8 @@ hr {
 
 .sitterInfoList img {
 
-    width: 500px;
-    height: 360px;
+    width: 305px;
+    height: 205px;
     border-radius: 5px;
     margin-top: 30px;
 }
@@ -53,11 +53,11 @@ hr {
 }
 
 .sitterInfo {
-    padding-top: 70px;
+    padding-top: 40px;
 }
 
 .sitterInfo strong {
-    font-size: 25px;
+    font-size: 20px;
 }
 
 .sitterInfo span {
@@ -66,11 +66,11 @@ hr {
     color: darkgray;
 }
 .sitterCon {
-  padding : 10px 20px 0px 0px;
-  width: 500px;
-  height: 150px;
-  /*border: 1px solid #FF7000;*/
-  border-radius: 10px;  
+    padding: 10px 20px 0px 0px;
+    width: 260px;
+    height: 150px;
+    /* border: 1px solid #FF7000; */
+    border-radius: 10px;
 }
 
 .selfIntroduction {
@@ -100,20 +100,25 @@ hr {
 
 }
 
-
+.sitter-wrap{
+    display: flex;
+}
 .sitterAbility {
 
+    left: -13px;
+    top: -60px;
+    position: relative;
     display: flex;
     text-align: center;
     align-items: center;
     display: grid;
-    grid-template-columns: repeat(3, minmax(130px, 100px));
+    grid-template-columns: repeat(3, minmax(80px, 80px));
     border-radius: 5px;
 }
 .sitterAbility img{
 
-    width: 70px;
-    height: 70px;
+    width: 60px;
+    height: 60px;
 }
 
 .possibleImg {
@@ -129,7 +134,7 @@ hr {
 
 .possibleName {
     font-size: 13px;
-    width: 70px;
+    width: 60px;
     padding-top: 5px;
 }
 
@@ -362,11 +367,17 @@ hr {
   }
 
 .sitterGrade {
-    /*margin-top: 5px;*/
+    padding-top: 3px;
+    /* margin-top: 5px; */
     width: 180px;
     height: 40px;
     color: #e89f14d9;
     font-size: 20px;
+}
+
+
+.start-date {
+    font-size: 13px;
 }
 
 .sitterGrade img{

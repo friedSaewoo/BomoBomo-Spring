@@ -19,7 +19,7 @@
 
 <form action="/sitter/sitterRegister" method="post" class="sitterForm">
     <div class="container">
-
+        <div class="sitter-wrap">
         <div class="sitterImg">
             <!-- 시터 상세 -->
             <div class="sitterInfoList">
@@ -65,7 +65,7 @@
                         </div>
 
 
-                        <div th:text="'시터 시작일 : ' + ${emp.empDate}"></div>
+                        <div class="start-date" th:text="'시터 시작일 : ' + ${emp.empDate}"></div>
                         <br>
                     </div>
                     <div>
@@ -103,7 +103,7 @@
                 <div class="sitterContent" th:text="${emp.empContent}"></div>
             </div>
         </div>
-
+        </div>
 
         <div class="sitterHugi">
             <hr>
