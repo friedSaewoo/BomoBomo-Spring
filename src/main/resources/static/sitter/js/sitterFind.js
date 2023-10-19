@@ -165,7 +165,7 @@ function showListAndPage(sitter) {
                 str += "<div class='sitterGrade'>★★★☆☆</div>";
             } else if(sitterList.avg >= 3.5 && sitterList.avg < 4.5) {
                 str += "<div class='sitterGrade'>★★★★☆</div>";
-            } else if(sitterList.avg >= 4.5 && sitterList.avg < 5) {
+            } else if(sitterList.avg >= 4.5 && sitterList.avg <= 5) {
                 str += "<div class='sitterGrade'>★★★★★</div>";
             }
 
