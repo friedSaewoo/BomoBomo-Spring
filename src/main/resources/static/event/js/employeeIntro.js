@@ -99,19 +99,20 @@ function empViewList(result){
     let text = '';
     result.empIntro.forEach(r=>{
         text+=`
+<a href="/sitter/sitterInfo?empNumber=${r.empNumber}">
         <div class="board-item" >
     <div class="board-img-box">
 
         <img
             src = "/events/empImg?fileFullPath=${r.empImgUploadPath + '/' + r.empImgUuid + '_' + r.empImgName}">
-
-    </div>
-    <div class="board-item-text">
         <h3 class="board-item-title" >${r.empName}</h3>
 <!--        <div class="board-item-author" >${r.empContent}</div>-->
     </div>
+    <div class="board-item-text">
+
+    </div>
 </div>
-        
+        </a>
         
        
         `;

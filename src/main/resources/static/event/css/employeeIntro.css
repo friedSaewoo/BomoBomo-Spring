@@ -121,14 +121,19 @@
     position: relative;
     top: -10px;
     left: 10px;
-    height: 190px;
+    height: 220px;
     width: 310px;
 }
 
 .board-item-title {           /* 직원 이름 */
     font-size: 15px;
-    margin-bottom: 9px;
+    margin-bottom: -62px;
     text-align: right;
+    position: relative;
+    top: -49px;
+    right: 21px;
+    font-size: 16px;
+    color: black;
 }
 
 .board-item-author {        /* 직원 소개 글 */

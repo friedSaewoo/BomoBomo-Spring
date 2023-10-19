@@ -7,6 +7,7 @@ import com.example.bomobomo.domain.dto.NoticeDto;
 import com.example.bomobomo.domain.vo.UserListVo;
 import com.example.bomobomo.domain.vo.*;
 import com.example.bomobomo.service.AdminService;
+import com.fasterxml.jackson.databind.deser.DataFormatReaders;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.annotations.Param;
@@ -38,10 +39,23 @@ public class AdminRestController {
 
     @GetMapping("/weeklyRegister")
     public List<WeeklyRegisterVo> weeklyRegister(){
-        log.info("================컨트롤러도착");
         List<WeeklyRegisterVo> weeklyList = adminService.weeklyRegister();
-        log.info("===============주간가입수 시기{}",weeklyList);
         return weeklyList;
+    }
+
+    @GetMapping("/sitterTotal")
+    public Map<String,Integer> total(){
+        Map<String,Integer> data = new HashMap<>();
+        data.put("sitterTotal", adminService.sitterTotal());
+        data.put("eventTotal", adminService.eventTotal());
+        return data;
+    }
+
+    @GetMapping("/newMatch")
+    public List<MatchListVo> selectNewMatch(){
+        log.info("=====================뉴매치{}",adminService.selectNewMatch());
+        List<MatchListVo> matchList = adminService.selectNewMatch();
+        return matchList;
     }
 
 
@@ -164,4 +178,6 @@ public class AdminRestController {
             log.info("=========================추가한거{}",estContentDto);
         }
     }
+
+
 }
