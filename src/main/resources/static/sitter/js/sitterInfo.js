@@ -58,12 +58,7 @@ $('.sitterSelBtn').click(function () {
 
 $(function() {
 
-  // $(".sitterSelBtn").click(function() {
-  //   $(".modal").fadeIn();
-  //   $(".container").css("pointer-events", "none")
-  //   $("body").css("background-color", "lightgray")
-  // });
-  
+
   $(".modalX").click(function() {
     $(".modal").fadeOut();
     $(".container").css("pointer-events", "auto")

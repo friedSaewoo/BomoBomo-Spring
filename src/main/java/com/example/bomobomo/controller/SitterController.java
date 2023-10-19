@@ -102,7 +102,7 @@ public class SitterController {
         if (userNumber == null) {
             return "/user/login";
         }
-        return "/sitter/sitterRegister";
+        return "/mypage/application";
     }
 
 //    선택한 시터 신청 컨트롤러
@@ -111,20 +111,25 @@ public class SitterController {
                                  @RequestParam("empName") String empName,
                                  @RequestParam("empNumber") Long empNumber) {
 
-//        req.getParameter("empNumber");
         Long userNumber = (Long) req.getSession().getAttribute("userNumber");
-        String sitterName = req.getParameter("empName");
+        OrderDto orderDto = null;
+        if (userNumber == null) {
+                  return "/user/login";
+              }
 
-        orderService.findOrder(userNumber);
-//        System.out.println("테스트입미다 : " + orderService.findOrder(userNumber).toString());
-        System.out.println("테스트 : " + orderService.findOrder(userNumber));
-        model.addAttribute("order",orderService.findOrder(userNumber));
+        try {
+            orderDto = orderService.findOrder(userNumber);
+            System.out.println("========={}"+orderDto);
+
+        }catch (NullPointerException e) {
+            return "/mypage/applicationPage";
+        }
+
+        model.addAttribute("order",orderDto);
 
         model.addAttribute("empName",empName);
         model.addAttribute("empNumber",empNumber);
-        if (userNumber == null) {
-            return "/user/login";
-        }
+
 
         return "/sitter/sitterRegister";
     }
