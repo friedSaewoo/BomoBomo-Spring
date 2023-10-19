@@ -99,6 +99,7 @@ function empViewList(result){
     let text = '';
     result.empIntro.forEach(r=>{
         text+=`
+<a href="/sitter/sitterInfo?empNumber=${r.empNumber}">
         <div class="board-item" >
     <div class="board-img-box">
 
@@ -111,7 +112,7 @@ function empViewList(result){
 
     </div>
 </div>
-        
+        </a>
         
        
         `;
