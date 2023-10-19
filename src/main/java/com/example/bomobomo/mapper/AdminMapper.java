@@ -15,6 +15,8 @@ public interface AdminMapper {
     public AdminDto login(@Param("adminId")String adminId, @Param("adminPassword")String adminPassword);
 //    주간 가입수
     public List<WeeklyRegisterVo> weeklyRegister();
+//    최신 매칭 5건조회
+    public List<MatchListVo> selectNewMatch();
 
 //    유저 리스트
     public List<UserListVo> selectAllUsers(@Param("criteria") Criteria criteria, @Param("searchVo")SearchVo searchVo);

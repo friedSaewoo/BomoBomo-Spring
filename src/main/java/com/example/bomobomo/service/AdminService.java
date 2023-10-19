@@ -3,6 +3,7 @@ package com.example.bomobomo.service;
 import com.example.bomobomo.domain.dto.*;
 import com.example.bomobomo.domain.vo.*;
 import com.example.bomobomo.mapper.AdminMapper;
+import com.fasterxml.jackson.databind.deser.DataFormatReaders;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.coobird.thumbnailator.Thumbnailator;
@@ -45,7 +46,10 @@ public class AdminService {
     public List<WeeklyRegisterVo> weeklyRegister(){
         return adminMapper.weeklyRegister();
     }
-
+// 최근 매칭 5건 조회
+    public List<MatchListVo> selectNewMatch(){
+        return adminMapper.selectNewMatch();
+    }
 // 회원조회
     public List<UserListVo> selectAllUsers(Criteria criteria, SearchVo searchVo){
         return adminMapper.selectAllUsers(criteria,searchVo);

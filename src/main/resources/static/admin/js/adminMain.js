@@ -6,6 +6,7 @@ let eventTotal=0;
 $(document).ready(function () {
     loadWeeklyRegister();
     loadTotalSales();
+    loadNewMatch();
 });
 function loadWeeklyRegister(){
     $.ajax({
@@ -91,61 +92,45 @@ function loadTotalSales(){
         }
     });
 }
-
-// console.log(dayList);
-// console.log(countList);
-// var signupEx = [5, 8, 12, 15, 50, 18, 14];
-
-// // 레이블 생성
-// var labels = [];
-// for (var i = 1; i <=7; i++) {
-//     labels.push("09-" + (i < 10 ? '0' + i : i));
-// }
-
-
-
-
-
-// ****************************주간 매출량 차트
-
-// var salesCanvas = document.getElementById('sales');
-// salesCanvas.height=220;
-// // 이벤트, 시터찾기 각 매출
-// var eventSales = [300, 400, 200, 500, 600, 550, 350];
-// var sitterSales = [700, 800, 600, 1000, 1400, 1250, 950];
-// // 매출 총합
-// var salesData = [1000, 1200, 800, 1500, 2000, 1800, 1300];
-// // 그래프 데이터 설정
-// var data = {
-//     labels: labels,
-//     datasets: [
-//         {
-//             label: '이벤트',
-//             data: eventSales,
-//             backgroundColor: 'rgba(75, 192, 192, 0.5)',
-//             borderColor: 'rgba(75, 192, 192, 1)',
-//             borderWidth: 1
-//         },
-//         {
-//             label: '시터 찾기',
-//             data: sitterSales,
-//             backgroundColor: 'rgba(255, 99, 132, 0.5)',
-//             borderColor: 'rgba(255, 99, 132, 1)',
-//             borderWidth: 1
-//         }
-//     ]
-// };
-//
-//
-// var myBarChart = new Chart(salesCanvas, {
-//     type: 'bar',
-//     data: data,
-//     options: {
-//         scales: {
-//             y: {
-//                 beginAtZero: true
-//             }
-//         }
-//     }
-// });
-
+function loadNewMatch() {
+    $.ajax({
+        url: `/admin/rest/newMatch`,
+        type: 'get',
+        dataType: 'json',
+        success: function (result) {
+            console.log(result);
+            createNewMatch(result);
+        },
+        error: function (a, b, c) {
+            console.log("실패");
+            console.error(c);
+        }
+    });
+}
+function createNewMatch(result){
+    if(result!=0){
+        let main =$('.bottom-main');
+        main.empty();
+        $.each(result, function(index,match){
+           main.append(
+           '<div class="wait-item">'+
+               '<div class="match-status">'
+                   +'<p>매칭번호 :'+'<span>'+match.matchNumber+'</span>'+'</p>'
+                   +'<p>' + (match.status == 0 ? '면접대기' : (match.status == 1 ? '결제대기' : (match.status == 2 ? '결제완료' : 'X'))) + '</p>'
+               +'</div>' +
+               '<div class="user-info">'+
+                   '<p>회원 번호 : <span>'+ match.userNumber +'</span></p>'+
+                   '<p>회원 이름 : <span>'+ match.userName +'</span></p>'+
+               '</div>'+
+               '<div class="emp-info">'+
+                   '<p>직원 번호 : <span>'+ match.empNumber +'</span></p>'+
+                   '<p>직원 이름 : <span>'+ match.empName +'</span></p>'+
+               '</div>'+
+               '<div class="manage-btn-container">'+
+                   '<a href="/admin/match/detail?matchNumber='+match.matchNumber+'"><button>관리</button></a>'+
+               '</div>'+
+           '</div>'
+           )
+        });
+    }
+}

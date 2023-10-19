@@ -47,6 +47,26 @@
         from event_pay ep join EVENT_APPLY ea on ep.APPLY_NUMBER = ea.APPLY_NUMBER
                           join event e on ea.EVENT_NUMBER = e.EVENT_NUMBER
     </select>
+<!-- 대기중인 최신매칭 5건 조회 -->
+    <select id="selectNewMatch" resultType="matchListVo">
+        SELECT *
+        FROM (
+        SELECT
+        M.match_number as match_number, M.status as status,M.user_number as user_number,
+        U.user_name as user_name,U.user_id as user_id,U.user_phone as user_phone,
+        M.emp_number as emp_number,E.emp_name as emp_name,E.emp_email as emp_email,E.emp_phone as emp_phone
+        FROM
+        Matchs M
+        JOIN
+        users U ON M.user_number = U.user_number
+        JOIN
+        EMP E ON M.emp_number = E.EMP_NUMBER
+        WHERE status = 0
+        ORDER BY MATCH_NUMBER DESC
+        )
+        <![CDATA[WHERE ROWNUM <= 5 ]]>
+    </select>
+
 <!-- 회원 리스트 -->
     <select id="selectAllUsers" resultType="userListVo">
         SELECT
