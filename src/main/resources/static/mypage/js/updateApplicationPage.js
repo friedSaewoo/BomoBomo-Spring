@@ -137,9 +137,14 @@ $(document).ready(function(){
         }else {
 
             $genderSecond.val('n');
-            console.log(  $genderSecond.val());
+            console.log( $genderSecond.val());
 
+<<<<<<< HEAD
         }          alert("저장이 완료되었습니다.");
+=======
+        }
+        alert("저장이 완료되었습니다.");
+>>>>>>> main
 
          $('.check-area').submit();
     })

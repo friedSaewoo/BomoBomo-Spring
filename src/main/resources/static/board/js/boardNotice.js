@@ -80,7 +80,7 @@ function noticeList(result) {
 
     $('.content').html(text);
     //동시에 페이징처리
-    let $pagenation = $('.notice-pagenation-container ul');
+    let $pagenation = $('.notice-pagination-container ul');
 
     paging.updatePagination(result.pageVo, $pagenation);
 }

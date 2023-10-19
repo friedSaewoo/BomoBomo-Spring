@@ -9,6 +9,14 @@
 <body>
 
 <div class="error-container">
+    <div class="error-btn">
+        <ul>
+            <li><a class="index-btn">메인페이지</a></li>
+            <li>|</li>
+            <li th:if="${session.userNumber!=null}"><a  class="myPage-btn">마이페이지</a></li>
+            <li th:unless="${session.userNumber!=null}"><a  class="login-btn">로그인</a></li>
+        </ul>
+    </div>
     <div class="error-title">
         <a href="/common/index"> <h2>BomoBomo</h2></a>
     </div>
@@ -20,22 +28,16 @@
             <dd>입력하신 주소가 정확한지 다시 한번 확인해 주시기 바랍니다.</dd>
         </dl>
     </div>
-    <div class="error-btn">
-        <ul>
-            <li><a th:if="${session.userNumber!=null}" class="myPage-btn">마이페이지</a></li>
-            <li><a th:unless="${session.userNumber!=null}" class="login-btn">로그인</a></li>
-            <li><a class="index-btn">홈</a></li>
-        </ul>
+    <div class="error-img">
+        <img src="/common/img/error-sitter-img.jpg" alt="에러 페이지">
     </div>
     <div class="error-copy-right">
-
         <ul>
             <li class="copy-title"><span>BomoBomo</span></li>
             <li class="copy-content">Copyright &copy; <span> BomoBomo Corp</span></li>
             <li class="copy-rights">All Rights Reserved</li>
 
         </ul>
-
     </div>
 </div>
 

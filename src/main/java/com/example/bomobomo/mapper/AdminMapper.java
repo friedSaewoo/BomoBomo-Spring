@@ -15,6 +15,8 @@ public interface AdminMapper {
     public AdminDto login(@Param("adminId")String adminId, @Param("adminPassword")String adminPassword);
 //    주간 가입수
     public List<WeeklyRegisterVo> weeklyRegister();
+//    최신 매칭 5건조회
+    public List<MatchListVo> selectNewMatch();
 
 //    유저 리스트
     public List<UserListVo> selectAllUsers(@Param("criteria") Criteria criteria, @Param("searchVo")SearchVo searchVo);
@@ -101,4 +103,12 @@ public interface AdminMapper {
     public RegionVo selectEmpRegion(Long empNumber);
 //    제출 신청서 조회
     public SubmitOrderDto selectSubmitOrder(Long matchNumber);
+//    매칭관리 유저주소조회
+    public UserAddressVo selectUserAddress(Long matchNumber);
+//    견적서 내용추가
+    public void insertEst(EstContentDto estContentDto);
+//    시터 매출
+    public Integer sitterTotal();
+//    이벤트 매출
+    public Integer eventTotal();
 }

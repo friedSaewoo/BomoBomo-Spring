@@ -105,7 +105,7 @@ function serviceReviewList(result) {
 
             text+=     `</div>
                         </div>
-                        <div class="reivew-text-content">
+                        <div class="review-text-content">
                             <dl>
                                 <dt><strong>${r.userId}</strong></dt>
                                 <dd>
@@ -136,7 +136,7 @@ function serviceReviewList(result) {
 
     $('.review-ul').html(text);
     //동시에 페이징처리
-    let $pagination = $('.review-pagenation-container ul');
+    let $pagination = $('.review-pagination-container ul');
     paging.updatePagination(result.pageReviewVo, $pagination);
 }
 

@@ -13,17 +13,17 @@ $(function () {
     $(".subMenu").hide();
 
     $(".main-menu").mouseenter(function () {
-        $(".header-contaier")
+        $(".header-container")
             .stop()
             .animate({ height: maxHeight }, 100, "linear", function () {
                 $(".sub-menu").fadeIn();
             });
     });
 
-    $(".header-contaier").mouseleave(function () {
-        $(".header-contaier")
+    $(".header-container").mouseleave(function () {
+        $(".header-container")
             .stop()
-            .animate({ height: hh }, 300, "linear", function () {
+            .animate({ height: hh }, 200, "linear", function () {
                 $(".sub-menu").hide();
             });
     });
@@ -32,25 +32,9 @@ $(function () {
 });
 
 
-//스크롤 다운 시 헤더숨기기
-//스크롤 업 헤더 등장
-// const navBar = $('header');
-// let preScrollPros = window.scrollY;
-//
-// $(window).on('scroll', function (){
-//     let currScrollPros = window.scrollY;
-//
-//     if(currScrollPros >= preScrollPros || currScrollPros==0){
-//         navBar.css('display', 'block');
-//     }else {
-//         navBar.css('display', 'none');
-//     }
-//     preScrollPros = currScrollPros;
-// })
-
 
 
 $(window).scroll(function () {
-    $(".header-contaier").css("left", 0 - $(this).scrollLeft());
+    $(".header-container").css("left", 0 - $(this).scrollLeft());
 });
 

@@ -81,7 +81,6 @@ function loadMatchList(result){
             '<a href="/admin/match/detail?matchNumber='+matchNumber+'"><button>' + '관리' +'</button></a>'+
             '</div>');
             matchContainer.append(matchDiv);
-
         });
     }else{
         let matchContainer = $('.match-container');

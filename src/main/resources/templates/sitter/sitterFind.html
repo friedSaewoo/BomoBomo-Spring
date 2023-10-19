@@ -49,7 +49,7 @@
 
 
         <div id="wrap">
-            <a href="javascript:void(0);" class="button modal-open">지역 검색하기▼</a>
+            <a href="javascript:void(0);" class="button modal-open">지역 검색하기</a>
                 <select class="sitterActSelect">
                     <option value="">선택안함</option>
                     <th:block th:each=" act : ${actList}">
@@ -72,7 +72,7 @@
 
                 <div class="sitterIndividual" th:each="sitterList : ${sitterList}">
                     <a th:href="@{/sitter/sitterInfo(empNumber=${sitterList.empNumber})}" class="sitterInformation">
-                        <div>
+                        <div class="sitter-info-section">
                             <div class="sitterInfoAndImg test">
                                 <div class="sitterInfo">
                                     <input type="hidden" th:value="${sitterList.empNumber}" class="empNumber"
@@ -150,14 +150,15 @@
     <!--        모달-->
     <form action="/sitter/addrCheck" method="post" class="sitterAddr"></form>
     <div class="modal-con modal1">
+        <a href="javascript:;" class="close addrModal">X</a>
+
         <div class="sitterInfoType">
             <div class="areaSel">
                 <label>돌봄지역 선택</label>
-                <a href="javascript:;" class="close addrModal">X</a>
             </div>
             <div class="areaSelList">
                 <select name="sido1" id="sido1" class="addrSelList"></select>
-                <select name="gugun1" id="gugun1" class="addrSelList"></select>
+                <select name="gugun1" id="gugun1" class="addrSelList" ></select>
             </div>
             <div class="sitterSel">
                 <button class="sitterTerBtn" type="button">활동 선택</button>
@@ -197,7 +198,7 @@
         </div>
     </div>
 
-    <div id="modal"></div>
+    <div id="modal2"></div>
 
 </div>
 

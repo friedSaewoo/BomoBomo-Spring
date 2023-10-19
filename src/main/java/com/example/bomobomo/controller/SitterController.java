@@ -55,21 +55,19 @@ public class SitterController {
 
         Double sitterReview = sitterService.sitterReview(empNumber);
         List<ActVo> actVo = sitterService.sitterPossibleList(empNumber);
+        System.out.println("머인지 : " + empNumber);
+        EmpImgDto empImgDto = sitterService.sitterImg(empNumber);
+
+        String empImg = empImgDto.getEmpImgUploadPath() + "/" + empImgDto.getEmpImgUuid() + "_" + empImgDto.getEmpImgName();
+        System.out.println("empImg 확인 : " + empImg);
         System.out.println("VO 확인 : " + actVo);
 
 
         model.addAttribute("actVoList", actVo);
-//        model.addAttribute("matchDto", matchDto);
-
-//        System.out.println("이미지 경로 : " + imgPath);
-
-//        String imagePath = actImg.actImgUploadPath + '/' + actImg.actImgUuid +'_' + actImg.actImgName;
-
 
         if(sitterReview == null) {
             sitterReview = 0.0;
         }
-
 
         double sitterTotalReview = sitterReview;
         System.out.println("시터 평균 : " + sitterTotalReview);
@@ -86,6 +84,8 @@ public class SitterController {
         String empDate = empVo.getEmpDate().substring(0, 10);
         empVo.setEmpDate(empDate);
 
+        model.addAttribute("empImg", empImg);
+        model.addAttribute("empImgDto", empImgDto);
         model.addAttribute("userNumber", userNumber);
         model.addAttribute("emp", empVo);
         model.addAttribute("sitterBoardList", sitterBoardList);
@@ -102,7 +102,7 @@ public class SitterController {
         if (userNumber == null) {
             return "/user/login";
         }
-        return "/sitter/sitterRegister";
+        return "/mypage/application";
     }
 
 //    선택한 시터 신청 컨트롤러
@@ -111,19 +111,25 @@ public class SitterController {
                                  @RequestParam("empName") String empName,
                                  @RequestParam("empNumber") Long empNumber) {
 
-//        req.getParameter("empNumber");
         Long userNumber = (Long) req.getSession().getAttribute("userNumber");
-        String sitterName = req.getParameter("empName");
+        OrderDto orderDto = null;
+        if (userNumber == null) {
+                  return "/user/login";
+              }
 
-        orderService.findOrder(userNumber);
-        System.out.println("테스트입미다 : " + orderService.findOrder(userNumber).toString());
-        model.addAttribute("order",orderService.findOrder(userNumber));
+        try {
+            orderDto = orderService.findOrder(userNumber);
+            System.out.println("========={}"+orderDto);
+
+        }catch (NullPointerException e) {
+            return "/mypage/applicationPage";
+        }
+
+        model.addAttribute("order",orderDto);
 
         model.addAttribute("empName",empName);
         model.addAttribute("empNumber",empNumber);
-        if (userNumber == null) {
-            return "/user/login";
-        }
+
 
         return "/sitter/sitterRegister";
     }

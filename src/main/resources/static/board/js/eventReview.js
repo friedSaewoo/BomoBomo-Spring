@@ -116,7 +116,7 @@ function eventReviewList(result){
                text += ` 
                                 </div>
                         </div>
-                        <div class="reivew-text-content">
+                        <div class="review-text-content">
                             <dl>
                                 <dt><strong>${r.userId}</strong></dt>
                                 <dd>
@@ -146,7 +146,7 @@ function eventReviewList(result){
 
     }
     $('.review-ul').html(text);
-   let $pagination = $('.review-pagenation-container ul');
+   let $pagination = $('.review-pagination-container ul');
     paging.updatePagination(result.pageEventReviewVo, $pagination)
 }
 

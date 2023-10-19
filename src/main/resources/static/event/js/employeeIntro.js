@@ -117,6 +117,9 @@ function empViewList(result){
        
         `;
     })
+
+
+
     $('.board').html(text);
     let page = $('.page-box')
     updatePagination(result.pageInfo,page )

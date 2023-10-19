@@ -79,6 +79,7 @@ public class MyPageController {
     //신청서 데이터 저장후 이동
     @PostMapping("/application")
     public RedirectView applicationRegister(OrderDto orderDto,HttpServletRequest req){
+
         // 저장 서비스 실행
         Long userNumber=(Long)req.getSession().getAttribute("userNumber");
         System.out.println(userNumber);
@@ -169,10 +170,10 @@ public class MyPageController {
     }
 
     @GetMapping("/userInfoDelete")
-    public String removeUserInfo(@RequestParam(name = "userNumber") Long userNumber){
+    public String removeUserInfo(@RequestParam(name = "userNumber") Long userNumber,HttpServletRequest req){
 
         myPageService.removeUser(userNumber);
-
+        req.getSession().invalidate();
         return "user/login";
 
     }

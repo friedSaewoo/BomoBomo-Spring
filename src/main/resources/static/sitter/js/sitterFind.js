@@ -143,8 +143,7 @@ function showListAndPage(sitter) {
     $('.paging').empty();
 
     console.log("sitter : " + sitter);
-    console.log(sitter);
-    console.log(sitter.sitterList.actImgList);
+    console.log("3" + sitter.sitterList.actImgList);
 
     if(sitter.sitterTotal != 0) {
         $('.sitterFindCount > strong').append(sitter.sitterTotal);
@@ -166,7 +165,7 @@ function showListAndPage(sitter) {
                 str += "<div class='sitterGrade'>★★★☆☆</div>";
             } else if(sitterList.avg >= 3.5 && sitterList.avg < 4.5) {
                 str += "<div class='sitterGrade'>★★★★☆</div>";
-            } else if(sitterList.avg >= 4.5 && sitterList.avg < 5) {
+            } else if(sitterList.avg >= 4.5 && sitterList.avg <= 5) {
                 str += "<div class='sitterGrade'>★★★★★</div>";
             }
 

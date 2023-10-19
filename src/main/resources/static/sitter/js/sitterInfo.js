@@ -47,7 +47,7 @@ $('.sitterSelBtn').click(function () {
     let sitterNumber = $('#sitterNum').val();
 
     if($("a").hasClass("page_move") != true) {
-        alert("로그인을 먼저 해주세요!!.");
+        alert("로그인을 먼저 해주세요.");
         location.href="/user/login";
         return;
 
@@ -58,12 +58,7 @@ $('.sitterSelBtn').click(function () {
 
 $(function() {
 
-  // $(".sitterSelBtn").click(function() {
-  //   $(".modal").fadeIn();
-  //   $(".container").css("pointer-events", "none")
-  //   $("body").css("background-color", "lightgray")
-  // });
-  
+
   $(".modalX").click(function() {
     $(".modal").fadeOut();
     $(".container").css("pointer-events", "auto")
