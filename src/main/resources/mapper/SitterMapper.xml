@@ -19,11 +19,11 @@
 
     <select id="sitterList" resultType="EmpListVo">
         SELECT RNUM, EMP_NUMBER, EMP_NAME, EMP_AGE, EMP_GENDER, EMP_PHONE, EMP_EMAIL, EMP_DATE, EMP_CONTENT,
-        avg,EMP_IMG_UPLOAD_PATH, EMP_IMG_UUID, EMP_IMG_NAME
+        avg,EMP_IMG_UPLOAD_PATH, EMP_IMG_UUID, EMP_IMG_NAME, city_name, country_name
         FROM (
         SELECT ROWNUM AS RNUM, EMP_NUMBER, EMP_NAME, EMP_AGE, EMP_GENDER, EMP_PHONE, EMP_EMAIL, EMP_DATE, EMP_CONTENT,
         avg
-        ,EMP_IMG_UPLOAD_PATH, EMP_IMG_UUID, EMP_IMG_NAME
+        ,EMP_IMG_UPLOAD_PATH, EMP_IMG_UUID, EMP_IMG_NAME, city_name, country_name
         FROM(
         SELECT distinct e.EMP_NUMBER, e.EMP_NAME, e.EMP_AGE, e.EMP_GENDER, e.EMP_PHONE, e.EMP_EMAIL, e.EMP_DATE,
         e.EMP_CONTENT, s1.avg
@@ -38,7 +38,7 @@
         left join EMP_IMG ei on e.EMP_NUMBER = ei.EMP_NUMBER
         <trim prefix="where" prefixOverrides="and">
             <if test="countryName != null and !countryName.equals('상세 선택')">
-                c.COUNTRY_NAME like '%' || #{countryName} || '%' AND c2.CITY_NAME like '%' || #{cityName} || '%'
+                c.COUNTRY_NAME like '%' || #{countryName} || '%'
             </if>
             <if test="actNumber != null and actNumber != 0">
                 AND eai.ACT_NUMBER = #{actNumber}
@@ -84,12 +84,25 @@
     </select>
 
     <select id="sitterBoardList" resultType="sitterBoardDto">
-        SELECT *
-        FROM SITTER_BOARD
-                    <![CDATA[
-        WHERE EMP_NUMBER = ${empNumber}
-          AND ROWNUM <= 10
-        ]]>
+        select rnum, SITTER_BOARD_NUMBER, user_number, user_id, EMP_NUMBER,SITTER_BOARD_CONTENT, SITTER_BOARD_REGISTER_DATE,
+        SITTER_BOARD_MODIFY_DATE, RATING, SITTER_BOARD_COUNT, EMP_NAME
+        from(
+        select rownum as rnum, SITTER_BOARD_NUMBER, user_number, user_id, EMP_NUMBER,SITTER_BOARD_CONTENT,
+        SITTER_BOARD_REGISTER_DATE, SITTER_BOARD_MODIFY_DATE, RATING, SITTER_BOARD_COUNT, EMP_NAME
+
+        from (
+        select  s.SITTER_BOARD_NUMBER, s.user_number, u.user_id,s.EMP_NUMBER,SITTER_BOARD_CONTENT,
+        SITTER_BOARD_REGISTER_DATE, SITTER_BOARD_MODIFY_DATE, RATING, SITTER_BOARD_COUNT, e.EMP_NAME
+
+        from SITTER_BOARD s join users u
+        on s.user_number = u.user_number
+        join emp e
+        on s.EMP_NUMBER = e.EMP_NUMBER
+        where e.emp_number= #{empNumber}
+        order by SITTER_BOARD_COUNT desc
+        )
+            <![CDATA[
+        )where rnum <=5 ]]>
     </select>
 
     <select id="addrCheck" resultType="empListVo">
