@@ -26,13 +26,15 @@
                         <canvas id="join-chart" class="jc"></canvas>
                     </div>
                     <div class="grid-item sales-chart">
-                        <div><span>주간 매출현황</span></div>
-                        <canvas id="sales"></canvas>
+                        <div class="sales-chart-title"><span>전체 매출현황</span></div>
+                        <div class="sales-container">
+                            <canvas id="sales"></canvas>
+                        </div>
                     </div>
                 </div>
                 <div class="bottom-container">
                     <div class="bottom-contents">
-                        <div class="bottom-title"><span>미정</span></div>
+                        <div class="bottom-title"><span>최신 매칭?</span></div>
                         <div class="bottom-main"></div>
                     </div>
                 </div>
@@ -45,6 +47,7 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/emn178/chartjs-plugin-labels/src/chartjs-plugin-labels.js"></script>
 <script src="/admin/js/adminMain.js"></script>
 <script src="/admin/js/adminHeader.js"></script>
 </html>

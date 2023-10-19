@@ -105,4 +105,6 @@ public interface AdminMapper {
     public UserAddressVo selectUserAddress(Long matchNumber);
 //    견적서 내용추가
     public void insertEst(EstContentDto estContentDto);
+//    시터 매출
+//    public int
 }
