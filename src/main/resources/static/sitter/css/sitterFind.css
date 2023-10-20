@@ -1,22 +1,15 @@
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
 
 body {
     font-family: 'GmarketSansMedium';
-    /*background-color: #f7f7f7;*/
 }
 
 a{
-    text-decoration: none;
     color: black;
 }
 
 .container {
-    width: 1020px;
+    width: 1024px;
     margin: 0 auto;
     padding: 40px 0;
     min-height: 1000px;
@@ -78,6 +71,7 @@ a{
     position: relative;
     background-color: #fff;
     border: 1px solid #ccc;
+    height: 243px;
 }
 
 .sitterInfoAndImg {

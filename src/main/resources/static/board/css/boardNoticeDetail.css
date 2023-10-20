@@ -54,6 +54,8 @@
     line-height: 2.7;
     height: 100%;
     min-height: 450px;
+    white-space: pre-line;
+
     border-bottom: 1px solid gray;
 }
 

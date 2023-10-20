@@ -1,8 +1,4 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+
 body {
     font-family: 'GmarketSansMedium';
     background-color: white;
@@ -25,7 +21,7 @@ hr {
     width: 1024px;
     margin: 50px auto;
     padding: 40px 0;
-    min-height: 1000px;
+    min-height: 750px;
     /*border: 1px solid #FF7000;*/
     border-radius: 10px;
 
@@ -43,17 +39,17 @@ hr {
 
 .sitterInfoList img {
 
-    width: 305px;
-    height: 205px;
+    width: 333px;
+    height: 263px;
     border-radius: 5px;
-    margin-top: 30px;
+    margin-top: 50px;
 }
 .sitterFaceImg {
     /*border: 1px solid #FF7000;*/
 }
 
 .sitterInfo {
-    padding-top: 40px;
+    padding-top: 79px;
 }
 
 .sitterInfo strong {
@@ -77,16 +73,19 @@ hr {
     margin: 10px auto;
     width: 95%;
     height: 100%;
-    /*background-color: white;*/
-    /*border: 1px solid #FF7000;*/
+    /* background-color: white; */
+    /* border: 1px solid #FF7000; */
     border-radius: 5px;
 }
 
 .sitterContent {
-    width: 900px;
-    height: 100%;
-    padding: 25px 30px;
+    width: 450px;
+    height: 240px;
+    border-left: 1px solid gray;
+    margin-top: 70px;
+    padding: 12px 5px 3px 15px;
     white-space: pre-line;
+    font-size: 14px;
 }
 
 .sitterInfoType {
@@ -94,13 +93,15 @@ hr {
     margin: 10px auto;
     height: 100%;
     min-height: 300px;
-    /*border: 1px solid orange;*/
-    background-color: #F6F6F6;
+    /* border: 1px solid orange; */
+    /* background-color: #F6F6F6; */
     border-radius: 10px;
 
 }
 
 .sitter-wrap{
+    width: 1024px;
+    margin: 0 auto;
     display: flex;
 }
 .sitterAbility {
@@ -139,12 +140,18 @@ hr {
 }
 
 .theBtn {
-    height:200px;
+    position: relative;
+    display: flex;
+    width: 1024px;
+    padding-bottom: 100px;
+    justify-content: center;
+    align-items: center;
+
 }
 .back-to-sitter-search {
-    padding-right: 22px;
     position: relative;
-    right: 0;
+    right: 30px;
+    bottom: 0;
 }
 
 .sitterSel {
@@ -152,32 +159,34 @@ hr {
 }
 
 .sitterSelBtn{
-    width : 355px;
-    height: 40px;
+    font-family: 'KIMM_Bold';
+
+    width : 350px;
+    height: 31px;
     margin-top: 50px;  
     color: white;
     background-color: #FF7000;
     border: 2px solid #FF7000;
     border-radius: 5px;
     font-weight: 500;
-    font-size: 20px;
+    font-size: 16px;
 }
 
-.sitterSelBtn:hover {
-  cursor: pointer;
-  background-color: orange;
 
-}
 
 .sitterF {
-    float: right;
-    width : 80px;
-    height: 40px;
+    /* float: right; */
+    width: 73px;
+    height: 35px;
     border-radius: 5px;
     font-weight: 500;
+    position: absolute;
     font-size: 14px;
-
+    left: 600px;
+    bottom: -140px;
 }
+
+
 
 .sitterF:hover {
   cursor: pointer;
@@ -188,18 +197,30 @@ hr {
     padding-top: 40px
 }
 
+.review-user-id {
+    width: 120px;
+    font-size: 13px;
+}
+
 .ReviewInfo {
-    border: 1px solid lightgray;
-    width: 250px; 
     height: 58px;
     color: black;
-    padding: 10px;
-
+    width: 680px;
+    height: 25px;
+    display: flex;
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
-     -webkit-line-clamp: 2; 
-    -webkit-box-orient: vertical; 
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    line-height: 2;
+    font-size: 13px;
+}
+
+.review-rating {
+    width: 150px;
+    text-align: end;
+    color: #e89f14d9
 }
 
 .arrow-next::after {
@@ -234,43 +255,21 @@ hr {
   
   /* 보여줄 구간의 높이와 넓이 설정 */
   #slideShow{
-    width: 1010px;
-    height: 300px;
-    position: relative;
-    margin: 50px auto;
-    overflow: hidden;   
-    /*border: 3px solid blueviolet;*/
-    border-radius: 10px;
-    /*리스트 형식으로 이미지를 일렬로 
-    정렬할 것이기 때문에, 500px 밖으로 튀어 나간 이미지들은
-    hidden으로 숨겨줘야됨*/
+      /* width: 800px; */
+      height: 150px;
+      /* position: relative; */
+      margin: 15px auto;
+      /* overflow: hidden; */
+      /* border: 3px solid blueviolet; */
+      box-sizing: border-box;
+      border-radius: 10px;
+      padding:0px 60px 0px 60px;
+      position: relative;
   }
   
+
   
-  .slides{
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 2500px; /* 슬라이드할 사진과 마진 총 넓이 */
-    transition: left 0.5s ease-out; 
-    /*ease-out: 처음에는 느렸다가 점점 빨라짐*/
-  }
-  
-  /* 첫 번째 슬라이드 가운데에 정렬하기위해
-  첫번째 슬라이드만 margin-left조정 */
-  .slides li:first-child{
-    margin-left: 100px;
-  }
-  
-  /* 슬라이드들 옆으로 정렬 */
-  .slides li:not(:last-child){
-    float: left;
-    margin-right: 100px;
-  }
-  
-  .slides li{
-    float: left;
-  }
+
   
   .controller span{
     position:absolute;
@@ -288,20 +287,7 @@ hr {
   }
   
 
-  .prev{
-    left: 10px;
-  }
-  
-  /* 이전 화살표에 마우스 커서가 올라가 있을때 
-  이전 화살표가 살짝 왼쪽으로 이동하는 효과*/
-  /*.prev:hover{*/
-  /*  transform: translateX(-10px);*/
-  /*}*/
-  
-  .next{
-    right: 10px;
-  }
-  
+
   /* 다음 화살표에 마우스 커서가 올라가 있을때 
   이전 화살표가 살짝 오른쪽으로 이동하는 효과*/
   /*.next:hover{*/
@@ -427,5 +413,15 @@ hr {
     /*display: none;*/
     border-radius: 10px;
     /*background: #F1F4F4;*/
+}
+
+.slides {
+    width: 910px;
+    /* justify-content: center; */
+    display: flex;
+    align-items: center;
+    margin-bottom: 13px;
+    border-bottom: 1px solid gray
+
 }
 

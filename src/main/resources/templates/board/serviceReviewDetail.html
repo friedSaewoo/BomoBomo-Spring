@@ -36,12 +36,12 @@
                 <p><strong>평균 별점</strong></p>
                   <div class="sitter-avg">
 
-                  <span th:if="${getAvg >=0 && getAvg <0.5}" class="avg">☆☆☆☆☆</span>
+                  <span th:if="${getAvg <0.5}" class="avg">☆☆☆☆☆</span>
                   <span th:if="${getAvg >=0.5 && getAvg <1.5}" class="avg" >★☆☆☆☆ </span>
                   <span th:if="${getAvg >=1.5 && getAvg <2.5}" class="avg">★★☆☆☆ </span>
                   <span th:if="${getAvg >=2.5 && getAvg <3.5}" class="avg">★★★☆☆ </span>
                   <span th:if="${getAvg >=3.5 && getAvg <4.5}" class="avg">★★★★☆ </span>
-                  <span th:if="${getAvg >=4.5 && getAvg ==5}" class="avg">★★★★★ </span>
+                  <span th:if="${getAvg >=4.5 }" class="avg">★★★★★ </span>
                   </div>
                 <div class="hovers" >
                   <span th:text="${getAvg} + ' / 5'"><strong></strong></span>
