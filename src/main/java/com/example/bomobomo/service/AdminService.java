@@ -366,6 +366,10 @@ public EventImgDto saveEventImg(MultipartFile evenImg) throws IOException {
     public List<CityDto> selectAllCity(){
         return adminMapper.selectAllCity();
     }
+    // country 전체 조회
+    public List<CountryDto> selectAllCountry(){
+        return adminMapper.selectAllCountry();
+    }
     // country 조회
     public List<CountryDto> selectCountry(Long cityNumber){
         return adminMapper.selectCountry(cityNumber);
@@ -382,9 +386,17 @@ public EventImgDto saveEventImg(MultipartFile evenImg) throws IOException {
     public UserAddressVo selectUserAddress(Long matchNumber){
         return adminMapper.selectUserAddress(matchNumber);
     }
+    // 견적서 조회
+    public List<EstContentDto> selectEst(Long matchNumber){
+        return adminMapper.selectEst(matchNumber);
+    }
     // 견적서 내용 작성
     public void insertEst(EstContentDto estContentDto){
         adminMapper.insertEst(estContentDto);
+    }
+    // 견적서 내용 삭제
+    public void deleteEst(Long matchNumber){
+        adminMapper.deleteEst(matchNumber);
     }
     // 시터 전체 매출
     public Integer sitterTotal(){

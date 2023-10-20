@@ -198,7 +198,7 @@ textarea:focus{
     font-size: 20px;
     font-weight: bold;
 }
-#selfint{
+.selfint{
     resize: none;
     margin: 5px;
     width: 750px;

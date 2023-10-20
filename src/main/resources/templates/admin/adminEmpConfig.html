@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>관리자 페이지</title>
     <link rel="stylesheet" href="/admin/css/adminEmpRegist.css">
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
 </head>
 <body>
 <!-- 전체 컨테이너 -->
@@ -44,8 +45,8 @@
                         <th>성별</th>
                         <td>
                             <select id="gender" name="empGender">
-                                <option value="M">남성</option>
-                                <option value="F">여성</option>
+                                <option value="M" th:selected="${'M' == empDetail.empGender}">남성</option>
+                                <option value="F" th:selected="${'F' == empDetail.empGender}">여성</option>
                             </select>
                         </td>
                     </tr>
@@ -80,18 +81,21 @@
                             <select name="cityNumber" class="city-select">
                                 <option value="0">선택안함</option>
                                 <th:block th:each=" city : ${cityList}">
-                                    <option th:value="${city.cityNumber}" th:text="${city.cityName}"></option>
+                                    <option th:value="${city.cityNumber}" th:text="${city.cityName}" th:selected="${city.cityNumber == empDetail.cityNumber}"></option>
                                 </th:block>
                             </select>
                             <select name="countryNumber" class="country-select">
                                 <option value="0"> ---- </option>
+                                <th:block th:each="country : ${countryList}">
+                                    <option th:if="${country.cityNumber == empDetail.cityNumber}" th:value="${country.countryNumber}" th:text="${country.countryName}" th:selected="${country.countryNumber == empDetail.countryNumber}"></option>
+                                </th:block>
                             </select>
                         </td>
                     </tr>
                     <tr>
                         <th>간단 자기소개</th>
                         <td>
-                            <textarea id="selfint" name="empContent" required>[[${empDetail.empContent}]]</textarea>
+                            <textarea class="selfint" id="summernote" name="empContent"  required>[[${empDetail.empContent}]]</textarea>
                         </td>
                     </tr>
                     <tr>
@@ -105,55 +109,6 @@
                         </td>
                     </tr>
                 </table>
-
-
-
-<!--                <div class="emp-detail-container">-->
-<!--                    <div class="emp-info-container1">-->
-<!--                        <div class="img">-->
-<!--                            <canvas id="image-preview"></canvas>-->
-<!--                            <input type="file" name="empImgFile" id="image-input" onchange="displayResizedImage()">-->
-<!--                        </div>-->
-<!--                        <div class="info">-->
-<!--                            <div class="name-age-container">-->
-<!--                                <label for="name">이름 &nbsp;&nbsp;:&nbsp;</label>-->
-<!--                                <input type="text" id="name" name="empName" th:value="${empDetail.empName}" required>-->
-
-<!--                                <label for="age">나이:&nbsp;</label>-->
-<!--                                <input type="text" id="age" name="empAge" th:value="${empDetail.empAge}" required>-->
-
-<!--                                <label for="gender">성별:&nbsp;</label>-->
-<!--                                <select id="gender" name="empGender">-->
-<!--                                    <option value="M">남성</option>-->
-<!--                                    <option value="F">여성</option>-->
-<!--                                </select>-->
-<!--                            </div>-->
-
-<!--                            <div class="email-phone-container">-->
-<!--                                <label for="contact">연락처:&nbsp;</label>-->
-<!--                                <input type="text" id="contact" name="empPhone" th:value="${empDetail.empPhone}"><br><br>-->
-
-<!--                                <label for="email">이메일:&nbsp;</label>-->
-<!--                                <input type="email" id="email" name="empEmail" th:value="${empDetail.empEmail}" required><br><br>-->
-<!--                            </div>-->
-<!--                            <div class="act-checkbox">-->
-<!--                                <fieldset>-->
-<!--                                    <legend>활동</legend>-->
-<!--                                    <div th:each="act: ${actList}">-->
-<!--                                        <label th:text="${act.actName}"/>-->
-<!--                                        <input class="act-check" th:name="actNumber" th:value="${act.actNumber}" type="checkbox"-->
-<!--                                               th:checked="${empActList.![actNumber].contains(act.actNumber)}">-->
-<!--                                    </div>-->
-<!--                                </fieldset>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    <div class="emp-info-container2">-->
-<!--                        <div class="introduction">-->
-<!--                            <div class="title">간단 자기소개</div>-->
-<!--                            <textarea id="selfint" name="empContent" required>[[${empDetail.empContent}]]</textarea>-->
-<!--                        </div>-->
-<!--                    </div>-->
                     <div class="submit-button">
                         <button>제출</button>
                     </div>
@@ -161,12 +116,15 @@
                 </div>
             </div>
     </div>
+    <input type="hidden" id="myCity" th:value="${empDetail.cityNumber}">
+    <input type="hidden" id="myCountry" th:value="${empDetail.countryNumber}">
 </div>
 <input type="hidden" id="empImgName" th:value="${empDetail.empImgName}">
 <input type="hidden" id="empImgUploadPath" th:value="${empDetail.empImgUploadPath}">
 <input type="hidden" id="empImgUuid" th:value="${empDetail.empImgUuid}">
 </body>
 <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 <script th:src="@{/admin/js/adminEmpConfig.js}"></script>
 <script src="/admin/js/adminHeader.js"></script>
 </html>

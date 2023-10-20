@@ -223,7 +223,7 @@
 <!-- 직원 상세 -->
     <select id="selectEmpDetail" resultType="empVo">
         SELECT E.EMP_NUMBER, E.EMP_NAME, E.EMP_AGE, E.EMP_GENDER, E.EMP_PHONE, E.EMP_EMAIL, E.EMP_DATE, E.EMP_CONTENT,E.COUNTRY_NUMBER,
-               EI.EMP_IMG_NUMBER, EI.EMP_IMG_NAME, EI.EMP_IMG_UPLOAD_PATH, EI.EMP_IMG_UUID, X.CITY_NAME,X.COUNTRY_NAME
+               EI.EMP_IMG_NUMBER, EI.EMP_IMG_NAME, EI.EMP_IMG_UPLOAD_PATH, EI.EMP_IMG_UUID, X.CITY_NAME,X.COUNTRY_NAME,x.city_number,x.country_number
         FROM EMP E LEFT JOIN EMP_IMG EI on E.EMP_NUMBER = EI.EMP_NUMBER
                    LEFT JOIN (select c.city_number,country_number, city_name, country_name from city c join country ct on c.CITY_NUMBER = ct.CITY_NUMBER) X
                              ON E.COUNTRY_NUMBER = X.COUNTRY_NUMBER
@@ -476,6 +476,11 @@
         select city_number,city_name
         from city
     </select>
+<!-- country 전체 조회 -->
+    <select id="selectAllCountry" parameterType="countryDto">
+        select country_number, country_name, city_number
+        from country
+    </select>
 <!-- country 조회 -->
     <select id="selectCountry" parameterType="countryDto">
         select country_number,country_name,city_number
@@ -502,9 +507,19 @@
                      join MATCHS m on m.USER_NUMBER = u.USER_NUMBER
         where MATCH_NUMBER =  #{matchNumber}
     </select>
+<!-- 견적서 내용 조회 -->
+    <select id="selectEst" parameterType="estContentDto">
+        select * from est_content
+        where match_number = #{matchNumber}
+    </select>
 <!-- 견적서 내용 추가 -->
     <insert id="insertEst">
         insert into est_content (EST_CONTENT_NUMBER,MATCH_NUMBER,EST_CONTENT,EST_PRICE,EST_TITLE)
                     VALUES(SEQ_EST.NEXTVAL,#{matchNumber},#{estContent},#{estPrice},#{estTitle})
     </insert>
+<!-- 견적서 내용 삭제 -->
+    <delete id="deleteEst">
+        delete from est_content
+        where match_number = #{matchNumber}
+    </delete>
 </mapper>
