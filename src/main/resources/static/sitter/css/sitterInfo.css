@@ -140,15 +140,16 @@ hr {
 }
 
 .theBtn {
-position: relative;
+    position: relative;
     display: flex;
     width: 1024px;
+    padding-bottom: 100px;
     justify-content: center;
     align-items: center;
 
 }
 .back-to-sitter-search {
-    position: absolute;
+    position: relative;
     right: 30px;
     bottom: 0;
 }
@@ -181,8 +182,8 @@ position: relative;
     font-weight: 500;
     position: absolute;
     font-size: 14px;
-    right: 0;
-    bottom: -250px;
+    left: 600px;
+    bottom: -140px;
 }
 
 

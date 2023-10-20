@@ -75,6 +75,7 @@
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
     display: -webkit-box;
+    line-height: 1.7;
 }
 .related-sitter-review ul li:nth-child(3){
     font-size: 13.5px;
@@ -201,7 +202,7 @@
 
 .review-user-content {
     min-height: 400px;
-
+    white-space: pre-line;
     font-size: 13.5px;
     padding: 20px;
     line-height: 2.5;
