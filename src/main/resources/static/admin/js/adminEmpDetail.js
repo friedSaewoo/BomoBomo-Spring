@@ -62,3 +62,13 @@ function loadActImg(result){
         empList.empty();
     }
 }
+
+
+document.getElementById('board-delete').addEventListener('click', function(e) {
+    e.preventDefault();
+    console.log(empNumber);
+    if (confirm('정말 삭제하시겠습니까?')) {
+        window.location.href = "/admin/adminEmpDelete?empNumber=" + empNumber;
+    } else {
+    }
+});

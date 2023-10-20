@@ -97,6 +97,8 @@ public interface AdminMapper {
 
 //    city 전체조회
     public List<CityDto> selectAllCity();
+//    country 전체조회
+    public List<CountryDto> selectAllCountry();
 //    country 조회
     public List<CountryDto> selectCountry(Long cityNumber);
 //    직원 region 조회
@@ -105,8 +107,12 @@ public interface AdminMapper {
     public SubmitOrderDto selectSubmitOrder(Long matchNumber);
 //    매칭관리 유저주소조회
     public UserAddressVo selectUserAddress(Long matchNumber);
+//    견적서 내용 조회
+    public List<EstContentDto> selectEst(Long matchNumber);
 //    견적서 내용추가
     public void insertEst(EstContentDto estContentDto);
+//    견적서 내용 삭제
+    public void deleteEst(Long matchNumber);
 //    시터 매출
     public Integer sitterTotal();
 //    이벤트 매출

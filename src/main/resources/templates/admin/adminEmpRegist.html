@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>관리자 페이지</title>
     <link rel="stylesheet" href="/admin/css/adminEmpRegist.css">
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
 </head>
 <body>
     <!-- 전체 컨테이너 -->
@@ -90,7 +91,7 @@
                         <tr>
                             <th>간단 자기소개</th>
                             <td>
-                                <textarea id="selfint" name="empContent" required></textarea>
+                                <textarea class="selfint" name="empContent" id="summernote" required></textarea>
                             </td>
                         </tr>
                         <tr>
@@ -114,6 +115,7 @@
     </div>
     </body>
 <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 <script th:src="@{/admin/js/adminEmpRegist.js}"></script>
 <script src="/admin/js/adminHeader.js"></script>
 </html>

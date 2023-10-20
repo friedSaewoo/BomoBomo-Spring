@@ -168,16 +168,21 @@ public class AdminRestController {
         log.info("==================================여기야fileName{}",fileName);
         return FileCopyUtils.copyToByteArray(new File(actImgPath, fileName));
     }
+    @GetMapping("/est/select")
+    public List<EstContentDto> selectEst(Long matchNumber){
+        List<EstContentDto> estList = adminService.selectEst(matchNumber);
+        return estList;
+    }
 
     @PostMapping("/est")
-    public void insertEst(@RequestBody List<EstContentDto> list){
-        System.out.println("****************");
+    public void insertEst(@RequestBody List<EstContentDto> list,@RequestParam(name = "matchNumber")Long matchNumber){
+        log.info("======================바보야{}",matchNumber);
+        adminService.deleteEst(matchNumber);
+        
         list.forEach(ele -> System.out.println(ele));
         for(EstContentDto estContentDto : list){
             adminService.insertEst(estContentDto);
             log.info("=========================추가한거{}",estContentDto);
         }
     }
-
-
 }

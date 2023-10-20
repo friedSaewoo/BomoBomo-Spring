@@ -251,6 +251,7 @@ input:focus{
 }
 .write-btn.write{
     margin-left: auto;
+    margin-right: 25px;
     width: 70px;
     height: 35px;
     background-color:#4F4D8E;
@@ -353,4 +354,8 @@ th, td{
     text-align: center;
     text-decoration: none;
     color: white;
+}
+#summernote{
+    height: 500px;
+    resize: none;
 }
