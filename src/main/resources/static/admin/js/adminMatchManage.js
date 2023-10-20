@@ -55,6 +55,69 @@ window.onclick = function(event) {
 }
 
 $(document).ready(function() {
+    $.ajax({
+       url:`/admin/rest/est/select?matchNumber=${matchNumber}`,
+       type:'get',
+       dataType: 'json',
+        success:function (result){
+            console.log(result);
+            loadEst(result);
+        },
+        error:function (a,b,c){
+           console.log("실패");
+           console.error(c);
+        }
+    });
+});
+
+function loadEst(result) {
+    let loadTotalPrice = 0;
+    if (result != 0) {
+        $.each(result, function(index, est) {
+            loadTotalPrice += est.estPrice;
+            const listItem = $("<li class='product-detail'>" +
+                "<p class='product-title'>" + "[보모보모] " + "<span class='estTitle'>" + est.estTitle + "</span>" + "</p>" +
+                "<p class='usetime'>" + "활동 : " + "<span class='estContent'>" + est.estContent + "</span>" + "</p>" +
+                "<p class='pay'><span>결제금액</span>" + "<span class='pay-price'>" + est.estPrice + "</span>" + "원" + "</p>" +
+                "<button class='remove-item'>X</button>" +
+                "</li>");
+
+            listItem.find(".remove-item").on("click", function() {
+                loadTotalPrice -= est.estPrice;
+                $(this).closest("li").remove();
+                $(".totalMoney").text(loadTotalPrice + "원");
+            });
+
+            $(".product-info").append(listItem);
+        });
+        $(".totalMoney").text(loadTotalPrice + "원");
+    }
+}
+
+// function loadEst(result){
+//     let loadTotalPrice=0;
+//     if(result.estList!=0){
+//         $.each(result.estList,function(index,est){
+//             loadTotalPrice+=est.estPrice;
+//             $(".product-info").append(
+//                 "<li class='product-detail'>" +
+//                 "<p class='product-title'>" + "[보모보모] " +"<span class='estTitle'>"+ est.estTitle + "</span>"+"</p>" +
+//                 "<p class='usetime'>" + "활동 : "+"<span class='estContent'>" + est.estContent + "</span>"+"</p>" +
+//                 "<p class='pay'><span>결제금액</span>" + "<span class='pay-price'>" + est.estPrice + "</span>" + "원" + "</p>" +
+//                 "<button class='remove-item'>X</button>" +
+//                 "</li>");
+//
+//                 $(".product-info").on("click", ".remove-item", function() {
+//                     let price = $(this).closest("li").val("pay");
+//                     console.log(price);
+//                     $(this).closest("li").remove();
+//             });
+//         });
+//         $(".totalMoney").text(loadTotalPrice + "원");
+//     }
+// }
+
+$(document).ready(function() {
     // totalPrice 초기화
     let totalPrice = 0;
 
@@ -127,7 +190,7 @@ $("#submitEst").on("click",function (){
     }
 
    $.ajax({
-        url: `/admin/rest/est`,
+        url: `/admin/rest/est?matchNumber=${matchNumber}`,
         type:'post',
         data: JSON.stringify(ar),
        contentType : 'application/json; charset=utf-8',
@@ -139,4 +202,20 @@ $("#submitEst").on("click",function (){
             console.error(c);
        }
    });
+});
+
+document.getElementById("submitEst").addEventListener("click", function() {
+    var messageModal = document.getElementById("messageModal");
+    var messageText = document.getElementById("messageText");
+
+    // 메시지 설정
+    messageText.textContent = "제출되었습니다";
+
+    // 모달 표시
+    messageModal.style.display = "block";
+
+    // 3초 후 모달 숨김
+    setTimeout(function() {
+        messageModal.style.display = "none";
+    }, 1000); // 3초
 });

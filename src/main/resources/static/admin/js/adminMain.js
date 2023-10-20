@@ -115,7 +115,7 @@ function createNewMatch(result){
            main.append(
            '<div class="wait-item">'+
                '<div class="match-status">'
-                   +'<p>매칭번호 :'+'<span>'+match.matchNumber+'</span>'+'</p>'
+                   +'<p>매칭번호 : '+'<span>'+match.matchNumber+'</span>'+'</p>'
                    +'<p>' + (match.status == 0 ? '면접대기' : (match.status == 1 ? '결제대기' : (match.status == 2 ? '결제완료' : 'X'))) + '</p>'
                +'</div>' +
                '<div class="user-info">'+

@@ -75,7 +75,7 @@
                         <tr>
                             <th>간단 자기소개</th>
                             <td>
-                                <textarea id="selfint" name="empContent" readonly>[[${empDetail.empContent}]]</textarea>
+                                <div class="selfint" th:utext="${empDetail.empContent}" name="empContent"></div>
                             </td>
                         </tr>
                         <tr>
@@ -87,7 +87,7 @@
                     </table>
                     <div class="bt-container">
                         <a th:href="@{/admin/adminEmpConfig( empNumber=${empDetail.empNumber} )}" class="board-fix">수정</a>
-                        <a th:href="@{/admin/adminEmpDelete( empNumber=${empDetail.empNumber} )}" class="board-delete">삭제</a>
+                        <a class="board-delete" id="board-delete">삭제</a>
                     </div>
             </div>
     </div>

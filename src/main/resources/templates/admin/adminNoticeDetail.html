@@ -42,25 +42,23 @@
                             </dl>
                           </div>
                           <!-- 게시글 작성내용 -->
-                          <div class="board-content">
-                              <textarea readonly>
-[[${noticeDetail.noticeContent}]]
-                              </textarea>
+                          <div th:utext="${noticeDetail.noticeContent}" class="board-content">
+
                           </div>
                           <!-- 게시글 버튼 컨테이너 -->
                         </div>
                     </div>
                 </div>
                 <div class="bt-container">
-<!--                    <a href="/admin/redirect/notice" class="board-home">글 목록</a>-->
                     <a th:href="@{/admin/adminNoticeConfig( noticeNumber=${noticeDetail.noticeNumber} )}" class="board-fix">수정</a>
-                    <a th:href="@{/admin/adminNoticeDelete( noticeNumber=${noticeDetail.noticeNumber} )}" class="board-delete">삭제</a>
+                    <a class="board-delete" id="board-delete">삭제</a>
                   </div>
             </div>
-
         </div>
     </div>
+<input type="hidden" th:value="${noticeDetail.noticeNumber}" id="noticeNumber">
 </body>
+<script src="/admin/js/adminNoticeDetail.js"></script>
 <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
 <script src="/admin/js/adminHeader.js"></script>
 </html>

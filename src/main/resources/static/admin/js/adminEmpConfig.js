@@ -47,8 +47,6 @@ function loadImage() {
     let empImgUuid = document.getElementById('empImgUuid').value;
     let empImgName = document.getElementById('empImgName').value;
     let imagePath = empImgUploadPath + '/' + empImgUuid + '_' + empImgName;
-
-
     let canvas = document.getElementById('image-preview');
     let context = canvas.getContext('2d');
     let img = new Image();
@@ -84,7 +82,6 @@ $(".city-select").change(function () {
         dataType: 'json',
         success: function (result) {
             console.log(result);
-
             loadCountry(result);
         },
         error: function (a, b, c) {
@@ -100,4 +97,23 @@ function loadCountry(result) {
     $.each(result, function (index, country) {
         select.append('<option value="' + country.countryNumber + '">' + country.countryName + '</option>');
     });
+
 }
+
+$(document).ready(function(){
+    $('#summernote').summernote({
+        placeholder: '내용을 입력하세요',
+        tabsize: 2,
+        width:750,
+        height: 400,
+        disableResizeEditor:true,
+        toolbar: [
+            ['style', ['style']],
+            ['font', ['bold', 'underline', 'clear']],
+            ['color', ['color']],
+            ['para', ['ul', 'ol', 'paragraph']],
+            ['table', ['table']],
+            ['insert', ['link','codeview', 'help']]
+        ]
+    });
+});

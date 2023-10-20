@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>관리자 페이지</title>
     <link rel="stylesheet" href="/admin/css/adminNoticeWrite.css">
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
 </head>
 <body>
 <!-- 전체 컨테이너 -->
@@ -31,7 +32,7 @@
                             <div class="board-write">
                                 <div class="write-content">
                                     <p class="sub">내용</p>
-                                    <textarea name="noticeContent">[[${noticeDetail.noticeContent}]]</textarea>
+                                    <textarea name="noticeContent" id="summernote">[[${noticeDetail.noticeContent}]]</textarea>
                                 </div>
                             </div>
                         </div>
@@ -56,6 +57,7 @@
 </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
-<script th:src="@{/admin/js/adminNoticeConfig.js}"></script>
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+<script th:src="@{/admin/js/adminNoticeWrite.js}"></script>
 <script src="/admin/js/adminHeader.js"></script>
 </html>

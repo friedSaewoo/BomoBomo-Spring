@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
+import org.springframework.web.util.HtmlUtils;
 
 import javax.mail.Multipart;
 import javax.servlet.http.HttpServletRequest;
@@ -154,6 +155,9 @@ public class AdminController {
         List<ActDto> actList = adminService.selectAct();
         List<EmpActItemDto> empActList = adminService.selectEmpActItem(empNumber);
         List<CityDto> cityList = adminService.selectAllCity();
+        List<CountryDto> countryList = adminService.selectAllCountry();
+
+        model.addAttribute("countryList",countryList);
         model.addAttribute("cityList", cityList);
         model.addAttribute("empDetail",empDetail);
         model.addAttribute("actList",actList);

@@ -196,7 +196,7 @@ textarea:focus{
     font-size: 20px;
     font-weight: bold;
 }
-#selfint{
+.selfint{
     resize: none;
     margin: 5px;
     width: 750px;
@@ -204,6 +204,7 @@ textarea:focus{
     font-size: 20px;
     font-weight: 100!important;
     padding: 5px;
+    border:1px solid #f1f1f1;
 }
 .submit-button{
     margin: 10px auto;
@@ -384,6 +385,7 @@ th, td{
     color: white;
     border-radius: 10%;
     padding: 5px;
+    cursor: pointer;
 }
 
 th{

@@ -81,3 +81,21 @@ function loadCountry(result) {
         select.append('<option value="' + country.countryNumber + '">' + country.countryName + '</option>');
     });
 }
+
+$(document).ready(function(){
+    $('#summernote').summernote({
+        placeholder: '내용을 입력하세요',
+        tabsize: 2,
+        width:750,
+        height: 400,
+        disableResizeEditor:true,
+        toolbar: [
+            ['style', ['style']],
+            ['font', ['bold', 'underline', 'clear']],
+            ['color', ['color']],
+            ['para', ['ul', 'ol', 'paragraph']],
+            ['table', ['table']],
+            ['insert', ['link','codeview', 'help']]
+        ]
+    });
+});

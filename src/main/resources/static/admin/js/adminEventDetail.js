@@ -30,3 +30,13 @@ function loadDetail(){
 }
 loadImage();
 loadDetail();
+
+let eventNumber = $('.event-num').val();
+document.getElementById('board-delete').addEventListener('click', function(e) {
+    e.preventDefault();
+    console.log(eventNumber);
+    if (confirm('정말 삭제하시겠습니까?')) {
+        window.location.href = "/admin/adminEventDelete?eventNumber=" + eventNumber;
+    } else {
+    }
+});
