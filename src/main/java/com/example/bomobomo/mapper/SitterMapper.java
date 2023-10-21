@@ -33,7 +33,7 @@ public interface SitterMapper {
     public EmpVo sitterInfo(Long empNumber);
 
 //    시터 후기 리스트 출력
-    public List<SitterBoardDto> sitterBoardList(Long empNumber);
+    public List<SitterBoardVo> sitterBoardList(Long empNumber);
 
     //    시터 평점
     public Double sitterReview(Long empNumber);

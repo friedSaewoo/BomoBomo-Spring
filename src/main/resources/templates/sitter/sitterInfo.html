@@ -94,10 +94,8 @@
         <input type="hidden" th:value="${emp.empName}" id="empName" name="empName">
         <input type="hidden" th:value="${emp.empNumber}" id="empNumber" name="empNumber">
 
-        <hr>
         <!-- 시터 상세 -->
         <div class="sitterInfoType">
-            <div class="possible"><strong>자기소개</strong></div>
             <div class="selfIntroduction">
                 <div class="sitterContent" th:utext="${emp.empContent}"></div>
             </div>
@@ -107,22 +105,26 @@
         <div class="sitterHugi">
             <hr>
             <br>
-            <div class="possible"><strong>시터 후기</strong></div>
+            <div class="possible"><strong th:text="${emp.empName +'시터님 관련 후기'}"> </strong></div>
             <div id="slideShow">
-                <ul class="slides">
-                    <a th:href="@{/board/reviewDetail(sitterBoardNumber=${sitterBoardList.sitterBoardNumber})}"
-                       th:each="sitterBoardList : ${sitterBoardList}">
-                        <li style="">
-                            <img src="/sitter/img/sImg.png" alt="">
+                <ul class="slides" th:each="sitterBoardList : ${sitterBoardList}">
+                    <li class="review-user-id" th:text="${sitterBoardList.userId}">
+
+                    </li>
+                    <a th:href="@{/board/reviewDetail(sitterBoardNumber=${sitterBoardList.sitterBoardNumber})}">
+                        <li class="review-content">
                             <div class="ReviewInfo" th:text="${sitterBoardList.sitterBoardContent}"></div>
                         </li>
                     </a>
+                    <li class="review-rating">
+                        <span th:if="${sitterBoardList.rating==1}">★☆☆☆☆</span>
+                        <span th:if="${sitterBoardList.rating==2}">★★☆☆☆</span>
+                        <span th:if="${sitterBoardList.rating==3}">★★★☆☆</span>
+                        <span th:if="${sitterBoardList.rating==4}">★★★★☆</span>
+                        <span th:if="${sitterBoardList.rating==5}">★★★★★</span>
+
+                    </li>
                 </ul>
-                <p class="controller">
-                    <!-- &lang: 왼쪽 방향 화살표 &rang: 오른쪽 방향 화살표 -->
-                    <span class="prev">&lang;</span>
-                    <span class="next">&rang;</span>
-                </p>
             </div>
         </div>
 

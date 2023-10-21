@@ -48,7 +48,7 @@ public class SitterService {
     }
 
     //시터 후기 리스트 출력
-    public List<SitterBoardDto> selectSitterBoardList(Long empNumber) {
+    public List<SitterBoardVo> selectSitterBoardList(Long empNumber) {
         if (empNumber == null) {
             throw new IllegalArgumentException("시터 번호 누락");
         }

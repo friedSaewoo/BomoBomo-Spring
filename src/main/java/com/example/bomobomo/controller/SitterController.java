@@ -47,7 +47,7 @@ public class SitterController {
         System.out.println("유저 번호 : " + userNumber);
 
         EmpVo empVo = sitterService.sitterInfo(empNumber);
-        List<SitterBoardDto> sitterBoardList = sitterService.selectSitterBoardList(empNumber);
+        List<SitterBoardVo> sitterBoardList = sitterService.selectSitterBoardList(empNumber);
         if(userNumber != null) {
             Long cnt = sitterService.userMatchCheck(userNumber);
             model.addAttribute("cnt", cnt);
